@@ -1,0 +1,50 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "bilder/blog"
+public_folder: "/bilder/blog"
+
+collections:
+  - name: "blog"
+    label: "Blog Posts"
+    folder: "content/blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Featured Image", name: "image", widget: "image"}
+      - {label: "Category", name: "category", widget: "select", options: ["Pinterest-Strategie", "Business-Systeme", "Anti-Selbstsabotage"]}
+      - {label: "SEO Title", name: "seo_title", widget: "string", required: false}
+      - {label: "SEO Description", name: "seo_description", widget: "text", required: false}
+      - {label: "Tags", name: "tags", widget: "list", required: false}
+      - {label: "Body", name: "body", widget: "markdown"}
+```
+
+**Speichern.**
+
+---
+
+### **D) ORDNER ERSTELLEN: `content/blog`**
+
+**Im `website` Ordner:**
+- Neuer Ordner: `content`
+- In `content`: Neuer Ordner: `blog`
+
+**Das ist wo deine Blog-Posts gespeichert werden.**
+
+---
+
+### **DEINE ORDNER-STRUKTUR SOLLTE JETZT SO AUSSEHEN:**
+```
+Desktop/website/
+├── admin/
+│   ├── index.html
+│   └── config.yml
+├── content/
+│   └── blog/
+├── bilder/
+├── index.html
+├── impressum.html
+└── ... (deine anderen Files)

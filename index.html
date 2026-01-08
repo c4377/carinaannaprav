@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Das 2h/Tag Business-System für Mamas - Automatisierung, Pinterest Marketing & Mindset">
+    <title>Carina Anna Prav | Das 2h/Tag Business-System</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --cream: #FAF9F6;
+            --beige: #E8DED2;
+            --warm-beige: #D4C5B0;
+            --charcoal: #2D2D2D;
+            --dark-gray: #4A4A4A;
+            --light-gray: #F5F5F5;
+            --accent: #B89968;
+            
+            --font-serif: 'Playfair Display', Georgia, serif;
+            --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            --spacing-xl: 6rem;
+            
+            --max-width: 1200px;
+        }
+        
+        body {
+            font-family: var(--font-sans);
+            color: var(--charcoal);
+            background: var(--cream);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: var(--font-serif);
+            font-weight: 400;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+        
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        h3 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        p {
+            font-size: clamp(1rem, 2vw, 1.125rem);
+            margin-bottom: var(--spacing-sm);
+            color: var(--dark-gray);
+        }
+        
+        a {
+            color: var(--charcoal);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+        
+        .container-narrow {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+        
+        section {
+            padding: var(--spacing-xl) 0;
+        }
+        
+        @media (max-width: 768px) {
+            section {
+                padding: var(--spacing-lg) 0;
+            }
+        }
+        
+        /* BUTTONS */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            text-align: center;
+            border: 2px solid var(--charcoal);
+            background: transparent;
+            color: var(--charcoal);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-family: var(--font-sans);
+        }
+        
+        .btn:hover {
+            background: var(--charcoal);
+            color: var(--cream);
+            transform: translateY(-2px);
+        }
+        
+        .btn-primary {
+            background: var(--charcoal);
+            color: var(--cream);
+        }
+        
+        .btn-primary:hover {
+            background: var(--dark-gray);
+            border-color: var(--dark-gray);
+        }
+        
+        .btn-large {
+            padding: 1.25rem 3rem;
+            font-size: 1.125rem;
+        }
+        
+        @media (max-width: 768px) {
+            .btn {
+                width: 100%;
+                padding: 1rem 1.5rem;
+            }
+        }
+        
+        /* NAVIGATION */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(250, 249, 246, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--beige);
+        }
+        
+        .nav-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: var(--spacing-sm) var(--spacing-md);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: var(--spacing-md);
+            list-style: none;
+        }
+        
+        .nav-links a {
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 500;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--charcoal);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--charcoal);
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: var(--cream);
+                flex-direction: column;
+                padding: var(--spacing-md);
+                gap: var(--spacing-sm);
+                border-bottom: 1px solid var(--beige);
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: all 0.3s ease;
+                pointer-events: none;
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: all;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+        
+        /* HERO mit Hintergrundbild */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            position: relative;
+            overflow: hidden;
+            background-image: 
+                linear-gradient(135deg, rgba(250, 249, 246, 0.92) 0%, rgba(245, 245, 245, 0.88) 100%),
+                url('bilder/hero-background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+        
+        .hero-eyebrow {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            margin-bottom: var(--spacing-sm);
+            font-weight: 500;
+        }
+        
+        .hero-subheading {
+            font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+            color: var(--dark-gray);
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.6;
+        }
+        
+        .hero-cta {
+            display: flex;
+            gap: var(--spacing-sm);
+            flex-wrap: wrap;
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                min-height: 90vh;
+                text-align: center;
+                background-attachment: scroll;
+            }
+            
+            .hero-content {
+                margin: 0 auto;
+            }
+            
+            .hero-cta {
+                flex-direction: column;
+            }
+        }
+        
+        /* PROBLEM mit Textur */
+        .problem {
+            background-color: var(--beige);
+            background-image: 
+                url('bilder/texture-subtle.jpg');
+            background-size: 400px;
+            background-repeat: repeat;
+            text-align: center;
+        }
+        
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .problem-card {
+            background: rgba(250, 249, 246, 0.95);
+            padding: var(--spacing-lg) var(--spacing-md);
+            border: 1px solid rgba(45, 45, 45, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .problem-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(45, 45, 45, 0.08);
+        }
+        
+        .problem-icon {
+            font-size: 3rem;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .problem-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        /* SOLUTION mit Bild */
+        .solution {
+            background: var(--cream);
+        }
+        
+        .solution-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-xl);
+            align-items: center;
+        }
+        
+        .solution-features {
+            list-style: none;
+            margin-top: var(--spacing-md);
+        }
+        
+        .solution-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
+            font-size: 1.125rem;
+        }
+        
+        .solution-features li::before {
+            content: '✓';
+            font-size: 1.5rem;
+            color: var(--accent);
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .solution-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border: 1px solid var(--beige);
+            border-radius: 2px;
+        }
+        
+        @media (max-width: 768px) {
+            .solution-content {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-md);
+            }
+            
+            .solution-image {
+                order: -1;
+                height: 300px;
+            }
+        }
+        
+        /* HOW IT WORKS */
+        .how-it-works {
+            background: var(--light-gray);
+            text-align: center;
+        }
+        
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .step {
+            position: relative;
+            padding: var(--spacing-lg) var(--spacing-md);
+        }
+        
+        .step-number {
+            font-family: var(--font-serif);
+            font-size: 4rem;
+            color: var(--accent);
+            opacity: 0.2;
+            line-height: 1;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .step h3 {
+            margin-bottom: var(--spacing-sm);
+            font-size: 1.5rem;
+        }
+        
+        /* SOCIAL PROOF mit Hintergrundbild */
+        .social-proof {
+            background-image:
+                linear-gradient(rgba(250, 249, 246, 0.95), rgba(250, 249, 246, 0.95)),
+                url('bilder/social-proof-background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            text-align: center;
+        }
+        
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .testimonial {
+            background: rgba(245, 245, 245, 0.95);
+            padding: var(--spacing-lg);
+            border-left: 3px solid var(--accent);
+            backdrop-filter: blur(10px);
+        }
+        
+        .testimonial-text {
+            font-size: 1.125rem;
+            font-style: italic;
+            line-height: 1.7;
+            margin-bottom: var(--spacing-md);
+            color: var(--dark-gray);
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--charcoal);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .testimonial-role {
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-xl);
+            padding: var(--spacing-lg);
+            background: rgba(232, 222, 210, 0.9);
+            backdrop-filter: blur(10px);
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            color: var(--accent);
+            font-weight: 400;
+            line-height: 1;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--dark-gray);
+        }
+        
+        /* OFFERS */
+        .offers {
+            background: var(--beige);
+            text-align: center;
+        }
+        
+        .offers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .offer-card {
+            background: var(--cream);
+            padding: var(--spacing-lg);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .offer-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(45, 45, 45, 0.1);
+        }
+        
+        .offer-card.featured {
+            border-color: var(--charcoal);
+            transform: scale(1.05);
+        }
+        
+        .offer-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--charcoal);
+            color: var(--cream);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .offer-card h3 {
+            font-size: 1.75rem;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .offer-description {
+            font-size: 1rem;
+            color: var(--dark-gray);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .offer-price {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            color: var(--charcoal);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .offer-price-detail {
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .offer-features {
+            list-style: none;
+            text-align: left;
+            margin: var(--spacing-md) 0;
+            flex-grow: 1;
+        }
+        
+        .offer-features li {
+            padding: var(--spacing-xs) 0;
+            border-bottom: 1px solid var(--beige);
+            font-size: 0.95rem;
+        }
+        
+        .offer-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .offer-cta {
+            margin-top: var(--spacing-md);
+        }
+        
+        /* PODCAST mit Bild */
+        .podcast {
+            background: var(--cream);
+        }
+        
+        .podcast-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-xl);
+            align-items: center;
+        }
+        
+        .podcast-text {
+            order: 2;
+        }
+        
+        .podcast-image-container {
+            order: 1;
+        }
+        
+        .podcast-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border: 1px solid var(--beige);
+            border-radius: 2px;
+        }
+        
+        .podcast-platforms {
+            display: flex;
+            gap: var(--spacing-sm);
+            flex-wrap: wrap;
+            margin-top: var(--spacing-md);
+        }
+        
+        .platform-link {
+            padding: 0.75rem 1.5rem;
+            border: 1px solid var(--charcoal);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+        }
+        
+        .platform-link:hover {
+            background: var(--charcoal);
+            color: var(--cream);
+        }
+        
+        @media (max-width: 768px) {
+            .podcast-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .podcast-text {
+                order: 1;
+            }
+            
+            .podcast-image-container {
+                order: 2;
+            }
+            
+            .podcast-image {
+                height: 300px;
+            }
+        }
+        /* FAQ */
+        .faq {
+            background: var(--light-gray);
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: var(--spacing-lg) auto 0;
+        }
+        
+        .faq-item {
+            background: var(--cream);
+            margin-bottom: var(--spacing-sm);
+            border: 1px solid var(--beige);
+        }
+        
+        .faq-question {
+            width: 100%;
+            padding: var(--spacing-md);
+            background: none;
+            border: none;
+            text-align: left;
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--charcoal);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-question:hover {
+            color: var(--accent);
+        }
+        
+        .faq-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            padding: 0 var(--spacing-md);
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 var(--spacing-md) var(--spacing-md);
+        }
+        
+        /* NEWSLETTER mit Hintergrundbild */
+        .newsletter {
+            background-image:
+                linear-gradient(rgba(45, 45, 45, 0.85), rgba(45, 45, 45, 0.85)),
+                url('bilder/newsletter-background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--cream);
+            text-align: center;
+            padding: var(--spacing-xl) 0;
+        }
+        
+        .newsletter h2 {
+            color: var(--cream);
+        }
+        
+        .newsletter p {
+            color: var(--beige);
+            max-width: 600px;
+            margin: 0 auto var(--spacing-md);
+        }
+        
+        .newsletter-form {
+            max-width: 500px;
+            margin: var(--spacing-md) auto 0;
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            padding: 1rem;
+            border: 1px solid var(--beige);
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--cream);
+            font-size: 1rem;
+        }
+        
+        .newsletter-input::placeholder {
+            color: var(--beige);
+        }
+        
+        .newsletter-btn {
+            padding: 1rem 2rem;
+            background: var(--accent);
+            color: var(--cream);
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .newsletter-btn:hover {
+            background: var(--warm-beige);
+            color: var(--charcoal);
+        }
+        
+        @media (max-width: 768px) {
+            .newsletter {
+                background-attachment: scroll;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-btn {
+                width: 100%;
+            }
+        }
+        
+        /* FOOTER */
+        footer {
+            background: var(--charcoal);
+            color: var(--beige);
+            padding: var(--spacing-lg) 0 var(--spacing-md);
+            border-top: 1px solid rgba(232, 222, 210, 0.1);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .footer-section h4 {
+            color: var(--cream);
+            font-size: 1.125rem;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .footer-links a {
+            color: var(--beige);
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--cream);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: var(--spacing-md);
+            border-top: 1px solid rgba(232, 222, 210, 0.1);
+            font-size: 0.9rem;
+            color: var(--beige);
+        }
+        
+        /* UTILITIES */
+        .text-center {
+            text-align: center;
+        }
+        
+        .mt-lg {
+            margin-top: var(--spacing-lg);
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+    </style>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">CARINA ANNA PRAV</a>
+            <button class="mobile-menu-btn" aria-label="Toggle menu">☰</button>
+            <ul class="nav-links">
+                <li><a href="#system">System</a></li>
+                <li><a href="#angebote">Angebote</a></li>
+                <li><a href="#podcast">Podcast</a></li>
+                <li><a href="ueber-mich.html">Über mich</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#kontakt">Kontakt</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <p class="hero-eyebrow">FÜR MAMAS DIE SKALIEREN WOLLEN</p>
+                <h1>Das 2h/Tag Business-System</h1>
+                <p class="hero-subheading">
+                    Du arbeitest 60h/Woche und dein Business läuft nur wenn DU läufst? 
+                    Es gibt einen besseren Weg. Automatisierung, Pinterest Marketing & Mindset – 
+                    damit du Zeit für dein Kind hast.
+                </p>
+                <div class="hero-cta">
+                    <a href="#angebote" class="btn btn-primary btn-large">System-Check starten</a>
+                    <a href="#system" class="btn btn-large">Mehr erfahren</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROBLEM -->
+    <section class="problem" id="problem">
+        <div class="container">
+            <h2>Du kennst das...</h2>
+            <div class="problem-grid">
+                <div class="problem-card fade-in">
+                    <div class="problem-icon">⏰</div>
+                    <h3>60h/Woche Hustle</h3>
+                    <p>Ständig online. Keine Zeit für dein Kind. Business läuft nur wenn DU arbeitest. Burnout am Horizont.</p>
+                </div>
+                <div class="problem-card fade-in">
+                    <div class="problem-icon">🔄</div>
+                    <h3>Optimierungs-Hamsterrad</h3>
+                    <p>Jeden Tag Content überlegen. Website tweaken. Tools testen. Aber keine echten Ergebnisse.</p>
+                </div>
+                <div class="problem-card fade-in">
+                    <div class="problem-icon">🚫</div>
+                    <h3>Selbstsabotage</h3>
+                    <p>Du weißt was zu tun ist. Aber triffst die Entscheidungen nicht. Wartest auf den "richtigen Moment".</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOLUTION -->
+    <section class="solution" id="system">
+        <div class="container">
+            <div class="solution-content">
+                <div class="solution-text fade-in">
+                    <h2>Die Lösung: Ein System das läuft, wenn du NICHT arbeitest</h2>
+                    <p>Erfolgreiche Unternehmerinnen arbeiten nicht MEHR. Sie haben SYSTEME.</p>
+                    <ul class="solution-features">
+                        <li><strong>Content-System:</strong> 365 Tage vorbereitet, KI-optimiert, scheduled</li>
+                        <li><strong>Automatisierter Funnel:</strong> Pinterest (inkl. Ads) → Website → Email → Kunden</li>
+                        <li><strong>Mindset-Framework:</strong> Selbstsabotage stoppen, Entscheidungen treffen statt vermeiden</li>
+                        <li><strong>Skalierungs-System:</strong> Von ersten Kunden zu planbarem Business ohne Mehrarbeit</li>
+                    </ul>
+                    <p><strong>Resultat:</strong> 2h/Tag active work. Rest läuft automatisch.</p>
+                    <a href="#angebote" class="btn btn-primary mt-lg">Ich will das System</a>
+                </div>
+                <div class="fade-in">
+                    <img src="bilder/solution-system.jpg" alt="Das 2h/Tag Business System" class="solution-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="how-it-works" id="wie">
+        <div class="container">
+            <h2>So funktioniert's</h2>
+            <p class="text-center" style="max-width: 700px; margin: 0 auto var(--spacing-lg);">
+                Kein Hokuspokus. Klick-für-Klick Anleitungen für Tools, die bis 1000 Kunden kostenlos sind.
+            </p>
+            <div class="steps-grid">
+                <div class="step fade-in">
+                    <div class="step-number">01</div>
+                    <h3>Content-System aufbauen</h3>
+                    <p>365 Tage Content mit KI vorbereiten. Scheduling. Nie wieder täglich überlegen was posten.</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">02</div>
+                    <h3>Funnel automatisieren</h3>
+                    <p>Pinterest (inkl. Ads) → Website → Quiz → Email → Angebot. Läuft im Schlaf. Tools bis 1000 User kostenlos.</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">03</div>
+                    <h3>Mindset-Blockaden lösen</h3>
+                    <p>Selbstsabotage-Framework. Warum du Entscheidungen vermeidest und wie du sie triffst. Damit du es nicht nur WEISST, sondern TUST.</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">04</div>
+                    <h3>System skalieren</h3>
+                    <p>Optimieren, tracken, anpassen. Von ersten Kunden zu planbarem Business. Ohne dass du mehr Stunden investierst.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOCIAL PROOF -->
+    <section class="social-proof" id="erfolge">
+        <div class="container">
+            <h2>Erfolge meiner Klientinnen</h2>
+            <div class="testimonials">
+                <div class="testimonial fade-in">
+                    <p class="testimonial-text">
+                        "Von 60h/Woche Chaos zu 2h/Tag CEO. Ich hab wieder Zeit für meine Kids und mein Business läuft besser als je zuvor."
+                    </p>
+                    <p class="testimonial-author">Sarah M.</p>
+                    <p class="testimonial-role">Online-Coach & Mama von 2</p>
+                </div>
+                <div class="testimonial fade-in">
+                    <p class="testimonial-text">
+                        "Die Pinterest-Strategie war ein Game-Changer. 0,12€/Click statt 1€+ auf anderen Plattformen. Endlich planbare Leads."
+                    </p>
+                    <p class="testimonial-author">Laura K.</p>
+                    <p class="testimonial-role">Business-Beraterin</p>
+                </div>
+                <div class="testimonial fade-in">
+                    <p class="testimonial-text">
+                        "Das Selbstsabotage-Framework hat mich durchbrechen lassen. Ich treffe jetzt Entscheidungen statt zu optimieren."
+                    </p>
+                    <p class="testimonial-author">Nina B.</p>
+                    <p class="testimonial-role">Unternehmerin & Mama</p>
+                </div>
+            </div>
+            
+            <div class="stats">
+                <div class="stat fade-in">
+                    <div class="stat-number">10-15h</div>
+                    <div class="stat-label">Pro Woche gespart</div>
+                </div>
+                <div class="stat fade-in">
+                    <div class="stat-number">0-50€</div>
+                    <div class="stat-label">Tool-Kosten bis 1000 Kunden</div>
+                </div>
+                <div class="stat fade-in">
+                    <div class="stat-number">2h</div>
+                    <div class="stat-label">Active Work pro Tag</div>
+                </div>
+                <div class="stat fade-in">
+                    <div class="stat-number">365</div>
+                    <div class="stat-label">Tage Content vorbereitet</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OFFERS -->
+    <section class="offers" id="angebote">
+        <div class="container">
+            <h2>3 Wege mit mir zu arbeiten</h2>
+            <p class="text-center" style="max-width: 700px; margin: 0 auto var(--spacing-lg); color: var(--dark-gray);">
+                Wähle den Weg der zu dir passt. Von Quick-Win bis All-in Transformation.
+            </p>
+            
+            <div class="offers-grid">
+                <!-- OFFER 1 -->
+                <div class="offer-card fade-in">
+                    <h3>Quick-Win<br>Strategy Call</h3>
+                    <p class="offer-description">
+                        90 Minuten absolute Klarheit. Keine Theorie. Konkrete Schritte für die nächsten 30 Tage.
+                    </p>
+                    <div class="offer-price">297€</div>
+                    <p class="offer-price-detail">Einmalig</p>
+                    
+                    <ul class="offer-features">
+                        <li>90min Zoom-Call</li>
+                        <li>Strategischer Action-Plan</li>
+                        <li>Tool-Empfehlungen</li>
+                        <li>7 Tage Telegram Follow-up</li>
+                        <li>Sofort buchbar</li>
+                    </ul>
+                    
+                    <div class="offer-cta">
+                        <a href="#kontakt" class="btn">Jetzt buchen</a>
+                    </div>
+                </div>
+
+                <!-- OFFER 2 -->
+                <div class="offer-card featured fade-in">
+                    <div class="offer-badge">BELIEBTESTE WAHL</div>
+                    <h3>6-Monate<br>Intensiv-System</h3>
+                    <p class="offer-description">
+                        Komplettes 2h/Tag Business-System aufbauen. Content, Funnel, Mindset. Alles.
+                    </p>
+                    <div class="offer-price">6.997€</div>
+                    <p class="offer-price-detail">Oder 6× 1.197€</p>
+                    
+                    <ul class="offer-features">
+                        <li>Komplettes System-Setup</li>
+                        <li>Content für 365 Tage</li>
+                        <li>Automatisierter Funnel (inkl. Ads-Strategie)</li>
+                        <li>Mindset-Framework (Selbstsabotage lösen)</li>
+                        <li>Skalierungs-Strategien</li>
+                        <li>Klick-für-Klick Anleitungen</li>
+                        <li>2× Gruppen-Calls/Jahr</li>
+                        <li>Telegram-Support</li>
+                        <li>Alle Tools & Templates</li>
+                    </ul>
+                    
+                    <div class="offer-cta">
+                        <a href="#kontakt" class="btn btn-primary">System aufbauen</a>
+                    </div>
+                </div>
+
+                <!-- OFFER 3 -->
+                <div class="offer-card fade-in">
+                    <h3>12-Monate<br>VIP Mentoring</h3>
+                    <p class="offer-description">
+                        All-in Transformation mit 1:1 Support. Von Chaos zu nachhaltiger CEO.
+                    </p>
+                    <div class="offer-price">2.997€</div>
+                    <p class="offer-price-detail">Pro Monat</p>
+                    
+                    <ul class="offer-features">
+                        <li>Alles aus 6-Monate System</li>
+                        <li>PLUS: Bi-weekly 1:1 Calls</li>
+                        <li>PLUS: Priority Telegram Support</li>
+                        <li>PLUS: Quarterly Intensives</li>
+                        <li>PLUS: Custom Setup Review</li>
+                        <li>12 Monate Begleitung</li>
+                        <li>Lifetime Updates</li>
+                    </ul>
+                    
+                    <div class="offer-cta">
+                        <a href="#kontakt" class="btn">VIP anfragen</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PODCAST -->
+    <section class="podcast" id="podcast">
+        <div class="container">
+            <div class="podcast-content">
+                <div class="podcast-text fade-in">
+                    <h2>Hör rein: Ehrlich Erfolgreich Podcast</h2>
+                    <p>
+                        Wöchentliche Episodes über Business-Automatisierung, Pinterest-Marketing, 
+                        Selbstsabotage und das echte Leben als Mama-Unternehmerin.
+                    </p>
+                    <p>
+                        Kein Motivations-Blabla. Konkrete Strategien, Tools und Behind-the-Scenes.
+                    </p>
+                    
+                    <div class="podcast-platforms">
+                        <a href="#" class="platform-link">Spotify</a>
+                        <a href="#" class="platform-link">Apple Podcasts</a>
+                        <a href="#" class="platform-link">Google Podcasts</a>
+                    </div>
+                </div>
+                
+                <div class="podcast-image-container fade-in">
+                    <img src="bilder/podcast-cover.jpg" alt="Ehrlich Erfolgreich Podcast" class="podcast-image">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <h2 class="text-center">Häufige Fragen</h2>
+            <div class="faq-container">
+                <div class="faq-item fade-in">
+                    <button class="faq-question">
+                        <span>Funktioniert das wirklich in 2h/Tag?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            Ja. Aber nicht von Tag 1. Wir bauen erst die Systeme (Content vorbereiten, Funnel automatisieren). 
+                            Das dauert 2-3 Monate. Danach: 2h/Tag für Strategie und Client-Delivery. Rest läuft automatisch.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in">
+                    <button class="faq-question">
+                        <span>Ich kann mir keine teuren Tools leisten.</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            Musst du nicht. Alle Tools die ich nutze sind bis 1000 Kunden/User KOSTENLOS. 
+                            Brevo (Email), Tally (Forms), Notion (CRM), Make.com (Automation), Carrd (Landing Pages). 
+                            Gesamt-Kosten: 0-50€/Jahr bis du skalierst.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in">
+                    <button class="faq-question">
+                        <span>Warum Pinterest als Hauptkanal?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            Pinterest-Nutzer SUCHEN aktiv nach Lösungen (nicht scrollen zur Unterhaltung). 
+                            Pinterest Ads: 0,10-0,15€/Click. Content lebt Jahre, nicht Stunden. 
+                            80% weibliche Nutzer mit Kaufkraft. Für Female-fokussierte Businesses ideal – 
+                            ohne ständig live präsent sein zu müssen.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in">
+                    <button class="faq-question">
+                        <span>Ich bin keine Tech-Expertin. Ist das zu kompliziert?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            Nein. Ich bin App-Developerin – ich baue dir KLICK-FÜR-KLICK Anleitungen. 
+                            Jedes Tool, jede Integration, jeder Schritt. Wenn ich es mit einem 4-jährigen Kind schaffe, schaffst du es auch.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in">
+                    <button class="faq-question">
+                        <span>Was ist mit Selbstsabotage?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            Das ist der wichtigste Teil. Du kannst die besten Tools haben – wenn du dich selbst sabotierst, bringt's nichts. 
+                            Deshalb arbeiten wir am Mindset: Warum du Entscheidungen vermeidest. Wie du Commitment-Angst überwindest. 
+                            Framework für bessere Entscheidungen. Das ist was dich durchbrechen lässt.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in">
+                    <button class="faq-question">
+                        <span>Brauche ich ein Team?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            Nein. Du brauchst SYSTEME. Team kommt später (wenn überhaupt). 
+                            Ich kenne Solo-Unternehmerinnen mit 50k/Monat ohne Team. 
+                            Weil ihre Systeme ihre "Mitarbeiter" sind.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="newsletter" id="kontakt">
+        <div class="container-narrow">
+            <h2>Bereit für dein 2h/Tag Business?</h2>
+            <p>
+                Melde dich für meinen Newsletter an und bekomme wöchentlich konkrete Tipps zu Automatisierung, 
+                Pinterest-Marketing und Selbstsabotage-Überwindung.
+            </p>
+            <form class="newsletter-form" id="newsletter-form">
+                <input 
+                    type="email" 
+                    class="newsletter-input" 
+                    placeholder="Deine Email-Adresse" 
+                    required
+                    aria-label="Email-Adresse"
+                >
+                <button type="submit" class="newsletter-btn">Anmelden</button>
+            </form>
+            <p style="font-size: 0.85rem; margin-top: var(--spacing-sm); color: var(--beige);">
+                Kein Spam. Abmeldung jederzeit möglich. DSGVO-konform.
+            </p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Carina Anna Prav</h4>
+                    <p style="color: var(--beige); font-size: 0.95rem;">
+                        Business-Automatisierung & Pinterest-Marketing für Mamas die skalieren wollen ohne auszubrennen.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#system">Das System</a></li>
+                        <li><a href="#angebote">Angebote</a></li>
+                        <li><a href="#podcast">Podcast</a></li>
+                        <li><a href="ueber-mich.html">Über mich</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#kontakt">Newsletter</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="impressum.html">Impressum</a></li>
+                        <li><a href="datenschutz.html">Datenschutz</a></li>
+                        <li><a href="agb.html">AGB</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Folge mir</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://www.instagram.com/carinaannaprav/" target="_blank">Instagram</a></li>
+                        <li><a href="https://pinterest.com/deinprofil" target="_blank">Pinterest</a></li>
+                        <li><a href="https://linkedin.com/in/deinprofil" target="_blank">LinkedIn</a></li>
+                        <li><a href="mailto:socials@carinaannaprav.at">Email</a></li>
+                        <li><a href="#podcast">Podcast</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 Carina Anna Prav. Alle Rechte vorbehalten.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.textContent = '☰';
+            });
+        });
+        
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all other FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Toggle current item
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Newsletter Form
+        const newsletterForm = document.getElementById('newsletter-form');
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = e.target.querySelector('input[type="email"]').value;
+            
+            // Here integrate with Brevo or your email service
+            alert(`Danke! Du wirst bald von mir hören: ${email}`);
+            e.target.reset();
+        });
+        
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            observer.observe(el);
+        });
+        
+        // Nav background on scroll
+        const nav = document.querySelector('nav');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 100) {
+                nav.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            } else {
+                nav.style.boxShadow = 'none';
+            }
+        });
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Website loaded successfully!');
+        });
+    </script>
+</body>
+</html>

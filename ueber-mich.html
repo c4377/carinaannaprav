@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Über Carina Anna Prav - Business-Automatisierung & Pinterest-Marketing für Mamas">
+    <title>Über mich | Carina Anna Prav</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --cream: #FAF9F6;
+            --beige: #E8DED2;
+            --warm-beige: #D4C5B0;
+            --charcoal: #2D2D2D;
+            --dark-gray: #4A4A4A;
+            --light-gray: #F5F5F5;
+            --accent: #B89968;
+            
+            --font-serif: 'Playfair Display', Georgia, serif;
+            --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            --spacing-xl: 6rem;
+            
+            --max-width: 1200px;
+        }
+        
+        body {
+            font-family: var(--font-sans);
+            color: var(--charcoal);
+            background: var(--cream);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        h1, h2, h3 {
+            font-family: var(--font-serif);
+            font-weight: 400;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+        
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        h3 {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        p {
+            font-size: clamp(1rem, 2vw, 1.125rem);
+            margin-bottom: var(--spacing-sm);
+            color: var(--dark-gray);
+        }
+        
+        a {
+            color: var(--charcoal);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+        
+        .container-narrow {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+        
+        section {
+            padding: var(--spacing-xl) 0;
+        }
+        
+        @media (max-width: 768px) {
+            section {
+                padding: var(--spacing-lg) 0;
+            }
+        }
+        
+        /* NAVIGATION */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(250, 249, 246, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--beige);
+        }
+        
+        .nav-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: var(--spacing-sm) var(--spacing-md);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: var(--spacing-md);
+            list-style: none;
+        }
+        
+        .nav-links a {
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 500;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--charcoal);
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: var(--cream);
+                flex-direction: column;
+                padding: var(--spacing-md);
+                gap: var(--spacing-sm);
+                border-bottom: 1px solid var(--beige);
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: all 0.3s ease;
+                pointer-events: none;
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: all;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+        
+        /* HERO */
+        .hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--light-gray) 100%);
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: var(--spacing-xl);
+            align-items: center;
+        }
+        
+        .about-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border: 1px solid var(--beige);
+            border-radius: 2px;
+        }
+        
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-md);
+            }
+            
+            .about-image {
+                height: 300px;
+            }
+        }
+        
+        /* STORY SECTION */
+        .story {
+            background: var(--beige);
+        }
+        
+        .story-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .story-content p {
+            margin-bottom: var(--spacing-md);
+            font-size: 1.125rem;
+            line-height: 1.8;
+        }
+        
+        .highlight {
+            background: var(--light-gray);
+            padding: var(--spacing-lg);
+            border-left: 3px solid var(--accent);
+            margin: var(--spacing-lg) 0;
+        }
+        
+        .highlight h3 {
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        /* VALUES */
+        .values {
+            background: var(--cream);
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .value-card {
+            background: var(--light-gray);
+            padding: var(--spacing-lg);
+            border: 1px solid var(--beige);
+        }
+        
+        .value-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-sm);
+            color: var(--accent);
+        }
+        
+        /* CTA */
+        .cta-section {
+            background: var(--charcoal);
+            color: var(--cream);
+            text-align: center;
+            padding: var(--spacing-xl) 0;
+        }
+        
+        .cta-section h2 {
+            color: var(--cream);
+        }
+        
+        .cta-section p {
+            color: var(--beige);
+            max-width: 600px;
+            margin: 0 auto var(--spacing-lg);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            text-align: center;
+            border: 2px solid var(--cream);
+            background: transparent;
+            color: var(--cream);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        .btn:hover {
+            background: var(--cream);
+            color: var(--charcoal);
+        }
+        
+        /* FOOTER */
+        footer {
+            background: var(--charcoal);
+            color: var(--beige);
+            padding: var(--spacing-lg) 0 var(--spacing-md);
+            border-top: 1px solid rgba(232, 222, 210, 0.1);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .footer-section h4 {
+            color: var(--cream);
+            font-size: 1.125rem;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .footer-links a {
+            color: var(--beige);
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--cream);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: var(--spacing-md);
+            border-top: 1px solid rgba(232, 222, 210, 0.1);
+            font-size: 0.9rem;
+            color: var(--beige);
+        }
+    </style>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">CARINA ANNA PRAV</a>
+            <button class="mobile-menu-btn" aria-label="Toggle menu">☰</button>
+            <ul class="nav-links">
+                <li><a href="index.html#system">System</a></li>
+                <li><a href="index.html#angebote">Angebote</a></li>
+                <li><a href="index.html#podcast">Podcast</a></li>
+                <li><a href="ueber-mich.html">Über mich</a></li>
+                <li><a href="index.html#kontakt">Kontakt</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="about-grid">
+                <div>
+                    <img src="bilder/about-carina.jpg" alt="Carina Anna Prav" class="about-image">
+                </div>
+                <div>
+                    <h1>Hi, ich bin Carina</h1>
+                    <p style="font-size: 1.25rem; margin-bottom: var(--spacing-md);">
+                        App-Developerin, Business-Mentorin & Mama. Ich helfe Unternehmerinnen ihr Business zu automatisieren – 
+                        damit sie Zeit für das haben was wirklich zählt.
+                    </p>
+                    <p>
+                        Von 60h/Woche Chaos zu 2h/Tag CEO. Das ist möglich. Ich zeig dir wie.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STORY -->
+    <section class="story">
+        <div class="container">
+            <div class="story-content">
+                <h2>Meine Geschichte</h2>
+                
+                <p>
+                    Vor ein paar Jahren war ich die typische "Serial-Starterin". 
+                    Hochzeitskleid-Verkauf, Etsy-Shops, Automatisierungs-Services, Positionierungs-Coaching – 
+                    ich hab alles angefangen. Und nichts richtig zu Ende gebracht.
+                </p>
+                
+                <p>
+                    Das Problem war nicht fehlende Skills. Ich bin App-Developerin. Ich KANN Systeme bauen.
+                </p>
+                
+                <p>
+                    Das Problem war: <strong>Entscheidungsparalyse und Selbstsabotage.</strong>
+                </p>
+                
+                <div class="highlight">
+                    <h3>Der Wendepunkt</h3>
+                    <p>
+                        Als mein Kind geboren wurde, hatte ich keine Zeit mehr für 60h/Woche Hustle. 
+                        Ich MUSSTE effizienter werden. Nicht "irgendwann" – jetzt.
+                    </p>
+                </div>
+                
+                <p>
+                    Also hab ich angefangen zu bauen: Content-Systeme. Automatisierte Funnels. 
+                    KI-Integration die tatsächlich funktioniert. Nicht als Theorie – als NOTWENDIGKEIT.
+                </p>
+                
+                <p>
+                    Und das Verrückte: Je weniger Stunden ich arbeitete, desto besser lief mein Business.
+                </p>
+                
+                <p>
+                    Warum? Weil ich gezwungen war, <strong>nur das Wichtige zu tun</strong>. 
+                    Kein Optimieren mehr. Keine "nice-to-have" Projekte. Nur was zählt.
+                </p>
+                
+                <p>
+                    Heute arbeite ich 2h/Tag. Mein Business läuft. Ich hab Zeit für mein Kind. 
+                    Und ich zeige anderen Müttern wie sie das auch hinbekommen.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- VALUES -->
+    <section class="values">
+        <div class="container">
+            <h2 style="text-align: center;">Wofür ich stehe</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <h3>Ehrlichkeit</h3>
+                    <p>
+                        Kein "Du schaffst alles wenn du nur willst"-Bullshit. 
+                        Ich sage dir was funktioniert und was nicht. Real talk, immer.
+                    </p>
+                </div>
+                
+                <div class="value-card">
+                    <h3>Systeme > Hustle</h3>
+                    <p>
+                        Mehr arbeiten bringt nicht mehr Ergebnisse. Bessere Systeme schon. 
+                        Ich zeig dir wie du aufhörst zu rennen und anfängst zu bauen.
+                    </p>
+                </div>
+                
+                <div class="value-card">
+                    <h3>Mama-Realität</h3>
+                    <p>
+                        Ich hab ein 4-jähriges Kind. Ich weiß wie's ist wenn du nicht "mal eben schnell" 
+                        3 Stunden am Stück arbeiten kannst. Meine Systeme funktionieren IN dieser Realität.
+                    </p>
+                </div>
+                
+                <div class="value-card">
+                    <h3>Umsetzung > Theorie</h3>
+                    <p>
+                        Keine vagen "Du könntest mal..."-Tipps. Klick-für-Klick Anleitungen. 
+                        Konkrete Tools. Du verlässt unsere Calls mit einem Plan den du HEUTE umsetzt.
+                    </p>
+                </div>
+                
+                <div class="value-card">
+                    <h3>Tech ohne Techie</h3>
+                    <p>
+                        Ich bin Developerin aber erkläre alles so dass meine Oma es versteht. 
+                        Du brauchst kein Tech-Wissen. Nur die Bereitschaft es zu lernen.
+                    </p>
+                </div>
+                
+                <div class="value-card">
+                    <h3>Mindset = Everything</h3>
+                    <p>
+                        Die besten Tools bringen nichts wenn du dich selbst sabotierst. 
+                        Deshalb arbeiten wir IMMER auch am Mindset. Entscheidungen treffen. Durchhalten. Gewinnen.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container-narrow">
+            <h2>Lass uns zusammenarbeiten</h2>
+            <p>
+                Bereit für dein 2h/Tag Business? Schau dir meine Angebote an oder 
+                schreib mir direkt – ich freu mich von dir zu hören.
+            </p>
+            <a href="index.html#angebote" class="btn">Zu den Angeboten</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Carina Anna Prav</h4>
+                    <p style="color: var(--beige); font-size: 0.95rem;">
+                        Business-Automatisierung & Pinterest-Marketing für Mamas die skalieren wollen ohne auszubrennen.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html#system">Das System</a></li>
+                        <li><a href="index.html#angebote">Angebote</a></li>
+                        <li><a href="index.html#podcast">Podcast</a></li>
+                        <li><a href="ueber-mich.html">Über mich</a></li>
+                        <li><a href="index.html#kontakt">Newsletter</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="impressum.html">Impressum</a></li>
+                        <li><a href="datenschutz.html">Datenschutz</a></li>
+                        <li><a href="agb.html">AGB</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Folge mir</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://pinterest.com/deinprofil" target="_blank">Pinterest</a></li>
+                        <li><a href="https://linkedin.com/in/deinprofil" target="_blank">LinkedIn</a></li>
+                        <li><a href="mailto:socials@carinaannaprav.at">Email</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 Carina Anna Prav. Alle Rechte vorbehalten.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+        });
+        
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.textContent = '☰';
+            });
+        });
+    </script>
+</body>

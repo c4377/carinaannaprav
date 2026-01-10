@@ -1330,7 +1330,17 @@
         </div>
     </footer>
 
-    <!-- JAVASCRIPT -->
+    <!-- LOAD ENVIRONMENT VARIABLES -->
+    <script>
+    // Netlify Environment Variables
+    // Set in: Netlify Dashboard → Site Settings → Environment Variables
+    if (typeof window.BREVO_API_KEY === 'undefined') {
+        window.BREVO_API_KEY = '';
+        window.BREVO_LIST_ID = '2';
+    }
+    </script>
+
+       <!-- JAVASCRIPT -->
     <script>
         // Mobile Menu Toggle
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
@@ -1412,7 +1422,7 @@ document.getElementById('newsletter-form').addEventListener('submit', async (e) 
             method: 'POST',
             headers: {
                 'accept': 'application/json',
-                'api-key': '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',
+                'api-key': window.BREVO_API_KEY || '',
                 'content-type': 'application/json'
             },
             body: JSON.stringify({
@@ -1420,7 +1430,7 @@ document.getElementById('newsletter-form').addEventListener('submit', async (e) 
                 attributes: {
                     FIRSTNAME: firstname
                 },
-                listIds: [2],
+                listIds: [parseInt(window.BREVO_LIST_ID)||2],
                 updateEnabled: true
             })
         });

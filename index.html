@@ -880,6 +880,7 @@
                 <li><a href="#system">System</a></li>
                 <li><a href="#angebote">Angebote</a></li>
                 <li><a href="#podcast">Podcast</a></li>
+                <li><a href="blog.html">Blog</a></li>
                 <li><a href="ueber-mich.html">Über mich</a></li>
                 <li><a href="#faq">FAQ</a></li>
                 <li><a href="#kontakt">Kontakt</a></li>
@@ -1238,28 +1239,46 @@
     </section>
 
     <!-- NEWSLETTER -->
-    <section class="newsletter" id="kontakt">
-        <div class="container-narrow">
-            <h2>Bereit für dein 2h/Tag Business?</h2>
-            <p>
-                Melde dich für meinen Newsletter an und bekomme wöchentlich konkrete Tipps zu Automatisierung, 
-                Pinterest-Marketing und Selbstsabotage-Überwindung.
-            </p>
-            <form class="newsletter-form" id="newsletter-form">
+<section class="newsletter" id="kontakt">
+    <div class="container-narrow">
+        <h2>Bereit für dein 2h/Tag Business?</h2>
+        <p>
+            Melde dich für meinen Newsletter an und bekomme wöchentlich konkrete Tipps zu Automatisierung, 
+            Pinterest-Marketing und Selbstsabotage-Überwindung.
+        </p>
+        
+        <!-- NEWSLETTER FORM MIT VORNAME -->
+        <form class="newsletter-form" id="newsletter-form" style="max-width: 500px; margin: 2rem auto 0;">
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem;">
+                <input 
+                    type="text" 
+                    id="firstname"
+                    placeholder="Dein Vorname" 
+                    required
+                    style="flex: 1; min-width: 200px; padding: 1rem; border: 1px solid var(--beige); background: rgba(255, 255, 255, 0.1); color: var(--cream); font-size: 1rem; font-family: var(--font-sans);"
+                >
                 <input 
                     type="email" 
-                    class="newsletter-input" 
+                    id="email"
                     placeholder="Deine Email-Adresse" 
                     required
-                    aria-label="Email-Adresse"
+                    style="flex: 1; min-width: 200px; padding: 1rem; border: 1px solid var(--beige); background: rgba(255, 255, 255, 0.1); color: var(--cream); font-size: 1rem; font-family: var(--font-sans);"
                 >
-                <button type="submit" class="newsletter-btn">Anmelden</button>
-            </form>
-            <p style="font-size: 0.85rem; margin-top: var(--spacing-sm); color: var(--beige);">
-                Kein Spam. Abmeldung jederzeit möglich. DSGVO-konform.
-            </p>
-        </div>
-    </section>
+            </div>
+            <button 
+                type="submit"
+                style="width: 100%; padding: 1rem 2rem; background: var(--accent); color: var(--cream); border: none; cursor: pointer; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; transition: all 0.3s ease; font-size: 1rem; font-family: var(--font-sans);">
+                Anmelden
+            </button>
+        </form>
+        
+        <p id="form-message" style="font-size: 1rem; margin-top: 1rem; color: var(--beige); text-align: center;"></p>
+        
+        <p style="font-size: 0.85rem; margin-top: var(--spacing-sm); color: var(--beige);">
+            Kein Spam. Abmeldung jederzeit möglich. DSGVO-konform.
+        </p>
+    </div>
+</section>
 
     <!-- FOOTER -->
     <footer>
@@ -1363,16 +1382,91 @@
             });
         });
         
-        // Newsletter Form
-        const newsletterForm = document.getElementById('newsletter-form');
-        newsletterForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const email = e.target.querySelector('input[type="email"]').value;
-            
-            // Here integrate with Brevo or your email service
-            alert(`Danke! Du wirst bald von mir hören: ${email}`);
-            e.target.reset();
+        // Newsletter Form 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
+        <!-- NEWSLETTER FORM SUBMISSION -->
+<script>
+document.getElementById('newsletter-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const firstname = document.getElementById('firstname').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const messageEl = document.getElementById('form-message');
+    const button = e.target.querySelector('button');
+    const originalButtonText = button.textContent;
+    
+    // Validation
+    if (!firstname || !email) {
+        messageEl.textContent = '❌ Bitte fülle alle Felder aus.';
+        messageEl.style.color = '#ff6b6b';
+        return;
+    }
+    
+    // Button disable während submission
+    button.disabled = true;
+    button.textContent = 'Wird gesendet...';
+    button.style.opacity = '0.7';
+    messageEl.textContent = '';
+    
+    try {
+        const response = await fetch('https://api.brevo.com/v3/contacts', {
+            method: 'POST',
+            headers: {
+                'accept': 'application/json',
+                'api-key': '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',
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: email,
+                attributes: {
+                    FIRSTNAME: firstname
+                },
+                listIds: [2],
+                updateEnabled: true
+            })
         });
+        
+        if (response.ok || response.status === 204) {
+            // Erfolg!
+            messageEl.textContent = '🎉 Danke ' + firstname + '! Check deine Emails (auch im Spam-Ordner).';
+            messageEl.style.color = '#B89968';
+            e.target.reset();
+            
+            // Optional: Google Analytics Event
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'newsletter_signup', {
+                    'event_category': 'engagement',
+                    'event_label': 'newsletter_form'
+                });
+            }
+        } else if (response.status === 400) {
+            // Email existiert bereits
+            const data = await response.json();
+            if (data.message && data.message.includes('already exists')) {
+                messageEl.textContent = '✓ Du bist bereits angemeldet!';
+                messageEl.style.color = '#B89968';
+            } else {
+                throw new Error('Bad request');
+            }
+        } else {
+            throw new Error('Submission failed');
+        }
+    } catch (error) {
+        console.error('Newsletter signup error:', error);
+        messageEl.textContent = '❌ Etwas ist schiefgelaufen. Bitte nochmal versuchen oder Email an socials@carinaannaprav.at';
+        messageEl.style.color = '#ff6b6b';
+    } finally {
+        button.disabled = false;
+        button.textContent = originalButtonText;
+        button.style.opacity = '1';
+    }
+});
+
+// Placeholder styling für bessere UX
+const inputs = document.querySelectorAll('#newsletter-form input');
+inputs.forEach(input => {
+    input.style.setProperty('::placeholder', 'color: var(--beige); opacity: 0.7;');
+});
+</script>
         
         // Intersection Observer for fade-in animations
         const observerOptions = {

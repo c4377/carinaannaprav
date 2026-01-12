@@ -1853,15 +1853,7 @@ document.getElementById('newsletter-form').addEventListener('submit', async (e) 
                         <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
                             <span style="position: absolute; left: 0; color: #B89968; font-weight: bold;">✓</span>
                             PDF mit 30 Positionierungen
-                        </li>
-                        <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
-                            <span style="position: absolute; left: 0; color: #B89968; font-weight: bold;">✓</span>
-                            Deine personalisierte Empfehlung
-                        </li>
-                        <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
-                            <span style="position: absolute; left: 0; color: #B89968; font-weight: bold;">✓</span>
-                            Welche 5 Beispiele zu DIR passen
-                        </li>
+                         </li>
                     </ul>
                     
                     <form id="pos-email-form" onsubmit="submitPositioningEmail(event)">
@@ -1880,6 +1872,15 @@ document.getElementById('newsletter-form').addEventListener('submit', async (e) 
                                 required
                                 style="flex: 1; min-width: 200px; padding: 1rem; border: 2px solid #B89968; font-size: 1rem;"
                             >
+                            <div style="margin: 1.5rem 0;">
+    <label style="display: flex; align-items: flex-start; gap: 0.75rem; cursor: pointer;">
+        <input type="checkbox" id="privacy-consent" required style="margin-top: 0.25rem; width: 18px; height: 18px; cursor: pointer;">
+        <span style="font-size: 0.9rem; line-height: 1.5;">
+            Ich stimme zu, dass meine Daten zur Bearbeitung meiner Anfrage und zum Versand des PDFs gespeichert werden. Ich kann diese Einwilligung jederzeit widerrufen. 
+            <a href="/datenschutz" target="_blank" style="color: #B89968; text-decoration: underline;">Datenschutzerklärung</a>
+        </span>
+    </label>
+</div>
                         </div>
                         <button type="submit" class="quiz-btn-primary" style="width: 100%; margin-top: 1rem;">
                             Jetzt Download-Link senden
@@ -2453,12 +2454,19 @@ async function submitPositioningEmail(e) {
     const messageEl = document.getElementById('pos-form-message');
     const button = e.target.querySelector('button');
     
+    // ⭐ NEU: DSGVO Consent Check
+    const consentCheckbox = document.getElementById('privacy-consent-pos');
+    if (!consentCheckbox.checked) {
+        messageEl.textContent = '❌ Bitte stimme der Datenschutzerklärung zu.';
+        messageEl.style.color = '#ff6b6b';
+        return;
+    }
+    
     button.disabled = true;
     button.textContent = 'Wird gesendet...';
     messageEl.textContent = '';
     
     try {
-        // ⭐ NEU: Call quiz-submit statt newsletter-signup
         const response = await fetch('/.netlify/functions/quiz-submission', {
             method: 'POST',
             headers: {
@@ -2468,8 +2476,8 @@ async function submitPositioningEmail(e) {
                 email: email,
                 firstname: firstname,
                 quizType: 'positioning',
-                answers: posAnswers,  // ⭐ Quiz-Antworten mit senden
-                result: calculatePositioningResult().title  // ⭐ Ergebnis mit senden
+                answers: posAnswers,
+                result: calculatePositioningResult().title
             })
         });
         
@@ -2491,7 +2499,6 @@ async function submitPositioningEmail(e) {
         button.textContent = 'Jetzt Download-Link senden';
     }
 }
-
 // ========== SHARED HELPER FUNCTIONS ==========
 function showScreen(containerId, screenId) {
     document.querySelectorAll(`#${containerId} .quiz-screen`).forEach(s => s.classList.remove('active'));

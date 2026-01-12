@@ -2458,15 +2458,18 @@ async function submitPositioningEmail(e) {
     messageEl.textContent = '';
     
     try {
-        // Call Newsletter Function (existing)
-        const response = await fetch('/.netlify/functions/newsletter-signup', {
+        // ⭐ NEU: Call quiz-submit statt newsletter-signup
+        const response = await fetch('/.netlify/functions/quiz-submission', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 email: email,
-                firstname: firstname
+                firstname: firstname,
+                quizType: 'positioning',
+                answers: posAnswers,  // ⭐ Quiz-Antworten mit senden
+                result: calculatePositioningResult().title  // ⭐ Ergebnis mit senden
             })
         });
         
@@ -2476,10 +2479,6 @@ async function submitPositioningEmail(e) {
             messageEl.textContent = '✅ Perfekt! Check deine Emails für den Download-Link!';
             messageEl.style.color = '#B89968';
             e.target.reset();
-            
-            // TODO: Send personalized email with PDF + analysis
-            // This would be a separate Netlify Function
-            
         } else {
             throw new Error(data.error || 'Submission failed');
         }

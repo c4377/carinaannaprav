@@ -1062,7 +1062,7 @@
                             Tag 23-30: Automatisierung
                         </li>
                     </ul>
-                    <a href="#newsletter" style="display: inline-block; padding: 1rem 2rem; background: transparent; border: 2px solid #2D2D2D; color: #2D2D2D; text-decoration: none; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; transition: all 0.3s ease; text-align: center; width: 100%;">Newsletter abonnieren</a>
+                    <a href="javascript:void(0)" onclick="document.getElementById('newsletter').scrollIntoView({behavior: 'smooth'});" style="display: inline-block; padding: 1rem 2rem; background: transparent; border: 2px solid #2D2D2D; color: #2D2D2D; text-decoration: none; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; transition: all 0.3s ease; text-align: center; width: 100%;">Newsletter abonnieren</a>
                 </div>
                 
                 <!-- FREEBIE 2: 30 POSITIONIERUNGEN -->
@@ -1371,7 +1371,7 @@
     </section>
 
     <!-- NEWSLETTER -->
-<section class="newsletter" id="kontakt">
+<section class="newsletter" id="newsletter">
     <div class="container-narrow">
         <h2>Bereit für dein 2h/Tag Business?</h2>
         <p>
@@ -1555,7 +1555,7 @@
     </script>
 
     <!-- NEWSLETTER FORM SUBMISSION -->
-    <!-- NEWSLETTER FORM SUBMISSION -->
+    
 <script>
 document.getElementById('newsletter-form').addEventListener('submit', async (e) => {
     e.preventDefault();

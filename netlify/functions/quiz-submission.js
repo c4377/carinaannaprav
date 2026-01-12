@@ -35,8 +35,10 @@ exports.handler = async (event, context) => {
 
     // Get API credentials
     const BREVO_API_KEY = process.env.BREVO_API_KEY;
-    const BREVO_LIST_ID = process.env.BREVO_LIST_ID || '2';
-    const GOOGLE_SHEET_URL = process.env.GOOGLE_SHEET_URL; // Apps Script URL
+    const BREVO_LIST_POSITIONING = process.env.BREVO_LIST_POSITIONING;
+    const BREVO_LIST_SYSTEMCHECK = process.env.BREVO_LIST_SYSTEMCHECK;
+    const BREVO_LIST_NEWSLETTER = process.env.BREVO_LIST_NEWSLETTER;
+    const GOOGLE_SHEET_URL = process.env.GOOGLE_SHEET_URL;
 
     if (!BREVO_API_KEY) {
       console.error('BREVO_API_KEY not set');
@@ -46,6 +48,18 @@ exports.handler = async (event, context) => {
         body: JSON.stringify({ error: 'Server configuration error' })
       };
     }
+
+    // Determine which list based on quizType
+    let brevoListId;
+    if (quizType === 'positioning') {
+      brevoListId = parseInt(BREVO_LIST_POSITIONING);
+    } else if (quizType === 'systemcheck') {
+      brevoListId = parseInt(BREVO_LIST_SYSTEMCHECK);
+    } else {
+      brevoListId = parseInt(BREVO_LIST_NEWSLETTER); // Fallback
+    }
+
+    console.log('Sending to Brevo list:', brevoListId, 'for quiz type:', quizType);
 
     // 1. SEND TO BREVO
     const brevoResponse = await fetch('https://api.brevo.com/v3/contacts', {
@@ -62,40 +76,40 @@ exports.handler = async (event, context) => {
           QUIZ_TYPE: quizType,
           QUIZ_RESULT: result
         },
-        listIds: [parseInt(BREVO_LIST_ID)],
+        listIds: [brevoListId],
         updateEnabled: true
       })
     });
 
     // 2. SEND TO GOOGLE SHEETS (if URL is set)
-console.log('GOOGLE_SHEET_URL:', GOOGLE_SHEET_URL ? 'SET' : 'NOT SET');
-if (GOOGLE_SHEET_URL) {
-  try {
-    console.log('Sending to Google Sheets...');
-    const sheetResponse = await fetch(GOOGLE_SHEET_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        timestamp: new Date().toISOString(),
-        firstname: firstname,
-        email: email,
-        quizType: quizType,
-        answers: answers,
-        result: result
-      })
-    });
-    console.log('Google Sheets response status:', sheetResponse.status);
-    const sheetResult = await sheetResponse.text();
-    console.log('Google Sheets response:', sheetResult);
-  } catch (sheetError) {
-    console.error('Google Sheets error:', sheetError);
-    console.error('Error details:', sheetError.message);
-  }
-} else {
-  console.log('GOOGLE_SHEET_URL not configured');
-}
+    console.log('GOOGLE_SHEET_URL:', GOOGLE_SHEET_URL ? 'SET' : 'NOT SET');
+    if (GOOGLE_SHEET_URL) {
+      try {
+        console.log('Sending to Google Sheets...');
+        const sheetResponse = await fetch(GOOGLE_SHEET_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            timestamp: new Date().toISOString(),
+            firstname: firstname,
+            email: email,
+            quizType: quizType,
+            answers: answers,
+            result: result
+          })
+        });
+        console.log('Google Sheets response status:', sheetResponse.status);
+        const sheetResult = await sheetResponse.text();
+        console.log('Google Sheets response:', sheetResult);
+      } catch (sheetError) {
+        console.error('Google Sheets error:', sheetError);
+        console.error('Error details:', sheetError.message);
+      }
+    } else {
+      console.log('GOOGLE_SHEET_URL not configured');
+    }
 
     // Check Brevo response
     if (brevoResponse.ok || brevoResponse.status === 204) {

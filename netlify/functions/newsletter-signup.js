@@ -1,7 +1,4 @@
-// netlify/functions/newsletter-signup.js
-
 exports.handler = async (event, context) => {
-  // CORS Headers
   const headers = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type',
@@ -9,16 +6,10 @@ exports.handler = async (event, context) => {
     'Content-Type': 'application/json'
   };
 
-  // Handle preflight OPTIONS request
   if (event.httpMethod === 'OPTIONS') {
-    return {
-      statusCode: 200,
-      headers,
-      body: ''
-    };
+    return { statusCode: 200, headers, body: '' };
   }
 
-  // Only allow POST
   if (event.httpMethod !== 'POST') {
     return {
       statusCode: 405,
@@ -28,10 +19,9 @@ exports.handler = async (event, context) => {
   }
 
   try {
-    // Parse request body
-    const { email, firstname } = JSON.parse(event.body);
+    const data = JSON.parse(event.body);
+    const { email, firstname } = data;
 
-    // Validate input
     if (!email || !firstname) {
       return {
         statusCode: 400,
@@ -40,12 +30,10 @@ exports.handler = async (event, context) => {
       };
     }
 
-    // Get API credentials from environment variables
     const BREVO_API_KEY = process.env.BREVO_API_KEY;
-    const BREVO_LIST_ID = process.env.BREVO_LIST_ID || '2';
+    const BREVO_LIST_NEWSLETTER = process.env.BREVO_LIST_NEWSLETTER || '8';
 
     if (!BREVO_API_KEY) {
-      console.error('BREVO_API_KEY not set');
       return {
         statusCode: 500,
         headers,
@@ -53,7 +41,6 @@ exports.handler = async (event, context) => {
       };
     }
 
-    // Call Brevo API
     const response = await fetch('https://api.brevo.com/v3/contacts', {
       method: 'POST',
       headers: {
@@ -66,53 +53,41 @@ exports.handler = async (event, context) => {
         attributes: {
           FIRSTNAME: firstname
         },
-        listIds: [parseInt(BREVO_LIST_ID)],
+        listIds: [parseInt(BREVO_LIST_NEWSLETTER)],
         updateEnabled: true
       })
     });
 
-    const data = await response.json();
-
-    // Handle different response codes
     if (response.ok || response.status === 204) {
       return {
         statusCode: 200,
         headers,
-        body: JSON.stringify({
-          success: true,
-          message: 'Successfully subscribed!'
-        })
+        body: JSON.stringify({ success: true })
       };
-    } else if (response.status === 400 && data.message && data.message.includes('already exists')) {
-      return {
-        statusCode: 200,
-        headers,
-        body: JSON.stringify({
-          success: true,
-          message: 'Already subscribed!',
-          alreadyExists: true
-        })
-      };
-    } else {
-      console.error('Brevo API error:', response.status, data);
-      return {
-        statusCode: response.status,
-        headers,
-        body: JSON.stringify({
-          error: 'Failed to subscribe',
-          details: data
-        })
-      };
+    } else if (response.status === 400) {
+      const errorData = await response.json();
+      if (errorData.message && errorData.message.includes('already exists')) {
+        return {
+          statusCode: 200,
+          headers,
+          body: JSON.stringify({ 
+            success: true,
+            message: 'Already subscribed' 
+          })
+        };
+      }
     }
 
+    throw new Error('Newsletter signup failed');
+
   } catch (error) {
-    console.error('Function error:', error);
+    console.error('Newsletter signup error:', error);
     return {
       statusCode: 500,
       headers,
-      body: JSON.stringify({
+      body: JSON.stringify({ 
         error: 'Internal server error',
-        message: error.message
+        message: error.message 
       })
     };
   }

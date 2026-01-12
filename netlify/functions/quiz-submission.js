@@ -68,27 +68,34 @@ exports.handler = async (event, context) => {
     });
 
     // 2. SEND TO GOOGLE SHEETS (if URL is set)
-    if (GOOGLE_SHEET_URL) {
-      try {
-        await fetch(GOOGLE_SHEET_URL, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            timestamp: new Date().toISOString(),
-            firstname: firstname,
-            email: email,
-            quizType: quizType,
-            answers: answers,
-            result: result
-          })
-        });
-      } catch (sheetError) {
-        // Log but don't fail the whole request
-        console.error('Google Sheets error:', sheetError);
-      }
-    }
+console.log('GOOGLE_SHEET_URL:', GOOGLE_SHEET_URL ? 'SET' : 'NOT SET');
+if (GOOGLE_SHEET_URL) {
+  try {
+    console.log('Sending to Google Sheets...');
+    const sheetResponse = await fetch(GOOGLE_SHEET_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        timestamp: new Date().toISOString(),
+        firstname: firstname,
+        email: email,
+        quizType: quizType,
+        answers: answers,
+        result: result
+      })
+    });
+    console.log('Google Sheets response status:', sheetResponse.status);
+    const sheetResult = await sheetResponse.text();
+    console.log('Google Sheets response:', sheetResult);
+  } catch (sheetError) {
+    console.error('Google Sheets error:', sheetError);
+    console.error('Error details:', sheetError.message);
+  }
+} else {
+  console.log('GOOGLE_SHEET_URL not configured');
+}
 
     // Check Brevo response
     if (brevoResponse.ok || brevoResponse.status === 204) {

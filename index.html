@@ -895,12 +895,12 @@
     <a href="freebies.html" class="btn btn-primary btn-large">
         Kostenlos starten
     </a>
-    <a href="javascript:void(0)" onclick="openSystemCheckQuiz()" class="btn btn-large">
-        System-Check machen
+    <a href="javascript:void(0)" onclick="openBestandsaufnahme()" class="btn btn-large">
+        Was fehlt mir noch?
     </a>
 </div>
 <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--dark-gray);">
-    Hol dir die 30-Tage Email-Serie oder mach den Check
+    Hol dir die 30-Tage Email-Serie oder mach die Bestandsaufnahme
 </p>
         </div>
     </div>
@@ -954,8 +954,8 @@
                 <p style="margin-top: 2rem;"><strong>Resultat:</strong> 2h/Tag active work. Rest läuft automatisch. Zeit für dich & dein Leben.</p>
                 
                 <div style="display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap;">
-    <a href="#angebote" class="btn btn-primary">Wie ich dir helfe</a>
-    <a href="javascript:void(0)" onclick="openSystemCheckQuiz()" class="btn">System-Check machen</a>
+    <a href="angebote.html" class="btn btn-primary">Wie ich dir helfe</a>
+    <a href="javascript:void(0)" onclick="openBestandsaufnahme()" class="btn">Was fehlt mir noch?</a>
 </div>
             </div>
             <div class="fade-in">
@@ -1027,16 +1027,16 @@
 <section style="padding: 6rem 0; background: white;">
     <div class="container" style="max-width: 800px; text-align: center;">
         <h2 style="font-family: 'Playfair Display', Georgia, serif; font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem;">
-            Bist du bereit?
+            Wie weit bist du noch entfernt?
         </h2>
         <p style="font-size: 1.25rem; color: #4A4A4A; margin-bottom: 2rem;">
-            Mach den 2-Minuten Check und finde raus ob wir ein gutes Match sind.
+            5 Fragen. Ehrliche Bestandsaufnahme. Kein Verkaufsgespräch danach.
         </p>
-        <button onclick="openSystemCheckQuiz()" style="padding: 1.5rem 3.5rem; font-size: 1.25rem; background: #2D2D2D; color: white; border: none; cursor: pointer; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; transition: all 0.3s ease; border-radius: 4px;">
-            System-Check starten →
+        <button onclick="openBestandsaufnahme()" style="padding: 1.5rem 3.5rem; font-size: 1.25rem; background: #2D2D2D; color: white; border: none; cursor: pointer; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; transition: all 0.3s ease; border-radius: 4px;">
+            Was fehlt mir noch? →
         </button>
         <p style="margin-top: 1rem; font-size: 0.9rem; color: #4A4A4A;">
-            Am Ende bekommst du eine personalisierte Empfehlung + Einladung zum Gespräch
+            Am Ende siehst du genau welche Bausteine dir noch fehlen
         </p>
     </div>
 </section>
@@ -1133,96 +1133,114 @@
         </div>
     </section>
     <!-- FAQ -->
-    <section class="faq" id="faq">
-        <div class="container">
-            <h2 class="text-center">Häufige Fragen</h2>
-            <div class="faq-container">
-                <div class="faq-item fade-in">
-                    <button class="faq-question">
-                        <span>Funktioniert das wirklich in 2h/Tag?</span>
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>
-                            Ja. Aber nicht von Tag 1. Wir bauen erst die Systeme (Content vorbereiten, Funnel automatisieren). 
-                            Das dauert 2-3 Monate. Danach: 2h/Tag für Strategie und Client-Delivery. Rest läuft automatisch.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="faq-item fade-in">
-                    <button class="faq-question">
-                        <span>Ich kann mir keine teuren Tools leisten.</span>
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>
-                            Musst du nicht. Alle Tools die ich nutze sind bis 1000 Kunden/User KOSTENLOS. 
-                            Brevo (Email), Tally (Forms), Notion (CRM), Make.com (Automation), Carrd (Landing Pages). 
-                            Gesamt-Kosten: 0-50€/Jahr bis du skalierst.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="faq-item fade-in">
-                    <button class="faq-question">
-                        <span>Warum Pinterest als Hauptkanal?</span>
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>
-                            Pinterest-Nutzer SUCHEN aktiv nach Lösungen (nicht scrollen zur Unterhaltung). 
-                            Pinterest Ads: 0,10-0,15€/Click. Content lebt Jahre, nicht Stunden. 
-                            80% weibliche Nutzer mit Kaufkraft. Für Female-fokussierte Businesses ideal – 
-                            ohne ständig live präsent sein zu müssen.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="faq-item fade-in">
-                    <button class="faq-question">
-                        <span>Ich bin keine Tech-Expertin. Ist das zu kompliziert?</span>
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>
-                            Nein. Ich bin App-Developerin – ich baue dir KLICK-FÜR-KLICK Anleitungen. 
-                            Jedes Tool, jede Integration, jeder Schritt. Wenn ich es mit einem 4-jährigen Kind schaffe, schaffst du es auch.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="faq-item fade-in">
-                    <button class="faq-question">
-                        <span>Was ist mit Selbstsabotage?</span>
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>
-                            Das ist der wichtigste Teil. Du kannst die besten Tools haben – wenn du dich selbst sabotierst, bringt's nichts. 
-                            Deshalb arbeiten wir am Mindset: Warum du Entscheidungen vermeidest. Wie du Commitment-Angst überwindest. 
-                            Framework für bessere Entscheidungen. Das ist was dich durchbrechen lässt.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="faq-item fade-in">
-                    <button class="faq-question">
-                        <span>Brauche ich ein Team?</span>
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>
-                            Nein. Du brauchst SYSTEME. Team kommt später (wenn überhaupt). 
-                            Ich kenne Solo-Unternehmerinnen mit 50k/Monat ohne Team. 
-                            Weil ihre Systeme ihre "Mitarbeiter" sind.
-                        </p>
-                    </div>
+<section class="faq" id="faq">
+    <div class="container">
+        <h2 class="text-center">Häufige Fragen</h2>
+        <div class="faq-container">
+            
+            <div class="faq-item fade-in">
+                <button class="faq-question">
+                    <span>Für wen ist das 2h/Tag System?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>
+                        Für Unternehmerinnen die bereits ein Angebot haben (oder eine klare Idee), 
+                        aber zu viel arbeiten und zu wenig verdienen. Du bist bereit in High-Ticket zu gehen 
+                        und willst ein Business das auch ohne dich läuft.
+                    </p>
                 </div>
             </div>
-        </div>
-    </section>
 
+            <div class="faq-item fade-in">
+                <button class="faq-question">
+                    <span>Funktioniert das wirklich in 2h/Tag?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>
+                        Ja, aber nicht von Tag 1. Wir bauen erst die Systeme auf – das dauert 6-12 Wochen je nach Angebot. 
+                        Danach: 2h/Tag für Strategie und Kundenarbeit. Der Rest läuft automatisch über Pinterest, 
+                        Email-Funnel und Automatisierungen.
+                    </p>
+                </div>
+            </div>
+
+            <div class="faq-item fade-in">
+                <button class="faq-question">
+                    <span>Was ist der Unterschied zwischen Foundation und System-Setup?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>
+                        <strong>Foundation Intensive:</strong> Du lernst Positionierung, Offer Design und Sales. 
+                        Für dich wenn du noch Klarheit brauchst WAS du verkaufst.<br><br>
+                        <strong>System-Setup:</strong> Ich baue dir alles (Website, Pinterest, Funnel). 
+                        Für dich wenn du schon weißt was du verkaufst und jetzt Traffic + Automatisierung brauchst.
+                    </p>
+                </div>
+            </div>
+
+            <div class="faq-item fade-in">
+                <button class="faq-question">
+                    <span>Warum Pinterest statt Instagram?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>
+                        Pinterest-Nutzer SUCHEN aktiv nach Lösungen. Dein Content lebt Jahre statt Stunden. 
+                        Du musst nicht täglich posten oder live sein. 80% weibliche Nutzer mit Kaufkraft. 
+                        Perfekt für ein Business das ohne dich läuft.
+                    </p>
+                </div>
+            </div>
+
+            <div class="faq-item fade-in">
+                <button class="faq-question">
+                    <span>Ich bin nicht technikaffin. Ist das ein Problem?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>
+                        Nein. Im System-Setup baue ich alles FÜR dich und zeige dir dann wie du es pflegst. 
+                        Im Foundation-Angebot arbeiten wir an Strategie – du brauchst keine Tech-Skills. 
+                        Alle Tools die ich nutze haben kostenlose Versionen bis 1000 Kunden.
+                    </p>
+                </div>
+            </div>
+
+            <div class="faq-item fade-in">
+                <button class="faq-question">
+                    <span>Wie läuft die Zusammenarbeit ab?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>
+                        1. Du machst die Bestandsaufnahme oder schreibst mir direkt.<br>
+                        2. Wir haben ein kurzes Kennenlerngespräch (15-20 min, kein Verkaufsgespräch).<br>
+                        3. Wenn's passt, starten wir. Wenn nicht, kein Problem.<br><br>
+                        Kein Druck. Keine automatischen Anrufe. Nur ehrliches Gespräch.
+                    </p>
+                </div>
+            </div>
+
+            <div class="faq-item fade-in">
+                <button class="faq-question">
+                    <span>Was kostet die Zusammenarbeit?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>
+                        Die Preise bespreche ich im persönlichen Gespräch – sie hängen von deiner Situation ab. 
+                        Was ich sagen kann: Es ist eine Investition, kein Schnäppchen. 
+                        Dafür bekommst du meine volle Aufmerksamkeit und echte Resultate.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
     <!-- NEWSLETTER -->
 <section class="newsletter" id="newsletter">
     <div class="container-narrow">
@@ -2388,5 +2406,370 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
+<!-- ============================================ -->
+<!-- QUIZ JAVASCRIPT -->
+<!-- ============================================ -->
+<script>
+// ========== BESTANDSAUFNAHME QUIZ ==========
+let baAnswers = {};
+let baScores = {
+    positionierung: 0,
+    angebot: 0,
+    traffic: 0,
+    systeme: 0,
+    zeit: 0
+};
+
+const baLabels = {
+    1: 'positionierung',
+    2: 'angebot',
+    3: 'traffic',
+    4: 'systeme',
+    5: 'zeit'
+};
+
+const baNames = {
+    positionierung: 'Positionierung',
+    angebot: 'High-Ticket Angebot',
+    traffic: 'Traffic & Sichtbarkeit',
+    systeme: 'Automatisierung',
+    zeit: 'Zeit-Freiheit'
+};
+
+function openBestandsaufnahme() {
+    document.getElementById('bestandsaufnahme-modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeBestandsaufnahme() {
+    document.getElementById('bestandsaufnahme-modal').classList.remove('active');
+    document.body.style.overflow = 'auto';
+    resetBestandsaufnahme();
+}
+
+function resetBestandsaufnahme() {
+    baAnswers = {};
+    baScores = { positionierung: 0, angebot: 0, traffic: 0, systeme: 0, zeit: 0 };
+    document.querySelectorAll('#bestandsaufnahme-container .quiz-screen').forEach(s => s.classList.remove('active'));
+    document.getElementById('ba-screen-start').classList.add('active');
+    document.getElementById('bestandsaufnahme-progress-bar').style.width = '0%';
+}
+
+function startBestandsaufnahme() {
+    showBAScreen('ba-screen-q1');
+    updateBAProgress(1, 5);
+}
+
+function baAnswer(questionNum, score) {
+    const label = baLabels[questionNum];
+    baScores[label] = score;
+    baAnswers['q' + questionNum] = score;
+    
+    const btn = event.target.closest('.quiz-option');
+    btn.style.background = '#B89968';
+    btn.style.color = 'white';
+    
+    setTimeout(() => {
+        if (questionNum < 5) {
+            showBAScreen('ba-screen-q' + (questionNum + 1));
+            updateBAProgress(questionNum + 1, 5);
+        } else {
+            showBAScreen('ba-screen-loading');
+            updateBAProgress(5, 5);
+            
+            setTimeout(() => {
+                showBestandsaufnahmeResult();
+            }, 1500);
+        }
+    }, 400);
+}
+
+function showBAScreen(screenId) {
+    document.querySelectorAll('#bestandsaufnahme-container .quiz-screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(screenId).classList.add('active');
+}
+
+function updateBAProgress(step, total) {
+    const progress = (step / total) * 100;
+    document.getElementById('bestandsaufnahme-progress-bar').style.width = progress + '%';
+}
+
+function showBestandsaufnahmeResult() {
+    const totalScore = Object.values(baScores).reduce((a, b) => a + b, 0);
+    const maxScore = 10;
+    const percentage = Math.round((totalScore / maxScore) * 100);
+    
+    // Find what's missing (score 0 or 1)
+    const missing = [];
+    const solid = [];
+    
+    for (const [key, score] of Object.entries(baScores)) {
+        if (score === 0) {
+            missing.push({ key, name: baNames[key], status: 'fehlt' });
+        } else if (score === 1) {
+            missing.push({ key, name: baNames[key], status: 'teilweise' });
+        } else {
+            solid.push({ key, name: baNames[key] });
+        }
+    }
+    
+    // Generate visual bars
+    let barsHTML = '';
+    for (const [key, score] of Object.entries(baScores)) {
+        const percent = (score / 2) * 100;
+        const color = score === 2 ? '#B89968' : score === 1 ? '#D4C5B0' : '#E8DED2';
+        const status = score === 2 ? '✓' : score === 1 ? '~' : '✗';
+        barsHTML += `
+            <div style="margin-bottom: 1rem;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.25rem;">
+                    <span>${baNames[key]}</span>
+                    <span>${status}</span>
+                </div>
+                <div style="background: #E8DED2; height: 8px; border-radius: 4px;">
+                    <div style="background: ${color}; height: 100%; width: ${percent}%; border-radius: 4px; transition: width 0.5s;"></div>
+                </div>
+            </div>
+        `;
+    }
+    
+    // Determine headline based on score
+    let headline, subline, emoji;
+    if (percentage >= 80) {
+        emoji = '🎉';
+        headline = 'Du bist fast da!';
+        subline = 'Dein Business hat eine solide Basis. Kleine Optimierungen können viel bewirken.';
+    } else if (percentage >= 50) {
+        emoji = '💪';
+        headline = 'Gute Basis, aber Lücken';
+        subline = 'Einiges steht schon, aber ein paar Bausteine fehlen noch für echte Freiheit.';
+    } else if (percentage >= 30) {
+        emoji = '🔧';
+        headline = 'Da ist noch Arbeit';
+        subline = 'Du hast angefangen, aber die wichtigsten Systeme fehlen noch.';
+    } else {
+        emoji = '🚀';
+        headline = 'Du stehst am Anfang';
+        subline = 'Kein Problem – jeder fängt irgendwo an. Wichtig ist der erste Schritt.';
+    }
+    
+    // What's missing section
+    let missingHTML = '';
+    if (missing.length > 0) {
+        missingHTML = `
+            <div style="background: #FAF9F6; border: 2px solid #E8DED2; padding: 1.5rem; margin: 2rem 0; border-radius: 4px;">
+                <h4 style="margin-bottom: 1rem;">Was dir noch fehlt:</h4>
+                <ul style="list-style: none; padding: 0; margin: 0;">
+                    ${missing.map(m => `
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid #E8DED2; display: flex; justify-content: space-between;">
+                            <span>${m.name}</span>
+                            <span style="color: ${m.status === 'fehlt' ? '#ff6b6b' : '#B89968'}; font-size: 0.9rem;">
+                                ${m.status === 'fehlt' ? 'fehlt komplett' : 'braucht Arbeit'}
+                            </span>
+                        </li>
+                    `).join('')}
+                </ul>
+            </div>
+        `;
+    }
+    
+    // Build result HTML
+    const resultHTML = `
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <span style="font-size: 4rem;">${emoji}</span>
+            <h2 style="margin: 1rem 0 0.5rem;">${headline}</h2>
+            <p style="color: #4A4A4A; font-size: 1.1rem;">${subline}</p>
+        </div>
+        
+        <div style="background: #E8DED2; padding: 2rem; border-radius: 8px; margin-bottom: 2rem;">
+            <h4 style="margin-bottom: 1.5rem; text-align: center;">Deine Bestandsaufnahme</h4>
+            ${barsHTML}
+        </div>
+        
+        ${missingHTML}
+        
+        <div style="background: #2D2D2D; color: #FAF9F6; padding: 2rem; border-radius: 4px; margin-top: 2rem;">
+            <h4 style="color: #FAF9F6; margin-bottom: 1rem;">Wie geht's weiter?</h4>
+            <p style="color: #E8DED2; margin-bottom: 1.5rem;">
+                ${missing.length > 0 
+                    ? 'Du weißt jetzt was fehlt. Wenn du Unterstützung willst – kein Verkaufsgespräch, nur ein ehrliches Kennenlernen:' 
+                    : 'Dein Business steht gut da! Wenn du trotzdem optimieren willst:'}
+            </p>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <a href="mailto:socials@carinaannaprav.at?subject=Bestandsaufnahme%20gemacht&body=Hey%20Carina,%0A%0Aich%20habe%20die%20Bestandsaufnahme%20gemacht.%0A%0AMir%20fehlt%20noch:%20${missing.map(m => m.name).join(', ')}%0A%0A" 
+                   style="flex: 1; min-width: 200px; padding: 1rem; background: #B89968; color: white; text-decoration: none; text-align: center; border-radius: 4px; font-weight: 600;">
+                    Schreib mir eine Email
+                </a>
+                <a href="https://t.me/carinaannaprav" target="_blank"
+                   style="flex: 1; min-width: 200px; padding: 1rem; background: transparent; border: 2px solid #FAF9F6; color: #FAF9F6; text-decoration: none; text-align: center; border-radius: 4px; font-weight: 600;">
+                    Schreib mir auf Telegram
+                </a>
+            </div>
+            <p style="color: #888; font-size: 0.85rem; margin-top: 1rem; text-align: center;">
+                Keine automatischen Anrufe. Kein Spam. Versprochen.
+            </p>
+        </div>
+        
+        <div style="text-align: center; margin-top: 2rem;">
+            <button onclick="closeBestandsaufnahme()" style="padding: 0.75rem 2rem; background: transparent; border: 1px solid #E8DED2; cursor: pointer; color: #4A4A4A;">
+                Schließen
+            </button>
+        </div>
+    `;
+    
+    document.getElementById('ba-result-content').innerHTML = resultHTML;
+    showBAScreen('ba-screen-result');
+}
+
+// Auto-open from URL
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const openQuiz = urlParams.get('openquiz');
+    
+    if (openQuiz === 'bestandsaufnahme') {
+        setTimeout(function() {
+            openBestandsaufnahme();
+        }, 500);
+    }
+});
+</script>
+
+
+<!-- ============================================ -->
+<!-- BESTANDSAUFNAHME QUIZ - "Wie weit bist du noch?" -->
+<!-- Ersetze das alte System-Check Quiz damit -->
+<!-- ============================================ -->
+
+<div id="bestandsaufnahme-modal" class="quiz-modal">
+    <div class="quiz-modal-content">
+        <button class="quiz-close" onclick="closeBestandsaufnahme()">&times;</button>
+        
+        <div class="quiz-progress">
+            <div class="quiz-progress-bar" id="bestandsaufnahme-progress-bar"></div>
+        </div>
+        
+        <div id="bestandsaufnahme-container">
+            <!-- Start Screen -->
+            <div class="quiz-screen active" id="ba-screen-start">
+                <h2>Wie weit bist du noch entfernt?</h2>
+                <p style="font-size: 1.25rem; margin-bottom: 2rem;">
+                    Finde raus welche Bausteine dir noch fehlen für dein 2h/Tag Business.
+                </p>
+                <p style="opacity: 0.8; margin-bottom: 2rem;">5 Fragen. Ehrliche Bestandsaufnahme. Kein Verkaufsgespräch.</p>
+                <button class="quiz-btn-primary" onclick="startBestandsaufnahme()">Los geht's</button>
+            </div>
+            
+            <!-- Question 1: Positionierung -->
+            <div class="quiz-screen" id="ba-screen-q1">
+                <h3>1. Positionierung</h3>
+                <p class="quiz-question">Wenn jemand fragt "Was machst du?" - hast du eine klare Antwort die sofort verstanden wird?</p>
+                <div class="quiz-options">
+                    <button class="quiz-option" onclick="baAnswer(1, 2)">
+                        <strong>Ja, glasklar</strong><br>
+                        <span style="font-size: 0.9rem; opacity: 0.8;">Ich weiß genau wem ich helfe und womit</span>
+                    </button>
+                    <button class="quiz-option" onclick="baAnswer(1, 1)">
+                        <strong>So halb</strong><br>
+                        <span style="font-size: 0.9rem; opacity: 0.8;">Ich hab was, aber es fühlt sich noch nicht richtig an</span>
+                    </button>
+                    <button class="quiz-option" onclick="baAnswer(1, 0)">
+                        <strong>Nein</strong><br>
+                        <span style="font-size: 0.9rem; opacity: 0.8;">Ich sag jedes Mal was anderes / bin zu breit</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Question 2: Angebot -->
+            <div class="quiz-screen" id="ba-screen-q2">
+                <h3>2. Angebot</h3>
+                <p class="quiz-question">Hast du ein klares High-Ticket Angebot (1000€+) das du selbstbewusst verkaufen kannst?</p>
+                <div class="quiz-options">
+                    <button class="quiz-option" onclick="baAnswer(2, 2)">
+                        <strong>Ja</strong><br>
+                        <span style="font-size: 0.9rem; opacity: 0.8;">Ich weiß was ich verkaufe und für wie viel</span>
+                    </button>
+                    <button class="quiz-option" onclick="baAnswer(2, 1)">
+                        <strong>Arbeite dran</strong><br>
+                        <span style="font-size: 0.9rem; opacity: 0.8;">Hab was, aber bin unsicher beim Preis/Umfang</span>
+                    </button>
+                    <button class="quiz-option" onclick="baAnswer(2, 0)">
+                        <strong>Nein</strong><br>
+                        <span style="font-size: 0.9rem; opacity: 0.8;">Verkaufe nur kleine Sachen / weiß nicht was ich anbieten soll</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Question 3: Traffic -->
+            <div class="quiz-screen" id="ba-screen-q3">
+                <h3>3. Traffic & Sichtbarkeit</h3>
+                <p class="quiz-question">Woher kommen deine Interessenten/Kunden aktuell?</p>
+                <div class="quiz-options">
+                    <button class="quiz-option" onclick="baAnswer(3, 2)">
+                        <strong>Automatisch</strong><br>
+                        <span style="font-size: 0.9rem; opacity: 0.8;">Pinterest/SEO/Ads - Leute finden mich von selbst</span>
+                    </button>
+                    <button class="quiz-option" onclick="baAnswer(3, 1)">
+                        <strong>Social Media Hustle</strong><br>
+                        <span style="font-size: 0.9rem; opacity: 0.8;">Instagram/Stories - ich muss ständig präsent sein</span>
+                    </button>
+                    <button class="quiz-option" onclick="baAnswer(3, 0)">
+                        <strong>Empfehlungen / Zufall</strong><br>
+                        <span style="font-size: 0.9rem; opacity: 0.8;">Kein echtes System, hoffe auf Mundpropaganda</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Question 4: Systeme -->
+            <div class="quiz-screen" id="ba-screen-q4">
+                <h3>4. Automatisierung</h3>
+                <p class="quiz-question">Hast du Systeme die für dich arbeiten auch wenn du offline bist?</p>
+                <div class="quiz-options">
+                    <button class="quiz-option" onclick="baAnswer(4, 2)">
+                        <strong>Ja, läuft</strong><br>
+                        <span style="font-size: 0.9rem; opacity: 0.8;">Email-Funnel, automatische Lead-Generierung, etc.</span>
+                    </button>
+                    <button class="quiz-option" onclick="baAnswer(4, 1)">
+                        <strong>Teilweise</strong><br>
+                        <span style="font-size: 0.9rem; opacity: 0.8;">Hab Newsletter, aber nicht wirklich automatisiert</span>
+                    </button>
+                    <button class="quiz-option" onclick="baAnswer(4, 0)">
+                        <strong>Nein</strong><br>
+                        <span style="font-size: 0.9rem; opacity: 0.8;">Alles manuell, kein Funnel, keine Automation</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Question 5: Zeit -->
+            <div class="quiz-screen" id="ba-screen-q5">
+                <h3>5. Arbeitszeit</h3>
+                <p class="quiz-question">Wie viele Stunden pro Woche arbeitest du AN deinem Business?</p>
+                <div class="quiz-options">
+                    <button class="quiz-option" onclick="baAnswer(5, 2)">
+                        <strong>Unter 20h</strong><br>
+                        <span style="font-size: 0.9rem; opacity: 0.8;">Mein Business läuft auch ohne mich</span>
+                    </button>
+                    <button class="quiz-option" onclick="baAnswer(5, 1)">
+                        <strong>20-40h</strong><br>
+                        <span style="font-size: 0.9rem; opacity: 0.8;">Normal, aber könnte weniger sein</span>
+                    </button>
+                    <button class="quiz-option" onclick="baAnswer(5, 0)">
+                        <strong>40h+</strong><br>
+                        <span style="font-size: 0.9rem; opacity: 0.8;">Ich arbeite non-stop und es reicht trotzdem nicht</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Loading -->
+            <div class="quiz-screen" id="ba-screen-loading">
+                <h3>Analysiere deine Antworten...</h3>
+                <div class="quiz-loader"></div>
+            </div>
+            
+            <!-- Result -->
+            <div class="quiz-screen" id="ba-screen-result">
+                <div id="ba-result-content"></div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

@@ -24,14 +24,6 @@
             
             --font-serif: 'Playfair Display', Georgia, serif;
             --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-            
-            --spacing-xs: 0.5rem;
-            --spacing-sm: 1rem;
-            --spacing-md: 2rem;
-            --spacing-lg: 4rem;
-            --spacing-xl: 6rem;
-            
-            --max-width: 1200px;
         }
         
         body {
@@ -39,51 +31,92 @@
             color: var(--charcoal);
             background: var(--cream);
             line-height: 1.7;
-            -webkit-font-smoothing: antialiased;
         }
         
         h1, h2, h3, h4 {
             font-family: var(--font-serif);
             font-weight: 400;
             line-height: 1.2;
-            letter-spacing: -0.02em;
-        }
-        
-        h1 {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            margin-bottom: var(--spacing-md);
-        }
-        
-        h2 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            margin-bottom: var(--spacing-md);
-        }
-        
-        h3 {
-            font-size: clamp(1.5rem, 4vw, 2.5rem);
-            margin-bottom: var(--spacing-sm);
-        }
-        
-        p {
-            font-size: clamp(1rem, 2vw, 1.125rem);
-            margin-bottom: var(--spacing-sm);
-            color: var(--dark-gray);
         }
         
         .container {
-            max-width: var(--max-width);
+            max-width: 900px;
             margin: 0 auto;
-            padding: 0 var(--spacing-md);
+            padding: 0 2rem;
         }
         
-        section {
-            padding: var(--spacing-xl) 0;
+        /* NAVIGATION */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(250, 249, 246, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--beige);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--charcoal);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        /* HERO */
+        .hero {
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+            padding-bottom: 4rem;
+            background: linear-gradient(135deg, #FAF9F6 0%, #E8DED2 100%);
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--dark-gray);
+            max-width: 600px;
+            margin: 0 auto 2rem;
         }
         
         .btn {
             display: inline-block;
             padding: 1.25rem 3rem;
-            font-size: 1.125rem;
+            font-size: 1rem;
             font-weight: 600;
             text-align: center;
             border: 2px solid var(--charcoal);
@@ -112,110 +145,138 @@
             color: var(--cream);
         }
         
-        /* NAVIGATION */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(250, 249, 246, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid var(--beige);
+        /* ACCORDION OFFERS */
+        .offers-section {
+            padding: 4rem 0;
         }
         
-        .nav-container {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: var(--spacing-sm) var(--spacing-md);
+        .offer-accordion {
+            margin-bottom: 1.5rem;
+            border: 2px solid var(--beige);
+            border-radius: 8px;
+            overflow: hidden;
+            background: white;
+            transition: all 0.3s ease;
+        }
+        
+        .offer-accordion:hover {
+            border-color: var(--accent);
+        }
+        
+        .offer-accordion.active {
+            border-color: var(--accent);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        .offer-header {
+            padding: 2rem;
+            cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background: white;
+            transition: background 0.3s ease;
         }
         
-        .logo {
-            font-family: var(--font-serif);
-            font-size: 1.5rem;
-            font-weight: 400;
-            letter-spacing: 0.05em;
-            text-decoration: none;
-            color: var(--charcoal);
+        .offer-header:hover {
+            background: var(--light-gray);
         }
         
-        .nav-links {
-            display: flex;
-            gap: var(--spacing-md);
-            list-style: none;
+        .offer-header-left {
+            flex: 1;
         }
         
-        .nav-links a {
-            font-size: 0.95rem;
+        .offer-badge {
+            display: inline-block;
+            padding: 0.35rem 0.75rem;
+            background: var(--charcoal);
+            color: var(--cream);
+            font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            font-weight: 500;
-            text-decoration: none;
-            color: var(--charcoal);
-            transition: color 0.3s ease;
+            margin-bottom: 0.75rem;
+            border-radius: 2px;
         }
         
-        .nav-links a:hover {
+        .offer-badge.popular {
+            background: var(--accent);
+        }
+        
+        .offer-header h2 {
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .offer-header p {
+            color: var(--dark-gray);
+            font-size: 1rem;
+            margin: 0;
+        }
+        
+        .offer-toggle {
+            font-size: 2rem;
             color: var(--accent);
+            transition: transform 0.3s ease;
+            margin-left: 2rem;
         }
         
-        /* HERO */
-        .hero {
-            min-height: 60vh;
-            display: flex;
-            align-items: center;
-            padding-top: 80px;
-            background: linear-gradient(135deg, #FAF9F6 0%, #E8DED2 100%);
-            text-align: center;
+        .offer-accordion.active .offer-toggle {
+            transform: rotate(45deg);
         }
         
-        /* OFFER CARD */
-        .offer-section {
-            background: var(--cream);
+        .offer-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
         }
         
-        .offer-section:nth-child(even) {
-            background: var(--light-gray);
+        .offer-accordion.active .offer-content {
+            max-height: 2000px;
+        }
+        
+        .offer-content-inner {
+            padding: 0 2rem 2rem;
+        }
+        
+        .offer-for-who {
+            background: var(--beige);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .offer-for-who h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
         }
         
         .offer-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: var(--spacing-xl);
-            align-items: start;
-        }
-        
-        .offer-content h3 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .offer-subtitle {
-            font-size: 1.25rem;
-            font-style: italic;
-            color: var(--accent);
-            margin-bottom: 2rem;
-        }
-        
-        .offer-for-who {
-            background: var(--beige);
-            padding: 2rem;
+            gap: 2rem;
             margin: 2rem 0;
-            border-left: 4px solid var(--accent);
+        }
+        
+        @media (max-width: 768px) {
+            .offer-grid {
+                grid-template-columns: 1fr;
+            }
         }
         
         .offer-features {
             list-style: none;
-            margin: 2rem 0;
+            padding: 0;
         }
         
         .offer-features li {
-            padding: 1rem 0;
-            padding-left: 2rem;
+            padding: 0.75rem 0;
+            padding-left: 1.75rem;
             position: relative;
             border-bottom: 1px solid var(--beige);
+        }
+        
+        .offer-features li:last-child {
+            border-bottom: none;
         }
         
         .offer-features li::before {
@@ -224,54 +285,142 @@
             left: 0;
             color: var(--accent);
             font-weight: bold;
-            font-size: 1.5rem;
-        }
-        
-        .process-timeline {
-            margin: 2rem 0;
         }
         
         .process-step {
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-            background: white;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            background: var(--light-gray);
             border-left: 3px solid var(--accent);
         }
         
         .process-step h4 {
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-            color: var(--charcoal);
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
         }
         
-        .testimonial {
-            background: var(--charcoal);
-            color: var(--cream);
-            padding: 3rem;
-            margin: 3rem 0;
+        .process-step p {
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+            margin: 0;
+        }
+        
+        .testimonial-small {
+            background: linear-gradient(135deg, #E8DED2 0%, #D4C5B0 100%);
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border-left: 4px solid var(--accent);
             border-radius: 4px;
         }
         
-        .testimonial-text {
-            font-size: 1.25rem;
+        .testimonial-small p {
             font-style: italic;
-            line-height: 1.8;
+            margin-bottom: 0.75rem;
+        }
+        
+        .testimonial-small .author {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .offer-cta {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--beige);
+        }
+        
+        /* SYSTEM CHECK CTA */
+        .system-check-section {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #E8DED2 0%, #D4C5B0 100%);
+            text-align: center;
+        }
+        
+        /* BEWERBUNG */
+        .bewerbung-section {
+            padding: 4rem 0;
+            background: white;
+        }
+        
+        .form-container {
+            background: var(--light-gray);
+            padding: 2.5rem;
+            border-radius: 8px;
+        }
+        
+        .form-group {
             margin-bottom: 1.5rem;
         }
         
-        .testimonial-author {
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
             font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--beige);
+            font-size: 1rem;
+            font-family: inherit;
+            border-radius: 4px;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        
+        .privacy-checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .privacy-checkbox input {
+            width: auto;
+            margin-top: 0.25rem;
+        }
+        
+        .privacy-checkbox span {
+            font-size: 0.9rem;
+        }
+        
+        .privacy-checkbox a {
             color: var(--accent);
         }
         
-        @media (max-width: 968px) {
-            .offer-grid {
-                grid-template-columns: 1fr;
-                gap: var(--spacing-md);
+        /* FOOTER */
+        footer {
+            background: var(--charcoal);
+            color: var(--beige);
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        footer a {
+            color: var(--beige);
+            margin: 0 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
             }
             
-            section {
-                padding: var(--spacing-lg) 0;
+            .offer-header {
+                padding: 1.5rem;
+            }
+            
+            .offer-header h2 {
+                font-size: 1.5rem;
             }
         }
     </style>
@@ -290,7 +439,7 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="index.html#system">System</a></li>
                 <li><a href="angebote.html">Angebote</a></li>
-                <li><a href="index.html#podcast">Podcast</a></li>
+                <li><a href="freebies.html">Freebies</a></li>
                 <li><a href="ueber-mich.html">Über mich</a></li>
             </ul>
         </div>
@@ -300,364 +449,359 @@
     <section class="hero">
         <div class="container">
             <h1>Wie ich dir helfen kann</h1>
-            <p style="font-size: 1.5rem; color: var(--dark-gray); max-width: 700px; margin: 0 auto 2rem;">
-                Wähle das Angebot das zu deiner aktuellen Situation passt
-            </p>
+            <p>Klick auf ein Angebot um mehr zu erfahren</p>
             <a href="#system-check" class="btn btn-outline">Nicht sicher? Mach den System-Check</a>
         </div>
     </section>
 
-    <!-- FOUNDATION INTENSIVE -->
-    <section class="offer-section">
+    <!-- OFFERS ACCORDION -->
+    <section class="offers-section">
         <div class="container">
-            <div class="offer-grid">
-                <div class="offer-content">
-                    <h2>Foundation Intensive</h2>
-                    <p class="offer-subtitle">Vom Hamsterrad zum High-Ticket</p>
-                    
-                    <div class="offer-for-who">
-                        <h4 style="margin-bottom: 1rem; font-size: 1.25rem;">Für wen ist das?</h4>
-                        <p style="color: var(--charcoal);">
-                            Du hast erste Kunden, aber dein Angebot ist unklar oder zu klein. 
-                            Du arbeitest viel, verdienst aber nicht genug. Du willst High-Ticket verkaufen, 
-                            weißt aber nicht wie du dein Angebot packagst oder pitchst.
-                        </p>
+            
+            <!-- FOUNDATION INTENSIVE -->
+            <div class="offer-accordion" id="foundation">
+                <div class="offer-header" onclick="toggleOffer('foundation')">
+                    <div class="offer-header-left">
+                        <span class="offer-badge">1:1 Intensiv</span>
+                        <h2>Foundation Intensive</h2>
+                        <p>Vom Hamsterrad zum High-Ticket • 6 Wochen</p>
                     </div>
-                    
-                    <p style="margin: 2rem 0; font-size: 1.125rem; line-height: 1.8;">
-                        In 6 Wochen bauen wir gemeinsam die Foundation für dein profitables Business: 
-                        Scharfe Positionierung, High-Ticket Offer Design, und ethische Sales-Skills.
-                    </p>
-                    
-                    <a href="#bewerbung" class="btn">Jetzt bewerben</a>
+                    <span class="offer-toggle">+</span>
                 </div>
                 
-                <div>
-                    <h3 style="margin-bottom: 2rem;">Was du bekommst</h3>
-                    
-                    <ul class="offer-features">
-                        <li>
-                            <strong>6x 90min 1:1 Calls</strong><br>
-                            Jeden Call nehmen wir auf, du bekommst Zusammenfassungen + Aufgaben
-                        </li>
-                        <li>
-                            <strong>Positionierungs-Arbeit</strong><br>
-                            Von "Ich helfe allen..." zu kristallklarer Nische
-                        </li>
-                        <li>
-                            <strong>High-Ticket Offer Design</strong><br>
-                            Dein Angebot mit Premium-Pricing (1000€+)
-                        </li>
-                        <li>
-                            <strong>Sales Training</strong><br>
-                            Ethische Verkaufsgespräche führen, ohne Manipulation
-                        </li>
-                        <li>
-                            <strong>Launch-Plan</strong><br>
-                            Wie du deine ersten 3-5 High-Ticket Kunden gewinnst
-                        </li>
-                        <li>
-                            <strong>Voxer-Support</strong><br>
-                            Zwischen den Calls bin ich für dich da
-                        </li>
-                    </ul>
-                    
-                    <div class="process-timeline">
-                        <h4 style="margin: 2rem 0 1rem;">Der 6-Wochen Prozess:</h4>
-                        
-                        <div class="process-step">
-                            <h4>Woche 1-2: Positionierung</h4>
-                            <p style="color: var(--dark-gray);">Wer ist deine Zielgruppe wirklich? Was ist dein Unique Angle?</p>
+                <div class="offer-content">
+                    <div class="offer-content-inner">
+                        <div class="offer-for-who">
+                            <h4>Für wen ist das?</h4>
+                            <p style="margin: 0; color: var(--charcoal);">
+                                Du hast erste Kunden, aber dein Angebot ist unklar oder zu klein. 
+                                Du arbeitest viel, verdienst aber nicht genug. Du willst High-Ticket verkaufen, 
+                                weißt aber nicht wie du dein Angebot packagst oder pitchst.
+                            </p>
                         </div>
                         
-                        <div class="process-step">
-                            <h4>Woche 3-4: Offer Design</h4>
-                            <p style="color: var(--dark-gray);">Dein High-Ticket Angebot strukturieren, Preisgestaltung, Packaging</p>
+                        <p style="font-size: 1.1rem; margin-bottom: 2rem;">
+                            In 6 Wochen bauen wir gemeinsam die Foundation für dein profitables Business: 
+                            Scharfe Positionierung, High-Ticket Offer Design, und ethische Sales-Skills.
+                        </p>
+                        
+                        <div class="offer-grid">
+                            <div>
+                                <h4 style="margin-bottom: 1rem;">Was du bekommst:</h4>
+                                <ul class="offer-features">
+                                    <li><strong>6x 90min 1:1 Calls</strong><br>Mit Aufnahme + Zusammenfassungen</li>
+                                    <li><strong>Positionierungs-Arbeit</strong><br>Von breit zu kristallklar</li>
+                                    <li><strong>High-Ticket Offer Design</strong><br>Premium-Pricing (1000€+)</li>
+                                    <li><strong>Sales Training</strong><br>Ethisch verkaufen ohne Manipulation</li>
+                                    <li><strong>Launch-Plan</strong><br>Erste 3-5 High-Ticket Kunden</li>
+                                    <li><strong>Telegram-Support</strong><br>Zwischen den Calls erreichbar</li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h4 style="margin-bottom: 1rem;">Der 6-Wochen Prozess:</h4>
+                                <div class="process-step">
+                                    <h4>Woche 1-2: Positionierung</h4>
+                                    <p>Zielgruppe + Unique Angle</p>
+                                </div>
+                                <div class="process-step">
+                                    <h4>Woche 3-4: Offer Design</h4>
+                                    <p>Angebot strukturieren + Pricing</p>
+                                </div>
+                                <div class="process-step">
+                                    <h4>Woche 5: Sales Skills</h4>
+                                    <p>Gespräche führen + Einwände</p>
+                                </div>
+                                <div class="process-step">
+                                    <h4>Woche 6: Launch</h4>
+                                    <p>Strategie für erste Kunden</p>
+                                </div>
+                            </div>
                         </div>
                         
-                        <div class="process-step">
-                            <h4>Woche 5: Sales Skills</h4>
-                            <p style="color: var(--dark-gray);">Verkaufsgespräche führen, Einwände behandeln, ethisch überzeugen</p>
+                        <div class="testimonial-small">
+                            <p>"Was Carina mir nach kürzester Zeit gegeben hat an Expertise, Beistand und Support ist nicht von dieser Welt. 
+                            Fragen beantwortet die nicht einmal im Offer enthalten sind. Hands on. 1000 Dank."</p>
+                            <span class="author">— Klientin, Foundation Intensive</span>
                         </div>
                         
-                        <div class="process-step">
-                            <h4>Woche 6: Launch</h4>
-                            <p style="color: var(--dark-gray);">Launch-Strategie für deine ersten Kunden</p>
+                        <div class="offer-cta">
+                            <a href="#bewerbung" class="btn">Jetzt bewerben</a>
                         </div>
                     </div>
                 </div>
             </div>
             
-          
+            <!-- SYSTEM-SETUP -->
+            <div class="offer-accordion" id="system-setup">
+                <div class="offer-header" onclick="toggleOffer('system-setup')">
+                    <div class="offer-header-left">
+                        <span class="offer-badge popular">Beliebt</span>
+                        <h2>System-Setup</h2>
+                        <p>Done-FOR-You Business-System • 6-8 Wochen</p>
+                    </div>
+                    <span class="offer-toggle">+</span>
+                </div>
+                
+                <div class="offer-content">
+                    <div class="offer-content-inner">
+                        <div class="offer-for-who">
+                            <h4>Für wen ist das?</h4>
+                            <p style="margin: 0; color: var(--charcoal);">
+                                Du hast ein klares High-Ticket Angebot und weißt wen du damit ansprichst. 
+                                Jetzt brauchst du Traffic + Automatisierung. Du hast keine Zeit (oder Lust) 
+                                alles selbst zu bauen.
+                            </p>
+                        </div>
+                        
+                        <p style="font-size: 1.1rem; margin-bottom: 2rem;">
+                            Ich baue dir dein komplettes Marketing-System: Website, Pinterest, Newsletter-Funnel, 
+                            Quiz/Bewerbungsformular. Alles fertig und funktionsfähig.
+                        </p>
+                        
+                        <div class="offer-grid">
+                            <div>
+                                <h4 style="margin-bottom: 1rem;">Was du bekommst:</h4>
+                                <ul class="offer-features">
+                                    <li><strong>Professionelle Website</strong><br>Custom HTML, Conversion-optimiert</li>
+                                    <li><strong>Pinterest-System komplett</strong><br>Account, Pin-Templates, Strategie</li>
+                                    <li><strong>Newsletter-Automatisierung</strong><br>Brevo Setup + Welcome-Serie</li>
+                                    <li><strong>Quiz oder Bewerbungsformular</strong><br>Lead-Qualifier für dein Angebot</li>
+                                    <li><strong>Google Sheets Integration</strong><br>Alle Leads automatisch erfasst</li>
+                                    <li><strong>Tech-Training</strong><br>Du lernst alles selbst zu pflegen</li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h4 style="margin-bottom: 1rem;">Timeline 6-8 Wochen:</h4>
+                                <div class="process-step">
+                                    <h4>Woche 1-2: Website Build</h4>
+                                    <p>Design, Copy, Development</p>
+                                </div>
+                                <div class="process-step">
+                                    <h4>Woche 3-4: Pinterest Setup</h4>
+                                    <p>Account + Pin-Designs + Plan</p>
+                                </div>
+                                <div class="process-step">
+                                    <h4>Woche 5-6: Automatisierung</h4>
+                                    <p>Email-Sequenzen + Quiz + Testing</p>
+                                </div>
+                                <div class="process-step">
+                                    <h4>Woche 7-8: Training & Launch</h4>
+                                    <p>Tech-Training + Go-Live</p>
+                                </div>
+                                
+                                <div style="background: var(--beige); padding: 1rem; margin-top: 1rem; border-radius: 4px;">
+                                    <p style="margin: 0; font-size: 0.9rem;"><strong>Tech-Stack (kostenlos bis 1000 User):</strong><br>
+                                    Netlify, Brevo, Make.com, Google Sheets, Pinterest</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="testimonial-small">
+                            <p>"Carina – jeder der dich noch nicht entdeckt hat verpasst soviel! Ich freu mich so sehr 
+                            dass ich hier ab Tag 1 gefühlt dabei bin. Direkt wieder neue Impulse für mein Business erhalten."</p>
+                            <span class="author">— Klientin, System-Setup</span>
+                        </div>
+                        
+                        <div class="offer-cta">
+                            <a href="#bewerbung" class="btn">Jetzt bewerben</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- VIP KOMPLETT -->
+            <div class="offer-accordion" id="vip">
+                <div class="offer-header" onclick="toggleOffer('vip')">
+                    <div class="offer-header-left">
+                        <span class="offer-badge">VIP</span>
+                        <h2>VIP Komplett</h2>
+                        <p>12 Wochen All-in Transformation</p>
+                    </div>
+                    <span class="offer-toggle">+</span>
+                </div>
+                
+                <div class="offer-content">
+                    <div class="offer-content-inner">
+                        <div class="offer-for-who">
+                            <h4>Für wen ist das?</h4>
+                            <p style="margin: 0; color: var(--charcoal);">
+                                Du brauchst BEIDES: Klarheit bei deinem Angebot UND das technische System. 
+                                Du willst den schnellsten Weg und bist bereit all-in zu gehen. 
+                                Du arbeitest 60h+/Woche und willst endlich raus aus dem Hamsterrad.
+                            </p>
+                        </div>
+                        
+                        <p style="font-size: 1.1rem; margin-bottom: 2rem;">
+                            Foundation Intensive + System-Setup zusammen. In 12 Wochen von komplettem Chaos 
+                            zu einem profitablen, automatisierten Business das ohne dich läuft.
+                        </p>
+                        
+                        <div class="offer-grid">
+                            <div>
+                                <h4 style="margin-bottom: 1rem;">Was du bekommst:</h4>
+                                <ul class="offer-features">
+                                    <li><strong>ALLES aus Foundation</strong><br>Positionierung, Offer, Sales</li>
+                                    <li><strong>PLUS ALLES aus System-Setup</strong><br>Website, Pinterest, Automation</li>
+                                    <li><strong>12 intensive 1:1 Calls</strong><br>Wöchentlich oder bi-weekly</li>
+                                    <li><strong>Priority Telegram-Support</strong><br>Schnellere Response-Times</li>
+                                    <li><strong>Strategie + Umsetzung parallel</strong><br>Alles gleichzeitig</li>
+                                </ul>
+                                
+                                <div style="background: var(--charcoal); color: var(--cream); padding: 1.5rem; margin-top: 1.5rem; border-radius: 4px;">
+                                    <h4 style="color: var(--cream); margin-bottom: 0.75rem;">VIP Vorteile:</h4>
+                                    <ul style="list-style: none; padding: 0; margin: 0;">
+                                        <li style="padding: 0.25rem 0;">⭐ Schnellster Weg</li>
+                                        <li style="padding: 0.25rem 0;">⭐ Keine Wartezeiten</li>
+                                        <li style="padding: 0.25rem 0;">⭐ Priority Support</li>
+                                        <li style="padding: 0.25rem 0;">⭐ All-in Lösung</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h4 style="margin-bottom: 1rem;">12-Wochen Roadmap:</h4>
+                                <div class="process-step">
+                                    <h4>Woche 1-4: Foundation + Website</h4>
+                                    <p>Positionierung + Offer + Website parallel</p>
+                                </div>
+                                <div class="process-step">
+                                    <h4>Woche 5-8: Sales + Pinterest + Automation</h4>
+                                    <p>Sales Training + System-Aufbau</p>
+                                </div>
+                                <div class="process-step">
+                                    <h4>Woche 9-10: Launch Vorbereitung</h4>
+                                    <p>Testing + Content + Strategie</p>
+                                </div>
+                                <div class="process-step">
+                                    <h4>Woche 11-12: Go-Live + Optimization</h4>
+                                    <p>Launch + erste Kunden + Optimieren</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="testimonial-small">
+                            <p>"Du hattest wirklich eine der bedeutendsten Rollen in meinem Leben."</p>
+                            <span class="author">— VIP Klientin</span>
+                        </div>
+                        
+                        <div class="offer-cta">
+                            <a href="#bewerbung" class="btn">Jetzt bewerben</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
 
-    <!-- SYSTEM-SETUP -->
-    <section class="offer-section">
+    <!-- SYSTEM CHECK CTA -->
+    <section class="system-check-section" id="system-check">
         <div class="container">
-            <div class="offer-grid">
-                <div class="offer-content">
-                    <h2>System-Setup</h2>
-                    <p class="offer-subtitle">Done-FOR-You Business-System</p>
-                    
-                    <div class="offer-for-who">
-                        <h4 style="margin-bottom: 1rem; font-size: 1.25rem;">Für wen ist das?</h4>
-                        <p style="color: var(--charcoal);">
-                            Du hast ein klares High-Ticket Angebot und weißt wen du damit ansprichst. 
-                            Jetzt brauchst du Traffic + Automatisierung. Du hast keine Zeit (oder Lust) 
-                            alles selbst zu bauen.
-                        </p>
-                    </div>
-                    
-                    <p style="margin: 2rem 0; font-size: 1.125rem; line-height: 1.8;">
-                        Ich baue dir dein komplettes Marketing-System: Website, Pinterest, Newsletter-Funnel, 
-                        Quiz/Bewerbungsformular. Alles fertig und funktionsfähig.
-                    </p>
-                    
-                    <a href="#bewerbung" class="btn">Jetzt bewerben</a>
-                </div>
-                
-                <div>
-                    <h3 style="margin-bottom: 2rem;">Was du bekommst</h3>
-                    
-                    <ul class="offer-features">
-                        <li>
-                            <strong>Professionelle Website</strong><br>
-                            Custom HTML, optimiert für Conversion, nicht WordPress
-                        </li>
-                        <li>
-                            <strong>Pinterest-System komplett</strong><br>
-                            Account-Setup, Pin-Templates, Content-Strategie, Ads-Vorbereitung
-                        </li>
-                        <li>
-                            <strong>Newsletter-Automatisierung</strong><br>
-                            Brevo Setup, Welcome-Serie, Lead-Nurture Sequenzen
-                        </li>
-                        <li>
-                            <strong>Quiz ODER Bewerbungsformular</strong><br>
-                            Lead-Qualifier der zu deinem Angebot passt
-                        </li>
-                        <li>
-                            <strong>Google Sheets Integration</strong><br>
-                            Alle Leads automatisch erfasst und organisiert
-                        </li>
-                        <li>
-                            <strong>Tech-Training</strong><br>
-                            Ich zeige dir wie du alles selbst pflegen kannst
-                        </li>
-                    </ul>
-                    
-                    <div style="background: var(--beige); padding: 2rem; margin-top: 2rem; border-left: 4px solid var(--accent);">
-                        <h4 style="margin-bottom: 1rem;">Tech-Stack (alles kostenlos bis 1000 User):</h4>
-                        <ul style="list-style: none; padding: 0;">
-                            <li style="padding: 0.5rem 0;">✓ Netlify (Hosting)</li>
-                            <li style="padding: 0.5rem 0;">✓ Brevo (Email Marketing)</li>
-                            <li style="padding: 0.5rem 0;">✓ Make.com (Automation)</li>
-                            <li style="padding: 0.5rem 0;">✓ Google Sheets (CRM)</li>
-                            <li style="padding: 0.5rem 0;">✓ Pinterest Business Account</li>
-                        </ul>
-                        <p style="margin-top: 1rem; font-weight: 600; color: var(--charcoal);">
-                            Gesamt-Kosten: 0-50€/Jahr bis du skalierst
-                        </p>
-                    </div>
-                    
-                    <div class="process-timeline" style="margin-top: 2rem;">
-                        <h4 style="margin: 2rem 0 1rem;">Timeline (6-8 Wochen):</h4>
-                        
-                        <div class="process-step">
-                            <h4>Woche 1-2: Website Build</h4>
-                            <p style="color: var(--dark-gray);">Design, Copywriting, Development, Deployment</p>
-                        </div>
-                        
-                        <div class="process-step">
-                            <h4>Woche 3-4: Pinterest Setup</h4>
-                            <p style="color: var(--dark-gray);">Account-Optimierung, Pin-Designs, Content-Plan</p>
-                        </div>
-                        
-                        <div class="process-step">
-                            <h4>Woche 5-6: Automatisierung</h4>
-                            <p style="color: var(--dark-gray);">Email-Sequenzen, Quiz, Integrationen, Testing</p>
-                        </div>
-                        
-                        <div class="process-step">
-                            <h4>Woche 7-8: Training & Launch</h4>
-                            <p style="color: var(--dark-gray);">Tech-Training, System-Übergabe, Go-Live</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            
-
-    <!-- VIP KOMPLETT -->
-    <section class="offer-section">
-        <div class="container">
-            <div class="offer-grid">
-                <div class="offer-content">
-                    <h2>VIP Komplett</h2>
-                    <p class="offer-subtitle">12 Wochen All-in Transformation</p>
-                    
-                    <div class="offer-for-who">
-                        <h4 style="margin-bottom: 1rem; font-size: 1.25rem;">Für wen ist das?</h4>
-                        <p style="color: var(--charcoal);">
-                            Du brauchst BEIDES: Klarheit bei deinem Angebot UND das technische System. 
-                            Du willst den schnellsten Weg und bist bereit all-in zu gehen. 
-                            Du arbeitest 60h+/Woche und willst endlich raus aus dem Hamsterrad.
-                        </p>
-                    </div>
-                    
-                    <p style="margin: 2rem 0; font-size: 1.125rem; line-height: 1.8;">
-                        Foundation Intensive + System-Setup zusammen. In 12 Wochen von komplettem Chaos 
-                        zu einem profitablen, automatisierten Business das ohne dich läuft.
-                    </p>
-                    
-                    <a href="#bewerbung" class="btn">Jetzt bewerben</a>
-                </div>
-                
-                <div>
-                    <h3 style="margin-bottom: 2rem;">Was du bekommst</h3>
-                    
-                    <ul class="offer-features">
-                        <li>
-                            <strong>ALLES aus Foundation Intensive</strong><br>
-                            Positionierung, Offer Design, Sales Training, Launch-Plan
-                        </li>
-                        <li>
-                            <strong>PLUS ALLES aus System-Setup</strong><br>
-                            Website, Pinterest, Email-Automation, Quiz, Tech-Stack
-                        </li>
-                        <li>
-                            <strong>12 intensive 1:1 Calls</strong><br>
-                            Wöchentlich oder bi-weekly, je nach Phase
-                        </li>
-                        <li>
-                            <strong>Priority Support</strong><br>
-                            Voxer + Email, schnellere Response-Times
-                        </li>
-                        <li>
-                            <strong>Strategie + Umsetzung gleichzeitig</strong><br>
-                            Während wir an deiner Positionierung arbeiten, baue ich dein System
-                        </li>
-                    </ul>
-                    
-                    <div style="background: var(--charcoal); color: var(--cream); padding: 2rem; margin-top: 2rem; border-radius: 4px;">
-                        <h4 style="margin-bottom: 1rem; color: var(--cream);">VIP Vorteile:</h4>
-                        <ul style="list-style: none; padding: 0;">
-                            <li style="padding: 0.5rem 0;">⭐ Schnellster Weg zur Transformation</li>
-                            <li style="padding: 0.5rem 0;">⭐ Keine Wartezeiten zwischen Phasen</li>
-                            <li style="padding: 0.5rem 0;">⭐ Parallele Entwicklung (du + dein System)</li>
-                            <li style="padding: 0.5rem 0;">⭐ Priority bei allen Fragen</li>
-                            <li style="padding: 0.5rem 0;">⭐ Intensive 12-Wochen Begleitung</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="process-timeline" style="margin-top: 2rem;">
-                        <h4 style="margin: 2rem 0 1rem;">12-Wochen Roadmap:</h4>
-                        
-                        <div class="process-step">
-                            <h4>Woche 1-4: Foundation + Website Start</h4>
-                            <p style="color: var(--dark-gray);">Positionierung, Offer Design, Website Build parallel</p>
-                        </div>
-                        
-                        <div class="process-step">
-                            <h4>Woche 5-8: Sales + Pinterest + Automation</h4>
-                            <p style="color: var(--dark-gray);">Sales Training, Pinterest Setup, Email-Sequenzen</p>
-                        </div>
-                        
-                        <div class="process-step">
-                            <h4>Woche 9-10: Launch Vorbereitung</h4>
-                            <p style="color: var(--dark-gray);">Alles testen, Content erstellen, Launch-Strategie</p>
-                        </div>
-                        
-                        <div class="process-step">
-                            <h4>Woche 11-12: Go-Live + Optimization</h4>
-                            <p style="color: var(--dark-gray);">Launch, erste Kunden, System optimieren</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            
-    <!-- SYSTEM-CHECK CTA -->
-    <section id="system-check" style="padding: 6rem 0; background: linear-gradient(135deg, #E8DED2 0%, #D4C5B0 100%); text-align: center;">
-        <div class="container" style="max-width: 800px;">
-            <h2>Nicht sicher was zu dir passt?</h2>
-            <p style="font-size: 1.25rem; color: var(--dark-gray); margin-bottom: 2rem;">
-                Mach den 2-Minuten System-Check und ich zeige dir welches Angebot am besten zu deiner Situation passt.
+            <h2 style="margin-bottom: 1rem;">Nicht sicher was zu dir passt?</h2>
+            <p style="font-size: 1.1rem; color: var(--dark-gray); margin-bottom: 2rem;">
+                Mach den 2-Minuten System-Check und ich zeige dir welches Angebot am besten zu dir passt.
             </p>
-            <a href="index.html#system-check" class="btn">System-Check starten →</a>
+            <a href="index.html" class="btn" onclick="setTimeout(() => openSystemCheckQuiz(), 500)">System-Check starten →</a>
         </div>
     </section>
 
     <!-- BEWERBUNG -->
-    <section id="bewerbung" style="padding: 6rem 0; background: white;">
-        <div class="container" style="max-width: 700px;">
-            <h2 style="text-align: center; margin-bottom: 2rem;">Bewirb dich jetzt</h2>
-            
-            <p style="text-align: center; font-size: 1.125rem; color: var(--dark-gray); margin-bottom: 3rem;">
-                Füll das Formular aus und ich melde mich innerhalb von 48h bei dir für ein Clarity Call.
+    <section class="bewerbung-section" id="bewerbung">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 1rem;">Bewirb dich jetzt</h2>
+            <p style="text-align: center; color: var(--dark-gray); margin-bottom: 2rem;">
+                Ich melde mich innerhalb von 48h für ein kostenloses Clarity Call.
             </p>
             
-            <form id="application-form" style="background: var(--light-gray); padding: 3rem; border-radius: 4px;">
-                <div style="margin-bottom: 1.5rem;">
-                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Vorname *</label>
-                    <input type="text" id="firstname" required style="width: 100%; padding: 1rem; border: 2px solid var(--beige); font-size: 1rem;">
-                </div>
-                
-                <div style="margin-bottom: 1.5rem;">
-                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Email *</label>
-                    <input type="email" id="email" required style="width: 100%; padding: 1rem; border: 2px solid var(--beige); font-size: 1rem;">
-                </div>
-                
-                <div style="margin-bottom: 1.5rem;">
-                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Welches Angebot interessiert dich? *</label>
-                    <select id="offer" required style="width: 100%; padding: 1rem; border: 2px solid var(--beige); font-size: 1rem;">
-                        <option value="">Bitte wählen...</option>
-                        <option value="foundation">Foundation Intensive</option>
-                        <option value="system-setup">System-Setup</option>
-                        <option value="vip">VIP Komplett</option>
-                        <option value="unsure">Nicht sicher</option>
-                    </select>
-                </div>
-                
-                <div style="margin-bottom: 1.5rem;">
-                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Was ist deine größte Herausforderung gerade? *</label>
-                    <textarea id="challenge" required rows="4" style="width: 100%; padding: 1rem; border: 2px solid var(--beige); font-size: 1rem; font-family: inherit;"></textarea>
-                </div>
-                
-                <div style="margin-bottom: 1.5rem;">
-                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Erzähl mir kurz von deinem Business</label>
-                    <textarea id="business" rows="4" style="width: 100%; padding: 1rem; border: 2px solid var(--beige); font-size: 1rem; font-family: inherit;"></textarea>
-                </div>
-                
-                <div style="margin-bottom: 2rem;">
-                    <label style="display: flex; align-items: flex-start; gap: 0.75rem; cursor: pointer;">
-                        <input type="checkbox" id="privacy" required style="margin-top: 0.25rem; width: 18px; height: 18px;">
-                        <span style="font-size: 0.9rem;">
-                            Ich stimme zu, dass meine Daten zur Bearbeitung meiner Bewerbung gespeichert werden. 
-                            <a href="/datenschutz.html" target="_blank" style="color: var(--accent); text-decoration: underline;">Datenschutzerklärung</a>
+            <div class="form-container">
+                <form id="application-form">
+                    <div class="form-group">
+                        <label>Vorname *</label>
+                        <input type="text" id="firstname" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Welches Angebot interessiert dich? *</label>
+                        <select id="offer" required>
+                            <option value="">Bitte wählen...</option>
+                            <option value="foundation">Foundation Intensive</option>
+                            <option value="system-setup">System-Setup</option>
+                            <option value="vip">VIP Komplett</option>
+                            <option value="unsure">Nicht sicher</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Was ist deine größte Herausforderung gerade? *</label>
+                        <textarea id="challenge" required rows="3"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Erzähl mir kurz von deinem Business</label>
+                        <textarea id="business" rows="3"></textarea>
+                    </div>
+                    
+                    <label class="privacy-checkbox">
+                        <input type="checkbox" id="privacy" required>
+                        <span>
+                            Ich stimme der <a href="/datenschutz.html" target="_blank">Datenschutzerklärung</a> zu.
                         </span>
                     </label>
-                </div>
-                
-                <button type="submit" class="btn" style="width: 100%;">Jetzt bewerben</button>
-                
-                <p id="form-message" style="margin-top: 1.5rem; text-align: center; font-weight: 600;"></p>
-            </form>
+                    
+                    <button type="submit" class="btn" style="width: 100%;">Jetzt bewerben</button>
+                    
+                    <p id="form-message" style="margin-top: 1rem; text-align: center; font-weight: 600;"></p>
+                </form>
+            </div>
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer style="background: var(--charcoal); color: var(--beige); padding: 3rem 0; text-align: center;">
-        <div class="container">
-            <p>&copy; 2026 Carina Anna Prav. Alle Rechte vorbehalten.</p>
-            <p style="margin-top: 1rem;">
-                <a href="impressum.html" style="color: var(--beige); margin: 0 1rem;">Impressum</a>
-                <a href="datenschutz.html" style="color: var(--beige); margin: 0 1rem;">Datenschutz</a>
-                <a href="agb.html" style="color: var(--beige); margin: 0 1rem;">AGB</a>
-            </p>
-        </div>
+    <footer>
+        <p>&copy; 2026 Carina Anna Prav</p>
+        <p style="margin-top: 0.5rem;">
+            <a href="impressum.html">Impressum</a>
+            <a href="datenschutz.html">Datenschutz</a>
+            <a href="agb.html">AGB</a>
+        </p>
     </footer>
 
     <script>
+        // ACCORDION TOGGLE
+        function toggleOffer(id) {
+            const accordion = document.getElementById(id);
+            const wasActive = accordion.classList.contains('active');
+            
+            // Close all
+            document.querySelectorAll('.offer-accordion').forEach(a => {
+                a.classList.remove('active');
+            });
+            
+            // Open clicked if it wasn't active
+            if (!wasActive) {
+                accordion.classList.add('active');
+                // Scroll to it
+                setTimeout(() => {
+                    accordion.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+            }
+        }
+        
+        // Open from URL hash
+        if (window.location.hash) {
+            const id = window.location.hash.substring(1);
+            if (document.getElementById(id)) {
+                toggleOffer(id);
+            }
+        }
+        
         // BEWERBUNGSFORMULAR
         document.getElementById('application-form').addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -667,55 +811,44 @@
             const offer = document.getElementById('offer').value;
             const challenge = document.getElementById('challenge').value.trim();
             const business = document.getElementById('business').value.trim();
+            const privacy = document.getElementById('privacy').checked;
             const messageEl = document.getElementById('form-message');
             const button = e.target.querySelector('button');
-            const originalButtonText = button.textContent;
+            const originalText = button.textContent;
             
-            // Validation
-            const privacy = document.getElementById('privacy').checked;
             if (!privacy) {
                 messageEl.textContent = '❌ Bitte stimme der Datenschutzerklärung zu.';
                 messageEl.style.color = '#ff6b6b';
                 return;
             }
             
-            // Button disable
             button.disabled = true;
             button.textContent = 'Wird gesendet...';
             messageEl.textContent = '';
             
             try {
-                // TODO: Replace with your actual Netlify Function endpoint
                 const response = await fetch('/.netlify/functions/application-submit', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        firstname: firstname,
-                        email: email,
-                        offer: offer,
-                        challenge: challenge,
-                        business: business
-                    })
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ firstname, email, offer, challenge, business })
                 });
                 
                 const data = await response.json();
                 
                 if (response.ok && data.success) {
-                    messageEl.textContent = '✅ Danke ' + firstname + '! Ich melde mich innerhalb von 48h bei dir.';
+                    messageEl.textContent = '✅ Danke ' + firstname + '! Ich melde mich innerhalb von 48h.';
                     messageEl.style.color = '#B89968';
                     e.target.reset();
                 } else {
-                    throw new Error(data.error || 'Submission failed');
+                    throw new Error(data.error || 'Fehler');
                 }
             } catch (error) {
-                console.error('Application error:', error);
-                messageEl.textContent = '❌ Etwas ist schiefgelaufen. Bitte schreib mir direkt: socials@carinaannaprav.at';
+                console.error(error);
+                messageEl.textContent = '❌ Fehler. Schreib mir: socials@carinaannaprav.at';
                 messageEl.style.color = '#ff6b6b';
             } finally {
                 button.disabled = false;
-                button.textContent = originalButtonText;
+                button.textContent = originalText;
             }
         });
     </script>

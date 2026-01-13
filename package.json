@@ -1,0 +1,8 @@
+{
+  "name": "carinaannaprav-website",
+  "version": "1.0.0",
+  "description": "Website for Carina Anna Prav",
+  "dependencies": {
+    "node-fetch": "^2.7.0"
+  }
+}

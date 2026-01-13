@@ -2771,5 +2771,248 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
     </div>
 </div>
+<!-- ============================================ -->
+<!-- POSITIONIERUNGS-QUIZ BADGE - Fixed Top Right -->
+<!-- Einfügen VOR dem schließenden </body> Tag -->
+<!-- ============================================ -->
+
+<div id="positioning-badge" class="pos-badge">
+    <button class="pos-badge-close" onclick="closePositioningBadge()" aria-label="Badge schließen">
+        ×
+    </button>
+    <button class="pos-badge-content" onclick="openPositioningQuiz()">
+        <span class="pos-badge-icon">⚡</span>
+        <span class="pos-badge-text">
+            Noch unsicher bei deiner Positionierung?
+            <span class="pos-badge-cta">Jetzt checken →</span>
+        </span>
+    </button>
+</div>
+
+<style>
+/* ============================================ */
+/* BADGE STYLES */
+/* ============================================ */
+
+.pos-badge {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    animation: badgeSlideIn 0.6s ease-out;
+}
+
+.pos-badge.hidden {
+    animation: badgeSlideOut 0.4s ease-out forwards;
+}
+
+@keyframes badgeSlideIn {
+    from {
+        transform: translateX(120%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes badgeSlideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(120%);
+        opacity: 0;
+    }
+}
+
+.pos-badge-content {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: linear-gradient(135deg, #B89968 0%, #A38654 100%);
+    color: #FAF9F6;
+    padding: 0.875rem 1.25rem;
+    padding-right: 2.5rem; /* Space for close button */
+    border: none;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(184, 153, 104, 0.3);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    max-width: 350px;
+}
+
+.pos-badge-content:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(184, 153, 104, 0.4);
+    background: linear-gradient(135deg, #A38654 0%, #8F7347 100%);
+}
+
+.pos-badge-icon {
+    font-size: 1.25rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.pos-badge-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1.4;
+    text-align: left;
+}
+
+.pos-badge-cta {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-top: 0.15rem;
+    opacity: 0.95;
+    transition: all 0.3s ease;
+}
+
+.pos-badge-content:hover .pos-badge-cta {
+    transform: translateX(3px);
+    opacity: 1;
+}
+
+.pos-badge-close {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 24px;
+    height: 24px;
+    border: none;
+    background: rgba(250, 249, 246, 0.2);
+    color: #FAF9F6;
+    font-size: 1.25rem;
+    line-height: 1;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    opacity: 0.7;
+    z-index: 10;
+}
+
+.pos-badge-close:hover {
+    opacity: 1;
+    background: rgba(250, 249, 246, 0.3);
+    transform: rotate(90deg);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .pos-badge {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        max-width: calc(100% - 20px);
+    }
+    
+    .pos-badge-content {
+        width: 100%;
+        max-width: 100%;
+        padding: 0.75rem 1rem;
+        padding-right: 2.5rem;
+        font-size: 0.875rem;
+    }
+    
+    .pos-badge-text {
+        font-size: 0.875rem;
+    }
+    
+    .pos-badge-cta {
+        font-size: 0.8rem;
+    }
+    
+    .pos-badge-icon {
+        font-size: 1.1rem;
+    }
+}
+
+/* Tablet */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .pos-badge {
+        right: 15px;
+    }
+    
+    .pos-badge-content {
+        max-width: 320px;
+    }
+}
+
+/* Alternative: Badge verstecken wenn Hero nicht mehr sichtbar (optional) */
+/*
+.hero-section {
+    position: relative;
+}
+
+.pos-badge.hero-out-of-view {
+    opacity: 0.8;
+}
+*/
+</style>
+
+<script>
+/* ============================================ */
+/* BADGE JAVASCRIPT */
+/* ============================================ */
+
+// Close Badge Function
+function closePositioningBadge() {
+    const badge = document.getElementById('positioning-badge');
+    badge.classList.add('hidden');
+    
+    // Remove from DOM after animation
+    setTimeout(() => {
+        badge.style.display = 'none';
+    }, 400);
+    
+    // Save state to localStorage (badge bleibt für 7 Tage geschlossen)
+    localStorage.setItem('posBadgeClosed', Date.now());
+}
+
+// Check if badge should be shown
+function shouldShowPositioningBadge() {
+    const closedTime = localStorage.getItem('posBadgeClosed');
+    if (!closedTime) return true;
+    
+    const daysSinceClosed = (Date.now() - parseInt(closedTime)) / (1000 * 60 * 60 * 24);
+    return daysSinceClosed > 7; // Show again after 7 days
+}
+
+// Initialize badge on page load
+document.addEventListener('DOMContentLoaded', function() {
+    const badge = document.getElementById('positioning-badge');
+    
+    if (!shouldShowPositioningBadge()) {
+        badge.style.display = 'none';
+    }
+    
+    // Optional: Badge erst nach 2 Sekunden zeigen (weniger aggressive)
+    // setTimeout(() => {
+    //     badge.classList.add('show');
+    // }, 2000);
+});
+
+</script>
+
 </body>
 </html>

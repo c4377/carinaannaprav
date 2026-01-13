@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kostenlose Ressourcen für dein 2h/Tag Business - 30-Tage Email-Serie & 30 Positionierungs-Beispiele">
+    <title>Freebies | Carina Anna Prav</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --cream: #FAF9F6;
+            --beige: #E8DED2;
+            --warm-beige: #D4C5B0;
+            --charcoal: #2D2D2D;
+            --dark-gray: #4A4A4A;
+            --light-gray: #F5F5F5;
+            --accent: #B89968;
+            
+            --font-serif: 'Playfair Display', Georgia, serif;
+            --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            font-family: var(--font-sans);
+            color: var(--charcoal);
+            background: var(--cream);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: var(--font-serif);
+            font-weight: 400;
+            line-height: 1.2;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* NAVIGATION */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(250, 249, 246, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--beige);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--charcoal);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        /* HERO */
+        .hero {
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+            padding-bottom: 4rem;
+            background: linear-gradient(135deg, #FAF9F6 0%, #E8DED2 100%);
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--dark-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* FREEBIES SECTION */
+        .freebies-section {
+            padding: 6rem 0;
+        }
+        
+        .freebies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .freebie-card {
+            background: white;
+            border: 2px solid var(--beige);
+            border-radius: 8px;
+            padding: 3rem;
+            transition: all 0.3s ease;
+        }
+        
+        .freebie-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        
+        .freebie-card.featured {
+            border-color: var(--accent);
+            position: relative;
+        }
+        
+        .freebie-badge {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: var(--accent);
+            color: white;
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+            border-radius: 4px;
+        }
+        
+        .freebie-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .freebie-card h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .freebie-card p {
+            color: var(--dark-gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        .freebie-features {
+            list-style: none;
+            margin: 2rem 0;
+            padding: 0;
+        }
+        
+        .freebie-features li {
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            position: relative;
+            border-bottom: 1px solid var(--beige);
+        }
+        
+        .freebie-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .freebie-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 1.25rem;
+        }
+        
+        /* FORMS */
+        .freebie-form {
+            margin-top: 2rem;
+        }
+        
+        .freebie-form input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--beige);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+        }
+        
+        .freebie-form input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        
+        .freebie-form button {
+            width: 100%;
+            padding: 1.25rem;
+            background: var(--charcoal);
+            color: var(--cream);
+            border: none;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+        }
+        
+        .freebie-form button:hover {
+            background: var(--dark-gray);
+            transform: translateY(-2px);
+        }
+        
+        .freebie-form .btn-accent {
+            background: var(--accent);
+        }
+        
+        .freebie-form .btn-accent:hover {
+            background: #9a7d52;
+        }
+        
+        .privacy-checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin: 1rem 0;
+        }
+        
+        .privacy-checkbox input {
+            width: auto;
+            margin: 0;
+            margin-top: 0.25rem;
+        }
+        
+        .privacy-checkbox span {
+            font-size: 0.85rem;
+            color: var(--dark-gray);
+        }
+        
+        .privacy-checkbox a {
+            color: var(--accent);
+        }
+        
+        .form-message {
+            margin-top: 1rem;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        /* WHY FREE */
+        .why-free {
+            padding: 4rem 0;
+            background: var(--light-gray);
+            text-align: center;
+        }
+        
+        .why-free h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .why-free p {
+            font-size: 1.125rem;
+            color: var(--dark-gray);
+            max-width: 700px;
+            margin: 0 auto 1rem;
+            line-height: 1.8;
+        }
+        
+        /* FOOTER */
+        footer {
+            background: var(--charcoal);
+            color: var(--beige);
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        footer a {
+            color: var(--beige);
+            margin: 0 1rem;
+        }
+        
+        @media (max-width: 968px) {
+            .freebies-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">CARINA ANNA PRAV</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="angebote.html">Angebote</a></li>
+                <li><a href="index.html#podcast">Podcast</a></li>
+                <li><a href="ueber-mich.html">Über mich</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <h1>Kostenlos starten</h1>
+            <p>
+                Hol dir die Ressourcen die du brauchst um dein 2h/Tag Business aufzubauen. 
+                Kein Verkaufs-Webinar. Nur Mehrwert.
+            </p>
+        </div>
+    </section>
+
+    <!-- FREEBIES -->
+    <section class="freebies-section">
+        <div class="container">
+            <div class="freebies-grid">
+                
+                <!-- FREEBIE 1: 30-Tage Email-Serie -->
+                <div class="freebie-card">
+                    <div class="freebie-icon">📧</div>
+                    <h2>30 Tage zum System</h2>
+                    <p>
+                        Jeden Tag eine kurze Email mit EINEM konkreten Schritt. 
+                        In 30 Tagen hast du die Foundation für dein 2h/Tag Business.
+                    </p>
+                    
+                    <ul class="freebie-features">
+                        <li><strong>Woche 1:</strong> Positionierung klären</li>
+                        <li><strong>Woche 2:</strong> Pinterest-Setup</li>
+                        <li><strong>Woche 3:</strong> Content-System aufbauen</li>
+                        <li><strong>Woche 4:</strong> Automatisierung</li>
+                    </ul>
+                    
+                    <form class="freebie-form" id="newsletter-form">
+                        <input type="text" id="nl-firstname" placeholder="Dein Vorname" required>
+                        <input type="email" id="nl-email" placeholder="Deine Email" required>
+                        
+                        <label class="privacy-checkbox">
+                            <input type="checkbox" id="nl-privacy" required>
+                            <span>
+                                Ich stimme der <a href="/datenschutz.html" target="_blank">Datenschutzerklärung</a> zu. 
+                                Ich kann mich jederzeit abmelden.
+                            </span>
+                        </label>
+                        
+                        <button type="submit">30-Tage Serie starten</button>
+                    </form>
+                    <p class="form-message" id="nl-message"></p>
+                </div>
+                
+                <!-- FREEBIE 2: 30 Positionierungen -->
+                <div class="freebie-card featured">
+                    <div class="freebie-badge">Beliebt</div>
+                    <div class="freebie-icon">🎯</div>
+                    <h2>30 einzigartige Positionierungen</h2>
+                    <p>
+                        Konkrete Positionierungs-Beispiele aus 4 Branchen. 
+                        Von "Ich helfe allen..." zu kristallklarer Nische.
+                    </p>
+                    
+                    <ul class="freebie-features">
+                        <li>30 spitze Positionierungen (copy-pasteable)</li>
+                        <li>Mit Beispiel-Angeboten für jede</li>
+                        <li>Zielgruppen-Definition erklärt</li>
+                        <li>Unique Angle Beispiele</li>
+                        <li>Framework zum Selbst-Ausfüllen</li>
+                    </ul>
+                    
+                    <form class="freebie-form" id="positioning-form">
+                        <input type="text" id="pos-firstname" placeholder="Dein Vorname" required>
+                        <input type="email" id="pos-email" placeholder="Deine Email" required>
+                        
+                        <label class="privacy-checkbox">
+                            <input type="checkbox" id="pos-privacy" required>
+                            <span>
+                                Ich stimme der <a href="/datenschutz.html" target="_blank">Datenschutzerklärung</a> zu.
+                            </span>
+                        </label>
+                        
+                        <button type="submit" class="btn-accent">PDF herunterladen</button>
+                    </form>
+                    <p class="form-message" id="pos-message"></p>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY FREE -->
+    <section class="why-free">
+        <div class="container">
+            <h2>Warum kostenlos?</h2>
+            <p>
+                Weil ich weiß dass die besten Kundinnen die sind, die meinen Ansatz 
+                VORHER kennenlernen. Die sehen wie ich arbeite. Die Ergebnisse haben 
+                BEVOR sie investieren.
+            </p>
+            <p>
+                Kein Trick. Kein Upsell-Webinar. Nur Mehrwert.
+            </p>
+            <p>
+                Wenn du mehr willst, weißt du wo du mich findest. 
+                Wenn nicht – auch gut. Du hast trotzdem was Nützliches.
+            </p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Carina Anna Prav. Alle Rechte vorbehalten.</p>
+            <p style="margin-top: 1rem;">
+                <a href="impressum.html">Impressum</a>
+                <a href="datenschutz.html">Datenschutz</a>
+                <a href="agb.html">AGB</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // ========== NEWSLETTER FORM (30-Tage Serie) ==========
+        document.getElementById('newsletter-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const firstname = document.getElementById('nl-firstname').value.trim();
+            const email = document.getElementById('nl-email').value.trim();
+            const privacy = document.getElementById('nl-privacy').checked;
+            const messageEl = document.getElementById('nl-message');
+            const button = e.target.querySelector('button');
+            const originalText = button.textContent;
+            
+            // Validation
+            if (!privacy) {
+                messageEl.textContent = '❌ Bitte stimme der Datenschutzerklärung zu.';
+                messageEl.style.color = '#ff6b6b';
+                return;
+            }
+            
+            button.disabled = true;
+            button.textContent = 'Wird gesendet...';
+            messageEl.textContent = '';
+            
+            try {
+                const response = await fetch('/.netlify/functions/newsletter-signup', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: email,
+                        firstname: firstname,
+                        list: '30tage' // Für 30-Tage Liste
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok && data.success) {
+                    messageEl.textContent = '🎉 Check deine Emails! Tag 1 kommt gleich.';
+                    messageEl.style.color = '#B89968';
+                    e.target.reset();
+                } else {
+                    throw new Error(data.error || 'Fehler');
+                }
+            } catch (error) {
+                console.error(error);
+                messageEl.textContent = '❌ Fehler. Versuch es nochmal oder schreib mir: socials@carinaannaprav.at';
+                messageEl.style.color = '#ff6b6b';
+            } finally {
+                button.disabled = false;
+                button.textContent = originalText;
+            }
+        });
+
+        // ========== POSITIONING FORM (30 Positionierungen) ==========
+        document.getElementById('positioning-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const firstname = document.getElementById('pos-firstname').value.trim();
+            const email = document.getElementById('pos-email').value.trim();
+            const privacy = document.getElementById('pos-privacy').checked;
+            const messageEl = document.getElementById('pos-message');
+            const button = e.target.querySelector('button');
+            const originalText = button.textContent;
+            
+            // Validation
+            if (!privacy) {
+                messageEl.textContent = '❌ Bitte stimme der Datenschutzerklärung zu.';
+                messageEl.style.color = '#ff6b6b';
+                return;
+            }
+            
+            button.disabled = true;
+            button.textContent = 'Wird gesendet...';
+            messageEl.textContent = '';
+            
+            try {
+                const response = await fetch('/.netlify/functions/quiz-submission', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: email,
+                        firstname: firstname,
+                        quizType: 'positioning-direct', // Direkter Download ohne Quiz
+                        answers: {},
+                        result: 'Direkter Download von Freebies-Seite'
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok && data.success) {
+                    messageEl.textContent = '🎉 Check deine Emails für den Download-Link!';
+                    messageEl.style.color = '#B89968';
+                    e.target.reset();
+                } else {
+                    throw new Error(data.error || 'Fehler');
+                }
+            } catch (error) {
+                console.error(error);
+                messageEl.textContent = '❌ Fehler. Versuch es nochmal oder schreib mir: socials@carinaannaprav.at';
+                messageEl.style.color = '#ff6b6b';
+            } finally {
+                button.disabled = false;
+                button.textContent = originalText;
+            }
+        });
+    </script>
+</body>
+</html>

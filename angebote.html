@@ -703,7 +703,7 @@
             <p style="font-size: 1.1rem; color: var(--dark-gray); margin-bottom: 2rem;">
                 Mach den 2-Minuten System-Check und ich zeige dir welches Angebot am besten zu dir passt.
             </p>
-            <a href="index.html" class="btn" onclick="setTimeout(() => openSystemCheckQuiz(), 500)">System-Check starten →</a>
+            <a href="index.html?openquiz=systemcheck" class="btn">System-Check starten →</a>
         </div>
     </section>
 
@@ -844,7 +844,17 @@
                 }
             } catch (error) {
                 console.error(error);
-                messageEl.textContent = '❌ Fehler. Schreib mir: socials@carinaannaprav.at';
+                // FALLBACK: Öffne Email mit den Daten
+                const subject = encodeURIComponent('Bewerbung: ' + offer + ' - ' + firstname);
+                const body = encodeURIComponent(
+                    'Name: ' + firstname + '\n' +
+                    'Email: ' + email + '\n' +
+                    'Angebot: ' + offer + '\n\n' +
+                    'Größte Herausforderung:\n' + challenge + '\n\n' +
+                    'Business:\n' + (business || 'Nicht angegeben')
+                );
+                
+                messageEl.innerHTML = '⚠️ Automatisches Senden fehlgeschlagen.<br><a href="mailto:socials@carinaannaprav.at?subject=' + subject + '&body=' + body + '" style="color: #B89968; text-decoration: underline;">Klicke hier um per Email zu senden</a>';
                 messageEl.style.color = '#ff6b6b';
             } finally {
                 button.disabled = false;

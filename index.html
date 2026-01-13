@@ -2370,6 +2370,23 @@ document.addEventListener('click', function(e) {
         if (e.target.id === 'positioning-modal') closePositioningQuiz();
     }
 });
+// ========== AUTO-OPEN QUIZ FROM URL ==========
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const openQuiz = urlParams.get('openquiz');
+    
+    if (openQuiz === 'systemcheck') {
+        setTimeout(function() {
+            openSystemCheckQuiz();
+        }, 500);
+    }
+    
+    if (openQuiz === 'positioning') {
+        setTimeout(function() {
+            openPositioningQuiz();
+        }, 500);
+    }
+});
 </script>
 </body>
 </html>

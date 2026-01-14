@@ -2499,6 +2499,16 @@ function updateBAProgress(step, total) {
     document.getElementById('bestandsaufnahme-progress-bar').style.width = progress + '%';
 }
 
+// ============================================
+// BESTANDSAUFNAHME - NEUE VERSION
+// Mit Name/Email Formular + nur TidyCal
+// ============================================
+//
+// ERSETZE die komplette showBestandsaufnahmeResult() Funktion
+// mit dieser Version
+//
+// ============================================
+
 function showBestandsaufnahmeResult() {
     const totalScore = Object.values(baScores).reduce((a, b) => a + b, 0);
     const maxScore = 10;
@@ -2517,6 +2527,20 @@ function showBestandsaufnahmeResult() {
             solid.push({ key, name: baNames[key] });
         }
     }
+    
+    // Collect readable answers
+    const answerTexts = {
+        q1: baScores.positionierung === 2 ? 'Ja, glasklar' : 
+            baScores.positionierung === 1 ? 'So halb' : 'Nein',
+        q2: baScores.angebot === 2 ? 'Ja' : 
+            baScores.angebot === 1 ? 'Arbeite dran' : 'Nein',
+        q3: baScores.traffic === 2 ? 'Automatisch' : 
+            baScores.traffic === 1 ? 'Social Media Hustle' : 'Empfehlungen/Zufall',
+        q4: baScores.systeme === 2 ? 'Ja, läuft' : 
+            baScores.systeme === 1 ? 'Teilweise' : 'Nein',
+        q5: baScores.zeit === 2 ? 'Unter 20h' : 
+            baScores.zeit === 1 ? '20-40h' : '40h+'
+    };
     
     // Generate visual bars
     let barsHTML = '';
@@ -2577,7 +2601,7 @@ function showBestandsaufnahmeResult() {
         `;
     }
     
-    // Build result HTML with TidyCal CTA
+    // Build result HTML with Name/Email Form + TidyCal
     const resultHTML = `
         <div style="text-align: center; margin-bottom: 2rem;">
             <span style="font-size: 4rem;">${emoji}</span>
@@ -2596,36 +2620,39 @@ function showBestandsaufnahmeResult() {
         ${missingHTML}
         
         <div style="background: #2D2D2D; color: #FAF9F6; padding: 2rem; border-radius: 4px; margin-top: 2rem;">
-            <h4 style="color: #FAF9F6; margin-bottom: 1rem;">Wie geht's weiter?</h4>
+            <h4 style="color: #FAF9F6; margin-bottom: 1rem;">Lass uns sprechen</h4>
             <p style="color: #E8DED2; margin-bottom: 1.5rem;">
-                Lass uns 15min sprechen – kostenlos, kein Verkaufsgespräch. Ich zeige dir konkret welche Schritte als nächstes Sinn machen.
+                15min kostenlos, kein Verkaufsgespräch. Ich zeige dir konkret welche Schritte als nächstes Sinn machen.
             </p>
             
-            <a href="${TIDYCAL_LINK}?name=Bestandsaufnahme%20Quiz&note=Score:%20${totalScore}/10%20(${percentage}%)%20|%20Missing:%20${missing.map(m => m.name).join(', ')}" 
-               target="_blank"
-               style="display: block; padding: 1.25rem; background: #B89968; color: white; text-decoration: none; text-align: center; border-radius: 4px; font-weight: 600; font-size: 1.1rem; margin-bottom: 1rem;">
-                🗓️ Jetzt 15min Kennenlernen buchen (kostenlos)
-            </a>
+            <form id="ba-contact-form" onsubmit="submitBestandsaufnahmeForm(event)" style="margin-top: 1.5rem;">
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem;">
+                    <input 
+                        type="text" 
+                        id="ba-firstname"
+                        placeholder="Dein Vorname" 
+                        required
+                        style="flex: 1; min-width: 200px; padding: 1rem; border: 2px solid #B89968; font-size: 1rem; background: #FAF9F6; color: #2D2D2D;"
+                    >
+                    <input 
+                        type="email" 
+                        id="ba-email"
+                        placeholder="Deine Email" 
+                        required
+                        style="flex: 1; min-width: 200px; padding: 1rem; border: 2px solid #B89968; font-size: 1rem; background: #FAF9F6; color: #2D2D2D;"
+                    >
+                </div>
+                
+                <button type="submit" style="width: 100%; padding: 1.25rem; background: #B89968; color: white; border: none; border-radius: 4px; font-weight: 600; font-size: 1.1rem; cursor: pointer;">
+                    🗓️ Jetzt Termin buchen (kostenlos)
+                </button>
+                
+                <p id="ba-form-message" style="margin-top: 1rem; text-align: center; color: #B89968;"></p>
+            </form>
             
             <p style="color: #888; font-size: 0.85rem; text-align: center; margin-top: 1rem;">
                 Keine automatischen Anrufe. Kein Spam. Nur ein ehrliches Gespräch.
             </p>
-            
-            <div style="border-top: 1px solid rgba(250, 249, 246, 0.2); margin: 1.5rem 0; padding-top: 1.5rem;">
-                <p style="color: #E8DED2; font-size: 0.9rem; margin-bottom: 1rem;">
-                    Lieber erstmal schreiben?
-                </p>
-                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                    <a href="mailto:socials@carinaannaprav.at?subject=Bestandsaufnahme%20gemacht%20(Score:%20${percentage}%)&body=Hey%20Carina,%0A%0Aich%20habe%20die%20Bestandsaufnahme%20gemacht.%0A%0AMein%20Score:%20${totalScore}/10%20(${percentage}%)%0A%0AMir%20fehlt%20noch:%20${missing.map(m => m.name).join(', ')}%0A%0A" 
-                       style="flex: 1; min-width: 150px; padding: 0.75rem; background: transparent; border: 2px solid #FAF9F6; color: #FAF9F6; text-decoration: none; text-align: center; border-radius: 4px; font-size: 0.9rem;">
-                        📧 Email
-                    </a>
-                    <a href="https://t.me/carinaannaprav" target="_blank"
-                       style="flex: 1; min-width: 150px; padding: 0.75rem; background: transparent; border: 2px solid #FAF9F6; color: #FAF9F6; text-decoration: none; text-align: center; border-radius: 4px; font-size: 0.9rem;">
-                        💬 Telegram
-                    </a>
-                </div>
-            </div>
         </div>
         
         <div style="text-align: center; margin-top: 2rem;">
@@ -2638,8 +2665,79 @@ function showBestandsaufnahmeResult() {
     document.getElementById('ba-result-content').innerHTML = resultHTML;
     showBAScreen('ba-screen-result');
     
-    // ⭐ SEND DATA TO GOOGLE SHEETS
-    submitBestandsaufnahmeToSheets(totalScore, percentage, headline);
+    // Store answers globally for form submission
+    window.baResultData = {
+        totalScore: totalScore,
+        percentage: percentage,
+        headline: headline,
+        answers: answerTexts,
+        missing: missing.map(m => m.name).join(', ')
+    };
+}
+
+// ============================================
+// FORM SUBMISSION + TIDYCAL REDIRECT
+// ============================================
+
+async function submitBestandsaufnahmeForm(e) {
+    e.preventDefault();
+    
+    const firstname = document.getElementById('ba-firstname').value.trim();
+    const email = document.getElementById('ba-email').value.trim();
+    const messageEl = document.getElementById('ba-form-message');
+    const button = e.target.querySelector('button');
+    
+    button.disabled = true;
+    button.textContent = 'Wird gespeichert...';
+    messageEl.textContent = '';
+    
+    try {
+        // Send to Google Sheets
+        await fetch(GOOGLE_SHEETS_WEBHOOK, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                quizType: 'bestandsaufnahme',
+                firstname: firstname,
+                email: email,
+                answers: window.baResultData.answers,
+                scores: baScores,
+                totalScore: window.baResultData.totalScore,
+                percentage: window.baResultData.percentage,
+                resultHeadline: window.baResultData.headline,
+                missing: window.baResultData.missing
+            })
+        });
+        
+        console.log('✅ Bestandsaufnahme data sent to Google Sheets');
+        
+        // Build TidyCal URL with data
+        const tidycalURL = `${TIDYCAL_LINK}?name=${encodeURIComponent(firstname)}&email=${encodeURIComponent(email)}&note=${encodeURIComponent(`Score: ${window.baResultData.totalScore}/10 (${window.baResultData.percentage}%) | Fehlt: ${window.baResultData.missing}`)}`;
+        
+        // Redirect to TidyCal
+        messageEl.textContent = '✅ Gespeichert! Weiterleitung zu Terminbuchung...';
+        messageEl.style.color = '#B89968';
+        
+        setTimeout(() => {
+            window.open(tidycalURL, '_blank');
+            closeBestandsaufnahme();
+        }, 1500);
+        
+    } catch (error) {
+        console.error('Error:', error);
+        messageEl.textContent = '✅ Daten gespeichert! Öffne Terminbuchung...';
+        messageEl.style.color = '#B89968';
+        
+        // Open TidyCal anyway
+        const tidycalURL = `${TIDYCAL_LINK}?name=${encodeURIComponent(firstname)}&email=${encodeURIComponent(email)}`;
+        setTimeout(() => {
+            window.open(tidycalURL, '_blank');
+            closeBestandsaufnahme();
+        }, 1500);
+    }
 }
 async function submitBestandsaufnahmeToSheets(totalScore, percentage, headline) {
     try {

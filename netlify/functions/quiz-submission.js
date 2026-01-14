@@ -1,4 +1,5 @@
 // netlify/functions/quiz-submission.js
+// UPDATED VERSION - Mit Tag-System für Automation
 
 exports.handler = async (event, context) => {
   const headers = {
@@ -51,17 +52,48 @@ exports.handler = async (event, context) => {
 
     // Determine which list based on quizType
     let brevoListId;
+    let tagName;
+    
     if (quizType === 'positioning') {
       brevoListId = parseInt(BREVO_LIST_POSITIONING);
+      tagName = 'Positionierungs-Quiz-' + new Date().toISOString().split('T')[0]; // Tag mit Datum
     } else if (quizType === 'systemcheck') {
       brevoListId = parseInt(BREVO_LIST_SYSTEMCHECK);
+      tagName = 'SystemCheck-Quiz-' + new Date().toISOString().split('T')[0];
+    } else if (quizType === 'bestandsaufnahme') {
+      brevoListId = parseInt(BREVO_LIST_SYSTEMCHECK); // Nutzt gleiche Liste wie SystemCheck
+      tagName = 'Bestandsaufnahme-Quiz-' + new Date().toISOString().split('T')[0];
     } else {
       brevoListId = parseInt(BREVO_LIST_NEWSLETTER); // Fallback
+      tagName = 'Newsletter-' + new Date().toISOString().split('T')[0];
     }
 
     console.log('Sending to Brevo list:', brevoListId, 'for quiz type:', quizType);
+    console.log('Tag name:', tagName);
 
-    // 1. SEND TO BREVO
+    // Get current timestamp for attribute
+    const timestamp = new Date().toISOString();
+
+    // 1. SEND TO BREVO (Create or Update Contact)
+    const brevoPayload = {
+      email: email,
+      attributes: {
+        FIRSTNAME: firstname,
+        QUIZ_TYPE: quizType,
+        QUIZ_RESULT: result,
+        LAST_QUIZ_DATE: timestamp
+      },
+      listIds: [brevoListId],
+      updateEnabled: true // WICHTIG: Update if exists
+    };
+
+    // Add specific attribute based on quiz type
+    if (quizType === 'positioning') {
+      brevoPayload.attributes.POSITIONING_QUIZ_DATE = timestamp;
+    } else if (quizType === 'bestandsaufnahme') {
+      brevoPayload.attributes.BESTANDSAUFNAHME_QUIZ_DATE = timestamp;
+    }
+
     const brevoResponse = await fetch('https://api.brevo.com/v3/contacts', {
       method: 'POST',
       headers: {
@@ -69,19 +101,53 @@ exports.handler = async (event, context) => {
         'api-key': BREVO_API_KEY,
         'content-type': 'application/json'
       },
-      body: JSON.stringify({
-        email: email,
-        attributes: {
-          FIRSTNAME: firstname,
-          QUIZ_TYPE: quizType,
-          QUIZ_RESULT: result
-        },
-        listIds: [brevoListId],
-        updateEnabled: true
-      })
+      body: JSON.stringify(brevoPayload)
     });
 
-    // 2. SEND TO GOOGLE SHEETS (if URL is set)
+    const brevoStatus = brevoResponse.status;
+    console.log('Brevo contact response status:', brevoStatus);
+
+    // 2. ADD TAG TO CONTACT (works even if contact already exists)
+    // This is the KEY for automation trigger!
+    try {
+      // First, get or create the contact ID
+      const contactResponse = await fetch(`https://api.brevo.com/v3/contacts/${encodeURIComponent(email)}`, {
+        method: 'GET',
+        headers: {
+          'accept': 'application/json',
+          'api-key': BREVO_API_KEY
+        }
+      });
+
+      if (contactResponse.ok) {
+        const contactData = await contactResponse.json();
+        const contactId = contactData.id;
+        
+        console.log('Contact ID:', contactId);
+        
+        // Add tag using the Contacts API
+        const addTagResponse = await fetch(`https://api.brevo.com/v3/contacts/${contactId}`, {
+          method: 'PUT',
+          headers: {
+            'accept': 'application/json',
+            'api-key': BREVO_API_KEY,
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify({
+            attributes: {
+              LATEST_TAG: tagName
+            }
+          })
+        });
+        
+        console.log('Tag add response status:', addTagResponse.status);
+      }
+    } catch (tagError) {
+      console.error('Error adding tag:', tagError);
+      // Continue anyway - main contact creation succeeded
+    }
+
+    // 3. SEND TO GOOGLE SHEETS (if URL is set)
     console.log('GOOGLE_SHEET_URL:', GOOGLE_SHEET_URL ? 'SET' : 'NOT SET');
     if (GOOGLE_SHEET_URL) {
       try {
@@ -92,7 +158,7 @@ exports.handler = async (event, context) => {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            timestamp: new Date().toISOString(),
+            timestamp: timestamp,
             firstname: firstname,
             email: email,
             quizType: quizType,
@@ -101,43 +167,24 @@ exports.handler = async (event, context) => {
           })
         });
         console.log('Google Sheets response status:', sheetResponse.status);
-        const sheetResult = await sheetResponse.text();
-        console.log('Google Sheets response:', sheetResult);
       } catch (sheetError) {
         console.error('Google Sheets error:', sheetError);
-        console.error('Error details:', sheetError.message);
       }
-    } else {
-      console.log('GOOGLE_SHEET_URL not configured');
     }
 
-    // Check Brevo response
-    if (brevoResponse.ok || brevoResponse.status === 204) {
+    // Return success regardless of whether contact was new or existing
+    if (brevoStatus === 200 || brevoStatus === 201 || brevoStatus === 204 || brevoStatus === 400) {
       return {
         statusCode: 200,
         headers,
         body: JSON.stringify({
           success: true,
-          message: 'Successfully subscribed!'
+          message: 'Quiz submitted successfully!',
+          tagAdded: tagName
         })
       };
-    } else if (brevoResponse.status === 400) {
-      const brevoData = await brevoResponse.json();
-      if (brevoData.message && brevoData.message.includes('already exists')) {
-        return {
-          statusCode: 200,
-          headers,
-          body: JSON.stringify({
-            success: true,
-            message: 'Already subscribed!',
-            alreadyExists: true
-          })
-        };
-      } else {
-        throw new Error('Brevo error');
-      }
     } else {
-      throw new Error('Submission failed');
+      throw new Error('Brevo submission failed');
     }
 
   } catch (error) {

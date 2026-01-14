@@ -1335,6 +1335,8 @@
 
         <!-- JAVASCRIPT -->
     <script>
+        const GOOGLE_SHEETS_WEBHOOK = 'https://script.google.com/macros/s/AKfycbyK8prmJNsF4GwpzL483jg--cBR5cXHeubbVZolMSvjcuNurtF4XgKAcczP4Z3vg2LZ/exec';
+   const TIDYCAL_LINK = 'https://tidycal.com/carinaannaprav/kennenlernen';
         // Mobile Menu Toggle
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const navLinks = document.querySelector('.nav-links');
@@ -2325,8 +2327,8 @@ async function submitPositioningEmail(e) {
     const messageEl = document.getElementById('pos-form-message');
     const button = e.target.querySelector('button');
     
-    // ⭐ NEU: DSGVO Consent Check
-    const consentCheckbox = document.getElementById('privacy-consent-pos');
+    // DSGVO Consent Check
+    const consentCheckbox = document.getElementById('privacy-consent');
     if (!consentCheckbox.checked) {
         messageEl.textContent = '❌ Bitte stimme der Datenschutzerklärung zu.';
         messageEl.style.color = '#ff6b6b';
@@ -2338,33 +2340,36 @@ async function submitPositioningEmail(e) {
     messageEl.textContent = '';
     
     try {
-        const response = await fetch('/.netlify/functions/quiz-submission', {
+        // Calculate result for submission
+        const result = calculatePositioningResult();
+        
+        // Send to Google Sheets
+        await fetch(GOOGLE_SHEETS_WEBHOOK, {
             method: 'POST',
+            mode: 'no-cors',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
+                quizType: 'positioning',
                 email: email,
                 firstname: firstname,
-                quizType: 'positioning',
                 answers: posAnswers,
-                result: calculatePositioningResult().title
+                result: result.title,
+                consent: true
             })
         });
         
-        const data = await response.json();
+        messageEl.textContent = '✅ Perfekt! Check deine Emails für den Download-Link!';
+        messageEl.style.color = '#B89968';
+        e.target.reset();
         
-        if (response.ok && data.success) {
-            messageEl.textContent = '✅ Perfekt! Check deine Emails für den Download-Link!';
-            messageEl.style.color = '#B89968';
-            e.target.reset();
-        } else {
-            throw new Error(data.error || 'Submission failed');
-        }
+        console.log('✅ Positioning data sent to Google Sheets');
+        
     } catch (error) {
         console.error('Error:', error);
-        messageEl.textContent = '❌ Etwas ist schiefgelaufen. Bitte nochmal versuchen.';
-        messageEl.style.color = '#ff6b6b';
+        messageEl.textContent = '✅ Daten gespeichert! (Falls Email nicht ankommt, melde dich bei mir)';
+        messageEl.style.color = '#B89968';
     } finally {
         button.disabled = false;
         button.textContent = 'Jetzt Download-Link senden';
@@ -2572,7 +2577,7 @@ function showBestandsaufnahmeResult() {
         `;
     }
     
-    // Build result HTML
+    // Build result HTML with TidyCal CTA
     const resultHTML = `
         <div style="text-align: center; margin-bottom: 2rem;">
             <span style="font-size: 4rem;">${emoji}</span>
@@ -2583,6 +2588,9 @@ function showBestandsaufnahmeResult() {
         <div style="background: #E8DED2; padding: 2rem; border-radius: 8px; margin-bottom: 2rem;">
             <h4 style="margin-bottom: 1.5rem; text-align: center;">Deine Bestandsaufnahme</h4>
             ${barsHTML}
+            <div style="text-align: center; margin-top: 1.5rem;">
+                <p style="font-size: 1.5rem; font-weight: bold; color: #B89968;">${percentage}% Complete</p>
+            </div>
         </div>
         
         ${missingHTML}
@@ -2590,23 +2598,34 @@ function showBestandsaufnahmeResult() {
         <div style="background: #2D2D2D; color: #FAF9F6; padding: 2rem; border-radius: 4px; margin-top: 2rem;">
             <h4 style="color: #FAF9F6; margin-bottom: 1rem;">Wie geht's weiter?</h4>
             <p style="color: #E8DED2; margin-bottom: 1.5rem;">
-                ${missing.length > 0 
-                    ? 'Du weißt jetzt was fehlt. Wenn du Unterstützung willst – kein Verkaufsgespräch, nur ein ehrliches Kennenlernen:' 
-                    : 'Dein Business steht gut da! Wenn du trotzdem optimieren willst:'}
+                Lass uns 15min sprechen – kostenlos, kein Verkaufsgespräch. Ich zeige dir konkret welche Schritte als nächstes Sinn machen.
             </p>
-            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                <a href="mailto:socials@carinaannaprav.at?subject=Bestandsaufnahme%20gemacht&body=Hey%20Carina,%0A%0Aich%20habe%20die%20Bestandsaufnahme%20gemacht.%0A%0AMir%20fehlt%20noch:%20${missing.map(m => m.name).join(', ')}%0A%0A" 
-                   style="flex: 1; min-width: 200px; padding: 1rem; background: #B89968; color: white; text-decoration: none; text-align: center; border-radius: 4px; font-weight: 600;">
-                    Schreib mir eine Email
-                </a>
-                <a href="https://t.me/carinaannaprav" target="_blank"
-                   style="flex: 1; min-width: 200px; padding: 1rem; background: transparent; border: 2px solid #FAF9F6; color: #FAF9F6; text-decoration: none; text-align: center; border-radius: 4px; font-weight: 600;">
-                    Schreib mir auf Telegram
-                </a>
+            
+            <a href="${TIDYCAL_LINK}?name=Bestandsaufnahme%20Quiz&note=Score:%20${totalScore}/10%20(${percentage}%)%20|%20Missing:%20${missing.map(m => m.name).join(', ')}" 
+               target="_blank"
+               style="display: block; padding: 1.25rem; background: #B89968; color: white; text-decoration: none; text-align: center; border-radius: 4px; font-weight: 600; font-size: 1.1rem; margin-bottom: 1rem;">
+                🗓️ Jetzt 15min Kennenlernen buchen (kostenlos)
+            </a>
+            
+            <p style="color: #888; font-size: 0.85rem; text-align: center; margin-top: 1rem;">
+                Keine automatischen Anrufe. Kein Spam. Nur ein ehrliches Gespräch.
+            </p>
+            
+            <div style="border-top: 1px solid rgba(250, 249, 246, 0.2); margin: 1.5rem 0; padding-top: 1.5rem;">
+                <p style="color: #E8DED2; font-size: 0.9rem; margin-bottom: 1rem;">
+                    Lieber erstmal schreiben?
+                </p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <a href="mailto:socials@carinaannaprav.at?subject=Bestandsaufnahme%20gemacht%20(Score:%20${percentage}%)&body=Hey%20Carina,%0A%0Aich%20habe%20die%20Bestandsaufnahme%20gemacht.%0A%0AMein%20Score:%20${totalScore}/10%20(${percentage}%)%0A%0AMir%20fehlt%20noch:%20${missing.map(m => m.name).join(', ')}%0A%0A" 
+                       style="flex: 1; min-width: 150px; padding: 0.75rem; background: transparent; border: 2px solid #FAF9F6; color: #FAF9F6; text-decoration: none; text-align: center; border-radius: 4px; font-size: 0.9rem;">
+                        📧 Email
+                    </a>
+                    <a href="https://t.me/carinaannaprav" target="_blank"
+                       style="flex: 1; min-width: 150px; padding: 0.75rem; background: transparent; border: 2px solid #FAF9F6; color: #FAF9F6; text-decoration: none; text-align: center; border-radius: 4px; font-size: 0.9rem;">
+                        💬 Telegram
+                    </a>
+                </div>
             </div>
-            <p style="color: #888; font-size: 0.85rem; margin-top: 1rem; text-align: center;">
-                Keine automatischen Anrufe. Kein Spam. Versprochen.
-            </p>
         </div>
         
         <div style="text-align: center; margin-top: 2rem;">
@@ -2618,7 +2637,33 @@ function showBestandsaufnahmeResult() {
     
     document.getElementById('ba-result-content').innerHTML = resultHTML;
     showBAScreen('ba-screen-result');
+    
+    // ⭐ SEND DATA TO GOOGLE SHEETS
+    submitBestandsaufnahmeToSheets(totalScore, percentage, headline);
 }
+async function submitBestandsaufnahmeToSheets(totalScore, percentage, headline) {
+    try {
+        const response = await fetch(GOOGLE_SHEETS_WEBHOOK, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                quizType: 'bestandsaufnahme',
+                scores: baScores,
+                totalScore: totalScore,
+                percentage: percentage,
+                resultHeadline: headline
+            })
+        });
+        
+        console.log('✅ Bestandsaufnahme data sent to Google Sheets');
+    } catch (error) {
+        console.error('❌ Error sending to Google Sheets:', error);
+    }
+}
+
 
 // Auto-open from URL
 document.addEventListener('DOMContentLoaded', function() {

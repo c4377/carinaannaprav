@@ -168,18 +168,18 @@ exports.handler = async (event, context) => {
     }
 
     // 4. Google Sheets Webhook (existing functionality)
-    const SHEETS_WEBHOOK = process.env.SHEETS_WEBHOOK_URL;
+    const GOOGLE_SHEET_URL = process.env.GOOGLE_SHEET_URL;
     
-    if (SHEETS_WEBHOOK) {
+    if (GOOGLE_SHEET_URL) {
       try {
-        await fetch(SHEETS_WEBHOOK, {
+        await fetch(GOOGLE_SHEET_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data)
         });
         console.log('Google Sheets updated');
       } catch (sheetsError) {
-        console.error('Sheets webhook error:', sheetsError);
+        console.error('Google Sheets webhook error:', sheetsError);
         // Don't fail the whole request if sheets fails
       }
     }

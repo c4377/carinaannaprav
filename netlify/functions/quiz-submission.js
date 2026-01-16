@@ -224,16 +224,31 @@ for (const tagName of tags) {
   }
 }
 
-    // 4. Google Sheets Webhook
+// 4. Google Sheets Webhook
 const GOOGLE_SHEET_URL = process.env.GOOGLE_SHEET_URL;
 
 if (GOOGLE_SHEET_URL) {
   try {
+    // Prepare data for Google Sheets (lowercase keys)
+    const sheetsData = {
+      quizType: quizType,
+      firstname: contactFirstName,  // ← lowercase!
+      email: email,
+      answers: data.answers || {},
+      result: result || '',
+      consent: true,
+      // For bestandsaufnahme quiz
+      totalScore: data.totalScore,
+      percentage: data.percentage,
+      resultHeadline: data.resultHeadline,
+      missing: data.missing
+    };
+    
     await fetch(GOOGLE_SHEET_URL, {
       method: 'POST',
-      mode: 'no-cors',  // ← ADD THIS!
+      mode: 'no-cors',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
+      body: JSON.stringify(sheetsData)  // ← Use formatted data
     });
     console.log('Google Sheets updated');
   } catch (sheetsError) {

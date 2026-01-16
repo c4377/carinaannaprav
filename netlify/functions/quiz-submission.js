@@ -57,7 +57,6 @@ exports.handler = async (event, context) => {
       listId = AC_LIST_POSITIONING;
       tags = ['Quiz-Positionierung'];
     } else if (quizType === 'bestandsaufnahme') {
-      // No list for bestandsaufnahme, only tag
       tags = ['Quiz-Bestandsaufnahme'];
     }
 
@@ -88,12 +87,13 @@ exports.handler = async (event, context) => {
           },
           {
             field: 'QUIZ_DATE',
-            value: new Date().toISOString().split('T')[0] // YYYY-MM-DD format
+            value: new Date().toISOString().split('T')[0]
           }
         ]
       }
     };
 
+    console.log('Syncing contact to ActiveCampaign...');
     const contactResponse = await fetch(`${AC_API_URL}/api/3/contact/sync`, {
       method: 'POST',
       headers: {
@@ -116,11 +116,12 @@ exports.handler = async (event, context) => {
 
     // 2. Add to list (if applicable)
     if (listId) {
+      console.log('Adding to list:', listId);
       const listPayload = {
         contactList: {
           list: listId,
           contact: contactId,
-          status: 1 // subscribed
+          status: 1
         }
       };
 
@@ -143,6 +144,7 @@ exports.handler = async (event, context) => {
 
     // 3. Add tags
     for (const tagName of tags) {
+      console.log('Adding tag:', tagName);
       const tagPayload = {
         contactTag: {
           contact: contactId,
@@ -167,7 +169,7 @@ exports.handler = async (event, context) => {
       }
     }
 
-    // 4. Google Sheets Webhook (existing functionality)
+    // 4. Google Sheets Webhook
     const GOOGLE_SHEET_URL = process.env.GOOGLE_SHEET_URL;
     
     if (GOOGLE_SHEET_URL) {
@@ -180,7 +182,6 @@ exports.handler = async (event, context) => {
         console.log('Google Sheets updated');
       } catch (sheetsError) {
         console.error('Google Sheets webhook error:', sheetsError);
-        // Don't fail the whole request if sheets fails
       }
     }
 

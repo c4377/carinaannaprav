@@ -3141,16 +3141,19 @@ function closePositioningBadge() {
     
     // Remove from DOM after animation
     setTimeout(() => {
-        badge.remove();
+        badge.style.display = 'none';
     }, 400);
 }
 
 // Initialize badge on page load
 document.addEventListener('DOMContentLoaded', function() {
     const badge = document.getElementById('positioning-badge');
-    console.log('Positioning badge loaded and visible');
+    
+    // Optional: Badge erst nach 2 Sekunden zeigen (weniger aggressive)
+    // setTimeout(() => {
+    //     badge.classList.add('show');
+    // }, 2000);
 });
-
 </script>
 
 </body>

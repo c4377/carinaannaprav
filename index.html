@@ -2349,13 +2349,14 @@ async function submitPositioningEmail(e) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                quizType: 'positioning',
-                email: email,
-                firstName: firstname,
-                result: result.title,
-                answers: posAnswers
-            })
+           body: JSON.stringify({
+    quizType: 'positioning',
+    email: email,
+    firstName: firstname,  // ← Für ActiveCampaign (camelCase)
+    firstname: firstname,  // ← Für Google Sheets (lowercase)
+    result: result.title,
+    answers: posAnswers
+})
         });
         
         const data = await response.json();

@@ -54,11 +54,14 @@ exports.handler = async (event, context) => {
     let tags = [];
     
     if (quizType === 'positioning') {
-      listId = AC_LIST_POSITIONING;
-      tags = ['Quiz-Positionierung'];
-    } else if (quizType === 'bestandsaufnahme') {
-      tags = ['Quiz-Bestandsaufnahme'];
-    }
+  listId = AC_LIST_POSITIONING;
+  tags = ['Quiz-Positionierung'];
+} else if (quizType === 'pdf-download') {
+  listId = AC_LIST_POSITIONING;  // Gleiche Liste!
+  tags = ['PDF-Download'];  // Neuer Tag!
+} else if (quizType === 'bestandsaufnahme') {
+  tags = ['Quiz-Bestandsaufnahme'];
+}
 
     // Prepare contact name
     let contactFirstName = firstName || '';

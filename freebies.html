@@ -533,12 +533,13 @@
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        email: email,
-                        firstname: firstname,
-                        quizType: 'positioning-direct', // Direkter Download ohne Quiz
-                        answers: {},
-                        result: 'Direkter Download von Freebies-Seite'
-                    })
+    email: email,
+    firstname: firstname,
+    firstName: firstname,  // ADD THIS!
+    quizType: 'pdf-download',  // CHANGE THIS!
+    answers: {},
+    result: 'Direkter Download von Freebies-Seite'
+})
                 });
                 
                 const data = await response.json();

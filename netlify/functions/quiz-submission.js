@@ -77,19 +77,19 @@ exports.handler = async (event, context) => {
         firstName: contactFirstName,
         lastName: contactLastName,
         fieldValues: [
-          {
-            field: 'QUIZ_TYPE',
-            value: quizType
-          },
-          {
-            field: 'QUIZ_RESULT',
-            value: result || ''
-          },
-          {
-            field: 'QUIZ_DATE',
-            value: new Date().toISOString().split('T')[0]
-          }
-        ]
+  {
+    field: '8',  // Quiz Type
+    value: quizType
+  },
+  {
+    field: '9',  // Quiz Result
+    value: result || ''
+  },
+  {
+    field: '10',  // Quiz Date
+    value: new Date().toISOString().split('T')[0]
+  }
+]
       }
     };
 

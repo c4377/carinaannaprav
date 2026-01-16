@@ -1,3 +1,5 @@
+const fetch = require('node-fetch');
+
 exports.handler = async (event, context) => {
   const headers = {
     'Access-Control-Allow-Origin': '*',
@@ -30,10 +32,13 @@ exports.handler = async (event, context) => {
       };
     }
 
-    const BREVO_API_KEY = process.env.BREVO_API_KEY;
-    const BREVO_LIST_NEWSLETTER = process.env.BREVO_LIST_NEWSLETTER || '8';
+    // ActiveCampaign Config
+    const AC_API_URL = process.env.ACTIVECAMPAIGN_API_URL;
+    const AC_API_KEY = process.env.ACTIVECAMPAIGN_API_KEY;
+    const AC_LIST_30TAGE = process.env.AC_LIST_30TAGE || '3'; // 30-Tage-System Liste
 
-    if (!BREVO_API_KEY) {
+    if (!AC_API_URL || !AC_API_KEY) {
+      console.error('Missing ActiveCampaign credentials');
       return {
         statusCode: 500,
         headers,
@@ -41,53 +46,150 @@ exports.handler = async (event, context) => {
       };
     }
 
-    const response = await fetch('https://api.brevo.com/v3/contacts', {
+    // 1. Create/Update Contact
+    const contactPayload = {
+      contact: {
+        email: email,
+        firstName: firstname
+      }
+    };
+
+    console.log('Syncing newsletter contact to ActiveCampaign...');
+    const contactResponse = await fetch(`${AC_API_URL}/api/3/contact/sync`, {
       method: 'POST',
       headers: {
-        'accept': 'application/json',
-        'api-key': BREVO_API_KEY,
-        'content-type': 'application/json'
+        'Api-Token': AC_API_KEY,
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        email: email,
-        attributes: {
-          FIRSTNAME: firstname
-        },
-        listIds: [parseInt(BREVO_LIST_NEWSLETTER)],
-        updateEnabled: true
-      })
+      body: JSON.stringify(contactPayload)
     });
 
-    if (response.ok || response.status === 204) {
-      return {
-        statusCode: 200,
-        headers,
-        body: JSON.stringify({ success: true })
-      };
-    } else if (response.status === 400) {
-      const errorData = await response.json();
-      if (errorData.message && errorData.message.includes('already exists')) {
-        return {
-          statusCode: 200,
-          headers,
-          body: JSON.stringify({ 
-            success: true,
-            message: 'Already subscribed' 
-          })
-        };
-      }
+    if (!contactResponse.ok) {
+      const errorText = await contactResponse.text();
+      console.error('ActiveCampaign contact sync error:', errorText);
+      throw new Error(`Failed to sync contact: ${contactResponse.status}`);
     }
 
-    throw new Error('Newsletter signup failed');
+    const contactData = await contactResponse.json();
+    const contactId = contactData.contact.id;
+
+    console.log('Newsletter contact synced, ID:', contactId);
+
+    // 2. Add to 30-Tage-System Liste
+    console.log('Adding to list:', AC_LIST_30TAGE);
+    const listPayload = {
+      contactList: {
+        list: AC_LIST_30TAGE,
+        contact: contactId,
+        status: 1
+      }
+    };
+
+    const listResponse = await fetch(`${AC_API_URL}/api/3/contactLists`, {
+      method: 'POST',
+      headers: {
+        'Api-Token': AC_API_KEY,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(listPayload)
+    });
+
+    if (!listResponse.ok) {
+      const errorText = await listResponse.text();
+      console.error('List subscription error:', errorText);
+    } else {
+      console.log('Added to 30-Tage-System list');
+    }
+
+    // 3. Add Tag "30-Tage-Serie-aktiv"
+    const tagName = '30-Tage-Serie-aktiv';
+    console.log('Processing tag:', tagName);
+
+    try {
+      // Find or create tag
+      const tagSearchResponse = await fetch(`${AC_API_URL}/api/3/tags?search=${encodeURIComponent(tagName)}`, {
+        method: 'GET',
+        headers: {
+          'Api-Token': AC_API_KEY
+        }
+      });
+
+      let tagId;
+
+      if (tagSearchResponse.ok) {
+        const tagData = await tagSearchResponse.json();
+
+        if (tagData.tags && tagData.tags.length > 0) {
+          tagId = tagData.tags[0].id;
+          console.log('Found existing tag:', tagName, 'ID:', tagId);
+        } else {
+          // Create tag
+          const createTagResponse = await fetch(`${AC_API_URL}/api/3/tags`, {
+            method: 'POST',
+            headers: {
+              'Api-Token': AC_API_KEY,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              tag: {
+                tag: tagName,
+                tagType: 'contact'
+              }
+            })
+          });
+
+          if (createTagResponse.ok) {
+            const newTagData = await createTagResponse.json();
+            tagId = newTagData.tag.id;
+            console.log('Created new tag:', tagName, 'ID:', tagId);
+          }
+        }
+      }
+
+      if (tagId) {
+        // Assign tag to contact
+        const tagPayload = {
+          contactTag: {
+            contact: contactId,
+            tag: tagId
+          }
+        };
+
+        const assignResponse = await fetch(`${AC_API_URL}/api/3/contactTags`, {
+          method: 'POST',
+          headers: {
+            'Api-Token': AC_API_KEY,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(tagPayload)
+        });
+
+        if (assignResponse.ok) {
+          console.log('Added tag to contact:', tagName);
+        }
+      }
+    } catch (tagError) {
+      console.error('Tag processing error:', tagError);
+    }
+
+    return {
+      statusCode: 200,
+      headers,
+      body: JSON.stringify({
+        success: true,
+        message: 'Successfully subscribed to 30-Tage Serie',
+        contactId: contactId
+      })
+    };
 
   } catch (error) {
     console.error('Newsletter signup error:', error);
     return {
       statusCode: 500,
       headers,
-      body: JSON.stringify({ 
+      body: JSON.stringify({
         error: 'Internal server error',
-        message: error.message 
+        message: error.message
       })
     };
   }

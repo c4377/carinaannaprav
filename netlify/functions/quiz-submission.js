@@ -1,7 +1,7 @@
-// netlify/functions/quiz-submission.js
-// UPDATED VERSION - Mit Tag-System für Automation
+const fetch = require('node-fetch');
 
 exports.handler = async (event, context) => {
+  // CORS Headers
   const headers = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type',
@@ -9,8 +9,9 @@ exports.handler = async (event, context) => {
     'Content-Type': 'application/json'
   };
 
+  // Handle preflight
   if (event.httpMethod === 'OPTIONS') {
-    return { statusCode: 200, headers, body: '' };
+    return { statusCode: 204, headers, body: '' };
   }
 
   if (event.httpMethod !== 'POST') {
@@ -23,26 +24,24 @@ exports.handler = async (event, context) => {
 
   try {
     const data = JSON.parse(event.body);
-    const { firstname, email, quizType, answers, result } = data;
+    const { email, name, quizType, result, firstName, lastName } = data;
 
-    // Validate input
-    if (!firstname || !email || !quizType) {
+    // Validation
+    if (!email || !quizType) {
       return {
         statusCode: 400,
         headers,
-        body: JSON.stringify({ error: 'Missing required fields' })
+        body: JSON.stringify({ error: 'Email and quizType required' })
       };
     }
 
-    // Get API credentials
-    const BREVO_API_KEY = process.env.BREVO_API_KEY;
-    const BREVO_LIST_POSITIONING = process.env.BREVO_LIST_POSITIONING;
-    const BREVO_LIST_SYSTEMCHECK = process.env.BREVO_LIST_SYSTEMCHECK;
-    const BREVO_LIST_NEWSLETTER = process.env.BREVO_LIST_NEWSLETTER;
-    const GOOGLE_SHEET_URL = process.env.GOOGLE_SHEET_URL;
+    // ActiveCampaign Config
+    const AC_API_URL = process.env.ACTIVECAMPAIGN_API_URL;
+    const AC_API_KEY = process.env.ACTIVECAMPAIGN_API_KEY;
+    const AC_LIST_POSITIONING = process.env.AC_LIST_POSITIONING;
 
-    if (!BREVO_API_KEY) {
-      console.error('BREVO_API_KEY not set');
+    if (!AC_API_URL || !AC_API_KEY) {
+      console.error('Missing ActiveCampaign credentials');
       return {
         statusCode: 500,
         headers,
@@ -50,151 +49,159 @@ exports.handler = async (event, context) => {
       };
     }
 
-    // Determine which list based on quizType
-    let brevoListId;
-    let tagName;
+    // Determine list and tag based on quiz type
+    let listId = null;
+    let tags = [];
     
     if (quizType === 'positioning') {
-      brevoListId = parseInt(BREVO_LIST_POSITIONING);
-      tagName = 'Positionierungs-Quiz-' + new Date().toISOString().split('T')[0]; // Tag mit Datum
-    } else if (quizType === 'systemcheck') {
-      brevoListId = parseInt(BREVO_LIST_SYSTEMCHECK);
-      tagName = 'SystemCheck-Quiz-' + new Date().toISOString().split('T')[0];
+      listId = AC_LIST_POSITIONING;
+      tags = ['Quiz-Positionierung'];
     } else if (quizType === 'bestandsaufnahme') {
-      brevoListId = parseInt(BREVO_LIST_SYSTEMCHECK); // Nutzt gleiche Liste wie SystemCheck
-      tagName = 'Bestandsaufnahme-Quiz-' + new Date().toISOString().split('T')[0];
-    } else {
-      brevoListId = parseInt(BREVO_LIST_NEWSLETTER); // Fallback
-      tagName = 'Newsletter-' + new Date().toISOString().split('T')[0];
+      // No list for bestandsaufnahme, only tag
+      tags = ['Quiz-Bestandsaufnahme'];
     }
 
-    console.log('Sending to Brevo list:', brevoListId, 'for quiz type:', quizType);
-    console.log('Tag name:', tagName);
+    // Prepare contact name
+    let contactFirstName = firstName || '';
+    let contactLastName = lastName || '';
+    
+    if (name && !firstName && !lastName) {
+      const nameParts = name.trim().split(' ');
+      contactFirstName = nameParts[0] || '';
+      contactLastName = nameParts.slice(1).join(' ') || '';
+    }
 
-    // Get current timestamp for attribute
-    const timestamp = new Date().toISOString();
-
-    // 1. SEND TO BREVO (Create or Update Contact)
-    const brevoPayload = {
-      email: email,
-      attributes: {
-        FIRSTNAME: firstname,
-        QUIZ_TYPE: quizType,
-        QUIZ_RESULT: result,
-        LAST_QUIZ_DATE: timestamp
-      },
-      listIds: [brevoListId],
-      updateEnabled: true // WICHTIG: Update if exists
+    // 1. Create/Update Contact in ActiveCampaign
+    const contactPayload = {
+      contact: {
+        email: email,
+        firstName: contactFirstName,
+        lastName: contactLastName,
+        fieldValues: [
+          {
+            field: 'QUIZ_TYPE',
+            value: quizType
+          },
+          {
+            field: 'QUIZ_RESULT',
+            value: result || ''
+          },
+          {
+            field: 'QUIZ_DATE',
+            value: new Date().toISOString().split('T')[0] // YYYY-MM-DD format
+          }
+        ]
+      }
     };
 
-    // Add specific attribute based on quiz type
-    if (quizType === 'positioning') {
-      brevoPayload.attributes.POSITIONING_QUIZ_DATE = timestamp;
-    } else if (quizType === 'bestandsaufnahme') {
-      brevoPayload.attributes.BESTANDSAUFNAHME_QUIZ_DATE = timestamp;
-    }
-
-    const brevoResponse = await fetch('https://api.brevo.com/v3/contacts', {
+    const contactResponse = await fetch(`${AC_API_URL}/api/3/contact/sync`, {
       method: 'POST',
       headers: {
-        'accept': 'application/json',
-        'api-key': BREVO_API_KEY,
-        'content-type': 'application/json'
+        'Api-Token': AC_API_KEY,
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify(brevoPayload)
+      body: JSON.stringify(contactPayload)
     });
 
-    const brevoStatus = brevoResponse.status;
-    console.log('Brevo contact response status:', brevoStatus);
+    if (!contactResponse.ok) {
+      const errorText = await contactResponse.text();
+      console.error('ActiveCampaign contact sync error:', errorText);
+      throw new Error(`Failed to sync contact: ${contactResponse.status}`);
+    }
 
-    // 2. ADD TAG TO CONTACT (works even if contact already exists)
-    // This is the KEY for automation trigger!
-    try {
-      // First, get or create the contact ID
-      const contactResponse = await fetch(`https://api.brevo.com/v3/contacts/${encodeURIComponent(email)}`, {
-        method: 'GET',
-        headers: {
-          'accept': 'application/json',
-          'api-key': BREVO_API_KEY
+    const contactData = await contactResponse.json();
+    const contactId = contactData.contact.id;
+
+    console.log('Contact synced, ID:', contactId);
+
+    // 2. Add to list (if applicable)
+    if (listId) {
+      const listPayload = {
+        contactList: {
+          list: listId,
+          contact: contactId,
+          status: 1 // subscribed
         }
+      };
+
+      const listResponse = await fetch(`${AC_API_URL}/api/3/contactLists`, {
+        method: 'POST',
+        headers: {
+          'Api-Token': AC_API_KEY,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(listPayload)
       });
 
-      if (contactResponse.ok) {
-        const contactData = await contactResponse.json();
-        const contactId = contactData.id;
-        
-        console.log('Contact ID:', contactId);
-        
-        // Add tag using the Contacts API
-        const addTagResponse = await fetch(`https://api.brevo.com/v3/contacts/${contactId}`, {
-          method: 'PUT',
-          headers: {
-            'accept': 'application/json',
-            'api-key': BREVO_API_KEY,
-            'content-type': 'application/json'
-          },
-          body: JSON.stringify({
-            attributes: {
-              LATEST_TAG: tagName
-            }
-          })
-        });
-        
-        console.log('Tag add response status:', addTagResponse.status);
-      }
-    } catch (tagError) {
-      console.error('Error adding tag:', tagError);
-      // Continue anyway - main contact creation succeeded
-    }
-
-    // 3. SEND TO GOOGLE SHEETS (if URL is set)
-    console.log('GOOGLE_SHEET_URL:', GOOGLE_SHEET_URL ? 'SET' : 'NOT SET');
-    if (GOOGLE_SHEET_URL) {
-      try {
-        console.log('Sending to Google Sheets...');
-        const sheetResponse = await fetch(GOOGLE_SHEET_URL, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            timestamp: timestamp,
-            firstname: firstname,
-            email: email,
-            quizType: quizType,
-            answers: answers,
-            result: result
-          })
-        });
-        console.log('Google Sheets response status:', sheetResponse.status);
-      } catch (sheetError) {
-        console.error('Google Sheets error:', sheetError);
+      if (!listResponse.ok) {
+        const errorText = await listResponse.text();
+        console.error('List subscription error:', errorText);
+      } else {
+        console.log('Added to list:', listId);
       }
     }
 
-    // Return success regardless of whether contact was new or existing
-    if (brevoStatus === 200 || brevoStatus === 201 || brevoStatus === 204 || brevoStatus === 400) {
-      return {
-        statusCode: 200,
-        headers,
-        body: JSON.stringify({
-          success: true,
-          message: 'Quiz submitted successfully!',
-          tagAdded: tagName
-        })
+    // 3. Add tags
+    for (const tagName of tags) {
+      const tagPayload = {
+        contactTag: {
+          contact: contactId,
+          tag: tagName
+        }
       };
-    } else {
-      throw new Error('Brevo submission failed');
+
+      const tagResponse = await fetch(`${AC_API_URL}/api/3/contactTags`, {
+        method: 'POST',
+        headers: {
+          'Api-Token': AC_API_KEY,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(tagPayload)
+      });
+
+      if (!tagResponse.ok) {
+        const errorText = await tagResponse.text();
+        console.error(`Tag ${tagName} error:`, errorText);
+      } else {
+        console.log('Added tag:', tagName);
+      }
     }
+
+    // 4. Google Sheets Webhook (existing functionality)
+    const SHEETS_WEBHOOK = process.env.SHEETS_WEBHOOK_URL;
+    
+    if (SHEETS_WEBHOOK) {
+      try {
+        await fetch(SHEETS_WEBHOOK, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        console.log('Google Sheets updated');
+      } catch (sheetsError) {
+        console.error('Sheets webhook error:', sheetsError);
+        // Don't fail the whole request if sheets fails
+      }
+    }
+
+    return {
+      statusCode: 200,
+      headers,
+      body: JSON.stringify({
+        success: true,
+        message: 'Successfully subscribed',
+        contactId: contactId
+      })
+    };
 
   } catch (error) {
-    console.error('Function error:', error);
+    console.error('Error:', error);
     return {
       statusCode: 500,
       headers,
       body: JSON.stringify({
         error: 'Internal server error',
-        message: error.message
+        details: error.message
       })
     };
   }

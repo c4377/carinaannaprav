@@ -3118,6 +3118,22 @@ document.addEventListener('DOMContentLoaded', function() {
 /* BADGE JAVASCRIPT */
 /* ============================================ */
 
+// Open Quiz Function
+function openPositioningQuiz() {
+    const quizContainer = document.getElementById('quiz-container');
+    if (quizContainer) {
+        quizContainer.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        
+        // Set quiz type to positioning
+        if (window.initQuiz) {
+            window.initQuiz('positioning');
+        }
+    } else {
+        console.error('Quiz container not found');
+    }
+}
+
 // Close Badge Function
 function closePositioningBadge() {
     const badge = document.getElementById('positioning-badge');
@@ -3125,34 +3141,14 @@ function closePositioningBadge() {
     
     // Remove from DOM after animation
     setTimeout(() => {
-        badge.style.display = 'none';
+        badge.remove();
     }, 400);
-    
-    // Save state to localStorage (badge bleibt für 7 Tage geschlossen)
-    localStorage.setItem('posBadgeClosed', Date.now());
-}
-
-// Check if badge should be shown
-function shouldShowPositioningBadge() {
-    const closedTime = localStorage.getItem('posBadgeClosed');
-    if (!closedTime) return true;
-    
-    const daysSinceClosed = (Date.now() - parseInt(closedTime)) / (1000 * 60 * 60 * 24);
-    return daysSinceClosed > 7; // Show again after 7 days
 }
 
 // Initialize badge on page load
 document.addEventListener('DOMContentLoaded', function() {
     const badge = document.getElementById('positioning-badge');
-    
-    if (!shouldShowPositioningBadge()) {
-        badge.style.display = 'none';
-    }
-    
-    // Optional: Badge erst nach 2 Sekunden zeigen (weniger aggressive)
-    // setTimeout(() => {
-    //     badge.classList.add('show');
-    // }, 2000);
+    console.log('Positioning badge loaded and visible');
 });
 
 </script>

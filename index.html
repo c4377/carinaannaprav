@@ -2343,33 +2343,37 @@ async function submitPositioningEmail(e) {
         // Calculate result for submission
         const result = calculatePositioningResult();
         
-        // Send to Google Sheets
-        await fetch(GOOGLE_SHEETS_WEBHOOK, {
+        // Send to Netlify Function (handles both ActiveCampaign + Google Sheets)
+        const response = await fetch('/.netlify/functions/quiz-submission', {
             method: 'POST',
-            mode: 'no-cors',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 quizType: 'positioning',
                 email: email,
-                firstname: firstname,
-                answers: posAnswers,
+                firstName: firstname,
                 result: result.title,
-                consent: true
+                answers: posAnswers
             })
         });
         
-        messageEl.textContent = '✅ Perfekt! Check deine Emails für den Download-Link!';
-        messageEl.style.color = '#B89968';
-        e.target.reset();
+        const data = await response.json();
         
-        console.log('✅ Positioning data sent to Google Sheets');
+        if (response.ok && data.success) {
+            messageEl.textContent = '✅ Perfekt! Check deine Emails für den Download-Link!';
+            messageEl.style.color = '#B89968';
+            e.target.reset();
+            
+            console.log('✅ Contact synced to ActiveCampaign, ID:', data.contactId);
+        } else {
+            throw new Error(data.error || 'Submission failed');
+        }
         
     } catch (error) {
         console.error('Error:', error);
-        messageEl.textContent = '✅ Daten gespeichert! (Falls Email nicht ankommt, melde dich bei mir)';
-        messageEl.style.color = '#B89968';
+        messageEl.textContent = '❌ Etwas ist schiefgelaufen. Bitte nochmal versuchen.';
+        messageEl.style.color = '#ff6b6b';
     } finally {
         button.disabled = false;
         button.textContent = 'Jetzt Download-Link senden';

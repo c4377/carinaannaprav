@@ -143,48 +143,103 @@ exports.handler = async (event, context) => {
     }
 
     // 3. Add tags
-    for (const tagName of tags) {
-      console.log('Adding tag:', tagName);
-      const tagPayload = {
-        contactTag: {
-          contact: contactId,
-          tag: tagName
-        }
-      };
-
-      const tagResponse = await fetch(`${AC_API_URL}/api/3/contactTags`, {
-        method: 'POST',
-        headers: {
-          'Api-Token': AC_API_KEY,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(tagPayload)
-      });
-
-      if (!tagResponse.ok) {
-        const errorText = await tagResponse.text();
-        console.error(`Tag ${tagName} error:`, errorText);
-      } else {
-        console.log('Added tag:', tagName);
+for (const tagName of tags) {
+  console.log('Processing tag:', tagName);
+  
+  try {
+    // First: Find or create the tag
+    const tagSearchResponse = await fetch(`${AC_API_URL}/api/3/tags?search=${encodeURIComponent(tagName)}`, {
+      method: 'GET',
+      headers: {
+        'Api-Token': AC_API_KEY
       }
+    });
+    
+    let tagId;
+    
+    if (tagSearchResponse.ok) {
+      const tagData = await tagSearchResponse.json();
+      
+      if (tagData.tags && tagData.tags.length > 0) {
+        // Tag exists
+        tagId = tagData.tags[0].id;
+        console.log('Found existing tag:', tagName, 'ID:', tagId);
+      } else {
+        // Create new tag
+        const createTagResponse = await fetch(`${AC_API_URL}/api/3/tags`, {
+          method: 'POST',
+          headers: {
+            'Api-Token': AC_API_KEY,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            tag: {
+              tag: tagName,
+              tagType: 'contact'
+            }
+          })
+        });
+        
+        if (createTagResponse.ok) {
+          const newTagData = await createTagResponse.json();
+          tagId = newTagData.tag.id;
+          console.log('Created new tag:', tagName, 'ID:', tagId);
+        } else {
+          const errorText = await createTagResponse.text();
+          console.error('Failed to create tag:', errorText);
+          continue;
+        }
+      }
+    } else {
+      console.error('Tag search failed');
+      continue;
     }
+    
+    // Now assign tag to contact
+    const tagPayload = {
+      contactTag: {
+        contact: contactId,
+        tag: tagId
+      }
+    };
+    
+    const assignResponse = await fetch(`${AC_API_URL}/api/3/contactTags`, {
+      method: 'POST',
+      headers: {
+        'Api-Token': AC_API_KEY,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(tagPayload)
+    });
+    
+    if (assignResponse.ok) {
+      console.log('Added tag to contact:', tagName);
+    } else {
+      const errorText = await assignResponse.text();
+      console.error('Failed to assign tag:', errorText);
+    }
+    
+  } catch (tagError) {
+    console.error('Tag processing error:', tagError);
+  }
+}
 
     // 4. Google Sheets Webhook
-    const GOOGLE_SHEET_URL = process.env.GOOGLE_SHEET_URL;
-    
-    if (GOOGLE_SHEET_URL) {
-      try {
-        await fetch(GOOGLE_SHEET_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
-        });
-        console.log('Google Sheets updated');
-      } catch (sheetsError) {
-        console.error('Google Sheets webhook error:', sheetsError);
-      }
-    }
+const GOOGLE_SHEET_URL = process.env.GOOGLE_SHEET_URL;
 
+if (GOOGLE_SHEET_URL) {
+  try {
+    await fetch(GOOGLE_SHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors',  // ← ADD THIS!
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    console.log('Google Sheets updated');
+  } catch (sheetsError) {
+    console.error('Google Sheets webhook error:', sheetsError);
+  }
+}
     return {
       statusCode: 200,
       headers,

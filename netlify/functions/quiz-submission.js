@@ -57,8 +57,11 @@ exports.handler = async (event, context) => {
   listId = AC_LIST_POSITIONING;
   tags = ['Quiz-Positionierung'];
 } else if (quizType === 'pdf-download') {
-  listId = AC_LIST_POSITIONING;  // Gleiche Liste!
-  tags = ['PDF-Download'];  // Neuer Tag!
+  listId = AC_LIST_POSITIONING;
+  tags = ['PDF-Download'];
+} else if (quizType === 'systemcheck') {
+  listId = AC_LIST_POSITIONING;
+  tags = ['System-Check'];
 } else if (quizType === 'bestandsaufnahme') {
   tags = ['Quiz-Bestandsaufnahme'];
 }

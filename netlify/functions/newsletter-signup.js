@@ -102,7 +102,7 @@ exports.handler = async (event, context) => {
     }
 
     // 3. Add Tag "30-Tage-Serie-aktiv"
-    const tagName = '30-Tage-Serie-aktiv';
+    const tagName = 'Nurture-Start';
     console.log('Processing tag:', tagName);
 
     try {

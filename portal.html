@@ -238,45 +238,128 @@
             }
 
             async init() {
-                const { data: { session } } = await supabase.auth.getSession();
-                
-                if (session) {
-                    this.session = session;
-                    await this.routeUser(session);
-                } else {
-                    this.showLogin();
+                // Set timeout to prevent endless loading
+                const timeout = setTimeout(() => {
+                    document.getElementById('app').innerHTML = `
+                        <div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem;">
+                            <div class="card" style="max-width: 600px; text-align: center; padding: 3rem;">
+                                <h2 style="font-family: 'Playfair Display', Georgia, serif; font-size: 2rem; margin-bottom: 1rem; color: var(--charcoal);">
+                                    ⏱️ Timeout
+                                </h2>
+                                <p style="color: var(--dark-gray); margin-bottom: 1.5rem;">
+                                    Das Portal lädt zu lange. Mögliche Probleme:
+                                </p>
+                                <ul style="text-align: left; margin-bottom: 2rem; color: var(--dark-gray);">
+                                    <li>Supabase-Verbindung fehlgeschlagen</li>
+                                    <li>Config nicht richtig eingetragen</li>
+                                    <li>Deine Email ist nicht in der Datenbank</li>
+                                </ul>
+                                <button class="btn" onclick="location.reload()" style="margin-right: 1rem;">
+                                    Neu laden
+                                </button>
+                                <button class="btn" onclick="localStorage.clear(); sessionStorage.clear(); location.reload();" style="background: var(--accent);">
+                                    Cache leeren & neu laden
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }, 10000); // 10 seconds timeout
+
+                try {
+                    const { data: { session }, error } = await supabase.auth.getSession();
+                    
+                    clearTimeout(timeout); // Clear timeout if successful
+                    
+                    if (error) {
+                        throw new Error('Supabase Fehler: ' + error.message);
+                    }
+                    
+                    if (session) {
+                        this.session = session;
+                        await this.routeUser(session);
+                    } else {
+                        this.showLogin();
+                    }
+                } catch (error) {
+                    clearTimeout(timeout);
+                    this.showError(`
+                        <strong>Fehler beim Laden:</strong><br>
+                        ${error.message}<br><br>
+                        <small>Prüfe deine Supabase-Config in Zeile 146!</small>
+                    `);
                 }
             }
 
             async routeUser(session) {
                 const user = session.user;
                 
+                console.log('🔍 Routing user:', user.email);
+                
+                // Show loading
+                document.getElementById('app').innerHTML = `
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        Lade dein Portal...<br>
+                        <small style="margin-top: 1rem; opacity: 0.7;">Email: ${user.email}</small>
+                    </div>
+                `;
+                
                 // Check if admin
-                const { data: adminData } = await supabase
+                console.log('🔍 Checking admin_users...');
+                const { data: adminData, error: adminError } = await supabase
                     .from('admin_users')
                     .select('*')
                     .eq('email', user.email)
                     .single();
 
+                if (adminError && adminError.code !== 'PGRST116') {
+                    console.error('❌ Admin check error:', adminError);
+                }
+
                 if (adminData) {
-                    // Redirect to admin dashboard
-                    window.location.href = 'portal-admin.html';
+                    console.log('✅ Admin gefunden! Redirect zu portal-admin.html');
+                    document.getElementById('app').innerHTML = `
+                        <div class="loading">
+                            <div class="spinner"></div>
+                            Admin erkannt! Leite weiter...
+                        </div>
+                    `;
+                    setTimeout(() => {
+                        window.location.href = 'portal-admin.html';
+                    }, 500);
                     return;
                 }
 
                 // Load customer data
-                const { data: customerData } = await supabase
+                console.log('🔍 Checking customers...');
+                const { data: customerData, error: customerError } = await supabase
                     .from('customers')
                     .select('*')
                     .eq('email', user.email)
                     .single();
 
+                if (customerError && customerError.code !== 'PGRST116') {
+                    console.error('❌ Customer check error:', customerError);
+                }
+
                 if (customerData) {
+                    console.log('✅ Kunde gefunden!', customerData.name);
                     this.currentUser = customerData;
                     await this.loadCustomerData();
                     this.showCustomerPortal();
                 } else {
-                    this.showError('Kunde nicht gefunden. Bitte kontaktiere den Support.');
+                    console.log('❌ Weder Admin noch Kunde gefunden für:', user.email);
+                    // User exists in auth but not in customers or admin_users
+                    await supabase.auth.signOut();
+                    this.showError(`
+                        Dein Account wurde noch nicht aktiviert.<br><br>
+                        <strong>Email:</strong> ${user.email}<br><br>
+                        Diese Email ist weder als Admin noch als Kunde registriert.<br><br>
+                        <strong>Was tun?</strong><br>
+                        1. Prüfe ob du die richtige Email verwendet hast<br>
+                        2. Als Admin: Trage dich in die admin_users Tabelle ein<br>
+                        3. Als Kunde: Lass dich vom Admin anlegen
+                    `);
                 }
             }
 
@@ -353,9 +436,35 @@
                 const successDiv = document.getElementById('successMessage');
                 
                 button.disabled = true;
-                button.textContent = 'Sende...';
+                button.textContent = 'Prüfe...';
                 errorDiv.classList.add('hidden');
                 successDiv.classList.add('hidden');
+
+                // Check if email exists in admin_users or customers
+                const { data: adminCheck } = await supabase
+                    .from('admin_users')
+                    .select('email')
+                    .eq('email', email)
+                    .single();
+
+                const { data: customerCheck } = await supabase
+                    .from('customers')
+                    .select('email')
+                    .eq('email', email)
+                    .single();
+
+                if (!adminCheck && !customerCheck) {
+                    button.disabled = false;
+                    button.textContent = 'Magic Link senden';
+                    errorDiv.innerHTML = `
+                        <strong>Email nicht gefunden!</strong><br>
+                        Diese Email ist nicht registriert. Bitte kontaktiere den Support oder prüfe deine Email-Adresse.
+                    `;
+                    errorDiv.classList.remove('hidden');
+                    return;
+                }
+
+                button.textContent = 'Sende Email...';
 
                 const { error } = await supabase.auth.signInWithOtp({
                     email: email,

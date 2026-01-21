@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kundenportal | Carina Anna Prav</title>
+    
+    <!-- Supabase Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --cream: #FAF9F6;
+            --beige: #E8DED2;
+            --warm-beige: #D4C5B0;
+            --charcoal: #2D2D2D;
+            --dark-gray: #4A4A4A;
+            --light-gray: #F5F5F5;
+            --accent: #B89968;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            color: var(--charcoal);
+            background: var(--cream);
+            line-height: 1.7;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 400;
+            line-height: 1.2;
+        }
+        
+        /* Loading Spinner */
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+        }
+        
+        .spinner {
+            border: 3px solid var(--beige);
+            border-top: 3px solid var(--accent);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin-right: 1rem;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 1rem 2rem;
+            background: var(--charcoal);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .btn:hover {
+            background: var(--dark-gray);
+            transform: translateY(-2px);
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .btn-accent {
+            background: var(--accent);
+        }
+        
+        .btn-accent:hover {
+            background: var(--warm-beige);
+        }
+
+        /* Form Elements */
+        input, select, textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--beige);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--charcoal);
+        }
+
+        /* Hidden */
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="loading">
+            <div class="spinner"></div>
+            Lädt...
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // CONFIG - WICHTIG: HIER DEINE WERTE EINTRAGEN!
+        // ============================================
+        const SUPABASE_URL = 'https://wwxlngtppoueblciokfk.supabase.co';
+        const SUPABASE_ANON_KEY = 'dein-anon-key-hiereyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind3eGxuZ3RwcG91ZWJsY2lva2ZrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5ODUwMDMsImV4cCI6MjA4NDU2MTAwM30.nmpL-G4xQrwINE4G1NPANxXlMMs6DgYCbkArJgtVJQ0';
+        
+        // ⚠️ ÄNDERE DIE WERTE OBEN ⚠️
+        // Findest du in Supabase unter: Settings → API
+        
+        // Supabase Client initialisieren
+        const { createClient } = window.supabase;
+        const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        
+        // ============================================
+        // PROGRAM DATA
+        // ============================================
+        const PROGRAMS = {
+          foundation: {
+            name: "Foundation Intensive",
+            duration: "6 Wochen",
+            subtitle: "Vom Hamsterrad zum High-Ticket",
+            modules: [
+              { id: 1, title: "Woche 1-2: Positionierung", tasks: ["Zielgruppen-Analyse: Wen willst du wirklich bedienen?", "Unique Angle finden: Was macht dich anders?", "Messaging Workshop: Wie sprichst du sie an?"] },
+              { id: 2, title: "Woche 3-4: Offer Design", tasks: ["High-Ticket Angebot strukturieren (1000€+)", "Transformation definieren: Was bekommt der Kunde?", "Premium-Pricing: Wie viel ist es wert?", "Packaging: Wie präsentierst du es?"] },
+              { id: 3, title: "Woche 5: Sales Skills", tasks: ["Ethisches Verkaufen: Gespräche führen ohne Manipulation", "Einwände behandeln: 'Zu teuer', 'Muss überlegen'", "Abschluss-Techniken: Wie du fragst ohne pushy zu sein"] },
+              { id: 4, title: "Woche 6: Launch-Strategie", tasks: ["Wo findest du deine ersten 3-5 High-Ticket Kunden?", "Launch-Plan erstellen: Wann machst du was?", "Content-Strategie: Was postest du, was nicht?"] }
+            ]
+          },
+          system: {
+            name: "System-Setup",
+            duration: "6-8 Wochen",
+            subtitle: "Done-FOR-You Business-System",
+            modules: [
+              { id: 1, title: "Woche 1-2: Website Build", tasks: ["Kickoff-Call: Deine Vision, meine Umsetzung", "Design-Konzept: Branding, Farben, Struktur", "Copy-Review: Texte die verkaufen", "Development: Custom HTML, conversion-optimiert"] },
+              { id: 2, title: "Woche 3-4: Pinterest Setup", tasks: ["Pinterest Business Account optimieren", "Pin-Templates in Canva erstellen (10-15 Designs)", "Keyword-Strategie: Was suchen deine Kunden?", "Content-Plan: 30 Tage Posting-Schedule"] },
+              { id: 3, title: "Woche 5-6: Automatisierung", tasks: ["Email-Tool Setup (Brevo/ActiveCampaign)", "Welcome-Serie schreiben (5-7 Emails)", "Quiz oder Bewerbungsformular bauen", "Google Sheets Integration: Leads automatisch erfassen"] },
+              { id: 4, title: "Woche 7-8: Training & Go-Live", tasks: ["Tech-Training: Wie du alles selbst pflegst", "Testing: Funktioniert alles?", "Go-Live: System scharf schalten", "30-Tage Support nach Launch"] }
+            ]
+          },
+          vip: {
+            name: "VIP Komplett",
+            duration: "12 Wochen",
+            subtitle: "All-in Transformation",
+            modules: [
+              { id: 1, title: "Woche 1-4: Foundation + Website parallel", tasks: ["FOUNDATION: Positionierung + Offer Design", "SYSTEM: Website-Konzept + Development", "4x 90min Calls: Strategie + Umsetzung gleichzeitig", "Telegram Priority Support"] },
+              { id: 2, title: "Woche 5-8: Sales + Pinterest + Automation", tasks: ["FOUNDATION: Sales Training + Einwände", "SYSTEM: Pinterest komplett + Email-Automation", "4x 90min Calls: Vertiefung + Testing", "Erste Kunden-Gespräche führen"] },
+              { id: 3, title: "Woche 9-10: Launch Vorbereitung", tasks: ["Content-Strategie für Launch", "Finale Tests: Funnel durchspielen", "Launch-Plan: Wann geht was live?", "2x Calls: Feinschliff + Go/No-Go"] },
+              { id: 4, title: "Woche 11-12: Go-Live + Optimization", tasks: ["System live schalten", "Erste Kunden: Du führst Gespräche, ich coache", "Performance-Tracking: Was funktioniert?", "2x Calls: Optimierung + Scaling-Strategie"] }
+            ]
+          }
+        };
+
+        const BOT_RESPONSES = {
+          greeting: "Hey! Was brauchst du? Keine Floskeln, sag's direkt.",
+          stuck: "Ok, du hängst. Wo genau? Sei konkret, dann kann ich konkret helfen. Wenn's komplex ist, buch dir lieber einen Call.",
+          positioning: "Positionierung ist kein Gefühl, sondern Mathematik: Wer + Was + Warum du anders. Wenn du auf 3 Leute abzielst, sprichst du mit niemandem. Sei spezifisch.",
+          offer: "High-Ticket heißt nicht 'teuer machen'. Es heißt: echte Transformation liefern und dafür Premium verlangen. Was ändert sich für den Kunden am Ende?",
+          sales: "Verkaufen ist kein Überreden. Wenn dein Angebot passt und die Person es braucht, ist der Sale easy. Wenn du kämpfen musst, passt's nicht. Einfach so.",
+          time: "Wenn du sagst 'keine Zeit', meinst du: andere Dinge sind wichtiger. Das ist ok. Aber sei ehrlich zu dir selbst. Was davon MUSS jetzt passieren?",
+          system: "Automatisierung ≠ auf Knopfdruck reich. Automatisierung = einmal bauen, dann läuft's. Aber bauen braucht Zeit. Bist du bereit die zu investieren?",
+          default: "Gute Frage. Schreib mir das genauer, dann kann ich besser helfen. Oder buch dir einen Call wenn's ausführlich werden muss."
+        };
+
+        // ============================================
+        // MAIN APP
+        // ============================================
+        class KundenportalApp {
+            constructor() {
+                this.currentUser = null;
+                this.isAdmin = false;
+                this.session = null;
+                this.init();
+            }
+
+            async init() {
+                // Check for existing session
+                const { data: { session } } = await supabase.auth.getSession();
+                
+                if (session) {
+                    this.session = session;
+                    await this.handleExistingSession(session);
+                } else {
+                    this.showLoginScreen();
+                }
+            }
+
+            async handleExistingSession(session) {
+                const user = session.user;
+                
+                // Check if admin
+                const { data: adminData } = await supabase
+                    .from('admin_users')
+                    .select('*')
+                    .eq('email', user.email)
+                    .single();
+
+                if (adminData) {
+                    this.isAdmin = true;
+                    this.showAdminDashboard();
+                } else {
+                    // Load customer data
+                    const { data: customerData } = await supabase
+                        .from('customers')
+                        .select('*')
+                        .eq('email', user.email)
+                        .single();
+
+                    if (customerData) {
+                        this.currentUser = customerData;
+                        this.showCustomerPortal();
+                    } else {
+                        this.showError('Kunde nicht gefunden. Bitte kontaktiere den Support.');
+                    }
+                }
+            }
+
+            showLoginScreen() {
+                document.getElementById('app').innerHTML = `
+                    <div style="min-height: 100vh; background: linear-gradient(135deg, #FAF9F6 0%, #E8DED2 100%); display: flex; align-items: center; justify-content: center; padding: 2rem;">
+                        <div style="background: white; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); padding: 3rem; max-width: 450px; width: 100%;">
+                            <h1 style="font-family: 'Playfair Display', Georgia, serif; font-size: 2.5rem; margin-bottom: 0.5rem; color: #2D2D2D;">Kundenportal</h1>
+                            <p style="color: #4A4A4A; margin-bottom: 2rem;">Carina Anna Prav</p>
+
+                            <form id="loginForm" onsubmit="return false;">
+                                <div style="margin-bottom: 1.5rem;">
+                                    <label>Email</label>
+                                    <input type="email" id="emailInput" required placeholder="deine@email.com" />
+                                </div>
+
+                                <div id="errorMessage" class="hidden" style="padding: 1rem; background: #FEE; border: 1px solid #FCC; border-radius: 8px; margin-bottom: 1.5rem; color: #C33; font-size: 0.9rem;"></div>
+                                
+                                <div id="successMessage" class="hidden" style="padding: 1rem; background: #E8F5E9; border: 1px solid #4CAF50; border-radius: 8px; margin-bottom: 1.5rem; color: #2D2D2D; font-size: 0.9rem;"></div>
+
+                                <button type="submit" class="btn" style="width: 100%;" id="loginButton">
+                                    Magic Link senden
+                                </button>
+                            </form>
+
+                            <p style="margin-top: 2rem; font-size: 0.85rem; color: #4A4A4A; text-align: center;">
+                                Du kriegst eine Email mit einem Login-Link. Kein Passwort nötig.
+                            </p>
+                        </div>
+                    </div>
+                `;
+
+                document.getElementById('loginForm').addEventListener('submit', (e) => this.handleLogin(e));
+            }
+
+            async handleLogin(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('emailInput').value;
+                const button = document.getElementById('loginButton');
+                const errorDiv = document.getElementById('errorMessage');
+                const successDiv = document.getElementById('successMessage');
+                
+                button.disabled = true;
+                button.textContent = 'Sende...';
+                errorDiv.classList.add('hidden');
+                successDiv.classList.add('hidden');
+
+                const { error } = await supabase.auth.signInWithOtp({
+                    email: email,
+                    options: {
+                        emailRedirectTo: window.location.origin + window.location.pathname
+                    }
+                });
+
+                button.disabled = false;
+                button.textContent = 'Magic Link senden';
+
+                if (error) {
+                    errorDiv.textContent = 'Fehler: ' + error.message;
+                    errorDiv.classList.remove('hidden');
+                } else {
+                    successDiv.innerHTML = `
+                        <strong>Email versendet! 📧</strong><br>
+                        Check dein Postfach (auch Spam). Klick auf den Link in der Email.
+                    `;
+                    successDiv.classList.remove('hidden');
+                    document.getElementById('emailInput').value = '';
+                }
+            }
+
+            showError(message) {
+                document.getElementById('app').innerHTML = `
+                    <div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem;">
+                        <div style="background: white; border: 2px solid #E8DED2; border-radius: 8px; padding: 3rem; max-width: 500px; text-align: center;">
+                            <h2 style="font-family: 'Playfair Display', Georgia, serif; font-size: 2rem; margin-bottom: 1rem; color: #2D2D2D;">
+                                Oops! 🤔
+                            </h2>
+                            <p style="color: #4A4A4A; margin-bottom: 2rem;">${message}</p>
+                            <button class="btn" onclick="location.reload()">Neu laden</button>
+                        </div>
+                    </div>
+                `;
+            }
+
+            showAdminDashboard() {
+                // For now, simple message - you can expand this
+                document.getElementById('app').innerHTML = `
+                    <div style="min-height: 100vh; padding: 2rem;">
+                        <div style="max-width: 1400px; margin: 0 auto;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                                <div>
+                                    <h1 style="font-family: 'Playfair Display', Georgia, serif; font-size: 2.5rem; color: #2D2D2D;">
+                                        Admin Dashboard
+                                    </h1>
+                                    <p style="color: #4A4A4A;">Willkommen zurück!</p>
+                                </div>
+                                <button class="btn" onclick="app.logout()">Logout</button>
+                            </div>
+                            
+                            <div style="background: white; border: 2px solid #E8DED2; border-radius: 8px; padding: 3rem; text-align: center;">
+                                <h2 style="font-family: 'Playfair Display', Georgia, serif; font-size: 2rem; margin-bottom: 1rem;">
+                                    🎉 Supabase Setup erfolgreich!
+                                </h2>
+                                <p style="color: #4A4A4A; margin-bottom: 2rem; font-size: 1.1rem;">
+                                    Dein Portal läuft mit Supabase.<br>
+                                    Der vollständige Admin-Bereich kommt im nächsten Update.
+                                </p>
+                                <p style="color: #4A4A4A; font-size: 0.9rem;">
+                                    Hier kannst du bald:<br>
+                                    • Kunden anlegen & verwalten<br>
+                                    • Videos & Audios hochladen<br>
+                                    • Fortschritte tracken
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            showCustomerPortal() {
+                const program = PROGRAMS[this.currentUser.program];
+                
+                document.getElementById('app').innerHTML = `
+                    <div style="min-height: 100vh; display: flex;">
+                        <!-- Sidebar -->
+                        <div style="width: 280px; background: white; border-right: 2px solid #E8DED2; display: flex; flex-direction: column;">
+                            <div style="padding: 2rem; border-bottom: 2px solid #E8DED2;">
+                                <h1 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.5rem; margin-bottom: 0.5rem; color: #2D2D2D;">
+                                    Kundenportal
+                                </h1>
+                                <p style="font-size: 0.9rem; color: #4A4A4A; margin-bottom: 0.5rem;">
+                                    ${this.currentUser.name}
+                                </p>
+                                <p style="font-size: 0.75rem; color: #B89968; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;">
+                                    ${program.name}
+                                </p>
+                            </div>
+                            
+                            <nav style="flex: 1; padding: 1.5rem;">
+                                <button onclick="app.showTab('dashboard')" class="nav-btn" data-tab="dashboard" style="width: 100%; display: flex; align-items: center; gap: 1rem; padding: 1rem; margin-bottom: 0.5rem; border: none; border-radius: 8px; background: #E8DED2; color: #2D2D2D; cursor: pointer; font-size: 1rem; text-align: left;">
+                                    🏠 Dashboard
+                                </button>
+                                <button onclick="app.showTab('progress')" class="nav-btn" data-tab="progress" style="width: 100%; display: flex; align-items: center; gap: 1rem; padding: 1rem; margin-bottom: 0.5rem; border: none; border-radius: 8px; background: transparent; color: #4A4A4A; cursor: pointer; font-size: 1rem; text-align: left;">
+                                    ✓ Mein Fortschritt
+                                </button>
+                            </nav>
+                            
+                            <div style="padding: 1.5rem; border-top: 2px solid #E8DED2;">
+                                <button onclick="app.logout()" style="width: 100%; display: flex; align-items: center; gap: 1rem; padding: 1rem; border: none; border-radius: 8px; background: transparent; color: #4A4A4A; cursor: pointer; font-size: 1rem;">
+                                    🚪 Logout
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Main Content -->
+                        <div id="mainContent" style="flex: 1; padding: 3rem; overflow-y: auto;">
+                            <!-- Content loaded via showTab() -->
+                        </div>
+                    </div>
+                `;
+
+                this.showTab('dashboard');
+            }
+
+            showTab(tab) {
+                // Update nav buttons
+                document.querySelectorAll('.nav-btn').forEach(btn => {
+                    if (btn.dataset.tab === tab) {
+                        btn.style.background = '#E8DED2';
+                        btn.style.color = '#2D2D2D';
+                    } else {
+                        btn.style.background = 'transparent';
+                        btn.style.color = '#4A4A4A';
+                    }
+                });
+
+                const content = document.getElementById('mainContent');
+                const program = PROGRAMS[this.currentUser.program];
+
+                if (tab === 'dashboard') {
+                    content.innerHTML = `
+                        <h2 style="font-family: 'Playfair Display', Georgia, serif; font-size: 2.5rem; margin-bottom: 2rem; color: #2D2D2D;">
+                            Hey ${this.currentUser.name.split(' ')[0]}! 👋
+                        </h2>
+                        
+                        <div style="background: linear-gradient(135deg, #2D2D2D 0%, #4A4A4A 100%); border-radius: 8px; padding: 2.5rem; color: white; margin-bottom: 2rem;">
+                            <h3 style="font-family: 'Playfair Display', Georgia, serif; font-size: 2rem; margin-bottom: 0.5rem;">
+                                Dein Fortschritt
+                            </h3>
+                            <p style="color: #E8DED2; margin-bottom: 2rem;">
+                                ${program.name} • ${program.duration}
+                            </p>
+                            <p style="font-size: 1.5rem; font-weight: 600;">
+                                Willkommen in deinem Portal!
+                            </p>
+                        </div>
+                        
+                        <div style="background: white; border: 2px solid #E8DED2; border-radius: 8px; padding: 2rem;">
+                            <h3 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.75rem; margin-bottom: 1rem; color: #2D2D2D;">
+                                Deine Module:
+                            </h3>
+                            ${program.modules.map(module => `
+                                <div style="padding: 1rem; margin-bottom: 0.75rem; background: #FAF9F6; border-radius: 8px; border-left: 4px solid #B89968;">
+                                    <strong>${module.title}</strong>
+                                </div>
+                            `).join('')}
+                        </div>
+                    `;
+                } else if (tab === 'progress') {
+                    this.loadProgressTab(content, program);
+                }
+            }
+
+            async loadProgressTab(content, program) {
+                content.innerHTML = '<div class="loading"><div class="spinner"></div>Lade Fortschritt...</div>';
+
+                // Load progress from Supabase
+                const { data: progressData } = await supabase
+                    .from('progress')
+                    .select('*')
+                    .eq('customer_id', this.currentUser.id);
+
+                const progressMap = {};
+                if (progressData) {
+                    progressData.forEach(p => {
+                        progressMap[`${p.module_id}_${p.task_index}`] = p.completed;
+                    });
+                }
+
+                content.innerHTML = `
+                    <h2 style="font-family: 'Playfair Display', Georgia, serif; font-size: 2.5rem; margin-bottom: 0.5rem; color: #2D2D2D;">
+                        Dein Fortschritt
+                    </h2>
+                    <p style="color: #4A4A4A; margin-bottom: 2rem;">
+                        Hak ab was du geschafft hast.
+                    </p>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                        ${program.modules.map(module => {
+                            const completedTasks = module.tasks.filter((_, idx) => 
+                                progressMap[`${module.id}_${idx}`]
+                            ).length;
+                            const moduleProgress = Math.round((completedTasks / module.tasks.length) * 100);
+
+                            return `
+                                <div style="background: white; border: 2px solid #E8DED2; border-radius: 8px; padding: 2rem;">
+                                    <div style="margin-bottom: 1.5rem;">
+                                        <h3 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.5rem; margin-bottom: 1rem; color: #2D2D2D;">
+                                            ${module.title}
+                                        </h3>
+                                        <div style="display: flex; align-items: center; gap: 1rem;">
+                                            <div style="flex: 1; height: 8px; background: #E8DED2; border-radius: 4px; overflow: hidden;">
+                                                <div style="height: 100%; background: linear-gradient(90deg, #B89968 0%, #D4C5B0 100%); width: ${moduleProgress}%; transition: width 0.5s ease;"></div>
+                                            </div>
+                                            <span style="font-size: 0.9rem; font-weight: 600; color: #4A4A4A; min-width: 45px;">
+                                                ${moduleProgress}%
+                                            </span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                                        ${module.tasks.map((task, idx) => {
+                                            const isCompleted = progressMap[`${module.id}_${idx}`] || false;
+                                            return `
+                                                <label style="display: flex; align-items: flex-start; gap: 1rem; padding: 1rem; border-radius: 8px; cursor: pointer;" onmouseenter="this.style.background='#FAF9F6'" onmouseleave="this.style.background='transparent'">
+                                                    <input type="checkbox" ${isCompleted ? 'checked' : ''} 
+                                                           onchange="app.toggleTask(${module.id}, ${idx}, this.checked)"
+                                                           style="margin-top: 0.25rem; width: 20px; height: 20px; cursor: pointer; accent-color: #B89968;" />
+                                                    <span style="flex: 1; color: ${isCompleted ? '#4A4A4A' : '#2D2D2D'}; text-decoration: ${isCompleted ? 'line-through' : 'none'}; opacity: ${isCompleted ? 0.6 : 1};">
+                                                        ${task}
+                                                    </span>
+                                                </label>
+                                            `;
+                                        }).join('')}
+                                    </div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                `;
+            }
+
+            async toggleTask(moduleId, taskIndex, completed) {
+                const { error } = await supabase
+                    .from('progress')
+                    .upsert({
+                        customer_id: this.currentUser.id,
+                        module_id: moduleId,
+                        task_index: taskIndex,
+                        completed: completed,
+                        completed_at: completed ? new Date().toISOString() : null
+                    }, {
+                        onConflict: 'customer_id,module_id,task_index'
+                    });
+
+                if (error) {
+                    console.error('Error saving progress:', error);
+                    alert('Fehler beim Speichern. Bitte nochmal versuchen.');
+                }
+            }
+
+            async logout() {
+                await supabase.auth.signOut();
+                location.reload();
+            }
+        }
+
+        // Initialize app
+        let app;
+        
+        // Listen for auth state changes
+        supabase.auth.onAuthStateChange((event, session) => {
+            if (event === 'SIGNED_IN') {
+                location.reload();
+            }
+        });
+
+        // Start app when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                app = new KundenportalApp();
+            });
+        } else {
+            app = new KundenportalApp();
+        }
+    </script>
+</body>
+</html>

@@ -436,35 +436,9 @@
                 const successDiv = document.getElementById('successMessage');
                 
                 button.disabled = true;
-                button.textContent = 'Prüfe...';
+                button.textContent = 'Sende Email...';
                 errorDiv.classList.add('hidden');
                 successDiv.classList.add('hidden');
-
-                // Check if email exists in admin_users or customers
-                const { data: adminCheck } = await supabase
-                    .from('admin_users')
-                    .select('email')
-                    .eq('email', email)
-                    .single();
-
-                const { data: customerCheck } = await supabase
-                    .from('customers')
-                    .select('email')
-                    .eq('email', email)
-                    .single();
-
-                if (!adminCheck && !customerCheck) {
-                    button.disabled = false;
-                    button.textContent = 'Magic Link senden';
-                    errorDiv.innerHTML = `
-                        <strong>Email nicht gefunden!</strong><br>
-                        Diese Email ist nicht registriert. Bitte kontaktiere den Support oder prüfe deine Email-Adresse.
-                    `;
-                    errorDiv.classList.remove('hidden');
-                    return;
-                }
-
-                button.textContent = 'Sende Email...';
 
                 const { error } = await supabase.auth.signInWithOtp({
                     email: email,
@@ -482,7 +456,8 @@
                 } else {
                     successDiv.innerHTML = `
                         <strong>Email versendet! 📧</strong><br>
-                        Check dein Postfach (auch Spam). Klick auf den Link in der Email.
+                        Check dein Postfach (auch Spam). Klick auf den Link in der Email.<br><br>
+                        <small style="opacity: 0.8;">Hinweis: Falls deine Email nicht registriert ist, erhältst du eine Fehlermeldung nach dem Klick auf den Link.</small>
                     `;
                     successDiv.classList.remove('hidden');
                     document.getElementById('emailInput').value = '';

@@ -5,8 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kundenportal | Carina Anna Prav</title>
     
-    <!-- Supabase Client -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Preload Supabase for faster loading -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    
+    <!-- Supabase Client - Version 2.39.0 (smaller) -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.0/dist/umd/supabase.min.js" defer></script>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -144,14 +148,13 @@
         // CONFIG - WICHTIG: HIER DEINE WERTE EINTRAGEN!
         // ============================================
         const SUPABASE_URL = 'https://wwxlngtppoueblciokfk.supabase.co';
-        const SUPABASE_ANON_KEY = 'dein-anon-key-hiereyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind3eGxuZ3RwcG91ZWJsY2lva2ZrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5ODUwMDMsImV4cCI6MjA4NDU2MTAwM30.nmpL-G4xQrwINE4G1NPANxXlMMs6DgYCbkArJgtVJQ0';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind3eGxuZ3RwcG91ZWJsY2lva2ZrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5ODUwMDMsImV4cCI6MjA4NDU2MTAwM30.nmpL-G4xQrwINE4G1NPANxXlMMs6DgYCbkArJgtVJQ0';
         
         // ⚠️ ÄNDERE DIE WERTE OBEN ⚠️
         // Findest du in Supabase unter: Settings → API
         
-        // Supabase Client initialisieren
-        const { createClient } = window.supabase;
-        const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        // Supabase Client wird nach dem Laden des SDK initialisiert
+        let supabase;
         
         // ============================================
         // PROGRAM DATA
@@ -564,20 +567,34 @@
         // Initialize app
         let app;
         
-        // Listen for auth state changes
-        supabase.auth.onAuthStateChange((event, session) => {
-            if (event === 'SIGNED_IN') {
-                location.reload();
+        // Wait for Supabase SDK to load
+        function initializeApp() {
+            if (typeof window.supabase === 'undefined') {
+                // SDK not loaded yet, wait a bit
+                setTimeout(initializeApp, 100);
+                return;
             }
-        });
-
-        // Start app when DOM is ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => {
-                app = new KundenportalApp();
+            
+            // Initialize Supabase client
+            const { createClient } = window.supabase;
+            supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            
+            // Listen for auth state changes
+            supabase.auth.onAuthStateChange((event, session) => {
+                if (event === 'SIGNED_IN') {
+                    location.reload();
+                }
             });
-        } else {
+
+            // Start app
             app = new KundenportalApp();
+        }
+
+        // Start when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeApp);
+        } else {
+            initializeApp();
         }
     </script>
 </body>

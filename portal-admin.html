@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Kundenportal</title>
+    
+    <!-- Preload -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.0/dist/umd/supabase.min.js" defer></script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --cream: #FAF9F6;
+            --beige: #E8DED2;
+            --warm-beige: #D4C5B0;
+            --charcoal: #2D2D2D;
+            --dark-gray: #4A4A4A;
+            --light-gray: #F5F5F5;
+            --accent: #B89968;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: var(--charcoal);
+            background: var(--cream);
+            line-height: 1.7;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 400;
+            line-height: 1.2;
+        }
+        
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+        }
+        
+        .spinner {
+            border: 3px solid var(--beige);
+            border-top: 3px solid var(--accent);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin-right: 1rem;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            background: var(--charcoal);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .btn:hover {
+            background: var(--dark-gray);
+            transform: translateY(-2px);
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .btn-accent {
+            background: var(--accent);
+        }
+        
+        .btn-accent:hover {
+            background: var(--warm-beige);
+        }
+
+        .btn-small {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--beige);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--charcoal);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 2rem;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--dark-gray);
+            padding: 0;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .alert-success {
+            background: #E8F5E9;
+            border: 1px solid #4CAF50;
+            color: var(--charcoal);
+        }
+
+        .alert-error {
+            background: #FEE;
+            border: 1px solid #FCC;
+            color: #C33;
+        }
+
+        .card {
+            background: white;
+            border: 2px solid var(--beige);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--beige);
+            padding-bottom: 1rem;
+        }
+
+        .tab-btn {
+            padding: 0.75rem 1.5rem;
+            background: transparent;
+            border: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--dark-gray);
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        .grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.35rem 0.75rem;
+            background: var(--charcoal);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-radius: 4px;
+        }
+
+        .badge-accent {
+            background: var(--accent);
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: var(--beige);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent) 0%, var(--warm-beige) 100%);
+            transition: width 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="loading">
+            <div class="spinner"></div>
+            Lädt Admin-Bereich...
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // CONFIG
+        // ============================================
+        const SUPABASE_URL = 'https://wwxlngtppoueblciokfk.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind3eGxuZ3RwcG91ZWJsY2lva2ZrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5ODUwMDMsImV4cCI6MjA4NDU2MTAwM30.nmpL-G4xQrwINE4G1NPANxXlMMs6DgYCbkArJgtVJQ0';
+        
+        let supabase;
+
+        // ============================================
+        // PROGRAMS DATA
+        // ============================================
+        const PROGRAMS = {
+          foundation: {
+            name: "Foundation Intensive",
+            duration: "6 Wochen",
+            modules: [
+              { id: 1, title: "Woche 1-2: Positionierung" },
+              { id: 2, title: "Woche 3-4: Offer Design" },
+              { id: 3, title: "Woche 5: Sales Skills" },
+              { id: 4, title: "Woche 6: Launch-Strategie" }
+            ]
+          },
+          system: {
+            name: "System-Setup",
+            duration: "6-8 Wochen",
+            modules: [
+              { id: 1, title: "Woche 1-2: Website Build" },
+              { id: 2, title: "Woche 3-4: Pinterest Setup" },
+              { id: 3, title: "Woche 5-6: Automatisierung" },
+              { id: 4, title: "Woche 7-8: Training & Go-Live" }
+            ]
+          },
+          vip: {
+            name: "VIP Komplett",
+            duration: "12 Wochen",
+            modules: [
+              { id: 1, title: "Woche 1-4: Foundation + Website parallel" },
+              { id: 2, title: "Woche 5-8: Sales + Pinterest + Automation" },
+              { id: 3, title: "Woche 9-10: Launch Vorbereitung" },
+              { id: 4, title: "Woche 11-12: Go-Live + Optimization" }
+            ]
+          }
+        };
+
+        // ============================================
+        // ADMIN APP
+        // ============================================
+        class AdminApp {
+            constructor() {
+                this.customers = [];
+                this.media = [];
+                this.currentTab = 'customers';
+                this.init();
+            }
+
+            async init() {
+                const { data: { session } } = await supabase.auth.getSession();
+                
+                if (!session) {
+                    window.location.href = 'portal.html';
+                    return;
+                }
+
+                // Check if admin
+                const { data: adminData } = await supabase
+                    .from('admin_users')
+                    .select('*')
+                    .eq('email', session.user.email)
+                    .single();
+
+                if (!adminData) {
+                    alert('Kein Admin-Zugang!');
+                    await supabase.auth.signOut();
+                    window.location.href = 'portal.html';
+                    return;
+                }
+
+                await this.loadData();
+                this.render();
+            }
+
+            async loadData() {
+                // Load customers
+                const { data: customersData } = await supabase
+                    .from('customers')
+                    .select('*')
+                    .order('created_at', { ascending: false });
+                
+                this.customers = customersData || [];
+
+                // Load media
+                const { data: mediaData } = await supabase
+                    .from('media')
+                    .select('*')
+                    .order('created_at', { ascending: false });
+                
+                this.media = mediaData || [];
+            }
+
+            async getCustomerProgress(customerId) {
+                const { data } = await supabase
+                    .from('progress')
+                    .select('*')
+                    .eq('customer_id', customerId);
+
+                if (!data) return 0;
+
+                const customer = this.customers.find(c => c.id === customerId);
+                if (!customer) return 0;
+
+                const program = PROGRAMS[customer.program];
+                let totalTasks = 0;
+                program.modules.forEach(m => totalTasks += 3); // Simplified
+
+                const completedTasks = data.filter(p => p.completed).length;
+                return Math.round((completedTasks / totalTasks) * 100);
+            }
+
+            render() {
+                const app = document.getElementById('app');
+                
+                app.innerHTML = `
+                    <div style="min-height: 100vh;">
+                        <!-- Header -->
+                        <div style="background: white; border-bottom: 2px solid var(--beige); padding: 1.5rem 2rem;">
+                            <div style="max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+                                <div>
+                                    <h1 style="font-family: 'Playfair Display', Georgia, serif; font-size: 2rem; color: var(--charcoal);">
+                                        Admin Dashboard
+                                    </h1>
+                                    <p style="color: var(--dark-gray); font-size: 0.9rem;">
+                                        Kundenportal Verwaltung
+                                    </p>
+                                </div>
+                                <button class="btn btn-small" onclick="admin.logout()">Logout</button>
+                            </div>
+                        </div>
+
+                        <!-- Main Content -->
+                        <div style="max-width: 1400px; margin: 0 auto; padding: 2rem;">
+                            <!-- Tabs -->
+                            <div class="tab-buttons">
+                                <button class="tab-btn ${this.currentTab === 'customers' ? 'active' : ''}" 
+                                        onclick="admin.switchTab('customers')">
+                                    👥 Kunden (${this.customers.length})
+                                </button>
+                                <button class="tab-btn ${this.currentTab === 'media' ? 'active' : ''}" 
+                                        onclick="admin.switchTab('media')">
+                                    🎬 Media-Bibliothek (${this.media.length})
+                                </button>
+                            </div>
+
+                            <!-- Content -->
+                            <div id="tabContent"></div>
+                        </div>
+                    </div>
+                `;
+
+                this.renderTab();
+            }
+
+            async renderTab() {
+                const content = document.getElementById('tabContent');
+
+                if (this.currentTab === 'customers') {
+                    await this.renderCustomersTab(content);
+                } else if (this.currentTab === 'media') {
+                    this.renderMediaTab(content);
+                }
+            }
+
+            async renderCustomersTab(content) {
+                content.innerHTML = '<div class="loading"><div class="spinner"></div>Lädt Kunden...</div>';
+
+                const customersHTML = await Promise.all(this.customers.map(async customer => {
+                    const progress = await this.getCustomerProgress(customer.id);
+                    const program = PROGRAMS[customer.program];
+
+                    return `
+                        <div class="card">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+                                <div style="flex: 1;">
+                                    <h3 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.5rem; margin-bottom: 0.5rem;">
+                                        ${customer.name}
+                                    </h3>
+                                    <p style="color: var(--dark-gray); font-size: 0.9rem;">${customer.email}</p>
+                                </div>
+                                <span class="badge ${customer.active ? 'badge-accent' : ''}" style="${!customer.active ? 'background: var(--dark-gray);' : ''}">
+                                    ${customer.active ? 'AKTIV' : 'INAKTIV'}
+                                </span>
+                            </div>
+
+                            <div style="padding: 0.75rem; background: var(--charcoal); color: white; border-radius: 6px; margin-bottom: 1rem; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">
+                                ${program.name}
+                            </div>
+
+                            <div style="margin-bottom: 1rem;">
+                                <div style="display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 0.5rem;">
+                                    <span style="color: var(--dark-gray);">Fortschritt</span>
+                                    <span style="font-weight: 600;">${progress}%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: ${progress}%"></div>
+                                </div>
+                            </div>
+
+                            <div style="display: flex; gap: 0.5rem; padding-top: 1rem; border-top: 1px solid var(--beige);">
+                                <button class="btn btn-small" onclick="admin.sendMagicLink('${customer.email}')" style="background: var(--accent);">
+                                    📧 Magic Link
+                                </button>
+                                <button class="btn btn-small" onclick="admin.editCustomer('${customer.id}')" style="background: transparent; color: var(--charcoal); border: 2px solid var(--beige);">
+                                    ✏️ Bearbeiten
+                                </button>
+                                <button class="btn btn-small" onclick="admin.deleteCustomer('${customer.id}', '${customer.name}')" style="background: #FEE; color: #C33;">
+                                    🗑️
+                                </button>
+                            </div>
+
+                            <div style="margin-top: 0.75rem; font-size: 0.8rem; color: var(--dark-gray);">
+                                Angelegt: ${new Date(customer.created_at).toLocaleDateString('de-DE')}
+                            </div>
+                        </div>
+                    `;
+                }));
+
+                content.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                        <h2 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.75rem; color: var(--charcoal);">
+                            Kunden-Übersicht
+                        </h2>
+                        <button class="btn btn-accent" onclick="admin.showNewCustomerModal()">
+                            ➕ Neuer Kunde
+                        </button>
+                    </div>
+
+                    ${this.customers.length === 0 ? `
+                        <div class="card" style="text-align: center; padding: 3rem;">
+                            <h3 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.5rem; margin-bottom: 1rem;">
+                                Noch keine Kunden
+                            </h3>
+                            <p style="color: var(--dark-gray); margin-bottom: 2rem;">
+                                Leg deinen ersten Kunden an!
+                            </p>
+                            <button class="btn btn-accent" onclick="admin.showNewCustomerModal()">
+                                ➕ Ersten Kunden anlegen
+                            </button>
+                        </div>
+                    ` : `
+                        <div class="grid grid-2">
+                            ${customersHTML.join('')}
+                        </div>
+                    `}
+                `;
+            }
+
+            renderMediaTab(content) {
+                const mediaByProgram = {
+                    foundation: {},
+                    system: {},
+                    vip: {}
+                };
+
+                this.media.forEach(m => {
+                    if (!mediaByProgram[m.program][m.module_id]) {
+                        mediaByProgram[m.program][m.module_id] = [];
+                    }
+                    mediaByProgram[m.program][m.module_id].push(m);
+                });
+
+                content.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                        <h2 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.75rem; color: var(--charcoal);">
+                            Media-Bibliothek
+                        </h2>
+                        <button class="btn btn-accent" onclick="admin.showNewMediaModal()">
+                            ➕ Neues Video/Audio
+                        </button>
+                    </div>
+
+                    ${Object.keys(PROGRAMS).map(programKey => {
+                        const program = PROGRAMS[programKey];
+                        return `
+                            <div style="margin-bottom: 3rem;">
+                                <h3 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--charcoal);">
+                                    ${program.name}
+                                </h3>
+
+                                ${program.modules.map(module => {
+                                    const moduleMedia = mediaByProgram[programKey][module.id] || [];
+                                    return `
+                                        <div class="card" style="margin-bottom: 1rem;">
+                                            <h4 style="font-size: 1.1rem; margin-bottom: 1rem; color: var(--charcoal); font-weight: 600;">
+                                                ${module.title}
+                                            </h4>
+
+                                            ${moduleMedia.length === 0 ? `
+                                                <p style="color: var(--dark-gray); font-size: 0.9rem; font-style: italic;">
+                                                    Noch keine Medien hinzugefügt
+                                                </p>
+                                            ` : `
+                                                <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                                                    ${moduleMedia.map(media => `
+                                                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: var(--cream); border-radius: 8px;">
+                                                            <div style="flex: 1;">
+                                                                <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.25rem;">
+                                                                    <span style="font-size: 1.2rem;">${media.type === 'vimeo' || media.type === 'youtube' ? '🎬' : '🎵'}</span>
+                                                                    <strong>${media.title}</strong>
+                                                                    <span class="badge" style="font-size: 0.65rem;">${media.type.toUpperCase()}</span>
+                                                                </div>
+                                                                ${media.description ? `
+                                                                    <p style="font-size: 0.85rem; color: var(--dark-gray); margin: 0; padding-left: 2rem;">
+                                                                        ${media.description}
+                                                                    </p>
+                                                                ` : ''}
+                                                            </div>
+                                                            <button class="btn btn-small" onclick="admin.deleteMedia('${media.id}', '${media.title}')" style="background: #FEE; color: #C33;">
+                                                                🗑️
+                                                            </button>
+                                                        </div>
+                                                    `).join('')}
+                                                </div>
+                                            `}
+                                        </div>
+                                    `;
+                                }).join('')}
+                            </div>
+                        `;
+                    }).join('')}
+                `;
+            }
+
+            switchTab(tab) {
+                this.currentTab = tab;
+                this.render();
+            }
+
+            showNewCustomerModal() {
+                const modal = document.createElement('div');
+                modal.className = 'modal';
+                modal.innerHTML = `
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.75rem; color: var(--charcoal);">
+                                Neuer Kunde
+                            </h2>
+                            <button class="close-btn" onclick="this.closest('.modal').remove()">×</button>
+                        </div>
+
+                        <div id="modalAlert"></div>
+
+                        <form id="newCustomerForm" onsubmit="return false;">
+                            <div class="form-group">
+                                <label>Name *</label>
+                                <input type="text" id="customerName" required placeholder="Max Mustermann" />
+                            </div>
+
+                            <div class="form-group">
+                                <label>Email *</label>
+                                <input type="email" id="customerEmail" required placeholder="kunde@example.com" />
+                            </div>
+
+                            <div class="form-group">
+                                <label>Programm *</label>
+                                <select id="customerProgram" required>
+                                    <option value="foundation">Foundation Intensive</option>
+                                    <option value="system">System-Setup</option>
+                                    <option value="vip">VIP Komplett</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="btn btn-accent" style="width: 100%;" onclick="admin.createCustomer()">
+                                Kunde anlegen & Magic Link senden
+                            </button>
+                        </form>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+            }
+
+            async createCustomer() {
+                const name = document.getElementById('customerName').value;
+                const email = document.getElementById('customerEmail').value;
+                const program = document.getElementById('customerProgram').value;
+                const alertDiv = document.getElementById('modalAlert');
+                const submitBtn = event.target;
+
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Erstelle...';
+
+                try {
+                    // Insert customer
+                    const { data, error } = await supabase
+                        .from('customers')
+                        .insert({
+                            email,
+                            name,
+                            program,
+                            active: true
+                        })
+                        .select()
+                        .single();
+
+                    if (error) throw error;
+
+                    // Send magic link
+                    const { error: inviteError } = await supabase.auth.signInWithOtp({
+                        email: email,
+                        options: {
+                            emailRedirectTo: window.location.origin + '/portal.html'
+                        }
+                    });
+
+                    if (inviteError) throw inviteError;
+
+                    alertDiv.innerHTML = `
+                        <div class="alert alert-success">
+                            <strong>✅ Kunde angelegt!</strong><br>
+                            Magic Link wurde an ${email} versendet.
+                        </div>
+                    `;
+
+                    setTimeout(async () => {
+                        document.querySelector('.modal').remove();
+                        await this.loadData();
+                        this.render();
+                    }, 2000);
+
+                } catch (error) {
+                    alertDiv.innerHTML = `
+                        <div class="alert alert-error">
+                            <strong>Fehler:</strong> ${error.message}
+                        </div>
+                    `;
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Kunde anlegen & Magic Link senden';
+                }
+            }
+
+            async sendMagicLink(email) {
+                if (!confirm(`Magic Link an ${email} senden?`)) return;
+
+                try {
+                    const { error } = await supabase.auth.signInWithOtp({
+                        email: email,
+                        options: {
+                            emailRedirectTo: window.location.origin + '/portal.html'
+                        }
+                    });
+
+                    if (error) throw error;
+
+                    alert(`✅ Magic Link an ${email} versendet!`);
+                } catch (error) {
+                    alert('❌ Fehler: ' + error.message);
+                }
+            }
+
+            async deleteCustomer(id, name) {
+                if (!confirm(`Kunde "${name}" wirklich löschen?\n\nDies löscht auch alle Fortschritte!`)) return;
+
+                try {
+                    const { error } = await supabase
+                        .from('customers')
+                        .delete()
+                        .eq('id', id);
+
+                    if (error) throw error;
+
+                    alert('✅ Kunde gelöscht');
+                    await this.loadData();
+                    this.render();
+                } catch (error) {
+                    alert('❌ Fehler: ' + error.message);
+                }
+            }
+
+            showNewMediaModal() {
+                const modal = document.createElement('div');
+                modal.className = 'modal';
+                modal.innerHTML = `
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.75rem; color: var(--charcoal);">
+                                Neues Video/Audio
+                            </h2>
+                            <button class="close-btn" onclick="this.closest('.modal').remove()">×</button>
+                        </div>
+
+                        <div id="modalAlert"></div>
+
+                        <form id="newMediaForm" onsubmit="return false;">
+                            <div class="form-group">
+                                <label>Programm *</label>
+                                <select id="mediaProgram" required onchange="admin.updateModuleSelect()">
+                                    <option value="foundation">Foundation Intensive</option>
+                                    <option value="system">System-Setup</option>
+                                    <option value="vip">VIP Komplett</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Modul *</label>
+                                <select id="mediaModule" required>
+                                    ${PROGRAMS.foundation.modules.map(m => `
+                                        <option value="${m.id}">${m.title}</option>
+                                    `).join('')}
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Titel *</label>
+                                <input type="text" id="mediaTitle" required placeholder="z.B. Call Aufnahme Woche 1" />
+                            </div>
+
+                            <div class="form-group">
+                                <label>Typ *</label>
+                                <select id="mediaType" required>
+                                    <option value="vimeo">Vimeo Video</option>
+                                    <option value="youtube">YouTube Video</option>
+                                    <option value="audio">Audio (MP3 URL)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>URL *</label>
+                                <input type="url" id="mediaUrl" required placeholder="https://vimeo.com/123456789" />
+                                <p style="font-size: 0.8rem; color: var(--dark-gray); margin-top: 0.5rem;">
+                                    Komplette URL zum Video/Audio
+                                </p>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Beschreibung (optional)</label>
+                                <textarea id="mediaDescription" rows="3" placeholder="Kurze Beschreibung..."></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-accent" style="width: 100%;" onclick="admin.createMedia()">
+                                Media hinzufügen
+                            </button>
+                        </form>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+            }
+
+            updateModuleSelect() {
+                const program = document.getElementById('mediaProgram').value;
+                const moduleSelect = document.getElementById('mediaModule');
+                
+                moduleSelect.innerHTML = PROGRAMS[program].modules.map(m => `
+                    <option value="${m.id}">${m.title}</option>
+                `).join('');
+            }
+
+            async createMedia() {
+                const program = document.getElementById('mediaProgram').value;
+                const module_id = parseInt(document.getElementById('mediaModule').value);
+                const title = document.getElementById('mediaTitle').value;
+                const type = document.getElementById('mediaType').value;
+                const url = document.getElementById('mediaUrl').value;
+                const description = document.getElementById('mediaDescription').value;
+                const alertDiv = document.getElementById('modalAlert');
+                const submitBtn = event.target;
+
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Speichere...';
+
+                try {
+                    const { error } = await supabase
+                        .from('media')
+                        .insert({
+                            program,
+                            module_id,
+                            title,
+                            type,
+                            url,
+                            description: description || null
+                        });
+
+                    if (error) throw error;
+
+                    alertDiv.innerHTML = `
+                        <div class="alert alert-success">
+                            <strong>✅ Media hinzugefügt!</strong>
+                        </div>
+                    `;
+
+                    setTimeout(async () => {
+                        document.querySelector('.modal').remove();
+                        await this.loadData();
+                        this.render();
+                    }, 1500);
+
+                } catch (error) {
+                    alertDiv.innerHTML = `
+                        <div class="alert alert-error">
+                            <strong>Fehler:</strong> ${error.message}
+                        </div>
+                    `;
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Media hinzufügen';
+                }
+            }
+
+            async deleteMedia(id, title) {
+                if (!confirm(`Media "${title}" wirklich löschen?`)) return;
+
+                try {
+                    const { error } = await supabase
+                        .from('media')
+                        .delete()
+                        .eq('id', id);
+
+                    if (error) throw error;
+
+                    alert('✅ Media gelöscht');
+                    await this.loadData();
+                    this.render();
+                } catch (error) {
+                    alert('❌ Fehler: ' + error.message);
+                }
+            }
+
+            editCustomer(id) {
+                alert('Edit-Feature kommt im nächsten Update! 😊\n\nFür jetzt: Lösche und leg neu an.');
+            }
+
+            async logout() {
+                await supabase.auth.signOut();
+                window.location.href = 'portal.html';
+            }
+        }
+
+        // Initialize
+        let admin;
+
+        function initializeApp() {
+            if (typeof window.supabase === 'undefined') {
+                setTimeout(initializeApp, 100);
+                return;
+            }
+
+            const { createClient } = window.supabase;
+            supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            
+            admin = new AdminApp();
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeApp);
+        } else {
+            initializeApp();
+        }
+    </script>
+</body>
+</html>

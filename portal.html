@@ -238,7 +238,6 @@
             }
 
             async init() {
-                // Set timeout to prevent endless loading
                 const timeout = setTimeout(() => {
                     document.getElementById('app').innerHTML = `
                         <div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem;">
@@ -254,21 +253,16 @@
                                     <li>Config nicht richtig eingetragen</li>
                                     <li>Deine Email ist nicht in der Datenbank</li>
                                 </ul>
-                                <button class="btn" onclick="location.reload()" style="margin-right: 1rem;">
-                                    Neu laden
-                                </button>
-                                <button class="btn" onclick="localStorage.clear(); sessionStorage.clear(); location.reload();" style="background: var(--accent);">
-                                    Cache leeren & neu laden
-                                </button>
+                                <button class="btn" onclick="location.reload()">Neu laden</button>
                             </div>
                         </div>
                     `;
-                }, 10000); // 10 seconds timeout
+                }, 10000);
 
                 try {
                     const { data: { session }, error } = await supabase.auth.getSession();
                     
-                    clearTimeout(timeout); // Clear timeout if successful
+                    clearTimeout(timeout);
                     
                     if (error) {
                         throw new Error('Supabase Fehler: ' + error.message);
@@ -295,7 +289,6 @@
                 
                 console.log('🔍 Routing user:', user.email);
                 
-                // Show loading
                 document.getElementById('app').innerHTML = `
                     <div class="loading">
                         <div class="spinner"></div>
@@ -317,7 +310,7 @@
                 }
 
                 if (adminData) {
-                    console.log('✅ Admin gefunden! Redirect zu portal-admin.html');
+                    console.log('✅ Admin gefunden! Redirect zu portal-admin-password.html');
                     document.getElementById('app').innerHTML = `
                         <div class="loading">
                             <div class="spinner"></div>
@@ -325,7 +318,7 @@
                         </div>
                     `;
                     setTimeout(() => {
-                        window.location.href = 'portal-admin.html';
+                        window.location.href = 'portal-admin-password.html';
                     }, 500);
                     return;
                 }
@@ -349,16 +342,13 @@
                     this.showCustomerPortal();
                 } else {
                     console.log('❌ Weder Admin noch Kunde gefunden für:', user.email);
-                    // User exists in auth but not in customers or admin_users
                     await supabase.auth.signOut();
                     this.showError(`
                         Dein Account wurde noch nicht aktiviert.<br><br>
                         <strong>Email:</strong> ${user.email}<br><br>
                         Diese Email ist weder als Admin noch als Kunde registriert.<br><br>
                         <strong>Was tun?</strong><br>
-                        1. Prüfe ob du die richtige Email verwendet hast<br>
-                        2. Als Admin: Trage dich in die admin_users Tabelle ein<br>
-                        3. Als Kunde: Lass dich vom Admin anlegen
+                        Bitte kontaktiere den Support.
                     `);
                 }
             }
@@ -410,17 +400,20 @@
                                     <input type="email" id="emailInput" required placeholder="deine@email.com" />
                                 </div>
 
+                                <div style="margin-bottom: 1.5rem;">
+                                    <label>Passwort</label>
+                                    <input type="password" id="passwordInput" required placeholder="••••••••" />
+                                </div>
+
                                 <div id="errorMessage" class="hidden" style="padding: 1rem; background: #FEE; border: 1px solid #FCC; border-radius: 8px; margin-bottom: 1.5rem; color: #C33; font-size: 0.9rem;"></div>
-                                
-                                <div id="successMessage" class="hidden" style="padding: 1rem; background: #E8F5E9; border: 1px solid #4CAF50; border-radius: 8px; margin-bottom: 1.5rem; color: var(--charcoal); font-size: 0.9rem;"></div>
 
                                 <button type="submit" class="btn" style="width: 100%;" id="loginButton" onclick="app.handleLogin(event)">
-                                    Magic Link senden
+                                    Login
                                 </button>
                             </form>
 
                             <p style="margin-top: 2rem; font-size: 0.85rem; color: var(--dark-gray); text-align: center;">
-                                Du kriegst eine Email mit einem Login-Link. Kein Passwort nötig.
+                                Zugangsdaten nicht erhalten? Kontaktiere den Support.
                             </p>
                         </div>
                     </div>
@@ -431,36 +424,27 @@
                 e.preventDefault();
                 
                 const email = document.getElementById('emailInput').value;
+                const password = document.getElementById('passwordInput').value;
                 const button = document.getElementById('loginButton');
                 const errorDiv = document.getElementById('errorMessage');
-                const successDiv = document.getElementById('successMessage');
                 
                 button.disabled = true;
-                button.textContent = 'Sende Email...';
+                button.textContent = 'Logging in...';
                 errorDiv.classList.add('hidden');
-                successDiv.classList.add('hidden');
 
-                const { error } = await supabase.auth.signInWithOtp({
+                const { data, error } = await supabase.auth.signInWithPassword({
                     email: email,
-                    options: {
-                        emailRedirectTo: window.location.origin + window.location.pathname
-                    }
+                    password: password
                 });
 
-                button.disabled = false;
-                button.textContent = 'Magic Link senden';
-
                 if (error) {
-                    errorDiv.textContent = 'Fehler: ' + error.message;
+                    button.disabled = false;
+                    button.textContent = 'Login';
+                    errorDiv.textContent = 'Login fehlgeschlagen: ' + error.message;
                     errorDiv.classList.remove('hidden');
                 } else {
-                    successDiv.innerHTML = `
-                        <strong>Email versendet! 📧</strong><br>
-                        Check dein Postfach (auch Spam). Klick auf den Link in der Email.<br><br>
-                        <small style="opacity: 0.8;">Hinweis: Falls deine Email nicht registriert ist, erhältst du eine Fehlermeldung nach dem Klick auf den Link.</small>
-                    `;
-                    successDiv.classList.remove('hidden');
-                    document.getElementById('emailInput').value = '';
+                    // Success - will trigger routeUser via onAuthStateChange
+                    location.reload();
                 }
             }
 
@@ -512,7 +496,6 @@
             switchTab(tab) {
                 this.currentTab = tab;
                 
-                // Update nav buttons
                 document.querySelectorAll('.nav-btn').forEach(btn => {
                     if (btn.textContent.includes('Dashboard')) {
                         btn.classList.toggle('active', tab === 'dashboard');
@@ -709,10 +692,7 @@
                     return;
                 }
 
-                // Update local state
                 this.progress[`${moduleId}_${taskIndex}`] = completed;
-                
-                // Re-render to update progress bars
                 this.switchTab(this.currentTab);
             }
 
@@ -748,7 +728,6 @@
             const { createClient } = window.supabase;
             supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
             
-            // Listen for auth state changes
             supabase.auth.onAuthStateChange((event, session) => {
                 if (event === 'SIGNED_IN') {
                     location.reload();

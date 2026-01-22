@@ -352,7 +352,7 @@
                 const { data: { session } } = await supabase.auth.getSession();
                 
                 if (!session) {
-                    window.location.href = 'portal.html';
+                    window.location.href = 'portal-password.html'; 
                     return;
                 }
 
@@ -366,7 +366,7 @@
                 if (!adminData) {
                     alert('Kein Admin-Zugang!');
                     await supabase.auth.signOut();
-                    window.location.href = 'portal.html';
+                    window.location.href = 'portal-password.html';
                     return;
                 }
 
@@ -672,64 +672,71 @@
                 document.body.appendChild(modal);
             }
 
-            async createCustomer() {
-                const name = document.getElementById('customerName').value;
-                const email = document.getElementById('customerEmail').value;
-                const program = document.getElementById('customerProgram').value;
-                const alertDiv = document.getElementById('modalAlert');
-                const submitBtn = event.target;
+        async createCustomer() {
+    const name = document.getElementById('customerName').value;
+    const email = document.getElementById('customerEmail').value;
+    const program = document.getElementById('customerProgram').value;
+    const alertDiv = document.getElementById('modalAlert');
+    const submitBtn = event.target;
 
-                submitBtn.disabled = true;
-                submitBtn.textContent = 'Erstelle...';
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Erstelle...';
 
-                try {
-                    // Insert customer
-                    const { data, error } = await supabase
-                        .from('customers')
-                        .insert({
-                            email,
-                            name,
-                            program,
-                            active: true
-                        })
-                        .select()
-                        .single();
+    // Generate random password
+    const password = 'Start' + Math.random().toString(36).substring(2, 10) + '!';
 
-                    if (error) throw error;
+    try {
+        // Call Netlify Function
+        const response = await fetch('/.netlify/functions/create-customer', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                email: email,
+                password: password,
+                name: name,
+                program: program,
+                adminEmail: (await supabase.auth.getUser()).data.user.email
+            })
+        });
 
-                    // Send magic link
-                    const { error: inviteError } = await supabase.auth.signInWithOtp({
-                        email: email,
-                        options: {
-                            emailRedirectTo: window.location.origin + '/portal.html'
-                        }
-                    });
+        const result = await response.json();
 
-                    if (inviteError) throw inviteError;
+        if (result.success) {
+            alertDiv.innerHTML = `
+                <div class="alert alert-success">
+                    <strong>✅ Kunde angelegt!</strong><br><br>
+                    <strong>Zugangsdaten zum Versenden:</strong><br>
+                    Portal: ${window.location.origin}/portal-password.html<br>
+                    Email: ${email}<br>
+                    Passwort: ${password}<br><br>
+                    <small style="opacity: 0.8;">✓ In Zwischenablage kopiert</small>
+                </div>
+            `;
 
-                    alertDiv.innerHTML = `
-                        <div class="alert alert-success">
-                            <strong>✅ Kunde angelegt!</strong><br>
-                            Magic Link wurde an ${email} versendet.
-                        </div>
-                    `;
+            // Copy to clipboard
+            const accessData = `Portal: ${window.location.origin}/portal-password.html\nEmail: ${email}\nPasswort: ${password}`;
+            navigator.clipboard.writeText(accessData);
 
-                    setTimeout(async () => {
-                        document.querySelector('.modal').remove();
-                        await this.loadData();
-                        this.render();
-                    }, 2000);
+            setTimeout(async () => {
+                document.querySelector('.modal').remove();
+                await this.loadData();
+                this.render();
+            }, 5000);
 
-                } catch (error) {
-                    alertDiv.innerHTML = `
-                        <div class="alert alert-error">
-                            <strong>Fehler:</strong> ${error.message}
-                        </div>
-                    `;
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'Kunde anlegen & Magic Link senden';
-                }
-            }
+        } else {
+            throw new Error(result.error);
+        }
+
+    } catch (error) {
+        alertDiv.innerHTML = `
+            <div class="alert alert-error">
+                <strong>Fehler:</strong> ${error.message}
+            </div>
+        `;
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Kunde anlegen';
+    }
+}
 
             async sendMagicLink(email) {
                 if (!confirm(`Magic Link an ${email} senden?`)) return;
@@ -738,7 +745,7 @@
                     const { error } = await supabase.auth.signInWithOtp({
                         email: email,
                         options: {
-                            emailRedirectTo: window.location.origin + '/portal.html'
+                            emailRedirectTo: window.location.origin + '/portal-password.html'
                         }
                     });
 
@@ -922,7 +929,7 @@
 
             async logout() {
                 await supabase.auth.signOut();
-                window.location.href = 'portal.html';
+                window.location.href = 'portal-password.html';
             }
         }
 

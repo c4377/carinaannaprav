@@ -349,31 +349,109 @@
             }
 
             async init() {
-                const { data: { session } } = await supabase.auth.getSession();
-                
-                if (!session) {
-                    window.location.href = 'portal-password.html'; 
-                    return;
-                }
+    const { data: { session } } = await supabase.auth.getSession();
+    
+    if (!session) {
+        this.showLogin();  // ← GEÄNDERT: Zeige Login statt Redirect
+        return;
+    }
 
-                // Check if admin
-                const { data: adminData } = await supabase
-                    .from('admin_users')
-                    .select('*')
-                    .eq('email', session.user.email)
-                    .single();
+    // Check if admin
+    const { data: adminData } = await supabase
+        .from('admin_users')
+        .select('*')
+        .eq('email', session.user.email)
+        .single();
 
-                if (!adminData) {
-                    alert('Kein Admin-Zugang!');
-                    await supabase.auth.signOut();
-                    window.location.href = 'portal-password.html';
-                    return;
-                }
+    if (!adminData) {
+        await supabase.auth.signOut();
+        this.showLogin();  // ← GEÄNDERT: Zeige Login statt Redirect
+        return;
+    }
 
-                await this.loadData();
-                this.render();
-            }
+    await this.loadData();
+    this.render();
+}
 
+// NEU: Login-Screen Funktion hinzufügen
+showLogin() {
+    document.getElementById('app').innerHTML = `
+        <div style="min-height: 100vh; background: linear-gradient(135deg, var(--cream) 0%, var(--beige) 100%); display: flex; align-items: center; justify-content: center; padding: 2rem;">
+            <div style="background: white; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); padding: 3rem; max-width: 450px; width: 100%;">
+                <h1 style="font-family: 'Playfair Display', Georgia, serif; font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--charcoal);">
+                    Admin Login
+                </h1>
+                <p style="color: var(--dark-gray); margin-bottom: 2rem;">Kundenportal Verwaltung</p>
+
+                <form id="adminLoginForm" onsubmit="return false;">
+                    <div style="margin-bottom: 1.5rem;">
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem;">Admin Email</label>
+                        <input type="email" id="adminEmail" required placeholder="deine@email.com" style="width: 100%; padding: 1rem; border: 2px solid var(--beige); border-radius: 8px; font-size: 1rem;" />
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem;">Passwort</label>
+                        <input type="password" id="adminPassword" required placeholder="••••••••" style="width: 100%; padding: 1rem; border: 2px solid var(--beige); border-radius: 8px; font-size: 1rem;" />
+                    </div>
+
+                    <div id="loginError" class="hidden" style="padding: 1rem; background: #FEE; border: 1px solid #FCC; border-radius: 8px; margin-bottom: 1.5rem; color: #C33; font-size: 0.9rem;"></div>
+
+                    <button type="submit" class="btn" style="width: 100%;" id="adminLoginBtn" onclick="admin.handleAdminLogin(event)">
+                        Admin Login
+                    </button>
+                </form>
+
+                <p style="margin-top: 2rem; font-size: 0.85rem; color: var(--dark-gray); text-align: center;">
+                    Nur für Administratoren
+                </p>
+            </div>
+        </div>
+    `;
+}
+
+// NEU: Login Handler hinzufügen
+async handleAdminLogin(e) {
+    e.preventDefault();
+    
+    const email = document.getElementById('adminEmail').value;
+    const password = document.getElementById('adminPassword').value;
+    const button = document.getElementById('adminLoginBtn');
+    const errorDiv = document.getElementById('loginError');
+    
+    button.disabled = true;
+    button.textContent = 'Prüfe Admin-Zugang...';
+    errorDiv.classList.add('hidden');
+
+    try {
+        // Check if email is admin
+        const { data: adminCheck } = await supabase
+            .from('admin_users')
+            .select('email')
+            .eq('email', email)
+            .single();
+
+        if (!adminCheck) {
+            throw new Error('Diese Email hat keinen Admin-Zugang');
+        }
+
+        // Sign in
+        const { data, error } = await supabase.auth.signInWithPassword({
+            email: email,
+            password: password
+        });
+
+        if (error) throw error;
+
+        // Success - reload
+        location.reload();
+
+    } catch (error) {
+        button.disabled = false;
+        button.textContent = 'Admin Login';
+        errorDiv.textContent = error.message;
+        errorDiv.classList.remove('hidden');
+    }
+}
             async loadData() {
                 // Load customers
                 const { data: customersData } = await supabase
@@ -682,6 +760,8 @@
     submitBtn.disabled = true;
     submitBtn.textContent = 'Erstelle...';
 
+    
+
     // Generate random password
     const password = 'Start' + Math.random().toString(36).substring(2, 10) + '!';
 
@@ -928,9 +1008,9 @@
             }
 
             async logout() {
-                await supabase.auth.signOut();
-                window.location.href = 'portal-password.html';
-            }
+    await supabase.auth.signOut();
+    location.reload();  // ← Reload zeigt Login-Screen
+}
         }
 
         // Initialize

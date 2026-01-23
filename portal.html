@@ -312,6 +312,12 @@
                                     Login
                                 </button>
                             </form>
+
+                            <p style="margin-top: 1.5rem; text-align: center;">
+                                <a href="#" onclick="app.openPasswordReset()" style="color: var(--accent); text-decoration: none; font-size: 0.9rem;">
+                                    Passwort vergessen?
+                                </a>
+                            </p>
                         </div>
                     </div>
                 `;
@@ -523,6 +529,13 @@
             async logout() {
                 await supabase.auth.signOut();
                 this.showLogin();
+            }
+
+            openPasswordReset() {
+                const email = document.getElementById('emailInput')?.value || '';
+                const subject = encodeURIComponent('Passwort vergessen');
+                const body = encodeURIComponent(`Hallo Carina,\n\nich habe mein Passwort vergessen.\n\nMeine Email: ${email || '[DEINE EMAIL HIER]'}\n\nLiebe Grüße`);
+                window.location.href = `mailto:socials@carinaannaprav.at?subject=${subject}&body=${body}`;
             }
         }
 

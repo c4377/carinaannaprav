@@ -686,6 +686,9 @@
                                                                 ` : ''}
                                                             </div>
                                                             <div style="display: flex; gap: 0.5rem;">
+                                                                <button class="btn btn-small" onclick="admin.previewMedia('${media.id}')" style="background: var(--accent);">
+                                                                    👁️
+                                                                </button>
                                                                 <button class="btn btn-small" onclick="admin.editMedia('${media.id}')" style="background: transparent; color: var(--charcoal); border: 2px solid var(--beige);">
                                                                     ✏️
                                                                 </button>
@@ -1270,6 +1273,64 @@
                     submitBtn.disabled = false;
                     submitBtn.textContent = 'Speichern';
                 }
+            }
+
+            previewMedia(id) {
+                const media = this.media.find(m => m.id === id);
+                if (!media) return;
+
+                let embedContent = '';
+                
+                if (media.type === 'vimeo') {
+                    // Extract Vimeo ID from URL
+                    const vimeoMatch = media.url.match(/vimeo\.com\/(\d+)/);
+                    const vimeoId = vimeoMatch ? vimeoMatch[1] : '';
+                    embedContent = vimeoId 
+                        ? `<iframe src="https://player.vimeo.com/video/${vimeoId}" width="100%" height="400" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`
+                        : `<p style="color: #C33;">Ungültige Vimeo-URL</p>`;
+                } else if (media.type === 'youtube') {
+                    // Extract YouTube ID from URL
+                    const ytMatch = media.url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+                    const ytId = ytMatch ? ytMatch[1] : '';
+                    embedContent = ytId 
+                        ? `<iframe src="https://www.youtube.com/embed/${ytId}" width="100%" height="400" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
+                        : `<p style="color: #C33;">Ungültige YouTube-URL</p>`;
+                } else if (media.type === 'audio') {
+                    embedContent = `
+                        <audio controls style="width: 100%;">
+                            <source src="${media.url}" type="audio/mpeg">
+                            Dein Browser unterstützt kein Audio.
+                        </audio>
+                    `;
+                }
+
+                const modal = document.createElement('div');
+                modal.className = 'modal';
+                modal.innerHTML = `
+                    <div class="modal-content" style="max-width: 800px;">
+                        <div class="modal-header">
+                            <h2 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.75rem; color: var(--charcoal);">
+                                ${media.title}
+                            </h2>
+                            <button class="close-btn" onclick="this.closest('.modal').remove()">×</button>
+                        </div>
+
+                        <div style="margin-bottom: 1rem;">
+                            ${embedContent}
+                        </div>
+
+                        ${media.description ? `
+                            <p style="color: var(--dark-gray); margin-top: 1rem;">
+                                ${media.description}
+                            </p>
+                        ` : ''}
+
+                        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--beige); font-size: 0.85rem; color: var(--dark-gray);">
+                            <strong>URL:</strong> <a href="${media.url}" target="_blank" style="color: var(--accent);">${media.url}</a>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(modal);
             }
 
             editCustomer(id) {

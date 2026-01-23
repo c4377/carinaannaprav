@@ -5,10 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kundenportal | Carina Anna Prav</title>
     
-    <!-- Preload -->
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
-    
     <!-- Supabase Client -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.0/dist/umd/supabase.min.js" defer></script>
     
@@ -18,11 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
     
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
         :root {
             --cream: #FAF9F6;
@@ -35,7 +27,7 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             color: var(--charcoal);
             background: var(--cream);
             line-height: 1.7;
@@ -44,13 +36,13 @@
         h1, h2, h3, h4 {
             font-family: 'Playfair Display', Georgia, serif;
             font-weight: 400;
-            line-height: 1.2;
         }
 
         .hidden { display: none !important; }
         
         .loading {
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
@@ -65,7 +57,7 @@
             width: 40px;
             height: 40px;
             animation: spin 1s linear infinite;
-            margin-right: 1rem;
+            margin-bottom: 1rem;
         }
         
         @keyframes spin {
@@ -98,17 +90,16 @@
             transform: none;
         }
 
-        input, select, textarea {
+        input {
             width: 100%;
             padding: 1rem;
             border: 2px solid var(--beige);
             border-radius: 8px;
             font-size: 1rem;
             font-family: inherit;
-            transition: border-color 0.3s ease;
         }
         
-        input:focus, select:focus, textarea:focus {
+        input:focus {
             outline: none;
             border-color: var(--accent);
         }
@@ -118,7 +109,6 @@
             margin-bottom: 0.5rem;
             font-weight: 600;
             font-size: 0.9rem;
-            color: var(--charcoal);
         }
 
         .card {
@@ -158,14 +148,8 @@
             transition: all 0.3s ease;
         }
 
-        .nav-btn:hover {
-            background: var(--light-gray);
-        }
-
-        .nav-btn.active {
-            background: var(--beige);
-            color: var(--charcoal);
-        }
+        .nav-btn:hover { background: var(--light-gray); }
+        .nav-btn.active { background: var(--beige); color: var(--charcoal); }
     </style>
 </head>
 <body>
@@ -177,60 +161,47 @@
     </div>
 
     <script>
-        // ============================================
-        // CONFIG
-        // ============================================
         const SUPABASE_URL = 'https://wwxlngtppoueblciokfk.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind3eGxuZ3RwcG91ZWJsY2lva2ZrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5ODUwMDMsImV4cCI6MjA4NDU2MTAwM30.nmpL-G4xQrwINE4G1NPANxXlMMs6DgYCbkArJgtVJQ0';
         
         let supabase;
 
-        // ============================================
-        // PROGRAM DATA
-        // ============================================
         const PROGRAMS = {
           foundation: {
             name: "Foundation Intensive",
             duration: "6 Wochen",
-            subtitle: "Vom Hamsterrad zum High-Ticket",
             modules: [
-              { id: 1, title: "Woche 1-2: Positionierung", tasks: ["Zielgruppen-Analyse: Wen willst du wirklich bedienen?", "Unique Angle finden: Was macht dich anders?", "Messaging Workshop: Wie sprichst du sie an?"] },
-              { id: 2, title: "Woche 3-4: Offer Design", tasks: ["High-Ticket Angebot strukturieren (1000€+)", "Transformation definieren: Was bekommt der Kunde?", "Premium-Pricing: Wie viel ist es wert?", "Packaging: Wie präsentierst du es?"] },
-              { id: 3, title: "Woche 5: Sales Skills", tasks: ["Ethisches Verkaufen: Gespräche führen ohne Manipulation", "Einwände behandeln: 'Zu teuer', 'Muss überlegen'", "Abschluss-Techniken: Wie du fragst ohne pushy zu sein"] },
-              { id: 4, title: "Woche 6: Launch-Strategie", tasks: ["Wo findest du deine ersten 3-5 High-Ticket Kunden?", "Launch-Plan erstellen: Wann machst du was?", "Content-Strategie: Was postest du, was nicht?"] }
+              { id: 1, title: "Woche 1-2: Positionierung", tasks: ["Zielgruppen-Analyse", "Unique Angle finden", "Messaging Workshop"] },
+              { id: 2, title: "Woche 3-4: Offer Design", tasks: ["High-Ticket Angebot strukturieren", "Transformation definieren", "Premium-Pricing", "Packaging"] },
+              { id: 3, title: "Woche 5: Sales Skills", tasks: ["Ethisches Verkaufen", "Einwände behandeln", "Abschluss-Techniken"] },
+              { id: 4, title: "Woche 6: Launch-Strategie", tasks: ["Erste Kunden finden", "Launch-Plan erstellen", "Content-Strategie"] }
             ]
           },
           system: {
             name: "System-Setup",
             duration: "6-8 Wochen",
-            subtitle: "Done-FOR-You Business-System",
             modules: [
-              { id: 1, title: "Woche 1-2: Website Build", tasks: ["Kickoff-Call: Deine Vision, meine Umsetzung", "Design-Konzept: Branding, Farben, Struktur", "Copy-Review: Texte die verkaufen", "Development: Custom HTML, conversion-optimiert"] },
-              { id: 2, title: "Woche 3-4: Pinterest Setup", tasks: ["Pinterest Business Account optimieren", "Pin-Templates in Canva erstellen (10-15 Designs)", "Keyword-Strategie: Was suchen deine Kunden?", "Content-Plan: 30 Tage Posting-Schedule"] },
-              { id: 3, title: "Woche 5-6: Automatisierung", tasks: ["Email-Tool Setup (ActiveCampaign)", "Welcome-Serie schreiben (5-7 Emails)", "Quiz oder Bewerbungsformular bauen", "Google Sheets Integration: Leads automatisch erfassen"] },
-              { id: 4, title: "Woche 7-8: Training & Go-Live", tasks: ["Tech-Training: Wie du alles selbst pflegst", "Testing: Funktioniert alles?", "Go-Live: System scharf schalten", "30-Tage Support nach Launch"] }
+              { id: 1, title: "Woche 1-2: Website Build", tasks: ["Kickoff-Call", "Design-Konzept", "Copy-Review", "Development"] },
+              { id: 2, title: "Woche 3-4: Pinterest Setup", tasks: ["Account optimieren", "Pin-Templates erstellen", "Keyword-Strategie", "Content-Plan"] },
+              { id: 3, title: "Woche 5-6: Automatisierung", tasks: ["Email-Tool Setup", "Welcome-Serie", "Quiz/Formular bauen", "Google Sheets Integration"] },
+              { id: 4, title: "Woche 7-8: Training & Go-Live", tasks: ["Tech-Training", "Testing", "Go-Live", "30-Tage Support"] }
             ]
           },
           vip: {
             name: "VIP Komplett",
             duration: "12 Wochen",
-            subtitle: "All-in Transformation",
             modules: [
-              { id: 1, title: "Woche 1-4: Foundation + Website parallel", tasks: ["FOUNDATION: Positionierung + Offer Design", "SYSTEM: Website-Konzept + Development", "4x 90min Calls: Strategie + Umsetzung gleichzeitig", "Telegram Priority Support"] },
-              { id: 2, title: "Woche 5-8: Sales + Pinterest + Automation", tasks: ["FOUNDATION: Sales Training + Einwände", "SYSTEM: Pinterest komplett + Email-Automation", "4x 90min Calls: Vertiefung + Testing", "Erste Kunden-Gespräche führen"] },
-              { id: 3, title: "Woche 9-10: Launch Vorbereitung", tasks: ["Content-Strategie für Launch", "Finale Tests: Funnel durchspielen", "Launch-Plan: Wann geht was live?", "2x Calls: Feinschliff + Go/No-Go"] },
-              { id: 4, title: "Woche 11-12: Go-Live + Optimization", tasks: ["System live schalten", "Erste Kunden: Du führst Gespräche, ich coache", "Performance-Tracking: Was funktioniert?", "2x Calls: Optimierung + Scaling-Strategie"] }
+              { id: 1, title: "Woche 1-4: Foundation + Website", tasks: ["Positionierung + Offer Design", "Website-Konzept + Development", "4x 90min Calls", "Telegram Support"] },
+              { id: 2, title: "Woche 5-8: Sales + Pinterest", tasks: ["Sales Training", "Pinterest + Email-Automation", "4x 90min Calls", "Erste Gespräche"] },
+              { id: 3, title: "Woche 9-10: Launch Vorbereitung", tasks: ["Content-Strategie", "Finale Tests", "Launch-Plan", "2x Calls"] },
+              { id: 4, title: "Woche 11-12: Go-Live", tasks: ["System live", "Erste Kunden", "Performance-Tracking", "2x Optimierung Calls"] }
             ]
           }
         };
 
-        // ============================================
-        // MAIN APP
-        // ============================================
         class PortalApp {
             constructor() {
                 this.currentUser = null;
-                this.session = null;
                 this.currentTab = 'dashboard';
                 this.progress = {};
                 this.mediaLibrary = {};
@@ -238,144 +209,80 @@
             }
 
             async init() {
-                const timeout = setTimeout(() => {
-                    document.getElementById('app').innerHTML = `
-                        <div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem;">
-                            <div class="card" style="max-width: 600px; text-align: center; padding: 3rem;">
-                                <h2 style="font-family: 'Playfair Display', Georgia, serif; font-size: 2rem; margin-bottom: 1rem; color: var(--charcoal);">
-                                    ⏱️ Timeout
-                                </h2>
-                                <p style="color: var(--dark-gray); margin-bottom: 1.5rem;">
-                                    Das Portal lädt zu lange. Mögliche Probleme:
-                                </p>
-                                <ul style="text-align: left; margin-bottom: 2rem; color: var(--dark-gray);">
-                                    <li>Supabase-Verbindung fehlgeschlagen</li>
-                                    <li>Config nicht richtig eingetragen</li>
-                                    <li>Deine Email ist nicht in der Datenbank</li>
-                                </ul>
-                                <button class="btn" onclick="location.reload()">Neu laden</button>
-                            </div>
-                        </div>
-                    `;
-                }, 10000);
-
                 try {
-                    const { data: { session }, error } = await supabase.auth.getSession();
-                    
-                    clearTimeout(timeout);
-                    
-                    if (error) {
-                        throw new Error('Supabase Fehler: ' + error.message);
-                    }
+                    const { data: { session } } = await supabase.auth.getSession();
                     
                     if (session) {
-                        this.session = session;
-                        await this.routeUser(session);
+                        await this.loadCustomer(session.user.email);
                     } else {
                         this.showLogin();
                     }
                 } catch (error) {
-                    clearTimeout(timeout);
-                    this.showError(`
-                        <strong>Fehler beim Laden:</strong><br>
-                        ${error.message}<br><br>
-                        <small>Prüfe deine Supabase-Config in Zeile 146!</small>
-                    `);
+                    console.error('Init error:', error);
+                    this.showLogin();
                 }
             }
 
-            async routeUser(session) {
-                const user = session.user;
-                
-                console.log('🔍 Routing user:', user.email);
+            async loadCustomer(email) {
+                console.log('🔍 Loading customer:', email);
                 
                 document.getElementById('app').innerHTML = `
                     <div class="loading">
                         <div class="spinner"></div>
-                        Lade dein Portal...<br>
-                        <small style="margin-top: 1rem; opacity: 0.7;">Email: ${user.email}</small>
+                        Lade dein Portal...
                     </div>
                 `;
-                
-                // Check if admin - if yes, log them out and show login
-                console.log('🔍 Checking admin_users...');
-                const { data: adminData, error: adminError } = await supabase
-                    .from('admin_users')
-                    .select('*')
-                    .eq('email', user.email)
-                    .single();
 
-                if (adminError && adminError.code !== 'PGRST116') {
-                    console.error('❌ Admin check error:', adminError);
-                }
+                try {
+                    const { data: customer, error } = await supabase
+                        .from('customers')
+                        .select('*')
+                        .eq('email', email)
+                        .single();
 
-                if (adminData) {
-                    // Admin ist eingeloggt - ausloggen und Login zeigen
-                    console.log('⚠️ Admin erkannt - wird ausgeloggt für Kundenportal');
-                    await supabase.auth.signOut();
-                    this.showLogin('Du warst als Admin eingeloggt. Bitte logge dich mit deinen Kunden-Zugangsdaten ein.');
-                    return;
-                }
+                    if (error || !customer) {
+                        console.log('❌ Kein Kunde gefunden');
+                        await supabase.auth.signOut();
+                        this.showLogin('Diese Email ist nicht als Kunde registriert.');
+                        return;
+                    }
 
-                // Load customer data
-                console.log('🔍 Checking customers...');
-                const { data: customerData, error: customerError } = await supabase
-                    .from('customers')
-                    .select('*')
-                    .eq('email', user.email)
-                    .single();
+                    console.log('✅ Kunde gefunden:', customer.name);
+                    this.currentUser = customer;
+                    
+                    // Load progress
+                    const { data: progressData } = await supabase
+                        .from('progress')
+                        .select('*')
+                        .eq('customer_id', customer.id);
 
-                if (customerError && customerError.code !== 'PGRST116') {
-                    console.error('❌ Customer check error:', customerError);
-                }
+                    this.progress = {};
+                    if (progressData) {
+                        progressData.forEach(p => {
+                            this.progress[`${p.module_id}_${p.task_index}`] = p.completed;
+                        });
+                    }
 
-                if (customerData) {
-                    console.log('✅ Kunde gefunden!', customerData.name);
-                    this.currentUser = customerData;
-                    await this.loadCustomerData();
-                    this.showCustomerPortal();
-                } else {
-                    console.log('❌ Kein Kunde gefunden für:', user.email);
-                    await supabase.auth.signOut();
-                    this.showError(`
-                        Dein Account wurde noch nicht aktiviert.<br><br>
-                        <strong>Email:</strong> ${user.email}<br><br>
-                        Diese Email ist nicht als Kunde registriert.<br><br>
-                        <strong>Was tun?</strong><br>
-                        Bitte kontaktiere den Support.
-                    `);
-                }
-            }
+                    // Load media
+                    const { data: mediaData } = await supabase
+                        .from('media')
+                        .select('*')
+                        .eq('program', customer.program);
 
-            async loadCustomerData() {
-                // Load progress
-                const { data: progressData } = await supabase
-                    .from('progress')
-                    .select('*')
-                    .eq('customer_id', this.currentUser.id);
+                    this.mediaLibrary = {};
+                    if (mediaData) {
+                        mediaData.forEach(m => {
+                            const key = `${m.program}_${m.module_id}`;
+                            if (!this.mediaLibrary[key]) this.mediaLibrary[key] = [];
+                            this.mediaLibrary[key].push(m);
+                        });
+                    }
 
-                this.progress = {};
-                if (progressData) {
-                    progressData.forEach(p => {
-                        this.progress[`${p.module_id}_${p.task_index}`] = p.completed;
-                    });
-                }
+                    this.showPortal();
 
-                // Load media for this program
-                const { data: mediaData } = await supabase
-                    .from('media')
-                    .select('*')
-                    .eq('program', this.currentUser.program);
-
-                this.mediaLibrary = {};
-                if (mediaData) {
-                    mediaData.forEach(m => {
-                        const key = `${m.program}_${m.module_id}`;
-                        if (!this.mediaLibrary[key]) {
-                            this.mediaLibrary[key] = [];
-                        }
-                        this.mediaLibrary[key].push(m);
-                    });
+                } catch (error) {
+                    console.error('Load error:', error);
+                    this.showLogin('Fehler beim Laden. Bitte erneut einloggen.');
                 }
             }
 
@@ -383,18 +290,12 @@
                 document.getElementById('app').innerHTML = `
                     <div style="min-height: 100vh; background: linear-gradient(135deg, var(--cream) 0%, var(--beige) 100%); display: flex; align-items: center; justify-content: center; padding: 2rem;">
                         <div style="background: white; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); padding: 3rem; max-width: 450px; width: 100%;">
-                            <h1 style="font-family: 'Playfair Display', Georgia, serif; font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--charcoal);">
-                                Kundenportal
-                            </h1>
+                            <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem;">Kundenportal</h1>
                             <p style="color: var(--dark-gray); margin-bottom: 2rem;">Carina Anna Prav</p>
 
-                            ${message ? `
-                                <div style="padding: 1rem; background: #FFF9E6; border: 1px solid #FFE066; border-radius: 8px; margin-bottom: 1.5rem; color: #856404; font-size: 0.9rem;">
-                                    ${message}
-                                </div>
-                            ` : ''}
+                            ${message ? `<div style="padding: 1rem; background: #FFF9E6; border: 1px solid #FFE066; border-radius: 8px; margin-bottom: 1.5rem; color: #856404; font-size: 0.9rem;">${message}</div>` : ''}
 
-                            <form id="loginForm" onsubmit="return false;">
+                            <form onsubmit="return false;">
                                 <div style="margin-bottom: 1.5rem;">
                                     <label>Email</label>
                                     <input type="email" id="emailInput" required placeholder="deine@email.com" />
@@ -405,24 +306,18 @@
                                     <input type="password" id="passwordInput" required placeholder="••••••••" />
                                 </div>
 
-                                <div id="errorMessage" class="hidden" style="padding: 1rem; background: #FEE; border: 1px solid #FCC; border-radius: 8px; margin-bottom: 1.5rem; color: #C33; font-size: 0.9rem;"></div>
+                                <div id="errorMessage" class="hidden" style="padding: 1rem; background: #FEE; border: 1px solid #FCC; border-radius: 8px; margin-bottom: 1.5rem; color: #C33;"></div>
 
-                                <button type="submit" class="btn" style="width: 100%;" id="loginButton" onclick="app.handleLogin(event)">
+                                <button type="submit" class="btn" style="width: 100%;" id="loginButton" onclick="app.handleLogin()">
                                     Login
                                 </button>
                             </form>
-
-                            <p style="margin-top: 2rem; font-size: 0.85rem; color: var(--dark-gray); text-align: center;">
-                                Zugangsdaten nicht erhalten? Kontaktiere den Support.
-                            </p>
                         </div>
                     </div>
                 `;
             }
 
-            async handleLogin(e) {
-                e.preventDefault();
-                
+            async handleLogin() {
                 const email = document.getElementById('emailInput').value;
                 const password = document.getElementById('passwordInput').value;
                 const button = document.getElementById('loginButton');
@@ -432,231 +327,153 @@
                 button.textContent = 'Logging in...';
                 errorDiv.classList.add('hidden');
 
-                // First check if this is a customer email (not admin)
-                const { data: customerCheck } = await supabase
-                    .from('customers')
-                    .select('email')
-                    .eq('email', email)
-                    .single();
+                try {
+                    const { error } = await supabase.auth.signInWithPassword({ email, password });
 
-                if (!customerCheck) {
+                    if (error) {
+                        throw new Error(error.message);
+                    }
+
+                    await this.loadCustomer(email);
+
+                } catch (error) {
                     button.disabled = false;
                     button.textContent = 'Login';
-                    errorDiv.textContent = 'Diese Email ist nicht als Kunde registriert.';
+                    errorDiv.textContent = error.message;
                     errorDiv.classList.remove('hidden');
-                    return;
-                }
-
-                const { data, error } = await supabase.auth.signInWithPassword({
-                    email: email,
-                    password: password
-                });
-
-                if (error) {
-                    button.disabled = false;
-                    button.textContent = 'Login';
-                    errorDiv.textContent = 'Login fehlgeschlagen: ' + error.message;
-                    errorDiv.classList.remove('hidden');
-                } else {
-                    // Success - will trigger routeUser via onAuthStateChange
-                    location.reload();
                 }
             }
 
-            showCustomerPortal() {
+            showPortal() {
                 const program = PROGRAMS[this.currentUser.program];
                 
                 document.getElementById('app').innerHTML = `
                     <div style="min-height: 100vh; display: flex;">
-                        <!-- Sidebar -->
                         <div style="width: 280px; background: white; border-right: 2px solid var(--beige); display: flex; flex-direction: column;">
                             <div style="padding: 2rem; border-bottom: 2px solid var(--beige);">
-                                <h1 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--charcoal);">
-                                    Kundenportal
-                                </h1>
-                                <p style="font-size: 0.9rem; color: var(--dark-gray); margin-bottom: 0.5rem;">
-                                    ${this.currentUser.name}
-                                </p>
-                                <p style="font-size: 0.75rem; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;">
-                                    ${program.name}
-                                </p>
+                                <h1 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Kundenportal</h1>
+                                <p style="font-size: 0.9rem; color: var(--dark-gray); margin-bottom: 0.5rem;">${this.currentUser.name}</p>
+                                <p style="font-size: 0.75rem; color: var(--accent); font-weight: 600; text-transform: uppercase;">${program.name}</p>
                             </div>
                             
                             <nav style="flex: 1; padding: 1.5rem;">
-                                <button class="nav-btn ${this.currentTab === 'dashboard' ? 'active' : ''}" onclick="app.switchTab('dashboard')">
-                                    🏠 Dashboard
-                                </button>
-                                <button class="nav-btn ${this.currentTab === 'progress' ? 'active' : ''}" onclick="app.switchTab('progress')">
-                                    ✓ Mein Fortschritt
-                                </button>
+                                <button class="nav-btn active" id="navDashboard" onclick="app.switchTab('dashboard')">🏠 Dashboard</button>
+                                <button class="nav-btn" id="navProgress" onclick="app.switchTab('progress')">✓ Mein Fortschritt</button>
                             </nav>
                             
                             <div style="padding: 1.5rem; border-top: 2px solid var(--beige);">
-                                <button class="nav-btn" onclick="app.logout()">
-                                    🚪 Logout
-                                </button>
+                                <button class="nav-btn" onclick="app.logout()">🚪 Logout</button>
                             </div>
                         </div>
                         
-                        <!-- Main Content -->
-                        <div id="mainContent" style="flex: 1; padding: 3rem; overflow-y: auto;">
-                            <!-- Content loaded via switchTab() -->
-                        </div>
+                        <div id="mainContent" style="flex: 1; padding: 3rem; overflow-y: auto;"></div>
                     </div>
                 `;
 
-                this.switchTab(this.currentTab);
+                this.switchTab('dashboard');
             }
 
             switchTab(tab) {
                 this.currentTab = tab;
                 
-                document.querySelectorAll('.nav-btn').forEach(btn => {
-                    if (btn.textContent.includes('Dashboard')) {
-                        btn.classList.toggle('active', tab === 'dashboard');
-                    } else if (btn.textContent.includes('Fortschritt')) {
-                        btn.classList.toggle('active', tab === 'progress');
-                    }
-                });
+                document.getElementById('navDashboard').classList.toggle('active', tab === 'dashboard');
+                document.getElementById('navProgress').classList.toggle('active', tab === 'progress');
 
                 const content = document.getElementById('mainContent');
                 const program = PROGRAMS[this.currentUser.program];
 
                 if (tab === 'dashboard') {
-                    this.renderDashboard(content, program);
-                } else if (tab === 'progress') {
-                    this.renderProgress(content, program);
-                }
-            }
-
-            renderDashboard(content, program) {
-                const totalProgress = this.getTotalProgress();
-
-                content.innerHTML = `
-                    <h2 style="font-family: 'Playfair Display', Georgia, serif; font-size: 2.5rem; margin-bottom: 2rem; color: var(--charcoal);">
-                        Hey ${this.currentUser.name.split(' ')[0]}! 👋
-                    </h2>
-                    
-                    <div style="background: linear-gradient(135deg, var(--charcoal) 0%, var(--dark-gray) 100%); border-radius: 8px; padding: 2.5rem; color: white; margin-bottom: 2rem;">
-                        <h3 style="font-family: 'Playfair Display', Georgia, serif; font-size: 2rem; margin-bottom: 0.5rem;">
-                            Dein Fortschritt
-                        </h3>
-                        <p style="color: var(--beige); margin-bottom: 2rem;">
-                            ${program.name} • ${program.duration}
-                        </p>
+                    const totalProgress = this.getTotalProgress();
+                    content.innerHTML = `
+                        <h2 style="font-size: 2.5rem; margin-bottom: 2rem;">Hey ${this.currentUser.name.split(' ')[0]}! 👋</h2>
                         
-                        <div style="background: rgba(255,255,255,0.2); border-radius: 999px; height: 12px; overflow: hidden; margin-bottom: 1rem;">
-                            <div style="height: 100%; background: white; width: ${totalProgress}%; transition: width 0.5s ease;"></div>
+                        <div style="background: linear-gradient(135deg, var(--charcoal) 0%, var(--dark-gray) 100%); border-radius: 8px; padding: 2.5rem; color: white; margin-bottom: 2rem;">
+                            <h3 style="font-size: 2rem; margin-bottom: 0.5rem;">Dein Fortschritt</h3>
+                            <p style="color: var(--beige); margin-bottom: 2rem;">${program.name} • ${program.duration}</p>
+                            
+                            <div style="background: rgba(255,255,255,0.2); border-radius: 999px; height: 12px; overflow: hidden; margin-bottom: 1rem;">
+                                <div style="height: 100%; background: white; width: ${totalProgress}%;"></div>
+                            </div>
+                            
+                            <p style="font-size: 2.5rem; font-weight: 600;">${totalProgress}% abgeschlossen</p>
                         </div>
                         
-                        <p style="font-size: 2.5rem; font-weight: 600;">
-                            ${totalProgress}% abgeschlossen
-                        </p>
-                    </div>
-                    
-                    <div class="card">
-                        <h3 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.75rem; margin-bottom: 1.5rem; color: var(--charcoal);">
-                            Deine Module:
-                        </h3>
-                        ${program.modules.map(module => {
-                            const moduleProgress = this.getModuleProgress(module.id);
-                            return `
-                                <div style="padding: 1rem; margin-bottom: 0.75rem; background: var(--cream); border-radius: 8px; border-left: 4px solid var(--accent);">
-                                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                                        <strong>${module.title}</strong>
-                                        <span style="font-size: 0.9rem; color: var(--dark-gray);">${moduleProgress}%</span>
+                        <div class="card">
+                            <h3 style="font-size: 1.75rem; margin-bottom: 1.5rem;">Deine Module:</h3>
+                            ${program.modules.map(module => {
+                                const moduleProgress = this.getModuleProgress(module.id);
+                                return `
+                                    <div style="padding: 1rem; margin-bottom: 0.75rem; background: var(--cream); border-radius: 8px; border-left: 4px solid var(--accent);">
+                                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                                            <strong>${module.title}</strong>
+                                            <span style="color: var(--dark-gray);">${moduleProgress}%</span>
+                                        </div>
                                     </div>
-                                </div>
-                            `;
-                        }).join('')}
-                    </div>
-                `;
-            }
+                                `;
+                            }).join('')}
+                        </div>
+                    `;
+                } else {
+                    content.innerHTML = `
+                        <h2 style="font-size: 2.5rem; margin-bottom: 0.5rem;">Dein Fortschritt</h2>
+                        <p style="color: var(--dark-gray); margin-bottom: 2rem;">Hak ab was du geschafft hast.</p>
+                        
+                        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                            ${program.modules.map(module => {
+                                const moduleProgress = this.getModuleProgress(module.id);
+                                const key = `${this.currentUser.program}_${module.id}`;
+                                const moduleMedia = this.mediaLibrary[key] || [];
 
-            renderProgress(content, program) {
-                content.innerHTML = `
-                    <h2 style="font-family: 'Playfair Display', Georgia, serif; font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--charcoal);">
-                        Dein Fortschritt
-                    </h2>
-                    <p style="color: var(--dark-gray); margin-bottom: 2rem;">
-                        Hak ab was du geschafft hast.
-                    </p>
-                    
-                    <div style="display: flex; flex-direction: column; gap: 1.5rem;">
-                        ${program.modules.map(module => {
-                            const moduleProgress = this.getModuleProgress(module.id);
-                            const key = `${this.currentUser.program}_${module.id}`;
-                            const moduleMedia = this.mediaLibrary[key] || [];
-
-                            return `
-                                <div class="card">
-                                    <div style="margin-bottom: 1.5rem;">
-                                        <h3 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.5rem; margin-bottom: 1rem; color: var(--charcoal);">
-                                            ${module.title}
-                                        </h3>
-                                        <div style="display: flex; align-items: center; gap: 1rem;">
+                                return `
+                                    <div class="card">
+                                        <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">${module.title}</h3>
+                                        
+                                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
                                             <div class="progress-bar" style="flex: 1;">
                                                 <div class="progress-fill" style="width: ${moduleProgress}%;"></div>
                                             </div>
-                                            <span style="font-size: 0.9rem; font-weight: 600; color: var(--dark-gray); min-width: 45px;">
-                                                ${moduleProgress}%
-                                            </span>
+                                            <span style="font-weight: 600; color: var(--dark-gray);">${moduleProgress}%</span>
                                         </div>
-                                    </div>
 
-                                    ${moduleMedia.length > 0 ? `
-                                        <div style="margin-bottom: 1.5rem; padding: 1.5rem; background: var(--cream); border-radius: 8px; border: 2px solid var(--beige);">
-                                            <h4 style="font-size: 1.1rem; margin-bottom: 1rem; color: var(--charcoal); display: flex; align-items: center; gap: 0.5rem;">
-                                                🎬 Videos & Audios
-                                            </h4>
-                                            <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                                        ${moduleMedia.length > 0 ? `
+                                            <div style="margin-bottom: 1.5rem; padding: 1.5rem; background: var(--cream); border-radius: 8px;">
+                                                <h4 style="margin-bottom: 1rem;">🎬 Videos & Audios</h4>
                                                 ${moduleMedia.map(media => `
-                                                    <div style="padding: 1rem; background: white; border: 2px solid var(--beige); border-radius: 8px;">
-                                                        <div style="display: flex; align-items: center; gap: 1rem;">
-                                                            <span style="font-size: 1.5rem;">${media.type === 'audio' ? '🎵' : '🎬'}</span>
-                                                            <div style="flex: 1;">
-                                                                <div style="font-weight: 600; color: var(--charcoal); margin-bottom: 0.25rem;">
-                                                                    ${media.title}
-                                                                </div>
-                                                                ${media.description ? `
-                                                                    <div style="font-size: 0.85rem; color: var(--dark-gray);">
-                                                                        ${media.description}
-                                                                    </div>
-                                                                ` : ''}
-                                                            </div>
-                                                            <a href="${media.url}" target="_blank" class="btn" style="padding: 0.5rem 1rem; font-size: 0.85rem; text-decoration: none; background: var(--accent);">
-                                                                Ansehen
-                                                            </a>
+                                                    <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem; background: white; border-radius: 8px; margin-bottom: 0.5rem;">
+                                                        <span>${media.type === 'audio' ? '🎵' : '🎬'}</span>
+                                                        <div style="flex: 1;">
+                                                            <strong>${media.title}</strong>
+                                                            ${media.description ? `<p style="font-size: 0.85rem; color: var(--dark-gray);">${media.description}</p>` : ''}
                                                         </div>
+                                                        <a href="${media.url}" target="_blank" class="btn" style="padding: 0.5rem 1rem; font-size: 0.85rem; text-decoration: none; background: var(--accent);">Ansehen</a>
                                                     </div>
                                                 `).join('')}
                                             </div>
+                                        ` : ''}
+                                        
+                                        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                                            ${module.tasks.map((task, idx) => {
+                                                const isCompleted = this.progress[`${module.id}_${idx}`] || false;
+                                                return `
+                                                    <label style="display: flex; align-items: center; gap: 1rem; padding: 1rem; border-radius: 8px; cursor: pointer;"
+                                                           onmouseenter="this.style.background='var(--cream)'"
+                                                           onmouseleave="this.style.background='transparent'">
+                                                        <input type="checkbox" ${isCompleted ? 'checked' : ''} 
+                                                               onchange="app.toggleTask(${module.id}, ${idx}, this.checked)"
+                                                               style="width: 20px; height: 20px; accent-color: var(--accent);" />
+                                                        <span style="color: ${isCompleted ? 'var(--dark-gray)' : 'var(--charcoal)'}; text-decoration: ${isCompleted ? 'line-through' : 'none'}; opacity: ${isCompleted ? 0.6 : 1};">
+                                                            ${task}
+                                                        </span>
+                                                    </label>
+                                                `;
+                                            }).join('')}
                                         </div>
-                                    ` : ''}
-                                    
-                                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                                        ${module.tasks.map((task, idx) => {
-                                            const isCompleted = this.progress[`${module.id}_${idx}`] || false;
-                                            return `
-                                                <label style="display: flex; align-items: flex-start; gap: 1rem; padding: 1rem; border-radius: 8px; cursor: pointer; transition: background 0.2s ease;"
-                                                       onmouseenter="this.style.background='var(--cream)'"
-                                                       onmouseleave="this.style.background='transparent'">
-                                                    <input type="checkbox" 
-                                                           ${isCompleted ? 'checked' : ''} 
-                                                           onchange="app.toggleTask(${module.id}, ${idx}, this.checked)"
-                                                           style="margin-top: 0.25rem; width: 20px; height: 20px; cursor: pointer; accent-color: var(--accent);" />
-                                                    <span style="flex: 1; color: ${isCompleted ? 'var(--dark-gray)' : 'var(--charcoal)'}; text-decoration: ${isCompleted ? 'line-through' : 'none'}; opacity: ${isCompleted ? 0.6 : 1};">
-                                                        ${task}
-                                                    </span>
-                                                </label>
-                                            `;
-                                        }).join('')}
                                     </div>
-                                </div>
-                            `;
-                        }).join('')}
-                    </div>
-                `;
+                                `;
+                            }).join('')}
+                        </div>
+                    `;
+                }
             }
 
             getModuleProgress(moduleId) {
@@ -664,10 +481,7 @@
                 const module = program.modules.find(m => m.id === moduleId);
                 if (!module) return 0;
                 
-                const completed = module.tasks.filter((_, idx) => 
-                    this.progress[`${moduleId}_${idx}`]
-                ).length;
-                
+                const completed = module.tasks.filter((_, idx) => this.progress[`${moduleId}_${idx}`]).length;
                 return Math.round((completed / module.tasks.length) * 100);
             }
 
@@ -679,9 +493,7 @@
                 program.modules.forEach(module => {
                     totalTasks += module.tasks.length;
                     module.tasks.forEach((_, idx) => {
-                        if (this.progress[`${module.id}_${idx}`]) {
-                            completedTasks++;
-                        }
+                        if (this.progress[`${module.id}_${idx}`]) completedTasks++;
                     });
                 });
                 
@@ -697,13 +509,10 @@
                         task_index: taskIndex,
                         completed: completed,
                         completed_at: completed ? new Date().toISOString() : null
-                    }, {
-                        onConflict: 'customer_id,module_id,task_index'
-                    });
+                    }, { onConflict: 'customer_id,module_id,task_index' });
 
                 if (error) {
-                    console.error('Error saving progress:', error);
-                    alert('Fehler beim Speichern. Bitte nochmal versuchen.');
+                    alert('Fehler beim Speichern.');
                     return;
                 }
 
@@ -711,27 +520,12 @@
                 this.switchTab(this.currentTab);
             }
 
-            showError(message) {
-                document.getElementById('app').innerHTML = `
-                    <div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem;">
-                        <div class="card" style="max-width: 500px; text-align: center; padding: 3rem;">
-                            <h2 style="font-family: 'Playfair Display', Georgia, serif; font-size: 2rem; margin-bottom: 1rem; color: var(--charcoal);">
-                                Oops! 🤔
-                            </h2>
-                            <p style="color: var(--dark-gray); margin-bottom: 2rem;">${message}</p>
-                            <button class="btn" onclick="location.reload()">Neu laden</button>
-                        </div>
-                    </div>
-                `;
-            }
-
             async logout() {
                 await supabase.auth.signOut();
-                location.reload();
+                this.showLogin();
             }
         }
 
-        // Initialize app
         let app;
 
         function initializeApp() {
@@ -742,13 +536,6 @@
 
             const { createClient } = window.supabase;
             supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-            
-            supabase.auth.onAuthStateChange((event, session) => {
-                if (event === 'SIGNED_IN') {
-                    location.reload();
-                }
-            });
-
             app = new PortalApp();
         }
 

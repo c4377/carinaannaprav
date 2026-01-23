@@ -685,9 +685,14 @@
                                                                     </p>
                                                                 ` : ''}
                                                             </div>
-                                                            <button class="btn btn-small" onclick="admin.deleteMedia('${media.id}', '${media.title}')" style="background: #FEE; color: #C33;">
-                                                                🗑️
-                                                            </button>
+                                                            <div style="display: flex; gap: 0.5rem;">
+                                                                <button class="btn btn-small" onclick="admin.editMedia('${media.id}')" style="background: transparent; color: var(--charcoal); border: 2px solid var(--beige);">
+                                                                    ✏️
+                                                                </button>
+                                                                <button class="btn btn-small" onclick="admin.deleteMedia('${media.id}', '${media.title}')" style="background: #FEE; color: #C33;">
+                                                                    🗑️
+                                                                </button>
+                                                            </div>
                                                         </div>
                                                     `).join('')}
                                                 </div>
@@ -1138,8 +1143,232 @@
                 }
             }
 
+            editMedia(id) {
+                const media = this.media.find(m => m.id === id);
+                if (!media) return;
+
+                const modal = document.createElement('div');
+                modal.className = 'modal';
+                modal.innerHTML = `
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.75rem; color: var(--charcoal);">
+                                Media bearbeiten
+                            </h2>
+                            <button class="close-btn" onclick="this.closest('.modal').remove()">×</button>
+                        </div>
+
+                        <div id="editMediaAlert"></div>
+
+                        <form onsubmit="return false;">
+                            <div class="form-group">
+                                <label>Programm *</label>
+                                <select id="editMediaProgram" required onchange="admin.updateEditModuleSelect()">
+                                    <option value="foundation" ${media.program === 'foundation' ? 'selected' : ''}>Foundation Intensive</option>
+                                    <option value="system" ${media.program === 'system' ? 'selected' : ''}>System-Setup</option>
+                                    <option value="vip" ${media.program === 'vip' ? 'selected' : ''}>VIP Komplett</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Modul *</label>
+                                <select id="editMediaModule" required>
+                                    ${PROGRAMS[media.program].modules.map(m => `
+                                        <option value="${m.id}" ${media.module_id === m.id ? 'selected' : ''}>${m.title}</option>
+                                    `).join('')}
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Titel *</label>
+                                <input type="text" id="editMediaTitle" required value="${media.title}" />
+                            </div>
+
+                            <div class="form-group">
+                                <label>Typ *</label>
+                                <select id="editMediaType" required>
+                                    <option value="vimeo" ${media.type === 'vimeo' ? 'selected' : ''}>Vimeo Video</option>
+                                    <option value="youtube" ${media.type === 'youtube' ? 'selected' : ''}>YouTube Video</option>
+                                    <option value="audio" ${media.type === 'audio' ? 'selected' : ''}>Audio (MP3 URL)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>URL *</label>
+                                <input type="url" id="editMediaUrl" required value="${media.url}" />
+                            </div>
+
+                            <div class="form-group">
+                                <label>Beschreibung (optional)</label>
+                                <textarea id="editMediaDescription" rows="3">${media.description || ''}</textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-accent" style="width: 100%;" onclick="admin.saveMedia('${id}')">
+                                Speichern
+                            </button>
+                        </form>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+            }
+
+            updateEditModuleSelect() {
+                const program = document.getElementById('editMediaProgram').value;
+                const moduleSelect = document.getElementById('editMediaModule');
+                
+                moduleSelect.innerHTML = PROGRAMS[program].modules.map(m => `
+                    <option value="${m.id}">${m.title}</option>
+                `).join('');
+            }
+
+            async saveMedia(id) {
+                const program = document.getElementById('editMediaProgram').value;
+                const module_id = parseInt(document.getElementById('editMediaModule').value);
+                const title = document.getElementById('editMediaTitle').value;
+                const type = document.getElementById('editMediaType').value;
+                const url = document.getElementById('editMediaUrl').value;
+                const description = document.getElementById('editMediaDescription').value;
+                const alertDiv = document.getElementById('editMediaAlert');
+                const submitBtn = event.target;
+
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Speichere...';
+
+                try {
+                    const { error } = await supabase
+                        .from('media')
+                        .update({
+                            program,
+                            module_id,
+                            title,
+                            type,
+                            url,
+                            description: description || null
+                        })
+                        .eq('id', id);
+
+                    if (error) throw error;
+
+                    alertDiv.innerHTML = `
+                        <div class="alert alert-success">
+                            <strong>✅ Media aktualisiert!</strong>
+                        </div>
+                    `;
+
+                    setTimeout(async () => {
+                        document.querySelector('.modal').remove();
+                        await this.loadData();
+                        this.render();
+                    }, 1500);
+
+                } catch (error) {
+                    alertDiv.innerHTML = `
+                        <div class="alert alert-error">
+                            <strong>Fehler:</strong> ${error.message}
+                        </div>
+                    `;
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Speichern';
+                }
+            }
+
             editCustomer(id) {
-                alert('Edit-Feature kommt im nächsten Update! 😊\n\nFür jetzt: Lösche und leg neu an.');
+                const customer = this.customers.find(c => c.id === id);
+                if (!customer) return;
+
+                const modal = document.createElement('div');
+                modal.className = 'modal';
+                modal.innerHTML = `
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.75rem; color: var(--charcoal);">
+                                Kunde bearbeiten
+                            </h2>
+                            <button class="close-btn" onclick="this.closest('.modal').remove()">×</button>
+                        </div>
+
+                        <div id="editCustomerAlert"></div>
+
+                        <form onsubmit="return false;">
+                            <div class="form-group">
+                                <label>Name *</label>
+                                <input type="text" id="editCustomerName" required value="${customer.name}" />
+                            </div>
+
+                            <div class="form-group">
+                                <label>Email *</label>
+                                <input type="email" id="editCustomerEmail" required value="${customer.email}" />
+                                <p style="font-size: 0.8rem; color: var(--dark-gray); margin-top: 0.5rem;">
+                                    ⚠️ Email-Änderung ändert nur die Anzeige, nicht den Login!
+                                </p>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Programm *</label>
+                                <select id="editCustomerProgram" required>
+                                    <option value="foundation" ${customer.program === 'foundation' ? 'selected' : ''}>Foundation Intensive</option>
+                                    <option value="system" ${customer.program === 'system' ? 'selected' : ''}>System-Setup</option>
+                                    <option value="vip" ${customer.program === 'vip' ? 'selected' : ''}>VIP Komplett</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Status</label>
+                                <select id="editCustomerActive">
+                                    <option value="true" ${customer.active ? 'selected' : ''}>Aktiv</option>
+                                    <option value="false" ${!customer.active ? 'selected' : ''}>Inaktiv</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="btn btn-accent" style="width: 100%;" onclick="admin.saveCustomer('${id}')">
+                                Speichern
+                            </button>
+                        </form>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+            }
+
+            async saveCustomer(id) {
+                const name = document.getElementById('editCustomerName').value;
+                const email = document.getElementById('editCustomerEmail').value;
+                const program = document.getElementById('editCustomerProgram').value;
+                const active = document.getElementById('editCustomerActive').value === 'true';
+                const alertDiv = document.getElementById('editCustomerAlert');
+                const submitBtn = event.target;
+
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Speichere...';
+
+                try {
+                    const { error } = await supabase
+                        .from('customers')
+                        .update({ name, email, program, active })
+                        .eq('id', id);
+
+                    if (error) throw error;
+
+                    alertDiv.innerHTML = `
+                        <div class="alert alert-success">
+                            <strong>✅ Kunde aktualisiert!</strong>
+                        </div>
+                    `;
+
+                    setTimeout(async () => {
+                        document.querySelector('.modal').remove();
+                        await this.loadData();
+                        this.render();
+                    }, 1500);
+
+                } catch (error) {
+                    alertDiv.innerHTML = `
+                        <div class="alert alert-error">
+                            <strong>Fehler:</strong> ${error.message}
+                        </div>
+                    `;
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Speichern';
+                }
             }
 
             async logout() {

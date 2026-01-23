@@ -178,7 +178,7 @@
 
     <script>
         // ============================================
-        // CONFIG - WICHTIG: HIER DEINE WERTE EINTRAGEN!
+        // CONFIG
         // ============================================
         const SUPABASE_URL = 'https://wwxlngtppoueblciokfk.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind3eGxuZ3RwcG91ZWJsY2lva2ZrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5ODUwMDMsImV4cCI6MjA4NDU2MTAwM30.nmpL-G4xQrwINE4G1NPANxXlMMs6DgYCbkArJgtVJQ0';
@@ -297,7 +297,7 @@
                     </div>
                 `;
                 
-                // Check if admin
+                // Check if admin - if yes, log them out and show login
                 console.log('🔍 Checking admin_users...');
                 const { data: adminData, error: adminError } = await supabase
                     .from('admin_users')
@@ -310,16 +310,10 @@
                 }
 
                 if (adminData) {
-                    console.log('✅ Admin gefunden! Redirect zu portal-admin-password.html');
-                    document.getElementById('app').innerHTML = `
-                        <div class="loading">
-                            <div class="spinner"></div>
-                            Admin erkannt! Leite weiter...
-                        </div>
-                    `;
-                    setTimeout(() => {
-                        window.location.href = 'portal-admin-password.html';
-                    }, 500);
+                    // Admin ist eingeloggt - ausloggen und Login zeigen
+                    console.log('⚠️ Admin erkannt - wird ausgeloggt für Kundenportal');
+                    await supabase.auth.signOut();
+                    this.showLogin('Du warst als Admin eingeloggt. Bitte logge dich mit deinen Kunden-Zugangsdaten ein.');
                     return;
                 }
 
@@ -341,12 +335,12 @@
                     await this.loadCustomerData();
                     this.showCustomerPortal();
                 } else {
-                    console.log('❌ Weder Admin noch Kunde gefunden für:', user.email);
+                    console.log('❌ Kein Kunde gefunden für:', user.email);
                     await supabase.auth.signOut();
                     this.showError(`
                         Dein Account wurde noch nicht aktiviert.<br><br>
                         <strong>Email:</strong> ${user.email}<br><br>
-                        Diese Email ist weder als Admin noch als Kunde registriert.<br><br>
+                        Diese Email ist nicht als Kunde registriert.<br><br>
                         <strong>Was tun?</strong><br>
                         Bitte kontaktiere den Support.
                     `);
@@ -385,7 +379,7 @@
                 }
             }
 
-            showLogin() {
+            showLogin(message = null) {
                 document.getElementById('app').innerHTML = `
                     <div style="min-height: 100vh; background: linear-gradient(135deg, var(--cream) 0%, var(--beige) 100%); display: flex; align-items: center; justify-content: center; padding: 2rem;">
                         <div style="background: white; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); padding: 3rem; max-width: 450px; width: 100%;">
@@ -393,6 +387,12 @@
                                 Kundenportal
                             </h1>
                             <p style="color: var(--dark-gray); margin-bottom: 2rem;">Carina Anna Prav</p>
+
+                            ${message ? `
+                                <div style="padding: 1rem; background: #FFF9E6; border: 1px solid #FFE066; border-radius: 8px; margin-bottom: 1.5rem; color: #856404; font-size: 0.9rem;">
+                                    ${message}
+                                </div>
+                            ` : ''}
 
                             <form id="loginForm" onsubmit="return false;">
                                 <div style="margin-bottom: 1.5rem;">
@@ -431,6 +431,21 @@
                 button.disabled = true;
                 button.textContent = 'Logging in...';
                 errorDiv.classList.add('hidden');
+
+                // First check if this is a customer email (not admin)
+                const { data: customerCheck } = await supabase
+                    .from('customers')
+                    .select('email')
+                    .eq('email', email)
+                    .single();
+
+                if (!customerCheck) {
+                    button.disabled = false;
+                    button.textContent = 'Login';
+                    errorDiv.textContent = 'Diese Email ist nicht als Kunde registriert.';
+                    errorDiv.classList.remove('hidden');
+                    return;
+                }
 
                 const { data, error } = await supabase.auth.signInWithPassword({
                     email: email,

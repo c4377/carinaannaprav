@@ -349,109 +349,108 @@
             }
 
             async init() {
-    const { data: { session } } = await supabase.auth.getSession();
-    
-    if (!session) {
-        this.showLogin();  // ← GEÄNDERT: Zeige Login statt Redirect
-        return;
-    }
+                const { data: { session } } = await supabase.auth.getSession();
+                
+                if (!session) {
+                    this.showLogin();
+                    return;
+                }
 
-    // Check if admin
-    const { data: adminData } = await supabase
-        .from('admin_users')
-        .select('*')
-        .eq('email', session.user.email)
-        .single();
+                // Check if admin
+                const { data: adminData } = await supabase
+                    .from('admin_users')
+                    .select('*')
+                    .eq('email', session.user.email)
+                    .single();
 
-    if (!adminData) {
-        await supabase.auth.signOut();
-        this.showLogin();  // ← GEÄNDERT: Zeige Login statt Redirect
-        return;
-    }
+                if (!adminData) {
+                    await supabase.auth.signOut();
+                    this.showLogin();
+                    return;
+                }
 
-    await this.loadData();
-    this.render();
-}
+                await this.loadData();
+                this.render();
+            }
 
-// NEU: Login-Screen Funktion hinzufügen
-showLogin() {
-    document.getElementById('app').innerHTML = `
-        <div style="min-height: 100vh; background: linear-gradient(135deg, var(--cream) 0%, var(--beige) 100%); display: flex; align-items: center; justify-content: center; padding: 2rem;">
-            <div style="background: white; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); padding: 3rem; max-width: 450px; width: 100%;">
-                <h1 style="font-family: 'Playfair Display', Georgia, serif; font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--charcoal);">
-                    Admin Login
-                </h1>
-                <p style="color: var(--dark-gray); margin-bottom: 2rem;">Kundenportal Verwaltung</p>
+            showLogin() {
+                document.getElementById('app').innerHTML = `
+                    <div style="min-height: 100vh; background: linear-gradient(135deg, var(--cream) 0%, var(--beige) 100%); display: flex; align-items: center; justify-content: center; padding: 2rem;">
+                        <div style="background: white; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); padding: 3rem; max-width: 450px; width: 100%;">
+                            <h1 style="font-family: 'Playfair Display', Georgia, serif; font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--charcoal);">
+                                Admin Login
+                            </h1>
+                            <p style="color: var(--dark-gray); margin-bottom: 2rem;">Kundenportal Verwaltung</p>
 
-                <form id="adminLoginForm" onsubmit="return false;">
-                    <div style="margin-bottom: 1.5rem;">
-                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem;">Admin Email</label>
-                        <input type="email" id="adminEmail" required placeholder="deine@email.com" style="width: 100%; padding: 1rem; border: 2px solid var(--beige); border-radius: 8px; font-size: 1rem;" />
+                            <form id="adminLoginForm" onsubmit="return false;">
+                                <div style="margin-bottom: 1.5rem;">
+                                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem;">Admin Email</label>
+                                    <input type="email" id="adminEmail" required placeholder="deine@email.com" style="width: 100%; padding: 1rem; border: 2px solid var(--beige); border-radius: 8px; font-size: 1rem;" />
+                                </div>
+
+                                <div style="margin-bottom: 1.5rem;">
+                                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem;">Passwort</label>
+                                    <input type="password" id="adminPassword" required placeholder="••••••••" style="width: 100%; padding: 1rem; border: 2px solid var(--beige); border-radius: 8px; font-size: 1rem;" />
+                                </div>
+
+                                <div id="loginError" class="hidden" style="padding: 1rem; background: #FEE; border: 1px solid #FCC; border-radius: 8px; margin-bottom: 1.5rem; color: #C33; font-size: 0.9rem;"></div>
+
+                                <button type="submit" class="btn" style="width: 100%;" id="adminLoginBtn" onclick="admin.handleAdminLogin(event)">
+                                    Admin Login
+                                </button>
+                            </form>
+
+                            <p style="margin-top: 2rem; font-size: 0.85rem; color: var(--dark-gray); text-align: center;">
+                                Nur für Administratoren
+                            </p>
+                        </div>
                     </div>
+                `;
+            }
 
-                    <div style="margin-bottom: 1.5rem;">
-                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem;">Passwort</label>
-                        <input type="password" id="adminPassword" required placeholder="••••••••" style="width: 100%; padding: 1rem; border: 2px solid var(--beige); border-radius: 8px; font-size: 1rem;" />
-                    </div>
+            async handleAdminLogin(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('adminEmail').value;
+                const password = document.getElementById('adminPassword').value;
+                const button = document.getElementById('adminLoginBtn');
+                const errorDiv = document.getElementById('loginError');
+                
+                button.disabled = true;
+                button.textContent = 'Prüfe Admin-Zugang...';
+                errorDiv.classList.add('hidden');
 
-                    <div id="loginError" class="hidden" style="padding: 1rem; background: #FEE; border: 1px solid #FCC; border-radius: 8px; margin-bottom: 1.5rem; color: #C33; font-size: 0.9rem;"></div>
+                try {
+                    // Check if email is admin
+                    const { data: adminCheck } = await supabase
+                        .from('admin_users')
+                        .select('email')
+                        .eq('email', email)
+                        .single();
 
-                    <button type="submit" class="btn" style="width: 100%;" id="adminLoginBtn" onclick="admin.handleAdminLogin(event)">
-                        Admin Login
-                    </button>
-                </form>
+                    if (!adminCheck) {
+                        throw new Error('Diese Email hat keinen Admin-Zugang');
+                    }
 
-                <p style="margin-top: 2rem; font-size: 0.85rem; color: var(--dark-gray); text-align: center;">
-                    Nur für Administratoren
-                </p>
-            </div>
-        </div>
-    `;
-}
+                    // Sign in
+                    const { data, error } = await supabase.auth.signInWithPassword({
+                        email: email,
+                        password: password
+                    });
 
-// NEU: Login Handler hinzufügen
-async handleAdminLogin(e) {
-    e.preventDefault();
-    
-    const email = document.getElementById('adminEmail').value;
-    const password = document.getElementById('adminPassword').value;
-    const button = document.getElementById('adminLoginBtn');
-    const errorDiv = document.getElementById('loginError');
-    
-    button.disabled = true;
-    button.textContent = 'Prüfe Admin-Zugang...';
-    errorDiv.classList.add('hidden');
+                    if (error) throw error;
 
-    try {
-        // Check if email is admin
-        const { data: adminCheck } = await supabase
-            .from('admin_users')
-            .select('email')
-            .eq('email', email)
-            .single();
+                    // Success - reload
+                    location.reload();
 
-        if (!adminCheck) {
-            throw new Error('Diese Email hat keinen Admin-Zugang');
-        }
+                } catch (error) {
+                    button.disabled = false;
+                    button.textContent = 'Admin Login';
+                    errorDiv.textContent = error.message;
+                    errorDiv.classList.remove('hidden');
+                }
+            }
 
-        // Sign in
-        const { data, error } = await supabase.auth.signInWithPassword({
-            email: email,
-            password: password
-        });
-
-        if (error) throw error;
-
-        // Success - reload
-        location.reload();
-
-    } catch (error) {
-        button.disabled = false;
-        button.textContent = 'Admin Login';
-        errorDiv.textContent = error.message;
-        errorDiv.classList.remove('hidden');
-    }
-}
             async loadData() {
                 // Load customers
                 const { data: customersData } = await supabase
@@ -578,8 +577,8 @@ async handleAdminLogin(e) {
                             </div>
 
                             <div style="display: flex; gap: 0.5rem; padding-top: 1rem; border-top: 1px solid var(--beige);">
-                                <button class="btn btn-small" onclick="admin.sendMagicLink('${customer.email}')" style="background: var(--accent);">
-                                    📧 Magic Link
+                                <button class="btn btn-small" onclick="admin.showResetPasswordModal('${customer.id}', '${customer.email}', '${customer.name}')" style="background: var(--accent);">
+                                    🔑 Passwort
                                 </button>
                                 <button class="btn btn-small" onclick="admin.editCustomer('${customer.id}')" style="background: transparent; color: var(--charcoal); border: 2px solid var(--beige);">
                                     ✏️ Bearbeiten
@@ -707,6 +706,21 @@ async handleAdminLogin(e) {
                 this.render();
             }
 
+            // ============================================
+            // PASSWORD GENERATOR
+            // ============================================
+            generatePassword() {
+                const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789';
+                let password = '';
+                for (let i = 0; i < 10; i++) {
+                    password += chars.charAt(Math.floor(Math.random() * chars.length));
+                }
+                document.getElementById('customerPassword').value = password;
+            }
+
+            // ============================================
+            // NEW CUSTOMER MODAL - MIT PASSWORT FELD
+            // ============================================
             showNewCustomerModal() {
                 const modal = document.createElement('div');
                 modal.className = 'modal';
@@ -733,6 +747,19 @@ async handleAdminLogin(e) {
                             </div>
 
                             <div class="form-group">
+                                <label>Passwort *</label>
+                                <div style="display: flex; gap: 0.5rem;">
+                                    <input type="text" id="customerPassword" required placeholder="Passwort für Kunde" style="flex: 1;" />
+                                    <button type="button" class="btn btn-small" onclick="admin.generatePassword()" style="white-space: nowrap;">
+                                        🎲 Generieren
+                                    </button>
+                                </div>
+                                <p style="font-size: 0.8rem; color: var(--dark-gray); margin-top: 0.5rem;">
+                                    Min. 8 Zeichen. Du versendest dieses Passwort manuell per Email.
+                                </p>
+                            </div>
+
+                            <div class="form-group">
                                 <label>Programm *</label>
                                 <select id="customerProgram" required>
                                     <option value="foundation">Foundation Intensive</option>
@@ -742,7 +769,7 @@ async handleAdminLogin(e) {
                             </div>
 
                             <button type="submit" class="btn btn-accent" style="width: 100%;" onclick="admin.createCustomer()">
-                                Kunde anlegen & Magic Link senden
+                                Kunde anlegen
                             </button>
                         </form>
                     </div>
@@ -750,90 +777,198 @@ async handleAdminLogin(e) {
                 document.body.appendChild(modal);
             }
 
-        async createCustomer() {
-    const name = document.getElementById('customerName').value;
-    const email = document.getElementById('customerEmail').value;
-    const program = document.getElementById('customerProgram').value;
-    const alertDiv = document.getElementById('modalAlert');
-    const submitBtn = event.target;
+            // ============================================
+            // CREATE CUSTOMER - VERWENDET EINGEGEBENES PASSWORT
+            // ============================================
+            async createCustomer() {
+                const name = document.getElementById('customerName').value;
+                const email = document.getElementById('customerEmail').value;
+                const password = document.getElementById('customerPassword').value;
+                const program = document.getElementById('customerProgram').value;
+                const alertDiv = document.getElementById('modalAlert');
+                const submitBtn = event.target;
 
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Erstelle...';
+                // Validate password
+                if (password.length < 8) {
+                    alertDiv.innerHTML = `
+                        <div class="alert alert-error">
+                            <strong>Fehler:</strong> Passwort muss mindestens 8 Zeichen haben.
+                        </div>
+                    `;
+                    return;
+                }
 
-    
-
-    // Generate random password
-    const password = 'Start' + Math.random().toString(36).substring(2, 10) + '!';
-
-    try {
-        // Call Netlify Function
-        const response = await fetch('/.netlify/functions/create-customer', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                email: email,
-                password: password,
-                name: name,
-                program: program,
-                adminEmail: (await supabase.auth.getUser()).data.user.email
-            })
-        });
-
-        const result = await response.json();
-
-        if (result.success) {
-            alertDiv.innerHTML = `
-                <div class="alert alert-success">
-                    <strong>✅ Kunde angelegt!</strong><br><br>
-                    <strong>Zugangsdaten zum Versenden:</strong><br>
-                    Portal: ${window.location.origin}/portal-password.html<br>
-                    Email: ${email}<br>
-                    Passwort: ${password}<br><br>
-                    <small style="opacity: 0.8;">✓ In Zwischenablage kopiert</small>
-                </div>
-            `;
-
-            // Copy to clipboard
-            const accessData = `Portal: ${window.location.origin}/portal-password.html\nEmail: ${email}\nPasswort: ${password}`;
-            navigator.clipboard.writeText(accessData);
-
-            setTimeout(async () => {
-                document.querySelector('.modal').remove();
-                await this.loadData();
-                this.render();
-            }, 5000);
-
-        } else {
-            throw new Error(result.error);
-        }
-
-    } catch (error) {
-        alertDiv.innerHTML = `
-            <div class="alert alert-error">
-                <strong>Fehler:</strong> ${error.message}
-            </div>
-        `;
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Kunde anlegen';
-    }
-}
-
-            async sendMagicLink(email) {
-                if (!confirm(`Magic Link an ${email} senden?`)) return;
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Erstelle...';
 
                 try {
-                    const { error } = await supabase.auth.signInWithOtp({
-                        email: email,
-                        options: {
-                            emailRedirectTo: window.location.origin + '/portal-password.html'
-                        }
+                    // Call Netlify Function
+                    const response = await fetch('/.netlify/functions/create-customer', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            email: email,
+                            password: password,
+                            name: name,
+                            program: program,
+                            adminEmail: (await supabase.auth.getUser()).data.user.email
+                        })
                     });
 
-                    if (error) throw error;
+                    const result = await response.json();
 
-                    alert(`✅ Magic Link an ${email} versendet!`);
+                    if (result.success) {
+                        alertDiv.innerHTML = `
+                            <div class="alert alert-success">
+                                <strong>✅ Kunde angelegt!</strong><br><br>
+                                <strong>Zugangsdaten zum Versenden:</strong><br>
+                                <div style="background: var(--cream); padding: 1rem; border-radius: 6px; margin-top: 0.5rem; font-family: monospace; font-size: 0.9rem;">
+                                    Portal: ${window.location.origin}/portal-password.html<br>
+                                    Email: ${email}<br>
+                                    Passwort: ${password}
+                                </div>
+                                <br>
+                                <small style="opacity: 0.8;">✓ In Zwischenablage kopiert</small>
+                            </div>
+                        `;
+
+                        // Copy to clipboard
+                        const accessData = `Dein Zugang zum Kundenportal:\n\nPortal: ${window.location.origin}/portal-password.html\nEmail: ${email}\nPasswort: ${password}`;
+                        navigator.clipboard.writeText(accessData);
+
+                        setTimeout(async () => {
+                            document.querySelector('.modal').remove();
+                            await this.loadData();
+                            this.render();
+                        }, 5000);
+
+                    } else {
+                        throw new Error(result.error);
+                    }
+
                 } catch (error) {
-                    alert('❌ Fehler: ' + error.message);
+                    alertDiv.innerHTML = `
+                        <div class="alert alert-error">
+                            <strong>Fehler:</strong> ${error.message}
+                        </div>
+                    `;
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Kunde anlegen';
+                }
+            }
+
+            // ============================================
+            // RESET PASSWORD MODAL - FÜR BESTEHENDE KUNDEN
+            // ============================================
+            showResetPasswordModal(customerId, email, name) {
+                const modal = document.createElement('div');
+                modal.className = 'modal';
+                modal.innerHTML = `
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.75rem; color: var(--charcoal);">
+                                Passwort zurücksetzen
+                            </h2>
+                            <button class="close-btn" onclick="this.closest('.modal').remove()">×</button>
+                        </div>
+
+                        <p style="margin-bottom: 1.5rem; color: var(--dark-gray);">
+                            Neues Passwort für <strong>${name}</strong> (${email})
+                        </p>
+
+                        <div id="resetModalAlert"></div>
+
+                        <form onsubmit="return false;">
+                            <div class="form-group">
+                                <label>Neues Passwort *</label>
+                                <div style="display: flex; gap: 0.5rem;">
+                                    <input type="text" id="newPassword" required placeholder="Neues Passwort" style="flex: 1;" />
+                                    <button type="button" class="btn btn-small" onclick="admin.generatePasswordForReset()" style="white-space: nowrap;">
+                                        🎲 Generieren
+                                    </button>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-accent" style="width: 100%;" onclick="admin.resetPassword('${email}')">
+                                Passwort setzen
+                            </button>
+                        </form>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+            }
+
+            generatePasswordForReset() {
+                const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789';
+                let password = '';
+                for (let i = 0; i < 10; i++) {
+                    password += chars.charAt(Math.floor(Math.random() * chars.length));
+                }
+                document.getElementById('newPassword').value = password;
+            }
+
+            async resetPassword(email) {
+                const password = document.getElementById('newPassword').value;
+                const alertDiv = document.getElementById('resetModalAlert');
+                const submitBtn = event.target;
+
+                if (password.length < 8) {
+                    alertDiv.innerHTML = `
+                        <div class="alert alert-error">
+                            <strong>Fehler:</strong> Passwort muss mindestens 8 Zeichen haben.
+                        </div>
+                    `;
+                    return;
+                }
+
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Setze Passwort...';
+
+                try {
+                    const response = await fetch('/.netlify/functions/reset-password', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            email: email,
+                            newPassword: password,
+                            adminEmail: (await supabase.auth.getUser()).data.user.email
+                        })
+                    });
+
+                    const result = await response.json();
+
+                    if (result.success) {
+                        alertDiv.innerHTML = `
+                            <div class="alert alert-success">
+                                <strong>✅ Passwort geändert!</strong><br><br>
+                                <div style="background: var(--cream); padding: 1rem; border-radius: 6px; margin-top: 0.5rem; font-family: monospace; font-size: 0.9rem;">
+                                    Email: ${email}<br>
+                                    Neues Passwort: ${password}
+                                </div>
+                                <br>
+                                <small style="opacity: 0.8;">✓ In Zwischenablage kopiert</small>
+                            </div>
+                        `;
+
+                        const accessData = `Dein neues Passwort:\n\nEmail: ${email}\nPasswort: ${password}`;
+                        navigator.clipboard.writeText(accessData);
+
+                        setTimeout(() => {
+                            document.querySelector('.modal').remove();
+                        }, 4000);
+
+                    } else {
+                        throw new Error(result.error);
+                    }
+
+                } catch (error) {
+                    alertDiv.innerHTML = `
+                        <div class="alert alert-error">
+                            <strong>Fehler:</strong> ${error.message}
+                        </div>
+                    `;
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Passwort setzen';
                 }
             }
 
@@ -1008,9 +1143,9 @@ async handleAdminLogin(e) {
             }
 
             async logout() {
-    await supabase.auth.signOut();
-    location.reload();  // ← Reload zeigt Login-Screen
-}
+                await supabase.auth.signOut();
+                location.reload();
+            }
         }
 
         // Initialize

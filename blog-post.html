@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="page-title">Blog Post | Carina Anna Prav</title>
+    <title id="page-title">Blog | Carina Anna Prav</title>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     
     <style>
@@ -14,30 +14,24 @@
         }
         
         :root {
-            --cream: #FAF9F6;
-            --beige: #E8DED2;
-            --warm-beige: #D4C5B0;
-            --charcoal: #2D2D2D;
-            --dark-gray: #4A4A4A;
-            --light-gray: #F5F5F5;
-            --accent: #B89968;
+            --white: #FFFFFF;
+            --off-white: #F8F9FA;
+            --light-gray: #E9ECEF;
+            --medium-gray: #6C757D;
+            --dark-gray: #343A40;
+            --charcoal: #212529;
+            --slate-blue: #4A5568;
+            --accent-blue: #2C5282;
+            --accent-blue-light: #3182CE;
             
             --font-serif: 'Playfair Display', Georgia, serif;
             --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-            
-            --spacing-xs: 0.5rem;
-            --spacing-sm: 1rem;
-            --spacing-md: 2rem;
-            --spacing-lg: 4rem;
-            --spacing-xl: 6rem;
-            
-            --max-width: 1200px;
         }
         
         body {
             font-family: var(--font-sans);
             color: var(--charcoal);
-            background: var(--cream);
+            background: var(--white);
             line-height: 1.7;
             -webkit-font-smoothing: antialiased;
         }
@@ -53,16 +47,16 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(250, 249, 246, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
             z-index: 1000;
-            border-bottom: 1px solid var(--beige);
+            border-bottom: 1px solid var(--light-gray);
         }
         
         .nav-container {
-            max-width: var(--max-width);
+            max-width: 1200px;
             margin: 0 auto;
-            padding: var(--spacing-sm) var(--spacing-md);
+            padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -70,43 +64,29 @@
         
         .logo {
             font-family: var(--font-serif);
-            font-size: 1.5rem;
-            font-weight: 400;
-            letter-spacing: 0.05em;
-            color: var(--charcoal);
+            font-size: 1.25rem;
             text-decoration: none;
+            color: var(--charcoal);
+            letter-spacing: 0.05em;
         }
         
         .nav-links {
             display: flex;
-            gap: var(--spacing-md);
+            gap: 2rem;
             list-style: none;
         }
         
         .nav-links a {
-            font-size: 0.95rem;
+            text-decoration: none;
+            color: var(--slate-blue);
+            font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            font-weight: 500;
-            position: relative;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
             color: var(--charcoal);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--charcoal);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-links a:hover::after {
-            width: 100%;
         }
         
         .mobile-menu-btn {
@@ -120,25 +100,7 @@
         
         @media (max-width: 768px) {
             .nav-links {
-                position: fixed;
-                top: 70px;
-                left: 0;
-                right: 0;
-                background: var(--cream);
-                flex-direction: column;
-                padding: var(--spacing-md);
-                gap: var(--spacing-sm);
-                border-bottom: 1px solid var(--beige);
-                transform: translateY(-100%);
-                opacity: 0;
-                transition: all 0.3s ease;
-                pointer-events: none;
-            }
-            
-            .nav-links.active {
-                transform: translateY(0);
-                opacity: 1;
-                pointer-events: all;
+                display: none;
             }
             
             .mobile-menu-btn {
@@ -148,23 +110,20 @@
         
         /* POST CONTENT */
         .post-container {
-            max-width: 800px;
+            max-width: 700px;
             margin: 0 auto;
-            padding: calc(80px + var(--spacing-lg)) var(--spacing-md) var(--spacing-xl);
+            padding: calc(80px + 3rem) 2rem 4rem;
         }
         
         .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: var(--spacing-md);
-            color: var(--dark-gray);
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: var(--slate-blue);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            font-weight: 500;
-            transition: color 0.3s ease;
+            transition: color 0.3s;
         }
         
         .back-link:hover {
@@ -172,206 +131,207 @@
         }
         
         .post-header {
-            margin-bottom: var(--spacing-lg);
+            margin-bottom: 2.5rem;
         }
         
         .post-category {
             display: inline-block;
-            background: var(--accent);
-            color: white;
-            padding: 0.25rem 0.75rem;
-            font-size: 0.8rem;
+            background: var(--accent-blue);
+            color: var(--white);
+            padding: 0.2rem 0.6rem;
+            font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            margin-bottom: var(--spacing-sm);
+            margin-bottom: 1rem;
+            font-weight: 600;
         }
         
         .post-title {
-            font-size: clamp(2rem, 5vw, 3rem);
-            margin-bottom: var(--spacing-sm);
+            font-size: clamp(2rem, 5vw, 2.75rem);
+            margin-bottom: 1rem;
             line-height: 1.2;
+            color: var(--charcoal);
         }
         
         .post-meta {
-            color: var(--dark-gray);
-            font-size: 0.95rem;
-            margin-bottom: var(--spacing-md);
+            color: var(--medium-gray);
+            font-size: 0.9rem;
         }
         
         .post-image {
             width: 100%;
-            height: 400px;
+            height: 350px;
             object-fit: cover;
-            margin-bottom: var(--spacing-lg);
-            border: 1px solid var(--beige);
+            margin: 2rem 0;
+            border: 1px solid var(--light-gray);
         }
         
         .post-content {
-            font-size: 1.125rem;
+            font-size: 1.05rem;
             line-height: 1.8;
-            color: var(--charcoal);
+            color: var(--slate-blue);
         }
         
         .post-content h2 {
-            margin-top: var(--spacing-lg);
-            margin-bottom: var(--spacing-md);
-            font-size: 2rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.75rem;
+            color: var(--charcoal);
         }
         
         .post-content h3 {
-            margin-top: var(--spacing-md);
-            margin-bottom: var(--spacing-sm);
-            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+            font-size: 1.35rem;
+            color: var(--charcoal);
         }
         
         .post-content p {
-            margin-bottom: var(--spacing-md);
-            color: var(--dark-gray);
+            margin-bottom: 1.25rem;
         }
         
-        .post-content ul, .post-content ol {
-            margin-bottom: var(--spacing-md);
-            padding-left: 2rem;
+        .post-content ul,
+        .post-content ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1.25rem;
         }
         
         .post-content li {
-            margin-bottom: var(--spacing-xs);
-            color: var(--dark-gray);
-        }
-        
-        .post-content img {
-            max-width: 100%;
-            height: auto;
-            margin: var(--spacing-lg) 0;
-            border: 1px solid var(--beige);
+            margin-bottom: 0.5rem;
         }
         
         .post-content blockquote {
-            margin: var(--spacing-lg) 0;
-            padding: var(--spacing-md);
-            border-left: 3px solid var(--accent);
-            background: var(--light-gray);
+            border-left: 3px solid var(--accent-blue);
+            padding-left: 1.5rem;
+            margin: 1.5rem 0;
+            color: var(--charcoal);
             font-style: italic;
-            color: var(--dark-gray);
         }
         
         .post-content a {
-            color: var(--accent);
+            color: var(--accent-blue);
             text-decoration: none;
-            border-bottom: 1px solid var(--accent);
-            transition: color 0.3s ease;
         }
         
         .post-content a:hover {
-            color: var(--charcoal);
-            border-color: var(--charcoal);
+            text-decoration: underline;
         }
         
         .post-content code {
-            background: var(--light-gray);
+            background: var(--off-white);
             padding: 0.2rem 0.4rem;
             font-size: 0.9em;
-            border-radius: 3px;
-            font-family: 'Courier New', monospace;
         }
         
         .post-content pre {
-            background: var(--light-gray);
-            padding: var(--spacing-sm);
+            background: var(--off-white);
+            padding: 1rem;
             overflow-x: auto;
-            margin: var(--spacing-md) 0;
-            border-radius: 3px;
+            margin: 1.5rem 0;
         }
         
-        .post-content pre code {
-            background: none;
-            padding: 0;
+        .post-content strong {
+            color: var(--charcoal);
         }
         
         /* SHARE SECTION */
         .share-section {
-            margin-top: var(--spacing-xl);
-            padding-top: var(--spacing-lg);
-            border-top: 2px solid var(--beige);
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--light-gray);
         }
         
         .share-section h3 {
-            font-size: 1.25rem;
-            margin-bottom: var(--spacing-sm);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-family: var(--font-sans);
+            font-weight: 600;
+            color: var(--charcoal);
         }
         
         .share-buttons {
             display: flex;
-            gap: var(--spacing-sm);
             flex-wrap: wrap;
+            gap: 0.75rem;
         }
         
         .share-button {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            background: white;
+            padding: 0.6rem 1rem;
+            background: var(--white);
             color: var(--charcoal);
             text-decoration: none;
-            border: 1px solid var(--beige);
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
+            border: 1px solid var(--light-gray);
+            font-size: 0.85rem;
+            transition: all 0.3s;
         }
         
         .share-button:hover {
             background: var(--charcoal);
-            color: var(--cream);
+            color: var(--white);
             border-color: var(--charcoal);
         }
         
         /* CTA SECTION */
         .cta-section {
-            margin-top: var(--spacing-xl);
-            padding: var(--spacing-lg);
-            background: linear-gradient(135deg, var(--beige) 0%, var(--warm-beige) 100%);
+            margin-top: 3rem;
+            padding: 2rem;
+            background: var(--off-white);
+            border: 1px solid var(--light-gray);
             text-align: center;
-            border: 1px solid var(--warm-beige);
         }
         
         .cta-section h3 {
-            font-size: 1.75rem;
-            margin-bottom: var(--spacing-sm);
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--charcoal);
         }
         
         .cta-section p {
-            margin-bottom: var(--spacing-md);
-            color: var(--dark-gray);
+            margin-bottom: 1.25rem;
+            color: var(--slate-blue);
         }
         
         .cta-button {
             display: inline-block;
-            padding: 1rem 2.5rem;
+            padding: 0.875rem 2rem;
             background: var(--charcoal);
-            color: var(--cream);
+            color: var(--white);
             text-decoration: none;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            font-weight: 500;
-            transition: all 0.3s ease;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s;
         }
         
         .cta-button:hover {
-            background: var(--dark-gray);
-            transform: translateY(-2px);
+            background: var(--slate-blue);
         }
         
         .loading {
             text-align: center;
-            padding: var(--spacing-xl) var(--spacing-md);
-            font-size: 1.2rem;
-            color: var(--dark-gray);
+            padding: 4rem 2rem;
+            font-size: 1rem;
+            color: var(--slate-blue);
+        }
+        
+        .loading a {
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+        
+        .loading a:hover {
+            text-decoration: underline;
         }
         
         @media (max-width: 768px) {
             .post-image {
-                height: 250px;
+                height: 220px;
             }
             
             .share-buttons {
@@ -379,7 +339,6 @@
             }
             
             .share-button {
-                width: 100%;
                 justify-content: center;
             }
         }
@@ -396,23 +355,22 @@
             <a href="index.html" class="logo">CARINA ANNA PRAV</a>
             <button class="mobile-menu-btn" aria-label="Toggle menu">☰</button>
             <ul class="nav-links">
-                <li><a href="index.html#system">System</a></li>
-                <li><a href="index.html#angebote">Angebote</a></li>
-                <li><a href="index.html#podcast">Podcast</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="mentoring.html">Mentoring</a></li>
+                <li><a href="angebote.html">Angebote</a></li>
+                <li><a href="freebies.html">Freebies</a></li>
                 <li><a href="blog.html">Blog</a></li>
                 <li><a href="ueber-mich.html">Über mich</a></li>
-                <li><a href="index.html#faq">FAQ</a></li>
-                <li><a href="index.html#kontakt">Kontakt</a></li>
             </ul>
         </div>
     </nav>
 
     <!-- POST CONTENT -->
     <div class="post-container">
-        <a href="blog.html" class="back-link">← Zurück zum Blog</a>
+        <a href="blog.html" class="back-link">Zurück</a>
         
         <div id="post-content">
-            <div class="loading">Lade Post...</div>
+            <div class="loading">Lädt...</div>
         </div>
     </div>
 
@@ -423,8 +381,7 @@
         const navLinks = document.querySelector('.nav-links');
         
         mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            mobileMenuBtn.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
         });
         
         // Load Post
@@ -434,7 +391,7 @@
             
             if (!postSlug) {
                 document.getElementById('post-content').innerHTML = 
-                    '<div class="loading">Kein Post gefunden. <a href="blog.html" style="color: var(--accent);">Zurück zum Blog</a></div>';
+                    '<div class="loading">Kein Post gefunden. <a href="blog.html">Zurück zum Blog</a></div>';
                 return;
             }
             
@@ -475,39 +432,30 @@
                             <span class="post-category">${category}</span>
                             <h1 class="post-title">${title}</h1>
                             <div class="post-meta">${formattedDate}</div>
-                            ${image ? `<img src="${image}" alt="${title}" class="post-image">` : ''}
                         </div>
+                        
+                        ${image ? `<img src="${image}" alt="${title}" class="post-image">` : ''}
                         
                         <div class="post-content">
                             ${htmlContent}
                         </div>
                         
                         <div class="share-section">
-                            <h3>Teile diesen Artikel:</h3>
+                            <h3>Teilen</h3>
                             <div class="share-buttons">
                                 <a href="https://pinterest.com/pin/create/button/?url=${currentUrl}&description=${encodedTitle}" 
-                                   target="_blank" class="share-button">
-                                   📌 Pinterest
-                                </a>
+                                   target="_blank" class="share-button">Pinterest</a>
                                 <a href="https://www.linkedin.com/sharing/share-offsite/?url=${currentUrl}" 
-                                   target="_blank" class="share-button">
-                                   💼 LinkedIn
-                                </a>
-                                <a href="https://api.whatsapp.com/send?text=${encodedTitle}%20${currentUrl}" 
-                                   target="_blank" class="share-button">
-                                   💬 WhatsApp
-                                </a>
-                                <a href="mailto:?subject=${encodedTitle}&body=Schau dir das an: ${currentUrl}" 
-                                   class="share-button">
-                                   ✉️ Email
-                                </a>
+                                   target="_blank" class="share-button">LinkedIn</a>
+                                <a href="mailto:?subject=${encodedTitle}&body=${currentUrl}" 
+                                   class="share-button">E-Mail</a>
                             </div>
                         </div>
                         
                         <div class="cta-section">
-                            <h3>Bereit für dein 2h/Tag Business?</h3>
-                            <p>Automatisierung, Pinterest-Marketing & Mindset – damit du Zeit für dein Kind hast.</p>
-                            <a href="index.html#angebote" class="cta-button">System-Check starten</a>
+                            <h3>Nächster Schritt</h3>
+                            <p>Finde heraus, wo du stehst.</p>
+                            <a href="systemcheck.html" class="cta-button">Bestandsaufnahme</a>
                         </div>
                     </article>
                 `;
@@ -517,7 +465,7 @@
             } catch (error) {
                 console.error('Error loading post:', error);
                 document.getElementById('post-content').innerHTML = 
-                    '<div class="loading">Post nicht gefunden. <a href="blog.html" style="color: var(--accent);">Zurück zum Blog</a></div>';
+                    '<div class="loading">Post nicht gefunden. <a href="blog.html">Zurück zum Blog</a></div>';
             }
         }
         

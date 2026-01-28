@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Über Carina Anna Prav - Business-Automatisierung & Pinterest-Marketing für Mamas">
+    <meta name="description" content="Carina Anna Prav. Positionierung, Funnel, Automatisierung.">
     <title>Über mich | Carina Anna Prav</title>
     
     <style>
@@ -14,30 +14,24 @@
         }
         
         :root {
-            --cream: #FAF9F6;
-            --beige: #E8DED2;
-            --warm-beige: #D4C5B0;
-            --charcoal: #2D2D2D;
-            --dark-gray: #4A4A4A;
-            --light-gray: #F5F5F5;
-            --accent: #B89968;
+            --white: #FFFFFF;
+            --off-white: #F8F9FA;
+            --light-gray: #E9ECEF;
+            --medium-gray: #6C757D;
+            --dark-gray: #343A40;
+            --charcoal: #212529;
+            --slate-blue: #4A5568;
+            --accent-blue: #2C5282;
+            --accent-blue-light: #3182CE;
             
             --font-serif: 'Playfair Display', Georgia, serif;
             --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-            
-            --spacing-xs: 0.5rem;
-            --spacing-sm: 1rem;
-            --spacing-md: 2rem;
-            --spacing-lg: 4rem;
-            --spacing-xl: 6rem;
-            
-            --max-width: 1200px;
         }
         
         body {
             font-family: var(--font-sans);
             color: var(--charcoal);
-            background: var(--cream);
+            background: var(--white);
             line-height: 1.7;
             -webkit-font-smoothing: antialiased;
         }
@@ -46,62 +40,18 @@
             font-family: var(--font-serif);
             font-weight: 400;
             line-height: 1.2;
-            letter-spacing: -0.02em;
-        }
-        
-        h1 {
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            margin-bottom: var(--spacing-md);
-        }
-        
-        h2 {
-            font-size: clamp(2rem, 5vw, 3rem);
-            margin-bottom: var(--spacing-md);
-        }
-        
-        h3 {
-            font-size: clamp(1.5rem, 4vw, 2rem);
-            margin-bottom: var(--spacing-sm);
-        }
-        
-        p {
-            font-size: clamp(1rem, 2vw, 1.125rem);
-            margin-bottom: var(--spacing-sm);
-            color: var(--dark-gray);
-        }
-        
-        a {
-            color: var(--charcoal);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
         }
         
         .container {
-            max-width: var(--max-width);
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 0 var(--spacing-md);
+            padding: 0 2rem;
         }
         
         .container-narrow {
-            max-width: 800px;
+            max-width: 700px;
             margin: 0 auto;
-            padding: 0 var(--spacing-md);
-        }
-        
-        section {
-            padding: var(--spacing-xl) 0;
-        }
-        
-        @media (max-width: 768px) {
-            section {
-                padding: var(--spacing-lg) 0;
-            }
+            padding: 0 2rem;
         }
         
         /* NAVIGATION */
@@ -109,16 +59,16 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(250, 249, 246, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
             z-index: 1000;
-            border-bottom: 1px solid var(--beige);
+            border-bottom: 1px solid var(--light-gray);
         }
         
         .nav-container {
-            max-width: var(--max-width);
+            max-width: 1200px;
             margin: 0 auto;
-            padding: var(--spacing-sm) var(--spacing-md);
+            padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -126,22 +76,29 @@
         
         .logo {
             font-family: var(--font-serif);
-            font-size: 1.5rem;
-            font-weight: 400;
+            font-size: 1.25rem;
+            text-decoration: none;
+            color: var(--charcoal);
             letter-spacing: 0.05em;
         }
         
         .nav-links {
             display: flex;
-            gap: var(--spacing-md);
+            gap: 2rem;
             list-style: none;
         }
         
         .nav-links a {
-            font-size: 0.95rem;
+            text-decoration: none;
+            color: var(--slate-blue);
+            font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--charcoal);
         }
         
         .mobile-menu-btn {
@@ -153,177 +110,204 @@
             color: var(--charcoal);
         }
         
-        @media (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                top: 70px;
-                left: 0;
-                right: 0;
-                background: var(--cream);
-                flex-direction: column;
-                padding: var(--spacing-md);
-                gap: var(--spacing-sm);
-                border-bottom: 1px solid var(--beige);
-                transform: translateY(-100%);
-                opacity: 0;
-                transition: all 0.3s ease;
-                pointer-events: none;
-            }
-            
-            .nav-links.active {
-                transform: translateY(0);
-                opacity: 1;
-                pointer-events: all;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-        }
-        
         /* HERO */
         .hero {
-            min-height: 60vh;
+            min-height: 70vh;
             display: flex;
             align-items: center;
-            padding-top: 100px;
-            background: linear-gradient(135deg, var(--cream) 0%, var(--light-gray) 100%);
+            padding-top: 80px;
+            padding-bottom: 4rem;
+            background: var(--off-white);
         }
         
-        .about-grid {
+        .hero-grid {
             display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: var(--spacing-xl);
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
             align-items: center;
         }
         
-        .about-image {
+        .hero-image {
             width: 100%;
             height: 500px;
             object-fit: cover;
-            border: 1px solid var(--beige);
-            border-radius: 2px;
+            filter: grayscale(10%);
         }
         
-        @media (max-width: 768px) {
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: var(--spacing-md);
-            }
-            
-            .about-image {
-                height: 300px;
-            }
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            margin-bottom: 1.5rem;
+            color: var(--charcoal);
         }
         
-        /* STORY SECTION */
-        .story {
-            background: var(--beige);
-        }
-        
-        .story-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .story-content p {
-            margin-bottom: var(--spacing-md);
+        .hero-content p {
             font-size: 1.125rem;
-            line-height: 1.8;
+            color: var(--slate-blue);
+            margin-bottom: 1rem;
         }
         
-        .highlight {
-            background: var(--light-gray);
-            padding: var(--spacing-lg);
-            border-left: 3px solid var(--accent);
-            margin: var(--spacing-lg) 0;
+        .hero-content p.lead {
+            font-size: 1.25rem;
+            color: var(--charcoal);
         }
         
-        .highlight h3 {
-            margin-bottom: var(--spacing-sm);
+        /* BACKGROUND */
+        .background {
+            padding: 5rem 0;
+            background: var(--white);
         }
         
-        /* VALUES */
-        .values {
-            background: var(--cream);
+        .background h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--charcoal);
         }
         
-        .values-grid {
+        .background p {
+            color: var(--slate-blue);
+            margin-bottom: 1.25rem;
+            font-size: 1.05rem;
+        }
+        
+        .background-highlight {
+            background: var(--off-white);
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+            border-left: 3px solid var(--accent-blue);
+        }
+        
+        .background-highlight p {
+            margin-bottom: 0;
+            color: var(--charcoal);
+            font-weight: 500;
+        }
+        
+        /* APPROACH */
+        .approach {
+            padding: 5rem 0;
+            background: var(--off-white);
+        }
+        
+        .approach h2 {
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--charcoal);
+        }
+        
+        .approach-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: var(--spacing-lg);
-            margin-top: var(--spacing-lg);
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
         }
         
-        .value-card {
-            background: var(--light-gray);
-            padding: var(--spacing-lg);
-            border: 1px solid var(--beige);
+        .approach-card {
+            background: var(--white);
+            padding: 2rem;
+            border: 1px solid var(--light-gray);
         }
         
-        .value-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: var(--spacing-sm);
-            color: var(--accent);
+        .approach-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--charcoal);
+        }
+        
+        .approach-card p {
+            color: var(--slate-blue);
+            font-size: 0.95rem;
+        }
+        
+        /* FACTS */
+        .facts {
+            padding: 4rem 0;
+            background: var(--charcoal);
+            color: var(--white);
+        }
+        
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+        
+        .fact-item h3 {
+            font-size: 2.5rem;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+        
+        .fact-item p {
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
         }
         
         /* CTA */
         .cta-section {
-            background: var(--charcoal);
-            color: var(--cream);
+            padding: 5rem 0;
+            background: var(--white);
             text-align: center;
-            padding: var(--spacing-xl) 0;
         }
         
         .cta-section h2 {
-            color: var(--cream);
+            font-size: 2rem;
+            margin-bottom: 1rem;
         }
         
         .cta-section p {
-            color: var(--beige);
-            max-width: 600px;
-            margin: 0 auto var(--spacing-lg);
+            color: var(--slate-blue);
+            margin-bottom: 2rem;
         }
         
         .btn {
             display: inline-block;
             padding: 1rem 2.5rem;
-            font-size: 1rem;
-            font-weight: 500;
-            text-align: center;
-            border: 2px solid var(--cream);
-            background: transparent;
-            color: var(--cream);
-            cursor: pointer;
-            transition: all 0.3s ease;
+            text-decoration: none;
             text-transform: uppercase;
             letter-spacing: 0.1em;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-family: var(--font-sans);
+            background: var(--charcoal);
+            color: var(--white);
+            border: 1px solid var(--charcoal);
         }
         
         .btn:hover {
-            background: var(--cream);
-            color: var(--charcoal);
+            background: var(--slate-blue);
+            border-color: var(--slate-blue);
         }
         
         /* FOOTER */
         footer {
             background: var(--charcoal);
-            color: var(--beige);
-            padding: var(--spacing-lg) 0 var(--spacing-md);
-            border-top: 1px solid rgba(232, 222, 210, 0.1);
+            color: var(--medium-gray);
+            padding: 3rem 0;
         }
         
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: var(--spacing-lg);
-            margin-bottom: var(--spacing-lg);
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
         }
         
         .footer-section h4 {
-            color: var(--cream);
-            font-size: 1.125rem;
-            margin-bottom: var(--spacing-sm);
+            color: var(--white);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+            font-family: var(--font-sans);
+            font-weight: 600;
+        }
+        
+        .footer-section p {
+            font-size: 0.9rem;
+            line-height: 1.6;
         }
         
         .footer-links {
@@ -331,25 +315,58 @@
         }
         
         .footer-links li {
-            margin-bottom: var(--spacing-xs);
+            margin-bottom: 0.5rem;
         }
         
         .footer-links a {
-            color: var(--beige);
-            font-size: 0.95rem;
-            transition: color 0.3s ease;
+            color: var(--medium-gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
         }
         
         .footer-links a:hover {
-            color: var(--cream);
+            color: var(--white);
         }
         
         .footer-bottom {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--slate-blue);
             text-align: center;
-            padding-top: var(--spacing-md);
-            border-top: 1px solid rgba(232, 222, 210, 0.1);
-            font-size: 0.9rem;
-            color: var(--beige);
+            font-size: 0.85rem;
+        }
+        
+        @media (max-width: 968px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .hero-image {
+                height: 350px;
+            }
+            
+            .approach-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .facts-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
         }
     </style>
     
@@ -366,10 +383,9 @@
             <button class="mobile-menu-btn" aria-label="Toggle menu">☰</button>
             <ul class="nav-links">
                 <li><a href="index.html#system">System</a></li>
-                <li><a href="index.html#angebote">Angebote</a></li>
-                <li><a href="index.html#podcast">Podcast</a></li>
-                <li><a href="ueber-mich.html">Über mich</a></li>
-                <li><a href="index.html#kontakt">Kontakt</a></li>
+                <li><a href="angebote.html">Angebote</a></li>
+                <li><a href="freebies.html">Ressourcen</a></li>
+                
             </ul>
         </div>
     </nav>
@@ -377,125 +393,78 @@
     <!-- HERO -->
     <section class="hero">
         <div class="container">
-            <div class="about-grid">
+            <div class="hero-grid">
                 <div>
-                    <img src="bilder/about-carina.jpg" alt="Carina Anna Prav" class="about-image">
+                    <img src="bilder/about-carina.jpg" alt="Carina Anna Prav" class="hero-image">
                 </div>
-                <div>
+                <div class="hero-content">
                     <h1>Hi, ich bin Carina</h1>
-                    <p style="font-size: 1.25rem; margin-bottom: var(--spacing-md);">
-                        App-Developerin, Business-Mentorin & Mama. Ich helfe Unternehmerinnen ihr Business zu automatisieren – 
-                        damit sie Zeit für das haben was wirklich zählt.
-                    </p>
-                    <p>
-                        Von 60h/Woche Chaos zu 2h/Tag CEO. Das ist möglich. Ich zeig dir wie.
-                    </p>
+                    <p class="lead">Business-Mentorin für Selbstständige, die endlich Systeme statt Chaos wollen.</p>
+                    <p>Ich helfe dir, ein Business aufzubauen, das nicht von deiner ständigen Anwesenheit abhängt – mit klarer Positionierung, automatisierten Funnels und Prozessen, die für dich arbeiten.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- STORY -->
-    <section class="story">
+    <!-- BACKGROUND -->
+    <section class="background">
+        <div class="container-narrow">
+            <h2>Meine Geschichte</h2>
+            
+            <p>Ich war mal genau da, wo du vielleicht jetzt bist: Selbstständig, ja. Aber gefangen im eigenen Business. Jeden Tag am Handy, Content erstellen, Anfragen beantworten, alles manuell. Bis mein damals 3-jähriger Sohn mich fragte: „Mama, warum bist du immer am Handy?"</p>
+            
+            <p>Das war der Moment, in dem ich wusste: So kann es nicht weitergehen. Nicht für mich, nicht für meine Familie.</p>
+            
+            <div class="background-highlight">
+                <p>Ich habe aufgehört, mein Business wie alle anderen zu führen. Stattdessen habe ich angefangen, wie eine Systemdenkerin zu denken – und Infrastruktur statt Hustle aufzubauen.</p>
+            </div>
+            
+            <p>Heute arbeite ich 2 Stunden am Tag. Nicht weil ich faul bin, sondern weil meine Systeme den Rest erledigen. Mein Funnel bringt Leads, meine E-Mails verkaufen, meine Prozesse laufen – auch wenn ich nicht am Schreibtisch sitze.</p>
+            
+            <p>Genau das bringe ich meinen Kundinnen bei: Ein Business aufzubauen, das DICH trägt, anstatt dass DU es trägst.</p>
+        </div>
+    </section>
+
+    <!-- APPROACH -->
+    <section class="approach">
         <div class="container">
-            <div class="story-content">
-                <h2>Meine Geschichte</h2>
-                
-                <p>
-                    Vor ein paar Jahren war ich die typische "Serial-Starterin". 
-                    Hochzeitskleid-Verkauf, Etsy-Shops, Automatisierungs-Services, Positionierungs-Coaching – 
-                    ich hab alles angefangen. Und nichts richtig zu Ende gebracht.
-                </p>
-                
-                <p>
-                    Das Problem war nicht fehlende Skills. Ich bin App-Developerin. Ich KANN Systeme bauen.
-                </p>
-                
-                <p>
-                    Das Problem war: <strong>Entscheidungsparalyse und Selbstsabotage.</strong>
-                </p>
-                
-                <div class="highlight">
-                    <h3>Der Wendepunkt</h3>
-                    <p>
-                        Als mein Kind geboren wurde, hatte ich keine Zeit mehr für 60h/Woche Hustle. 
-                        Ich MUSSTE effizienter werden. Nicht "irgendwann" – jetzt.
-                    </p>
+            <h2>So arbeite ich</h2>
+            <div class="approach-grid">
+                <div class="approach-card">
+                    <h3>Direkt & ehrlich</h3>
+                    <p>Ich sage dir, was Sache ist – auch wenn es unbequem ist. Weil du davon mehr hast als von leeren Komplimenten. Klartext statt Coaching-Blabla.</p>
                 </div>
-                
-                <p>
-                    Also hab ich angefangen zu bauen: Content-Systeme. Automatisierte Funnels. 
-                    KI-Integration die tatsächlich funktioniert. Nicht als Theorie – als NOTWENDIGKEIT.
-                </p>
-                
-                <p>
-                    Und das Verrückte: Je weniger Stunden ich arbeitete, desto besser lief mein Business.
-                </p>
-                
-                <p>
-                    Warum? Weil ich gezwungen war, <strong>nur das Wichtige zu tun</strong>. 
-                    Kein Optimieren mehr. Keine "nice-to-have" Projekte. Nur was zählt.
-                </p>
-                
-                <p>
-                    Heute arbeite ich 2h/Tag. Mein Business läuft. Ich hab Zeit für mein Kind. 
-                    Und ich zeige anderen Müttern wie sie das auch hinbekommen.
-                </p>
+                <div class="approach-card">
+                    <h3>Individuell</h3>
+                    <p>Kein 08/15-Fahrplan, der für jeden gleich aussieht. Wir schauen, wo DU stehst und was DU brauchst. Und dann bauen wir genau das.</p>
+                </div>
+                <div class="approach-card">
+                    <h3>Umsetzungsorientiert</h3>
+                    <p>Weniger Theorie, mehr Praxis. Du gehst aus jedem Call mit konkreten nächsten Schritten raus – nicht mit vagen Ideen und offenen Fragen.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- VALUES -->
-    <section class="values">
+    <!-- FACTS -->
+    <section class="facts">
         <div class="container">
-            <h2 style="text-align: center;">Wofür ich stehe</h2>
-            <div class="values-grid">
-                <div class="value-card">
-                    <h3>Ehrlichkeit</h3>
-                    <p>
-                        Kein "Du schaffst alles wenn du nur willst"-Bullshit. 
-                        Ich sage dir was funktioniert und was nicht. Real talk, immer.
-                    </p>
+            <div class="facts-grid">
+                <div class="fact-item">
+                    <h3>2019</h3>
+                    <p>Start</p>
                 </div>
-                
-                <div class="value-card">
-                    <h3>Systeme > Hustle</h3>
-                    <p>
-                        Mehr arbeiten bringt nicht mehr Ergebnisse. Bessere Systeme schon. 
-                        Ich zeig dir wie du aufhörst zu rennen und anfängst zu bauen.
-                    </p>
+                <div class="fact-item">
+                    <h3>50+</h3>
+                    <p>Kundinnen</p>
                 </div>
-                
-                <div class="value-card">
-                    <h3>Mama-Realität</h3>
-                    <p>
-                        Ich hab ein 4-jähriges Kind. Ich weiß wie's ist wenn du nicht "mal eben schnell" 
-                        3 Stunden am Stück arbeiten kannst. Meine Systeme funktionieren IN dieser Realität.
-                    </p>
+                <div class="fact-item">
+                    <h3>100+</h3>
+                    <p>Systeme gebaut</p>
                 </div>
-                
-                <div class="value-card">
-                    <h3>Umsetzung > Theorie</h3>
-                    <p>
-                        Keine vagen "Du könntest mal..."-Tipps. Klick-für-Klick Anleitungen. 
-                        Konkrete Tools. Du verlässt unsere Calls mit einem Plan den du HEUTE umsetzt.
-                    </p>
-                </div>
-                
-                <div class="value-card">
-                    <h3>Tech ohne Techie</h3>
-                    <p>
-                        Ich bin Developerin aber erkläre alles so dass meine Oma es versteht. 
-                        Du brauchst kein Tech-Wissen. Nur die Bereitschaft es zu lernen.
-                    </p>
-                </div>
-                
-                <div class="value-card">
-                    <h3>Mindset = Everything</h3>
-                    <p>
-                        Die besten Tools bringen nichts wenn du dich selbst sabotierst. 
-                        Deshalb arbeiten wir IMMER auch am Mindset. Entscheidungen treffen. Durchhalten. Gewinnen.
-                    </p>
+                <div class="fact-item">
+                    <h3>Wien</h3>
+                    <p>Standort</p>
                 </div>
             </div>
         </div>
@@ -504,12 +473,9 @@
     <!-- CTA -->
     <section class="cta-section">
         <div class="container-narrow">
-            <h2>Lass uns zusammenarbeiten</h2>
-            <p>
-                Bereit für dein 2h/Tag Business? Schau dir meine Angebote an oder 
-                schreib mir direkt – ich freu mich von dir zu hören.
-            </p>
-            <a href="index.html#angebote" class="btn">Zu den Angeboten</a>
+            <h2>Bereit für den nächsten Schritt?</h2>
+            <p>Lass uns schauen, wie ich dir helfen kann – ob mit dem 1:1 Mentoring, einem Done-for-you Setup oder einem anderen Angebot.</p>
+            <a href="angebote.html" class="btn">Angebote ansehen</a>
         </div>
     </section>
 
@@ -519,19 +485,16 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h4>Carina Anna Prav</h4>
-                    <p style="color: var(--beige); font-size: 0.95rem;">
-                        Business-Automatisierung & Pinterest-Marketing für Mamas die skalieren wollen ohne auszubrennen.
-                    </p>
+                    <p>Business-Systeme für Unternehmerinnen.</p>
                 </div>
                 
                 <div class="footer-section">
-                    <h4>Quick Links</h4>
+                    <h4>Navigation</h4>
                     <ul class="footer-links">
-                        <li><a href="index.html#system">Das System</a></li>
-                        <li><a href="index.html#angebote">Angebote</a></li>
-                        <li><a href="index.html#podcast">Podcast</a></li>
-                        <li><a href="ueber-mich.html">Über mich</a></li>
-                        <li><a href="index.html#kontakt">Newsletter</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="angebote.html">Angebote</a></li>
+                        <li><a href="freebies.html">Ressourcen</a></li>
+                        
                     </ul>
                 </div>
                 
@@ -543,38 +506,21 @@
                         <li><a href="agb.html">AGB</a></li>
                     </ul>
                 </div>
-                
-                <div class="footer-section">
-                    <h4>Folge mir</h4>
-                    <ul class="footer-links">
-                        <li><a href="https://pinterest.com/deinprofil" target="_blank">Pinterest</a></li>
-                        <li><a href="https://linkedin.com/in/deinprofil" target="_blank">LinkedIn</a></li>
-                        <li><a href="mailto:socials@carinaannaprav.at">Email</a></li>
-                    </ul>
-                </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2026 Carina Anna Prav. Alle Rechte vorbehalten.</p>
+                <p>&copy; 2026 Carina Anna Prav</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Mobile Menu
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const navLinks = document.querySelector('.nav-links');
         
         mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            mobileMenuBtn.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
-        });
-        
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                mobileMenuBtn.textContent = '☰';
-            });
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
         });
     </script>
 </body>
+</html>

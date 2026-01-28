@@ -14,25 +14,22 @@
         }
         
         :root {
-            --cream: #FAF9F6;
-            --beige: #E8DED2;
-            --charcoal: #2D2D2D;
-            --dark-gray: #4A4A4A;
-            --accent: #B89968;
+            --white: #FFFFFF;
+            --off-white: #F8F9FA;
+            --light-gray: #E9ECEF;
+            --medium-gray: #6C757D;
+            --charcoal: #212529;
+            --slate-blue: #4A5568;
+            --accent-blue: #2C5282;
             
             --font-serif: 'Playfair Display', Georgia, serif;
             --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-            
-            --spacing-sm: 1rem;
-            --spacing-md: 2rem;
-            --spacing-lg: 4rem;
-            --max-width: 1200px;
         }
         
         body {
             font-family: var(--font-sans);
             color: var(--charcoal);
-            background: var(--cream);
+            background: var(--white);
             line-height: 1.7;
         }
         
@@ -40,71 +37,76 @@
             font-family: var(--font-serif);
             font-weight: 400;
             line-height: 1.2;
-            margin-bottom: var(--spacing-sm);
+            margin-bottom: 1rem;
         }
         
         h1 {
-            font-size: clamp(2rem, 5vw, 3rem);
-            margin-bottom: var(--spacing-md);
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            margin-bottom: 2rem;
         }
         
         h2 {
-            font-size: clamp(1.5rem, 4vw, 2rem);
-            margin-top: var(--spacing-md);
-            color: var(--accent);
+            font-size: 1.35rem;
+            margin-top: 2.5rem;
+            color: var(--charcoal);
         }
         
         h3 {
-            font-size: clamp(1.2rem, 3vw, 1.5rem);
-            margin-top: var(--spacing-sm);
+            font-size: 1.1rem;
+            margin-top: 1.5rem;
+            font-family: var(--font-sans);
+            font-weight: 600;
         }
         
         p {
-            font-size: 1.125rem;
-            margin-bottom: var(--spacing-sm);
-            color: var(--dark-gray);
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+            color: var(--slate-blue);
         }
         
         ul {
-            margin-left: 2rem;
-            margin-bottom: var(--spacing-sm);
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
         }
         
         li {
-            margin-bottom: 0.5rem;
-            color: var(--dark-gray);
+            margin-bottom: 0.4rem;
+            color: var(--slate-blue);
         }
         
         a {
-            color: var(--accent);
+            color: var(--accent-blue);
             text-decoration: none;
-            transition: color 0.3s ease;
         }
         
         a:hover {
+            text-decoration: underline;
+        }
+        
+        strong {
             color: var(--charcoal);
         }
         
         .container {
-            max-width: 800px;
+            max-width: 700px;
             margin: 0 auto;
-            padding: 0 var(--spacing-md);
+            padding: 0 2rem;
         }
         
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(250, 249, 246, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
             z-index: 1000;
-            border-bottom: 1px solid var(--beige);
+            border-bottom: 1px solid var(--light-gray);
         }
         
         .nav-container {
-            max-width: var(--max-width);
+            max-width: 1200px;
             margin: 0 auto;
-            padding: var(--spacing-sm) var(--spacing-md);
+            padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -112,39 +114,37 @@
         
         .logo {
             font-family: var(--font-serif);
-            font-size: 1.5rem;
-            font-weight: 400;
-            letter-spacing: 0.05em;
+            font-size: 1.25rem;
+            text-decoration: none;
             color: var(--charcoal);
+            letter-spacing: 0.05em;
         }
         
         .back-link {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            font-weight: 500;
+            color: var(--slate-blue);
+            text-decoration: none;
+        }
+        
+        .back-link:hover {
             color: var(--charcoal);
+            text-decoration: none;
         }
         
         .content {
-            padding: 120px 0 var(--spacing-lg);
+            padding: 120px 0 4rem;
         }
         
         .legal-section {
-            margin-bottom: var(--spacing-lg);
-        }
-        
-        .small-note {
-            font-size: 0.85rem;
-            color: var(--dark-gray);
-            font-style: italic;
-            margin-top: 0.5rem;
+            margin-bottom: 2rem;
         }
         
         footer {
             background: var(--charcoal);
-            color: var(--beige);
-            padding: var(--spacing-md) 0;
+            color: var(--medium-gray);
+            padding: 2rem 0;
             text-align: center;
             font-size: 0.9rem;
         }
@@ -159,7 +159,7 @@
     <nav>
         <div class="nav-container">
             <a href="index.html" class="logo">CARINA ANNA PRAV</a>
-            <a href="index.html" class="back-link">← Zurück</a>
+            <a href="index.html" class="back-link">Zurück</a>
         </div>
     </nav>
 
@@ -205,128 +205,34 @@
                 <p>
                     Sie haben jederzeit das Recht, unentgeltlich Auskunft über Herkunft, Empfänger und Zweck Ihrer 
                     gespeicherten personenbezogenen Daten zu erhalten. Sie haben außerdem ein Recht, die Berichtigung 
-                    oder Löschung dieser Daten zu verlangen. Wenn Sie eine Einwilligung zur Datenverarbeitung erteilt haben, 
-                    können Sie diese Einwilligung jederzeit für die Zukunft widerrufen. Außerdem haben Sie das Recht, 
-                    unter bestimmten Umständen die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen.
-                </p>
-                <p>
-                    Des Weiteren steht Ihnen ein Beschwerderecht bei der zuständigen Aufsichtsbehörde zu.
-                </p>
-                <p>
-                    Hierzu sowie zu weiteren Fragen zum Thema Datenschutz können Sie sich jederzeit an uns wenden.
+                    oder Löschung dieser Daten zu verlangen.
                 </p>
             </div>
             
             <div class="legal-section">
                 <h2>2. Hosting</h2>
-                <p>
-                    Wir hosten die Inhalte unserer Website bei folgendem Anbieter:
-                </p>
+                <p>Wir hosten die Inhalte unserer Website bei folgendem Anbieter:</p>
                 
                 <h3>Netlify</h3>
                 <p>
-                    Anbieter ist Netlify, Inc., 2325 3rd Street, Suite 296, San Francisco, CA 94107, USA (nachfolgend „Netlify").
+                    Anbieter ist Netlify, Inc., 2325 3rd Street, Suite 296, San Francisco, CA 94107, USA.
                 </p>
                 <p>
                     Details entnehmen Sie der Datenschutzerklärung von Netlify: 
-                    <a href="https://www.netlify.com/privacy/" target="_blank" rel="noopener">https://www.netlify.com/privacy/</a>
-                </p>
-                <p>
-                    Die Verwendung von Netlify erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Wir haben ein 
-                    berechtigtes Interesse an einer möglichst zuverlässigen Darstellung unserer Website.
+                    <a href="https://www.netlify.com/privacy/" target="_blank" rel="noopener">netlify.com/privacy</a>
                 </p>
             </div>
             
             <div class="legal-section">
-                <h2>3. Allgemeine Hinweise und Pflichtinformationen</h2>
-                
-                <h3>Datenschutz</h3>
-                <p>
-                    Die Betreiber dieser Seiten nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre 
-                    personenbezogenen Daten vertraulich und entsprechend den gesetzlichen Datenschutzvorschriften sowie 
-                    dieser Datenschutzerklärung.
-                </p>
-                <p>
-                    Wenn Sie diese Website benutzen, werden verschiedene personenbezogene Daten erhoben. Personenbezogene 
-                    Daten sind Daten, mit denen Sie persönlich identifiziert werden können. Die vorliegende 
-                    Datenschutzerklärung erläutert, welche Daten wir erheben und wofür wir sie nutzen. Sie erläutert auch, 
-                    wie und zu welchem Zweck das geschieht.
-                </p>
-                
-                <h3>Hinweis zur verantwortlichen Stelle</h3>
-                <p>
-                    Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:
-                </p>
+                <h2>3. Verantwortliche Stelle</h2>
                 <p>
                     <strong>Carina Anna Prav</strong><br>
                     Werbeagentur<br>
                     Hervicusgasse 19/2/34<br>
-                    1120 Wien<br>
-                    Österreich<br>
+                    1120 Wien, Österreich<br>
                     Telefon: <a href="tel:+436506739365">+43 650 6739365</a><br>
-                    E-Mail: <a href="mailto:socials@carinaannaprav.at">socials@carinaannaprav.at</a>
+                    E-Mail: <a href="mailto:socials@carinaannaprav.at"><span class="__cf_email__" data-cfemail="f0839f9399919c83b0939182999e91919e9e9180829186de9184">[email&#160;protected]</span></a>
                 </p>
-                <p class="small-note">
-                    Hinweis: Diese Geschäftsadresse wird von einem professionellen Dienstleister bereitgestellt.
-                </p>
-                <p>
-                    Verantwortliche Stelle ist die natürliche oder juristische Person, die allein oder gemeinsam mit anderen 
-                    über die Zwecke und Mittel der Verarbeitung von personenbezogenen Daten (z.B. Namen, E-Mail-Adressen o. Ä.) 
-                    entscheidet.
-                </p>
-                
-                <h3>Speicherdauer</h3>
-                <p>
-                    Soweit innerhalb dieser Datenschutzerklärung keine speziellere Speicherdauer genannt wurde, verbleiben 
-                    Ihre personenbezogenen Daten bei uns, bis der Zweck für die Datenverarbeitung entfällt. Wenn Sie ein 
-                    berechtigtes Löschersuchen geltend machen oder eine Einwilligung zur Datenverarbeitung widerrufen, 
-                    werden Ihre Daten gelöscht, sofern wir keine anderen rechtlich zulässigen Gründe für die Speicherung 
-                    Ihrer personenbezogenen Daten haben.
-                </p>
-                
-                <h3>Widerruf Ihrer Einwilligung zur Datenverarbeitung</h3>
-                <p>
-                    Viele Datenverarbeitungsvorgänge sind nur mit Ihrer ausdrücklichen Einwilligung möglich. Sie können eine 
-                    bereits erteilte Einwilligung jederzeit widerrufen. Die Rechtmäßigkeit der bis zum Widerruf erfolgten 
-                    Datenverarbeitung bleibt vom Widerruf unberührt.
-                </p>
-                
-                <h3>Beschwerderecht bei der zuständigen Aufsichtsbehörde</h3>
-                <p>
-                    Im Falle von Verstößen gegen die DSGVO steht den Betroffenen ein Beschwerderecht bei einer 
-                    Aufsichtsbehörde, insbesondere in dem Mitgliedstaat ihres gewöhnlichen Aufenthalts, ihres Arbeitsplatzes 
-                    oder des Orts des mutmaßlichen Verstoßes zu. Das Beschwerderecht besteht unbeschadet anderweitiger 
-                    verwaltungsrechtlicher oder gerichtlicher Rechtsbehelfe.
-                </p>
-                
-                <h3>Recht auf Datenübertragbarkeit</h3>
-                <p>
-                    Sie haben das Recht, Daten, die wir auf Grundlage Ihrer Einwilligung oder in Erfüllung eines Vertrags 
-                    automatisiert verarbeiten, an sich oder an einen Dritten in einem gängigen, maschinenlesbaren Format 
-                    aushändigen zu lassen. Sofern Sie die direkte Übertragung der Daten an einen anderen Verantwortlichen 
-                    verlangen, erfolgt dies nur, soweit es technisch machbar ist.
-                </p>
-                
-                <h3>Auskunft, Löschung und Berichtigung</h3>
-                <p>
-                    Sie haben im Rahmen der geltenden gesetzlichen Bestimmungen jederzeit das Recht auf unentgeltliche 
-                    Auskunft über Ihre gespeicherten personenbezogenen Daten, deren Herkunft und Empfänger und den Zweck 
-                    der Datenverarbeitung und ggf. ein Recht auf Berichtigung oder Löschung dieser Daten. Hierzu sowie zu 
-                    weiteren Fragen zum Thema personenbezogene Daten können Sie sich jederzeit an uns wenden.
-                </p>
-                
-                <h3>Recht auf Einschränkung der Verarbeitung</h3>
-                <p>
-                    Sie haben das Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen. 
-                    Hierzu können Sie sich jederzeit an uns wenden. Das Recht auf Einschränkung der Verarbeitung besteht 
-                    in folgenden Fällen:
-                </p>
-                <ul>
-                    <li>Wenn Sie die Richtigkeit Ihrer bei uns gespeicherten personenbezogenen Daten bestreiten</li>
-                    <li>Wenn die Verarbeitung Ihrer personenbezogenen Daten unrechtmäßig geschah/geschieht</li>
-                    <li>Wenn wir Ihre personenbezogenen Daten nicht mehr benötigen</li>
-                    <li>Wenn Sie Widerspruch nach Art. 21 Abs. 1 DSGVO eingelegt haben</li>
-                </ul>
             </div>
             
             <div class="legal-section">
@@ -334,8 +240,7 @@
                 
                 <h3>Server-Log-Dateien</h3>
                 <p>
-                    Der Provider der Seiten erhebt und speichert automatisch Informationen in so genannten Server-Log-Dateien, 
-                    die Ihr Browser automatisch an uns übermittelt. Dies sind:
+                    Der Provider der Seiten erhebt und speichert automatisch Informationen in so genannten Server-Log-Dateien:
                 </p>
                 <ul>
                     <li>Browsertyp und Browserversion</li>
@@ -345,61 +250,21 @@
                     <li>Uhrzeit der Serveranfrage</li>
                     <li>IP-Adresse</li>
                 </ul>
-                <p>
-                    Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen.
-                </p>
-                <p>
-                    Die Erfassung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Der Websitebetreiber hat 
-                    ein berechtigtes Interesse an der technisch fehlerfreien Darstellung und der Optimierung seiner Website.
-                </p>
+                <p>Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen.</p>
                 
                 <h3>Kontaktformular / Newsletter</h3>
                 <p>
                     Wenn Sie uns per Kontaktformular oder Newsletter-Anmeldung Anfragen zukommen lassen, werden Ihre Angaben 
-                    aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der 
-                    Anfrage und für den Fall von Anschlussfragen bei uns gespeichert.
-                </p>
-                <p>
-                    Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage 
-                    mit der Erfüllung eines Vertrags zusammenhängt oder zur Durchführung vorvertraglicher Maßnahmen 
-                    erforderlich ist. In allen übrigen Fällen beruht die Verarbeitung auf unserem berechtigten Interesse an 
-                    der effektiven Bearbeitung der an uns gerichteten Anfragen (Art. 6 Abs. 1 lit. f DSGVO) oder auf Ihrer 
-                    Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) sofern diese abgefragt wurde.
-                </p>
-                <p>
-                    Die von Ihnen im Kontaktformular eingegebenen Daten verbleiben bei uns, bis Sie uns zur Löschung auffordern, 
-                    Ihre Einwilligung zur Speicherung widerrufen oder der Zweck für die Datenspeicherung entfällt.
-                </p>
-                
-                <h3>Anfrage per E-Mail oder Telefon</h3>
-                <p>
-                    Wenn Sie uns per E-Mail oder Telefon kontaktieren, wird Ihre Anfrage inklusive aller daraus hervorgehenden 
-                    personenbezogenen Daten (Name, Anfrage) zum Zwecke der Bearbeitung Ihres Anliegens bei uns gespeichert und 
-                    verarbeitet. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.
-                </p>
-                <p>
-                    Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage 
-                    mit der Erfüllung eines Vertrags zusammenhängt oder zur Durchführung vorvertraglicher Maßnahmen erforderlich 
-                    ist. In allen übrigen Fällen beruht die Verarbeitung auf unserem berechtigten Interesse an der effektiven 
-                    Bearbeitung der an uns gerichteten Anfragen (Art. 6 Abs. 1 lit. f DSGVO) oder auf Ihrer Einwilligung 
-                    (Art. 6 Abs. 1 lit. a DSGVO) sofern diese abgefragt wurde.
+                    aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung bei uns gespeichert.
                 </p>
             </div>
             
             <div class="legal-section">
                 <h2>5. Newsletter</h2>
-                
-                <h3>Newsletterdaten</h3>
                 <p>
                     Wenn Sie den auf der Website angebotenen Newsletter beziehen möchten, benötigen wir von Ihnen eine 
                     E-Mail-Adresse sowie Informationen, welche uns die Überprüfung gestatten, dass Sie der Inhaber der 
-                    angegebenen E-Mail-Adresse sind und mit dem Empfang des Newsletters einverstanden sind.
-                </p>
-                <p>
-                    Die Datenverarbeitung zum Zwecke des Versands des Newsletters erfolgt auf Grundlage Ihrer Einwilligung 
-                    (Art. 6 Abs. 1 lit. a DSGVO). Eine erteilte Einwilligung zur Speicherung der Daten, der E-Mail-Adresse 
-                    sowie deren Nutzung zum Versand des Newsletters können Sie jederzeit widerrufen, etwa über den 
-                    "Austragen"-Link im Newsletter.
+                    angegebenen E-Mail-Adresse sind.
                 </p>
                 <p>
                     Wir nutzen für den Newsletter-Versand: <strong>Brevo (ehemals Sendinblue)</strong>
@@ -408,13 +273,26 @@
                     Anbieter ist die Sendinblue GmbH, Köpenicker Straße 126, 10179 Berlin, Deutschland.
                 </p>
                 <p>
-                    Details entnehmen Sie der Datenschutzerklärung von Brevo: 
-                    <a href="https://www.brevo.com/de/legal/privacypolicy/" target="_blank" rel="noopener">https://www.brevo.com/de/legal/privacypolicy/</a>
+                    Details: <a href="https://www.brevo.com/de/legal/privacypolicy/" target="_blank" rel="noopener">brevo.com/de/legal/privacypolicy</a>
                 </p>
             </div>
             
             <div class="legal-section">
-                <h2>6. KI-generierte Inhalte</h2>
+                <h2>6. Ihre Rechte</h2>
+                <p>Sie haben das Recht auf:</p>
+                <ul>
+                    <li>Auskunft über Ihre gespeicherten Daten</li>
+                    <li>Berichtigung unrichtiger Daten</li>
+                    <li>Löschung Ihrer Daten</li>
+                    <li>Einschränkung der Verarbeitung</li>
+                    <li>Datenübertragbarkeit</li>
+                    <li>Widerspruch gegen die Verarbeitung</li>
+                    <li>Beschwerde bei einer Aufsichtsbehörde</li>
+                </ul>
+            </div>
+            
+            <div class="legal-section">
+                <h2>7. KI-generierte Inhalte</h2>
                 <p>
                     Alle auf dieser Website verwendeten Bilder wurden mittels KI-Bildgenerierung erstellt. 
                     Es werden keine personenbezogenen Daten von Besuchern zur KI-Bildgenerierung verwendet.
@@ -425,12 +303,4 @@
                 <p><strong>Stand: Januar 2026</strong></p>
             </div>
         </div>
-    </div>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Carina Anna Prav. Alle Rechte vorbehalten.</p>
-        </div>
-    </footer>
-</body>
-</html>
+   

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <title>System-Check | Carina Anna Prav</title>
+    <title>Bestandsaufnahme | Carina Anna Prav</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,15 +18,19 @@
         }
         
         :root {
-            --cream: #FAF9F6;
-            --beige: #E8DED2;
-            --charcoal: #2D2D2D;
-            --dark-gray: #4A4A4A;
-            --accent: #B89968;
-            --red: #D84848;
-            --orange: #E8934C;
-            --yellow: #E8C44C;
-            --green: #6BA368;
+            --white: #FFFFFF;
+            --off-white: #F8F9FA;
+            --light-gray: #E9ECEF;
+            --medium-gray: #6C757D;
+            --dark-gray: #343A40;
+            --charcoal: #212529;
+            --slate-blue: #4A5568;
+            --accent-blue: #2C5282;
+            --accent-blue-light: #3182CE;
+            --red: #C53030;
+            --orange: #C05621;
+            --yellow: #B7791F;
+            --green: #276749;
             
             --font-serif: 'Playfair Display', Georgia, serif;
             --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
@@ -34,105 +38,112 @@
         
         body {
             font-family: var(--font-sans);
-            background: var(--cream);
+            background: var(--white);
             color: var(--charcoal);
             line-height: 1.6;
         }
         
         .container {
-            max-width: 800px;
+            max-width: 700px;
             margin: 0 auto;
             padding: 3rem 2rem;
         }
         
         h1 {
             font-family: var(--font-serif);
-            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-size: clamp(2rem, 5vw, 3rem);
             font-weight: 400;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             text-align: center;
+            color: var(--charcoal);
         }
         
         .intro {
             text-align: center;
-            font-size: 1.125rem;
-            color: var(--dark-gray);
-            margin-bottom: 3rem;
-            max-width: 600px;
+            font-size: 1rem;
+            color: var(--slate-blue);
+            margin-bottom: 2.5rem;
+            max-width: 500px;
             margin-left: auto;
             margin-right: auto;
         }
         
         .quiz-container {
-            background: white;
-            border: 2px solid var(--beige);
-            border-radius: 8px;
-            padding: 2.5rem;
-            margin-bottom: 2rem;
+            background: var(--white);
+            border: 1px solid var(--light-gray);
+            padding: 2rem;
         }
         
         .question-block {
             margin-bottom: 2.5rem;
+            padding-bottom: 2.5rem;
+            border-bottom: 1px solid var(--light-gray);
         }
         
-        .question-block:last-child {
+        .question-block:last-of-type {
             margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .question-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent-blue);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
         }
         
         .question-title {
             font-family: var(--font-serif);
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             margin-bottom: 1rem;
             color: var(--charcoal);
-        }
-        
-        .question-subtitle {
-            font-size: 0.95rem;
-            color: var(--dark-gray);
-            margin-bottom: 1.5rem;
         }
         
         .options {
             display: flex;
             flex-direction: column;
-            gap: 0.75rem;
+            gap: 0.5rem;
         }
         
         .option {
             padding: 1rem 1.25rem;
-            border: 2px solid var(--beige);
-            border-radius: 4px;
+            border: 1px solid var(--light-gray);
             cursor: pointer;
             transition: all 0.2s;
-            background: white;
+            background: var(--white);
         }
         
         .option:hover {
-            border-color: var(--accent);
-            background: var(--cream);
+            border-color: var(--accent-blue);
+            background: var(--off-white);
         }
         
         .option.selected {
-            border-color: var(--accent);
-            background: var(--accent);
-            color: white;
+            border-color: var(--accent-blue);
+            background: var(--accent-blue);
+            color: var(--white);
         }
         
         .option-label {
             font-weight: 600;
             display: block;
-            margin-bottom: 0.25rem;
+            font-size: 0.95rem;
         }
         
         .option-desc {
-            font-size: 0.9rem;
-            opacity: 0.8;
+            font-size: 0.85rem;
+            opacity: 0.7;
+            margin-top: 0.25rem;
+            display: block;
         }
         
         .submit-section {
-            margin-top: 2.5rem;
-            padding-top: 2.5rem;
-            border-top: 2px solid var(--beige);
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--light-gray);
         }
         
         .form-row {
@@ -145,55 +156,63 @@
         input[type="text"],
         input[type="email"] {
             width: 100%;
-            padding: 0.875rem;
-            border: 2px solid var(--beige);
-            border-radius: 4px;
+            padding: 0.875rem 1rem;
+            border: 1px solid var(--light-gray);
             font-size: 1rem;
+            font-family: var(--font-sans);
+            background: var(--off-white);
+            transition: border-color 0.3s;
         }
         
         input:focus {
             outline: none;
-            border-color: var(--accent);
+            border-color: var(--accent-blue);
+            background: var(--white);
         }
         
         .privacy {
-            margin: 1.5rem 0;
+            margin: 1.25rem 0;
             display: flex;
             align-items: flex-start;
-            gap: 0.75rem;
+            gap: 0.6rem;
         }
         
         .privacy input {
-            margin-top: 0.25rem;
+            margin-top: 0.2rem;
         }
         
         .privacy label {
-            font-size: 0.9rem;
-            color: var(--dark-gray);
+            font-size: 0.85rem;
+            color: var(--slate-blue);
+            line-height: 1.5;
         }
         
         .privacy a {
-            color: var(--accent);
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+        
+        .privacy a:hover {
+            text-decoration: underline;
         }
         
         button {
             width: 100%;
-            padding: 1.25rem;
+            padding: 1rem;
             background: var(--charcoal);
-            color: white;
+            color: var(--white);
             border: none;
-            border-radius: 4px;
-            font-size: 1.125rem;
+            font-size: 0.9rem;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.1em;
             cursor: pointer;
             transition: all 0.3s;
+            font-family: var(--font-sans);
         }
         
         button:hover:not(:disabled) {
-            background: var(--dark-gray);
-            transform: translateY(-2px);
+            background: var(--slate-blue);
         }
         
         button:disabled {
@@ -204,19 +223,14 @@
         .message {
             margin-top: 1rem;
             padding: 1rem;
-            border-radius: 4px;
             text-align: center;
-            font-weight: 600;
+            font-size: 0.9rem;
+            display: none;
         }
         
         .message.error {
-            background: #ffe0e0;
+            background: #FED7D7;
             color: var(--red);
-        }
-        
-        .message.success {
-            background: #e0f5e0;
-            color: var(--green);
         }
         
         /* RESULTS */
@@ -229,50 +243,58 @@
         }
         
         .score-box {
-            background: linear-gradient(135deg, var(--beige) 0%, var(--cream) 100%);
-            padding: 2.5rem;
-            border-radius: 8px;
+            background: var(--off-white);
+            padding: 2rem;
             text-align: center;
             margin-bottom: 2rem;
+            border: 1px solid var(--light-gray);
         }
         
         .score-number {
             font-family: var(--font-serif);
-            font-size: 5rem;
-            font-weight: 600;
+            font-size: 4rem;
+            font-weight: 400;
             line-height: 1;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.25rem;
         }
         
         .score-label {
-            font-size: 1.25rem;
-            color: var(--dark-gray);
+            font-size: 1rem;
+            color: var(--slate-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
         }
         
         .result-title {
             font-family: var(--font-serif);
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 1.5rem;
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            color: var(--charcoal);
         }
         
         .result-text {
-            font-size: 1.125rem;
-            color: var(--dark-gray);
+            font-size: 1rem;
+            color: var(--slate-blue);
             margin-bottom: 2rem;
-            line-height: 1.8;
+            line-height: 1.7;
         }
         
         .missing-areas {
-            background: white;
-            border-left: 4px solid var(--red);
-            padding: 1.5rem;
-            margin: 2rem 0;
+            background: var(--off-white);
+            border-left: 3px solid var(--red);
+            padding: 1.25rem 1.5rem;
+            margin: 1.5rem 0;
+            display: none;
         }
         
         .missing-areas h3 {
-            color: var(--red);
-            margin-bottom: 1rem;
+            color: var(--charcoal);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.75rem;
+            font-family: var(--font-sans);
+            font-weight: 600;
         }
         
         .missing-areas ul {
@@ -281,75 +303,113 @@
         }
         
         .missing-areas li {
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
+            padding: 0.4rem 0;
+            padding-left: 1.25rem;
             position: relative;
+            color: var(--slate-blue);
+            font-size: 0.95rem;
         }
         
         .missing-areas li:before {
-            content: '❌';
+            content: '—';
             position: absolute;
             left: 0;
+            color: var(--red);
         }
         
         .cost-box {
             background: var(--charcoal);
-            color: white;
-            padding: 2rem;
-            border-radius: 8px;
-            margin: 2rem 0;
+            color: var(--white);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
             text-align: center;
         }
         
         .cost-box h3 {
-            font-family: var(--font-serif);
-            font-size: 1.75rem;
-            margin-bottom: 1rem;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+            font-family: var(--font-sans);
+            font-weight: 600;
+            color: var(--medium-gray);
         }
         
         .cost-amount {
-            font-size: 3rem;
-            font-weight: 600;
-            color: var(--accent);
-            margin: 1rem 0;
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            color: var(--white);
+            margin: 0.5rem 0;
+        }
+        
+        .cost-description {
+            font-size: 0.9rem;
+            color: var(--medium-gray);
+            line-height: 1.6;
         }
         
         .recommendation-box {
-            background: var(--accent);
-            color: white;
+            background: var(--accent-blue);
+            color: var(--white);
             padding: 2rem;
-            border-radius: 8px;
-            margin: 2rem 0;
+            margin: 1.5rem 0;
         }
         
         .recommendation-box h3 {
             font-family: var(--font-serif);
-            font-size: 2rem;
+            font-size: 1.5rem;
             margin-bottom: 1rem;
+            font-weight: 400;
+        }
+        
+        .recommendation-box p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            opacity: 0.9;
         }
         
         .cta-button {
             display: inline-block;
-            padding: 1.25rem 2.5rem;
-            background: white;
+            padding: 1rem 2rem;
+            background: var(--white);
             color: var(--charcoal);
             text-decoration: none;
-            border-radius: 4px;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-top: 1rem;
+            letter-spacing: 0.1em;
+            font-size: 0.85rem;
+            margin-top: 1.25rem;
             transition: all 0.3s;
         }
         
         .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            background: var(--off-white);
         }
         
-        @media (max-width: 768px) {
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 2rem;
+            color: var(--slate-blue);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        
+        .back-link:hover {
+            color: var(--accent-blue);
+        }
+        
+        @media (max-width: 600px) {
             .form-row {
                 grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 2rem 1.5rem;
+            }
+            
+            .quiz-container {
+                padding: 1.5rem;
             }
         }
     </style>
@@ -359,133 +419,128 @@
         
         <!-- QUIZ SECTION -->
         <div id="quiz-section">
-            <h1>System-Check</h1>
-            <p class="intro">
-                2 Minuten um rauszufinden was dich wirklich abhält vom 2h/Tag Business. 
-                Ehrliche Antworten = ehrliche Analyse.
-            </p>
+            <h1>Bestandsaufnahme</h1>
+            <p class="intro">5 Fragen. Dann weißt du, was fehlt.</p>
             
             <div class="quiz-container">
                 
                 <!-- QUESTION 1: POSITIONIERUNG -->
                 <div class="question-block">
-                    <h3 class="question-title">1. Positionierung</h3>
-                    <p class="question-subtitle">Kannst du in einem Satz sagen für wen du was machst?</p>
+                    <p class="question-label">Frage 1 von 5</p>
+                    <h3 class="question-title">Positionierung</h3>
                     <div class="options" data-question="q1">
                         <div class="option" data-value="2">
-                            <span class="option-label">✅ Ja, kristallklar</span>
-                            <span class="option-desc">"Ich helfe [spezifische Zielgruppe] von [Problem] zu [Ergebnis]"</span>
+                            <span class="option-label">Kristallklar</span>
+                            <span class="option-desc">Ich kann in einem Satz sagen für wen ich was mache</span>
                         </div>
                         <div class="option" data-value="1">
-                            <span class="option-label">⚠️ Einigermaßen</span>
-                            <span class="option-desc">Ich hab eine Nische, aber sie fühlt sich noch zu breit an</span>
+                            <span class="option-label">Ungefähr</span>
+                            <span class="option-desc">Ich hab eine Nische, aber sie fühlt sich zu breit an</span>
                         </div>
                         <div class="option" data-value="0">
-                            <span class="option-label">❌ Nein</span>
-                            <span class="option-desc">"Ich helfe allen mit..." oder ich kann's nicht in einem Satz sagen</span>
+                            <span class="option-label">Unklar</span>
+                            <span class="option-desc">Ich helfe "allen" oder kann es nicht klar sagen</span>
                         </div>
                     </div>
                 </div>
                 
                 <!-- QUESTION 2: ANGEBOT -->
                 <div class="question-block">
-                    <h3 class="question-title">2. Angebot</h3>
-                    <p class="question-subtitle">Hast du ein klares High-Ticket Angebot (2.000€+)?</p>
+                    <p class="question-label">Frage 2 von 5</p>
+                    <h3 class="question-title">High-Ticket Angebot (2.000€+)</h3>
                     <div class="options" data-question="q2">
                         <div class="option" data-value="2">
-                            <span class="option-label">✅ Ja, läuft</span>
-                            <span class="option-desc">Ich verkaufe regelmäßig ein High-Ticket Angebot mit klarem Ergebnis</span>
+                            <span class="option-label">Ja, verkauft sich</span>
+                            <span class="option-desc">Regelmäßige Verkäufe mit klarem Ergebnis</span>
                         </div>
                         <div class="option" data-value="1">
-                            <span class="option-label">⚠️ Hab eins, verkauft sich nicht</span>
-                            <span class="option-desc">Angebot existiert aber ich weiß nicht wie ich es verkaufen soll</span>
+                            <span class="option-label">Existiert, verkauft sich nicht</span>
+                            <span class="option-desc">Angebot steht, aber kaum Abschlüsse</span>
                         </div>
                         <div class="option" data-value="0">
-                            <span class="option-label">❌ Nein</span>
-                            <span class="option-desc">Ich biete nur Stundenweise oder Low-Ticket an</span>
+                            <span class="option-label">Nein</span>
+                            <span class="option-desc">Nur Stundensätze oder Low-Ticket</span>
                         </div>
                     </div>
                 </div>
                 
                 <!-- QUESTION 3: TRAFFIC -->
                 <div class="question-block">
-                    <h3 class="question-title">3. Sichtbarkeit</h3>
-                    <p class="question-subtitle">Kommen qualifizierte Leads automatisch zu dir?</p>
+                    <p class="question-label">Frage 3 von 5</p>
+                    <h3 class="question-title">Automatischer Traffic</h3>
                     <div class="options" data-question="q3">
                         <div class="option" data-value="2">
-                            <span class="option-label">✅ Ja, konsistent</span>
-                            <span class="option-desc">Ich bekomme regelmäßig Anfragen ohne aktiv zu posten</span>
+                            <span class="option-label">Läuft automatisch</span>
+                            <span class="option-desc">SEO, Pinterest, oder Paid Ads bringen konstant Leads</span>
                         </div>
                         <div class="option" data-value="1">
-                            <span class="option-label">⚠️ Manchmal</span>
-                            <span class="option-desc">Wenn ich viel poste kommen Anfragen, sonst nichts</span>
+                            <span class="option-label">Teilweise</span>
+                            <span class="option-desc">Etwas Traffic, aber nicht konsistent</span>
                         </div>
                         <div class="option" data-value="0">
-                            <span class="option-label">❌ Nein</span>
-                            <span class="option-desc">Ich muss aktiv akquirieren oder täglich Content machen</span>
+                            <span class="option-label">Nur manuell</span>
+                            <span class="option-desc">Poste ich nicht, kommt nichts</span>
                         </div>
                     </div>
                 </div>
                 
                 <!-- QUESTION 4: SYSTEME -->
                 <div class="question-block">
-                    <h3 class="question-title">4. Automatisierung</h3>
-                    <p class="question-subtitle">Läuft dein Marketing ohne dass du täglich dran arbeitest?</p>
+                    <p class="question-label">Frage 4 von 5</p>
+                    <h3 class="question-title">Systeme & Automatisierung</h3>
                     <div class="options" data-question="q4">
                         <div class="option" data-value="2">
-                            <span class="option-label">✅ Ja, automatisiert</span>
-                            <span class="option-desc">Funnel, Email-Serien, Content-Pipeline - alles läuft</span>
+                            <span class="option-label">Automatisiert</span>
+                            <span class="option-desc">E-Mails, Onboarding, Follow-ups laufen ohne mich</span>
                         </div>
                         <div class="option" data-value="1">
-                            <span class="option-label">⚠️ Teilweise</span>
-                            <span class="option-desc">Ich hab ein paar Automationen aber vieles ist noch manuell</span>
+                            <span class="option-label">Teilweise</span>
+                            <span class="option-desc">Einiges automatisiert, aber vieles noch manuell</span>
                         </div>
                         <div class="option" data-value="0">
-                            <span class="option-label">❌ Nein</span>
-                            <span class="option-desc">Alles manuell - wenn ich nicht poste/maile passiert nichts</span>
+                            <span class="option-label">Alles manuell</span>
+                            <span class="option-desc">Jeder Kunde ist Custom Work</span>
                         </div>
                     </div>
                 </div>
                 
                 <!-- QUESTION 5: ZEIT -->
                 <div class="question-block">
-                    <h3 class="question-title">5. Zeit</h3>
-                    <p class="question-subtitle">Wie viele Stunden arbeitest du pro Woche?</p>
+                    <p class="question-label">Frage 5 von 5</p>
+                    <h3 class="question-title">Arbeitszeit pro Tag</h3>
                     <div class="options" data-question="q5">
                         <div class="option" data-value="2">
-                            <span class="option-label">✅ Unter 20h</span>
-                            <span class="option-desc">2h/Tag Business ist Realität</span>
+                            <span class="option-label">2-4 Stunden</span>
+                            <span class="option-desc">Fokussiert auf das Wesentliche</span>
                         </div>
                         <div class="option" data-value="1">
-                            <span class="option-label">⚠️ 20-40h</span>
-                            <span class="option-desc">Gesunde Work-Life-Balance aber noch Luft nach oben</span>
+                            <span class="option-label">5-7 Stunden</span>
+                            <span class="option-desc">Normale Arbeitszeit</span>
                         </div>
                         <div class="option" data-value="0">
-                            <span class="option-label">❌ 40h+</span>
-                            <span class="option-desc">Ich arbeite mehr als in meinem alten Job</span>
+                            <span class="option-label">8+ Stunden</span>
+                            <span class="option-desc">Immer im Hustle-Modus</span>
                         </div>
                     </div>
                 </div>
                 
-                <!-- SUBMIT SECTION -->
+                <!-- SUBMIT -->
                 <div class="submit-section">
                     <div class="form-row">
-                        <input type="text" id="firstname" placeholder="Dein Vorname" required>
-                        <input type="email" id="email" placeholder="Deine Email" required>
+                        <input type="text" id="firstname" placeholder="Vorname" required>
+                        <input type="email" id="email" placeholder="E-Mail" required>
                     </div>
                     
                     <div class="privacy">
-                        <input type="checkbox" id="privacy-consent" required>
+                        <input type="checkbox" id="privacy-consent">
                         <label for="privacy-consent">
                             Ich stimme der <a href="/datenschutz.html" target="_blank">Datenschutzerklärung</a> zu.
                         </label>
                     </div>
                     
-                    <button type="button" id="submit-btn">Ergebnis anzeigen</button>
-                    
-                    <div id="message" class="message" style="display: none;"></div>
+                    <button id="submit-btn">Auswerten</button>
+                    <div id="message" class="message"></div>
                 </div>
-                
             </div>
         </div>
         
@@ -496,33 +551,32 @@
                 <div class="score-label">von 10 Punkten</div>
             </div>
             
-            <div class="quiz-container">
-                <h2 class="result-title" id="result-headline"></h2>
-                <div class="result-text" id="result-description"></div>
-                
-                <div class="missing-areas" id="missing-areas">
-                    <h3>⚠️ Das fehlt aktuell:</h3>
-                    <ul id="missing-list"></ul>
-                </div>
-                
-                <div class="cost-box" id="cost-box">
-                    <h3>💸 Das kostet dich aktuell:</h3>
-                    <div class="cost-amount" id="cost-amount"></div>
-                    <p id="cost-description"></p>
-                </div>
-                
-                <div class="recommendation-box" id="recommendation-box">
-                    <h3 id="recommendation-title"></h3>
-                    <p id="recommendation-text"></p>
-                    <a href="#" class="cta-button" id="recommendation-cta"></a>
-                </div>
+            <h2 class="result-title" id="result-headline"></h2>
+            <p class="result-text" id="result-description"></p>
+            
+            <div class="missing-areas" id="missing-areas">
+                <h3>Fehlt</h3>
+                <ul id="missing-list"></ul>
             </div>
+            
+            <div class="cost-box">
+                <h3>Opportunitätskosten</h3>
+                <div class="cost-amount" id="cost-amount"></div>
+                <p class="cost-description" id="cost-description"></p>
+            </div>
+            
+            <div class="recommendation-box">
+                <h3 id="recommendation-title"></h3>
+                <p id="recommendation-text"></p>
+                <a href="#" class="cta-button" id="recommendation-cta">Ansehen</a>
+            </div>
+            
+            <a href="index.html" class="back-link">Zurück zur Startseite</a>
         </div>
         
     </div>
-    
+
     <script>
-        // Quiz State
         const answers = {
             q1: null,
             q2: null,
@@ -531,26 +585,20 @@
             q5: null
         };
         
-        // Handle option clicks
         document.querySelectorAll('.option').forEach(option => {
             option.addEventListener('click', function() {
                 const question = this.parentElement.dataset.question;
                 const value = parseInt(this.dataset.value);
                 
-                // Deselect all options in this question
                 this.parentElement.querySelectorAll('.option').forEach(opt => {
                     opt.classList.remove('selected');
                 });
                 
-                // Select this option
                 this.classList.add('selected');
-                
-                // Store answer
                 answers[question] = value;
             });
         });
         
-        // Submit button
         document.getElementById('submit-btn').addEventListener('click', async function() {
             const firstname = document.getElementById('firstname').value.trim();
             const email = document.getElementById('email').value.trim();
@@ -558,34 +606,30 @@
             const messageEl = document.getElementById('message');
             const button = this;
             
-            // Validation
             if (!firstname || !email) {
-                messageEl.textContent = '❌ Bitte fülle Name und Email aus.';
+                messageEl.textContent = 'Bitte Name und E-Mail ausfüllen.';
                 messageEl.className = 'message error';
                 messageEl.style.display = 'block';
                 return;
             }
             
             if (!consent) {
-                messageEl.textContent = '❌ Bitte stimme der Datenschutzerklärung zu.';
+                messageEl.textContent = 'Bitte Datenschutz bestätigen.';
                 messageEl.className = 'message error';
                 messageEl.style.display = 'block';
                 return;
             }
             
-            // Check all questions answered
             if (Object.values(answers).some(val => val === null)) {
-                messageEl.textContent = '❌ Bitte beantworte alle 5 Fragen.';
+                messageEl.textContent = 'Bitte alle 5 Fragen beantworten.';
                 messageEl.className = 'message error';
                 messageEl.style.display = 'block';
                 return;
             }
             
-            // Calculate score
             const totalScore = Object.values(answers).reduce((sum, val) => sum + val, 0);
             const percentage = (totalScore / 10) * 100;
             
-            // Find missing areas
             const areaNames = {
                 q1: 'Positionierung',
                 q2: 'High-Ticket Angebot',
@@ -601,53 +645,51 @@
                 }
             });
             
-            // Determine result
             let resultHeadline, resultDescription, costAmount, costDescription, recTitle, recText, recCTA, recLink;
             
             if (totalScore <= 3) {
-                resultHeadline = '🚨 Die Foundation fehlt komplett';
-                resultDescription = 'Ehrlich gesagt: Du baust auf Sand. Ohne klare Positionierung und Angebot wird jede Marketing-Strategie nur Zeit und Geld verbrennen. Du brauchst erstmal die Basics bevor du skalieren kannst.';
+                resultHeadline = 'Foundation fehlt';
+                resultDescription = 'Ohne klare Positionierung und Angebot wird jede Marketing-Strategie Zeit und Geld verbrennen. Erst die Basics, dann skalieren.';
                 costAmount = '5.000€+';
-                costDescription = 'Pro Monat verloren durch unklare Positionierung, zu breites Angebot und ineffiziente Akquise. Plus die Lebenszeit die du mit "viel arbeiten für wenig Ergebnis" verschwendest.';
-                recTitle = '💡 Foundation Intensive';
-                recText = '6 Wochen 1:1 mit mir. Wir klären deine Positionierung, designen dein High-Ticket Angebot und ich zeige dir wie du verkaufst ohne Verkaufs-Webinare. Danach weißt du WAS du verkaufst, an WEN, und WIE.';
-                recCTA = 'Foundation Intensive ansehen';
-                recLink = 'https://www.carinaannaprav.at/angebote.html#foundation';
+                costDescription = 'Pro Monat verloren durch unklare Positionierung und ineffiziente Akquise.';
+                recTitle = 'Foundation Intensive';
+                recText = '6 Wochen 1:1. Positionierung, High-Ticket Offer Design, Sales. Danach weißt du was du verkaufst, an wen, und wie.';
+                recCTA = 'Foundation ansehen';
+                recLink = '/angebote.html#foundation';
                 
             } else if (totalScore <= 6) {
-                resultHeadline = '⚠️ Du hast die Basics aber läufst im Kreis';
-                resultDescription = 'Du weißt grob was du machst, aber es skaliert nicht. Wahrscheinlich arbeitest du noch zu viel für zu wenig Ergebnis. Das Problem: Du hast keine Systeme. Jeder Kunde ist Custom Work, jede Anfrage manuell, jeder Post händisch.';
+                resultHeadline = 'Basics stehen, Systeme fehlen';
+                resultDescription = 'Du weißt was du machst, aber es skaliert nicht. Jeder Kunde ist Custom Work, jede Anfrage manuell, jeder Post händisch.';
                 costAmount = '3.000€+';
-                costDescription = 'Pro Monat verloren durch ineffiziente Prozesse und manuelle Arbeit. Du könntest das doppelte verdienen in der Hälfte der Zeit - mit den richtigen Systemen.';
-                recTitle = '🔧 System-Setup Done-for-You';
-                recText = 'Ich baue dir das komplette System: Pinterest-Account, Funnel, Email-Automationen, Content-Pipeline. In 8 Wochen hast du ein Business das für dich arbeitet - auch wenn du schläfst.';
+                costDescription = 'Pro Monat verloren durch ineffiziente Prozesse und manuelle Arbeit.';
+                recTitle = 'System-Setup';
+                recText = 'Ich baue dir das komplette System: Website, Funnel, E-Mail-Automationen. In 8 Wochen hast du ein Business das für dich arbeitet.';
                 recCTA = 'System-Setup ansehen';
-                recLink = 'https://www.carinaannaprav.at/angebote.html#system';
+                recLink = '/angebote.html#system-setup';
                 
             } else if (totalScore <= 8) {
-                resultHeadline = '💡 Fast da - fehlt nur der Feinschliff';
-                resultDescription = 'Du machst schon vieles richtig! Aber ein paar Stellschrauben fehlen noch um wirklich auf 2h/Tag zu kommen. Wahrscheinlich funktioniert dein System teilweise, aber nicht konsistent genug.';
+                resultHeadline = 'Fast da';
+                resultDescription = 'Du machst vieles richtig. Ein paar Stellschrauben fehlen noch für die 2h/Tag. System funktioniert teilweise, aber nicht konsistent.';
                 costAmount = '1.500€+';
-                costDescription = 'Pro Monat "auf dem Tisch liegen gelassen" durch nicht-optimierte Systeme. Kleinigkeiten die große Auswirkung haben.';
-                recTitle = '⚡ VIP Optimization Package';
-                recText = 'Intensive 1:1 Sessions um deine bestehenden Systeme zu optimieren. Wir identifizieren die Engpässe und beheben sie. Schnell, fokussiert, effektiv.';
-                recCTA = 'VIP Package ansehen';
-                recLink = 'https://www.carinaannaprav.at/angebote.html#vip';
+                costDescription = 'Pro Monat liegen gelassen durch nicht-optimierte Systeme.';
+                recTitle = 'VIP Komplett';
+                recText = 'Intensive 1:1 Sessions um bestehende Systeme zu optimieren. Engpässe identifizieren und beheben.';
+                recCTA = 'VIP ansehen';
+                recLink = '/angebote.html#vip';
                 
             } else {
-                resultHeadline = '🎉 Du hast dein System - jetzt skalieren!';
-                resultDescription = 'Wow! Du hast wirklich ein funktionierendes 2h/Tag Business. Jetzt geht\'s nur noch darum zu skalieren ohne mehr zu arbeiten. Das ist die Kür, nicht mehr die Pflicht.';
+                resultHeadline = 'System steht';
+                resultDescription = 'Du hast ein funktionierendes Business. Jetzt geht es um Skalierung ohne mehr Arbeit.';
                 costAmount = '0€';
-                costDescription = 'Du verlierst kein Geld - du lässt nur Potential liegen. Mit dem richtigen Fine-Tuning könntest du verdoppeln ohne mehr zu arbeiten.';
-                recTitle = '🚀 Skalierungs-Strategien';
-                recText = 'Du brauchst keine Foundation mehr - nur strategische Beratung für Wachstum. Lass uns sprechen über deine spezifische Situation.';
-                recCTA = 'Gespräch buchen';
-                recLink = 'https://tidycal.com/carinaannaprav/kennenlernen';
+                costDescription = 'Du verlierst kein Geld. Du lässt Potential liegen.';
+                recTitle = 'Skalierung';
+                recText = 'Du brauchst keine Foundation mehr. Nur strategische Beratung für Wachstum.';
+                recCTA = 'Gespräch anfragen';
+                recLink = 'mailto:socials@carinaannaprav.at?subject=Skalierung';
             }
             
-            // Send to ActiveCampaign
             button.disabled = true;
-            button.textContent = 'Wird analysiert...';
+            button.textContent = 'Wird ausgewertet...';
             messageEl.style.display = 'none';
             
             try {
@@ -672,11 +714,9 @@
                     throw new Error('Submission failed');
                 }
                 
-                // Show results
                 document.getElementById('quiz-section').style.display = 'none';
                 document.getElementById('results-section').classList.add('show');
                 
-                // Populate results
                 document.getElementById('score-display').textContent = totalScore;
                 document.getElementById('score-display').style.color = 
                     totalScore <= 3 ? 'var(--red)' : 
@@ -687,7 +727,6 @@
                 document.getElementById('result-headline').textContent = resultHeadline;
                 document.getElementById('result-description').textContent = resultDescription;
                 
-                // Missing areas
                 if (missingAreas.length > 0) {
                     const list = document.getElementById('missing-list');
                     list.innerHTML = '';
@@ -701,26 +740,23 @@
                     document.getElementById('missing-areas').style.display = 'none';
                 }
                 
-                // Cost
                 document.getElementById('cost-amount').textContent = costAmount;
                 document.getElementById('cost-description').textContent = costDescription;
                 
-                // Recommendation
                 document.getElementById('recommendation-title').textContent = recTitle;
                 document.getElementById('recommendation-text').textContent = recText;
                 document.getElementById('recommendation-cta').textContent = recCTA;
                 document.getElementById('recommendation-cta').href = recLink;
                 
-                // Scroll to top
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 
             } catch (error) {
                 console.error('Error:', error);
-                messageEl.textContent = '❌ Fehler beim Senden. Bitte nochmal versuchen.';
+                messageEl.textContent = 'Fehler. Bitte nochmal versuchen.';
                 messageEl.className = 'message error';
                 messageEl.style.display = 'block';
                 button.disabled = false;
-                button.textContent = 'Ergebnis anzeigen';
+                button.textContent = 'Auswerten';
             }
         });
     </script>

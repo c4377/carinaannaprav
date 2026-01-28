@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Arbeite mit mir - Foundation Intensive, System-Setup & VIP Angebote">
+    <meta name="description" content="Angebote. Foundation Intensive, System-Setup, VIP Komplett.">
     <title>Angebote | Carina Anna Prav</title>
     
     <style>
@@ -14,13 +14,15 @@
         }
         
         :root {
-            --cream: #FAF9F6;
-            --beige: #E8DED2;
-            --warm-beige: #D4C5B0;
-            --charcoal: #2D2D2D;
-            --dark-gray: #4A4A4A;
-            --light-gray: #F5F5F5;
-            --accent: #B89968;
+            --white: #FFFFFF;
+            --off-white: #F8F9FA;
+            --light-gray: #E9ECEF;
+            --medium-gray: #6C757D;
+            --dark-gray: #343A40;
+            --charcoal: #212529;
+            --slate-blue: #4A5568;
+            --accent-blue: #2C5282;
+            --accent-blue-light: #3182CE;
             
             --font-serif: 'Playfair Display', Georgia, serif;
             --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
@@ -29,8 +31,9 @@
         body {
             font-family: var(--font-sans);
             color: var(--charcoal);
-            background: var(--cream);
+            background: var(--white);
             line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
         }
         
         h1, h2, h3, h4 {
@@ -50,10 +53,10 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(250, 249, 246, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
             z-index: 1000;
-            border-bottom: 1px solid var(--beige);
+            border-bottom: 1px solid var(--light-gray);
         }
         
         .nav-container {
@@ -67,9 +70,10 @@
         
         .logo {
             font-family: var(--font-serif);
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             text-decoration: none;
             color: var(--charcoal);
+            letter-spacing: 0.05em;
         }
         
         .nav-links {
@@ -80,334 +84,396 @@
         
         .nav-links a {
             text-decoration: none;
-            color: var(--charcoal);
-            font-size: 0.95rem;
+            color: var(--slate-blue);
+            font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
+            transition: color 0.3s;
         }
         
         .nav-links a:hover {
-            color: var(--accent);
+            color: var(--charcoal);
         }
         
         /* HERO */
         .hero {
-            min-height: 50vh;
+            min-height: 35vh;
             display: flex;
             align-items: center;
             padding-top: 100px;
-            padding-bottom: 4rem;
-            background: linear-gradient(135deg, #FAF9F6 0%, #E8DED2 100%);
+            padding-bottom: 3rem;
+            background: var(--off-white);
             text-align: center;
         }
         
         .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            margin-bottom: 1.5rem;
-        }
-        
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--dark-gray);
-            max-width: 600px;
-            margin: 0 auto 2rem;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 1.25rem 3rem;
-            font-size: 1rem;
-            font-weight: 600;
-            text-align: center;
-            border: 2px solid var(--charcoal);
-            background: var(--charcoal);
-            color: var(--cream);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            text-decoration: none;
-            border-radius: 4px;
-        }
-        
-        .btn:hover {
-            background: var(--dark-gray);
-            transform: translateY(-2px);
-        }
-        
-        .btn-outline {
-            background: transparent;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
             color: var(--charcoal);
         }
         
-        .btn-outline:hover {
-            background: var(--charcoal);
-            color: var(--cream);
-        }
-        
-        /* ACCORDION OFFERS */
+        /* OFFERS SECTION */
         .offers-section {
             padding: 4rem 0;
         }
         
-        .offer-accordion {
-            margin-bottom: 1.5rem;
-            border: 2px solid var(--beige);
-            border-radius: 8px;
-            overflow: hidden;
-            background: white;
-            transition: all 0.3s ease;
+        .offer-card {
+            border: 1px solid var(--light-gray);
+            margin-bottom: 1rem;
+            background: var(--white);
+            transition: border-color 0.3s;
         }
         
-        .offer-accordion:hover {
-            border-color: var(--accent);
+        .offer-card:hover {
+            border-color: var(--slate-blue);
         }
         
-        .offer-accordion.active {
-            border-color: var(--accent);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        .offer-card.featured {
+            border-color: var(--accent-blue);
         }
         
         .offer-header {
-            padding: 2rem;
+            padding: 1.5rem 2rem;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: white;
-            transition: background 0.3s ease;
-        }
-        
-        .offer-header:hover {
-            background: var(--light-gray);
+            user-select: none;
         }
         
         .offer-header-left {
-            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
         
         .offer-badge {
-            display: inline-block;
-            padding: 0.35rem 0.75rem;
-            background: var(--charcoal);
-            color: var(--cream);
+            background: var(--accent-blue);
+            color: var(--white);
+            padding: 0.25rem 0.75rem;
             font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            margin-bottom: 0.75rem;
-            border-radius: 2px;
+            font-weight: 600;
         }
         
-        .offer-badge.popular {
-            background: var(--accent);
+        .offer-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--medium-gray);
+            font-weight: 600;
         }
         
-        .offer-header h2 {
-            font-size: 1.75rem;
-            margin-bottom: 0.5rem;
+        .offer-title {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            color: var(--charcoal);
+            margin-top: 0.25rem;
         }
         
-        .offer-header p {
-            color: var(--dark-gray);
-            font-size: 1rem;
-            margin: 0;
+        .offer-subtitle {
+            font-size: 0.9rem;
+            color: var(--slate-blue);
+            margin-top: 0.25rem;
         }
         
         .offer-toggle {
-            font-size: 2rem;
-            color: var(--accent);
-            transition: transform 0.3s ease;
-            margin-left: 2rem;
+            font-size: 1.5rem;
+            color: var(--slate-blue);
+            transition: transform 0.3s;
+            font-weight: 300;
         }
         
-        .offer-accordion.active .offer-toggle {
+        .offer-card.open .offer-toggle {
             transform: rotate(45deg);
         }
         
         .offer-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.5s ease;
+            transition: max-height 0.4s ease;
         }
         
-        .offer-accordion.active .offer-content {
+        .offer-card.open .offer-content {
             max-height: 2000px;
         }
         
-        .offer-content-inner {
+        .offer-body {
             padding: 0 2rem 2rem;
+            border-top: 1px solid var(--light-gray);
         }
         
-        .offer-for-who {
-            background: var(--beige);
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            border-left: 4px solid var(--accent);
+        .offer-intro {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--light-gray);
         }
         
-        .offer-for-who h4 {
-            font-size: 1.1rem;
+        .offer-intro h4 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--medium-gray);
             margin-bottom: 0.75rem;
+            font-family: var(--font-sans);
+            font-weight: 600;
         }
         
-        .offer-grid {
+        .offer-intro p {
+            color: var(--slate-blue);
+            font-size: 0.95rem;
+        }
+        
+        .offer-details {
+            padding: 1.5rem 0;
+        }
+        
+        .offer-details h4 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--medium-gray);
+            margin-bottom: 1rem;
+            font-family: var(--font-sans);
+            font-weight: 600;
+        }
+        
+        .offer-list {
+            list-style: none;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin: 2rem 0;
+            gap: 0.5rem 2rem;
         }
         
-        @media (max-width: 768px) {
-            .offer-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        .offer-features {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .offer-features li {
-            padding: 0.75rem 0;
-            padding-left: 1.75rem;
+        .offer-list li {
+            padding: 0.5rem 0;
+            padding-left: 1rem;
             position: relative;
-            border-bottom: 1px solid var(--beige);
+            color: var(--slate-blue);
+            font-size: 0.9rem;
         }
         
-        .offer-features li:last-child {
-            border-bottom: none;
-        }
-        
-        .offer-features li::before {
-            content: '✓';
+        .offer-list li::before {
+            content: '';
             position: absolute;
             left: 0;
-            color: var(--accent);
-            font-weight: bold;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 4px;
+            background: var(--accent-blue);
+            border-radius: 50%;
         }
         
-        .process-step {
+        .offer-list li strong {
+            color: var(--charcoal);
+            font-weight: 600;
+        }
+        
+        .offer-timeline {
+            padding: 1.5rem 0;
+            border-top: 1px solid var(--light-gray);
+        }
+        
+        .offer-timeline h4 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--medium-gray);
+            margin-bottom: 1rem;
+            font-family: var(--font-sans);
+            font-weight: 600;
+        }
+        
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+        }
+        
+        .timeline-item {
             padding: 1rem;
-            margin-bottom: 0.75rem;
-            background: var(--light-gray);
-            border-left: 3px solid var(--accent);
+            background: var(--off-white);
         }
         
-        .process-step h4 {
-            font-size: 1rem;
+        .timeline-item strong {
+            display: block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent-blue);
             margin-bottom: 0.25rem;
         }
         
-        .process-step p {
+        .timeline-item span {
             font-size: 0.9rem;
-            color: var(--dark-gray);
-            margin: 0;
+            color: var(--slate-blue);
         }
         
-        .testimonial-small {
-            background: linear-gradient(135deg, #E8DED2 0%, #D4C5B0 100%);
+        .offer-testimonial {
             padding: 1.5rem;
-            margin-top: 2rem;
-            border-left: 4px solid var(--accent);
-            border-radius: 4px;
+            background: var(--off-white);
+            margin-top: 1.5rem;
+            border-left: 3px solid var(--accent-blue);
         }
         
-        .testimonial-small p {
+        .offer-testimonial p {
             font-style: italic;
-            margin-bottom: 0.75rem;
+            color: var(--slate-blue);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
         }
         
-        .testimonial-small .author {
-            font-weight: 600;
-            font-size: 0.9rem;
+        .offer-testimonial cite {
+            font-size: 0.85rem;
+            color: var(--medium-gray);
+            font-style: normal;
         }
         
         .offer-cta {
-            text-align: center;
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--beige);
+            margin-top: 1.5rem;
         }
         
-        /* SYSTEM CHECK CTA */
-        .system-check-section {
-            padding: 4rem 0;
-            background: linear-gradient(135deg, #E8DED2 0%, #D4C5B0 100%);
-            text-align: center;
+        .btn {
+            display: inline-block;
+            padding: 0.875rem 2rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-family: var(--font-sans);
+            border: 1px solid var(--charcoal);
+            background: var(--charcoal);
+            color: var(--white);
         }
         
-        /* BEWERBUNG */
-        .bewerbung-section {
-            padding: 4rem 0;
-            background: white;
+        .btn:hover {
+            background: var(--slate-blue);
+            border-color: var(--slate-blue);
         }
         
-        .form-container {
-            background: var(--light-gray);
-            padding: 2.5rem;
-            border-radius: 8px;
+        /* VIP EXTRAS */
+        .vip-extras {
+            padding: 1rem 0;
+            border-top: 1px solid var(--light-gray);
         }
         
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
+        .vip-extras h4 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--medium-gray);
+            margin-bottom: 1rem;
+            font-family: var(--font-sans);
             font-weight: 600;
         }
         
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid var(--beige);
-            font-size: 1rem;
-            font-family: inherit;
-            border-radius: 4px;
-        }
-        
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--accent);
-        }
-        
-        .privacy-checkbox {
+        .vip-list {
             display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .vip-list span {
+            background: var(--accent-blue);
+            color: var(--white);
+            padding: 0.4rem 0.75rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        /* CTA SECTION */
+        .cta-section {
+            padding: 4rem 0;
+            background: var(--off-white);
+        }
+        
+        .cta-box {
+            text-align: center;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .cta-box h2 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-box p {
+            color: var(--slate-blue);
             margin-bottom: 1.5rem;
         }
         
-        .privacy-checkbox input {
-            width: auto;
-            margin-top: 0.25rem;
+        .cta-box .btn {
+            background: var(--accent-blue);
+            border-color: var(--accent-blue);
         }
         
-        .privacy-checkbox span {
-            font-size: 0.9rem;
+        .cta-box .btn:hover {
+            background: var(--accent-blue-light);
+            border-color: var(--accent-blue-light);
         }
         
-        .privacy-checkbox a {
-            color: var(--accent);
+        /* CONTACT */
+        .contact-section {
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .contact-section h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .contact-link {
+            text-decoration: none;
+            color: var(--slate-blue);
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+        
+        .contact-link:hover {
+            color: var(--accent-blue);
+        }
+        
+        .contact-link strong {
+            display: block;
+            color: var(--charcoal);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.25rem;
         }
         
         /* FOOTER */
         footer {
             background: var(--charcoal);
-            color: var(--beige);
-            padding: 2rem 0;
+            color: var(--medium-gray);
+            padding: 3rem 0;
             text-align: center;
         }
         
+        footer p {
+            font-size: 0.9rem;
+        }
+        
         footer a {
-            color: var(--beige);
+            color: var(--medium-gray);
             margin: 0 1rem;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        footer a:hover {
+            color: var(--white);
         }
         
         @media (max-width: 768px) {
@@ -415,12 +481,16 @@
                 display: none;
             }
             
-            .offer-header {
-                padding: 1.5rem;
+            .offer-list {
+                grid-template-columns: 1fr;
             }
             
-            .offer-header h2 {
-                font-size: 1.5rem;
+            .offer-header {
+                padding: 1.25rem 1.5rem;
+            }
+            
+            .offer-body {
+                padding: 0 1.5rem 1.5rem;
             }
         }
     </style>
@@ -438,8 +508,7 @@
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="index.html#system">System</a></li>
-                <li><a href="angebote.html">Angebote</a></li>
-                <li><a href="freebies.html">Freebies</a></li>
+                <li><a href="freebies.html">Ressourcen</a></li>
                 <li><a href="ueber-mich.html">Über mich</a></li>
             </ul>
         </div>
@@ -448,246 +517,282 @@
     <!-- HERO -->
     <section class="hero">
         <div class="container">
-            <h1>Wie ich dir helfen kann</h1>
-            <p>Klick auf ein Angebot um mehr zu erfahren</p>
-            <a href="#system-check" class="btn btn-outline">Nicht sicher? Mach den System-Check</a>
+            <h1>Zusammenarbeit</h1>
+            <p style="color: var(--slate-blue); font-size: 1.15rem; margin-top: 1rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Verschiedene Wege, wie wir zusammenarbeiten können – je nachdem, wo du gerade stehst und was du brauchst.
+            </p>
         </div>
     </section>
 
-    <!-- OFFERS ACCORDION -->
+    <!-- OFFERS -->
     <section class="offers-section">
         <div class="container">
             
-            <!-- FOUNDATION INTENSIVE -->
-            <div class="offer-accordion" id="foundation">
-                <div class="offer-header" onclick="toggleOffer('foundation')">
+            <!-- MENTORING -->
+            <div class="offer-card featured" id="mentoring">
+                <div class="offer-header" onclick="toggleOffer(this)">
                     <div class="offer-header-left">
-                        <span class="offer-badge">1:1 Intensiv</span>
-                        <h2>Foundation Intensive</h2>
-                        <p>Vom Hamsterrad zum High-Ticket • 6 Wochen</p>
+                        <span class="offer-badge">Empfohlen</span>
+                        <div>
+                            <p class="offer-label">1:1 Mentoring</p>
+                            <h2 class="offer-title">6 Monate Begleitung</h2>
+                            <p class="offer-subtitle">Intensive 1:1 Zusammenarbeit</p>
+                        </div>
                     </div>
                     <span class="offer-toggle">+</span>
                 </div>
-                
                 <div class="offer-content">
-                    <div class="offer-content-inner">
-                        <div class="offer-for-who">
-                            <h4>Für wen ist das?</h4>
-                            <p style="margin: 0; color: var(--charcoal);">
-                                Du hast erste Kunden, aber dein Angebot ist unklar oder zu klein. 
-                                Du arbeitest viel, verdienst aber nicht genug. Du willst High-Ticket verkaufen, 
-                                weißt aber nicht wie du dein Angebot packagst oder pitchst.
-                            </p>
+                    <div class="offer-body">
+                        <div class="offer-intro">
+                            <h4>Für wen</h4>
+                            <p>Du bist selbstständig, hast bereits Kunden und Umsatz – aber weißt, dass dein Business besser laufen könnte. Du willst Systeme aufbauen, nicht noch mehr arbeiten. Du suchst individuelle Begleitung statt Massenkurse.</p>
                         </div>
                         
-                        <p style="font-size: 1.1rem; margin-bottom: 2rem;">
-                            In 6 Wochen bauen wir gemeinsam die Foundation für dein profitables Business: 
-                            Scharfe Positionierung, High-Ticket Offer Design, und ethische Sales-Skills.
-                        </p>
+                        <div class="offer-details">
+                            <h4>Was du bekommst</h4>
+                            <ul class="offer-list">
+                                <li><strong>Wöchentliche 1:1 Calls</strong> 60 Minuten per Zoom, jede Woche</li>
+                                <li><strong>Telegram Support</strong> Für schnelle Fragen zwischendurch</li>
+                                <li><strong>Portal-Zugang</strong> Alle Ressourcen und Aufzeichnungen</li>
+                                <li><strong>Individuelle Strategie</strong> Kein 08/15, sondern was für DICH funktioniert</li>
+                            </ul>
+                        </div>
                         
-                        <div class="offer-grid">
-                            <div>
-                                <h4 style="margin-bottom: 1rem;">Was du bekommst:</h4>
-                                <ul class="offer-features">
-                                    <li><strong>6x 90min 1:1 Calls</strong><br>Mit Aufnahme + Zusammenfassungen</li>
-                                    <li><strong>Positionierungs-Arbeit</strong><br>Von breit zu kristallklar</li>
-                                    <li><strong>High-Ticket Offer Design</strong><br>Premium-Pricing (1000€+)</li>
-                                    <li><strong>Sales Training</strong><br>Ethisch verkaufen ohne Manipulation</li>
-                                    <li><strong>Launch-Plan</strong><br>Erste 3-5 High-Ticket Kunden</li>
-                                    <li><strong>Telegram-Support</strong><br>Zwischen den Calls erreichbar</li>
-                                </ul>
-                            </div>
-                            
-                            <div>
-                                <h4 style="margin-bottom: 1rem;">Der 6-Wochen Prozess:</h4>
-                                <div class="process-step">
-                                    <h4>Woche 1-2: Positionierung</h4>
-                                    <p>Zielgruppe + Unique Angle</p>
+                        <div class="offer-timeline">
+                            <h4>Was wir aufbauen</h4>
+                            <div class="timeline-grid">
+                                <div class="timeline-item">
+                                    <strong>Monat 1-2</strong>
+                                    <span>Positionierung & Angebot</span>
                                 </div>
-                                <div class="process-step">
-                                    <h4>Woche 3-4: Offer Design</h4>
-                                    <p>Angebot strukturieren + Pricing</p>
+                                <div class="timeline-item">
+                                    <strong>Monat 2-3</strong>
+                                    <span>Traffic & Sichtbarkeit</span>
                                 </div>
-                                <div class="process-step">
-                                    <h4>Woche 5: Sales Skills</h4>
-                                    <p>Gespräche führen + Einwände</p>
+                                <div class="timeline-item">
+                                    <strong>Monat 3-4</strong>
+                                    <span>Funnel & Kundenreise</span>
                                 </div>
-                                <div class="process-step">
-                                    <h4>Woche 6: Launch</h4>
-                                    <p>Strategie für erste Kunden</p>
+                                <div class="timeline-item">
+                                    <strong>Monat 5-6</strong>
+                                    <span>Systeme & Skalierung</span>
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="testimonial-small">
-                            <p>"Was Carina mir nach kürzester Zeit gegeben hat an Expertise, Beistand und Support ist nicht von dieser Welt. 
-                            Fragen beantwortet die nicht einmal im Offer enthalten sind. Hands on. 1000 Dank."</p>
-                            <span class="author">— Klientin, Foundation Intensive</span>
+                        <div class="offer-price" style="margin-top: 2rem; padding: 1.5rem; background: var(--off-white); border-left: 3px solid var(--accent-blue);">
+                            <strong style="font-size: 1.5rem; font-family: var(--font-serif);">5.555 €</strong>
+                            <span style="color: var(--slate-blue); display: block; margin-top: 0.25rem;">6 Monate. Einmalzahlung oder Ratenzahlung möglich.</span>
                         </div>
                         
                         <div class="offer-cta">
-                            <a href="#kontakt" class="btn">Interesse? Schreib mir</a>
+                            <a href="mentoring.html" class="btn">Mehr erfahren</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- FOUNDATION INTENSIVE -->
+            <div class="offer-card" id="foundation">
+                <div class="offer-header" onclick="toggleOffer(this)">
+                    <div class="offer-header-left">
+                        <div>
+                            <p class="offer-label">1:1 Intensiv</p>
+                            <h2 class="offer-title">Foundation Intensive</h2>
+                            <p class="offer-subtitle">6 Wochen</p>
+                        </div>
+                    </div>
+                    <span class="offer-toggle">+</span>
+                </div>
+                <div class="offer-content">
+                    <div class="offer-body">
+                        <div class="offer-intro">
+                            <h4>Für wen</h4>
+                            <p>Du hast erste Kunden, aber dein Angebot ist unklar oder zu klein. Du arbeitest viel, verdienst aber nicht genug. Du willst High-Ticket verkaufen, weißt aber nicht wie.</p>
+                        </div>
+                        
+                        <div class="offer-details">
+                            <h4>Was du bekommst</h4>
+                            <ul class="offer-list">
+                                <li><strong>6x 90min 1:1 Calls</strong> Mit Aufnahme</li>
+                                <li><strong>Positionierung</strong> Von breit zu spitz</li>
+                                <li><strong>Offer Design</strong> High-Ticket (1000€+)</li>
+                                <li><strong>Sales Training</strong> Gespräche führen</li>
+                                <li><strong>Launch-Plan</strong> Erste 3-5 Kunden</li>
+                                <li><strong>Telegram-Support</strong> Zwischen den Calls</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="offer-timeline">
+                            <h4>6 Wochen</h4>
+                            <div class="timeline-grid">
+                                <div class="timeline-item">
+                                    <strong>Woche 1-2</strong>
+                                    <span>Positionierung</span>
+                                </div>
+                                <div class="timeline-item">
+                                    <strong>Woche 3-4</strong>
+                                    <span>Offer Design</span>
+                                </div>
+                                <div class="timeline-item">
+                                    <strong>Woche 5</strong>
+                                    <span>Sales</span>
+                                </div>
+                                <div class="timeline-item">
+                                    <strong>Woche 6</strong>
+                                    <span>Launch</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="offer-testimonial">
+                            <p>"Was Carina mir nach kürzester Zeit gegeben hat an Expertise, Beistand und Support ist nicht von dieser Welt."</p>
+                            <cite>— Klientin, Foundation Intensive</cite>
+                        </div>
+                        
+                        <div class="offer-cta">
+                            <a href="mailto:socials@carinaannaprav.at" class="btn">Anfragen</a>
                         </div>
                     </div>
                 </div>
             </div>
             
             <!-- SYSTEM-SETUP -->
-            <div class="offer-accordion" id="system-setup">
-                <div class="offer-header" onclick="toggleOffer('system-setup')">
+            <div class="offer-card featured" id="system-setup">
+                <div class="offer-header" onclick="toggleOffer(this)">
                     <div class="offer-header-left">
-                        <span class="offer-badge popular">Beliebt</span>
-                        <h2>System-Setup</h2>
-                        <p>Done-FOR-You Business-System • 6-8 Wochen</p>
+                        <span class="offer-badge">Beliebt</span>
+                        <div>
+                            <p class="offer-label">Done-for-you</p>
+                            <h2 class="offer-title">System-Setup</h2>
+                            <p class="offer-subtitle">6-8 Wochen</p>
+                        </div>
                     </div>
                     <span class="offer-toggle">+</span>
                 </div>
-                
                 <div class="offer-content">
-                    <div class="offer-content-inner">
-                        <div class="offer-for-who">
-                            <h4>Für wen ist das?</h4>
-                            <p style="margin: 0; color: var(--charcoal);">
-                                Du hast ein klares High-Ticket Angebot und weißt wen du damit ansprichst. 
-                                Jetzt brauchst du Traffic + Automatisierung. Du hast keine Zeit (oder Lust) 
-                                alles selbst zu bauen.
-                            </p>
+                    <div class="offer-body">
+                        <div class="offer-intro">
+                            <h4>Für wen</h4>
+                            <p>Du hast ein klares High-Ticket Angebot und weißt wen du ansprichst. Jetzt brauchst du Traffic und Automatisierung. Du hast keine Zeit oder Lust alles selbst zu bauen.</p>
                         </div>
                         
-                        <p style="font-size: 1.1rem; margin-bottom: 2rem;">
-                            Ich baue dir dein komplettes Marketing-System: Website, Pinterest, Newsletter-Funnel, 
-                            Quiz/Bewerbungsformular. Alles fertig und funktionsfähig.
-                        </p>
+                        <div class="offer-details">
+                            <h4>Was ich baue</h4>
+                            <ul class="offer-list">
+                                <li><strong>Website</strong> Custom, conversion-optimiert</li>
+                                <li><strong>Pinterest-System</strong> Account, Templates, Strategie</li>
+                                <li><strong>Newsletter-Automation</strong> Setup + Welcome-Serie</li>
+                                <li><strong>Quiz / Bewerbungsformular</strong> Lead-Qualifier</li>
+                                <li><strong>Google Sheets Integration</strong> Leads automatisch erfasst</li>
+                                <li><strong>Tech-Training</strong> Du lernst es selbst zu pflegen</li>
+                            </ul>
+                        </div>
                         
-                        <div class="offer-grid">
-                            <div>
-                                <h4 style="margin-bottom: 1rem;">Was du bekommst:</h4>
-                                <ul class="offer-features">
-                                    <li><strong>Professionelle Website</strong><br>Custom HTML, Conversion-optimiert</li>
-                                    <li><strong>Pinterest-System komplett</strong><br>Account, Pin-Templates, Strategie</li>
-                                    <li><strong>Newsletter-Automatisierung</strong><br>Email Setup + Welcome-Serie</li>
-                                    <li><strong>Quiz oder Bewerbungsformular</strong><br>Lead-Qualifier für dein Angebot</li>
-                                    <li><strong>Google Sheets Integration</strong><br>Alle Leads automatisch erfasst</li>
-                                    <li><strong>Tech-Training</strong><br>Du lernst alles selbst zu pflegen</li>
-                                </ul>
-                            </div>
-                            
-                            <div>
-                                <h4 style="margin-bottom: 1rem;">Timeline 6-8 Wochen:</h4>
-                                <div class="process-step">
-                                    <h4>Woche 1-2: Website Build</h4>
-                                    <p>Design, Copy, Development</p>
+                        <div class="offer-timeline">
+                            <h4>6-8 Wochen</h4>
+                            <div class="timeline-grid">
+                                <div class="timeline-item">
+                                    <strong>Woche 1-2</strong>
+                                    <span>Website</span>
                                 </div>
-                                <div class="process-step">
-                                    <h4>Woche 3-4: Pinterest Setup</h4>
-                                    <p>Account + Pin-Designs + Plan</p>
+                                <div class="timeline-item">
+                                    <strong>Woche 3-4</strong>
+                                    <span>Pinterest</span>
                                 </div>
-                                <div class="process-step">
-                                    <h4>Woche 5-6: Automatisierung</h4>
-                                    <p>Email-Sequenzen + Quiz + Testing</p>
+                                <div class="timeline-item">
+                                    <strong>Woche 5-6</strong>
+                                    <span>Automatisierung</span>
                                 </div>
-                                <div class="process-step">
-                                    <h4>Woche 7-8: Training & Launch</h4>
-                                    <p>Tech-Training + Go-Live</p>
-                                </div>
-                                
-                                <div style="background: var(--beige); padding: 1rem; margin-top: 1rem; border-radius: 4px;">
-                                    <p style="margin: 0; font-size: 0.9rem;"><strong>Tech-Stack (kostenlos bis 1000 User):</strong><br>
-                                    Netlify, Brevo, Make.com, Google Sheets, Pinterest</p>
+                                <div class="timeline-item">
+                                    <strong>Woche 7-8</strong>
+                                    <span>Training + Launch</span>
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="testimonial-small">
-                            <p>"Carina – jeder der dich noch nicht entdeckt hat verpasst soviel! Ich freu mich so sehr 
-                            dass ich hier ab Tag 1 gefühlt dabei bin. Direkt wieder neue Impulse für mein Business erhalten."</p>
-                            <span class="author">— Klientin, System-Setup</span>
+                        <div class="offer-testimonial">
+                            <p>"Carina – jeder der dich noch nicht entdeckt hat verpasst soviel! Direkt wieder neue Impulse für mein Business erhalten."</p>
+                            <cite>— Klientin, System-Setup</cite>
                         </div>
                         
                         <div class="offer-cta">
-                            <a href="#kontakt" class="btn">Interesse? Schreib mir</a>
+                            <a href="mailto:socials@carinaannaprav.at" class="btn">Anfragen</a>
                         </div>
                     </div>
                 </div>
             </div>
             
             <!-- VIP KOMPLETT -->
-            <div class="offer-accordion" id="vip">
-                <div class="offer-header" onclick="toggleOffer('vip')">
+            <div class="offer-card" id="vip">
+                <div class="offer-header" onclick="toggleOffer(this)">
                     <div class="offer-header-left">
-                        <span class="offer-badge">VIP</span>
-                        <h2>VIP Komplett</h2>
-                        <p>12 Wochen All-in Transformation</p>
+                        <span class="offer-badge" style="background: var(--charcoal);">VIP</span>
+                        <div>
+                            <p class="offer-label">All-in</p>
+                            <h2 class="offer-title">VIP Komplett</h2>
+                            <p class="offer-subtitle">12 Wochen</p>
+                        </div>
                     </div>
                     <span class="offer-toggle">+</span>
                 </div>
-                
                 <div class="offer-content">
-                    <div class="offer-content-inner">
-                        <div class="offer-for-who">
-                            <h4>Für wen ist das?</h4>
-                            <p style="margin: 0; color: var(--charcoal);">
-                                Du brauchst BEIDES: Klarheit bei deinem Angebot UND das technische System. 
-                                Du willst den schnellsten Weg und bist bereit all-in zu gehen. 
-                                Du arbeitest 60h+/Woche und willst endlich raus aus dem Hamsterrad.
-                            </p>
+                    <div class="offer-body">
+                        <div class="offer-intro">
+                            <h4>Für wen</h4>
+                            <p>Du brauchst beides: Klarheit bei deinem Angebot und das technische System. Du willst den schnellsten Weg und bist bereit all-in zu gehen.</p>
                         </div>
                         
-                        <p style="font-size: 1.1rem; margin-bottom: 2rem;">
-                            Foundation Intensive + System-Setup zusammen. In 12 Wochen von komplettem Chaos 
-                            zu einem profitablen, automatisierten Business das ohne dich läuft.
-                        </p>
+                        <div class="offer-details">
+                            <h4>Was du bekommst</h4>
+                            <ul class="offer-list">
+                                <li><strong>Alles aus Foundation</strong> Positionierung, Offer, Sales</li>
+                                <li><strong>Alles aus System-Setup</strong> Website, Pinterest, Automation</li>
+                                <li><strong>12x 1:1 Calls</strong> Wöchentlich oder bi-weekly</li>
+                                <li><strong>Priority Support</strong> Schnellere Response-Times</li>
+                                <li><strong>Strategie + Umsetzung</strong> Parallel</li>
+                            </ul>
+                        </div>
                         
-                        <div class="offer-grid">
-                            <div>
-                                <h4 style="margin-bottom: 1rem;">Was du bekommst:</h4>
-                                <ul class="offer-features">
-                                    <li><strong>ALLES aus Foundation</strong><br>Positionierung, Offer, Sales</li>
-                                    <li><strong>PLUS ALLES aus System-Setup</strong><br>Website, Pinterest, Automation</li>
-                                    <li><strong>12 intensive 1:1 Calls</strong><br>Wöchentlich oder bi-weekly</li>
-                                    <li><strong>Priority Telegram-Support</strong><br>Schnellere Response-Times</li>
-                                    <li><strong>Strategie + Umsetzung parallel</strong><br>Alles gleichzeitig</li>
-                                </ul>
-                                
-                                <div style="background: var(--charcoal); color: var(--cream); padding: 1.5rem; margin-top: 1.5rem; border-radius: 4px;">
-                                    <h4 style="color: var(--cream); margin-bottom: 0.75rem;">VIP Vorteile:</h4>
-                                    <ul style="list-style: none; padding: 0; margin: 0;">
-                                        <li style="padding: 0.25rem 0;">⭐ Schnellster Weg</li>
-                                        <li style="padding: 0.25rem 0;">⭐ Keine Wartezeiten</li>
-                                        <li style="padding: 0.25rem 0;">⭐ Priority Support</li>
-                                        <li style="padding: 0.25rem 0;">⭐ All-in Lösung</li>
-                                    </ul>
-                                </div>
+                        <div class="vip-extras">
+                            <h4>VIP Vorteile</h4>
+                            <div class="vip-list">
+                                <span>Schnellster Weg</span>
+                                <span>Keine Wartezeiten</span>
+                                <span>Priority Support</span>
+                                <span>All-in Lösung</span>
                             </div>
-                            
-                            <div>
-                                <h4 style="margin-bottom: 1rem;">12-Wochen Roadmap:</h4>
-                                <div class="process-step">
-                                    <h4>Woche 1-4: Foundation + Website</h4>
-                                    <p>Positionierung + Offer + Website parallel</p>
+                        </div>
+                        
+                        <div class="offer-timeline">
+                            <h4>12 Wochen</h4>
+                            <div class="timeline-grid">
+                                <div class="timeline-item">
+                                    <strong>Woche 1-4</strong>
+                                    <span>Foundation + Website</span>
                                 </div>
-                                <div class="process-step">
-                                    <h4>Woche 5-8: Sales + Pinterest + Automation</h4>
-                                    <p>Sales Training + System-Aufbau</p>
+                                <div class="timeline-item">
+                                    <strong>Woche 5-8</strong>
+                                    <span>Sales + Pinterest + Automation</span>
                                 </div>
-                                <div class="process-step">
-                                    <h4>Woche 9-10: Launch Vorbereitung</h4>
-                                    <p>Testing + Content + Strategie</p>
+                                <div class="timeline-item">
+                                    <strong>Woche 9-10</strong>
+                                    <span>Launch-Vorbereitung</span>
                                 </div>
-                                <div class="process-step">
-                                    <h4>Woche 11-12: Go-Live + Optimization</h4>
-                                    <p>Launch + erste Kunden + Optimieren</p>
+                                <div class="timeline-item">
+                                    <strong>Woche 11-12</strong>
+                                    <span>Go-Live + Optimierung</span>
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="testimonial-small">
+                        <div class="offer-testimonial">
                             <p>"Du hattest wirklich eine der bedeutendsten Rollen in meinem Leben."</p>
-                            <span class="author">— VIP Klientin</span>
+                            <cite>— VIP Klientin</cite>
                         </div>
                         
                         <div class="offer-cta">
-                            <a href="#kontakt" class="btn">Interesse? Schreib mir</a>
+                            <a href="mailto:socials@carinaannaprav.at" class="btn">Anfragen</a>
                         </div>
                     </div>
                 </div>
@@ -696,102 +801,51 @@
         </div>
     </section>
 
-    <!-- WO STEHST DU? CTA -->
-    <section class="system-check-section" id="system-check">
+    <!-- CTA -->
+    <section class="cta-section">
         <div class="container">
-            <h2 style="margin-bottom: 1rem;">Nicht sicher was du brauchst?</h2>
-            <p style="font-size: 1.1rem; color: var(--dark-gray); margin-bottom: 2rem;">
-                Mach eine kurze Bestandsaufnahme: Was steht schon, was fehlt noch?
-            </p>
-            <a href="index.html?openquiz=bestandsaufnahme" class="btn">Was fehlt mir noch? →</a>
-            <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--dark-gray);">
-                5 Fragen. Ehrliche Einschätzung. Kein Verkaufsgespräch danach.
-            </p>
+            <div class="cta-box">
+                <h2>Nicht sicher?</h2>
+                <p>5 Fragen. Dann weißt du, was dir fehlt.</p>
+                <a href="index.html#quiz" class="btn">Bestandsaufnahme</a>
+            </div>
         </div>
     </section>
 
-    <!-- KONTAKT STATT BEWERBUNG -->
-    <section class="bewerbung-section" id="kontakt">
+    <!-- CONTACT -->
+    <section class="contact-section">
         <div class="container">
-            <h2 style="text-align: center; margin-bottom: 1rem;">Lieber direkt schreiben?</h2>
-            <p style="text-align: center; color: var(--dark-gray); margin-bottom: 2rem;">
-                Wenn du schon weißt was du brauchst, schreib mir einfach.
-            </p>
-            
-            <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; max-width: 600px; margin: 0 auto;">
-                <a href="mailto:socials@carinaannaprav.at?subject=Anfrage%20von%20Website" 
-                   style="flex: 1; min-width: 250px; padding: 2rem; background: white; border: 2px solid var(--beige); border-radius: 8px; text-decoration: none; text-align: center; transition: all 0.3s;">
-                    <span style="font-size: 2rem; display: block; margin-bottom: 0.5rem;">📧</span>
-                    <strong style="color: var(--charcoal); display: block; margin-bottom: 0.5rem;">Email</strong>
-                    <span style="color: var(--dark-gray); font-size: 0.9rem;">socials@carinaannaprav.at</span>
+            <h3>Direkt schreiben</h3>
+            <div class="contact-links">
+                <a href="mailto:socials@carinaannaprav.at" class="contact-link">
+                    <strong>E-Mail</strong>
+                    <span class="__cf_email__" data-cfemail="d0a3bfb3b9b1bca390b3b1a2b9beb1b1bebeb1a0a2b1a6feb1a4">[email&#160;protected]</span>
                 </a>
-                
-                <a href="https://t.me/carinaannaprav" target="_blank"
-                   style="flex: 1; min-width: 250px; padding: 2rem; background: white; border: 2px solid var(--beige); border-radius: 8px; text-decoration: none; text-align: center; transition: all 0.3s;">
-                    <span style="font-size: 2rem; display: block; margin-bottom: 0.5rem;">💬</span>
-                    <strong style="color: var(--charcoal); display: block; margin-bottom: 0.5rem;">Telegram</strong>
-                    <span style="color: var(--dark-gray); font-size: 0.9rem;">@carinaannaprav</span>
+                <a href="https://t.me/carinaannaprav" class="contact-link" target="_blank">
+                    <strong>Telegram</strong>
+                    @carinaannaprav
                 </a>
             </div>
-            
-            <p style="text-align: center; margin-top: 2rem; color: var(--dark-gray); font-size: 0.9rem;">
-                Ich antworte normalerweise innerhalb von 24-48h.
-            </p>
         </div>
     </section>
 
     <!-- FOOTER -->
     <footer>
-        <p>&copy; 2026 Carina Anna Prav</p>
-        <p style="margin-top: 0.5rem;">
-            <a href="impressum.html">Impressum</a>
-            <a href="datenschutz.html">Datenschutz</a>
-            <a href="agb.html">AGB</a>
-        </p>
+        <div class="container">
+            <p>&copy; 2026 Carina Anna Prav</p>
+            <p style="margin-top: 1rem;">
+                <a href="impressum.html">Impressum</a>
+                <a href="datenschutz.html">Datenschutz</a>
+                <a href="agb.html">AGB</a>
+            </p>
+        </div>
     </footer>
 
     <script>
-        // ACCORDION TOGGLE
-        function toggleOffer(id) {
-            const accordion = document.getElementById(id);
-            const wasActive = accordion.classList.contains('active');
-            
-            // Close all
-            document.querySelectorAll('.offer-accordion').forEach(a => {
-                a.classList.remove('active');
-            });
-            
-            // Open clicked if it wasn't active
-            if (!wasActive) {
-                accordion.classList.add('active');
-                // Scroll to it
-                setTimeout(() => {
-                    accordion.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 100);
-            }
+        function toggleOffer(header) {
+            const card = header.parentElement;
+            card.classList.toggle('open');
         }
-        
-        // Open from URL hash
-        if (window.location.hash) {
-            const id = window.location.hash.substring(1);
-            if (document.getElementById(id)) {
-                toggleOffer(id);
-            }
-        }
-        
-        // Hover effects for contact cards
-        document.querySelectorAll('a[href^="mailto"], a[href^="https://t.me"]').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.borderColor = '#B89968';
-                this.style.transform = 'translateY(-3px)';
-                this.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
-            });
-            card.addEventListener('mouseleave', function() {
-                this.style.borderColor = '#E8DED2';
-                this.style.transform = 'translateY(0)';
-                this.style.boxShadow = 'none';
-            });
-        });
     </script>
 </body>
 </html>

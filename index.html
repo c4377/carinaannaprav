@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="de">
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Das 2h/Tag Business-System für Mamas - Automatisierung, Pinterest Marketing & Mindset">
-    <title>Carina Anna Prav | Das 2h/Tag Business-System</title>
+    <meta name="description" content="Business-Systeme. Positionierung, Funnel, Automatisierung. Carina Anna Prav.">
+    <title>Carina Anna Prav</title>
     
     <style>
         * {
@@ -15,13 +14,15 @@
         }
         
         :root {
-            --cream: #FAF9F6;
-            --beige: #E8DED2;
-            --warm-beige: #D4C5B0;
-            --charcoal: #2D2D2D;
-            --dark-gray: #4A4A4A;
-            --light-gray: #F5F5F5;
-            --accent: #B89968;
+            --white: #FFFFFF;
+            --off-white: #F8F9FA;
+            --light-gray: #E9ECEF;
+            --medium-gray: #6C757D;
+            --dark-gray: #343A40;
+            --charcoal: #212529;
+            --slate-blue: #4A5568;
+            --accent-blue: #2C5282;
+            --accent-blue-light: #3182CE;
             
             --font-serif: 'Playfair Display', Georgia, serif;
             --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
@@ -38,7 +39,7 @@
         body {
             font-family: var(--font-sans);
             color: var(--charcoal);
-            background: var(--cream);
+            background: var(--white);
             line-height: 1.7;
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
@@ -49,27 +50,28 @@
             font-weight: 400;
             line-height: 1.2;
             letter-spacing: -0.02em;
+            color: var(--charcoal);
         }
         
         h1 {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-size: clamp(2.5rem, 6vw, 4rem);
             margin-bottom: var(--spacing-md);
         }
         
         h2 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-size: clamp(2rem, 5vw, 3rem);
             margin-bottom: var(--spacing-md);
         }
         
         h3 {
-            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-size: clamp(1.5rem, 4vw, 2rem);
             margin-bottom: var(--spacing-sm);
         }
         
         p {
             font-size: clamp(1rem, 2vw, 1.125rem);
             margin-bottom: var(--spacing-sm);
-            color: var(--dark-gray);
+            color: var(--slate-blue);
         }
         
         a {
@@ -110,7 +112,7 @@
         .btn {
             display: inline-block;
             padding: 1rem 2.5rem;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 500;
             text-align: center;
             border: 2px solid var(--charcoal);
@@ -121,27 +123,30 @@
             text-transform: uppercase;
             letter-spacing: 0.1em;
             font-family: var(--font-sans);
+            text-decoration: none;
         }
         
         .btn:hover {
-            background: var(--charcoal);
-            color: var(--cream);
+            background: var(--white);
+            color: var(--white);
             transform: translateY(-2px);
         }
         
         .btn-primary {
-            background: var(--charcoal);
-            color: var(--cream);
+            background: var(--accent-blue);
+            color: #FFFFFF;
+            border-color: var(--accent-blue);
         }
         
         .btn-primary:hover {
-            background: var(--dark-gray);
-            border-color: var(--dark-gray);
+            background: var(--accent-blue-light);
+            border-color: var(--accent-blue-light);
+            color: #FFFFFF;
         }
         
         .btn-large {
             padding: 1.25rem 3rem;
-            font-size: 1.125rem;
+            font-size: 1rem;
         }
         
         @media (max-width: 768px) {
@@ -156,10 +161,10 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(250, 249, 246, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
             z-index: 1000;
-            border-bottom: 1px solid var(--beige);
+            border-bottom: 1px solid var(--light-gray);
         }
         
         .nav-container {
@@ -173,9 +178,10 @@
         
         .logo {
             font-family: var(--font-serif);
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 400;
             letter-spacing: 0.05em;
+            color: var(--charcoal);
         }
         
         .nav-links {
@@ -185,10 +191,11 @@
         }
         
         .nav-links a {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
             font-weight: 500;
+            color: var(--slate-blue);
             position: relative;
         }
         
@@ -199,8 +206,12 @@
             left: 0;
             width: 0;
             height: 1px;
-            background: var(--charcoal);
+            background: var(--white);
             transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--charcoal);
         }
         
         .nav-links a:hover::after {
@@ -222,11 +233,11 @@
                 top: 70px;
                 left: 0;
                 right: 0;
-                background: var(--cream);
+                background: var(--white);
                 flex-direction: column;
                 padding: var(--spacing-md);
                 gap: var(--spacing-sm);
-                border-bottom: 1px solid var(--beige);
+                border-bottom: 1px solid var(--light-gray);
                 transform: translateY(-100%);
                 opacity: 0;
                 transition: all 0.3s ease;
@@ -244,7 +255,7 @@
             }
         }
         
-        /* HERO mit Hintergrundbild */
+        /* HERO */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -252,12 +263,7 @@
             padding-top: 80px;
             position: relative;
             overflow: hidden;
-            background-image: 
-                linear-gradient(135deg, rgba(250, 249, 246, 0.92) 0%, rgba(245, 245, 245, 0.88) 100%),
-                url('bilder/hero-background.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            background: var(--off-white);
         }
         
         .hero-content {
@@ -267,19 +273,23 @@
         }
         
         .hero-eyebrow {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--accent);
+            letter-spacing: 0.2em;
+            color: var(--accent-blue);
             margin-bottom: var(--spacing-sm);
-            font-weight: 500;
+            font-weight: 600;
+        }
+        
+        .hero h1 {
+            margin-bottom: var(--spacing-md);
         }
         
         .hero-subheading {
-            font-size: clamp(1.125rem, 2.5vw, 1.5rem);
-            color: var(--dark-gray);
+            font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+            color: var(--slate-blue);
             margin-bottom: var(--spacing-lg);
-            line-height: 1.6;
+            line-height: 1.7;
         }
         
         .hero-cta {
@@ -292,7 +302,6 @@
             .hero {
                 min-height: 90vh;
                 text-align: center;
-                background-attachment: scroll;
             }
             
             .hero-content {
@@ -304,49 +313,66 @@
             }
         }
         
-        /* PROBLEM mit Textur */
+        /* PROBLEM SECTION */
         .problem {
-            background-color: var(--beige);
-            background-image: 
-                url('bilder/texture-subtle.jpg');
-            background-size: 400px;
-            background-repeat: repeat;
+            background: var(--off-white);
             text-align: center;
         }
         
         .problem-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: var(--spacing-lg);
             margin-top: var(--spacing-lg);
         }
         
         .problem-card {
-            background: rgba(250, 249, 246, 0.95);
+            background: var(--white);
             padding: var(--spacing-lg) var(--spacing-md);
-            border: 1px solid rgba(45, 45, 45, 0.1);
+            border: 1px solid var(--light-gray);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            backdrop-filter: blur(10px);
         }
         
         .problem-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(45, 45, 45, 0.08);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
         }
         
-        .problem-icon {
+        .problem-number {
+            font-family: var(--font-serif);
             font-size: 3rem;
+            color: var(--accent-blue);
+            opacity: 0.3;
             margin-bottom: var(--spacing-sm);
+            line-height: 1;
         }
         
         .problem-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             margin-bottom: var(--spacing-sm);
         }
         
-        /* SOLUTION mit Bild */
+        .problem-card p {
+            font-size: 1rem;
+            margin-bottom: 0;
+        }
+        
+        .problem-summary {
+            margin-top: var(--spacing-lg);
+            padding: var(--spacing-md);
+            background: var(--white);
+            color: var(--charcoal);
+        }
+        
+        .problem-summary p {
+            color: var(--slate-blue);
+            font-size: 1.125rem;
+            margin: 0;
+        }
+        
+        /* SOLUTION SECTION */
         .solution {
-            background: var(--cream);
+            background: var(--white);
         }
         
         .solution-content {
@@ -367,22 +393,37 @@
             gap: var(--spacing-sm);
             margin-bottom: var(--spacing-md);
             font-size: 1.125rem;
+            color: var(--slate-blue);
         }
         
         .solution-features li::before {
-            content: '✓';
-            font-size: 1.5rem;
-            color: var(--accent);
-            font-weight: bold;
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent-blue);
+            border-radius: 50%;
             flex-shrink: 0;
+            margin-top: 0.5rem;
         }
         
         .solution-image {
             width: 100%;
             height: 500px;
             object-fit: cover;
-            border: 1px solid var(--beige);
-            border-radius: 2px;
+            border: 1px solid var(--light-gray);
+        }
+        
+        .solution-result {
+            margin-top: var(--spacing-md);
+            padding: var(--spacing-md);
+            background: var(--off-white);
+            border-left: 4px solid var(--accent-blue);
+        }
+        
+        .solution-result p {
+            margin: 0;
+            font-size: 1.125rem;
+            color: var(--charcoal);
         }
         
         @media (max-width: 768px) {
@@ -397,204 +438,194 @@
             }
         }
         
-        /* HOW IT WORKS */
-        .how-it-works {
-            background: var(--light-gray);
+        /* ABOUT SECTION */
+        .about {
+            background: linear-gradient(135deg, var(--off-white) 0%, var(--light-gray) 100%);
+        }
+        
+        .about-intro {
             text-align: center;
+            max-width: 700px;
+            margin: 0 auto var(--spacing-lg);
         }
         
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: var(--spacing-lg);
-            margin-top: var(--spacing-lg);
+        .about-intro p {
+            font-size: 1.25rem;
         }
         
-        .step {
-            position: relative;
-            padding: var(--spacing-lg) var(--spacing-md);
-        }
-        
-        .step-number {
-            font-family: var(--font-serif);
-            font-size: 4rem;
-            color: var(--accent);
-            opacity: 0.2;
-            line-height: 1;
-            margin-bottom: var(--spacing-sm);
-        }
-        
-        .step h3 {
-            margin-bottom: var(--spacing-sm);
-            font-size: 1.5rem;
-        }
-        
-        /* SOCIAL PROOF mit Hintergrundbild */
-        .social-proof {
-            background-image:
-                linear-gradient(rgba(250, 249, 246, 0.95), rgba(250, 249, 246, 0.95)),
-                url('bilder/social-proof-background.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            text-align: center;
-        }
-        
-        .testimonials {
+        .about-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: var(--spacing-lg);
-            margin-top: var(--spacing-lg);
-        }
-        
-        .testimonial {
-            background: rgba(245, 245, 245, 0.95);
-            padding: var(--spacing-lg);
-            border-left: 3px solid var(--accent);
-            backdrop-filter: blur(10px);
-        }
-        
-        .testimonial-text {
-            font-size: 1.125rem;
-            font-style: italic;
-            line-height: 1.7;
-            margin-bottom: var(--spacing-md);
-            color: var(--dark-gray);
-        }
-        
-        .testimonial-author {
-            font-weight: 600;
-            color: var(--charcoal);
-            margin-bottom: var(--spacing-xs);
-        }
-        
-        .testimonial-role {
-            font-size: 0.9rem;
-            color: var(--dark-gray);
-        }
-        
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: var(--spacing-md);
-            margin-top: var(--spacing-xl);
-            padding: var(--spacing-lg);
-            background: rgba(232, 222, 210, 0.9);
-            backdrop-filter: blur(10px);
         }
         
-        .stat {
-            text-align: center;
+        .about-card {
+            background: var(--white);
+            padding: var(--spacing-md);
+            border-left: 4px solid var(--accent-blue);
         }
         
-        .stat-number {
-            font-family: var(--font-serif);
-            font-size: 3rem;
-            color: var(--accent);
-            font-weight: 400;
-            line-height: 1;
-            margin-bottom: var(--spacing-xs);
+        .about-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-sm);
+            color: var(--charcoal);
         }
         
-        .stat-label {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
+        .about-card p {
+            margin-bottom: 0;
             color: var(--dark-gray);
         }
         
-        /* OFFERS */
-        .offers {
-            background: var(--beige);
-            text-align: center;
-        }
-        
-        .offers-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: var(--spacing-lg);
-            margin-top: var(--spacing-lg);
-        }
-        
-        .offer-card {
-            background: var(--cream);
+        .about-not-for {
+            background: var(--white);
             padding: var(--spacing-lg);
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
+            margin-top: var(--spacing-lg);
+            text-align: center;
+            border: 1px solid var(--light-gray);
         }
         
-        .offer-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(45, 45, 45, 0.1);
-        }
-        
-        .offer-card.featured {
-            border-color: var(--charcoal);
-            transform: scale(1.05);
-        }
-        
-        .offer-badge {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background: var(--charcoal);
-            color: var(--cream);
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: var(--spacing-md);
-        }
-        
-        .offer-card h3 {
-            font-size: 1.75rem;
+        .about-not-for h3 {
+            color: var(--medium-gray);
             margin-bottom: var(--spacing-sm);
         }
         
-        .offer-description {
-            font-size: 1rem;
-            color: var(--dark-gray);
+        .about-not-for p {
+            color: var(--medium-gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* QUIZ CTA SECTION */
+        .quiz-cta {
+            background: var(--off-white);
+            text-align: center;
+        }
+        
+        .quiz-cta-box {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .quiz-cta h2 {
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .quiz-cta p {
+            font-size: 1.25rem;
             margin-bottom: var(--spacing-md);
         }
         
-        .offer-price {
+        .quiz-cta .btn {
+            font-size: 1.125rem;
+            padding: 1.5rem 3rem;
+        }
+        
+        .quiz-cta .subtext {
+            margin-top: var(--spacing-sm);
+            font-size: 0.95rem;
+            color: var(--medium-gray);
+        }
+        
+        /* AUDIO KURS SECTION */
+        .audio-kurs {
+            background: var(--off-white);
+        }
+        
+        .audio-kurs-card {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: var(--spacing-lg);
+            border: 1px solid var(--light-gray);
+            position: relative;
+        }
+        
+        .audio-kurs-badge {
+            position: absolute;
+            top: -12px;
+            left: 30px;
+            background: var(--accent-blue);
+            color: var(--charcoal);
+            padding: 0.5rem 1rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+        }
+        
+        .audio-kurs-header {
+            text-align: center;
+            margin-bottom: var(--spacing-md);
+            padding-top: var(--spacing-sm);
+        }
+        
+        .audio-kurs-header h3 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .audio-kurs-header .subtitle {
+            font-style: italic;
+            color: var(--slate-blue);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .audio-kurs-price {
             font-family: var(--font-serif);
             font-size: 3rem;
-            color: var(--charcoal);
-            margin-bottom: var(--spacing-xs);
+            color: var(--accent-blue);
+            font-weight: 400;
         }
         
-        .offer-price-detail {
-            font-size: 0.9rem;
-            color: var(--dark-gray);
-            margin-bottom: var(--spacing-md);
-        }
-        
-        .offer-features {
-            list-style: none;
-            text-align: left;
+        .audio-kurs-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-md);
             margin: var(--spacing-md) 0;
-            flex-grow: 1;
         }
         
-        .offer-features li {
-            padding: var(--spacing-xs) 0;
-            border-bottom: 1px solid var(--beige);
-            font-size: 0.95rem;
+        .audio-kurs-features ul {
+            list-style: none;
         }
         
-        .offer-features li:last-child {
+        .audio-kurs-features li {
+            padding: 0.75rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--slate-blue);
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .audio-kurs-features li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+        }
+        
+        .audio-kurs-features li:last-child {
             border-bottom: none;
         }
         
-        .offer-cta {
+        .audio-kurs-cta {
+            text-align: center;
             margin-top: var(--spacing-md);
         }
         
-        /* PODCAST mit Bild */
+        @media (max-width: 768px) {
+            .audio-kurs-features {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* PODCAST SECTION */
         .podcast {
-            background: var(--cream);
+            background: var(--white);
         }
         
         .podcast-content {
@@ -616,8 +647,7 @@
             width: 100%;
             height: 400px;
             object-fit: cover;
-            border: 1px solid var(--beige);
-            border-radius: 2px;
+            border: 1px solid var(--light-gray);
         }
         
         .podcast-platforms {
@@ -630,15 +660,16 @@
         .platform-link {
             padding: 0.75rem 1.5rem;
             border: 1px solid var(--charcoal);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
+            color: var(--charcoal);
             transition: all 0.3s ease;
         }
         
         .platform-link:hover {
-            background: var(--charcoal);
-            color: var(--cream);
+            background: var(--white);
+            color: var(--charcoal);
         }
         
         @media (max-width: 768px) {
@@ -658,9 +689,15 @@
                 height: 300px;
             }
         }
-        /* FAQ */
+        
+        /* FAQ SECTION */
         .faq {
-            background: var(--light-gray);
+            background: var(--off-white);
+        }
+        
+        .faq h2 {
+            text-align: center;
+            color: var(--charcoal);
         }
         
         .faq-container {
@@ -669,9 +706,9 @@
         }
         
         .faq-item {
-            background: var(--cream);
+            background: var(--white);
             margin-bottom: var(--spacing-sm);
-            border: 1px solid var(--beige);
+            border: 1px solid var(--light-gray);
         }
         
         .faq-question {
@@ -680,7 +717,7 @@
             background: none;
             border: none;
             text-align: left;
-            font-size: 1.125rem;
+            font-size: 1.0625rem;
             font-weight: 600;
             color: var(--charcoal);
             cursor: pointer;
@@ -688,15 +725,17 @@
             justify-content: space-between;
             align-items: center;
             transition: all 0.3s ease;
+            font-family: var(--font-sans);
         }
         
         .faq-question:hover {
-            color: var(--accent);
+            color: var(--accent-blue);
         }
         
         .faq-icon {
             font-size: 1.5rem;
             transition: transform 0.3s ease;
+            color: var(--accent-blue);
         }
         
         .faq-item.active .faq-icon {
@@ -708,6 +747,7 @@
             overflow: hidden;
             transition: max-height 0.3s ease, padding 0.3s ease;
             padding: 0 var(--spacing-md);
+            color: var(--dark-gray);
         }
         
         .faq-item.active .faq-answer {
@@ -715,31 +755,31 @@
             padding: 0 var(--spacing-md) var(--spacing-md);
         }
         
-        /* NEWSLETTER mit Hintergrundbild */
+        .faq-answer p {
+            margin-bottom: 0;
+            color: var(--dark-gray);
+        }
+        
+        /* NEWSLETTER SECTION */
         .newsletter {
-            background-image:
-                linear-gradient(rgba(45, 45, 45, 0.85), rgba(45, 45, 45, 0.85)),
-                url('bilder/newsletter-background.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: var(--cream);
+            background: var(--white);
+            color: var(--charcoal);
             text-align: center;
             padding: var(--spacing-xl) 0;
         }
         
         .newsletter h2 {
-            color: var(--cream);
+            color: var(--charcoal);
         }
         
         .newsletter p {
-            color: var(--beige);
+            color: var(--slate-blue);
             max-width: 600px;
             margin: 0 auto var(--spacing-md);
         }
         
         .newsletter-form {
-            max-width: 500px;
+            max-width: 600px;
             margin: var(--spacing-md) auto 0;
             display: flex;
             gap: var(--spacing-sm);
@@ -748,58 +788,75 @@
         .newsletter-input {
             flex: 1;
             padding: 1rem;
-            border: 1px solid var(--beige);
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--cream);
+            border: 1px solid var(--light-gray);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--charcoal);
             font-size: 1rem;
+            font-family: var(--font-sans);
         }
         
         .newsletter-input::placeholder {
-            color: var(--beige);
+            color: var(--medium-gray);
         }
         
         .newsletter-btn {
             padding: 1rem 2rem;
-            background: var(--accent);
-            color: var(--cream);
+            background: var(--accent-blue);
+            color: var(--charcoal);
             border: none;
             cursor: pointer;
             text-transform: uppercase;
             letter-spacing: 0.1em;
             font-weight: 600;
+            font-size: 0.9rem;
             transition: all 0.3s ease;
+            font-family: var(--font-sans);
         }
         
         .newsletter-btn:hover {
-            background: var(--warm-beige);
-            color: var(--charcoal);
+            background: var(--accent-blue-light);
+        }
+        
+        .newsletter .disclaimer {
+            font-size: 0.85rem;
+            margin-top: var(--spacing-sm);
+            color: var(--medium-gray);
         }
         
         @media (max-width: 600px) {
-        .newsletter-form > div {
-        flex-direction: column !important;
-        }
+            .newsletter-form {
+                flex-direction: column;
+            }
         }
         
         /* FOOTER */
         footer {
-            background: var(--charcoal);
-            color: var(--beige);
+            background: var(--white);
+            color: var(--slate-blue);
             padding: var(--spacing-lg) 0 var(--spacing-md);
-            border-top: 1px solid rgba(232, 222, 210, 0.1);
+            border-top: 1px solid var(--light-gray);
         }
         
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: var(--spacing-lg);
             margin-bottom: var(--spacing-lg);
         }
         
         .footer-section h4 {
-            color: var(--cream);
-            font-size: 1.125rem;
+            color: var(--charcoal);
+            font-size: 1rem;
             margin-bottom: var(--spacing-sm);
+            font-family: var(--font-sans);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+        }
+        
+        .footer-section p {
+            color: var(--medium-gray);
+            font-size: 0.95rem;
         }
         
         .footer-links {
@@ -811,30 +868,26 @@
         }
         
         .footer-links a {
-            color: var(--beige);
+            color: var(--medium-gray);
             font-size: 0.95rem;
             transition: color 0.3s ease;
         }
         
         .footer-links a:hover {
-            color: var(--cream);
+            color: var(--charcoal);
         }
         
         .footer-bottom {
             text-align: center;
             padding-top: var(--spacing-md);
-            border-top: 1px solid rgba(232, 222, 210, 0.1);
+            border-top: 1px solid var(--light-gray);
             font-size: 0.9rem;
-            color: var(--beige);
+            color: var(--medium-gray);
         }
         
         /* UTILITIES */
         .text-center {
             text-align: center;
-        }
-        
-        .mt-lg {
-            margin-top: var(--spacing-lg);
         }
         
         html {
@@ -855,6 +908,117 @@
         .fade-in {
             animation: fadeIn 0.6s ease-out;
         }
+
+        /* QUOTE BLOCK */
+        .quote-block {
+            background: var(--off-white);
+            padding: var(--spacing-lg);
+            border-left: 4px solid var(--accent-blue);
+            margin: var(--spacing-lg) 0;
+        }
+
+        .quote-block p {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--charcoal);
+            margin: 0;
+        }
+
+        .quote-block .attribution {
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            font-style: normal;
+            color: var(--medium-gray);
+            margin-top: var(--spacing-sm);
+        }
+        
+        /* FLOATING BADGE */
+        .floating-badge {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: var(--charcoal);
+            color: var(--white);
+            padding: 1rem 1.5rem;
+            padding-right: 2.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 998;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            max-width: 280px;
+        }
+        
+        .floating-badge:hover {
+            background: var(--slate-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.2);
+        }
+        
+        .floating-badge-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.4;
+            color: var(--white);
+        }
+        
+        .floating-badge-title {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--white);
+        }
+        
+        .floating-badge-cta {
+            font-size: 0.8rem;
+            opacity: 0.9;
+            margin-top: 0.15rem;
+            color: var(--white);
+        }
+        
+        .floating-badge-close {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 20px;
+            height: 20px;
+            background: rgba(255,255,255,0.2);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        
+        .floating-badge-close:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        .floating-badge.hidden {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .floating-badge {
+                top: 80px;
+                right: 10px;
+                left: 10px;
+                max-width: none;
+                justify-content: center;
+                text-align: center;
+            }
+            
+            .floating-badge-text {
+                align-items: center;
+            }
+        }
     </style>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -868,420 +1032,289 @@
         <div class="nav-container">
             <a href="index.html" class="logo">CARINA ANNA PRAV</a>
             <button class="mobile-menu-btn" aria-label="Toggle menu">☰</button>
-           <ul class="nav-links">
-    <li><a href="#system">System</a></li>
-    <li><a href="angebote.html">Angebote</a></li>
-    <li><a href="freebies.html">Freebies</a></li>
-    <li><a href="#podcast">Podcast</a></li>
-    <li><a href="blog.html">Blog</a></li>
-    <li><a href="ueber-mich.html">Über mich</a></li>
-    <li><a href="#faq">FAQ</a></li>
-</ul>
+            <ul class="nav-links">
+                <li><a href="#system">System</a></li>
+                <li><a href="angebote.html">Angebote</a></li>
+                <li><a href="freebies.html">Freebies</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="ueber-mich.html">Über mich</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
         </div>
     </nav>
 
     <!-- HERO -->
     <section class="hero" id="home">
-    <div class="container">
-        <div class="hero-content fade-in">
-            <p class="hero-eyebrow">FÜR FRAUEN DIE BUSINESS & LEBEN VEREINEN</p>
-            <h1>Das 2h/Tag Business-System</h1>
-            <p class="hero-subheading">
-                Du arbeitest 60h/Woche und dein Business läuft nur wenn DU läufst? 
-                Schritt 1: Klare Positionierung. Schritt 2: Systeme die für dich arbeiten.
-                Automatisierung, Pinterest Marketing & Mindset – damit du Zeit für dich & dein Kind hast.
-            </p>
-            <div class="hero-cta">
-    <a href="freebies.html" class="btn btn-primary btn-large">
-        Kostenlos starten
-    </a>
-    <a href="javascript:void(0)" onclick="openBestandsaufnahme()" class="btn btn-large">
-        Was fehlt mir noch?
-    </a>
-</div>
-<p style="margin-top: 1rem; font-size: 0.9rem; color: var(--dark-gray);">
-    Hol dir die 30-Tage Email-Serie oder mach die Bestandsaufnahme
-</p>
-        </div>
-    </div>
-</section>
-
-    <!-- PROBLEM -->
-    <section class="problem" id="problem">
-    <div class="container">
-        <h2>Die 3 Gründe warum du zu viel arbeitest</h2>
-        <div class="problem-grid">
-            <div class="problem-card fade-in">
-                <div class="problem-icon">🎯</div>
-                <h3>1. Falsche Positionierung</h3>
-                <p>Zu breit = zu viel Arbeit. "Ich helfe allen..." bedeutet: Du musst jeden einzeln überzeugen. Jeden Tag.</p>
-            </div>
-            <div class="problem-card fade-in">
-                <div class="problem-icon">📱</div>
-                <h3>2. Falsche Plattform</h3>
-                <p>Instagram frisst Zeit. Content lebt 24h. Du tanzt für den Algorithmus statt für Kunden.</p>
-            </div>
-            <div class="problem-card fade-in">
-                <div class="problem-icon">🔧</div>
-                <h3>3. Keine Systeme</h3>
-                <p>Alles manuell. Jeder Kunde = Arbeit von vorn. Keine Skalierung. Keine Freiheit.</p>
-            </div>
-        </div>
-        <p style="text-align: center; margin-top: 3rem; font-size: 1.25rem; font-weight: 600;">
-            Fix diese 3 → und du arbeitest 2h/Tag statt 60h/Woche.
-        </p>
-    </div>
-</section>
-
-    <!-- SOLUTION -->
-   <section class="solution" id="system">
-    <div class="container">
-        <div class="solution-content">
-            <div class="solution-text fade-in">
-                <h2>Die Lösung: Das 2h/Tag Business-System</h2>
-                <p>Du brauchst 2 Dinge: <strong>Spitze Positionierung</strong> + <strong>Automatisierte Systeme</strong>.</p>
-                
-                <ul class="solution-features">
-                    <li><strong>Schritt 1: Positionierung schärfen</strong><br></li>
-                    
-                    <li><strong>Schritt 2: Pinterest statt Instagram</strong><br></li>
-                    
-                    <li><strong>Schritt 3: Funnel automatisieren</strong><br></li>
-                    
-                    <li><strong>Schritt 4: High-Ticket verkaufen</strong><br></li>
-                </ul>
-                
-                <p style="margin-top: 2rem;"><strong>Resultat:</strong> 2h/Tag active work. Rest läuft automatisch. Zeit für dich & dein Leben.</p>
-                
-                <div style="display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap;">
-    <a href="angebote.html" class="btn btn-primary">Wie ich dir helfe</a>
-    <a href="javascript:void(0)" onclick="openBestandsaufnahme()" class="btn">Was fehlt mir noch?</a>
-</div>
-            </div>
-            <div class="fade-in">
-                <img src="bilder/solution-system.jpg" alt="Das 2h/Tag Business System" class="solution-image">
-            </div>
-        </div>
-    </div>
-</section>
-
-<section style="padding: 6rem 0; background: linear-gradient(135deg, #FAF9F6 0%, #E8DED2 100%);">
-    <div class="container">
-        <div style="max-width: 900px; margin: 0 auto; text-align: center;">
-            <h2 style="font-family: 'Playfair Display', Georgia, serif; font-size: clamp(2.5rem, 5vw, 3.5rem); margin-bottom: 2rem;">
-                Arbeite mit mir
-            </h2>
-            
-            <p style="font-size: 1.25rem; color: #4A4A4A; margin-bottom: 3rem; line-height: 1.7;">
-                Ich bin Positionierungs-Coach & App-Entwicklerin. Und Mama die keine 60h/Woche mehr arbeiten will.
-            </p>
-        </div>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; margin-top: 3rem;">
-            <div style="background: white; padding: 2.5rem; border-left: 4px solid #B89968;">
-                <h3 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.75rem; margin-bottom: 1rem;">
-                    Was ich mache
-                </h3>
-                <p style="color: #4A4A4A; line-height: 1.7;">
-                    Ich helfe dir von "Ich helfe allen..." zu kristallklarer Positionierung zu kommen. 
-                    Dann baue ich dir (oder mit dir) die technischen Systeme: Pinterest, Funnel, Automatisierung. 
-                    Plus: Ich zeige dir wie man High-Ticket verkauft, ethisch und authentisch.
-                </p>
-            </div>
-            
-            <div style="background: white; padding: 2.5rem; border-left: 4px solid #B89968;">
-                <h3 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.75rem; margin-bottom: 1rem;">
-                    Wie ich arbeite
-                </h3>
-                <p style="color: #4A4A4A; line-height: 1.7;">
-                    Keine Motivations-Floskeln. Konkrete Klick-für-Klick Anleitungen. 
-                    Tools die bis 1000 Kunden kostenlos sind. Tech + Mindset + Marketing zusammen. 
-                    Entweder lernst du's (Foundation) oder ich bau's für dich (System-Setup).
-                </p>
-            </div>
-            
-            <div style="background: white; padding: 2.5rem; border-left: 4px solid #B89968;">
-                <h3 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.75rem; margin-bottom: 1rem;">
-                    Für wen es ist
-                </h3>
-                <p style="color: #4A4A4A; line-height: 1.7;">
-                    Female Entrepreneurs die vom Instagram-Hamsterrad weg wollen. 
-                    Die ein Business aufbauen wollen das OHNE sie läuft. 
-                    Die bereit sind High-Ticket zu verkaufen und Pinterest eine Chance zu geben.
-                </p>
-            </div>
-        </div>
-        
-        <div style="background: #2D2D2D; color: #FAF9F6; padding: 3rem; margin-top: 4rem; text-align: center; border-radius: 4px;">
-            <h3 style="font-family: 'Playfair Display', Georgia, serif; font-size: 2rem; margin-bottom: 1rem; color: #FAF9F6;">
-                Für wen es NICHT ist
-            </h3>
-            <p style="font-size: 1.125rem; color: #E8DED2; max-width: 700px; margin: 0 auto;">
-                Wenn du noch kein Angebot hast. Wenn du "nur mal schauen" willst ohne Commitment. 
-                Wenn du Low-Ticket (unter 500€) verkaufen willst. Wenn du alles alleine DIY machen willst ohne Investition.
-            </p>
-        </div>
-    </div>
-</section>
-
-<section style="padding: 6rem 0; background: white;">
-    <div class="container" style="max-width: 800px; text-align: center;">
-        <h2 style="font-family: 'Playfair Display', Georgia, serif; font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem;">
-            Wie weit bist du noch entfernt?
-        </h2>
-        <p style="font-size: 1.25rem; color: #4A4A4A; margin-bottom: 2rem;">
-            5 Fragen. Ehrliche Bestandsaufnahme. Kein Verkaufsgespräch danach.
-        </p>
-        <button onclick="openBestandsaufnahme()" style="padding: 1.5rem 3.5rem; font-size: 1.25rem; background: #2D2D2D; color: white; border: none; cursor: pointer; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; transition: all 0.3s ease; border-radius: 4px;">
-            Was fehlt mir noch? →
-        </button>
-        <p style="margin-top: 1rem; font-size: 0.9rem; color: #4A4A4A;">
-            Am Ende siehst du genau welche Bausteine dir noch fehlen
-        </p>
-    </div>
-</section>
-
-  
-        
-       <!-- AUDIO-KURS (Full Width) -->
-<section style="padding: 4rem 0; background: #FAF9F6;">
-    <div class="container" style="max-width: 800px; margin: 0 auto;">
-        <div style="background: white; padding: 3rem; border: 2px solid #E8DED2; border-radius: 4px; position: relative;">
-            <div class="angebot-label" style="position: absolute; top: -12px; left: 20px; background: #2D2D2D; color: #FAF9F6; padding: 0.5rem 1rem; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600;">START HIER</div>
-            
-            <div style="text-align: center; margin-bottom: 2rem;">
-                <h3 style="font-family: 'Playfair Display', Georgia, serif; font-size: 2.5rem; margin-top: 1rem; margin-bottom: 0.5rem; color: #2D2D2D;">Audio-Kurs</h3>
-                <p style="font-style: italic; color: #4A4A4A; margin-bottom: 1.5rem; font-size: 1.125rem;">Von produktiv zu profitabel</p>
-                <div style="font-family: 'Playfair Display', Georgia, serif; font-size: 3rem; font-weight: bold; color: #B89968; margin: 1.5rem 0;">37€</div>
-            </div>
-            
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin: 2rem 0;">
-                <ul style="list-style: none; padding: 0; margin: 0;">
-                    <li style="padding: 0.75rem 0; padding-left: 1.5rem; position: relative; color: #4A4A4A; border-bottom: 1px solid #E8DED2;">
-                        <span style="position: absolute; left: 0; color: #B89968; font-weight: bold;">✓</span>
-                        7-tägige Audio-Serie
-                    </li>
-                    <li style="padding: 0.75rem 0; padding-left: 1.5rem; position: relative; color: #4A4A4A; border-bottom: 1px solid #E8DED2;">
-                        <span style="position: absolute; left: 0; color: #B89968; font-weight: bold;">✓</span>
-                        Das 2h/Tag System erklärt
-                    </li>
-                    <li style="padding: 0.75rem 0; padding-left: 1.5rem; position: relative; color: #4A4A4A;">
-                        <span style="position: absolute; left: 0; color: #B89968; font-weight: bold;">✓</span>
-                        Pinterest vs. Instagram
-                    </li>
-                </ul>
-                
-                <ul style="list-style: none; padding: 0; margin: 0;">
-                    <li style="padding: 0.75rem 0; padding-left: 1.5rem; position: relative; color: #4A4A4A; border-bottom: 1px solid #E8DED2;">
-                        <span style="position: absolute; left: 0; color: #B89968; font-weight: bold;">✓</span>
-                        Die 4 Systeme im Detail
-                    </li>
-                    <li style="padding: 0.75rem 0; padding-left: 1.5rem; position: relative; color: #4A4A4A; border-bottom: 1px solid #E8DED2;">
-                        <span style="position: absolute; left: 0; color: #B89968; font-weight: bold;">✓</span>
-                        Sofort starten
-                    </li>
-                </ul>
-            </div>
-            
-            <div style="text-align: center; margin-top: 2rem;">
-                <a href="/audiokurs" style="display: inline-block; padding: 1.25rem 3rem; background: #2D2D2D; color: #FAF9F6; border: none; text-decoration: none; text-align: center; cursor: pointer; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; transition: all 0.3s ease; border-radius: 4px;">Jetzt kaufen</a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- HOVER EFFECTS -->
-<style>
-.freebie-card:hover, .angebot-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-
-.btn:hover, a[href*="javascript"]:hover {
-    transform: translateY(-2px);
-    opacity: 0.9;
-}
-</style>
-
-    <!-- PODCAST -->
-    <section class="podcast" id="podcast">
         <div class="container">
-            <div class="podcast-content">
-                <div class="podcast-text fade-in">
-                    <h2>Hör rein: Ehrlich Erfolgreich Podcast</h2>
-                    <p>
-                        <p>
-                            Wöchentliche Episodes über Business-Automatisierung, Pinterest-Marketing, 
-                            Selbstsabotage und das echte Leben als Unternehmerin mit Kind.
-                        </p>
-                    </p>
-                    <p>
-                        Kein Motivations-Blabla. Konkrete Strategien, Tools und Behind-the-Scenes.
-                    </p>
-                    
-                    <div class="podcast-platforms">
-                        <a href="#" class="platform-link">Spotify</a>
-                        <a href="#" class="platform-link">Apple Podcasts</a>
-                        <a href="#" class="platform-link">Google Podcasts</a>
-                    </div>
-                </div>
-                
-                <div class="podcast-image-container fade-in">
-                    <img src="bilder/podcast-cover.jpg" alt="Ehrlich Erfolgreich Podcast" class="podcast-image">
+            <div class="hero-content fade-in">
+                <p class="hero-eyebrow">Positionierung · Systeme · Automatisierung</p>
+                <h1>Mit klaren Systemen zu einem Business, das <em style="font-style: italic;">läuft</em> – auch wenn du mal nicht da bist.</h1>
+                <p class="hero-subheading">
+                    Du arbeitest viel, aber dein Umsatz schwankt? Du hast Kunden, aber keine Systeme? Ich helfe dir, ein Business aufzubauen, das nicht von deiner ständigen Anwesenheit abhängt.
+                </p>
+                <div class="hero-cta">
+                    <a href="mentoring.html" class="btn btn-primary btn-large">
+                        1:1 Mentoring
+                    </a>
+                    <a href="angebote.html" class="btn btn-large">
+                        Alle Angebote
+                    </a>
                 </div>
             </div>
         </div>
     </section>
-    <!-- FAQ -->
-<section class="faq" id="faq">
-    <div class="container">
-        <h2 class="text-center">Häufige Fragen</h2>
-        <div class="faq-container">
-            
-            <div class="faq-item fade-in">
-                <button class="faq-question">
-                    <span>Für wen ist das 2h/Tag System?</span>
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    <p>
-                        Für Unternehmerinnen die bereits ein Angebot haben (oder eine klare Idee), 
-                        aber zu viel arbeiten und zu wenig verdienen. Du bist bereit in High-Ticket zu gehen 
-                        und willst ein Business das auch ohne dich läuft.
-                    </p>
+
+    <!-- PROBLEM -->
+    <section class="problem" id="problem">
+        <div class="container">
+            <h2>Kennst du das?</h2>
+            <p style="text-align: center; color: var(--slate-blue); font-size: 1.1rem; margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Du gibst alles, aber irgendwie kommst du nicht weiter. Jeden Monat dasselbe Spiel.
+            </p>
+            <div class="problem-grid">
+                <div class="problem-card fade-in">
+                    <div class="problem-number">01</div>
+                    <h3>Schwankende Umsätze</h3>
+                    <p>Der eine Monat läuft, der nächste ist eine Katastrophe. Du kannst nicht planen, weil du nicht weißt, was reinkommt.</p>
+                </div>
+                <div class="problem-card fade-in">
+                    <div class="problem-number">02</div>
+                    <h3>Unklare Positionierung</h3>
+                    <p>Du erklärst ständig, was du machst. Aber die Leute verstehen es nicht wirklich. Und buchen deshalb nicht.</p>
+                </div>
+                <div class="problem-card fade-in">
+                    <div class="problem-number">03</div>
+                    <h3>Alles läuft über dich</h3>
+                    <p>Kein System, keine Automatisierung. Fällst du aus, steht alles still. Du bist gefangen in deinem eigenen Business.</p>
                 </div>
             </div>
-
-            <div class="faq-item fade-in">
-                <button class="faq-question">
-                    <span>Funktioniert das wirklich in 2h/Tag?</span>
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    <p>
-                        Ja, aber nicht von Tag 1. Wir bauen erst die Systeme auf – das dauert 6-12 Wochen je nach Angebot. 
-                        Danach: 2h/Tag für Strategie und Kundenarbeit. Der Rest läuft automatisch über Pinterest, 
-                        Email-Funnel und Automatisierungen.
-                    </p>
-                </div>
-            </div>
-
-            <div class="faq-item fade-in">
-                <button class="faq-question">
-                    <span>Was ist der Unterschied zwischen Foundation und System-Setup?</span>
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    <p>
-                        <strong>Foundation Intensive:</strong> Du lernst Positionierung, Offer Design und Sales. 
-                        Für dich wenn du noch Klarheit brauchst WAS du verkaufst.<br><br>
-                        <strong>System-Setup:</strong> Ich baue dir alles (Website, Pinterest, Funnel). 
-                        Für dich wenn du schon weißt was du verkaufst und jetzt Traffic + Automatisierung brauchst.
-                    </p>
-                </div>
-            </div>
-
-            <div class="faq-item fade-in">
-                <button class="faq-question">
-                    <span>Warum Pinterest statt Instagram?</span>
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    <p>
-                        Pinterest-Nutzer SUCHEN aktiv nach Lösungen. Dein Content lebt Jahre statt Stunden. 
-                        Du musst nicht täglich posten oder live sein. 80% weibliche Nutzer mit Kaufkraft. 
-                        Perfekt für ein Business das ohne dich läuft.
-                    </p>
-                </div>
-            </div>
-
-            <div class="faq-item fade-in">
-                <button class="faq-question">
-                    <span>Ich bin nicht technikaffin. Ist das ein Problem?</span>
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    <p>
-                        Nein. Im System-Setup baue ich alles FÜR dich und zeige dir dann wie du es pflegst. 
-                        Im Foundation-Angebot arbeiten wir an Strategie – du brauchst keine Tech-Skills. 
-                        Alle Tools die ich nutze haben kostenlose Versionen bis 1000 Kunden.
-                    </p>
-                </div>
-            </div>
-
-            <div class="faq-item fade-in">
-                <button class="faq-question">
-                    <span>Wie läuft die Zusammenarbeit ab?</span>
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    <p>
-                        1. Du machst die Bestandsaufnahme oder schreibst mir direkt.<br>
-                        2. Wir haben ein kurzes Kennenlerngespräch (15-20 min, kein Verkaufsgespräch).<br>
-                        3. Wenn's passt, starten wir. Wenn nicht, kein Problem.<br><br>
-                        Kein Druck. Keine automatischen Anrufe. Nur ehrliches Gespräch.
-                    </p>
-                </div>
-            </div>
-
-            <div class="faq-item fade-in">
-                <button class="faq-question">
-                    <span>Was kostet die Zusammenarbeit?</span>
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    <p>
-                        Die Preise bespreche ich im persönlichen Gespräch – sie hängen von deiner Situation ab. 
-                        Was ich sagen kann: Es ist eine Investition, kein Schnäppchen. 
-                        Dafür bekommst du meine volle Aufmerksamkeit und echte Resultate.
-                    </p>
-                </div>
-            </div>
-
         </div>
-    </div>
-</section>
+    </section>
+
+    <!-- SOLUTION -->
+    <section class="solution" id="system">
+        <div class="container">
+            <div class="solution-content">
+                <div class="solution-text fade-in">
+                    <h2>Das ändert sich, wenn wir zusammenarbeiten</h2>
+                    <p style="font-size: 1.1rem; color: var(--slate-blue); margin-bottom: 2rem;">Kein Wunschdenken. Sondern das, was passiert, wenn du die richtigen Dinge in der richtigen Reihenfolge tust.</p>
+                    
+                    <ul class="solution-features">
+                        <li><strong>Klare Positionierung</strong> – Menschen verstehen sofort, was du machst und für wen. Kein Erklären mehr.</li>
+                        <li><strong>Attraktives Angebot</strong> – High-Ticket, das sich verkauft. Weil es ein echtes Problem löst.</li>
+                        <li><strong>Automatisierter Funnel</strong> – Deine Kundenreise läuft. Von Erstkontakt bis Kauf. Ohne dass du jeden Lead manuell betreust.</li>
+                        <li><strong>Systeme, die arbeiten</strong> – E-Mails, Onboarding, Follow-ups. Einmal gebaut, immer nutzbar.</li>
+                    </ul>
+                    
+                    <div style="margin-top: 2rem;">
+                        <a href="angebote.html" class="btn btn-primary">Angebote ansehen</a>
+                    </div>
+                </div>
+                <div class="fade-in">
+                    <img src="bilder/solution-system.jpg" alt="Das System" class="solution-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT / WORK WITH ME -->
+    <section class="about">
+        <div class="container">
+            <div class="about-intro">
+                <h2>Wie ich arbeite</h2>
+                <p style="text-align: center; color: var(--slate-blue); font-size: 1.1rem; margin-bottom: 2rem;">
+                    Kein Coaching-Blabla. Keine leeren Versprechen. Sondern klare Strategien und echte Umsetzung.
+                </p>
+            </div>
+            
+            <div class="about-grid">
+                <div class="about-card">
+                    <h3>Direkt & ehrlich</h3>
+                    <p>Ich sage dir, was Sache ist. Auch wenn es unbequem ist. Weil du davon mehr hast als von Komplimenten.</p>
+                </div>
+                
+                <div class="about-card">
+                    <h3>Individuell</h3>
+                    <p>Kein 08/15-Fahrplan. Wir bauen das, was für DEIN Business funktioniert. Basierend auf dem, wo du stehst.</p>
+                </div>
+                
+                <div class="about-card">
+                    <h3>Umsetzungsorientiert</h3>
+                    <p>Weniger Theorie, mehr Praxis. Du gehst aus jedem Call mit konkreten nächsten Schritten raus.</p>
+                </div>
+            </div>
+            
+            <div class="about-not-for">
+                <h3>Das Mentoring ist nichts für dich, wenn...</h3>
+                <p>Du eine magische Lösung suchst, nicht bereit bist umzusetzen, oder kein Budget für eine ernsthafte Investition hast.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MENTORING -->
+    <section class="mentoring-cta" style="padding: 5rem 0; background: var(--charcoal); color: var(--white);">
+        <div class="container" style="text-align: center;">
+            <p style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--accent-blue-light); margin-bottom: 1rem;">1:1 Mentoring</p>
+            <h2 style="font-size: clamp(2rem, 4vw, 2.5rem); margin-bottom: 1.5rem; color: var(--white);">Mit intensiver Begleitung zu einem Business, das <em style="font-style: italic;">läuft</em> – auch wenn du mal nicht da bist.</h2>
+            <p style="font-size: 1.1rem; color: var(--light-gray); margin-bottom: 1rem; max-width: 650px; margin-left: auto; margin-right: auto;">
+                6 Monate. Wöchentliche 1:1 Calls. Telegram Support. Positionierung, Systeme, Automatisierung – individuell auf dich abgestimmt, nicht 08/15.
+            </p>
+            <p style="font-size: 1rem; color: var(--medium-gray); margin-bottom: 2rem;">
+                Für Selbstständige, die wissen, dass es besser gehen muss.
+            </p>
+            <a href="mentoring.html" class="btn btn-primary" style="background: var(--white); color: var(--charcoal);">Mehr erfahren</a>
+        </div>
+    </section>
+
+    <!-- QUIZ CTA -->
+    <section class="quiz-cta">
+        <div class="container">
+            <div class="quiz-cta-box">
+                <h2>Wo stehst du gerade?</h2>
+                <p>5 Fragen. 2 Minuten. Danach weißt du, was dein nächster Schritt ist.</p>
+                <button onclick="openBestandsaufnahme()" class="btn btn-primary btn-large">
+                    Bestandsaufnahme starten
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- AUDIO-KURS -->
+    <section class="audio-kurs">
+        <div class="container">
+            <div class="audio-kurs-card">
+                <div class="audio-kurs-badge">Einstieg</div>
+                
+                <div class="audio-kurs-header">
+                    <h3>Audio-Kurs: Das 2h/Tag System</h3>
+                    <p class="subtitle">Das komplette Framework in 7 Tagen – zum Anhören und Umsetzen</p>
+                    <div class="audio-kurs-price">37 €</div>
+                </div>
+                
+                <div class="audio-kurs-features">
+                    <ul>
+                        <li>Positionierung schärfen</li>
+                        <li>Angebot strukturieren</li>
+                        <li>Funnel aufbauen</li>
+                    </ul>
+                    <ul>
+                        <li>Automatisierung einrichten</li>
+                        <li>Konkrete Umsetzungsschritte</li>
+                    </ul>
+                </div>
+                
+                <div class="audio-kurs-cta">
+                    <a href="/audiokurs" class="btn btn-primary">Jetzt für 37 € kaufen</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <h2>Häufige Fragen</h2>
+            <div class="faq-container">
+                
+                <div class="faq-item fade-in">
+                    <button class="faq-question">
+                        <span>Für wen ist das hier?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Für Selbstständige und Unternehmerinnen, die bereits Kunden und Umsatz haben – aber wissen, dass ihr Business besser laufen könnte. Du arbeitest viel, aber die Umsätze schwanken. Du hast keine Systeme, alles läuft über dich. Du willst das ändern, weißt aber nicht wie. Dann bist du hier richtig.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in">
+                    <button class="faq-question">
+                        <span>Ich bin noch ganz am Anfang – passt das trotzdem?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Ehrlich? Wahrscheinlich nicht. Meine Angebote sind für Menschen, die schon Kunden hatten und wissen, dass sie etwas verkaufen können. Wenn du noch ganz am Anfang stehst und noch nie etwas verkauft hast, ist der Audio-Kurs für 37 € ein guter Einstieg. Aber die 1:1 Zusammenarbeit macht erst Sinn, wenn du bereits ein funktionierendes Angebot hast.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in">
+                    <button class="faq-question">
+                        <span>Was unterscheidet dich von anderen Coaches?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Ich bin keine Motivationsrednerin. Ich baue Systeme. Ich komme aus der Tech-Welt und denke in Prozessen, Automatisierungen und Infrastruktur. Bei mir gibt es keine vagen Tipps wie "sei einfach sichtbarer". Sondern konkrete Schritte: Das baust du. So funktioniert es. Das ist der nächste Schritt. Außerdem sage ich dir ehrlich, was Sache ist – auch wenn es unbequem ist.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in">
+                    <button class="faq-question">
+                        <span>Wie schnell kann ich mit Ergebnissen rechnen?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Das hängt davon ab, wo du startest und wie konsequent du umsetzt. Die Positionierung steht oft nach 2-4 Wochen. Ein einfacher Funnel nach 4-6 Wochen. Ein komplettes System, das wirklich läuft, braucht 3-6 Monate. Das ist keine Magie, sondern Arbeit – aber Arbeit, die sich auszahlt.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in">
+                    <button class="faq-question">
+                        <span>Muss ich auf Instagram sein?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Nein. Ich bin selbst nicht mehr auf Instagram aktiv – genau weil ich weiß, wie viel Zeit und Energie das frisst. Wir finden die Traffic-Quelle, die zu dir passt: Pinterest, SEO, Paid Ads, Referrals, E-Mail-Marketing. Es gibt viele Wege, Kunden zu gewinnen. Instagram ist nur einer davon – und oft nicht der beste.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in">
+                    <button class="faq-question">
+                        <span>Was kostet die Zusammenarbeit?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Das 1:1 Mentoring kostet 5.555 € für 6 Monate. Die anderen Angebote findest du auf der Angebote-Seite. Das sind keine Schnäppchen – das sind ernsthafte Investitionen in dein Business. Ratenzahlung ist möglich. Wenn du dir nicht sicher bist, welches Angebot passt, schreib mir und wir schauen gemeinsam.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in">
+                    <button class="faq-question">
+                        <span>Ich habe schon so viele Kurse gekauft und nichts umgesetzt...</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Das höre ich oft. Und genau deshalb funktioniert 1:1 Begleitung besser als Selbstlernkurse. Du hast jede Woche einen Call, in dem wir besprechen, was ansteht. Du hast jemanden, der nachfragt, mitdenkt und dich auch mal schubst, wenn du feststeckst. Das ist der Unterschied zwischen "ich hab das mal gekauft" und "ich hab das wirklich umgesetzt".</p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in">
+                    <button class="faq-question">
+                        <span>Wie läuft der erste Schritt?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Schreib mir eine E-Mail oder nutze die Bestandsaufnahme auf dieser Seite. Dann vereinbaren wir ein unverbindliches Erstgespräch. Wir schauen, wo du stehst, was du brauchst und ob ich dir helfen kann. Kein Verkaufsdruck – nur eine ehrliche Einschätzung.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
     <!-- NEWSLETTER -->
-<section class="newsletter" id="newsletter">
-    <div class="container-narrow">
-        <h2>Bereit für dein 2h/Tag Business?</h2>
-        <p>
-            Melde dich für meinen Newsletter an und bekomme wöchentlich konkrete Tipps zu Automatisierung, 
-            Pinterest-Marketing und Selbstsabotage-Überwindung.
-        </p>
-        
-        <!-- NEWSLETTER FORM MIT VORNAME -->
-        <form class="newsletter-form" id="newsletter-form" style="max-width: 500px; margin: 2rem auto 0;">
-    <div style="display: flex; gap: 1rem; align-items: stretch;">
-        <input 
-            type="text" 
-            id="firstname"
-            placeholder="Dein Vorname" 
-            required
-            style="flex: 1; padding: 1rem; border: 1px solid var(--beige); background: rgba(255, 255, 255, 0.1); color: var(--cream); font-size: 1rem; font-family: var(--font-sans);"
-        >
-        <input 
-            type="email" 
-            id="email"
-            placeholder="Deine Email-Adresse" 
-            required
-            style="flex: 1; padding: 1rem; border: 1px solid var(--beige); background: rgba(255, 255, 255, 0.1); color: var(--cream); font-size: 1rem; font-family: var(--font-sans);"
-        >
-        <button 
-            type="submit"
-            style="flex: 0 0 auto; padding: 1rem 2rem; background: var(--accent); color: var(--cream); border: none; cursor: pointer; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; transition: all 0.3s ease; font-size: 1rem; font-family: var(--font-sans); white-space: nowrap;">
-            Anmelden
-        </button>
-    </div>
-</form>
-        
-        <p id="form-message" style="font-size: 1rem; margin-top: 1rem; color: var(--beige); text-align: center;"></p>
-        
-        <p style="font-size: 0.85rem; margin-top: var(--spacing-sm); color: var(--beige);">
-            Kein Spam. Abmeldung jederzeit möglich. DSGVO-konform.
-        </p>
-    </div>
-</section>
+    <section class="newsletter" id="newsletter">
+        <div class="container-narrow">
+            <h2>Newsletter</h2>
+            <p>Wöchentlich. Kein Spam.</p>
+            
+            <form class="newsletter-form" id="newsletter-form">
+                <input type="text" id="firstname" class="newsletter-input" placeholder="Vorname" required>
+                <input type="email" id="email" class="newsletter-input" placeholder="E-Mail" required>
+                <button type="submit" class="newsletter-btn">Anmelden</button>
+            </form>
+            
+            <p id="form-message" style="margin-top: 1rem;"></p>
+        </div>
+    </section>
 
     <!-- FOOTER -->
     <footer>
@@ -1289,21 +1322,16 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h4>Carina Anna Prav</h4>
-                    <p style="color: var(--beige); font-size: 0.95rem;">
-                        Business-Automatisierung & Pinterest-Marketing für Unternehmerinnen die skalieren wollen ohne auszubrennen.
-                    </p>
+                    <p>Business-Systeme.</p>
                 </div>
                 
                 <div class="footer-section">
-                    <h4>Quick Links</h4>
+                    <h4>Navigation</h4>
                     <ul class="footer-links">
-    <li><a href="#system">Das System</a></li>
-    <li><a href="angebote.html">Angebote</a></li>
-    <li><a href="freebies.html">Freebies</a></li>
-    <li><a href="#podcast">Podcast</a></li>
-    <li><a href="ueber-mich.html">Über mich</a></li>
-    <li><a href="#faq">FAQ</a></li>
-</ul>
+                        <li><a href="angebote.html">Angebote</a></li>
+                        <li><a href="freebies.html">Ressourcen</a></li>
+                        <li><a href="ueber-mich.html">Über mich</a></li>
+                    </ul>
                 </div>
                 
                 <div class="footer-section">
@@ -1314,29 +1342,19 @@
                         <li><a href="agb.html">AGB</a></li>
                     </ul>
                 </div>
-                
-                <div class="footer-section">
-                    <h4>Folge mir</h4>
-                    <ul class="footer-links">
-                        <li><a href="https://www.instagram.com/carinaannaprav/" target="_blank">Instagram</a></li>
-                        <li><a href="https://pinterest.com/deinprofil" target="_blank">Pinterest</a></li>
-                        <li><a href="https://linkedin.com/in/deinprofil" target="_blank">LinkedIn</a></li>
-                        <li><a href="mailto:socials@carinaannaprav.at">Email</a></li>
-                        <li><a href="#podcast">Podcast</a></li>
-                    </ul>
-                </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2026 Carina Anna Prav. Alle Rechte vorbehalten.</p>
+                <p>© 2026 Carina Anna Prav</p>
             </div>
         </div>
     </footer>
 
-        <!-- JAVASCRIPT -->
-    <script>
+    <!-- JAVASCRIPT -->
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         const GOOGLE_SHEETS_WEBHOOK = 'https://script.google.com/macros/s/AKfycbyK8prmJNsF4GwpzL483jg--cBR5cXHeubbVZolMSvjcuNurtF4XgKAcczP4Z3vg2LZ/exec';
-   const TIDYCAL_LINK = 'https://tidycal.com/carinaannaprav/kennenlernen';
+        const TIDYCAL_LINK = 'https://tidycal.com/carinaannaprav/kennenlernen';
+
         // Mobile Menu Toggle
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const navLinks = document.querySelector('.nav-links');
@@ -1346,7 +1364,6 @@
             mobileMenuBtn.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
         });
         
-        // Close mobile menu when clicking a link
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
@@ -1360,19 +1377,17 @@
                 const faqItem = button.parentElement;
                 const isActive = faqItem.classList.contains('active');
                 
-                // Close all other FAQ items
                 document.querySelectorAll('.faq-item').forEach(item => {
                     item.classList.remove('active');
                 });
                 
-                // Toggle current item
                 if (!isActive) {
                     faqItem.classList.add('active');
                 }
             });
         });
         
-        // Smooth scroll for anchor links
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1387,7 +1402,7 @@
             });
         });
         
-        // Intersection Observer for fade-in animations
+        // Intersection Observer for fade-in
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -1402,7 +1417,6 @@
             });
         }, observerOptions);
         
-        // Observe all fade-in elements
         document.querySelectorAll('.fade-in').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(20px)';
@@ -1410,1756 +1424,680 @@
             observer.observe(el);
         });
         
-        // Nav background on scroll
+        // Nav shadow on scroll
         const nav = document.querySelector('nav');
-        
         window.addEventListener('scroll', () => {
             if (window.pageYOffset > 100) {
-                nav.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+                nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.06)';
             } else {
                 nav.style.boxShadow = 'none';
             }
         });
-        
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log('Website loaded successfully!');
+
+        // Newsletter Form
+        document.getElementById('newsletter-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const firstname = document.getElementById('firstname').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const messageEl = document.getElementById('form-message');
+            const button = e.target.querySelector('button');
+            const originalButtonText = button.textContent;
+            
+            if (!firstname || !email) {
+                messageEl.textContent = 'Bitte fülle alle Felder aus.';
+                messageEl.style.color = '#ff6b6b';
+                return;
+            }
+            
+            button.disabled = true;
+            button.textContent = 'Wird gesendet...';
+            messageEl.textContent = '';
+            
+            try {
+                const response = await fetch('/.netlify/functions/newsletter-signup', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, firstname })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok && data.success) {
+                    messageEl.textContent = 'Danke! Check deine E-Mails.';
+                    messageEl.style.color = '#3182CE';
+                    e.target.reset();
+                } else {
+                    throw new Error(data.error || 'Submission failed');
+                }
+            } catch (error) {
+                messageEl.textContent = 'Etwas ist schiefgelaufen. Bitte nochmal versuchen.';
+                messageEl.style.color = '#ff6b6b';
+            } finally {
+                button.disabled = false;
+                button.textContent = originalButtonText;
+            }
         });
     </script>
 
-    <!-- NEWSLETTER FORM SUBMISSION -->
-    
-<script>
-document.getElementById('newsletter-form').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    const firstname = document.getElementById('firstname').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const messageEl = document.getElementById('form-message');
-    const button = e.target.querySelector('button');
-    const originalButtonText = button.textContent;
-    
-    // Validation
-    if (!firstname || !email) {
-        messageEl.textContent = '❌ Bitte fülle alle Felder aus.';
-        messageEl.style.color = '#ff6b6b';
-        return;
-    }
-    
-    // Button disable während submission
-    button.disabled = true;
-    button.textContent = 'Wird gesendet...';
-    button.style.opacity = '0.7';
-    messageEl.textContent = '';
-    
-    try {
-        // Call Netlify Function
-        const response = await fetch('/.netlify/functions/newsletter-signup', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                email: email,
-                firstname: firstname
-            })
-        });
-        
-        const data = await response.json();
-        
-        if (response.ok && data.success) {
-            // Erfolg!
-            messageEl.textContent = '🎉 Danke ' + firstname + '! Check deine Emails (auch im Spam-Ordner).';
-            messageEl.style.color = '#B89968';
-            e.target.reset();
+    <!-- BESTANDSAUFNAHME QUIZ MODAL -->
+    <div id="bestandsaufnahme-modal" class="quiz-modal">
+        <div class="quiz-modal-content">
+            <button class="quiz-close" onclick="closeBestandsaufnahme()">×</button>
             
-            // Optional: Google Analytics Event
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'newsletter_signup', {
-                    'event_category': 'engagement',
-                    'event_label': 'newsletter_form'
-                });
-            }
-        } else {
-            throw new Error(data.error || 'Submission failed');
-        }
-    } catch (error) {
-        console.error('Newsletter signup error:', error);
-        messageEl.textContent = '❌ Etwas ist schiefgelaufen. Bitte nochmal versuchen oder Email an socials@carinaannaprav.at';
-        messageEl.style.color = '#ff6b6b';
-    } finally {
-        button.disabled = false;
-        button.textContent = originalButtonText;
-        button.style.opacity = '1';
-    }
-});
-</script>
-
-    <script>
-    if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", user => {
-            if (!user) {
-                window.netlifyIdentity.on("login", () => {
-                    document.location.href = "/admin/";
-                });
-            }
-        });
-    }
-    </script>
-    <!-- ============================================ -->
-<!-- SYSTEM-CHECK QUIZ MODAL (für Angebote) -->
-<!-- ============================================ -->
-<div id="system-check-modal" class="quiz-modal">
-    <div class="quiz-modal-content">
-        <button class="quiz-close" onclick="closeSystemCheckQuiz()">&times;</button>
-        
-        <div class="quiz-progress">
-            <div class="quiz-progress-bar" id="system-check-progress-bar"></div>
-        </div>
-        
-        <div id="system-check-container">
-            <!-- Start Screen -->
-            <div class="quiz-screen active" id="sc-screen-start">
-                <h2>Hey! 👋</h2>
-                <p style="font-size: 1.25rem; margin-bottom: 2rem;">
-                    Lass uns mal schauen, welches System grade zu dir passt.
-                </p>
-                <p style="opacity: 0.8;">Dauert 2 Minuten, versprochen.</p>
-                <button class="quiz-btn-primary" onclick="startSystemCheck()">Los geht's!</button>
+            <div class="quiz-progress">
+                <div class="quiz-progress-bar" id="bestandsaufnahme-progress-bar"></div>
             </div>
             
-            <!-- Question 1 -->
-            <div class="quiz-screen" id="sc-screen-q1">
-                <h3>Ok, erste Frage:</h3>
-                <p class="quiz-question">Wie viele Stunden arbeitest du gerade pro Woche?</p>
-                <div class="quiz-options">
-                    <button class="quiz-option" onclick="scAnswer(1, '20-40h')">20-40h</button>
-                    <button class="quiz-option" onclick="scAnswer(1, '40-60h')">40-60h</button>
-                    <button class="quiz-option" onclick="scAnswer(1, '60h+')">60h+</button>
+            <div id="bestandsaufnahme-container">
+                <!-- Start Screen -->
+                <div class="quiz-screen active" id="ba-screen-start">
+                    <h2>Bestandsaufnahme</h2>
+                    <p style="font-size: 1.125rem; margin-bottom: 2rem;">
+                        5 Fragen. Ehrliche Analyse. Danach weißt du, welche Bausteine dir noch fehlen.
+                    </p>
+                    <button class="quiz-btn-primary" onclick="startBestandsaufnahme()">Starten</button>
                 </div>
-            </div>
-            
-            <!-- Question 2 -->
-            <div class="quiz-screen" id="sc-screen-q2">
-                <h3>Alright. Und was nervt dich gerade am meisten?</h3>
-                <div class="quiz-options">
-                    <button class="quiz-option" onclick="scAnswer(2, 'chaos')">Ich weiß nicht wo anfangen</button>
-                    <button class="quiz-option" onclick="scAnswer(2, 'sabotage')">Ich weiß WAS zu tun ist, aber TU es nicht</button>
-                    <button class="quiz-option" onclick="scAnswer(2, 'nonstop')">Ich arbeite non-stop, Business läuft nur wenn ICH laufe</button>
+                
+                <!-- Question 1: Positionierung -->
+                <div class="quiz-screen" id="ba-screen-q1">
+                    <p class="quiz-label">Frage 1 von 5</p>
+                    <h3>Positionierung</h3>
+                    <p class="quiz-question">Wenn jemand fragt "Was machst du?" – hast du eine klare Antwort, die sofort verstanden wird?</p>
+                    <div class="quiz-options">
+                        <button class="quiz-option" onclick="baAnswer(1, 2)">
+                            <strong>Ja, glasklar</strong><br>
+                            <span>Ich weiß genau, wem ich helfe und womit</span>
+                        </button>
+                        <button class="quiz-option" onclick="baAnswer(1, 1)">
+                            <strong>Teilweise</strong><br>
+                            <span>Ich hab was, aber es fühlt sich noch nicht richtig an</span>
+                        </button>
+                        <button class="quiz-option" onclick="baAnswer(1, 0)">
+                            <strong>Nein</strong><br>
+                            <span>Ich sage jedes Mal etwas anderes</span>
+                        </button>
+                    </div>
                 </div>
-            </div>
-            
-            <!-- Question 3 -->
-            <div class="quiz-screen" id="sc-screen-q3">
-                <h3>Cool. Wo steht dein Business gerade?</h3>
-                <div class="quiz-options">
-                    <button class="quiz-option" onclick="scAnswer(3, 'idea')">Idee-Phase - noch keine Kunden</button>
-                    <button class="quiz-option" onclick="scAnswer(3, 'first')">Erste Kunden - läuft, aber chaotisch</button>
-                    <button class="quiz-option" onclick="scAnswer(3, 'established')">Etabliert - will skalieren</button>
+                
+                <!-- Question 2: Angebot -->
+                <div class="quiz-screen" id="ba-screen-q2">
+                    <p class="quiz-label">Frage 2 von 5</p>
+                    <h3>Angebot</h3>
+                    <p class="quiz-question">Hast du ein klares High-Ticket-Angebot (1.000€+), das du selbstbewusst verkaufen kannst?</p>
+                    <div class="quiz-options">
+                        <button class="quiz-option" onclick="baAnswer(2, 2)">
+                            <strong>Ja</strong><br>
+                            <span>Ich weiß, was ich verkaufe und für wie viel</span>
+                        </button>
+                        <button class="quiz-option" onclick="baAnswer(2, 1)">
+                            <strong>Arbeite dran</strong><br>
+                            <span>Hab was, aber bin unsicher beim Preis</span>
+                        </button>
+                        <button class="quiz-option" onclick="baAnswer(2, 0)">
+                            <strong>Nein</strong><br>
+                            <span>Verkaufe nur kleine Produkte</span>
+                        </button>
+                    </div>
                 </div>
-            </div>
-            
-            <!-- Question 4 -->
-            <div class="quiz-screen" id="sc-screen-q4">
-                <h3>Fast fertig!</h3>
-                <p class="quiz-question">Was brauchst du WIRKLICH grade?</p>
-                <div class="quiz-options">
-                    <button class="quiz-option" onclick="scAnswer(4, 'quick')">Quick Win - ich brauch JETZT Klarheit</button>
-                    <button class="quiz-option" onclick="scAnswer(4, 'system')">System aufbauen - von A bis Z</button>
-                    <button class="quiz-option" onclick="scAnswer(4, 'support')">1:1 Support - nicht allein kämpfen</button>
+                
+                <!-- Question 3: Traffic -->
+                <div class="quiz-screen" id="ba-screen-q3">
+                    <p class="quiz-label">Frage 3 von 5</p>
+                    <h3>Traffic</h3>
+                    <p class="quiz-question">Woher kommen deine Interessenten aktuell?</p>
+                    <div class="quiz-options">
+                        <button class="quiz-option" onclick="baAnswer(3, 2)">
+                            <strong>Automatisch</strong><br>
+                            <span>SEO, Ads oder Funnel – Leute finden mich von selbst</span>
+                        </button>
+                        <button class="quiz-option" onclick="baAnswer(3, 1)">
+                            <strong>Social Media</strong><br>
+                            <span>Instagram – ich muss ständig präsent sein</span>
+                        </button>
+                        <button class="quiz-option" onclick="baAnswer(3, 0)">
+                            <strong>Zufall</strong><br>
+                            <span>Empfehlungen, kein echtes System</span>
+                        </button>
+                    </div>
                 </div>
-            </div>
-            
-            <!-- Question 5 -->
-            <div class="quiz-screen" id="sc-screen-q5">
-                <h3>Letzte Frage, ehrlich:</h3>
-                <p class="quiz-question">Hast du ein klares High-Ticket-Angebot?</p>
-                <div class="quiz-options">
-                    <button class="quiz-option" onclick="scAnswer(5, 'yes')">Ja, ich weiß was ich für wie viel verkaufe</button>
-                    <button class="quiz-option" onclick="scAnswer(5, 'no')">Nein, ich brauche Klarheit beim Angebot</button>
-                    <button class="quiz-option" onclick="scAnswer(5, 'unsure')">Hab was, aber bin unsicher ob's passt</button>
+                
+                <!-- Question 4: Systeme -->
+                <div class="quiz-screen" id="ba-screen-q4">
+                    <p class="quiz-label">Frage 4 von 5</p>
+                    <h3>Automatisierung</h3>
+                    <p class="quiz-question">Hast du Systeme, die für dich arbeiten, auch wenn du offline bist?</p>
+                    <div class="quiz-options">
+                        <button class="quiz-option" onclick="baAnswer(4, 2)">
+                            <strong>Ja</strong><br>
+                            <span>E-Mail-Funnel, automatische Lead-Generierung</span>
+                        </button>
+                        <button class="quiz-option" onclick="baAnswer(4, 1)">
+                            <strong>Teilweise</strong><br>
+                            <span>Hab Newsletter, aber nicht wirklich automatisiert</span>
+                        </button>
+                        <button class="quiz-option" onclick="baAnswer(4, 0)">
+                            <strong>Nein</strong><br>
+                            <span>Alles manuell</span>
+                        </button>
+                    </div>
                 </div>
-            </div>
-            
-            <!-- Loading -->
-            <div class="quiz-screen" id="sc-screen-loading">
-                <h3>Lass mich mal checken...</h3>
-                <div class="quiz-loader"></div>
-            </div>
-            
-            <!-- Result -->
-            <div class="quiz-screen" id="sc-screen-result">
-                <h2>🎯 PERFEKT! Das passt zu dir:</h2>
-                <div id="sc-result-content"></div>
+                
+                <!-- Question 5: Zeit -->
+                <div class="quiz-screen" id="ba-screen-q5">
+                    <p class="quiz-label">Frage 5 von 5</p>
+                    <h3>Arbeitszeit</h3>
+                    <p class="quiz-question">Wie viele Stunden pro Woche arbeitest du an deinem Business?</p>
+                    <div class="quiz-options">
+                        <button class="quiz-option" onclick="baAnswer(5, 2)">
+                            <strong>Unter 20h</strong><br>
+                            <span>Mein Business läuft auch ohne mich</span>
+                        </button>
+                        <button class="quiz-option" onclick="baAnswer(5, 1)">
+                            <strong>20-40h</strong><br>
+                            <span>Normal, aber könnte weniger sein</span>
+                        </button>
+                        <button class="quiz-option" onclick="baAnswer(5, 0)">
+                            <strong>40h+</strong><br>
+                            <span>Non-stop, und es reicht trotzdem nicht</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Loading -->
+                <div class="quiz-screen" id="ba-screen-loading">
+                    <h3>Analysiere...</h3>
+                    <div class="quiz-loader"></div>
+                </div>
+                
+                <!-- Result -->
+                <div class="quiz-screen" id="ba-screen-result">
+                    <div id="ba-result-content"></div>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- ============================================ -->
-<!-- POSITIONIERUNGS-QUIZ MODAL (für Freebie) -->
-<!-- ============================================ -->
-<div id="positioning-modal" class="quiz-modal">
-    <div class="quiz-modal-content">
-        <button class="quiz-close" onclick="closePositioningQuiz()">&times;</button>
-        
-        <div class="quiz-progress">
-            <div class="quiz-progress-bar" id="positioning-progress-bar"></div>
-        </div>
-        
-        <div id="positioning-container">
-            <!-- Start Screen -->
-            <div class="quiz-screen active" id="pos-screen-start">
-                <h2>🎯 Positionierungs-Check</h2>
-                <p style="font-size: 1.25rem; margin-bottom: 2rem;">
-                    Lass uns deine perfekte Positionierung finden.
-                </p>
-                <p style="opacity: 0.8;">8 Fragen. Am Ende bekommst du die 30 Positionierungen + personalisierte Empfehlung.</p>
-                <button class="quiz-btn-primary" onclick="startPositioningQuiz()">Los geht's!</button>
-            </div>
+    <!-- QUIZ STYLES -->
+    <style>
+        .quiz-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(33, 37, 41, 0.95);
+            z-index: 10000;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        .quiz-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quiz-modal-content {
+            background: var(--white);
+            max-width: 650px;
+            width: 100%;
+            padding: 3rem;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .quiz-close {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--medium-gray);
+            transition: color 0.3s;
+        }
+
+        .quiz-close:hover {
+            color: var(--charcoal);
+        }
+
+        .quiz-progress {
+            width: 100%;
+            height: 3px;
+            background: var(--light-gray);
+            margin-bottom: 2rem;
+        }
+
+        .quiz-progress-bar {
+            height: 100%;
+            background: var(--accent-blue);
+            width: 0;
+            transition: width 0.5s ease;
+        }
+
+        .quiz-screen {
+            display: none;
+            animation: fadeIn 0.4s;
+        }
+
+        .quiz-screen.active {
+            display: block;
+        }
+
+        .quiz-screen h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .quiz-screen h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .quiz-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent-blue);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .quiz-question {
+            font-size: 1.125rem;
+            margin-bottom: 1.5rem;
+            color: var(--slate-blue);
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .quiz-option {
+            padding: 1.25rem;
+            background: var(--off-white);
+            border: 2px solid var(--light-gray);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: left;
+            color: var(--charcoal);
+            font-family: var(--font-sans);
+        }
+
+        .quiz-option:hover {
+            border-color: var(--accent-blue);
+            background: var(--white);
+        }
+
+        .quiz-option strong {
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .quiz-option span {
+            font-size: 0.9rem;
+            color: var(--medium-gray);
+        }
+
+        .quiz-btn-primary {
+            padding: 1.25rem 3rem;
+            background: var(--white);
+            color: var(--charcoal);
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-top: 1rem;
+            width: 100%;
+            font-family: var(--font-sans);
+        }
+
+        .quiz-btn-primary:hover {
+            background: var(--light-gray);
+        }
+
+        .quiz-loader {
+            border: 3px solid var(--light-gray);
+            border-top: 3px solid var(--accent-blue);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 2rem auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .result-box {
+            background: var(--off-white);
+            padding: 2rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--accent-blue);
+        }
+
+        .result-box h3 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .quiz-modal-content {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+
+    <!-- QUIZ JAVASCRIPT -->
+    <script>
+        let baAnswers = {};
+        let baScores = {
+            positionierung: 0,
+            angebot: 0,
+            traffic: 0,
+            systeme: 0,
+            zeit: 0
+        };
+
+        const baLabels = {
+            1: 'positionierung',
+            2: 'angebot',
+            3: 'traffic',
+            4: 'systeme',
+            5: 'zeit'
+        };
+
+        const baNames = {
+            positionierung: 'Positionierung',
+            angebot: 'High-Ticket Angebot',
+            traffic: 'Traffic',
+            systeme: 'Automatisierung',
+            zeit: 'Zeit-Freiheit'
+        };
+
+        function openBestandsaufnahme() {
+            document.getElementById('bestandsaufnahme-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeBestandsaufnahme() {
+            document.getElementById('bestandsaufnahme-modal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+            resetBestandsaufnahme();
+        }
+
+        function resetBestandsaufnahme() {
+            baAnswers = {};
+            baScores = { positionierung: 0, angebot: 0, traffic: 0, systeme: 0, zeit: 0 };
+            document.querySelectorAll('#bestandsaufnahme-container .quiz-screen').forEach(s => s.classList.remove('active'));
+            document.getElementById('ba-screen-start').classList.add('active');
+            document.getElementById('bestandsaufnahme-progress-bar').style.width = '0%';
+        }
+
+        function startBestandsaufnahme() {
+            showBAScreen('ba-screen-q1');
+            updateBAProgress(1, 5);
+        }
+
+        function baAnswer(questionNum, score) {
+            const label = baLabels[questionNum];
+            baScores[label] = score;
+            baAnswers['q' + questionNum] = score;
             
-            <!-- Question 1 -->
-            <div class="quiz-screen" id="pos-screen-q1">
-                <h3>Was machst du gerade?</h3>
-                <div class="quiz-options">
-                    <button class="quiz-option" onclick="posAnswer(1, 'coaching')">Coaching/Beratung</button>
-                    <button class="quiz-option" onclick="posAnswer(1, 'digital')">Digitale Produkte (Kurse, Templates)</button>
-                    <button class="quiz-option" onclick="posAnswer(1, 'dfy')">Done-for-You Services</button>
-                    <button class="quiz-option" onclick="posAnswer(1, 'mix')">Mix aus mehreren Dingen</button>
-                    <button class="quiz-option" onclick="posAnswer(1, 'idea')">Noch in der Ideen-Phase</button>
-                </div>
-            </div>
+            const btn = event.target.closest('.quiz-option');
+            btn.style.background = 'var(--accent-blue)';
+            btn.style.color = 'white';
+            btn.style.borderColor = 'var(--accent-blue)';
             
-            <!-- Question 2 -->
-            <div class="quiz-screen" id="pos-screen-q2">
-                <h3>Für wen arbeitest du?</h3>
-                <p style="font-size: 0.95rem; opacity: 0.8; margin-bottom: 1rem;">z.B. "Mamas die wieder arbeiten wollen"</p>
-                <textarea id="pos-q2-text" placeholder="Schreib's hier rein..." style="width: 100%; min-height: 100px; padding: 1rem; border: 2px solid #E8DED2; font-size: 1rem; font-family: inherit; resize: vertical;"></textarea>
-                <button class="quiz-btn-primary" onclick="posAnswerText(2)" style="margin-top: 1rem;">Weiter</button>
-            </div>
-            
-            <!-- Question 3 -->
-            <div class="quiz-screen" id="pos-screen-q3">
-                <h3>Was ist dein größtes Problem mit deiner Positionierung?</h3>
-                <div class="quiz-options">
-                    <button class="quiz-option" onclick="posAnswer(3, 'broad')">Zu breit ("Ich helfe allen...")</button>
-                    <button class="quiz-option" onclick="posAnswer(3, 'boring')">Zu langweilig (klingt wie alle anderen)</button>
-                    <button class="quiz-option" onclick="posAnswer(3, 'unclear')">Ich weiß nicht wer meine Zielgruppe ist</button>
-                    <button class="quiz-option" onclick="posAnswer(3, 'scared')">Ich traue mich nicht, spitz zu sein</button>
-                    <button class="quiz-option" onclick="posAnswer(3, 'angle')">Ich weiß nicht was mein Unique Angle ist</button>
-                </div>
-            </div>
-            
-            <!-- Question 4 -->
-            <div class="quiz-screen" id="pos-screen-q4">
-                <h3>Wie viel verdienst du aktuell pro Monat?</h3>
-                <div class="quiz-options">
-                    <button class="quiz-option" onclick="posAnswer(4, '0-1k')">0-1.000€</button>
-                    <button class="quiz-option" onclick="posAnswer(4, '1-3k')">1.000-3.000€</button>
-                    <button class="quiz-option" onclick="posAnswer(4, '3-5k')">3.000-5.000€</button>
-                    <button class="quiz-option" onclick="posAnswer(4, '5-10k')">5.000-10.000€</button>
-                    <button class="quiz-option" onclick="posAnswer(4, '10k+')">10.000€+</button>
-                </div>
-            </div>
-            
-            <!-- Question 5 -->
-            <div class="quiz-screen" id="pos-screen-q5">
-                <h3>Was ist dein Ziel-Umsatz pro Monat?</h3>
-                <div class="quiz-options">
-                    <button class="quiz-option" onclick="posAnswer(5, '3-5k')">3.000-5.000€</button>
-                    <button class="quiz-option" onclick="posAnswer(5, '5-10k')">5.000-10.000€</button>
-                    <button class="quiz-option" onclick="posAnswer(5, '10-20k')">10.000-20.000€</button>
-                    <button class="quiz-option" onclick="posAnswer(5, '20k+')">20.000€+</button>
-                </div>
-            </div>
-            
-            <!-- Question 6 -->
-            <div class="quiz-screen" id="pos-screen-q6">
-                <h3>Wie viele Stunden arbeitest du aktuell pro Woche?</h3>
-                <div class="quiz-options">
-                    <button class="quiz-option" onclick="posAnswer(6, '0-20h')">0-20h (Nebenbei)</button>
-                    <button class="quiz-option" onclick="posAnswer(6, '20-40h')">20-40h (Teilzeit)</button>
-                    <button class="quiz-option" onclick="posAnswer(6, '40-60h')">40-60h (Vollzeit)</button>
-                    <button class="quiz-option" onclick="posAnswer(6, '60h+')">60h+ (Overworked)</button>
-                </div>
-            </div>
-            
-            <!-- Question 7 -->
-            <div class="quiz-screen" id="pos-screen-q7">
-                <h3>Was würde dir am meisten helfen?</h3>
-                <div class="quiz-options">
-                    <button class="quiz-option" onclick="posAnswer(7, 'examples')">Konkrete Positionierungs-Beispiele</button>
-                    <button class="quiz-option" onclick="posAnswer(7, 'guide')">Schritt-für-Schritt Anleitung</button>
-                    <button class="quiz-option" onclick="posAnswer(7, 'feedback')">1:1 Feedback zu meiner Positionierung</button>
-                    <button class="quiz-option" onclick="posAnswer(7, 'offer')">High-Ticket Offer Design</button>
-                </div>
-            </div>
-            
-            <!-- Question 8 -->
-            <div class="quiz-screen" id="pos-screen-q8">
-                <h3>Last one! Wo stehst du mit Pinterest?</h3>
-                <div class="quiz-options">
-                    <button class="quiz-option" onclick="posAnswer(8, 'no')">Nutze ich nicht (Instagram-only)</button>
-                    <button class="quiz-option" onclick="posAnswer(8, 'tried')">Hab ich mal versucht, hat nicht funktioniert</button>
-                    <button class="quiz-option" onclick="posAnswer(8, 'active')">Nutze ich aktiv</button>
-                    <button class="quiz-option" onclick="posAnswer(8, 'learn')">Will ich lernen</button>
-                    <button class="quiz-option" onclick="posAnswer(8, 'notinterested')">Interessiert mich nicht</button>
-                </div>
-            </div>
-            
-            <!-- Loading -->
-            <div class="quiz-screen" id="pos-screen-loading">
-                <h3>Analysiere deine Antworten...</h3>
-                <div class="quiz-loader"></div>
-            </div>
-            
-            <!-- Result with Email Form -->
-            <div class="quiz-screen" id="pos-screen-result">
-                <h2>🎯 Deine personalisierte Analyse:</h2>
-                <div id="pos-result-content"></div>
-                
-                <!-- Email Form -->
-                <div style="background: #E8DED2; padding: 2rem; margin-top: 2rem; border-left: 4px solid #B89968;">
-                    <h3 style="margin-bottom: 1rem;">Bereit für die 30 Positionierungen?</h3>
-                    <p style="margin-bottom: 1.5rem;">Gib mir deine Email und du bekommst sofort:</p>
-                    <ul style="list-style: none; padding: 0; margin-bottom: 1.5rem;">
-                        <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
-                            <span style="position: absolute; left: 0; color: #B89968; font-weight: bold;">✓</span>
-                            PDF mit 30 Positionierungen
-                         </li>
-                    </ul>
+            setTimeout(() => {
+                if (questionNum < 5) {
+                    showBAScreen('ba-screen-q' + (questionNum + 1));
+                    updateBAProgress(questionNum + 1, 5);
+                } else {
+                    showBAScreen('ba-screen-loading');
+                    updateBAProgress(5, 5);
                     
-                    <form id="pos-email-form" onsubmit="submitPositioningEmail(event)">
-                        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    setTimeout(() => {
+                        showBestandsaufnahmeResult();
+                    }, 1500);
+                }
+            }, 400);
+        }
+
+        function showBAScreen(screenId) {
+            document.querySelectorAll('#bestandsaufnahme-container .quiz-screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(screenId).classList.add('active');
+        }
+
+        function updateBAProgress(step, total) {
+            const progress = (step / total) * 100;
+            document.getElementById('bestandsaufnahme-progress-bar').style.width = progress + '%';
+        }
+
+        function showBestandsaufnahmeResult() {
+            const totalScore = Object.values(baScores).reduce((a, b) => a + b, 0);
+            const maxScore = 10;
+            const percentage = Math.round((totalScore / maxScore) * 100);
+            
+            const missing = [];
+            const solid = [];
+            
+            for (const [key, score] of Object.entries(baScores)) {
+                if (score === 0) {
+                    missing.push({ key, name: baNames[key], status: 'fehlt' });
+                } else if (score === 1) {
+                    missing.push({ key, name: baNames[key], status: 'teilweise' });
+                } else {
+                    solid.push({ key, name: baNames[key] });
+                }
+            }
+            
+            // Generate visual bars
+            let barsHTML = '';
+            for (const [key, score] of Object.entries(baScores)) {
+                const percent = (score / 2) * 100;
+                const color = score === 2 ? 'var(--accent-blue)' : score === 1 ? 'var(--medium-gray)' : 'var(--light-gray)';
+                barsHTML += `
+                    <div style="margin-bottom: 1rem;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.25rem; font-size: 0.9rem;">
+                            <span>${baNames[key]}</span>
+                            <span style="color: ${score === 2 ? 'var(--accent-blue)' : score === 1 ? 'var(--medium-gray)' : 'var(--light-gray)'};">${score === 2 ? 'Steht' : score === 1 ? 'Teilweise' : 'Fehlt'}</span>
+                        </div>
+                        <div style="background: var(--light-gray); height: 6px;">
+                            <div style="background: ${color}; height: 100%; width: ${percent}%; transition: width 0.5s;"></div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            let headline, subline;
+            if (percentage >= 80) {
+                headline = 'Solide Basis';
+                subline = 'Die wichtigsten Bausteine stehen. Kleine Optimierungen können viel bewirken.';
+            } else if (percentage >= 50) {
+                headline = 'Gute Basis, aber Lücken';
+                subline = 'Einiges steht, aber ein paar Bausteine fehlen noch für echte Freiheit.';
+            } else if (percentage >= 30) {
+                headline = 'Grundlagen fehlen';
+                subline = 'Du hast angefangen, aber die wichtigsten Systeme fehlen noch.';
+            } else {
+                headline = 'Am Anfang';
+                subline = 'Kein Problem. Wichtig ist der erste Schritt.';
+            }
+            
+            let missingHTML = '';
+            if (missing.length > 0) {
+                missingHTML = `
+                    <div style="background: var(--off-white); border: 1px solid var(--light-gray); padding: 1.5rem; margin: 1.5rem 0;">
+                        <h4 style="margin-bottom: 1rem; font-size: 1rem; font-family: var(--font-sans);">Was dir fehlt:</h4>
+                        <ul style="list-style: none; padding: 0; margin: 0;">
+                            ${missing.map(m => `
+                                <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--light-gray); display: flex; justify-content: space-between; font-size: 0.95rem;">
+                                    <span>${m.name}</span>
+                                    <span style="color: ${m.status === 'fehlt' ? 'var(--light-gray)' : 'var(--medium-gray)'};">
+                                        ${m.status === 'fehlt' ? 'Fehlt' : 'Braucht Arbeit'}
+                                    </span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            }
+            
+            const resultHTML = `
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <h2 style="margin-bottom: 0.5rem;">${headline}</h2>
+                    <p style="color: var(--slate-blue); font-size: 1.1rem;">${subline}</p>
+                </div>
+                
+                <div style="background: var(--off-white); padding: 1.5rem; margin-bottom: 1.5rem;">
+                    <h4 style="margin-bottom: 1rem; text-align: center; font-size: 1rem; font-family: var(--font-sans);">Deine Bestandsaufnahme</h4>
+                    ${barsHTML}
+                    <div style="text-align: center; margin-top: 1.5rem;">
+                        <span style="font-size: 2rem; font-weight: 600; color: var(--accent-blue);">${percentage}%</span>
+                        <span style="color: var(--medium-gray); margin-left: 0.5rem;">komplett</span>
+                    </div>
+                </div>
+                
+                ${missingHTML}
+                
+                <div style="background: var(--off-white); color: var(--charcoal); padding: 2rem; margin-top: 1.5rem;">
+                    <h4 style="color: var(--charcoal); margin-bottom: 0.75rem; font-size: 1.125rem;">Nächster Schritt</h4>
+                    <p style="color: var(--slate-blue); margin-bottom: 1.5rem;">
+                        15 Minuten Gespräch. Ich zeige dir, welche Schritte als nächstes Sinn machen.
+                    </p>
+                    
+                    <form id="ba-contact-form" onsubmit="submitBestandsaufnahmeForm(event)">
+                        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1rem;">
                             <input 
                                 type="text" 
-                                id="pos-firstname"
-                                placeholder="Dein Vorname" 
+                                id="ba-firstname"
+                                placeholder="Vorname" 
                                 required
-                                style="flex: 1; min-width: 200px; padding: 1rem; border: 2px solid #B89968; font-size: 1rem;"
+                                style="flex: 1; min-width: 150px; padding: 0.875rem; border: 1px solid var(--light-gray); font-size: 1rem; background: rgba(255,255,255,0.05); color: white;"
                             >
                             <input 
                                 type="email" 
-                                id="pos-email"
-                                placeholder="Deine Email" 
+                                id="ba-email"
+                                placeholder="E-Mail" 
                                 required
-                                style="flex: 1; min-width: 200px; padding: 1rem; border: 2px solid #B89968; font-size: 1rem;"
+                                style="flex: 1; min-width: 150px; padding: 0.875rem; border: 1px solid var(--light-gray); font-size: 1rem; background: rgba(255,255,255,0.05); color: white;"
                             >
-                            <div style="margin: 1.5rem 0;">
-    <label style="display: flex; align-items: flex-start; gap: 0.75rem; cursor: pointer;">
-        <input type="checkbox" id="privacy-consent" required style="margin-top: 0.25rem; width: 18px; height: 18px; cursor: pointer;">
-        <span style="font-size: 0.9rem; line-height: 1.5;">
-            Ich stimme zu, dass meine Daten zur Bearbeitung meiner Anfrage und zum Versand des PDFs gespeichert werden. Ich kann diese Einwilligung jederzeit widerrufen. 
-            <a href="/datenschutz" target="_blank" style="color: #B89968; text-decoration: underline;">Datenschutzerklärung</a>
-        </span>
-    </label>
-</div>
                         </div>
-                        <button type="submit" class="quiz-btn-primary" style="width: 100%; margin-top: 1rem;">
-                            Jetzt Download-Link senden
+                        
+                        <button type="submit" style="width: 100%; padding: 1rem; background: var(--accent-blue); color: white; border: none; font-weight: 600; font-size: 1rem; cursor: pointer; text-transform: uppercase; letter-spacing: 0.05em;">
+                            Gespräch anfragen
                         </button>
+                        
+                        <p id="ba-form-message" style="margin-top: 1rem; text-align: center; color: var(--accent-blue-light);"></p>
                     </form>
-                    <p id="pos-form-message" style="margin-top: 1rem; text-align: center;"></p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- ============================================ -->
-<!-- QUIZ STYLES -->
-<!-- ============================================ -->
-<style>
-.quiz-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(45, 45, 45, 0.95);
-    z-index: 10000;
-    overflow-y: auto;
-    padding: 2rem;
-}
-
-.quiz-modal.active {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.quiz-modal-content {
-    background: #FAF9F6;
-    max-width: 700px;
-    width: 100%;
-    padding: 3rem;
-    position: relative;
-    border-radius: 4px;
-    max-height: 90vh;
-    overflow-y: auto;
-}
-
-.quiz-close {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    font-size: 2rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: #2D2D2D;
-    opacity: 0.6;
-    transition: opacity 0.3s;
-    z-index: 10;
-}
-
-.quiz-close:hover {
-    opacity: 1;
-}
-
-.quiz-progress {
-    width: 100%;
-    height: 4px;
-    background: #E8DED2;
-    margin-bottom: 2rem;
-}
-
-.quiz-progress-bar {
-    height: 100%;
-    background: #B89968;
-    width: 0;
-    transition: width 0.5s ease;
-}
-
-.quiz-screen {
-    display: none;
-    animation: fadeIn 0.5s;
-}
-
-.quiz-screen.active {
-    display: block;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.quiz-screen h2 {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    color: #2D2D2D;
-}
-
-.quiz-screen h3 {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 1.75rem;
-    margin-bottom: 1rem;
-    color: #2D2D2D;
-}
-
-.quiz-question {
-    font-size: 1.25rem;
-    margin-bottom: 2rem;
-    color: #4A4A4A;
-}
-
-.quiz-options {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.quiz-option {
-    padding: 1.25rem;
-    background: white;
-    border: 2px solid #E8DED2;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s;
-    text-align: left;
-    color: #2D2D2D;
-}
-
-.quiz-option:hover {
-    border-color: #B89968;
-    background: #E8DED2;
-    transform: translateX(10px);
-}
-
-.quiz-btn-primary {
-    padding: 1.25rem 3rem;
-    background: #2D2D2D;
-    color: #FAF9F6;
-    border: none;
-    font-size: 1.125rem;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-weight: 600;
-    transition: all 0.3s;
-    margin-top: 2rem;
-    width: 100%;
-}
-
-.quiz-btn-primary:hover {
-    background: #4A4A4A;
-    transform: translateY(-2px);
-}
-
-.quiz-loader {
-    border: 4px solid #E8DED2;
-    border-top: 4px solid #B89968;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    animation: spin 1s linear infinite;
-    margin: 2rem auto;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.result-box {
-    background: #E8DED2;
-    padding: 2rem;
-    margin: 2rem 0;
-    border-left: 4px solid #B89968;
-}
-
-.result-box h3 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-}
-
-.result-box ul {
-    list-style: none;
-    margin: 1.5rem 0;
-    padding: 0;
-}
-
-.result-box ul li {
-    padding: 0.5rem 0;
-    padding-left: 1.5rem;
-    position: relative;
-}
-
-.result-box ul li::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    color: #B89968;
-    font-weight: bold;
-}
-
-@media (max-width: 768px) {
-    .quiz-modal-content {
-        padding: 2rem 1.5rem;
-    }
-    
-    .quiz-screen h2 {
-        font-size: 2rem;
-    }
-    
-    .quiz-screen h3 {
-        font-size: 1.5rem;
-    }
-}
-</style>
-
-<!-- ============================================ -->
-<!-- QUIZ JAVASCRIPT -->
-<!-- ============================================ -->
-<script>
-// ========== SYSTEM-CHECK QUIZ ==========
-let scAnswers = {};
-
-function openSystemCheckQuiz() {
-    document.getElementById('system-check-modal').classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
-
-function closeSystemCheckQuiz() {
-    document.getElementById('system-check-modal').classList.remove('active');
-    document.body.style.overflow = 'auto';
-    resetSystemCheckQuiz();
-}
-
-function resetSystemCheckQuiz() {
-    scAnswers = {};
-    document.querySelectorAll('#system-check-container .quiz-screen').forEach(s => s.classList.remove('active'));
-    document.getElementById('sc-screen-start').classList.add('active');
-    document.getElementById('system-check-progress-bar').style.width = '0%';
-}
-
-function startSystemCheck() {
-    showScreen('system-check-container', 'sc-screen-q1');
-    updateProgress('system-check-progress-bar', 1, 5);
-}
-
-function scAnswer(questionNum, value) {
-    scAnswers['q' + questionNum] = value;
-    
-    const btn = event.target;
-    btn.innerHTML = '✓ ' + btn.textContent;
-    btn.style.background = '#B89968';
-    btn.style.color = 'white';
-    
-    setTimeout(() => {
-        if (questionNum < 5) {
-            showScreen('system-check-container', 'sc-screen-q' + (questionNum + 1));
-            updateProgress('system-check-progress-bar', questionNum + 1, 5);
-        } else {
-            showScreen('system-check-container', 'sc-screen-loading');
-            updateProgress('system-check-progress-bar', 5, 5);
-            
-            setTimeout(() => {
-                showSystemCheckResult();
-            }, 2000);
-        }
-    }, 600);
-}
-
-function showSystemCheckResult() {
-    const result = calculateSystemCheckResult();
-    const resultContent = document.getElementById('sc-result-content');
-    
-    let html = `
-        <div class="result-box">
-            <h3>${result.title}</h3>
-            <p style="font-size: 1.125rem; margin-bottom: 1.5rem;">${result.description}</p>
-            
-            <p style="font-weight: 600; margin-bottom: 1rem;">Warum das zu dir passt:</p>
-            <ul>
-                ${result.reasons.map(r => `<li>${r}</li>`).join('')}
-            </ul>
-            
-            ${result.price ? `<p style="font-size: 1.5rem; font-weight: bold; color: #B89968; margin: 1.5rem 0;">${result.price}</p>` : ''}
-            
-            <p style="margin-top: 1.5rem;"><strong>Nächster Schritt:</strong> ${result.nextStep}</p>
-            
-            <button onclick="closeSystemCheckQuiz(); window.location.href='mailto:socials@carinaannaprav.at?subject=${encodeURIComponent(result.title + ' - Interesse')}&body=${encodeURIComponent('Hi Carina, ich habe den System-Check gemacht und ' + result.title + ' passt zu mir. Lass uns sprechen!')}';" class="quiz-btn-primary" style="margin-top: 2rem;">
-                ${result.cta}
-            </button>
-        </div>
-    `;
-    
-    resultContent.innerHTML = html;
-    showScreen('system-check-container', 'sc-screen-result');
-}
-
-function calculateSystemCheckResult() {
-    const q4 = scAnswers.q4; // Was brauchst du?
-    const q5 = scAnswers.q5; // Klares Angebot?
-    const q1 = scAnswers.q1; // Arbeitsstunden
-    
-    // Audio-Kurs
-    if (q4 === 'quick') {
-        return {
-            title: 'Audio-Kurs: Von produktiv zu profitabel',
-            description: 'Perfekt! Du brauchst erstmal Überblick bevor du investierst.',
-            reasons: [
-                'Du willst JETZT Klarheit, keine 6-Wochen-Verpflichtung',
-                'Du willst verstehen WIE das 2h/Tag System funktioniert',
-                'Du willst erstmal testen ob mein Ansatz zu dir passt'
-            ],
-            price: '37€',
-            nextStep: 'Hol dir den Audio-Kurs und nach 7 Tagen schauen wir ob du mehr willst.',
-            cta: 'Audio-Kurs kaufen'
-        };
-    }
-    
-    // Foundation (wenn kein klares Angebot)
-    if (q5 === 'no' || q5 === 'unsure') {
-        return {
-            title: 'Foundation Intensive',
-            description: 'Du brauchst Klarheit bei deinem Angebot BEVOR du automatisierst.',
-            reasons: [
-                'Dein Angebot ist unklar oder zu klein',
-                'Du brauchst High-Ticket Offer Design',
-                'Du brauchst scharfe Positionierung',
-                'Du willst lernen wie man High-Ticket verkauft'
-            ],
-            price: false,
-            nextStep: 'Lass uns 15min sprechen und schauen ob Foundation zu dir passt.',
-            cta: 'Jetzt Gespräch anfragen'
-        };
-    }
-    
-    // VIP (wenn 60h+ UND braucht Support)
-    if (q1 === '60h+' && q4 === 'support') {
-        return {
-            title: 'VIP Komplett-Paket',
-            description: 'Du brauchst ALLES. Foundation + System-Setup. 12 Wochen All-in.',
-            reasons: [
-                'Du arbeitest dich grade kaputt (60h+)',
-                'Du willst nicht allein durchkämpfen',
-                'Du brauchst Klarheit UND Automatisierung',
-                'Du willst den schnellsten Weg'
-            ],
-            price: false,
-            nextStep: 'Lass uns 15min sprechen über VIP.',
-            cta: 'Jetzt Gespräch anfragen'
-        };
-    }
-    
-    // System-Setup (default wenn klares Angebot)
-    return {
-        title: 'System-Setup: Done-FOR-You',
-        description: 'Perfekt! Du hast ein klares Angebot, brauchst jetzt Traffic + Automatisierung.',
-        reasons: [
-            'Du weißt was du verkaufst',
-            'Du brauchst Website + Newsletter + Pinterest',
-            'Du willst dass es fertig aufgesetzt wird',
-            'Du hast keine Zeit für DIY'
-        ],
-        price: false,
-        nextStep: 'Lass uns 15min sprechen und schauen ob System-Setup zu dir passt.',
-        cta: 'Jetzt Gespräch anfragen'
-    };
-}
-
-// ========== POSITIONIERUNGS-QUIZ ==========
-let posAnswers = {};
-
-function openPositioningQuiz() {
-    document.getElementById('positioning-modal').classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
-
-function closePositioningQuiz() {
-    document.getElementById('positioning-modal').classList.remove('active');
-    document.body.style.overflow = 'auto';
-    resetPositioningQuiz();
-}
-
-function resetPositioningQuiz() {
-    posAnswers = {};
-    document.querySelectorAll('#positioning-container .quiz-screen').forEach(s => s.classList.remove('active'));
-    document.getElementById('pos-screen-start').classList.add('active');
-    document.getElementById('positioning-progress-bar').style.width = '0%';
-}
-
-function startPositioningQuiz() {
-    showScreen('positioning-container', 'pos-screen-q1');
-    updateProgress('positioning-progress-bar', 1, 8);
-}
-
-function posAnswer(questionNum, value) {
-    posAnswers['q' + questionNum] = value;
-    
-    const btn = event.target;
-    btn.innerHTML = '✓ ' + btn.textContent;
-    btn.style.background = '#B89968';
-    btn.style.color = 'white';
-    
-    setTimeout(() => {
-        if (questionNum < 8) {
-            showScreen('positioning-container', 'pos-screen-q' + (questionNum + 1));
-            updateProgress('positioning-progress-bar', questionNum + 1, 8);
-        } else {
-            showScreen('positioning-container', 'pos-screen-loading');
-            updateProgress('positioning-progress-bar', 8, 8);
-            
-            setTimeout(() => {
-                showPositioningResult();
-            }, 2000);
-        }
-    }, 600);
-}
-
-function posAnswerText(questionNum) {
-    const textValue = document.getElementById('pos-q2-text').value.trim();
-    if (!textValue) {
-        alert('Bitte fülle das Feld aus!');
-        return;
-    }
-    
-    posAnswers['q' + questionNum] = textValue;
-    showScreen('positioning-container', 'pos-screen-q' + (questionNum + 1));
-    updateProgress('positioning-progress-bar', questionNum + 1, 8);
-}
-
-function showPositioningResult() {
-    const result = calculatePositioningResult();
-    const resultContent = document.getElementById('pos-result-content');
-    
-    let html = `
-        <div class="result-box">
-            <h3>${result.title}</h3>
-            <p style="font-size: 1.125rem; margin-bottom: 1.5rem;">${result.description}</p>
-            
-            ${result.analysis ? `<p style="margin-bottom: 1rem;"><strong>Deine Situation:</strong></p><p>${result.analysis}</p>` : ''}
-            
-            <p style="font-weight: 600; margin: 1.5rem 0 1rem;">In den 30 Positionierungen findest du:</p>
-            <ul>
-                ${result.benefits.map(b => `<li>${b}</li>`).join('')}
-            </ul>
-            
-            <p style="margin-top: 1.5rem;"><strong>Meine Empfehlung:</strong></p>
-            <ol style="margin-left: 1.5rem; margin-top: 0.5rem;">
-                ${result.recommendations.map(r => `<li style="margin: 0.5rem 0;">${r}</li>`).join('')}
-            </ol>
-        </div>
-    `;
-    
-    resultContent.innerHTML = html;
-    showScreen('positioning-container', 'pos-screen-result');
-}
-
-function calculatePositioningResult() {
-    const q3 = posAnswers.q3; // Problem
-    const q4 = posAnswers.q4; // Aktueller Umsatz
-    const q6 = posAnswers.q6; // Arbeitsstunden
-    const q7 = posAnswers.q7; // Was hilft
-    
-    // Zu breit
-    if (q3 === 'broad') {
-        return {
-            title: '🎯 Deine Positionierung braucht SCHÄRFE!',
-            description: 'Du sagst wahrscheinlich sowas wie "Ich helfe allen Mamas" - das Problem: Zu breit, niemand fühlt sich angesprochen.',
-            analysis: `Du verdienst ${q4}, arbeitest ${q6}. Das Hauptproblem: Deine Positionierung ist zu breit.`,
-            benefits: [
-                '10 spitze Positionierungs-Beispiele (copy-pasteable)',
-                'Wie du von breit zu spitz kommst',
-                'Beispiel-Angebote für jede Positionierung',
-                'Zielgruppen-Definition Schritt-für-Schritt'
-            ],
-            recommendations: [
-                'Download die 30 Positionierungen',
-                'Pick 3 die dich ansprechen',
-                'Teste sie 30 Tage (auf Pinterest, nicht Instagram!)',
-                'Schau welche am besten konvertiert'
-            ]
-        };
-    }
-    
-    // Zu langweilig
-    if (q3 === 'boring') {
-        return {
-            title: '💡 Du brauchst einen UNIQUE ANGLE!',
-            description: 'Dein Angebot klingt wie alle anderen. Du brauchst was dich unterscheidet.',
-            analysis: `Aktuell: ${q4}/Monat. Das Problem: Du gehst unter in der Masse.`,
-            benefits: [
-                '30 Unique Angles die funktionieren',
-                'Wie du deinen eigenen Angle findest',
-                'Beispiele wie andere sich differenzieren',
-                'Von "Me too" zu "Only me"'
-            ],
-            recommendations: [
-                'Download die Positionierungen',
-                'Schau dir die Unique Angles an',
-                'Kombiniere 2-3 Elemente (z.B. "Pinterest + High-Ticket + 2h/Tag")',
-                'Teste deinen neuen Angle 30 Tage'
-            ]
-        };
-    }
-    
-    // Overworked
-    if (q6 === '60h+') {
-        return {
-            title: '🚨 Du arbeitest zu viel!',
-            description: 'Ehrlich: Dein Problem ist nicht NUR Positionierung. Du hast kein System.',
-            analysis: `60h+/Woche ist nicht nachhaltig. Positionierung hilft, aber du brauchst mehr.`,
-            benefits: [
-                'Positionierungen die zu High-Ticket führen',
-                'Wie du weniger arbeitest, mehr verdienst',
-                'System-Ansatz statt Hustle'
-            ],
-            recommendations: [
-                'Download die Positionierungen (als Bonus)',
-                'Mach danach den System-Check Quiz',
-                'Lass uns schauen wie du auf 2h/Tag kommst',
-                'Du brauchst Automatisierung, nicht nur neue Nische'
-            ]
-        };
-    }
-    
-    // Braucht 1:1 Feedback
-    if (q7 === 'feedback') {
-        return {
-            title: '👥 Du brauchst 1:1 Feedback!',
-            description: 'Die 30 Positionierungen sind gut. Aber du brauchst jemanden der MIT dir durchgeht was zu DIR passt.',
-            analysis: 'Du willst nicht alleine rumprobieren. Du willst direkte Rückmeldung.',
-            benefits: [
-                'Alle 30 Positionierungen',
-                'Aber: Du brauchst mehr als Templates',
-                'Foundation Intensive könnte passen'
-            ],
-            recommendations: [
-                'Download die Positionierungen trotzdem',
-                'Schau sie dir an',
-                'Dann lass uns 15min sprechen',
-                'Ich gebe dir konkretes Feedback zu deiner Situation'
-            ]
-        };
-    }
-    
-    // Default
-    return {
-        title: '🎯 Du bist auf dem richtigen Weg!',
-        description: 'Du hast schon Klarheit dass Positionierung wichtig ist. Die 30 Beispiele werden dir helfen.',
-        analysis: `Du verdienst ${q4} und arbeitest ${q6}. Gute Basis!`,
-        benefits: [
-            '30 konkrete Positionierungs-Beispiele',
-            'Mit Zielgruppe, Angebot, Unique Angle',
-            'Schritt-für-Schritt Anleitung',
-            'Welche zu dir passt basierend auf deinen Antworten'
-        ],
-        recommendations: [
-            'Download die Positionierungen',
-            'Ich markiere dir die 5 die zu dir passen',
-            'Teste sie 30 Tage',
-            'Schau welche am besten funktioniert'
-        ]
-    };
-}
-
-async function submitPositioningEmail(e) {
-    e.preventDefault();
-    
-    const firstname = document.getElementById('pos-firstname').value.trim();
-    const email = document.getElementById('pos-email').value.trim();
-    const messageEl = document.getElementById('pos-form-message');
-    const button = e.target.querySelector('button');
-    
-    // DSGVO Consent Check
-    const consentCheckbox = document.getElementById('privacy-consent');
-    if (!consentCheckbox.checked) {
-        messageEl.textContent = '❌ Bitte stimme der Datenschutzerklärung zu.';
-        messageEl.style.color = '#ff6b6b';
-        return;
-    }
-    
-    button.disabled = true;
-    button.textContent = 'Wird gesendet...';
-    messageEl.textContent = '';
-    
-    try {
-        // Calculate result for submission
-        const result = calculatePositioningResult();
-        
-        // Send to Netlify Function (handles both ActiveCampaign + Google Sheets)
-        const response = await fetch('/.netlify/functions/quiz-submission', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-           body: JSON.stringify({
-    quizType: 'positioning',
-    email: email,
-    firstName: firstname,  // ← Für ActiveCampaign (camelCase)
-    firstname: firstname,  // ← Für Google Sheets (lowercase)
-    result: result.title,
-    answers: posAnswers
-})
-        });
-        
-        const data = await response.json();
-        
-        if (response.ok && data.success) {
-            messageEl.textContent = '✅ Perfekt! Check deine Emails für den Download-Link!';
-            messageEl.style.color = '#B89968';
-            e.target.reset();
-            
-            console.log('✅ Contact synced to ActiveCampaign, ID:', data.contactId);
-        } else {
-            throw new Error(data.error || 'Submission failed');
-        }
-        
-    } catch (error) {
-        console.error('Error:', error);
-        messageEl.textContent = '❌ Etwas ist schiefgelaufen. Bitte nochmal versuchen.';
-        messageEl.style.color = '#ff6b6b';
-    } finally {
-        button.disabled = false;
-        button.textContent = 'Jetzt Download-Link senden';
-    }
-}
-// ========== SHARED HELPER FUNCTIONS ==========
-function showScreen(containerId, screenId) {
-    document.querySelectorAll(`#${containerId} .quiz-screen`).forEach(s => s.classList.remove('active'));
-    document.getElementById(screenId).classList.add('active');
-}
-
-function updateProgress(progressBarId, step, total) {
-    const progress = (step / total) * 100;
-    document.getElementById(progressBarId).style.width = progress + '%';
-}
-
-// Close modals when clicking outside
-document.addEventListener('click', function(e) {
-    if (e.target.classList.contains('quiz-modal')) {
-        if (e.target.id === 'system-check-modal') closeSystemCheckQuiz();
-        if (e.target.id === 'positioning-modal') closePositioningQuiz();
-    }
-});
-// ========== AUTO-OPEN QUIZ FROM URL ==========
-document.addEventListener('DOMContentLoaded', function() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const openQuiz = urlParams.get('openquiz');
-    
-    if (openQuiz === 'systemcheck') {
-        setTimeout(function() {
-            openSystemCheckQuiz();
-        }, 500);
-    }
-    
-    if (openQuiz === 'positioning') {
-        setTimeout(function() {
-            openPositioningQuiz();
-        }, 500);
-    }
-});
-</script>
-<!-- ============================================ -->
-<!-- QUIZ JAVASCRIPT -->
-<!-- ============================================ -->
-<script>
-// ========== BESTANDSAUFNAHME QUIZ ==========
-let baAnswers = {};
-let baScores = {
-    positionierung: 0,
-    angebot: 0,
-    traffic: 0,
-    systeme: 0,
-    zeit: 0
-};
-
-const baLabels = {
-    1: 'positionierung',
-    2: 'angebot',
-    3: 'traffic',
-    4: 'systeme',
-    5: 'zeit'
-};
-
-const baNames = {
-    positionierung: 'Positionierung',
-    angebot: 'High-Ticket Angebot',
-    traffic: 'Traffic & Sichtbarkeit',
-    systeme: 'Automatisierung',
-    zeit: 'Zeit-Freiheit'
-};
-
-function openBestandsaufnahme() {
-    document.getElementById('bestandsaufnahme-modal').classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
-
-function closeBestandsaufnahme() {
-    document.getElementById('bestandsaufnahme-modal').classList.remove('active');
-    document.body.style.overflow = 'auto';
-    resetBestandsaufnahme();
-}
-
-function resetBestandsaufnahme() {
-    baAnswers = {};
-    baScores = { positionierung: 0, angebot: 0, traffic: 0, systeme: 0, zeit: 0 };
-    document.querySelectorAll('#bestandsaufnahme-container .quiz-screen').forEach(s => s.classList.remove('active'));
-    document.getElementById('ba-screen-start').classList.add('active');
-    document.getElementById('bestandsaufnahme-progress-bar').style.width = '0%';
-}
-
-function startBestandsaufnahme() {
-    showBAScreen('ba-screen-q1');
-    updateBAProgress(1, 5);
-}
-
-function baAnswer(questionNum, score) {
-    const label = baLabels[questionNum];
-    baScores[label] = score;
-    baAnswers['q' + questionNum] = score;
-    
-    const btn = event.target.closest('.quiz-option');
-    btn.style.background = '#B89968';
-    btn.style.color = 'white';
-    
-    setTimeout(() => {
-        if (questionNum < 5) {
-            showBAScreen('ba-screen-q' + (questionNum + 1));
-            updateBAProgress(questionNum + 1, 5);
-        } else {
-            showBAScreen('ba-screen-loading');
-            updateBAProgress(5, 5);
-            
-            setTimeout(() => {
-                showBestandsaufnahmeResult();
-            }, 1500);
-        }
-    }, 400);
-}
-
-function showBAScreen(screenId) {
-    document.querySelectorAll('#bestandsaufnahme-container .quiz-screen').forEach(s => s.classList.remove('active'));
-    document.getElementById(screenId).classList.add('active');
-}
-
-function updateBAProgress(step, total) {
-    const progress = (step / total) * 100;
-    document.getElementById('bestandsaufnahme-progress-bar').style.width = progress + '%';
-}
-
-// ============================================
-// BESTANDSAUFNAHME - NEUE VERSION
-// Mit Name/Email Formular + nur TidyCal
-// ============================================
-//
-// ERSETZE die komplette showBestandsaufnahmeResult() Funktion
-// mit dieser Version
-//
-// ============================================
-
-function showBestandsaufnahmeResult() {
-    const totalScore = Object.values(baScores).reduce((a, b) => a + b, 0);
-    const maxScore = 10;
-    const percentage = Math.round((totalScore / maxScore) * 100);
-    
-    // Find what's missing (score 0 or 1)
-    const missing = [];
-    const solid = [];
-    
-    for (const [key, score] of Object.entries(baScores)) {
-        if (score === 0) {
-            missing.push({ key, name: baNames[key], status: 'fehlt' });
-        } else if (score === 1) {
-            missing.push({ key, name: baNames[key], status: 'teilweise' });
-        } else {
-            solid.push({ key, name: baNames[key] });
-        }
-    }
-    
-    // Collect readable answers
-    const answerTexts = {
-        q1: baScores.positionierung === 2 ? 'Ja, glasklar' : 
-            baScores.positionierung === 1 ? 'So halb' : 'Nein',
-        q2: baScores.angebot === 2 ? 'Ja' : 
-            baScores.angebot === 1 ? 'Arbeite dran' : 'Nein',
-        q3: baScores.traffic === 2 ? 'Automatisch' : 
-            baScores.traffic === 1 ? 'Social Media Hustle' : 'Empfehlungen/Zufall',
-        q4: baScores.systeme === 2 ? 'Ja, läuft' : 
-            baScores.systeme === 1 ? 'Teilweise' : 'Nein',
-        q5: baScores.zeit === 2 ? 'Unter 20h' : 
-            baScores.zeit === 1 ? '20-40h' : '40h+'
-    };
-    
-    // Generate visual bars
-    let barsHTML = '';
-    for (const [key, score] of Object.entries(baScores)) {
-        const percent = (score / 2) * 100;
-        const color = score === 2 ? '#B89968' : score === 1 ? '#D4C5B0' : '#E8DED2';
-        const status = score === 2 ? '✓' : score === 1 ? '~' : '✗';
-        barsHTML += `
-            <div style="margin-bottom: 1rem;">
-                <div style="display: flex; justify-content: space-between; margin-bottom: 0.25rem;">
-                    <span>${baNames[key]}</span>
-                    <span>${status}</span>
-                </div>
-                <div style="background: #E8DED2; height: 8px; border-radius: 4px;">
-                    <div style="background: ${color}; height: 100%; width: ${percent}%; border-radius: 4px; transition: width 0.5s;"></div>
-                </div>
-            </div>
-        `;
-    }
-    
-    // Determine headline based on score
-    let headline, subline, emoji;
-    if (percentage >= 80) {
-        emoji = '🎉';
-        headline = 'Du bist fast da!';
-        subline = 'Dein Business hat eine solide Basis. Kleine Optimierungen können viel bewirken.';
-    } else if (percentage >= 50) {
-        emoji = '💪';
-        headline = 'Gute Basis, aber Lücken';
-        subline = 'Einiges steht schon, aber ein paar Bausteine fehlen noch für echte Freiheit.';
-    } else if (percentage >= 30) {
-        emoji = '🔧';
-        headline = 'Da ist noch Arbeit';
-        subline = 'Du hast angefangen, aber die wichtigsten Systeme fehlen noch.';
-    } else {
-        emoji = '🚀';
-        headline = 'Du stehst am Anfang';
-        subline = 'Kein Problem – jeder fängt irgendwo an. Wichtig ist der erste Schritt.';
-    }
-    
-    // What's missing section
-    let missingHTML = '';
-    if (missing.length > 0) {
-        missingHTML = `
-            <div style="background: #FAF9F6; border: 2px solid #E8DED2; padding: 1.5rem; margin: 2rem 0; border-radius: 4px;">
-                <h4 style="margin-bottom: 1rem;">Was dir noch fehlt:</h4>
-                <ul style="list-style: none; padding: 0; margin: 0;">
-                    ${missing.map(m => `
-                        <li style="padding: 0.5rem 0; border-bottom: 1px solid #E8DED2; display: flex; justify-content: space-between;">
-                            <span>${m.name}</span>
-                            <span style="color: ${m.status === 'fehlt' ? '#ff6b6b' : '#B89968'}; font-size: 0.9rem;">
-                                ${m.status === 'fehlt' ? 'fehlt komplett' : 'braucht Arbeit'}
-                            </span>
-                        </li>
-                    `).join('')}
-                </ul>
-            </div>
-        `;
-    }
-    
-    // Build result HTML with Name/Email Form + TidyCal
-    const resultHTML = `
-        <div style="text-align: center; margin-bottom: 2rem;">
-            <span style="font-size: 4rem;">${emoji}</span>
-            <h2 style="margin: 1rem 0 0.5rem;">${headline}</h2>
-            <p style="color: #4A4A4A; font-size: 1.1rem;">${subline}</p>
-        </div>
-        
-        <div style="background: #E8DED2; padding: 2rem; border-radius: 8px; margin-bottom: 2rem;">
-            <h4 style="margin-bottom: 1.5rem; text-align: center;">Deine Bestandsaufnahme</h4>
-            ${barsHTML}
-            <div style="text-align: center; margin-top: 1.5rem;">
-                <p style="font-size: 1.5rem; font-weight: bold; color: #B89968;">${percentage}% Complete</p>
-            </div>
-        </div>
-        
-        ${missingHTML}
-        
-        <div style="background: #2D2D2D; color: #FAF9F6; padding: 2rem; border-radius: 4px; margin-top: 2rem;">
-            <h4 style="color: #FAF9F6; margin-bottom: 1rem;">Lass uns sprechen</h4>
-            <p style="color: #E8DED2; margin-bottom: 1.5rem;">
-                15min kostenlos, kein Verkaufsgespräch. Ich zeige dir konkret welche Schritte als nächstes Sinn machen.
-            </p>
-            
-            <form id="ba-contact-form" onsubmit="submitBestandsaufnahmeForm(event)" style="margin-top: 1.5rem;">
-                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem;">
-                    <input 
-                        type="text" 
-                        id="ba-firstname"
-                        placeholder="Dein Vorname" 
-                        required
-                        style="flex: 1; min-width: 200px; padding: 1rem; border: 2px solid #B89968; font-size: 1rem; background: #FAF9F6; color: #2D2D2D;"
-                    >
-                    <input 
-                        type="email" 
-                        id="ba-email"
-                        placeholder="Deine Email" 
-                        required
-                        style="flex: 1; min-width: 200px; padding: 1rem; border: 2px solid #B89968; font-size: 1rem; background: #FAF9F6; color: #2D2D2D;"
-                    >
+                    
+                    <p style="color: var(--medium-gray); font-size: 0.85rem; text-align: center; margin-top: 1rem;">
+                        Kein Verkaufsgespräch. Nur ehrliche Einschätzung.
+                    </p>
                 </div>
                 
-                <button type="submit" style="width: 100%; padding: 1.25rem; background: #B89968; color: white; border: none; border-radius: 4px; font-weight: 600; font-size: 1.1rem; cursor: pointer;">
-                    🗓️ Jetzt Termin buchen (kostenlos)
-                </button>
-                
-                <p id="ba-form-message" style="margin-top: 1rem; text-align: center; color: #B89968;"></p>
-            </form>
+                <div style="text-align: center; margin-top: 1.5rem;">
+                    <button onclick="closeBestandsaufnahme()" style="padding: 0.75rem 2rem; background: transparent; border: 1px solid var(--light-gray); cursor: pointer; color: var(--medium-gray); font-size: 0.9rem;">
+                        Schließen
+                    </button>
+                </div>
+            `;
             
-            <p style="color: #888; font-size: 0.85rem; text-align: center; margin-top: 1rem;">
-                Keine automatischen Anrufe. Kein Spam. Nur ein ehrliches Gespräch.
-            </p>
-        </div>
-        
-        <div style="text-align: center; margin-top: 2rem;">
-            <button onclick="closeBestandsaufnahme()" style="padding: 0.75rem 2rem; background: transparent; border: 1px solid #E8DED2; cursor: pointer; color: #4A4A4A;">
-                Schließen
-            </button>
-        </div>
-    `;
-    
-    document.getElementById('ba-result-content').innerHTML = resultHTML;
-    showBAScreen('ba-screen-result');
-    
-    // Store answers globally for form submission
-    window.baResultData = {
-        totalScore: totalScore,
-        percentage: percentage,
-        headline: headline,
-        answers: answerTexts,
-        missing: missing.map(m => m.name).join(', ')
-    };
-}
-
-// ============================================
-// FORM SUBMISSION + TIDYCAL REDIRECT
-// ============================================
-
-async function submitBestandsaufnahmeForm(e) {
-    e.preventDefault();
-    
-    const firstname = document.getElementById('ba-firstname').value.trim();
-    const email = document.getElementById('ba-email').value.trim();
-    const messageEl = document.getElementById('ba-form-message');
-    const button = e.target.querySelector('button');
-    
-    button.disabled = true;
-    button.textContent = 'Wird gespeichert...';
-    messageEl.textContent = '';
-    
-    try {
-        // Send to Google Sheets
-        await fetch(GOOGLE_SHEETS_WEBHOOK, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                quizType: 'bestandsaufnahme',
-                firstname: firstname,
-                email: email,
-                answers: window.baResultData.answers,
-                scores: baScores,
-                totalScore: window.baResultData.totalScore,
-                percentage: window.baResultData.percentage,
-                resultHeadline: window.baResultData.headline,
-                missing: window.baResultData.missing
-            })
-        });
-        
-        console.log('✅ Bestandsaufnahme data sent to Google Sheets');
-        
-        // Build TidyCal URL with data
-        const tidycalURL = `${TIDYCAL_LINK}?name=${encodeURIComponent(firstname)}&email=${encodeURIComponent(email)}&note=${encodeURIComponent(`Score: ${window.baResultData.totalScore}/10 (${window.baResultData.percentage}%) | Fehlt: ${window.baResultData.missing}`)}`;
-        
-        // Redirect to TidyCal
-        messageEl.textContent = '✅ Gespeichert! Weiterleitung zu Terminbuchung...';
-        messageEl.style.color = '#B89968';
-        
-        setTimeout(() => {
-            window.open(tidycalURL, '_blank');
-            closeBestandsaufnahme();
-        }, 1500);
-        
-    } catch (error) {
-        console.error('Error:', error);
-        messageEl.textContent = '✅ Daten gespeichert! Öffne Terminbuchung...';
-        messageEl.style.color = '#B89968';
-        
-        // Open TidyCal anyway
-        const tidycalURL = `${TIDYCAL_LINK}?name=${encodeURIComponent(firstname)}&email=${encodeURIComponent(email)}`;
-        setTimeout(() => {
-            window.open(tidycalURL, '_blank');
-            closeBestandsaufnahme();
-        }, 1500);
-    }
-}
-async function submitBestandsaufnahmeToSheets(totalScore, percentage, headline) {
-    try {
-        const response = await fetch(GOOGLE_SHEETS_WEBHOOK, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                quizType: 'bestandsaufnahme',
-                scores: baScores,
+            document.getElementById('ba-result-content').innerHTML = resultHTML;
+            showBAScreen('ba-screen-result');
+            
+            window.baResultData = {
                 totalScore: totalScore,
                 percentage: percentage,
-                resultHeadline: headline
-            })
+                headline: headline,
+                missing: missing.map(m => m.name).join(', ')
+            };
+        }
+
+        async function submitBestandsaufnahmeForm(e) {
+            e.preventDefault();
+            
+            const firstname = document.getElementById('ba-firstname').value.trim();
+            const email = document.getElementById('ba-email').value.trim();
+            const messageEl = document.getElementById('ba-form-message');
+            const button = e.target.querySelector('button');
+            
+            button.disabled = true;
+            button.textContent = 'Wird gespeichert...';
+            messageEl.textContent = '';
+            
+            try {
+                await fetch(GOOGLE_SHEETS_WEBHOOK, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        quizType: 'bestandsaufnahme',
+                        firstname: firstname,
+                        email: email,
+                        scores: baScores,
+                        totalScore: window.baResultData.totalScore,
+                        percentage: window.baResultData.percentage,
+                        resultHeadline: window.baResultData.headline,
+                        missing: window.baResultData.missing
+                    })
+                });
+                
+                const tidycalURL = `${TIDYCAL_LINK}?name=${encodeURIComponent(firstname)}&email=${encodeURIComponent(email)}&note=${encodeURIComponent(`Score: ${window.baResultData.totalScore}/10 (${window.baResultData.percentage}%) | Fehlt: ${window.baResultData.missing}`)}`;
+                
+                messageEl.textContent = 'Gespeichert. Weiterleitung...';
+                
+                setTimeout(() => {
+                    window.open(tidycalURL, '_blank');
+                    closeBestandsaufnahme();
+                }, 1500);
+                
+            } catch (error) {
+                const tidycalURL = `${TIDYCAL_LINK}?name=${encodeURIComponent(firstname)}&email=${encodeURIComponent(email)}`;
+                setTimeout(() => {
+                    window.open(tidycalURL, '_blank');
+                    closeBestandsaufnahme();
+                }, 1500);
+            }
+        }
+
+        // Close modal on outside click
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('quiz-modal')) {
+                closeBestandsaufnahme();
+            }
         });
-        
-        console.log('✅ Bestandsaufnahme data sent to Google Sheets');
-    } catch (error) {
-        console.error('❌ Error sending to Google Sheets:', error);
-    }
-}
 
+        // URL parameter handling
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('quiz')) {
+                openBestandsaufnahme();
+            }
+        });
+    </script>
 
-// Auto-open from URL
-document.addEventListener('DOMContentLoaded', function() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const openQuiz = urlParams.get('openquiz');
-    
-    if (openQuiz === 'bestandsaufnahme') {
-        setTimeout(function() {
-            openBestandsaufnahme();
-        }, 500);
-    }
-});
-</script>
-
-
-<!-- ============================================ -->
-<!-- BESTANDSAUFNAHME QUIZ - "Wie weit bist du noch?" -->
-<!-- Ersetze das alte System-Check Quiz damit -->
-<!-- ============================================ -->
-
-<div id="bestandsaufnahme-modal" class="quiz-modal">
-    <div class="quiz-modal-content">
-        <button class="quiz-close" onclick="closeBestandsaufnahme()">&times;</button>
-        
-        <div class="quiz-progress">
-            <div class="quiz-progress-bar" id="bestandsaufnahme-progress-bar"></div>
-        </div>
-        
-        <div id="bestandsaufnahme-container">
-            <!-- Start Screen -->
-            <div class="quiz-screen active" id="ba-screen-start">
-                <h2>Wie weit bist du noch entfernt?</h2>
-                <p style="font-size: 1.25rem; margin-bottom: 2rem;">
-                    Finde raus welche Bausteine dir noch fehlen für dein 2h/Tag Business.
-                </p>
-                <p style="opacity: 0.8; margin-bottom: 2rem;">5 Fragen. Ehrliche Bestandsaufnahme. Kein Verkaufsgespräch.</p>
-                <button class="quiz-btn-primary" onclick="startBestandsaufnahme()">Los geht's</button>
-            </div>
-            
-            <!-- Question 1: Positionierung -->
-            <div class="quiz-screen" id="ba-screen-q1">
-                <h3>1. Positionierung</h3>
-                <p class="quiz-question">Wenn jemand fragt "Was machst du?" - hast du eine klare Antwort die sofort verstanden wird?</p>
-                <div class="quiz-options">
-                    <button class="quiz-option" onclick="baAnswer(1, 2)">
-                        <strong>Ja, glasklar</strong><br>
-                        <span style="font-size: 0.9rem; opacity: 0.8;">Ich weiß genau wem ich helfe und womit</span>
-                    </button>
-                    <button class="quiz-option" onclick="baAnswer(1, 1)">
-                        <strong>So halb</strong><br>
-                        <span style="font-size: 0.9rem; opacity: 0.8;">Ich hab was, aber es fühlt sich noch nicht richtig an</span>
-                    </button>
-                    <button class="quiz-option" onclick="baAnswer(1, 0)">
-                        <strong>Nein</strong><br>
-                        <span style="font-size: 0.9rem; opacity: 0.8;">Ich sag jedes Mal was anderes / bin zu breit</span>
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Question 2: Angebot -->
-            <div class="quiz-screen" id="ba-screen-q2">
-                <h3>2. Angebot</h3>
-                <p class="quiz-question">Hast du ein klares High-Ticket Angebot (1000€+) das du selbstbewusst verkaufen kannst?</p>
-                <div class="quiz-options">
-                    <button class="quiz-option" onclick="baAnswer(2, 2)">
-                        <strong>Ja</strong><br>
-                        <span style="font-size: 0.9rem; opacity: 0.8;">Ich weiß was ich verkaufe und für wie viel</span>
-                    </button>
-                    <button class="quiz-option" onclick="baAnswer(2, 1)">
-                        <strong>Arbeite dran</strong><br>
-                        <span style="font-size: 0.9rem; opacity: 0.8;">Hab was, aber bin unsicher beim Preis/Umfang</span>
-                    </button>
-                    <button class="quiz-option" onclick="baAnswer(2, 0)">
-                        <strong>Nein</strong><br>
-                        <span style="font-size: 0.9rem; opacity: 0.8;">Verkaufe nur kleine Sachen / weiß nicht was ich anbieten soll</span>
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Question 3: Traffic -->
-            <div class="quiz-screen" id="ba-screen-q3">
-                <h3>3. Traffic & Sichtbarkeit</h3>
-                <p class="quiz-question">Woher kommen deine Interessenten/Kunden aktuell?</p>
-                <div class="quiz-options">
-                    <button class="quiz-option" onclick="baAnswer(3, 2)">
-                        <strong>Automatisch</strong><br>
-                        <span style="font-size: 0.9rem; opacity: 0.8;">Pinterest/SEO/Ads - Leute finden mich von selbst</span>
-                    </button>
-                    <button class="quiz-option" onclick="baAnswer(3, 1)">
-                        <strong>Social Media Hustle</strong><br>
-                        <span style="font-size: 0.9rem; opacity: 0.8;">Instagram/Stories - ich muss ständig präsent sein</span>
-                    </button>
-                    <button class="quiz-option" onclick="baAnswer(3, 0)">
-                        <strong>Empfehlungen / Zufall</strong><br>
-                        <span style="font-size: 0.9rem; opacity: 0.8;">Kein echtes System, hoffe auf Mundpropaganda</span>
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Question 4: Systeme -->
-            <div class="quiz-screen" id="ba-screen-q4">
-                <h3>4. Automatisierung</h3>
-                <p class="quiz-question">Hast du Systeme die für dich arbeiten auch wenn du offline bist?</p>
-                <div class="quiz-options">
-                    <button class="quiz-option" onclick="baAnswer(4, 2)">
-                        <strong>Ja, läuft</strong><br>
-                        <span style="font-size: 0.9rem; opacity: 0.8;">Email-Funnel, automatische Lead-Generierung, etc.</span>
-                    </button>
-                    <button class="quiz-option" onclick="baAnswer(4, 1)">
-                        <strong>Teilweise</strong><br>
-                        <span style="font-size: 0.9rem; opacity: 0.8;">Hab Newsletter, aber nicht wirklich automatisiert</span>
-                    </button>
-                    <button class="quiz-option" onclick="baAnswer(4, 0)">
-                        <strong>Nein</strong><br>
-                        <span style="font-size: 0.9rem; opacity: 0.8;">Alles manuell, kein Funnel, keine Automation</span>
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Question 5: Zeit -->
-            <div class="quiz-screen" id="ba-screen-q5">
-                <h3>5. Arbeitszeit</h3>
-                <p class="quiz-question">Wie viele Stunden pro Woche arbeitest du AN deinem Business?</p>
-                <div class="quiz-options">
-                    <button class="quiz-option" onclick="baAnswer(5, 2)">
-                        <strong>Unter 20h</strong><br>
-                        <span style="font-size: 0.9rem; opacity: 0.8;">Mein Business läuft auch ohne mich</span>
-                    </button>
-                    <button class="quiz-option" onclick="baAnswer(5, 1)">
-                        <strong>20-40h</strong><br>
-                        <span style="font-size: 0.9rem; opacity: 0.8;">Normal, aber könnte weniger sein</span>
-                    </button>
-                    <button class="quiz-option" onclick="baAnswer(5, 0)">
-                        <strong>40h+</strong><br>
-                        <span style="font-size: 0.9rem; opacity: 0.8;">Ich arbeite non-stop und es reicht trotzdem nicht</span>
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Loading -->
-            <div class="quiz-screen" id="ba-screen-loading">
-                <h3>Analysiere deine Antworten...</h3>
-                <div class="quiz-loader"></div>
-            </div>
-            
-            <!-- Result -->
-            <div class="quiz-screen" id="ba-screen-result">
-                <div id="ba-result-content"></div>
-            </div>
+    <!-- FLOATING BADGE -->
+    <div class="floating-badge" onclick="openBestandsaufnahme()">
+        <button class="floating-badge-close" onclick="event.stopPropagation(); this.parentElement.classList.add('hidden');">✕</button>
+        <div class="floating-badge-text">
+            <span class="floating-badge-title">Wo stehst du?</span>
+            <span class="floating-badge-cta">Bestandsaufnahme →</span>
         </div>
     </div>
-</div>
-<!-- ============================================ -->
-<!-- POSITIONIERUNGS-QUIZ BADGE - Fixed Top Right -->
-<!-- Einfügen VOR dem schließenden </body> Tag -->
-<!-- ============================================ -->
-
-<div id="positioning-badge" class="pos-badge">
-    <button class="pos-badge-close" onclick="closePositioningBadge()" aria-label="Badge schließen">
-        ×
-    </button>
-    <button class="pos-badge-content" onclick="openPositioningQuiz()">
-        <span class="pos-badge-icon">⚡</span>
-        <span class="pos-badge-text">
-            Noch unsicher bei deiner Positionierung?
-            <span class="pos-badge-cta">Jetzt checken →</span>
-        </span>
-    </button>
-</div>
-
-<style>
-/* ============================================ */
-/* BADGE STYLES */
-/* ============================================ */
-
-.pos-badge {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 9999;
-    animation: badgeSlideIn 0.6s ease-out;
-}
-
-.pos-badge.hidden {
-    animation: badgeSlideOut 0.4s ease-out forwards;
-}
-
-@keyframes badgeSlideIn {
-    from {
-        transform: translateX(120%);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-@keyframes badgeSlideOut {
-    from {
-        transform: translateX(0);
-        opacity: 1;
-    }
-    to {
-        transform: translateX(120%);
-        opacity: 0;
-    }
-}
-
-.pos-badge-content {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    background: linear-gradient(135deg, #B89968 0%, #A38654 100%);
-    color: #FAF9F6;
-    padding: 0.875rem 1.25rem;
-    padding-right: 2.5rem; /* Space for close button */
-    border: none;
-    border-radius: 50px;
-    box-shadow: 0 4px 15px rgba(184, 153, 104, 0.3);
-    cursor: pointer;
-    font-family: inherit;
-    font-size: 0.95rem;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    position: relative;
-    max-width: 350px;
-}
-
-.pos-badge-content:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(184, 153, 104, 0.4);
-    background: linear-gradient(135deg, #A38654 0%, #8F7347 100%);
-}
-
-.pos-badge-icon {
-    font-size: 1.25rem;
-    animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.1);
-    }
-}
-
-.pos-badge-text {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    line-height: 1.4;
-    text-align: left;
-}
-
-.pos-badge-cta {
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    margin-top: 0.15rem;
-    opacity: 0.95;
-    transition: all 0.3s ease;
-}
-
-.pos-badge-content:hover .pos-badge-cta {
-    transform: translateX(3px);
-    opacity: 1;
-}
-
-.pos-badge-close {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    width: 24px;
-    height: 24px;
-    border: none;
-    background: rgba(250, 249, 246, 0.2);
-    color: #FAF9F6;
-    font-size: 1.25rem;
-    line-height: 1;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-    opacity: 0.7;
-    z-index: 10;
-}
-
-.pos-badge-close:hover {
-    opacity: 1;
-    background: rgba(250, 249, 246, 0.3);
-    transform: rotate(90deg);
-}
-
-/* Mobile Responsive */
-@media (max-width: 768px) {
-    .pos-badge {
-        top: 10px;
-        right: 10px;
-        left: 10px;
-        max-width: calc(100% - 20px);
-    }
-    
-    .pos-badge-content {
-        width: 100%;
-        max-width: 100%;
-        padding: 0.75rem 1rem;
-        padding-right: 2.5rem;
-        font-size: 0.875rem;
-    }
-    
-    .pos-badge-text {
-        font-size: 0.875rem;
-    }
-    
-    .pos-badge-cta {
-        font-size: 0.8rem;
-    }
-    
-    .pos-badge-icon {
-        font-size: 1.1rem;
-    }
-}
-
-/* Tablet */
-@media (max-width: 1024px) and (min-width: 769px) {
-    .pos-badge {
-        right: 15px;
-    }
-    
-    .pos-badge-content {
-        max-width: 320px;
-    }
-}
-
-/* Alternative: Badge verstecken wenn Hero nicht mehr sichtbar (optional) */
-/*
-.hero-section {
-    position: relative;
-}
-
-.pos-badge.hero-out-of-view {
-    opacity: 0.8;
-}
-*/
-</style>
-
-<script>
-/* ============================================ */
-/* BADGE JAVASCRIPT */
-/* ============================================ */
-
-// Open Quiz Function
-function openPositioningQuiz() {
-    const quizContainer = document.getElementById('positioning-modal');
-    if (quizContainer) {
-        quizContainer.classList.add('active');
-        document.body.style.overflow = 'hidden';
-        
-        // Set quiz type to positioning
-        if (window.initQuiz) {
-            window.initQuiz('positioning');
-        }
-    } else {
-        console.error('Quiz container not found');
-    }
-}
-
-// Close Badge Function
-function closePositioningBadge() {
-    const badge = document.getElementById('positioning-badge');
-    badge.classList.add('hidden');
-    
-    // Remove from DOM after animation
-    setTimeout(() => {
-        badge.style.display = 'none';
-    }, 400);
-}
-
-// Initialize badge on page load
-document.addEventListener('DOMContentLoaded', function() {
-    const badge = document.getElementById('positioning-badge');
-    
-    // Optional: Badge erst nach 2 Sekunden zeigen (weniger aggressive)
-    // setTimeout(() => {
-    //     badge.classList.add('show');
-    // }, 2000);
-});
-</script>
 
 </body>
 </html>

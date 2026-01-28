@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Kostenlose Ressourcen für dein 2h/Tag Business - 30-Tage Email-Serie & 30 Positionierungs-Beispiele">
-    <title>Freebies | Carina Anna Prav</title>
+    <meta name="description" content="Ressourcen für dein Business. 30-Tage E-Mail-Serie, Positionierungs-Guide.">
+    <title>Ressourcen | Carina Anna Prav</title>
     
     <style>
         * {
@@ -14,13 +14,15 @@
         }
         
         :root {
-            --cream: #FAF9F6;
-            --beige: #E8DED2;
-            --warm-beige: #D4C5B0;
-            --charcoal: #2D2D2D;
-            --dark-gray: #4A4A4A;
-            --light-gray: #F5F5F5;
-            --accent: #B89968;
+            --white: #FFFFFF;
+            --off-white: #F8F9FA;
+            --light-gray: #E9ECEF;
+            --medium-gray: #6C757D;
+            --dark-gray: #343A40;
+            --charcoal: #212529;
+            --slate-blue: #4A5568;
+            --accent-blue: #2C5282;
+            --accent-blue-light: #3182CE;
             
             --font-serif: 'Playfair Display', Georgia, serif;
             --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
@@ -29,7 +31,7 @@
         body {
             font-family: var(--font-sans);
             color: var(--charcoal);
-            background: var(--cream);
+            background: var(--white);
             line-height: 1.7;
             -webkit-font-smoothing: antialiased;
         }
@@ -51,10 +53,10 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(250, 249, 246, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
             z-index: 1000;
-            border-bottom: 1px solid var(--beige);
+            border-bottom: 1px solid var(--light-gray);
         }
         
         .nav-container {
@@ -68,9 +70,10 @@
         
         .logo {
             font-family: var(--font-serif);
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             text-decoration: none;
             color: var(--charcoal);
+            letter-spacing: 0.05em;
         }
         
         .nav-links {
@@ -81,107 +84,116 @@
         
         .nav-links a {
             text-decoration: none;
-            color: var(--charcoal);
-            font-size: 0.95rem;
+            color: var(--slate-blue);
+            font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--charcoal);
         }
         
         /* HERO */
         .hero {
-            min-height: 50vh;
+            min-height: 40vh;
             display: flex;
             align-items: center;
             padding-top: 100px;
             padding-bottom: 4rem;
-            background: linear-gradient(135deg, #FAF9F6 0%, #E8DED2 100%);
+            background: var(--off-white);
             text-align: center;
         }
         
         .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            margin-bottom: 1.5rem;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
+            color: var(--charcoal);
         }
         
         .hero p {
-            font-size: 1.25rem;
-            color: var(--dark-gray);
-            max-width: 600px;
+            font-size: 1.125rem;
+            color: var(--slate-blue);
+            max-width: 500px;
             margin: 0 auto;
         }
         
         /* FREEBIES SECTION */
         .freebies-section {
-            padding: 6rem 0;
+            padding: 5rem 0;
         }
         
         .freebies-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 3rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
         }
         
         .freebie-card {
-            background: white;
-            border: 2px solid var(--beige);
-            border-radius: 8px;
-            padding: 3rem;
+            background: var(--white);
+            border: 1px solid var(--light-gray);
+            padding: 2.5rem;
             transition: all 0.3s ease;
         }
         
         .freebie-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            border-color: var(--accent-blue);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
         }
         
         .freebie-card.featured {
-            border-color: var(--accent);
+            border-color: var(--accent-blue);
             position: relative;
         }
         
         .freebie-badge {
             position: absolute;
-            top: -15px;
-            right: 20px;
-            background: var(--accent);
-            color: white;
-            padding: 0.5rem 1rem;
-            font-size: 0.8rem;
+            top: -12px;
+            right: 24px;
+            background: var(--accent-blue);
+            color: var(--white);
+            padding: 0.4rem 1rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
             font-weight: 600;
-            border-radius: 4px;
         }
         
-        .freebie-icon {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
+        .freebie-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent-blue);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
         }
         
         .freebie-card h2 {
-            font-size: 2rem;
+            font-size: 1.75rem;
             margin-bottom: 1rem;
+            color: var(--charcoal);
         }
         
-        .freebie-card p {
-            color: var(--dark-gray);
+        .freebie-card > p {
+            color: var(--slate-blue);
             margin-bottom: 1.5rem;
             line-height: 1.7;
         }
         
         .freebie-features {
             list-style: none;
-            margin: 2rem 0;
+            margin: 1.5rem 0;
             padding: 0;
         }
         
         .freebie-features li {
-            padding: 0.75rem 0;
-            padding-left: 2rem;
+            padding: 0.6rem 0;
+            padding-left: 1.25rem;
             position: relative;
-            border-bottom: 1px solid var(--beige);
+            border-bottom: 1px solid var(--light-gray);
+            color: var(--slate-blue);
+            font-size: 0.95rem;
         }
         
         .freebie-features li:last-child {
@@ -189,120 +201,122 @@
         }
         
         .freebie-features li::before {
-            content: '✓';
+            content: '';
             position: absolute;
             left: 0;
-            color: var(--accent);
-            font-weight: bold;
-            font-size: 1.25rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            background: var(--accent-blue);
+            border-radius: 50%;
         }
         
         /* FORMS */
         .freebie-form {
-            margin-top: 2rem;
+            margin-top: 1.5rem;
         }
         
-        .freebie-form input {
+        .freebie-form input[type="text"],
+        .freebie-form input[type="email"] {
             width: 100%;
-            padding: 1rem;
-            border: 2px solid var(--beige);
+            padding: 0.875rem 1rem;
+            border: 1px solid var(--light-gray);
             font-size: 1rem;
-            margin-bottom: 1rem;
-            border-radius: 4px;
+            margin-bottom: 0.75rem;
+            font-family: var(--font-sans);
+            background: var(--off-white);
+            transition: border-color 0.3s;
         }
         
         .freebie-form input:focus {
             outline: none;
-            border-color: var(--accent);
+            border-color: var(--accent-blue);
+            background: var(--white);
         }
         
         .freebie-form button {
             width: 100%;
-            padding: 1.25rem;
+            padding: 1rem;
             background: var(--charcoal);
-            color: var(--cream);
+            color: var(--white);
             border: none;
-            font-size: 1rem;
+            font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            border-radius: 4px;
+            font-family: var(--font-sans);
         }
         
         .freebie-form button:hover {
-            background: var(--dark-gray);
-            transform: translateY(-2px);
+            background: var(--slate-blue);
         }
         
         .freebie-form .btn-accent {
-            background: var(--accent);
+            background: var(--accent-blue);
         }
         
         .freebie-form .btn-accent:hover {
-            background: #9a7d52;
+            background: var(--accent-blue-light);
         }
         
         .privacy-checkbox {
             display: flex;
             align-items: flex-start;
-            gap: 0.75rem;
+            gap: 0.6rem;
             margin: 1rem 0;
         }
         
         .privacy-checkbox input {
             width: auto;
             margin: 0;
-            margin-top: 0.25rem;
+            margin-top: 0.2rem;
         }
         
         .privacy-checkbox span {
-            font-size: 0.85rem;
-            color: var(--dark-gray);
+            font-size: 0.8rem;
+            color: var(--medium-gray);
+            line-height: 1.5;
         }
         
         .privacy-checkbox a {
-            color: var(--accent);
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+        
+        .privacy-checkbox a:hover {
+            text-decoration: underline;
         }
         
         .form-message {
             margin-top: 1rem;
             text-align: center;
-            font-weight: 600;
-        }
-        
-        /* WHY FREE */
-        .why-free {
-            padding: 4rem 0;
-            background: var(--light-gray);
-            text-align: center;
-        }
-        
-        .why-free h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-        }
-        
-        .why-free p {
-            font-size: 1.125rem;
-            color: var(--dark-gray);
-            max-width: 700px;
-            margin: 0 auto 1rem;
-            line-height: 1.8;
+            font-size: 0.95rem;
         }
         
         /* FOOTER */
         footer {
             background: var(--charcoal);
-            color: var(--beige);
+            color: var(--medium-gray);
             padding: 3rem 0;
             text-align: center;
         }
         
+        footer p {
+            font-size: 0.9rem;
+        }
+        
         footer a {
-            color: var(--beige);
+            color: var(--medium-gray);
             margin: 0 1rem;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        footer a:hover {
+            color: var(--white);
         }
         
         @media (max-width: 968px) {
@@ -312,6 +326,12 @@
             
             .nav-links {
                 display: none;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .freebie-card {
+                padding: 2rem 1.5rem;
             }
         }
     </style>
@@ -329,7 +349,7 @@
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="angebote.html">Angebote</a></li>
-                <li><a href="index.html#podcast">Podcast</a></li>
+                
                 <li><a href="ueber-mich.html">Über mich</a></li>
             </ul>
         </div>
@@ -338,11 +358,8 @@
     <!-- HERO -->
     <section class="hero">
         <div class="container">
-            <h1>Kostenlos starten</h1>
-            <p>
-                Hol dir die Ressourcen die du brauchst um dein 2h/Tag Business aufzubauen. 
-                Kein Verkaufs-Webinar. Nur Mehrwert.
-            </p>
+            <h1>Kostenlose Ressourcen</h1>
+            <p style="max-width: 550px; margin-left: auto; margin-right: auto;">Hier findest du kostenlose Ressourcen, die dir helfen, die ersten Schritte zu gehen – bevor wir zusammenarbeiten.</p>
         </div>
     </section>
 
@@ -353,58 +370,50 @@
                 
                 <!-- FREEBIE 1: 30-Tage Email-Serie -->
                 <div class="freebie-card">
-                    <div class="freebie-icon">📧</div>
+                    <p class="freebie-label">E-Mail-Serie</p>
                     <h2>30 Tage zum System</h2>
-                    <p>
-                        Jeden Tag eine kurze Email mit EINEM konkreten Schritt. 
-                        In 30 Tagen hast du die Foundation für dein 2h/Tag Business.
-                    </p>
+                    <p>Jeden Tag eine E-Mail mit einem konkreten Schritt. Nach 30 Tagen hast du die Grundstruktur deines Systems stehen – ohne Überforderung, ohne Hustle.</p>
                     
                     <ul class="freebie-features">
-                        <li><strong>Woche 1:</strong> Positionierung klären</li>
-                        <li><strong>Woche 2:</strong> Pinterest-Setup</li>
-                        <li><strong>Woche 3:</strong> Content-System aufbauen</li>
-                        <li><strong>Woche 4:</strong> Automatisierung</li>
+                        <li>Woche 1: Positionierung schärfen</li>
+                        <li>Woche 2: Angebot strukturieren</li>
+                        <li>Woche 3: Funnel-Grundlagen aufbauen</li>
+                        <li>Woche 4: Erste Automatisierungen einrichten</li>
                     </ul>
                     
                     <form class="freebie-form" id="newsletter-form">
-                        <input type="text" id="nl-firstname" placeholder="Dein Vorname" required>
-                        <input type="email" id="nl-email" placeholder="Deine Email" required>
+                        <input type="text" id="nl-firstname" placeholder="Vorname" required>
+                        <input type="email" id="nl-email" placeholder="E-Mail" required>
                         
                         <label class="privacy-checkbox">
                             <input type="checkbox" id="nl-privacy" required>
                             <span>
-                                Ich stimme der <a href="/datenschutz.html" target="_blank">Datenschutzerklärung</a> zu. 
-                                Ich kann mich jederzeit abmelden.
+                                Ich stimme der <a href="/datenschutz.html" target="_blank">Datenschutzerklärung</a> zu.
                             </span>
                         </label>
                         
-                        <button type="submit">30-Tage Serie starten</button>
+                        <button type="submit">Jetzt kostenlos starten</button>
                     </form>
                     <p class="form-message" id="nl-message"></p>
                 </div>
                 
                 <!-- FREEBIE 2: 30 Positionierungen -->
                 <div class="freebie-card featured">
-                    <div class="freebie-badge">Beliebt</div>
-                    <div class="freebie-icon">🎯</div>
-                    <h2>30 einzigartige Positionierungen</h2>
-                    <p>
-                        Konkrete Positionierungs-Beispiele aus 4 Branchen. 
-                        Von "Ich helfe allen..." zu kristallklarer Nische.
-                    </p>
+                    <div class="freebie-badge">PDF</div>
+                    <p class="freebie-label">Guide</p>
+                    <h2>30 Positionierungen, die verkaufen</h2>
+                    <p>Konkrete Beispiele aus 4 Branchen – von "ich mache irgendwie alles" zu "genau DAS mache ich für genau DIESE Menschen". Zum Inspirieren und Adaptieren.</p>
                     
                     <ul class="freebie-features">
-                        <li>30 spitze Positionierungen (copy-pasteable)</li>
-                        <li>Mit Beispiel-Angeboten für jede</li>
-                        <li>Zielgruppen-Definition erklärt</li>
-                        <li>Unique Angle Beispiele</li>
-                        <li>Framework zum Selbst-Ausfüllen</li>
+                        <li>30 fertige Positionierungsbeispiele</li>
+                        <li>Mit passenden Angebots-Ideen</li>
+                        <li>Klare Zielgruppen-Definition</li>
+                        <li>Framework zum selbst Ausfüllen</li>
                     </ul>
                     
                     <form class="freebie-form" id="positioning-form">
-                        <input type="text" id="pos-firstname" placeholder="Dein Vorname" required>
-                        <input type="email" id="pos-email" placeholder="Deine Email" required>
+                        <input type="text" id="pos-firstname" placeholder="Vorname" required>
+                        <input type="email" id="pos-email" placeholder="E-Mail" required>
                         
                         <label class="privacy-checkbox">
                             <input type="checkbox" id="pos-privacy" required>
@@ -413,7 +422,7 @@
                             </span>
                         </label>
                         
-                        <button type="submit" class="btn-accent">PDF herunterladen</button>
+                        <button type="submit" class="btn-accent">Kostenloses PDF anfordern</button>
                     </form>
                     <p class="form-message" id="pos-message"></p>
                 </div>
@@ -422,29 +431,10 @@
         </div>
     </section>
 
-    <!-- WHY FREE -->
-    <section class="why-free">
-        <div class="container">
-            <h2>Warum kostenlos?</h2>
-            <p>
-                Weil ich weiß dass die besten Kundinnen die sind, die meinen Ansatz 
-                VORHER kennenlernen. Die sehen wie ich arbeite. Die Ergebnisse haben 
-                BEVOR sie investieren.
-            </p>
-            <p>
-                Kein Trick. Kein Upsell-Webinar. Nur Mehrwert.
-            </p>
-            <p>
-                Wenn du mehr willst, weißt du wo du mich findest. 
-                Wenn nicht – auch gut. Du hast trotzdem was Nützliches.
-            </p>
-        </div>
-    </section>
-
     <!-- FOOTER -->
     <footer>
         <div class="container">
-            <p>&copy; 2026 Carina Anna Prav. Alle Rechte vorbehalten.</p>
+            <p>&copy; 2026 Carina Anna Prav</p>
             <p style="margin-top: 1rem;">
                 <a href="impressum.html">Impressum</a>
                 <a href="datenschutz.html">Datenschutz</a>
@@ -454,7 +444,7 @@
     </footer>
 
     <script>
-        // ========== NEWSLETTER FORM (30-Tage Serie) ==========
+        // Newsletter Form (30-Tage Serie)
         document.getElementById('newsletter-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             
@@ -465,10 +455,9 @@
             const button = e.target.querySelector('button');
             const originalText = button.textContent;
             
-            // Validation
             if (!privacy) {
-                messageEl.textContent = '❌ Bitte stimme der Datenschutzerklärung zu.';
-                messageEl.style.color = '#ff6b6b';
+                messageEl.textContent = 'Bitte Datenschutz bestätigen.';
+                messageEl.style.color = '#dc3545';
                 return;
             }
             
@@ -483,30 +472,29 @@
                     body: JSON.stringify({
                         email: email,
                         firstname: firstname,
-                        list: '30tage' // Für 30-Tage Liste
+                        list: '30tage'
                     })
                 });
                 
                 const data = await response.json();
                 
                 if (response.ok && data.success) {
-                    messageEl.textContent = '🎉 Check deine Emails! Tag 1 kommt gleich.';
-                    messageEl.style.color = '#B89968';
+                    messageEl.textContent = 'Check deine E-Mails.';
+                    messageEl.style.color = '#2C5282';
                     e.target.reset();
                 } else {
                     throw new Error(data.error || 'Fehler');
                 }
             } catch (error) {
-                console.error(error);
-                messageEl.textContent = '❌ Fehler. Versuch es nochmal oder schreib mir: socials@carinaannaprav.at';
-                messageEl.style.color = '#ff6b6b';
+                messageEl.textContent = 'Fehler. Versuch es nochmal.';
+                messageEl.style.color = '#dc3545';
             } finally {
                 button.disabled = false;
                 button.textContent = originalText;
             }
         });
 
-        // ========== POSITIONING FORM (30 Positionierungen) ==========
+        // Positioning Form (30 Positionierungen)
         document.getElementById('positioning-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             
@@ -517,10 +505,9 @@
             const button = e.target.querySelector('button');
             const originalText = button.textContent;
             
-            // Validation
             if (!privacy) {
-                messageEl.textContent = '❌ Bitte stimme der Datenschutzerklärung zu.';
-                messageEl.style.color = '#ff6b6b';
+                messageEl.textContent = 'Bitte Datenschutz bestätigen.';
+                messageEl.style.color = '#dc3545';
                 return;
             }
             
@@ -533,28 +520,27 @@
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-    email: email,
-    firstname: firstname,
-    firstName: firstname,  // ADD THIS!
-    quizType: 'pdf-download',  // CHANGE THIS!
-    answers: {},
-    result: 'Direkter Download von Freebies-Seite'
-})
+                        email: email,
+                        firstname: firstname,
+                        firstName: firstname,
+                        quizType: 'pdf-download',
+                        answers: {},
+                        result: 'PDF Download'
+                    })
                 });
                 
                 const data = await response.json();
                 
                 if (response.ok && data.success) {
-                    messageEl.textContent = '🎉 Check deine Emails für den Download-Link!';
-                    messageEl.style.color = '#B89968';
+                    messageEl.textContent = 'Check deine E-Mails.';
+                    messageEl.style.color = '#2C5282';
                     e.target.reset();
                 } else {
                     throw new Error(data.error || 'Fehler');
                 }
             } catch (error) {
-                console.error(error);
-                messageEl.textContent = '❌ Fehler. Versuch es nochmal oder schreib mir: socials@carinaannaprav.at';
-                messageEl.style.color = '#ff6b6b';
+                messageEl.textContent = 'Fehler. Versuch es nochmal.';
+                messageEl.style.color = '#dc3545';
             } finally {
                 button.disabled = false;
                 button.textContent = originalText;

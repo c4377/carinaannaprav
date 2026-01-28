@@ -1167,12 +1167,27 @@
     <!-- QUIZ CTA -->
     <section class="quiz-cta">
         <div class="container">
-            <div class="quiz-cta-box">
-                <h2>Wo stehst du gerade?</h2>
-                <p>5 Fragen. 2 Minuten. Danach weißt du, was dein nächster Schritt ist.</p>
-                <button onclick="openBestandsaufnahme()" class="btn btn-primary btn-large">
-                    Bestandsaufnahme starten
-                </button>
+            <h2 style="text-align: center; margin-bottom: 0.5rem;">Wo stehst du gerade?</h2>
+            <p style="text-align: center; color: var(--slate-blue); margin-bottom: 2.5rem;">Zwei kurze Analysen. Ehrliche Antworten. Danach weißt du, wo du ansetzen solltest.</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; max-width: 700px; margin: 0 auto;">
+                
+                <div style="background: var(--white); border: 1px solid var(--light-gray); padding: 2rem; text-align: center; display: flex; flex-direction: column;">
+                    <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Bestandsaufnahme</h3>
+                    <p style="color: var(--slate-blue); font-size: 0.95rem; margin-bottom: 1.5rem; flex-grow: 1;">5 Fragen – Was fehlt deinem Business? Positionierung, Angebot, Traffic, Systeme oder Zeit?</p>
+                    <button onclick="openBestandsaufnahme()" class="btn btn-primary">
+                        Starten
+                    </button>
+                </div>
+                
+                <div style="background: var(--white); border: 1px solid var(--light-gray); padding: 2rem; text-align: center; display: flex; flex-direction: column;">
+                    <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Positionierungs-Check</h3>
+                    <p style="color: var(--slate-blue); font-size: 0.95rem; margin-bottom: 1.5rem; flex-grow: 1;">8 Fragen – Sitzt deine Positionierung? Oder liegt hier dein eigentliches Problem?</p>
+                    <button onclick="openPositionierung()" class="btn btn-primary">
+                        Starten
+                    </button>
+                </div>
+                
             </div>
         </div>
     </section>
@@ -1320,7 +1335,7 @@
     <!-- JAVASCRIPT -->
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         const GOOGLE_SHEETS_WEBHOOK = 'https://script.google.com/macros/s/AKfycbyK8prmJNsF4GwpzL483jg--cBR5cXHeubbVZolMSvjcuNurtF4XgKAcczP4Z3vg2LZ/exec';
-        const TIDYCAL_LINK = 'https://tidycal.com/carinaannaprav/kennenlernen';
+        const TIDYCAL_LINK = 'https://tidycal.com/socials1/erstgespraeche';
 
         // Mobile Menu Toggle
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
@@ -1585,6 +1600,207 @@
         </div>
     </div>
 
+    <!-- POSITIONIERUNGSQUIZ MODAL -->
+    <div id="positionierung-modal" class="quiz-modal">
+        <div class="quiz-modal-content">
+            <button class="quiz-close" onclick="closePositionierung()">×</button>
+            
+            <div class="quiz-progress">
+                <div class="quiz-progress-bar" id="positionierung-progress-bar"></div>
+            </div>
+            
+            <div id="positionierung-container">
+                <!-- Start Screen -->
+                <div class="quiz-screen active" id="pos-screen-start">
+                    <h2>Positionierungs-Check</h2>
+                    <p style="font-size: 1.125rem; margin-bottom: 2rem;">
+                        8 Fragen. Ehrliche Analyse. Danach weißt du, ob deine Positionierung sitzt – oder ob hier dein Problem liegt.
+                    </p>
+                    <button class="quiz-btn-primary" onclick="startPositionierung()">Starten</button>
+                </div>
+                
+                <!-- Question 1 -->
+                <div class="quiz-screen" id="pos-screen-q1">
+                    <p class="quiz-label">Frage 1 von 8</p>
+                    <h3>Der Elevator Pitch</h3>
+                    <p class="quiz-question">Kannst du in einem Satz sagen, was du machst?</p>
+                    <div class="quiz-options">
+                        <button class="quiz-option" onclick="posAnswer(1, 2)">
+                            <strong>Ja, glasklar</strong><br>
+                            <span>Jeder versteht es sofort</span>
+                        </button>
+                        <button class="quiz-option" onclick="posAnswer(1, 1)">
+                            <strong>Irgendwie schon</strong><br>
+                            <span>Aber ich formuliere es jedes Mal anders</span>
+                        </button>
+                        <button class="quiz-option" onclick="posAnswer(1, 0)">
+                            <strong>Nein</strong><br>
+                            <span>Ich erkläre immer viel</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Question 2 -->
+                <div class="quiz-screen" id="pos-screen-q2">
+                    <p class="quiz-label">Frage 2 von 8</p>
+                    <h3>Zielgruppe</h3>
+                    <p class="quiz-question">Weißt du genau, für wen dein Angebot ist?</p>
+                    <div class="quiz-options">
+                        <button class="quiz-option" onclick="posAnswer(2, 2)">
+                            <strong>Ja, glasklar</strong><br>
+                            <span>Ich kann meine Zielgruppe genau beschreiben</span>
+                        </button>
+                        <button class="quiz-option" onclick="posAnswer(2, 1)">
+                            <strong>So ungefähr</strong><br>
+                            <span>Ich hab eine Idee, aber nicht scharf definiert</span>
+                        </button>
+                        <button class="quiz-option" onclick="posAnswer(2, 0)">
+                            <strong>Eigentlich für jeden</strong><br>
+                            <span>Wer zahlt, ist mein Kunde</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Question 3 -->
+                <div class="quiz-screen" id="pos-screen-q3">
+                    <p class="quiz-label">Frage 3 von 8</p>
+                    <h3>Das Problem</h3>
+                    <p class="quiz-question">Welches Problem löst du?</p>
+                    <div class="quiz-options">
+                        <button class="quiz-option" onclick="posAnswer(3, 2)">
+                            <strong>Ein konkretes, dringendes Problem</strong><br>
+                            <span>Meine Kunden wissen genau warum sie mich brauchen</span>
+                        </button>
+                        <button class="quiz-option" onclick="posAnswer(3, 1)">
+                            <strong>Mehrere verschiedene Dinge</strong><br>
+                            <span>Kommt drauf an wer fragt</span>
+                        </button>
+                        <button class="quiz-option" onclick="posAnswer(3, 0)">
+                            <strong>Ich helfe allgemein weiter</strong><br>
+                            <span>Beratung, Support, was halt so anfällt</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Question 4 -->
+                <div class="quiz-screen" id="pos-screen-q4">
+                    <p class="quiz-label">Frage 4 von 8</p>
+                    <h3>Verständlichkeit</h3>
+                    <p class="quiz-question">Verstehen Fremde sofort, was du anbietest?</p>
+                    <div class="quiz-options">
+                        <button class="quiz-option" onclick="posAnswer(4, 2)">
+                            <strong>Ja, ohne Nachfragen</strong><br>
+                            <span>Meine Website/Bio erklärt alles</span>
+                        </button>
+                        <button class="quiz-option" onclick="posAnswer(4, 1)">
+                            <strong>Nach kurzer Erklärung</strong><br>
+                            <span>Ein, zwei Sätze mehr und sie verstehen es</span>
+                        </button>
+                        <button class="quiz-option" onclick="posAnswer(4, 0)">
+                            <strong>Ich muss immer viel erklären</strong><br>
+                            <span>Die meisten verstehen es nicht sofort</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Question 5 -->
+                <div class="quiz-screen" id="pos-screen-q5">
+                    <p class="quiz-label">Frage 5 von 8</p>
+                    <h3>Hauptangebot</h3>
+                    <p class="quiz-question">Hast du ein klares Hauptangebot?</p>
+                    <div class="quiz-options">
+                        <button class="quiz-option" onclick="posAnswer(5, 2)">
+                            <strong>Ja, eins das ich pushe</strong><br>
+                            <span>Mein Signature-Angebot ist klar</span>
+                        </button>
+                        <button class="quiz-option" onclick="posAnswer(5, 1)">
+                            <strong>Mehrere gleichwertige</strong><br>
+                            <span>Ich hab verschiedene Optionen</span>
+                        </button>
+                        <button class="quiz-option" onclick="posAnswer(5, 0)">
+                            <strong>Ich mache was Kunden wollen</strong><br>
+                            <span>Flexibel, je nach Anfrage</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Question 6 -->
+                <div class="quiz-screen" id="pos-screen-q6">
+                    <p class="quiz-label">Frage 6 von 8</p>
+                    <h3>Differenzierung</h3>
+                    <p class="quiz-question">Warum sollte jemand DICH buchen statt andere?</p>
+                    <div class="quiz-options">
+                        <button class="quiz-option" onclick="posAnswer(6, 2)">
+                            <strong>Ich weiß genau was mich unterscheidet</strong><br>
+                            <span>Mein USP ist klar</span>
+                        </button>
+                        <button class="quiz-option" onclick="posAnswer(6, 1)">
+                            <strong>Bin günstiger/netter/flexibler</strong><br>
+                            <span>Irgendwas halt</span>
+                        </button>
+                        <button class="quiz-option" onclick="posAnswer(6, 0)">
+                            <strong>Keine Ahnung</strong><br>
+                            <span>Gute Frage...</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Question 7 -->
+                <div class="quiz-screen" id="pos-screen-q7">
+                    <p class="quiz-label">Frage 7 von 8</p>
+                    <h3>Anfragen</h3>
+                    <p class="quiz-question">Kommen Anfragen von den richtigen Leuten?</p>
+                    <div class="quiz-options">
+                        <button class="quiz-option" onclick="posAnswer(7, 2)">
+                            <strong>Ja, passende Wunschkunden</strong><br>
+                            <span>Die meisten Anfragen passen perfekt</span>
+                        </button>
+                        <button class="quiz-option" onclick="posAnswer(7, 1)">
+                            <strong>Gemischt</strong><br>
+                            <span>Manche passen, manche nicht</span>
+                        </button>
+                        <button class="quiz-option" onclick="posAnswer(7, 0)">
+                            <strong>Meistens die falschen</strong><br>
+                            <span>Viele Anfragen die nicht passen</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Question 8 -->
+                <div class="quiz-screen" id="pos-screen-q8">
+                    <p class="quiz-label">Frage 8 von 8</p>
+                    <h3>Stabilität</h3>
+                    <p class="quiz-question">Wie oft änderst du deine Positionierung?</p>
+                    <div class="quiz-options">
+                        <button class="quiz-option" onclick="posAnswer(8, 2)">
+                            <strong>Selten, sie sitzt</strong><br>
+                            <span>Ich bin klar und bleibe dabei</span>
+                        </button>
+                        <button class="quiz-option" onclick="posAnswer(8, 1)">
+                            <strong>Ab und zu Anpassungen</strong><br>
+                            <span>Ich optimiere noch</span>
+                        </button>
+                        <button class="quiz-option" onclick="posAnswer(8, 0)">
+                            <strong>Ständig</strong><br>
+                            <span>Nichts funktioniert richtig</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Loading -->
+                <div class="quiz-screen" id="pos-screen-loading">
+                    <h3>Analysiere...</h3>
+                    <div class="quiz-loader"></div>
+                </div>
+                
+                <!-- Result -->
+                <div class="quiz-screen" id="pos-screen-result">
+                    <div id="pos-result-content"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- QUIZ STYLES -->
     <style>
         .quiz-modal {
@@ -1769,6 +1985,7 @@
 
     <!-- QUIZ JAVASCRIPT -->
     <script>
+        // ============ BESTANDSAUFNAHME QUIZ ============
         let baAnswers = {};
         let baScores = {
             positionierung: 0,
@@ -1794,6 +2011,175 @@
             zeit: 'Zeit-Freiheit'
         };
 
+        // ============ POSITIONIERUNGSQUIZ ============
+        let posAnswers = {};
+        let posScore = 0;
+
+        function openPositionierung() {
+            document.getElementById('positionierung-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePositionierung() {
+            document.getElementById('positionierung-modal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+            resetPositionierung();
+        }
+
+        function resetPositionierung() {
+            posAnswers = {};
+            posScore = 0;
+            document.querySelectorAll('#positionierung-container .quiz-screen').forEach(s => s.classList.remove('active'));
+            document.getElementById('pos-screen-start').classList.add('active');
+            document.getElementById('positionierung-progress-bar').style.width = '0%';
+        }
+
+        function startPositionierung() {
+            showPosScreen('pos-screen-q1');
+            updatePosProgress(1, 8);
+        }
+
+        function posAnswer(questionNum, score) {
+            posAnswers['q' + questionNum] = score;
+            posScore += score;
+            
+            const btn = event.target.closest('.quiz-option');
+            btn.style.background = 'var(--accent-blue)';
+            btn.style.color = 'white';
+            btn.style.borderColor = 'var(--accent-blue)';
+            
+            setTimeout(() => {
+                if (questionNum < 8) {
+                    showPosScreen('pos-screen-q' + (questionNum + 1));
+                    updatePosProgress(questionNum + 1, 8);
+                } else {
+                    showPosScreen('pos-screen-loading');
+                    updatePosProgress(8, 8);
+                    
+                    setTimeout(() => {
+                        showPositionierungResult();
+                    }, 1500);
+                }
+            }, 400);
+        }
+
+        function showPosScreen(screenId) {
+            document.querySelectorAll('#positionierung-container .quiz-screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(screenId).classList.add('active');
+        }
+
+        function updatePosProgress(step, total) {
+            const progress = (step / total) * 100;
+            document.getElementById('positionierung-progress-bar').style.width = progress + '%';
+        }
+
+        function showPositionierungResult() {
+            const maxScore = 16;
+            const percentage = Math.round((posScore / maxScore) * 100);
+            
+            let headline, description, color;
+            
+            if (posScore >= 13) {
+                headline = "Deine Positionierung sitzt.";
+                description = "Glückwunsch! Du weißt wer du bist, für wen du da bist und was dich unterscheidet. Deine Positionierung ist kein akutes Problem – schau dir an, ob es an Traffic, Systemen oder Angebot liegt.";
+                color = "#22c55e";
+            } else if (posScore >= 7) {
+                headline = "Fast da, aber noch unscharf.";
+                description = "Du hast eine Richtung, aber es fehlt noch die Klarheit. Deine Positionierung braucht Feinschliff – dann werden Anfragen und Verkäufe leichter.";
+                color = "#f59e0b";
+            } else {
+                headline = "Hier liegt dein Problem.";
+                description = "Solange deine Positionierung nicht sitzt, werden alle anderen Maßnahmen nicht richtig greifen. Das ist der erste Hebel, an dem wir arbeiten sollten.";
+                color = "#ef4444";
+            }
+            
+            window.posResultData = {
+                totalScore: posScore,
+                percentage: percentage,
+                headline: headline
+            };
+            
+            const resultHTML = `
+                <div class="result-box" style="border-left-color: ${color};">
+                    <h3 style="color: ${color};">${headline}</h3>
+                    <p style="font-size: 1.5rem; margin: 1rem 0;">${posScore} von ${maxScore} Punkten (${percentage}%)</p>
+                    <p style="color: var(--slate-blue);">${description}</p>
+                </div>
+                
+                <div style="background: var(--charcoal); color: var(--white); padding: 2rem; margin-top: 2rem;">
+                    <h4 style="margin-bottom: 1rem; text-align: center; font-size: 1rem; font-family: var(--font-sans);">Dein Ergebnis speichern</h4>
+                    <p style="text-align: center; color: var(--medium-gray); margin-bottom: 1.5rem; font-size: 0.95rem;">
+                        30 Minuten Gespräch. Ich zeige dir, welche Schritte als nächstes Sinn machen.
+                    </p>
+                    <form id="pos-contact-form" onsubmit="submitPositionierungForm(event)">
+                        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                            <input type="text" id="pos-firstname" placeholder="Vorname" required
+                                style="flex: 1; min-width: 150px; padding: 0.875rem; border: 1px solid var(--light-gray); font-size: 1rem; background: rgba(255,255,255,0.05); color: white;">
+                            <input type="email" id="pos-email" placeholder="E-Mail" required
+                                style="flex: 1; min-width: 150px; padding: 0.875rem; border: 1px solid var(--light-gray); font-size: 1rem; background: rgba(255,255,255,0.05); color: white;">
+                        </div>
+                        <button type="submit" style="width: 100%; margin-top: 0.75rem; padding: 1rem; background: var(--white); color: var(--charcoal); border: none; font-weight: 600; cursor: pointer; text-transform: uppercase; letter-spacing: 0.05em;">
+                            Ergebnis sichern & Termin buchen
+                        </button>
+                    </form>
+                    <p id="pos-form-message" style="text-align: center; margin-top: 1rem;"></p>
+                    
+                    <button onclick="closePositionierung()" style="padding: 0.75rem 2rem; background: transparent; border: 1px solid var(--light-gray); cursor: pointer; color: var(--medium-gray); font-size: 0.9rem; display: block; margin: 1.5rem auto 0;">
+                        Schließen
+                    </button>
+                </div>
+            `;
+            
+            document.getElementById('pos-result-content').innerHTML = resultHTML;
+            showPosScreen('pos-screen-result');
+        }
+
+        async function submitPositionierungForm(e) {
+            e.preventDefault();
+            
+            const firstname = document.getElementById('pos-firstname').value.trim();
+            const email = document.getElementById('pos-email').value.trim();
+            const messageEl = document.getElementById('pos-form-message');
+            const button = e.target.querySelector('button');
+            
+            button.disabled = true;
+            button.textContent = 'Wird gespeichert...';
+            messageEl.textContent = '';
+            
+            try {
+                await fetch(GOOGLE_SHEETS_WEBHOOK, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        quizType: 'positioning',
+                        firstname: firstname,
+                        email: email,
+                        answers: posAnswers,
+                        result: window.posResultData.headline,
+                        consent: 'true'
+                    })
+                });
+                
+                const tidycalURL = `${TIDYCAL_LINK}?name=${encodeURIComponent(firstname)}&email=${encodeURIComponent(email)}&note=${encodeURIComponent(`Positionierung: ${window.posResultData.totalScore}/16 (${window.posResultData.percentage}%) - ${window.posResultData.headline}`)}`;
+                
+                messageEl.textContent = 'Gespeichert. Weiterleitung...';
+                
+                setTimeout(() => {
+                    window.open(tidycalURL, '_blank');
+                    closePositionierung();
+                }, 1500);
+                
+            } catch (error) {
+                const tidycalURL = `${TIDYCAL_LINK}?name=${encodeURIComponent(firstname)}&email=${encodeURIComponent(email)}`;
+                setTimeout(() => {
+                    window.open(tidycalURL, '_blank');
+                    closePositionierung();
+                }, 1500);
+            }
+        }
+
+        // ============ BESTANDSAUFNAHME FUNCTIONS ============
         function openBestandsaufnahme() {
             document.getElementById('bestandsaufnahme-modal').classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -1943,7 +2329,7 @@
                 <div style="background: var(--off-white); color: var(--charcoal); padding: 2rem; margin-top: 1.5rem;">
                     <h4 style="color: var(--charcoal); margin-bottom: 0.75rem; font-size: 1.125rem;">Nächster Schritt</h4>
                     <p style="color: var(--slate-blue); margin-bottom: 1.5rem;">
-                        15 Minuten Gespräch. Ich zeige dir, welche Schritte als nächstes Sinn machen.
+                        30 Minuten Gespräch. Ich zeige dir, welche Schritte als nächstes Sinn machen.
                     </p>
                     
                     <form id="ba-contact-form" onsubmit="submitBestandsaufnahmeForm(event)">
@@ -2015,7 +2401,7 @@
                         quizType: 'bestandsaufnahme',
                         firstname: firstname,
                         email: email,
-                        scores: baScores,
+                        answers: baAnswers,
                         totalScore: window.baResultData.totalScore,
                         percentage: window.baResultData.percentage,
                         resultHeadline: window.baResultData.headline,

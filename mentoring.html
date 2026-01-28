@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="1:1 Mentoring für Selbstständige. 6 Monate intensive Begleitung. Positionierung, Systeme, Automatisierung.">
+    <title>1:1 Mentoring | Carina Anna Prav</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --white: #FFFFFF;
+            --off-white: #F8F9FA;
+            --light-gray: #E9ECEF;
+            --medium-gray: #6C757D;
+            --dark-gray: #343A40;
+            --charcoal: #212529;
+            --slate-blue: #4A5568;
+            --accent-blue: #2C5282;
+            --accent-blue-light: #3182CE;
+            
+            --font-serif: 'Playfair Display', Georgia, serif;
+            --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            font-family: var(--font-sans);
+            color: var(--charcoal);
+            background: var(--white);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: var(--font-serif);
+            font-weight: 400;
+            line-height: 1.3;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .container-wide {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* NAVIGATION */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            text-decoration: none;
+            color: var(--charcoal);
+            letter-spacing: 0.05em;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--slate-blue);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--charcoal);
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+        }
+        
+        /* HERO */
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+            padding-bottom: 4rem;
+            background: var(--off-white);
+        }
+        
+        .hero-content {
+            max-width: 700px;
+        }
+        
+        .hero-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--accent-blue);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2.2rem, 5vw, 3.2rem);
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero h1 em {
+            font-style: italic;
+        }
+        
+        .hero-sub {
+            font-size: 1.2rem;
+            color: var(--slate-blue);
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+        }
+        
+        .hero-features {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-bottom: 2.5rem;
+        }
+        
+        .hero-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1rem;
+            color: var(--charcoal);
+        }
+        
+        .hero-feature::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 1.1rem 2.5rem;
+            background: var(--charcoal);
+            color: var(--white);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background: var(--slate-blue);
+        }
+        
+        /* KENNST DU DAS */
+        .problems {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+        
+        .problems h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .problems-intro {
+            text-align: center;
+            color: var(--slate-blue);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+        
+        @media (max-width: 600px) {
+            .problem-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .problem-item {
+            padding: 1.5rem;
+            background: var(--off-white);
+            border-left: 3px solid var(--medium-gray);
+        }
+        
+        .problem-item h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-family: var(--font-sans);
+            font-weight: 600;
+        }
+        
+        .problem-item p {
+            color: var(--slate-blue);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+        
+        /* TRANSFORMATION */
+        .transformation {
+            padding: 5rem 0;
+            background: var(--charcoal);
+            color: var(--white);
+        }
+        
+        .transformation h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 1rem;
+            text-align: center;
+            color: var(--white);
+        }
+        
+        .transformation-intro {
+            text-align: center;
+            color: var(--light-gray);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .result-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .result-item {
+            text-align: center;
+        }
+        
+        .result-item h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+            font-family: var(--font-sans);
+            font-weight: 600;
+        }
+        
+        .result-item p {
+            color: var(--light-gray);
+            font-size: 0.95rem;
+        }
+        
+        /* WAS DU BEKOMMST */
+        .features {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+        
+        .features h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 1rem;
+        }
+        
+        .features-intro {
+            color: var(--slate-blue);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
+        }
+        
+        .feature-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .feature-item {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 1.5rem;
+            align-items: start;
+        }
+        
+        @media (max-width: 500px) {
+            .feature-item {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .feature-number {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            color: var(--accent-blue);
+            opacity: 0.4;
+            line-height: 1;
+        }
+        
+        .feature-content h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .feature-content p {
+            color: var(--slate-blue);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+        
+        /* WIE WIR ZUSAMMENARBEITEN */
+        .process {
+            padding: 5rem 0;
+            background: var(--off-white);
+        }
+        
+        .process h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 1rem;
+        }
+        
+        .process-intro {
+            color: var(--slate-blue);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
+        }
+        
+        .process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .process-step {
+            display: flex;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: var(--white);
+            border: 1px solid var(--light-gray);
+        }
+        
+        .step-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent-blue);
+            font-weight: 600;
+        }
+        
+        .process-step h3 {
+            font-size: 1.15rem;
+            margin: 0.25rem 0 0.5rem;
+        }
+        
+        .process-step p {
+            color: var(--slate-blue);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+        
+        /* FÜR WEN */
+        .for-whom {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+        
+        .for-whom h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 2.5rem;
+        }
+        
+        .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        
+        @media (max-width: 600px) {
+            .two-columns {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+        
+        .column h3 {
+            font-size: 1rem;
+            margin-bottom: 1.25rem;
+            color: var(--charcoal);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-family: var(--font-sans);
+            font-weight: 600;
+        }
+        
+        .column.yes h3 {
+            color: var(--accent-blue);
+        }
+        
+        .column.no h3 {
+            color: var(--medium-gray);
+        }
+        
+        .column ul {
+            list-style: none;
+        }
+        
+        .column li {
+            padding: 0.6rem 0;
+            color: var(--slate-blue);
+            font-size: 1rem;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .column li:last-child {
+            border-bottom: none;
+        }
+        
+        /* INVESTMENT */
+        .investment {
+            padding: 5rem 0;
+            background: var(--charcoal);
+            color: var(--white);
+        }
+        
+        .investment h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
+        
+        .investment-details {
+            margin-bottom: 2rem;
+        }
+        
+        .price {
+            font-family: var(--font-serif);
+            font-size: clamp(3rem, 6vw, 4rem);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .price-note {
+            color: var(--light-gray);
+            font-size: 1rem;
+        }
+        
+        .investment-text {
+            color: var(--light-gray);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            max-width: 550px;
+            line-height: 1.7;
+        }
+        
+        .btn-light {
+            background: var(--white);
+            color: var(--charcoal);
+        }
+        
+        .btn-light:hover {
+            background: var(--light-gray);
+        }
+        
+        /* ERSTGESPRÄCH */
+        .call-info {
+            padding: 5rem 0;
+            background: var(--off-white);
+        }
+        
+        .call-info h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 1rem;
+        }
+        
+        .call-info-text {
+            color: var(--slate-blue);
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+        }
+        
+        .call-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .call-steps {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .call-step {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--white);
+            border: 1px solid var(--light-gray);
+        }
+        
+        .call-step-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent-blue);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .call-step h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .call-step p {
+            color: var(--slate-blue);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        
+        /* FAQ */
+        .faq {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+        
+        .faq h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 2.5rem;
+        }
+        
+        .faq-item {
+            border-bottom: 1px solid var(--light-gray);
+            padding: 1.5rem 0;
+        }
+        
+        .faq-item:first-child {
+            border-top: 1px solid var(--light-gray);
+        }
+        
+        .faq-item h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            font-family: var(--font-sans);
+            font-weight: 600;
+        }
+        
+        .faq-item p {
+            color: var(--slate-blue);
+            font-size: 1rem;
+            margin: 0;
+        }
+        
+        /* CTA */
+        .final-cta {
+            padding: 5rem 0;
+            background: var(--off-white);
+            text-align: center;
+        }
+        
+        .final-cta h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 1rem;
+        }
+        
+        .final-cta p {
+            color: var(--slate-blue);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* FOOTER */
+        footer {
+            padding: 2rem 0;
+            border-top: 1px solid var(--light-gray);
+            text-align: center;
+            background: var(--white);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .footer-links a {
+            color: var(--medium-gray);
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+        
+        .footer-links a:hover {
+            color: var(--charcoal);
+        }
+    </style>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">CARINA ANNA PRAV</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="angebote.html">Angebote</a></li>
+                <li><a href="ueber-mich.html">Über mich</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <p class="hero-label">1:1 Mentoring</p>
+                <h1>Mit intensiver 1:1 Begleitung zu einem Business, das <em>läuft</em> – auch wenn du mal nicht da bist.</h1>
+                <p class="hero-sub">
+                    6 Monate. Wöchentliche Calls. Telegram Support. Alles, was du brauchst, um Positionierung, Systeme und Automatisierung aufzubauen – individuell auf dich abgestimmt, nicht 08/15.
+                </p>
+                
+                <div class="hero-features">
+                    <div class="hero-feature">Wöchentliche 1:1 Calls per Zoom</div>
+                    <div class="hero-feature">Telegram Support für schnelle Fragen zwischendurch</div>
+                    <div class="hero-feature">Portal-Zugang mit allen Ressourcen und Aufzeichnungen</div>
+                    <div class="hero-feature">Strategie, die zu DIR und deinem Business passt</div>
+                </div>
+                
+                <a href="#investment" class="btn">Jetzt Erstgespräch sichern</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- KENNST DU DAS -->
+    <section class="problems">
+        <div class="container-wide">
+            <h2>Kennst du das?</h2>
+            <p class="problems-intro">
+                Du arbeitest viel, aber irgendwie bewegt sich nichts wirklich vorwärts. Du weißt, dass es besser gehen muss – aber wie?
+            </p>
+            
+            <div class="problem-grid">
+                <div class="problem-item">
+                    <h3>Schwankende Umsätze</h3>
+                    <p>Der eine Monat läuft super, der nächste ist eine Katastrophe. Planbarkeit? Fehlanzeige.</p>
+                </div>
+                
+                <div class="problem-item">
+                    <h3>Keine klare Positionierung</h3>
+                    <p>Du machst irgendwie alles für irgendwie jeden. Und erklärst ständig, was du eigentlich machst.</p>
+                </div>
+                
+                <div class="problem-item">
+                    <h3>Dauerstress & Überforderung</h3>
+                    <p>Du bist ständig beschäftigt, aber nie mit den Dingen, die dein Business wirklich voranbringen.</p>
+                </div>
+                
+                <div class="problem-item">
+                    <h3>Keine Systeme</h3>
+                    <p>Alles läuft über dich. Fällst du aus, steht alles still. Von Automatisierung keine Spur.</p>
+                </div>
+                
+                <div class="problem-item">
+                    <h3>Kurse ohne Ergebnis</h3>
+                    <p>Du hast schon so viel gekauft. Aber nichts davon wirklich umgesetzt. Weil es nicht zu dir gepasst hat.</p>
+                </div>
+                
+                <div class="problem-item">
+                    <h3>Fehlende Klarheit</h3>
+                    <p>Du weißt nicht, was der nächste richtige Schritt ist. Und probierst deshalb alles gleichzeitig.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRANSFORMATION -->
+    <section class="transformation">
+        <div class="container-wide">
+            <h2>In 6 Monaten kann das deine Realität sein:</h2>
+            <p class="transformation-intro">
+                Kein Wunschdenken. Sondern das, was passiert, wenn du die richtigen Dinge in der richtigen Reihenfolge tust.
+            </p>
+            
+            <div class="result-grid">
+                <div class="result-item">
+                    <h3>Planbare Umsätze</h3>
+                    <p>Du weißt, woher deine Kunden kommen und kannst deinen Umsatz vorhersagen.</p>
+                </div>
+                
+                <div class="result-item">
+                    <h3>Klare Positionierung</h3>
+                    <p>Menschen verstehen sofort, was du machst und für wen. Kein Erklären mehr.</p>
+                </div>
+                
+                <div class="result-item">
+                    <h3>Systeme, die arbeiten</h3>
+                    <p>Dein Funnel läuft. Deine E-Mails laufen. Du arbeitest AM Business, nicht nur IM Business.</p>
+                </div>
+                
+                <div class="result-item">
+                    <h3>Mehr Zeit</h3>
+                    <p>Weil du nicht mehr alles manuell machst. Weil Systeme für dich arbeiten.</p>
+                </div>
+                
+                <div class="result-item">
+                    <h3>Innere Ruhe</h3>
+                    <p>Du weißt, was zu tun ist. Du hast einen Plan. Du bist nicht mehr lost.</p>
+                </div>
+                
+                <div class="result-item">
+                    <h3>Echte Freiheit</h3>
+                    <p>Ein Business, das auch läuft, wenn du mal einen Tag nicht da bist.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WAS DU BEKOMMST -->
+    <section class="features">
+        <div class="container">
+            <h2>Deine Premium-Begleitung</h2>
+            <p class="features-intro">
+                Das hier ist kein Kurs, den du alleine durcharbeitest. Das ist intensive 1:1 Zusammenarbeit. Ich bin an deiner Seite – jede Woche, 6 Monate lang.
+            </p>
+            
+            <div class="feature-list">
+                <div class="feature-item">
+                    <span class="feature-number">01</span>
+                    <div class="feature-content">
+                        <h3>Wöchentliche 1:1 Calls</h3>
+                        <p>60 Minuten, jede Woche, nur du und ich. Wir besprechen, wo du stehst, was ansteht und was der nächste Schritt ist. Kein Gruppencall-Chaos, wo du untergehst. Hier geht es nur um DICH und dein Business.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <span class="feature-number">02</span>
+                    <div class="feature-content">
+                        <h3>Telegram Support</h3>
+                        <p>Zwischen den Calls taucht eine Frage auf? Du brauchst schnell Feedback? Schreib mir. Ich antworte innerhalb von 24 Stunden. Du bist nie allein mit deinen Fragen und Entscheidungen.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <span class="feature-number">03</span>
+                    <div class="feature-content">
+                        <h3>Portal-Zugang</h3>
+                        <p>Alle Ressourcen an einem Ort: Vorlagen, Checklisten, Aufzeichnungen unserer Calls. Übersichtlich strukturiert, jederzeit verfügbar. Damit du immer weißt, wo du nachschauen kannst.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <span class="feature-number">04</span>
+                    <div class="feature-content">
+                        <h3>Individuelle Strategie</h3>
+                        <p>Kein 08/15-Fahrplan, der für jeden gleich aussieht. Wir bauen das, was für DEIN Business funktioniert. Basierend auf dem, wo du stehst, wo du hin willst und was zu dir passt.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WIE WIR ZUSAMMENARBEITEN -->
+    <section class="process">
+        <div class="container">
+            <h2>Was wir in 6 Monaten aufbauen</h2>
+            <p class="process-intro">
+                Schritt für Schritt. In der richtigen Reihenfolge. Damit am Ende ein Business steht, das funktioniert – nicht nur ein Haufen angefangener Projekte.
+            </p>
+            
+            <div class="process-steps">
+                <div class="process-step">
+                    <div>
+                        <span class="step-label">Monat 1-2</span>
+                        <h3>Positionierung & Angebot</h3>
+                        <p>Wir schaffen Klarheit: Wer bist du? Für wen? Mit welchem Angebot? Am Ende weißt du genau, was du verkaufst und wer es kaufen will. Keine Erklärungen mehr nötig.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div>
+                        <span class="step-label">Monat 2-3</span>
+                        <h3>Traffic & Sichtbarkeit</h3>
+                        <p>Woher kommen deine Kunden? Wir finden die Traffic-Quelle, die zu dir passt – ob Pinterest, SEO, Paid Ads oder Referrals. Kein "du musst auf Instagram sein". Sondern das, was für dich funktioniert.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div>
+                        <span class="step-label">Monat 3-4</span>
+                        <h3>Funnel & Kundenreise</h3>
+                        <p>Wir bauen deine automatisierte Kundenreise. Vom ersten Kontakt bis zum Kauf. Damit du nicht mehr jeden Lead einzeln betreuen musst.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div>
+                        <span class="step-label">Monat 4-5</span>
+                        <h3>Systeme & Automatisierung</h3>
+                        <p>E-Mail-Sequenzen, Onboarding, Follow-ups. Alles, was du immer wieder manuell machst, wird einmal gebaut und läuft dann automatisch.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div>
+                        <span class="step-label">Monat 5-6</span>
+                        <h3>Optimierung & Skalierung</h3>
+                        <p>Jetzt optimieren wir. Was funktioniert, machen wir mehr. Was nicht funktioniert, passen wir an. Das Ziel: Mehr Umsatz ohne mehr Arbeit.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FÜR WEN -->
+    <section class="for-whom">
+        <div class="container">
+            <h2>Ist das Mentoring das Richtige für dich?</h2>
+            
+            <div class="two-columns">
+                <div class="column yes">
+                    <h3>Das bist du</h3>
+                    <ul>
+                        <li>Du bist selbstständig und hast bereits Kunden und Umsatz</li>
+                        <li>Du weißt, dass dein Business besser laufen könnte</li>
+                        <li>Du willst Systeme aufbauen, nicht noch mehr arbeiten</li>
+                        <li>Du bist bereit, umzusetzen – nicht nur zu konsumieren</li>
+                        <li>Du kannst und willst in dich und dein Business investieren</li>
+                        <li>Du suchst individuelle Begleitung, keine Massenkurse</li>
+                    </ul>
+                </div>
+                
+                <div class="column no">
+                    <h3>Das bist du nicht</h3>
+                    <ul>
+                        <li>Du suchst eine magische Lösung ohne Arbeit</li>
+                        <li>Du willst Inhalte konsumieren, aber nicht umsetzen</li>
+                        <li>Du brauchst jemanden, der alles FÜR dich macht</li>
+                        <li>Du bist ganz am Anfang ohne jegliche Kundenerfahrung</li>
+                        <li>Du erwartest Ergebnisse ohne eigenes Commitment</li>
+                        <li>Du hast kein Budget für eine ernsthafte Investition</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INVESTMENT -->
+    <section class="investment" id="investment">
+        <div class="container">
+            <h2>Dein Investment</h2>
+            
+            <div class="investment-details">
+                <span class="price">5.555 €</span>
+                <span class="price-note">6 Monate intensive 1:1 Begleitung. Einmalzahlung oder Ratenzahlung möglich.</span>
+            </div>
+            
+            <p class="investment-text">
+                Das ist kein Impulskauf. Das ist eine ernsthafte Investition in dein Business. Deshalb starten wir mit einem unverbindlichen Erstgespräch. Wir schauen gemeinsam, ob es passt – für uns beide. Kein Verkaufsdruck. Nur eine ehrliche Einschätzung.
+            </p>
+            
+            <a href="mailto:socials@carinaannaprav.at" class="btn btn-light">
+                Jetzt Erstgespräch anfragen
+            </a>
+        </div>
+    </section>
+
+    <!-- ERSTGESPRÄCH -->
+    <section class="call-info">
+        <div class="container">
+            <h2>Was passiert im Erstgespräch?</h2>
+            <p class="call-info-text">
+                Kein Verkaufsgespräch, sondern ein echtes Kennenlernen. Wir schauen gemeinsam, wo du stehst und ob ich dir helfen kann.
+            </p>
+            
+            <div class="call-steps">
+                <div class="call-step">
+                    <div class="call-step-label">Schritt 1</div>
+                    <h3>Analyse</h3>
+                    <p>Wir schauen auf deine aktuelle Situation: Wo stehst du? Was funktioniert? Was nicht?</p>
+                </div>
+                
+                <div class="call-step">
+                    <div class="call-step-label">Schritt 2</div>
+                    <h3>Klarheit</h3>
+                    <p>Du bekommst eine ehrliche Einschätzung: Kann ich dir helfen? Und wenn ja, wie?</p>
+                </div>
+                
+                <div class="call-step">
+                    <div class="call-step-label">Schritt 3</div>
+                    <h3>Entscheidung</h3>
+                    <p>Du entscheidest in Ruhe, ob das Mentoring der richtige nächste Schritt für dich ist.</p>
+                </div>
+            </div>
+            
+            <a href="mailto:socials@carinaannaprav.at" class="btn">Erstgespräch anfragen</a>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+        <div class="container">
+            <h2>Häufige Fragen</h2>
+            
+            <div class="faq-item">
+                <h3>Wie laufen die wöchentlichen Calls ab?</h3>
+                <p>Wir treffen uns jede Woche für 60 Minuten per Zoom. Du bringst deine Fragen und aktuellen Herausforderungen mit, ich gebe dir Feedback und wir besprechen die nächsten Schritte. Alle Calls werden aufgezeichnet und stehen dir im Portal zur Verfügung.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Was ist, wenn ich mal einen Call verpasse?</h3>
+                <p>Kein Problem. Wir verschieben oder du schaust dir die Aufzeichnung an. Das Leben passiert, das verstehe ich.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Wie funktioniert der Telegram Support?</h3>
+                <p>Du kannst mir jederzeit schreiben – Fragen, Ideen, wenn du Feedback brauchst. Ich antworte in der Regel innerhalb von 24 Stunden, oft schneller.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Ist Ratenzahlung möglich?</h3>
+                <p>Ja. Wir besprechen die Details im Erstgespräch und finden eine Lösung, die für dich funktioniert.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Für welche Branchen ist das Mentoring geeignet?</h3>
+                <p>Ich arbeite mit Selbstständigen und Unternehmerinnen, die Dienstleistungen oder digitale Produkte verkaufen. Die Prinzipien von Positionierung, Systemen und Automatisierung funktionieren branchenübergreifend.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Was, wenn ich merke, dass es doch nicht passt?</h3>
+                <p>Deshalb starten wir mit einem Erstgespräch. Ich nehme nur Kundinnen an, bei denen ich mir sicher bin, dass ich helfen kann. Und du solltest auch sicher sein, dass es für dich passt.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Bereit für den nächsten Schritt?</h2>
+            <p>Lass uns sprechen. Unverbindlich. Ehrlich. Und dann entscheidest du.</p>
+            <a href="mailto:socials@carinaannaprav.at" class="btn">Erstgespräch anfragen</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <ul class="foot

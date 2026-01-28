@@ -2039,8 +2039,19 @@
             updatePosProgress(1, 8);
         }
 
+        const posAnswerTexts = {
+            1: { 2: 'Kann in einem Satz sagen was sie macht', 1: 'Formuliert es jedes Mal anders', 0: 'Muss immer viel erklären' },
+            2: { 2: 'Weiß genau für wen das Angebot ist', 1: 'Zielgruppe nur ungefähr klar', 0: 'Angebot ist für jeden' },
+            3: { 2: 'Löst ein konkretes, dringendes Problem', 1: 'Löst mehrere verschiedene Probleme', 0: 'Hilft allgemein weiter' },
+            4: { 2: 'Fremde verstehen sofort was sie anbietet', 1: 'Braucht kurze Erklärung', 0: 'Muss immer viel erklären' },
+            5: { 2: 'Hat ein klares Hauptangebot', 1: 'Hat mehrere gleichwertige Angebote', 0: 'Macht was Kunden wollen' },
+            6: { 2: 'Weiß genau was sie unterscheidet', 1: 'Ist günstiger/netter/flexibler', 0: 'Weiß nicht was sie unterscheidet' },
+            7: { 2: 'Anfragen kommen von Wunschkunden', 1: 'Anfragen sind gemischt', 0: 'Meistens falsche Anfragen' },
+            8: { 2: 'Positionierung sitzt, ändert selten', 1: 'Passt ab und zu an', 0: 'Ändert Positionierung ständig' }
+        };
+
         function posAnswer(questionNum, score) {
-            posAnswers['q' + questionNum] = score;
+            posAnswers['q' + questionNum] = posAnswerTexts[questionNum][score];
             posScore += score;
             
             const btn = event.target.closest('.quiz-option');
@@ -2204,10 +2215,18 @@
             updateBAProgress(1, 5);
         }
 
+        const baAnswerTexts = {
+            1: { 2: 'Positionierung ist glasklar', 1: 'Positionierung teilweise klar', 0: 'Keine klare Positionierung' },
+            2: { 2: 'Hat klares High-Ticket Angebot', 1: 'High-Ticket Angebot teilweise', 0: 'Kein High-Ticket Angebot' },
+            3: { 2: 'Traffic läuft automatisch', 1: 'Etwas Traffic', 0: 'Kein funktionierender Traffic' },
+            4: { 2: 'Prozesse sind automatisiert', 1: 'Teilweise automatisiert', 0: 'Alles manuell' },
+            5: { 2: 'Hat genug Zeit für sich', 1: 'Zeit ist okay', 0: 'Arbeitet non-stop' }
+        };
+
         function baAnswer(questionNum, score) {
             const label = baLabels[questionNum];
             baScores[label] = score;
-            baAnswers['q' + questionNum] = score;
+            baAnswers['q' + questionNum] = baAnswerTexts[questionNum][score];
             
             const btn = event.target.closest('.quiz-option');
             btn.style.background = 'var(--accent-blue)';

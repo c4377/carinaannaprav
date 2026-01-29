@@ -1334,7 +1334,8 @@
 
     <!-- JAVASCRIPT -->
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        const GOOGLE_SHEETS_WEBHOOK = 'https://script.google.com/macros/s/AKfycbyK8prmJNsF4GwpzL483jg--cBR5cXHeubbVZolMSvjcuNurtF4XgKAcczP4Z3vg2LZ/exec';
+        // Netlify Function für Quiz-Submissions (sendet an ActiveCampaign + Google Sheets)
+        const QUIZ_SUBMISSION_URL = '/.netlify/functions/quiz-submission';
         const TIDYCAL_LINK = 'https://tidycal.com/socials1/erstgespraeche';
 
         // Mobile Menu Toggle
@@ -2167,20 +2168,21 @@
             messageEl.style.color = 'var(--medium-gray)';
             
             try {
-                await fetch(GOOGLE_SHEETS_WEBHOOK, {
+                const response = await fetch(QUIZ_SUBMISSION_URL, {
                     method: 'POST',
-                    mode: 'no-cors',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        quizType: 'positioning',
-                        firstname: firstname,
+                        quizType: 'pdf-download',
+                        firstName: firstname,
                         email: email,
                         answers: posAnswers,
-                        result: window.posResultData.headline,
-                        consent: 'true',
-                        wantsPDF: 'true'
+                        result: window.posResultData.headline
                     })
                 });
+                
+                if (!response.ok) {
+                    throw new Error('Submission failed');
+                }
                 
                 messageEl.style.color = '#22c55e';
                 messageEl.textContent = '✓ PDF wird geöffnet...';
@@ -2191,6 +2193,8 @@
                 }, 1000);
                 
             } catch (error) {
+                console.error('Quiz submission error:', error);
+                // Bei Fehler trotzdem weiterleiten
                 window.open('/30-positionierungen.html', '_blank');
                 closePositionierung();
             }
@@ -2209,19 +2213,21 @@
             messageEl.textContent = '';
             
             try {
-                await fetch(GOOGLE_SHEETS_WEBHOOK, {
+                const response = await fetch(QUIZ_SUBMISSION_URL, {
                     method: 'POST',
-                    mode: 'no-cors',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         quizType: 'positioning',
-                        firstname: firstname,
+                        firstName: firstname,
                         email: email,
                         answers: posAnswers,
-                        result: window.posResultData.headline,
-                        consent: 'true'
+                        result: window.posResultData.headline
                     })
                 });
+                
+                if (!response.ok) {
+                    throw new Error('Submission failed');
+                }
                 
                 const tidycalURL = `${TIDYCAL_LINK}?name=${encodeURIComponent(firstname)}&email=${encodeURIComponent(email)}&note=${encodeURIComponent(`Positionierung: ${window.posResultData.totalScore}/16 (${window.posResultData.percentage}%) - ${window.posResultData.headline}`)}`;
                 
@@ -2233,6 +2239,8 @@
                 }, 1500);
                 
             } catch (error) {
+                console.error('Quiz submission error:', error);
+                // Bei Fehler trotzdem zu TidyCal weiterleiten
                 const tidycalURL = `${TIDYCAL_LINK}?name=${encodeURIComponent(firstname)}&email=${encodeURIComponent(email)}`;
                 setTimeout(() => {
                     window.open(tidycalURL, '_blank');
@@ -2467,22 +2475,25 @@
             messageEl.style.color = 'var(--medium-gray)';
             
             try {
-                await fetch(GOOGLE_SHEETS_WEBHOOK, {
+                const response = await fetch(QUIZ_SUBMISSION_URL, {
                     method: 'POST',
-                    mode: 'no-cors',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         quizType: 'bestandsaufnahme',
-                        firstname: firstname,
+                        firstName: firstname,
                         email: email,
                         answers: baAnswers,
                         totalScore: window.baResultData.totalScore,
                         percentage: window.baResultData.percentage,
                         resultHeadline: window.baResultData.headline,
                         missing: window.baResultData.missing,
-                        wantsFreebies: 'true'
+                        result: `${window.baResultData.totalScore}/10 (${window.baResultData.percentage}%)`
                     })
                 });
+                
+                if (!response.ok) {
+                    throw new Error('Submission failed');
+                }
                 
                 messageEl.style.color = '#22c55e';
                 messageEl.textContent = '✓ Weiterleitung...';
@@ -2492,6 +2503,8 @@
                 }, 1000);
                 
             } catch (error) {
+                console.error('Quiz submission error:', error);
+                // Bei Fehler trotzdem weiterleiten
                 window.location.href = '/freebies.html';
             }
         }
@@ -2509,21 +2522,25 @@
             messageEl.textContent = '';
             
             try {
-                await fetch(GOOGLE_SHEETS_WEBHOOK, {
+                const response = await fetch(QUIZ_SUBMISSION_URL, {
                     method: 'POST',
-                    mode: 'no-cors',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         quizType: 'bestandsaufnahme',
-                        firstname: firstname,
+                        firstName: firstname,
                         email: email,
                         answers: baAnswers,
                         totalScore: window.baResultData.totalScore,
                         percentage: window.baResultData.percentage,
                         resultHeadline: window.baResultData.headline,
-                        missing: window.baResultData.missing
+                        missing: window.baResultData.missing,
+                        result: `${window.baResultData.totalScore}/10 (${window.baResultData.percentage}%)`
                     })
                 });
+                
+                if (!response.ok) {
+                    throw new Error('Submission failed');
+                }
                 
                 const tidycalURL = `${TIDYCAL_LINK}?name=${encodeURIComponent(firstname)}&email=${encodeURIComponent(email)}&note=${encodeURIComponent(`Score: ${window.baResultData.totalScore}/10 (${window.baResultData.percentage}%) | Fehlt: ${window.baResultData.missing}`)}`;
                 
@@ -2535,6 +2552,8 @@
                 }, 1500);
                 
             } catch (error) {
+                console.error('Quiz submission error:', error);
+                // Bei Fehler trotzdem zu TidyCal weiterleiten
                 const tidycalURL = `${TIDYCAL_LINK}?name=${encodeURIComponent(firstname)}&email=${encodeURIComponent(email)}`;
                 setTimeout(() => {
                     window.open(tidycalURL, '_blank');

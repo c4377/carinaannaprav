@@ -2118,10 +2118,8 @@
                 </div>
                 
                 <div style="background: var(--charcoal); color: var(--white); padding: 2rem; margin-top: 2rem;">
-                    <h4 style="margin-bottom: 1rem; text-align: center; font-size: 1rem; font-family: var(--font-sans);">Dein Ergebnis speichern</h4>
-                    <p style="text-align: center; color: var(--medium-gray); margin-bottom: 1.5rem; font-size: 0.95rem;">
-                        30 Minuten Gespräch. Ich zeige dir, welche Schritte als nächstes Sinn machen.
-                    </p>
+                    <h4 style="margin-bottom: 1rem; text-align: center; font-size: 1rem; font-family: var(--font-sans);">Wie geht's weiter?</h4>
+                    
                     <form id="pos-contact-form" onsubmit="submitPositionierungForm(event)">
                         <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
                             <input type="text" id="pos-firstname" placeholder="Vorname" required
@@ -2129,9 +2127,18 @@
                             <input type="email" id="pos-email" placeholder="E-Mail" required
                                 style="flex: 1; min-width: 150px; padding: 0.875rem; border: 1px solid var(--light-gray); font-size: 1rem; background: rgba(255,255,255,0.05); color: white;">
                         </div>
-                        <button type="submit" style="width: 100%; margin-top: 0.75rem; padding: 1rem; background: var(--white); color: var(--charcoal); border: none; font-weight: 600; cursor: pointer; text-transform: uppercase; letter-spacing: 0.05em;">
-                            Ergebnis sichern & Termin buchen
-                        </button>
+                        
+                        <div style="display: flex; gap: 0.75rem; margin-top: 0.75rem; flex-wrap: wrap;">
+                            <button type="button" onclick="submitPosWithPDF()" style="flex: 1; min-width: 200px; padding: 1rem; background: transparent; color: var(--white); border: 1px solid var(--light-gray); font-weight: 600; cursor: pointer; font-size: 0.9rem;">
+                                📄 Kostenloses PDF holen
+                            </button>
+                            <button type="submit" style="flex: 1; min-width: 200px; padding: 1rem; background: var(--white); color: var(--charcoal); border: none; font-weight: 600; cursor: pointer; font-size: 0.9rem;">
+                                📅 Erstgespräch buchen
+                            </button>
+                        </div>
+                        <p style="font-size: 0.75rem; color: var(--medium-gray); margin-top: 0.75rem; text-align: center;">
+                            Du meldest dich für den Newsletter an. Abmelden jederzeit.
+                        </p>
                     </form>
                     <p id="pos-form-message" style="text-align: center; margin-top: 1rem;"></p>
                     
@@ -2143,6 +2150,50 @@
             
             document.getElementById('pos-result-content').innerHTML = resultHTML;
             showPosScreen('pos-screen-result');
+        }
+
+        async function submitPosWithPDF() {
+            const firstname = document.getElementById('pos-firstname').value.trim();
+            const email = document.getElementById('pos-email').value.trim();
+            const messageEl = document.getElementById('pos-form-message');
+            
+            if (!firstname || !email) {
+                messageEl.textContent = 'Bitte Vorname und E-Mail eingeben.';
+                messageEl.style.color = '#ef4444';
+                return;
+            }
+            
+            messageEl.textContent = 'Wird gespeichert...';
+            messageEl.style.color = 'var(--medium-gray)';
+            
+            try {
+                await fetch(GOOGLE_SHEETS_WEBHOOK, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        quizType: 'positioning',
+                        firstname: firstname,
+                        email: email,
+                        answers: posAnswers,
+                        result: window.posResultData.headline,
+                        consent: 'true',
+                        wantsPDF: 'true'
+                    })
+                });
+                
+                messageEl.style.color = '#22c55e';
+                messageEl.textContent = '✓ PDF wird geöffnet...';
+                
+                setTimeout(() => {
+                    window.open('/30-positionierungen.html', '_blank');
+                    closePositionierung();
+                }, 1000);
+                
+            } catch (error) {
+                window.open('/30-positionierungen.html', '_blank');
+                closePositionierung();
+            }
         }
 
         async function submitPositionierungForm(e) {
@@ -2346,10 +2397,7 @@
                 ${missingHTML}
                 
                 <div style="background: var(--off-white); color: var(--charcoal); padding: 2rem; margin-top: 1.5rem;">
-                    <h4 style="color: var(--charcoal); margin-bottom: 0.75rem; font-size: 1.125rem;">Nächster Schritt</h4>
-                    <p style="color: var(--slate-blue); margin-bottom: 1.5rem;">
-                        30 Minuten Gespräch. Ich zeige dir, welche Schritte als nächstes Sinn machen.
-                    </p>
+                    <h4 style="color: var(--charcoal); margin-bottom: 1rem; font-size: 1.125rem;">Wie geht's weiter?</h4>
                     
                     <form id="ba-contact-form" onsubmit="submitBestandsaufnahmeForm(event)">
                         <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1rem;">
@@ -2358,27 +2406,32 @@
                                 id="ba-firstname"
                                 placeholder="Vorname" 
                                 required
-                                style="flex: 1; min-width: 150px; padding: 0.875rem; border: 1px solid var(--light-gray); font-size: 1rem; background: rgba(255,255,255,0.05); color: white;"
+                                style="flex: 1; min-width: 150px; padding: 0.875rem; border: 1px solid var(--light-gray); font-size: 1rem;"
                             >
                             <input 
                                 type="email" 
                                 id="ba-email"
                                 placeholder="E-Mail" 
                                 required
-                                style="flex: 1; min-width: 150px; padding: 0.875rem; border: 1px solid var(--light-gray); font-size: 1rem; background: rgba(255,255,255,0.05); color: white;"
+                                style="flex: 1; min-width: 150px; padding: 0.875rem; border: 1px solid var(--light-gray); font-size: 1rem;"
                             >
                         </div>
                         
-                        <button type="submit" style="width: 100%; padding: 1rem; background: var(--accent-blue); color: white; border: none; font-weight: 600; font-size: 1rem; cursor: pointer; text-transform: uppercase; letter-spacing: 0.05em;">
-                            Gespräch anfragen
-                        </button>
+                        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                            <button type="button" onclick="submitBAWithFreebies()" style="flex: 1; min-width: 200px; padding: 1rem; background: transparent; color: var(--charcoal); border: 1px solid var(--charcoal); font-weight: 600; cursor: pointer; font-size: 0.9rem;">
+                                🎁 Kostenlose Ressourcen
+                            </button>
+                            <button type="submit" style="flex: 1; min-width: 200px; padding: 1rem; background: var(--accent-blue); color: white; border: none; font-weight: 600; cursor: pointer; font-size: 0.9rem;">
+                                📅 Erstgespräch buchen
+                            </button>
+                        </div>
                         
-                        <p id="ba-form-message" style="margin-top: 1rem; text-align: center; color: var(--accent-blue-light);"></p>
+                        <p style="font-size: 0.75rem; color: var(--medium-gray); margin-top: 0.75rem; text-align: center;">
+                            Du meldest dich für den Newsletter an. Abmelden jederzeit.
+                        </p>
+                        
+                        <p id="ba-form-message" style="margin-top: 1rem; text-align: center;"></p>
                     </form>
-                    
-                    <p style="color: var(--medium-gray); font-size: 0.85rem; text-align: center; margin-top: 1rem;">
-                        Kein Verkaufsgespräch. Nur ehrliche Einschätzung.
-                    </p>
                 </div>
                 
                 <div style="text-align: center; margin-top: 1.5rem;">
@@ -2397,6 +2450,50 @@
                 headline: headline,
                 missing: missing.map(m => m.name).join(', ')
             };
+        }
+
+        async function submitBAWithFreebies() {
+            const firstname = document.getElementById('ba-firstname').value.trim();
+            const email = document.getElementById('ba-email').value.trim();
+            const messageEl = document.getElementById('ba-form-message');
+            
+            if (!firstname || !email) {
+                messageEl.textContent = 'Bitte Vorname und E-Mail eingeben.';
+                messageEl.style.color = '#ef4444';
+                return;
+            }
+            
+            messageEl.textContent = 'Wird gespeichert...';
+            messageEl.style.color = 'var(--medium-gray)';
+            
+            try {
+                await fetch(GOOGLE_SHEETS_WEBHOOK, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        quizType: 'bestandsaufnahme',
+                        firstname: firstname,
+                        email: email,
+                        answers: baAnswers,
+                        totalScore: window.baResultData.totalScore,
+                        percentage: window.baResultData.percentage,
+                        resultHeadline: window.baResultData.headline,
+                        missing: window.baResultData.missing,
+                        wantsFreebies: 'true'
+                    })
+                });
+                
+                messageEl.style.color = '#22c55e';
+                messageEl.textContent = '✓ Weiterleitung...';
+                
+                setTimeout(() => {
+                    window.location.href = '/freebies.html';
+                }, 1000);
+                
+            } catch (error) {
+                window.location.href = '/freebies.html';
+            }
         }
 
         async function submitBestandsaufnahmeForm(e) {

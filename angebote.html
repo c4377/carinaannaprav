@@ -681,7 +681,7 @@
                             <h4>Was ich baue</h4>
                             <ul class="offer-list">
                                 <li><strong>Website</strong> Custom, conversion-optimiert</li>
-                                <li><strong>Pinterest-System</strong> Account, Templates, Strategie</li>
+                                <li><strong>Design your Freedom System</strong> Organische Reichweite, Templates, Strategie</li>
                                 <li><strong>Newsletter-Automation</strong> Setup + Welcome-Serie</li>
                                 <li><strong>Quiz / Bewerbungsformular</strong> Lead-Qualifier</li>
                                 <li><strong>Google Sheets Integration</strong> Leads automatisch erfasst</li>
@@ -698,7 +698,7 @@
                                 </div>
                                 <div class="timeline-item">
                                     <strong>Woche 3-4</strong>
-                                    <span>Pinterest</span>
+                                    <span>DYF System</span>
                                 </div>
                                 <div class="timeline-item">
                                     <strong>Woche 5-6</strong>
@@ -747,7 +747,7 @@
                             <h4>Was du bekommst</h4>
                             <ul class="offer-list">
                                 <li><strong>Alles aus Foundation</strong> Positionierung, Offer, Sales</li>
-                                <li><strong>Alles aus System-Setup</strong> Website, Pinterest, Automation</li>
+                                <li><strong>Alles aus System-Setup</strong> Website, DYF System, Automation</li>
                                 <li><strong>12x 1:1 Calls</strong> Wöchentlich oder bi-weekly</li>
                                 <li><strong>Priority Support</strong> Schnellere Response-Times</li>
                                 <li><strong>Strategie + Umsetzung</strong> Parallel</li>
@@ -773,7 +773,7 @@
                                 </div>
                                 <div class="timeline-item">
                                     <strong>Woche 5-8</strong>
-                                    <span>Sales + Pinterest + Automation</span>
+                                    <span>Sales + DYF System + Automation</span>
                                 </div>
                                 <div class="timeline-item">
                                     <strong>Woche 9-10</strong>
@@ -817,13 +817,9 @@
         <div class="container">
             <h3>Direkt schreiben</h3>
             <div class="contact-links">
-                <a href="/cdn-cgi/l/email-protection#6d1e020e040c011e2d0e0c1f04030c0c03030c1d1f0c1b430c19" class="contact-link">
+                <a href="mailto:socials@carinaannaprav.at" class="contact-link">
                     <strong>E-Mail</strong>
-                    <span class="__cf_email__" data-cfemail="d0a3bfb3b9b1bca390b3b1a2b9beb1b1bebeb1a0a2b1a6feb1a4">[email&#160;protected]</span>
-                </a>
-                <a href="https://t.me/carinaannaprav" class="contact-link" target="_blank">
-                    <strong>Telegram</strong>
-                    @carinaannaprav
+                    socials@carinaannaprav.at
                 </a>
             </div>
         </div>
@@ -839,4 +835,39 @@
                 <a href="agb.html">AGB</a>
             </p>
         </div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        function toggleOffer(header) {
+            const card = header.parentElement;
+            const isOpen = card.classList.contains('open');
+            
+            // Schließe alle anderen
+            document.querySelectorAll('.offer-card').forEach(c => {
+                c.classList.remove('open');
+            });
+            
+            // Toggle aktuelle Karte
+            if (!isOpen) {
+                card.classList.add('open');
+            }
+        }
+
+        // URL Parameter für direktes Öffnen
+        document.addEventListener('DOMContentLoaded', function() {
+            const hash = window.location.hash;
+            if (hash) {
+                const card = document.querySelector(hash);
+                if (card && card.classList.contains('offer-card')) {
+                    card.classList.add('open');
+                    setTimeout(() => {
+                        card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 100);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
     

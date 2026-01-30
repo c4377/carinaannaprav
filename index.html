@@ -263,7 +263,10 @@
             padding-top: 80px;
             position: relative;
             overflow: hidden;
-            background: var(--off-white);
+            background: linear-gradient(rgba(33, 37, 41, 0.7), rgba(33, 37, 41, 0.7)), url('bilder/hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
         
         .hero-content {
@@ -276,18 +279,20 @@
             font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 0.2em;
-            color: var(--accent-blue);
+            color: var(--white);
             margin-bottom: var(--spacing-sm);
             font-weight: 600;
+            opacity: 0.9;
         }
         
         .hero h1 {
             margin-bottom: var(--spacing-md);
+            color: var(--white);
         }
         
         .hero-subheading {
             font-size: clamp(1.125rem, 2.5vw, 1.375rem);
-            color: var(--slate-blue);
+            color: var(--light-gray);
             margin-bottom: var(--spacing-lg);
             line-height: 1.7;
         }

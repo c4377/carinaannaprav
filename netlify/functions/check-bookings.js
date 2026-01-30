@@ -5,10 +5,6 @@ const TIDYCAL_API_KEY = process.env.TIDYCAL_API_KEY;
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 
-// Speichert die letzte gecheckte Buchungs-ID (in-memory, wird bei jedem Deploy zurückgesetzt)
-// Für persistente Speicherung könnte man Supabase oder KV nutzen
-let lastCheckedBookingId = null;
-
 exports.handler = async (event, context) => {
   console.log('Tidycal booking check started...');
 
@@ -88,7 +84,6 @@ async function sendTelegramNotification(booking) {
     const name = booking.name || booking.contact?.name || 'Unbekannt';
     const email = booking.email || booking.contact?.email || 'Keine Email';
     const startTime = booking.starts_at || booking.start_time || booking.datetime || '';
-    const endTime = booking.ends_at || booking.end_time || '';
     const bookingType = booking.booking_type?.name || booking.event_name || 'Termin';
     const zoomLink = booking.location?.join_url || booking.zoom_join_url || booking.meeting_url || '';
     const notes = booking.notes || '';
@@ -111,33 +106,35 @@ async function sendTelegramNotification(booking) {
       console.log('Date parsing failed');
     }
 
-    // Telegram Nachricht zusammenbauen
-    let message = `📅 *Neue Buchung\\!*\n\n`;
-    message += `👤 *Name:* ${escapeMarkdown(name)}\n`;
-    message += `📧 *Email:* ${escapeMarkdown(email)}\n`;
-    message += `🗓 *Wann:* ${escapeMarkdown(formattedDate)}\n`;
-    message += `📋 *Typ:* ${escapeMarkdown(bookingType)}\n`;
+    // Telegram Nachricht zusammenbauen (Plain Text - kein Markdown)
+    let message = `📅 NEUE BUCHUNG!\n\n`;
+    message += `👤 Name: ${name}\n`;
+    message += `📧 Email: ${email}\n`;
+    message += `🗓 Wann: ${formattedDate}\n`;
+    message += `📋 Typ: ${bookingType}\n`;
 
     if (zoomLink) {
-      message += `\n🔗 *Zoom Link:*\n${zoomLink}\n`;
+      message += `\n🔗 Zoom Link:\n${zoomLink}\n`;
     }
 
     if (notes) {
-      message += `\n📝 *Notizen:*\n${escapeMarkdown(notes)}\n`;
+      message += `\n📝 Notizen:\n${notes}\n`;
     }
 
     if (answers && answers.length > 0) {
-      message += `\n💬 *Antworten:*\n`;
+      message += `\n💬 Antworten:\n`;
       answers.forEach(answer => {
         const question = answer.question || answer.label || '';
         const response = answer.answer || answer.value || '';
         if (question && response) {
-          message += `• ${escapeMarkdown(question)}: ${escapeMarkdown(response)}\n`;
+          message += `• ${question}: ${response}\n`;
         }
       });
     }
 
-    // An Telegram senden
+    console.log('Sending Telegram message for:', name);
+
+    // An Telegram senden (Plain Text)
     const telegramResponse = await fetch(
       `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
       {
@@ -147,9 +144,7 @@ async function sendTelegramNotification(booking) {
         },
         body: JSON.stringify({
           chat_id: TELEGRAM_CHAT_ID,
-          text: message,
-          parse_mode: 'MarkdownV2',
-          disable_web_page_preview: false
+          text: message
         })
       }
     );
@@ -158,56 +153,11 @@ async function sendTelegramNotification(booking) {
 
     if (!telegramResponse.ok) {
       console.error('Telegram error:', result);
-      
-      // Fallback: Sende ohne Markdown wenn Parsing fehlschlägt
-      if (result.description?.includes('parse')) {
-        const plainMessage = message
-          .replace(/\\/g, '')
-          .replace(/\*/g, '')
-          .replace(/\n/g, '\n');
-        
-        await fetch(
-          `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
-          {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              chat_id: TELEGRAM_CHAT_ID,
-              text: plainMessage
-            })
-          }
-        );
-      }
     } else {
-      console.log('Telegram notification sent for:', name);
+      console.log('Telegram notification sent successfully for:', name);
     }
 
   } catch (error) {
     console.error('Telegram notification error:', error);
   }
-}
-
-// Escape special MarkdownV2 characters
-function escapeMarkdown(text) {
-  if (!text) return '';
-  return String(text)
-    .replace(/\\/g, '\\\\')
-    .replace(/_/g, '\\_')
-    .replace(/\*/g, '\\*')
-    .replace(/\[/g, '\\[')
-    .replace(/\]/g, '\\]')
-    .replace(/\(/g, '\\(')
-    .replace(/\)/g, '\\)')
-    .replace(/~/g, '\\~')
-    .replace(/`/g, '\\`')
-    .replace(/>/g, '\\>')
-    .replace(/#/g, '\\#')
-    .replace(/\+/g, '\\+')
-    .replace(/-/g, '\\-')
-    .replace(/=/g, '\\=')
-    .replace(/\|/g, '\\|')
-    .replace(/\{/g, '\\{')
-    .replace(/\}/g, '\\}')
-    .replace(/\./g, '\\.')
-    .replace(/!/g, '\\!');
 }

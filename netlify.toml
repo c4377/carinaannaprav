@@ -4,3 +4,7 @@
 
 [functions]
   node_bundler = "esbuild"
+
+# Scheduled Function: Checkt alle 5 Minuten nach neuen Tidycal Buchungen
+[functions."check-bookings"]
+  schedule = "*/5 * * * *"

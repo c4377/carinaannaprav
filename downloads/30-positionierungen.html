@@ -14,13 +14,13 @@
         }
         
         :root {
-            --cream: #FAF9F6;
-            --beige: #E8DED2;
-            --warm-beige: #D4C5B0;
-            --charcoal: #2D2D2D;
-            --dark-gray: #4A4A4A;
-            --light-gray: #F5F5F5;
-            --accent: #B89968;
+            --white: #FFFFFF;
+            --light-gray: #E9ECEF;
+            --off-white: #F8F9FA;
+            --charcoal: #212529;
+            --slate-blue: #4A5568;
+            --medium-gray: #6C757D;
+            --accent-blue: #2C5282;
             
             --font-serif: 'Playfair Display', Georgia, serif;
             --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
@@ -29,7 +29,7 @@
         body {
             font-family: var(--font-sans);
             color: var(--charcoal);
-            background: var(--cream);
+            background: var(--white);
             line-height: 1.7;
             padding: 2rem 1rem;
         }
@@ -66,7 +66,7 @@
         
         .subtitle {
             font-size: clamp(1.125rem, 2vw, 1.375rem);
-            color: var(--dark-gray);
+            color: var(--slate-blue);
             margin-bottom: 2rem;
             font-weight: 300;
         }
@@ -76,7 +76,7 @@
             color: var(--charcoal);
             margin: 3rem 0 1.5rem;
             padding-top: 2rem;
-            border-top: 2px solid var(--beige);
+            border-top: 2px solid var(--light-gray);
         }
         
         h2:first-of-type {
@@ -85,186 +85,150 @@
         }
         
         h3 {
-            font-size: clamp(1.25rem, 2.5vw, 1.625rem);
+            font-size: clamp(1.25rem, 2.5vw, 1.5rem);
             color: var(--charcoal);
-            margin: 2.5rem 0 1rem;
-        }
-        
-        h4 {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--accent);
-            margin: 1.5rem 0 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            font-family: var(--font-sans);
+            margin: 2rem 0 1rem;
         }
         
         p {
-            font-size: 0.9375rem;
             margin-bottom: 1rem;
-            color: var(--dark-gray);
-        }
-        
-        strong {
-            color: var(--charcoal);
-            font-weight: 600;
-        }
-        
-        .save-pdf-btn {
-            position: sticky;
-            top: 20px;
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: var(--charcoal);
-            color: var(--cream);
-            border: none;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-weight: 600;
-            font-size: 0.875rem;
-            margin-bottom: 2rem;
-            transition: all 0.3s ease;
-            z-index: 100;
-        }
-        
-        .save-pdf-btn:hover {
-            background: var(--dark-gray);
-            transform: translateY(-2px);
         }
         
         .intro-box {
-            background: linear-gradient(135deg, var(--beige) 0%, var(--warm-beige) 100%);
+            background: var(--off-white);
             padding: 2rem;
             margin: 2rem 0;
-            border-left: 4px solid var(--accent);
+            border-left: 4px solid var(--accent-blue);
         }
         
         .positioning-card {
-            background: var(--light-gray);
+            background: var(--off-white);
             padding: 2rem;
-            margin: 2rem 0;
-            border-left: 3px solid var(--accent);
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--accent-blue);
         }
         
         .positioning-card h3 {
             margin-top: 0;
-            color: var(--charcoal);
+            color: var(--accent-blue);
         }
         
-        .problem-section {
+        .was-sagst-du {
+            background: var(--light-gray);
+            padding: 1rem 1.5rem;
             margin: 1rem 0;
+            font-style: italic;
+            border-radius: 4px;
         }
         
-        .problem-label {
-            font-weight: 600;
-            color: var(--accent);
-            font-size: 0.875rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+        .was-wirklich {
+            background: var(--charcoal);
+            color: var(--white);
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 4px;
         }
         
-        .positioning-statement {
-            background: var(--cream);
+        .positionierung {
+            background: var(--white);
             padding: 1.5rem;
-            margin: 1.5rem 0;
-            font-size: 1rem;
-            line-height: 1.6;
-            border-left: 3px solid var(--charcoal);
+            margin: 1rem 0;
+            border: 2px solid var(--accent-blue);
+            font-size: 1.1rem;
         }
         
-        .offers {
-            margin: 1.5rem 0;
+        .angebote {
+            margin-top: 1.5rem;
         }
         
-        .offers p {
-            margin: 0.5rem 0;
-            padding-left: 1rem;
+        .angebot {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .angebot:last-child {
+            border-bottom: none;
+        }
+        
+        .angebot-name {
+            flex: 1;
+        }
+        
+        .angebot-name strong {
+            color: var(--accent-blue);
+        }
+        
+        .angebot-preis {
+            font-weight: 600;
+            color: var(--charcoal);
+            white-space: nowrap;
+            margin-left: 1rem;
         }
         
         .action-box {
             background: var(--charcoal);
-            color: var(--cream);
-            padding: 2rem;
+            color: var(--white);
+            padding: 2.5rem;
             margin: 3rem 0;
             text-align: center;
         }
         
         .action-box h2 {
-            color: var(--cream);
+            color: var(--white);
             border: none;
+            margin: 0 0 1rem 0;
             padding: 0;
-            margin-bottom: 1rem;
         }
         
         .action-box p {
-            color: var(--beige);
+            color: var(--light-gray);
         }
         
         .action-box a {
-            color: var(--accent);
+            color: var(--accent-blue);
+            background: var(--white);
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1rem;
         }
         
         .framework-box {
-            background: var(--beige);
+            background: var(--light-gray);
             padding: 2rem;
             margin: 2rem 0;
         }
         
-        .framework-box h4 {
-            color: var(--charcoal);
+        .save-pdf-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--charcoal);
+            color: var(--white);
+            border: none;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
         
-        code {
-            display: block;
-            background: var(--cream);
-            padding: 1.5rem;
-            margin: 1rem 0;
-            border-left: 3px solid var(--accent);
-            font-family: var(--font-sans);
-            font-size: 0.9375rem;
-            line-height: 1.6;
-            white-space: pre-wrap;
-        }
-        
-        .example-list {
-            margin: 1rem 0 1rem 1.5rem;
-        }
-        
-        .example-list li {
-            margin: 0.5rem 0;
-        }
-        
-        ol.example-list {
-            list-style-type: decimal;
-        }
-        
-        ul.example-list {
-            list-style-type: disc;
-        }
-        
-        .checkmark {
-            color: var(--accent);
-            font-weight: bold;
-            margin-right: 0.5rem;
-        }
-        
-        .crossmark {
-            color: #cc0000;
-            font-weight: bold;
-            margin-right: 0.5rem;
+        .save-pdf-btn:hover {
+            background: var(--accent-blue);
         }
         
         footer {
             margin-top: 4rem;
             padding-top: 2rem;
-            border-top: 2px solid var(--beige);
+            border-top: 2px solid var(--light-gray);
             text-align: center;
         }
         
         footer p {
-            color: var(--dark-gray);
+            color: var(--slate-blue);
             font-size: 0.875rem;
         }
         
@@ -306,871 +270,995 @@
     <div class="container">
         <button class="save-pdf-btn" onclick="window.print()">📄 Als PDF speichern</button>
         
-        <h1>30 POSITIONIERUNGEN</h1>
-        <p class="subtitle">Die niemand sonst bedient</p>
-        
-        <p><strong>Für Selbstständige die endlich aus der "Ich helfe allen..."-Falle rauskommen wollen</strong></p>
+        <h1>30 Positionierungen</h1>
+        <p class="subtitle">Die dir zeigen wie du aus ich mache irgendwie alles rauskommst</p>
         
         <div class="intro-box">
-            <h2>Wie du diese Beispiele nutzt</h2>
-            <p>Hey!</p>
-            <p>Du hältst 30 Positionierungs-Beispiele in der Hand. Aber <strong>ACHTUNG</strong>: Das sind NICHT Templates zum 1:1-Kopieren.</p>
-            <p><strong>Sondern:</strong></p>
-            <p>Sie zeigen dir <strong>Muster</strong>, wie spitze Positionierung funktioniert. Du sollst:</p>
-            <ol class="example-list">
-                <li><strong>Erkennen</strong> welche Zielgruppen-Typen es gibt</li>
-                <li><strong>Verstehen</strong> wie man das "echte Problem" hinter dem "Symptom-Problem" findet</li>
-                <li><strong>Abstrahieren</strong> auf deine eigene Situation</li>
-                <li><strong>Adaptieren</strong> die Struktur für dein Business</li>
-            </ol>
-            <p><strong>Das Ziel:</strong> Nach diesem PDF weißt du GENAU, wie du deine Positionierung formulierst – ohne "Ich mache alles für jeden"-Bullshit.</p>
-            <p>Los geht's! 🎯</p>
+            <p><strong>Bevor du loslegst eine Sache:</strong></p>
+            <p>Das hier sind keine Templates zum Kopieren weil das wäre zu einfach und würde nicht funktionieren</p>
+            <p>Was du hier findest sind <strong>Muster</strong> und du siehst wie spitze Positionierung aussieht und du erkennst das Prinzip dahinter und dann überträgst du es auf dein Business</p>
+            <p>Bei jeder Positionierung siehst du auch <strong>konkrete Preise</strong> und nicht weil du die 1:1 übernehmen sollst sondern damit du siehst was möglich ist wenn du aufhörst dich unter Wert zu verkaufen</p>
+            <p>Los geht's</p>
         </div>
 
-        <h2>TEIL 1: CREATIVES & DESIGNER</h2>
+        <h2>Teil 1: Creatives & Designer</h2>
 
         <div class="positioning-card">
-            <h3>1. Brand Fotografinnen für Female Founders</h3>
+            <h3>1. Brand-Fotografin für Gründerinnen</h3>
             
-            <div class="problem-section">
-                <p class="problem-label">Symptom-Problem:</p>
-                <p>"Ich fotografiere alles - Hochzeiten, Business, Produkte"</p>
+            <div class="was-sagst-du">
+                Was du wahrscheinlich sagst: "Ich fotografiere alles – Hochzeiten, Business, Produkte, Portraits..."
             </div>
             
-            <div class="problem-section">
-                <p class="problem-label">Echtes Problem:</p>
-                <p>Du bist austauschbar. Niemand erinnert sich an "Fotografin für alles".</p>
+            <div class="was-wirklich">
+                Was wirklich passiert: Du bist austauschbar. Niemand erinnert sich an "die Fotografin für alles". Du kämpfst um jeden Auftrag und unterbietest dich gegenseitig.
             </div>
             
-            <div class="positioning-statement">
-                <strong>Positioning Statement:</strong><br>
-                Ich fotografiere NUR Female Founders die ihren Corporate-Job hassen und jetzt ihr eigenes Business haben – für authentische Brand-Fotos ohne Stock-Photo-Vibes.
+            <div class="positionierung">
+                <strong>So könnte es klingen:</strong><br>
+                "Ich fotografiere Gründerinnen, die gerade ihren Corporate-Job verlassen haben und jetzt ein eigenes Business aufbauen – für Brand-Fotos, die nach dir aussehen, nicht nach Stock-Photo."
             </div>
             
-            <div class="offers">
-                <p><strong>Quick-Win:</strong> Portfolio-Audit: Welche Fotos bekommst du die meisten Komplimente?</p>
-                <p><strong>System-Build:</strong> Signature-Style-Entwicklung: Dein erkennbarer Look + Booking-System</p>
-                <p><strong>VIP-Level:</strong> Brand-Photography-Retainer: Monatliche Shoots für wachsende Personal Brands</p>
-            </div>
-        </div>
-
-        <div class="positioning-card">
-            <h3>2. Webdesignerinnen für DIY-Upgrader</h3>
-            
-            <div class="problem-section">
-                <p class="problem-label">Symptom-Problem:</p>
-                <p>"Ich mache Websites für alle"</p>
-            </div>
-            
-            <div class="problem-section">
-                <p class="problem-label">Echtes Problem:</p>
-                <p>Du konkurrierst mit Fiverr. Niemand zahlt Premium für "irgendeine Website".</p>
-            </div>
-            
-            <div class="positioning-statement">
-                <strong>Positioning Statement:</strong><br>
-                Ich helfe Coaches die seit 2 Jahren auf Canva-Websites sitzen – endlich auf professionelles Webdesign upzugraden (ohne alles neu zu machen).
-            </div>
-            
-            <div class="offers">
-                <p><strong>Quick-Win:</strong> Website-Upgrade-Audit: Was muss bleiben, was muss weg?</p>
-                <p><strong>System-Build:</strong> Canva-to-Custom-Migration: Professionelles Design mit deinem Content</p>
-                <p><strong>VIP-Level:</strong> Website + Ongoing Updates: Monatlicher Design-Support</p>
+            <div class="angebote">
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Quick-Win:</strong> Brand-Foto-Check – Welche Bilder brauchst du wirklich?</div>
+                    <div class="angebot-preis">797 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Hauptangebot:</strong> Brand-Shooting-Day – Kompletter Foto-Tag mit Styling-Beratung</div>
+                    <div class="angebot-preis">2.497 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>VIP:</strong> Jahres-Retainer – Quarterly Shoots für wachsende Personal Brands</div>
+                    <div class="angebot-preis">9.997 €/Jahr</div>
+                </div>
             </div>
         </div>
 
         <div class="positioning-card">
-            <h3>3. Content Creatorinnen für nachhaltige Brands</h3>
+            <h3>2. Webdesignerin für DIY-Upgrader</h3>
             
-            <div class="problem-section">
-                <p class="problem-label">Symptom-Problem:</p>
-                <p>"Ich erstelle Content für alle Branchen"</p>
+            <div class="was-sagst-du">
+                Was du wahrscheinlich sagst: "Ich mache Websites für alle, die eine brauchen."
             </div>
             
-            <div class="problem-section">
-                <p class="problem-label">Echtes Problem:</p>
-                <p>Brands buchen dich für einzelne Posts. Du willst Retainer.</p>
+            <div class="was-wirklich">
+                Was wirklich passiert: Du konkurrierst mit Fiverr und Canva. Niemand zahlt Premium für "irgendeine Website".
             </div>
             
-            <div class="positioning-statement">
-                <strong>Positioning Statement:</strong><br>
-                Ich erstelle Content NUR für nachhaltige Fashion & Beauty Brands die kein eigenes Team haben – für konsistente Brand-Presence ohne internes Chaos.
+            <div class="positionierung">
+                <strong>So könnte es klingen:</strong><br>
+                "Ich helfe Coaches, die seit zwei Jahren auf ihrer selbstgebastelten Canva-Website sitzen – endlich auf ein professionelles Design zu upgraden, ohne alles neu machen zu müssen."
             </div>
             
-            <div class="offers">
-                <p><strong>Quick-Win:</strong> Content-Portfolio-Breakdown: Welche Brand-Nische passt zu dir?</p>
-                <p><strong>System-Build:</strong> Content-Retainer-System: Monatliche Pakete statt Einzelaufträge</p>
-                <p><strong>VIP-Level:</strong> Full-Service-Content-Management: Strategie + Creation + Posting</p>
-            </div>
-        </div>
-
-        <div class="positioning-card">
-            <h3>4. Grafikdesignerinnen für Kursersteller</h3>
-            
-            <div class="problem-section">
-                <p class="problem-label">Symptom-Problem:</p>
-                <p>"Ich mache Logos, Flyer, Social Media – alles"</p>
-            </div>
-            
-            <div class="problem-section">
-                <p class="problem-label">Echtes Problem:</p>
-                <p>Du bist Generalistin in einer Spezialist:innen-Welt.</p>
-            </div>
-            
-            <div class="positioning-statement">
-                <strong>Positioning Statement:</strong><br>
-                Ich designe NUR für Online-Kursersteller die ihre DIY-Canva-Slides professionalisieren wollen – für Kurse die aussehen wie 5.000€ statt 97€.
-            </div>
-            
-            <div class="offers">
-                <p><strong>Quick-Win:</strong> Kurs-Design-Audit: Wo sieht dein Kurs billig aus?</p>
-                <p><strong>System-Build:</strong> Signature-Kurs-Design-System: Templates + Branding für alle Kurse</p>
-                <p><strong>VIP-Level:</strong> Course-Design-Retainer: Alle neuen Kurse professionell designed</p>
+            <div class="angebote">
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Quick-Win:</strong> Website-Audit – Was muss bleiben, was muss weg?</div>
+                    <div class="angebot-preis">797 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Hauptangebot:</strong> Website-Upgrade – Von DIY zu professionell in 4 Wochen</div>
+                    <div class="angebot-preis">3.497 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>VIP:</strong> Website + laufende Betreuung – Monatlicher Design-Support</div>
+                    <div class="angebot-preis">4.997 € + 1.497 €/Monat</div>
+                </div>
             </div>
         </div>
 
         <div class="positioning-card">
-            <h3>5. Social Media Designerinnen für Service-Provider</h3>
+            <h3>3. Content-Creatorin für nachhaltige Brands</h3>
             
-            <div class="problem-section">
-                <p class="problem-label">Symptom-Problem:</p>
-                <p>"Ich mache Social Media Grafiken"</p>
+            <div class="was-sagst-du">
+                Was du wahrscheinlich sagst: "Ich erstelle Content für alle Branchen."
             </div>
             
-            <div class="problem-section">
-                <p class="problem-label">Echtes Problem:</p>
-                <p>Jeder kann Canva. Warum sollten sie DICH buchen?</p>
+            <div class="was-wirklich">
+                Was wirklich passiert: Brands buchen dich für einzelne Posts. Du willst Retainer – aber niemand sieht, warum du mehr wert bist als die nächste.
             </div>
             
-            <div class="positioning-statement">
-                <strong>Positioning Statement:</strong><br>
-                Ich designe Social Media Content NUR für High-Ticket-Service-Provider (Anwältinnen, Steuerberaterinnen, Beraterinnen) die professionell aussehen wollen – ohne selbst Designer zu werden.
+            <div class="positionierung">
+                <strong>So könnte es klingen:</strong><br>
+                "Ich erstelle Content für nachhaltige Fashion- und Beauty-Brands, die kein eigenes Social-Media-Team haben – für konsistente Präsenz ohne internes Chaos."
             </div>
             
-            <div class="offers">
-                <p><strong>Quick-Win:</strong> Branding-Gap-Analyse: Wo sieht dein Social Media unprofessionell aus?</p>
-                <p><strong>System-Build:</strong> Branded-Templates-System: Monatliche Design-Pakete</p>
-                <p><strong>VIP-Level:</strong> Full-Service-Social-Design: Strategie + Templates + Umsetzung</p>
-            </div>
-        </div>
-
-        <div class="positioning-card">
-            <h3>6. Hochzeitsfotografinnen für queere Paare</h3>
-            
-            <div class="problem-section">
-                <p class="problem-label">Symptom-Problem:</p>
-                <p>"Ich fotografiere alle Hochzeiten"</p>
-            </div>
-            
-            <div class="problem-section">
-                <p class="problem-label">Echtes Problem:</p>
-                <p>Queere Paare wollen Fotografinnen die ihre Love Story VERSTEHEN.</p>
-            </div>
-            
-            <div class="positioning-statement">
-                <strong>Positioning Statement:</strong><br>
-                Ich fotografiere NUR queere Hochzeiten – für Paare die eine Fotografin wollen die ihre Geschichte versteht, nicht nur "schöne Bilder macht".
-            </div>
-            
-            <div class="offers">
-                <p><strong>Quick-Win:</strong> Portfolio-Diversity-Check: Spricht dein Portfolio queere Paare an?</p>
-                <p><strong>System-Build:</strong> LGBTQ+-Wedding-Photography-Brand: Positioning + Portfolio + Pricing</p>
-                <p><strong>VIP-Level:</strong> Wedding-Day-Coordination: Fotografie + Planung für stress-freie Feiern</p>
+            <div class="angebote">
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Quick-Win:</strong> Content-Strategie-Call – Welche Nische passt zu dir?</div>
+                    <div class="angebot-preis">547 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Hauptangebot:</strong> Content-Retainer – 12 Posts pro Monat, alles inklusive</div>
+                    <div class="angebot-preis">1.497 €/Monat</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>VIP:</strong> Full-Service – Strategie + Creation + Posting + Community</div>
+                    <div class="angebot-preis">3.997 €/Monat</div>
+                </div>
             </div>
         </div>
 
         <div class="positioning-card">
-            <h3>7. Brand Designerinnen für Pivoterinnen</h3>
+            <h3>4. Grafikdesignerin für Kursersteller</h3>
             
-            <div class="problem-section">
-                <p class="problem-label">Symptom-Problem:</p>
-                <p>"Ich mache Branding für Startups"</p>
+            <div class="was-sagst-du">
+                Was du wahrscheinlich sagst: "Ich mache Logos, Flyer, Social Media – eigentlich alles."
             </div>
             
-            <div class="problem-section">
-                <p class="problem-label">Echtes Problem:</p>
-                <p>Startups haben kein Budget. Du willst zahlende Kundinnen.</p>
+            <div class="was-wirklich">
+                Was wirklich passiert: Du bist Generalistin in einer Welt, die Spezialisten sucht. Und Generalisten werden schlecht bezahlt.
             </div>
             
-            <div class="positioning-statement">
-                <strong>Positioning Statement:</strong><br>
-                Ich helfe etablierten Unternehmerinnen die ihr Business umkrempeln (Pivot/Rebrand) – für Brand-Identity die ihre neue Richtung reflektiert.
+            <div class="positionierung">
+                <strong>So könnte es klingen:</strong><br>
+                "Ich designe für Online-Kursersteller, die ihre DIY-Canva-Slides professionalisieren wollen – damit dein Kurs aussieht wie 2.997 €, nicht wie 97 €."
             </div>
             
-            <div class="offers">
-                <p><strong>Quick-Win:</strong> Rebrand-Readiness-Check: Brauchst du Rebrand oder nur Refresh?</p>
-                <p><strong>System-Build:</strong> Complete-Rebrand-System: Von Alt-Brand zu New-Identity in 90 Tagen</p>
-                <p><strong>VIP-Level:</strong> Brand-Transformation-Partner: Ich begleite deinen kompletten Pivot</p>
-            </div>
-        </div>
-
-        <div class="positioning-card">
-            <h3>8. Videoeditorinnen für Content Creatorinnen</h3>
-            
-            <div class="problem-section">
-                <p class="problem-label">Symptom-Problem:</p>
-                <p>"Ich schneide Videos"</p>
-            </div>
-            
-            <div class="problem-section">
-                <p class="problem-label">Echtes Problem:</p>
-                <p>Jeder kann CapCut. Du brauchst eine spitze Nische.</p>
-            </div>
-            
-            <div class="positioning-statement">
-                <strong>Positioning Statement:</strong><br>
-                Ich editiere NUR für Content Creatorinnen die von Reels zu YouTube-Lonform wechseln wollen – ohne selbst Editing lernen zu müssen.
-            </div>
-            
-            <div class="offers">
-                <p><strong>Quick-Win:</strong> Content-Format-Audit: Passt Longform zu deiner Strategie?</p>
-                <p><strong>System-Build:</strong> Reels-to-YouTube-System: Editing-Retainer für konsistente Uploads</p>
-                <p><strong>VIP-Level:</strong> Full-Content-Repurposing: Ein Video → 20 Formate</p>
-            </div>
-        </div>
-        <h2>TEIL 2: COACHES & BERATERINNEN</h2>
-
-        <div class="positioning-card">
-            <h3>9. Business Coaches für Serial Starterinnen</h3>
-            
-            <div class="problem-section">
-                <p class="problem-label">Symptom-Problem:</p>
-                <p>"Ich brauche noch mehr Skills"</p>
-            </div>
-            
-            <div class="problem-section">
-                <p class="problem-label">Echtes Problem:</p>
-                <p>Du hast 5 unfertige Projekte. Du brauchst kein Wissen. Du brauchst Execution.</p>
-            </div>
-            
-            <div class="positioning-statement">
-                <strong>Positioning Statement:</strong><br>
-                Ich helfe Serial Starterinnen mit 5+ angefangenen Projekten, endlich EINS abzuschließen – statt 10 weitere zu starten.
-            </div>
-            
-            <div class="offers">
-                <p><strong>Quick-Win:</strong> Project-Triage: Welches deiner Projekte hat echtes Potential?</p>
-                <p><strong>System-Build:</strong> Single-Project-Completion-System: 6 Monate, 1 Projekt, echte Results</p>
-                <p><strong>VIP-Level:</strong> Execution-Accountability-Partner: Ich halte dich beim EINEN Projekt</p>
+            <div class="angebote">
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Quick-Win:</strong> Kurs-Design-Check – Wo sieht dein Kurs billig aus?</div>
+                    <div class="angebot-preis">797 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Hauptangebot:</strong> Kurs-Design-System – Templates für alle Module</div>
+                    <div class="angebot-preis">2.497 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>VIP:</strong> Design-Retainer – Alle neuen Kurse professionell designed</div>
+                    <div class="angebot-preis">1.497 €/Monat</div>
+                </div>
             </div>
         </div>
 
         <div class="positioning-card">
-            <h3>10. Marketing-Beraterinnen für Technophobe</h3>
+            <h3>5. Social-Media-Designerin für Beraterinnen</h3>
             
-            <div class="problem-section">
-                <p class="problem-label">Symptom-Problem:</p>
-                <p>"Marketing ist so kompliziert"</p>
+            <div class="was-sagst-du">
+                Was du wahrscheinlich sagst: "Ich mache Social-Media-Grafiken."
             </div>
             
-            <div class="problem-section">
-                <p class="problem-label">Echtes Problem:</p>
-                <p>Du hast Technik-Angst. Nicht Marketing-Angst.</p>
+            <div class="was-wirklich">
+                Was wirklich passiert: Jeder kann Canva. Warum sollten sie dich buchen?
             </div>
             
-            <div class="positioning-statement">
-                <strong>Positioning Statement:</strong><br>
-                Ich helfe Technophoben, Marketing zu automatisieren – ohne selbst Tech-Expertin werden zu müssen.
+            <div class="positionierung">
+                <strong>So könnte es klingen:</strong><br>
+                "Ich designe Social-Media-Content für High-Ticket-Beraterinnen – Anwältinnen, Steuerberaterinnen, Unternehmensberaterinnen – die professionell aussehen wollen, ohne selbst Designerin zu werden."
             </div>
             
-            <div class="offers">
-                <p><strong>Quick-Win:</strong> Tech-Blocker-Audit: Welche Tools brauchst du wirklich?</p>
-                <p><strong>System-Build:</strong> Done-FOR-You-Marketing-Setup: Ich baue, du nutzt</p>
-                <p><strong>VIP-Level:</strong> Tech-Free-Marketing-Management: Ich manage alle Tools für dich</p>
-            </div>
-        </div>
-
-        <div class="positioning-card">
-            <h3>11. Career Coaches für Corporate-Aussteigerinnen</h3>
-            
-            <div class="problem-section">
-                <p class="problem-label">Symptom-Problem:</p>
-                <p>"Ich weiß nicht was ich machen soll"</p>
-            </div>
-            
-            <div class="problem-section">
-                <p class="problem-label">Echtes Problem:</p>
-                <p>Du weißt genau was du willst. Du traust dich nur nicht.</p>
-            </div>
-            
-            <div class="positioning-statement">
-                <strong>Positioning Statement:</strong><br>
-                Ich helfe Corporate-Frauen die ihren Job hassen aber zu viel Angst haben zu kündigen – für den Sprung in die Selbstständigkeit ohne finanzielles Drama.
-            </div>
-            
-            <div class="offers">
-                <p><strong>Quick-Win:</strong> Exit-Strategy-Workshop: Wie du kündigst ohne pleite zu gehen</p>
-                <p><strong>System-Build:</strong> Corporate-to-Solopreneur-Transition: 12-Monats-Roadmap</p>
-                <p><strong>VIP-Level:</strong> Side-Hustle-to-Full-Time-Begleitung: Ich manage deinen kompletten Übergang</p>
+            <div class="angebote">
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Quick-Win:</strong> Branding-Gap-Analyse – Wo sieht dein Feed unprofessionell aus?</div>
+                    <div class="angebot-preis">547 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Hauptangebot:</strong> Template-System – 30 gebrandete Templates für 3 Monate Content</div>
+                    <div class="angebot-preis">1.697 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>VIP:</strong> Full-Service-Design – Ich liefere dir jede Woche fertigen Content</div>
+                    <div class="angebot-preis">1.497 €/Monat</div>
+                </div>
             </div>
         </div>
 
         <div class="positioning-card">
-            <h3>12. Mindset Coaches für Perfektionistinnen</h3>
+            <h3>6. Hochzeitsfotografin für queere Paare</h3>
             
-            <div class="problem-section">
-                <p class="problem-label">Symptom-Problem:</p>
-                <p>"Es ist noch nicht gut genug"</p>
+            <div class="was-sagst-du">
+                Was du wahrscheinlich sagst: "Ich fotografiere alle Hochzeiten."
             </div>
             
-            <div class="problem-section">
-                <p class="problem-label">Echtes Problem:</p>
-                <p>Es wird NIE gut genug sein. Du sabotierst dich selbst.</p>
+            <div class="was-wirklich">
+                Was wirklich passiert: Queere Paare wollen eine Fotografin, die ihre Geschichte versteht – nicht eine, die "auch queere Hochzeiten macht".
             </div>
             
-            <div class="positioning-statement">
-                <strong>Positioning Statement:</strong><br>
-                Ich helfe Perfektionistinnen die seit 2 Jahren "fast fertig" sind – endlich zu launchen, auch wenn's nicht perfekt ist.
+            <div class="positionierung">
+                <strong>So könnte es klingen:</strong><br>
+                "Ich fotografiere queere Hochzeiten – für Paare, die eine Fotografin wollen, die ihre Love Story versteht, nicht nur schöne Bilder macht."
             </div>
             
-            <div class="offers">
-                <p><strong>Quick-Win:</strong> Perfektionismus-Pattern-Analyse: Wo blockierst du dich?</p>
-                <p><strong>System-Build:</strong> Done-is-Better-Launch-System: Feste Deadlines + externes Gewissen</p>
-                <p><strong>VIP-Level:</strong> Anti-Perfektionismus-Partner: Ich bin dein Launch-Bodyguard</p>
-            </div>
-        </div>
-
-        <div class="positioning-card">
-            <h3>13. Sales Coaches für Discount-Queens</h3>
-            
-            <div class="problem-section">
-                <p class="problem-label">Symptom-Problem:</p>
-                <p>"Keiner kauft ohne Rabatt"</p>
-            </div>
-            
-            <div class="problem-section">
-                <p class="problem-label">Echtes Problem:</p>
-                <p>Du hast deine Audience konditioniert, auf Sales zu warten.</p>
-            </div>
-            
-            <div class="positioning-statement">
-                <strong>Positioning Statement:</strong><br>
-                Ich helfe Unternehmerinnen die nur mit 50%-Rabatt verkaufen – Vollpreis zu verlangen (und zu bekommen).
-            </div>
-            
-            <div class="offers">
-                <p><strong>Quick-Win:</strong> Discount-Dependency-Audit: Wie hast du deine Käufer trainiert?</p>
-                <p><strong>System-Build:</strong> Full-Price-Selling-System: Value-Stacking ohne Rabatt-Drama</p>
-                <p><strong>VIP-Level:</strong> Premium-Pricing-Transformation: Von Discount zu Luxury</p>
+            <div class="angebote">
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Quick-Win:</strong> Vorgespräch – Damit ich eure Geschichte verstehe</div>
+                    <div class="angebot-preis">kostenfrei</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Hauptangebot:</strong> Hochzeits-Reportage – Der ganze Tag, alle Emotionen</div>
+                    <div class="angebot-preis">3.200 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>VIP:</strong> Hochzeit + Engagement-Shooting + Album</div>
+                    <div class="angebot-preis">4.800 €</div>
+                </div>
             </div>
         </div>
 
         <div class="positioning-card">
-            <h3>14. Productivity Coaches für Über-Deliverer</h3>
+            <h3>7. Brand-Designerin für Pivot-Unternehmerinnen</h3>
             
-            <div class="problem-section">
-                <p class="problem-label">Symptom-Problem:</p>
-                <p>"Meine Kunden lieben mich aber ich bin erschöpft"</p>
+            <div class="was-sagst-du">
+                Was du wahrscheinlich sagst: "Ich mache Branding für Startups."
             </div>
             
-            <div class="problem-section">
-                <p class="problem-label">Echtes Problem:</p>
-                <p>Du gibst 10x mehr als bezahlt. Das ist nicht nachhaltig.</p>
+            <div class="was-wirklich">
+                Was wirklich passiert: Startups haben kein Budget. Du willst zahlende Kundinnen.
             </div>
             
-            <div class="positioning-statement">
-                <strong>Positioning Statement:</strong><br>
-                Ich helfe Über-Lieferern, Grenzen zu setzen – ohne schlechtes Gewissen oder Angst vor schlechten Reviews.
+            <div class="positionierung">
+                <strong>So könnte es klingen:</strong><br>
+                "Ich helfe etablierten Unternehmerinnen, die ihr Business umkrempeln – für eine Brand-Identity, die deine neue Richtung reflektiert, nicht deine alte."
             </div>
             
-            <div class="offers">
-                <p><strong>Quick-Win:</strong> Scope-Creep-Analyse: Wo gibst du zu viel?</p>
-                <p><strong>System-Build:</strong> Boundaries-Without-Guilt-System: Klare Pakete, profitable Delivery</p>
-                <p><strong>VIP-Level:</strong> Client-Boundary-Management: Ich handle schwierige Kunden für dich</p>
-            </div>
-        </div>
-
-        <div class="positioning-card">
-            <h3>15. Visibility Coaches für Social-Media-Müde</h3>
-            
-            <div class="problem-section">
-                <p class="problem-label">Symptom-Problem:</p>
-                <p>"Ich kann nicht mehr täglich posten"</p>
-            </div>
-            
-            <div class="problem-section">
-                <p class="problem-label">Echtes Problem:</p>
-                <p>Du benutzt die falschen Plattformen für deinen Lifestyle.</p>
-            </div>
-            
-            <div class="positioning-statement">
-                <strong>Positioning Statement:</strong><br>
-                Ich helfe Social-Media-Erschöpften auf Pinterest umzusteigen – wo Content 2 Jahre lebt, nicht 2 Stunden.
-            </div>
-            
-            <div class="offers">
-                <p><strong>Quick-Win:</strong> Platform-Energy-Audit: Welche Plattform passt zu dir?</p>
-                <p><strong>System-Build:</strong> Instagram-to-Pinterest-Migration: Passive Sichtbarkeit statt Daily-Grind</p>
-                <p><strong>VIP-Level:</strong> Done-FOR-You-Pinterest-Management: Ich manage deinen Content</p>
+            <div class="angebote">
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Quick-Win:</strong> Rebrand-Check – Brauchst du Rebrand oder nur Refresh?</div>
+                    <div class="angebot-preis">797 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Hauptangebot:</strong> Complete Rebrand – Von alt zu neu in 8 Wochen</div>
+                    <div class="angebot-preis">4.997 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>VIP:</strong> Brand-Transformation – Ich begleite deinen kompletten Pivot</div>
+                    <div class="angebot-preis">9.997 €</div>
+                </div>
             </div>
         </div>
 
         <div class="positioning-card">
-            <h3>16. Launch Coaches für Launch-Traumatisierte</h3>
+            <h3>8. Video-Editorin für YouTube-Umsteiger</h3>
             
-            <div class="problem-section">
-                <p class="problem-label">Symptom-Problem:</p>
-                <p>"Ich hatte einen gescheiterten Launch"</p>
+            <div class="was-sagst-du">
+                Was du wahrscheinlich sagst: "Ich schneide Videos."
             </div>
             
-            <div class="problem-section">
-                <p class="problem-label">Echtes Problem:</p>
-                <p>Du hattest keine Strategie. Nur Hoffnung.</p>
+            <div class="was-wirklich">
+                Was wirklich passiert: Jeder kann CapCut. Du brauchst eine spitze Nische.
             </div>
             
-            <div class="positioning-statement">
-                <strong>Positioning Statement:</strong><br>
-                Ich helfe Unternehmerinnen nach 2+ gescheiterten Launches – durch Post-Mortem-Analyse + Trauma-Proof-Launch-System.
+            <div class="positionierung">
+                <strong>So könnte es klingen:</strong><br>
+                "Ich editiere für Content-Creatorinnen, die von Reels zu YouTube-Longform wechseln wollen – ohne selbst Editing lernen zu müssen."
             </div>
             
-            <div class="offers">
-                <p><strong>Quick-Win:</strong> Launch-Failure-Autopsy: Was ist WIRKLICH schiefgelaufen?</p>
-                <p><strong>System-Build:</strong> Bulletproof-Launch-Framework: Mit Plan B, Exit-Strategie & Support</p>
-                <p><strong>VIP-Level:</strong> Launch-Redemption-Management: Ich manage deinen nächsten Launch komplett</p>
-            </div>
-        </div>
-        <h2>TEIL 3: SERVICE PROVIDER</h2>
-
-        <div class="positioning-card">
-            <h3>17. Virtuelle Assistentinnen für Multi-Passionierte</h3>
-            
-            <div class="problem-section">
-                <p class="problem-label">Symptom-Problem:</p>
-                <p>"Ich kann als VA alles machen"</p>
-            </div>
-            
-            <div class="problem-section">
-                <p class="problem-label">Echtes Problem:</p>
-                <p>"Ich mache alles" = "Ich bin niemandes Erste Wahl".</p>
-            </div>
-            
-            <div class="positioning-statement">
-                <strong>Positioning Statement:</strong><br>
-                Ich helfe NUR Multi-Passionierten die 5 Businesses gleichzeitig managen – als Operations-Managerin die ihr Chaos strukturiert.
-            </div>
-            
-            <div class="offers">
-                <p><strong>Quick-Win:</strong> Operations-Chaos-Audit: Was läuft chaotisch?</p>
-                <p><strong>System-Build:</strong> Multi-Business-Management-System: SOPs + Systeme für smooth Operations</p>
-                <p><strong>VIP-Level:</strong> Full-Operations-Management: Ich bin deine externe COO</p>
+            <div class="angebote">
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Quick-Win:</strong> Format-Check – Passt Longform zu deiner Strategie?</div>
+                    <div class="angebot-preis">297 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Hauptangebot:</strong> Editing-Retainer – 4 YouTube-Videos pro Monat</div>
+                    <div class="angebot-preis">1.497 €/Monat</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>VIP:</strong> Full-Repurposing – 1 Video → 20 Formate</div>
+                    <div class="angebot-preis">2.400 €/Monat</div>
+                </div>
             </div>
         </div>
 
+        <h2>Teil 2: Coaches & Beraterinnen</h2>
+
         <div class="positioning-card">
-            <h3>18. Copywriterinnen für Funnel-Builder</h3>
+            <h3>9. Business-Coach für Serial Starterinnen</h3>
             
-            <div class="problem-section">
-                <p class="problem-label">Symptom-Problem:</p>
-                <p>"Ich schreibe Website-Texte"</p>
+            <div class="was-sagst-du">
+                Was du wahrscheinlich sagst: "Ich helfe Frauen, erfolgreich zu werden."
             </div>
             
-            <div class="problem-section">
-                <p class="problem-label">Echtes Problem:</p>
-                <p>Websites sind one-off. Du willst wiederkehrende Kunden.</p>
+            <div class="was-wirklich">
+                Was wirklich passiert: Das sagen alle. Niemand weiß, was du eigentlich machst.
             </div>
             
-            <div class="positioning-statement">
-                <strong>Positioning Statement:</strong><br>
-                Ich schreibe NUR Funnel-Copy für Online-Unternehmerinnen die fertige Funnels haben aber die Copy nicht konvertiert.
+            <div class="positionierung">
+                <strong>So könnte es klingen:</strong><br>
+                "Ich helfe Serial Starterinnen mit 5+ angefangenen Projekten, endlich EINS abzuschließen – statt 10 weitere zu starten."
             </div>
             
-            <div class="offers">
-                <p><strong>Quick-Win:</strong> Funnel-Copy-Audit: Wo verlierst du Käufer im Funnel?</p>
-                <p><strong>System-Build:</strong> High-Converting-Funnel-Copy-System: Von Awareness zu Purchase</p>
-                <p><strong>VIP-Level:</strong> Funnel-Copy-Retainer: Alle Funnels professionell getextet</p>
+            <div class="angebote">
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Quick-Win:</strong> Projekt-Triage – Welches deiner Projekte hat echtes Potenzial?</div>
+                    <div class="angebot-preis">547 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Hauptangebot:</strong> 90-Tage-Focus – Ein Projekt, echte Ergebnisse</div>
+                    <div class="angebot-preis">3.497 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>VIP:</strong> 6-Monats-Begleitung – Ich halte dich beim EINEN Projekt</div>
+                    <div class="angebot-preis">7.997 €</div>
+                </div>
             </div>
         </div>
 
         <div class="positioning-card">
-            <h3>19. Bookkeeper für Creative Chaoten</h3>
+            <h3>10. Marketing-Beraterin für Technik-Scheue</h3>
             
-            <div class="problem-section">
-                <p class="problem-label">Symptom-Problem:</p>
-                <p>"Ich mache Buchhaltung für alle"</p>
+            <div class="was-sagst-du">
+                Was du wahrscheinlich sagst: "Ich helfe bei Marketing."
             </div>
             
-            <div class="problem-section">
-                <p class="problem-label">Echtes Problem:</p>
-                <p>Creatives haben spezielle Chaos-Patterns. Du brauchst Nischen-Expertise.</p>
+            <div class="was-wirklich">
+                Was wirklich passiert: "Marketing" ist riesig. Niemand weiß, ob du die Richtige bist.
             </div>
             
-            <div class="positioning-statement">
-                <strong>Positioning Statement:</strong><br>
-                Ich mache Buchhaltung NUR für Creatives (Fotografinnen, Designerinnen) die Excel hassen – für Finanz-Überblick ohne Kopfschmerzen.
+            <div class="positionierung">
+                <strong>So könnte es klingen:</strong><br>
+                "Ich helfe Technik-Scheuen, ihr Marketing zu automatisieren – ohne selbst Tech-Expertin werden zu müssen. Ich baue, du nutzt."
             </div>
             
-            <div class="offers">
-                <p><strong>Quick-Win:</strong> Financial-Chaos-Assessment: Wo ist dein Geld wirklich?</p>
-                <p><strong>System-Build:</strong> Creative-Bookkeeping-System: Monthly Reports die du verstehst</p>
-                <p><strong>VIP-Level:</strong> Full-Financial-Management: Buchhaltung + Steuern + Planung</p>
-            </div>
-        </div>
-
-        <div class="positioning-card">
-            <h3>20. Social Media Managerinnen für Service-Provider</h3>
-            
-            <div class="problem-section">
-                <p class="problem-label">Symptom-Problem:</p>
-                <p>"Ich manage Social Media"</p>
-            </div>
-            
-            <div class="problem-section">
-                <p class="problem-label">Echtes Problem:</p>
-                <p>B2C-Brands wollen viral. B2B-Service-Provider wollen Leads.</p>
-            </div>
-            
-            <div class="positioning-statement">
-                <strong>Positioning Statement:</strong><br>
-                Ich manage Social Media NUR für High-Ticket-Service-Provider (Beraterinnen, Anwältinnen) die LinkedIn-Leads wollen – nicht Instagram-Likes.
-            </div>
-            
-            <div class="offers">
-                <p><strong>Quick-Win:</strong> LinkedIn-Lead-Audit: Kommt dein Ideal-Kunde über LinkedIn?</p>
-                <p><strong>System-Build:</strong> LinkedIn-Lead-Gen-System: Content-Strategie für B2B-Sales</p>
-                <p><strong>VIP-Level:</strong> Full-LinkedIn-Management: Ich manage Profil + Content + Outreach</p>
+            <div class="angebote">
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Quick-Win:</strong> Tech-Check – Welche Tools brauchst du wirklich?</div>
+                    <div class="angebot-preis">797 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Hauptangebot:</strong> Done-for-You-Setup – Ich baue dein komplettes System</div>
+                    <div class="angebot-preis">3.997 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>VIP:</strong> Tech-Management – Ich manage alle Tools für dich</div>
+                    <div class="angebot-preis">1.497 €/Monat</div>
+                </div>
             </div>
         </div>
 
         <div class="positioning-card">
-            <h3>21. Projekt-Managerinnen für Launch-Chaos</h3>
+            <h3>11. Career-Coach für Corporate-Aussteigerinnen</h3>
             
-            <div class="problem-section">
-                <p class="problem-label">Symptom-Problem:</p>
-                <p>"Ich manage Projekte"</p>
+            <div class="was-sagst-du">
+                Was du wahrscheinlich sagst: "Ich helfe bei beruflicher Neuorientierung."
             </div>
             
-            <div class="problem-section">
-                <p class="problem-label">Echtes Problem:</p>
-                <p>Launches sind ein spezielles Chaos. Du brauchst Launch-PM-Expertise.</p>
+            <div class="was-wirklich">
+                Was wirklich passiert: Das klingt nach Arbeitsagentur. Nicht nach Premium.
             </div>
             
-            <div class="positioning-statement">
-                <strong>Positioning Statement:</strong><br>
-                Ich manage NUR Launches für Online-Unternehmerinnen die ihre letzten 3 Launches abgebrochen haben – für stress-freie Execution.
+            <div class="positionierung">
+                <strong>So könnte es klingen:</strong><br>
+                "Ich helfe Corporate-Frauen, die ihren Job hassen aber zu viel Angst haben zu kündigen – für den Sprung in die Selbstständigkeit ohne finanzielles Drama."
             </div>
             
-            <div class="offers">
-                <p><strong>Quick-Win:</strong> Launch-Readiness-Check: Bist du bereit für einen Launch?</p>
-                <p><strong>System-Build:</strong> Launch-Project-Management-System: Von Pre-Launch zu Post-Launch</p>
-                <p><strong>VIP-Level:</strong> Full-Launch-Management: Ich manage deinen kompletten Launch</p>
-            </div>
-        </div>
-
-        <div class="positioning-card">
-            <h3>22. Pinterest Managerinnen für E-Commerce</h3>
-            
-            <div class="problem-section">
-                <p class="problem-label">Symptom-Problem:</p>
-                <p>"Ich manage Pinterest"</p>
-            </div>
-            
-            <div class="problem-section">
-                <p class="problem-label">Echtes Problem:</p>
-                <p>B2C-Coaches brauchen andere Strategien als E-Commerce.</p>
-            </div>
-            
-            <div class="positioning-statement">
-                <strong>Positioning Statement:</strong><br>
-                Ich manage Pinterest NUR für E-Commerce-Shops die von Instagram-Ads zu organischem Traffic wechseln wollen – für profitable Sales ohne Ad-Budget.
-            </div>
-            
-            <div class="offers">
-                <p><strong>Quick-Win:</strong> Pinterest-E-Commerce-Audit: Ist Pinterest right für dein Produkt?</p>
-                <p><strong>System-Build:</strong> Pinterest-to-Shop-System: Organic Traffic zu Verkäufen</p>
-                <p><strong>VIP-Level:</strong> Full-Pinterest-Management: Strategie + Pins + Shopping-Integration</p>
+            <div class="angebote">
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Quick-Win:</strong> Exit-Strategy-Call – Wie du kündigst ohne pleite zu gehen</div>
+                    <div class="angebot-preis">797 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Hauptangebot:</strong> Transition-Programm – 6 Monate vom Angestellten zur Unternehmerin</div>
+                    <div class="angebot-preis">4.997 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>VIP:</strong> Full Support – Ich begleite deinen kompletten Übergang</div>
+                    <div class="angebot-preis">6.500 €</div>
+                </div>
             </div>
         </div>
 
         <div class="positioning-card">
-            <h3>23. Email-Marketing-Spezialistinnen für tote Listen</h3>
+            <h3>12. Mindset-Coach für Perfektionistinnen</h3>
             
-            <div class="problem-section">
-                <p class="problem-label">Symptom-Problem:</p>
-                <p>"Ich mache Email-Marketing"</p>
+            <div class="was-sagst-du">
+                Was du wahrscheinlich sagst: "Ich helfe bei Mindset-Themen."
             </div>
             
-            <div class="problem-section">
-                <p class="problem-label">Echtes Problem:</p>
-                <p>Die meisten haben tote Listen. Das ist ein spezielles Problem.</p>
+            <div class="was-wirklich">
+                Was wirklich passiert: "Mindset" ist so vage, dass niemand weiß, ob du helfen kannst.
             </div>
             
-            <div class="positioning-statement">
-                <strong>Positioning Statement:</strong><br>
-                Ich reaktiviere tote Email-Listen für Unternehmerinnen die 5.000 Subscriber haben aber niemand öffnet – für Re-Engagement ohne Spam.
+            <div class="positionierung">
+                <strong>So könnte es klingen:</strong><br>
+                "Ich helfe Perfektionistinnen, die seit 2 Jahren 'fast fertig' sind – endlich zu launchen, auch wenn's nicht perfekt ist."
             </div>
             
-            <div class="offers">
-                <p><strong>Quick-Win:</strong> List-Health-Diagnose: Ist deine Liste tot oder nur eingeschlafen?</p>
-                <p><strong>System-Build:</strong> List-Reactivation-System: 90-Day-Email-Comeback-Strategie</p>
-                <p><strong>VIP-Level:</strong> Full-Email-Management: Ich schreibe + versende + manage alles</p>
-            </div>
-        </div>
-        <h2>TEIL 4: ONLINE BUSINESS</h2>
-
-        <div class="positioning-card">
-            <h3>24. Kursersteller für Kurs-Friedhöfe</h3>
-            
-            <div class="problem-section">
-                <p class="problem-label">Symptom-Problem:</p>
-                <p>"Ich habe 3 fertige Kurse aber keiner kauft"</p>
-            </div>
-            
-            <div class="problem-section">
-                <p class="problem-label">Echtes Problem:</p>
-                <p>Deine Kurse sind fertig. Dein Sales-Funnel nicht.</p>
-            </div>
-            
-            <div class="positioning-statement">
-                <strong>Positioning Statement:</strong><br>
-                Ich helfe Kursersteller:innen mit fertigen Kursen die auf Shelf sitzen – durch Sales-Funnels die 24/7 verkaufen.
-            </div>
-            
-            <div class="offers">
-                <p><strong>Quick-Win:</strong> Funnel-Gap-Analyse: Warum verkaufen deine Kurse nicht?</p>
-                <p><strong>System-Build:</strong> Course-Sales-Funnel-Build: Von Awareness zu Enrollment</p>
-                <p><strong>VIP-Level:</strong> Evergreen-Course-Funnel-Management: Ich optimiere + manage alles</p>
+            <div class="angebote">
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Quick-Win:</strong> Perfektionismus-Check – Wo blockierst du dich selbst?</div>
+                    <div class="angebot-preis">547 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Hauptangebot:</strong> Launch-Begleitung – Feste Deadlines + externes Gewissen</div>
+                    <div class="angebot-preis">2.497 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>VIP:</strong> Anti-Perfektionismus-Partner – Ich bin dein Launch-Bodyguard</div>
+                    <div class="angebot-preis">4.997 €</div>
+                </div>
             </div>
         </div>
 
         <div class="positioning-card">
-            <h3>25. Membership-Betreiberinnen für Churn-Probleme</h3>
+            <h3>13. Sales-Coach für Rabatt-Queens</h3>
             
-            <div class="problem-section">
-                <p class="problem-label">Symptom-Problem:</p>
-                <p>"Ich verliere jeden Monat 30% meiner Members"</p>
+            <div class="was-sagst-du">
+                Was du wahrscheinlich sagst: "Ich helfe beim Verkaufen."
             </div>
             
-            <div class="problem-section">
-                <p class="problem-label">Echtes Problem:</p>
-                <p>Du hast kein Retention-System. Nur Sign-Ups.</p>
+            <div class="was-wirklich">
+                Was wirklich passiert: Jeder "hilft beim Verkaufen". Was macht dich anders?
             </div>
             
-            <div class="positioning-statement">
-                <strong>Positioning Statement:</strong><br>
-                Ich helfe Membership-Betreiberinnen mit 30%+ monatlicher Churn – für Retention-Strategien die Members halten.
+            <div class="positionierung">
+                <strong>So könnte es klingen:</strong><br>
+                "Ich helfe Unternehmerinnen, die nur mit 50%-Rabatt verkaufen – Vollpreis zu verlangen und zu bekommen."
             </div>
             
-            <div class="offers">
-                <p><strong>Quick-Win:</strong> Churn-Pattern-Analyse: Wann und warum gehen Members?</p>
-                <p><strong>System-Build:</strong> Retention-System-Build: Onboarding + Engagement + Community</p>
-                <p><strong>VIP-Level:</strong> Full-Membership-Operations: Ich manage alle Member-Experience-Touchpoints</p>
-            </div>
-        </div>
-
-        <div class="positioning-card">
-            <h3>26. Podcast-Hostinnen für Download-Frust</h3>
-            
-            <div class="problem-section">
-                <p class="problem-label">Symptom-Problem:</p>
-                <p>"Ich habe 100 Episodes aber 50 Downloads"</p>
-            </div>
-            
-            <div class="problem-section">
-                <p class="problem-label">Echtes Problem:</p>
-                <p>Du podcastest. Aber du promotest nicht.</p>
-            </div>
-            
-            <div class="positioning-statement">
-                <strong>Positioning Statement:</strong><br>
-                Ich helfe Podcast-Hostinnen mit Content aber ohne Audience – für Promotion-Strategien die tatsächlich Downloads bringen.
-            </div>
-            
-            <div class="offers">
-                <p><strong>Quick-Win:</strong> Podcast-Promotion-Audit: Wo promotest du (oder nicht)?</p>
-                <p><strong>System-Build:</strong> Podcast-Growth-System: SEO + Pinterest + Repurposing</p>
-                <p><strong>VIP-Level:</strong> Full-Podcast-Promotion-Management: Ich handle alle Promotion</p>
+            <div class="angebote">
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Quick-Win:</strong> Rabatt-Analyse – Wie du deine Käufer konditioniert hast</div>
+                    <div class="angebot-preis">797 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Hauptangebot:</strong> Vollpreis-System – Von Rabatt zu Premium in 8 Wochen</div>
+                    <div class="angebot-preis">2.997 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>VIP:</strong> Premium-Transformation – Komplett-Begleitung zur Luxusmarke</div>
+                    <div class="angebot-preis">7.997 €</div>
+                </div>
             </div>
         </div>
 
         <div class="positioning-card">
-            <h3>27. Community-Builderinnen für Ghost-Towns</h3>
+            <h3>14. Produktivitäts-Coach für Über-Lieferer</h3>
             
-            <div class="problem-section">
-                <p class="problem-label">Symptom-Problem:</p>
-                <p>"Ich habe eine Community aber niemand postet"</p>
+            <div class="was-sagst-du">
+                Was du wahrscheinlich sagst: "Ich helfe bei Produktivität und Zeitmanagement."
             </div>
             
-            <div class="problem-section">
-                <p class="problem-label">Echtes Problem:</p>
-                <p>Du hast eine Gruppe. Keine Community.</p>
+            <div class="was-wirklich">
+                Was wirklich passiert: Über-Lieferer haben kein Produktivitätsproblem. Sie haben ein Grenzen-Problem.
             </div>
             
-            <div class="positioning-statement">
-                <strong>Positioning Statement:</strong><br>
-                Ich helfe Community-Builderinnen mit 500 Members aber 0 Engagement – für aktive Communities statt digitale Ghost-Towns.
+            <div class="positionierung">
+                <strong>So könnte es klingen:</strong><br>
+                "Ich helfe Über-Lieferinnen, die 10x mehr geben als bezahlt wird – Grenzen zu setzen ohne schlechtes Gewissen."
             </div>
             
-            <div class="offers">
-                <p><strong>Quick-Win:</strong> Community-Health-Check: Warum ist deine Community tot?</p>
-                <p><strong>System-Build:</strong> Engagement-Revival-System: Von Ghost-Town zu aktiver Community</p>
-                <p><strong>VIP-Level:</strong> Full-Community-Management: Ich belebe + manage deine Community</p>
-            </div>
-        </div>
-
-        <div class="positioning-card">
-            <h3>28. Affiliate-Marketerinnen für Conversion-Probleme</h3>
-            
-            <div class="problem-section">
-                <p class="problem-label">Symptom-Problem:</p>
-                <p>"Ich habe 10.000 Klicks aber 0 Sales"</p>
-            </div>
-            
-            <div class="problem-section">
-                <p class="problem-label">Echtes Problem:</p>
-                <p>Traffic ist irrelevant. Du brauchst KAUFBEREITEN Traffic.</p>
-            </div>
-            
-            <div class="positioning-statement">
-                <strong>Positioning Statement:</strong><br>
-                Ich helfe Affiliate-Marketerinnen mit Traffic aber ohne Sales – für Buyer-Intent-Traffic statt Lookie-Loos.
-            </div>
-            
-            <div class="offers">
-                <p><strong>Quick-Win:</strong> Traffic-Quality-Audit: Schickst du die richtigen Leute?</p>
-                <p><strong>System-Build:</strong> Buyer-Traffic-System: SEO + Content für kaufbereite Audience</p>
-                <p><strong>VIP-Level:</strong> Full-Affiliate-Funnel-Management: Ich optimiere Traffic-to-Sales</p>
+            <div class="angebote">
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Quick-Win:</strong> Scope-Creep-Analyse – Wo gibst du zu viel?</div>
+                    <div class="angebot-preis">547 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Hauptangebot:</strong> Grenzen-System – Klare Pakete, profitable Delivery</div>
+                    <div class="angebot-preis">2.497 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>VIP:</strong> Boundary-Begleitung – 3 Monate intensiv</div>
+                    <div class="angebot-preis">3.200 €</div>
+                </div>
             </div>
         </div>
 
         <div class="positioning-card">
-            <h3>29. Template-Verkäuferinnen für Canva-Chaos</h3>
+            <h3>15. Sichtbarkeits-Coach für Social-Media-Müde</h3>
             
-            <div class="problem-section">
-                <p class="problem-label">Symptom-Problem:</p>
-                <p>"Ich verkaufe Templates auf Etsy"</p>
+            <div class="was-sagst-du">
+                Was du wahrscheinlich sagst: "Ich helfe bei Sichtbarkeit und Marketing."
             </div>
             
-            <div class="problem-section">
-                <p class="problem-label">Echtes Problem:</p>
-                <p>Etsy ist oversaturated. Du brauchst eigene Traffic-Quellen.</p>
+            <div class="was-wirklich">
+                Was wirklich passiert: Die meisten denken bei "Sichtbarkeit" an tägliches Posten. Und genau DAS wollen sie nicht.
             </div>
             
-            <div class="positioning-statement">
-                <strong>Positioning Statement:</strong><br>
-                Ich helfe Template-Verkäuferinnen die nur auf Etsy verkaufen – für eigene Website + Pinterest-Traffic ohne Etsy-Abhängigkeit.
+            <div class="positionierung">
+                <strong>So könnte es klingen:</strong><br>
+                "Ich helfe Social-Media-Erschöpften, auf Pinterest umzusteigen – wo Content 2 Jahre lebt, nicht 2 Stunden."
             </div>
             
-            <div class="offers">
-                <p><strong>Quick-Win:</strong> Etsy-Dependency-Audit: Wie abhängig bist du wirklich?</p>
-                <p><strong>System-Build:</strong> Template-Business-Independence: Website + Traffic + Email-Liste</p>
-                <p><strong>VIP-Level:</strong> Full-Template-Business-Build: Ich baue dein komplettes System</p>
+            <div class="angebote">
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Quick-Win:</strong> Plattform-Check – Welche Plattform passt zu deinem Leben?</div>
+                    <div class="angebot-preis">547 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Hauptangebot:</strong> Pinterest-Umstieg – Von Instagram-Stress zu passiver Sichtbarkeit</div>
+                    <div class="angebot-preis">1.997 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>VIP:</strong> Done-for-You – Ich manage deinen Pinterest-Account</div>
+                    <div class="angebot-preis">1.497 €/Monat</div>
+                </div>
             </div>
         </div>
 
         <div class="positioning-card">
-            <h3>30. Digital-Product-Creatorinnen für Produktfriedhöfe</h3>
+            <h3>16. Launch-Coach für Launch-Traumatisierte</h3>
             
-            <div class="problem-section">
-                <p class="problem-label">Symptom-Problem:</p>
-                <p>"Ich habe 20 Produkte aber verkaufe nichts"</p>
+            <div class="was-sagst-du">
+                Was du wahrscheinlich sagst: "Ich helfe beim Launchen."
             </div>
             
-            <div class="problem-section">
-                <p class="problem-label">Echtes Problem:</p>
-                <p>Du erstellst Products. Aber keine Customer Journey.</p>
+            <div class="was-wirklich">
+                Was wirklich passiert: Wer schon mal einen Launch verhauen hat, will keinen "normalen" Launch-Coach. Die wollen jemanden, der versteht, wie sich das anfühlt.
             </div>
             
-            <div class="positioning-statement">
-                <strong>Positioning Statement:</strong><br>
-                Ich helfe Digital-Product-Hoarderinnen mit 20+ Produkten aber 0 System – für Product-Suite mit klarem Path statt Chaos.
+            <div class="positionierung">
+                <strong>So könnte es klingen:</strong><br>
+                "Ich helfe Unternehmerinnen nach 2+ gescheiterten Launches – für einen Launch, der diesmal funktioniert, mit Plan B und Exit-Strategie."
             </div>
             
-            <div class="offers">
-                <p><strong>Quick-Win:</strong> Product-Suite-Audit: Welche Produkte passen zusammen?</p>
-                <p><strong>System-Build:</strong> Product-Ladder-System: Von Entry zu Upsell zu VIP</p>
-                <p><strong>VIP-Level:</strong> Full-Product-Ecosystem-Build: Ich strukturiere dein komplettes Angebot</p>
+            <div class="angebote">
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Quick-Win:</strong> Launch-Autopsie – Was ist wirklich schiefgelaufen?</div>
+                    <div class="angebot-preis">797 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Hauptangebot:</strong> Launch-Comeback – Strategie + Begleitung + Backup-Plan</div>
+                    <div class="angebot-preis">3.997 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>VIP:</strong> Launch-Management – Ich manage deinen kompletten Launch</div>
+                    <div class="angebot-preis">7.997 €</div>
+                </div>
+            </div>
+        </div>
+
+        <h2>Teil 3: Service-Provider</h2>
+
+        <div class="positioning-card">
+            <h3>17. Virtuelle Assistentin für Multi-Passionierte</h3>
+            
+            <div class="was-sagst-du">
+                Was du wahrscheinlich sagst: "Ich kann als VA alles machen."
+            </div>
+            
+            <div class="was-wirklich">
+                Was wirklich passiert: "Ich mache alles" = "Ich bin niemandes erste Wahl."
+            </div>
+            
+            <div class="positionierung">
+                <strong>So könnte es klingen:</strong><br>
+                "Ich helfe Multi-Passionierten, die 3 Businesses gleichzeitig managen – als Operations-Managerin, die dein Chaos strukturiert."
+            </div>
+            
+            <div class="angebote">
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Quick-Win:</strong> Chaos-Audit – Was läuft wo schief?</div>
+                    <div class="angebot-preis">797 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Hauptangebot:</strong> Operations-Setup – SOPs + Systeme für alle Businesses</div>
+                    <div class="angebot-preis">2.997 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>VIP:</strong> Externe COO – Ich manage deine Operations laufend</div>
+                    <div class="angebot-preis">1.497 €/Monat</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="positioning-card">
+            <h3>18. Texterin für Funnel-Builder</h3>
+            
+            <div class="was-sagst-du">
+                Was du wahrscheinlich sagst: "Ich schreibe Website-Texte."
+            </div>
+            
+            <div class="was-wirklich">
+                Was wirklich passiert: Websites sind Einmal-Aufträge. Du willst wiederkehrende Kundinnen.
+            </div>
+            
+            <div class="positionierung">
+                <strong>So könnte es klingen:</strong><br>
+                "Ich schreibe Funnel-Copy für Online-Unternehmerinnen, die fertige Funnels haben – aber die Texte nicht konvertieren."
+            </div>
+            
+            <div class="angebote">
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Quick-Win:</strong> Funnel-Text-Audit – Wo verlierst du Käufer?</div>
+                    <div class="angebot-preis">797 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Hauptangebot:</strong> Funnel-Copy komplett – Von Awareness bis Kauf</div>
+                    <div class="angebot-preis">3.497 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>VIP:</strong> Copy-Retainer – Alle Funnels, alle Launches</div>
+                    <div class="angebot-preis">2.497 €/Monat</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="positioning-card">
+            <h3>19. Buchhalterin für kreative Chaoten</h3>
+            
+            <div class="was-sagst-du">
+                Was du wahrscheinlich sagst: "Ich mache Buchhaltung für alle."
+            </div>
+            
+            <div class="was-wirklich">
+                Was wirklich passiert: Kreative haben spezielle Chaos-Patterns. Du brauchst Nischen-Expertise.
+            </div>
+            
+            <div class="positionierung">
+                <strong>So könnte es klingen:</strong><br>
+                "Ich mache Buchhaltung für Kreative – Fotografinnen, Designerinnen – die Excel hassen und endlich Überblick wollen."
+            </div>
+            
+            <div class="angebote">
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Quick-Win:</strong> Finanz-Check – Wo ist dein Geld eigentlich?</div>
+                    <div class="angebot-preis">547 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Hauptangebot:</strong> Buchhaltungs-System – Monatliche Reports, die du verstehst</div>
+                    <div class="angebot-preis">497 €/Monat</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>VIP:</strong> Komplett-Betreuung – Buchhaltung + Steuern + Planung</div>
+                    <div class="angebot-preis">1.497 €/Monat</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="positioning-card">
+            <h3>20. Social-Media-Managerin für LinkedIn-Leads</h3>
+            
+            <div class="was-sagst-du">
+                Was du wahrscheinlich sagst: "Ich manage Social Media."
+            </div>
+            
+            <div class="was-wirklich">
+                Was wirklich passiert: B2C will viral. B2B will Leads. Das sind völlig verschiedene Welten.
+            </div>
+            
+            <div class="positionierung">
+                <strong>So könnte es klingen:</strong><br>
+                "Ich manage LinkedIn für High-Ticket-Service-Provider – Beraterinnen, Anwältinnen – die Leads wollen, keine Likes."
+            </div>
+            
+            <div class="angebote">
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Quick-Win:</strong> LinkedIn-Profil-Check – Zieht dein Profil Kunden an?</div>
+                    <div class="angebot-preis">797 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Hauptangebot:</strong> LinkedIn-Lead-System – Content-Strategie für B2B-Sales</div>
+                    <div class="angebot-preis">2.497 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>VIP:</strong> Full Management – Profil + Content + Outreach</div>
+                    <div class="angebot-preis">1.497 €/Monat</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="positioning-card">
+            <h3>21. Projekt-Managerin für Launch-Chaos</h3>
+            
+            <div class="was-sagst-du">
+                Was du wahrscheinlich sagst: "Ich manage Projekte."
+            </div>
+            
+            <div class="was-wirklich">
+                Was wirklich passiert: Launches sind ein spezielles Chaos. Du brauchst Launch-PM-Expertise.
+            </div>
+            
+            <div class="positionierung">
+                <strong>So könnte es klingen:</strong><br>
+                "Ich manage Launches für Online-Unternehmerinnen, die ihre letzten 3 Launches abgebrochen haben – für stressfreie Execution."
+            </div>
+            
+            <div class="angebote">
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Quick-Win:</strong> Launch-Readiness-Check – Bist du bereit?</div>
+                    <div class="angebot-preis">547 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Hauptangebot:</strong> Launch-Management – Von Pre-Launch bis Post-Launch</div>
+                    <div class="angebot-preis">3.497 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>VIP:</strong> Launch-Partner – Ich manage deinen kompletten Launch</div>
+                    <div class="angebot-preis">6.997 €</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="positioning-card">
+            <h3>22. Pinterest-Managerin für E-Commerce</h3>
+            
+            <div class="was-sagst-du">
+                Was du wahrscheinlich sagst: "Ich manage Pinterest."
+            </div>
+            
+            <div class="was-wirklich">
+                Was wirklich passiert: B2C-Coaches brauchen andere Strategien als E-Commerce. Du kannst nicht beides gleich gut.
+            </div>
+            
+            <div class="positionierung">
+                <strong>So könnte es klingen:</strong><br>
+                "Ich manage Pinterest für E-Commerce-Shops, die von Instagram-Ads zu organischem Traffic wechseln wollen – für Sales ohne Ad-Budget."
+            </div>
+            
+            <div class="angebote">
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Quick-Win:</strong> Pinterest-Check – Ist Pinterest richtig für dein Produkt?</div>
+                    <div class="angebot-preis">547 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Hauptangebot:</strong> Pinterest-Setup – Account + Strategie + erste 100 Pins</div>
+                    <div class="angebot-preis">1.697 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>VIP:</strong> Full Management – Strategie + Pins + Shopping-Integration</div>
+                    <div class="angebot-preis">1.497 €/Monat</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="positioning-card">
+            <h3>23. E-Mail-Marketing-Spezialistin für tote Listen</h3>
+            
+            <div class="was-sagst-du">
+                Was du wahrscheinlich sagst: "Ich mache E-Mail-Marketing."
+            </div>
+            
+            <div class="was-wirklich">
+                Was wirklich passiert: Die meisten haben tote Listen. Das ist ein spezielles Problem, das spezielle Lösungen braucht.
+            </div>
+            
+            <div class="positionierung">
+                <strong>So könnte es klingen:</strong><br>
+                "Ich reaktiviere tote E-Mail-Listen für Unternehmerinnen, die 5.000 Subscriber haben – aber niemand öffnet."
+            </div>
+            
+            <div class="angebote">
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Quick-Win:</strong> Listen-Diagnose – Tot oder nur eingeschlafen?</div>
+                    <div class="angebot-preis">797 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Hauptangebot:</strong> Reaktivierungs-Kampagne – 90-Tage-Comeback</div>
+                    <div class="angebot-preis">2.497 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>VIP:</strong> E-Mail-Management komplett – Ich schreibe, versende, manage</div>
+                    <div class="angebot-preis">1.497 €/Monat</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="positioning-card">
+            <h3>24. OBM für skalierende Online-Businesses</h3>
+            
+            <div class="was-sagst-du">
+                Was du wahrscheinlich sagst: "Ich bin Online Business Managerin."
+            </div>
+            
+            <div class="was-wirklich">
+                Was wirklich passiert: Jede zweite VA nennt sich jetzt OBM. Was macht dich anders?
+            </div>
+            
+            <div class="positionierung">
+                <strong>So könnte es klingen:</strong><br>
+                "Ich helfe Online-Unternehmerinnen, die von 100k auf 300k skalieren wollen – als OBM, die Systeme baut, nicht nur Tasks abarbeitet."
+            </div>
+            
+            <div class="angebote">
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Quick-Win:</strong> Skalierungs-Audit – Was blockiert dein Wachstum?</div>
+                    <div class="angebot-preis">797 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Hauptangebot:</strong> System-Setup – Operations für Skalierung</div>
+                    <div class="angebot-preis">4.997 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>VIP:</strong> OBM-Retainer – Ich manage dein Business mit</div>
+                    <div class="angebot-preis">3.497 €/Monat</div>
+                </div>
+            </div>
+        </div>
+
+        <h2>Teil 4: Online Business</h2>
+
+        <div class="positioning-card">
+            <h3>25. Kurs-Strategin für Kurs-Friedhöfe</h3>
+            
+            <div class="was-sagst-du">
+                Was du wahrscheinlich sagst: "Ich helfe beim Kurs erstellen."
+            </div>
+            
+            <div class="was-wirklich">
+                Was wirklich passiert: Die meisten haben schon Kurse. Die verkaufen nur nicht.
+            </div>
+            
+            <div class="positionierung">
+                <strong>So könnte es klingen:</strong><br>
+                "Ich helfe Kursersteller:innen mit fertigen Kursen, die keiner kauft – durch Sales-Funnels, die 24/7 verkaufen."
+            </div>
+            
+            <div class="angebote">
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Quick-Win:</strong> Funnel-Gap-Analyse – Warum verkauft dein Kurs nicht?</div>
+                    <div class="angebot-preis">797 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Hauptangebot:</strong> Evergreen-Funnel-Setup – Von 0 auf automatisierte Verkäufe</div>
+                    <div class="angebot-preis">3.997 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>VIP:</strong> Funnel-Optimierung laufend – Ich manage + optimiere</div>
+                    <div class="angebot-preis">1.497 €/Monat</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="positioning-card">
+            <h3>26. Membership-Strategin für Churn-Probleme</h3>
+            
+            <div class="was-sagst-du">
+                Was du wahrscheinlich sagst: "Ich helfe bei Memberships."
+            </div>
+            
+            <div class="was-wirklich">
+                Was wirklich passiert: Das Problem ist nicht die Membership. Das Problem ist, dass alle wieder gehen.
+            </div>
+            
+            <div class="positionierung">
+                <strong>So könnte es klingen:</strong><br>
+                "Ich helfe Membership-Betreiberinnen mit 30%+ monatlicher Churn – für Strategien, die Members halten, nicht nur gewinnen."
+            </div>
+            
+            <div class="angebote">
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Quick-Win:</strong> Churn-Analyse – Wann und warum gehen Members?</div>
+                    <div class="angebot-preis">547 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Hauptangebot:</strong> Retention-System – Onboarding + Engagement + Community</div>
+                    <div class="angebot-preis">3.497 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>VIP:</strong> Membership-Operations – Ich manage die Member-Experience</div>
+                    <div class="angebot-preis">2.497 €/Monat</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="positioning-card">
+            <h3>27. Podcast-Strategin für Download-Frust</h3>
+            
+            <div class="was-sagst-du">
+                Was du wahrscheinlich sagst: "Ich helfe beim Podcasten."
+            </div>
+            
+            <div class="was-wirklich">
+                Was wirklich passiert: Die meisten podcasten schon. Sie haben nur keine Hörer.
+            </div>
+            
+            <div class="positionierung">
+                <strong>So könnte es klingen:</strong><br>
+                "Ich helfe Podcast-Hostinnen mit 100 Episodes aber 50 Downloads – für Promotion, die tatsächlich Hörer bringt."
+            </div>
+            
+            <div class="angebote">
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Quick-Win:</strong> Promotion-Audit – Wo promotest du (nicht)?</div>
+                    <div class="angebot-preis">797 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Hauptangebot:</strong> Podcast-Growth-System – SEO + Pinterest + Repurposing</div>
+                    <div class="angebot-preis">2.497 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>VIP:</strong> Podcast-Promotion komplett – Ich handle alle Promotion</div>
+                    <div class="angebot-preis">1.497 €/Monat</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="positioning-card">
+            <h3>28. Community-Strategin für Ghost-Towns</h3>
+            
+            <div class="was-sagst-du">
+                Was du wahrscheinlich sagst: "Ich helfe beim Community-Aufbau."
+            </div>
+            
+            <div class="was-wirklich">
+                Was wirklich passiert: Sie haben eine Community. Nur postet niemand.
+            </div>
+            
+            <div class="positionierung">
+                <strong>So könnte es klingen:</strong><br>
+                "Ich helfe Community-Builderinnen mit 500 Members aber 0 Engagement – für aktive Communities statt digitale Ghost-Towns."
+            </div>
+            
+            <div class="angebote">
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Quick-Win:</strong> Community-Check – Warum ist es so still?</div>
+                    <div class="angebot-preis">797 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Hauptangebot:</strong> Engagement-Revival – Von Ghost-Town zu aktiv</div>
+                    <div class="angebot-preis">1.997 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>VIP:</strong> Community-Management – Ich belebe + manage</div>
+                    <div class="angebot-preis">1.497 €/Monat</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="positioning-card">
+            <h3>29. Affiliate-Strategin für Conversion-Probleme</h3>
+            
+            <div class="was-sagst-du">
+                Was du wahrscheinlich sagst: "Ich helfe bei Affiliate-Marketing."
+            </div>
+            
+            <div class="was-wirklich">
+                Was wirklich passiert: Sie haben Traffic. Nur kauft niemand.
+            </div>
+            
+            <div class="positionierung">
+                <strong>So könnte es klingen:</strong><br>
+                "Ich helfe Affiliate-Marketerinnen mit 10.000 Klicks aber 0 Sales – für kaufbereiten Traffic statt Lookie-Loos."
+            </div>
+            
+            <div class="angebote">
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Quick-Win:</strong> Traffic-Qualitäts-Check – Schickst du die Richtigen?</div>
+                    <div class="angebot-preis">547 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Hauptangebot:</strong> Buyer-Traffic-System – SEO + Content für Käufer</div>
+                    <div class="angebot-preis">2.497 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>VIP:</strong> Affiliate-Funnel-Management – Traffic zu Sales optimiert</div>
+                    <div class="angebot-preis">1.497 €/Monat</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="positioning-card">
+            <h3>30. Digital-Product-Strategin für Produkt-Friedhöfe</h3>
+            
+            <div class="was-sagst-du">
+                Was du wahrscheinlich sagst: "Ich helfe bei digitalen Produkten."
+            </div>
+            
+            <div class="was-wirklich">
+                Was wirklich passiert: Sie haben 20 Produkte. Aber keine Customer Journey.
+            </div>
+            
+            <div class="positionierung">
+                <strong>So könnte es klingen:</strong><br>
+                "Ich helfe Digital-Product-Hoarderinnen mit 20+ Produkten aber 0 System – für eine Product-Suite mit klarem Pfad statt Chaos."
+            </div>
+            
+            <div class="angebote">
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Quick-Win:</strong> Product-Suite-Audit – Welche Produkte passen zusammen?</div>
+                    <div class="angebot-preis">797 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>Hauptangebot:</strong> Product-Ladder-System – Von Entry zu Upsell zu VIP</div>
+                    <div class="angebot-preis">2.997 €</div>
+                </div>
+                <div class="angebot">
+                    <div class="angebot-name"><strong>VIP:</strong> Product-Ecosystem komplett – Ich strukturiere alles</div>
+                    <div class="angebot-preis">6.997 €</div>
+                </div>
             </div>
         </div>
 
         <div class="action-box">
-            <h2>Jetzt bist du dran!</h2>
-            <p style="font-size: 1.125rem;">Du hast jetzt 30 Beispiele aus verschiedenen Branchen gesehen. Zeit für DEINE Positionierung.</p>
-        </div>
-
-        <div class="framework-box">
-            <h2>Dein Positioning-Framework:</h2>
-            
-            <h4>1. Wähle deine Zielgruppen-TYPE:</h4>
-            <ul class="example-list">
-                <li>Welcher dieser 30 Typen spricht dich an?</li>
-                <li>Welchen TYPE kennst du aus eigener Erfahrung?</li>
-                <li>Mit welchem TYPE würdest du gerne arbeiten?</li>
-            </ul>
-            
-            <h4>2. Finde das ECHTE Problem:</h4>
-            <ul class="example-list">
-                <li>Was denken sie ist ihr Problem? (Symptom)</li>
-                <li>Was ist WIRKLICH ihr Problem? (Root Cause)</li>
-            </ul>
-            
-            <h4>3. Formuliere dein Statement:</h4>
-            <code>Ich helfe [SPECIFIC TARGET] die [SPECIFIC SYMPTOM] haben,
-[SPECIFIC TRANSFORMATION] zu erreichen –
-durch [UNIQUE METHOD/ANGLE] statt [COMMON APPROACH].</code>
-            
-            <h4>4. Baue deine Angebots-Leiter:</h4>
-            <ul class="example-list">
-                <li><strong>Quick-Win (297€-997€):</strong> Diagnose/Audit/Check</li>
-                <li><strong>System-Build (2.997€-6.997€):</strong> Komplettes System/Programm</li>
-                <li><strong>VIP-Level (997€-2.997€/Monat):</strong> Done-FOR-You + Ongoing</li>
-            </ul>
-        </div>
-
-        <h2>Quick-Test: Ist deine Positionierung spitz genug?</h2>
-        
-        <div class="positioning-card">
-            <h4>❌ ZU BREIT:</h4>
-            <ul class="example-list">
-                <li><span class="crossmark">✗</span>"Ich helfe Frauen erfolgreich zu sein"</li>
-                <li><span class="crossmark">✗</span>"Business-Coaching für Selbstständige"</li>
-                <li><span class="crossmark">✗</span>"Marketing-Beratung"</li>
-                <li><span class="crossmark">✗</span>"Ich mache Webdesign"</li>
-            </ul>
-        </div>
-        
-        <div class="positioning-card" style="background: #E8F5E9;">
-            <h4>✅ SPITZ:</h4>
-            <ul class="example-list">
-                <li><span class="checkmark">✓</span>"Brand Fotografie für Female Founders die aus dem Corporate kommen"</li>
-                <li><span class="checkmark">✓</span>"Pinterest-Management für E-Commerce-Shops die von Ads zu Organic wechseln"</li>
-                <li><span class="checkmark">✓</span>"Copywriting für Funnel-Builder deren Copy nicht konvertiert"</li>
-                <li><span class="checkmark">✓</span>"Launch-Management für Unternehmerinnen nach gescheiterten Launches"</li>
-            </ul>
-        </div>
-
-        <div class="intro-box">
-            <p><strong>Der Test:</strong> Wenn du deine Positionierung sagst und jemand antwortet "Oh, das bin ICH!" oder "Oh, das ist NICHT ich" – dann ist sie spitz genug.</p>
-            <p>Wenn sie antworten "Ähm, ja, könnte interessant sein..." – zu breit.</p>
-        </div>
-
-        <h2>Was jetzt?</h2>
-        
-        <div class="framework-box">
-            <h3>30 Tage Test:</h3>
-            <ol class="example-list">
-                <li><strong>Nimm EINE</strong> dieser Positionierungen (oder adaptiere eine)</li>
-                <li><strong>Teste sie 30 Tage</strong> auf deiner Haupt-Plattform</li>
-                <li><strong>Schau welche Anfragen kommen</strong> – passen sie zu deinem Ideal-Kunden?</li>
-                <li><strong>Passe nur an, wenn wirklich nötig</strong> – aber nicht vorher!</li>
-            </ol>
-            <p><strong>Wichtig:</strong> 30 Tage sind MINIMUM. Die meisten wechseln nach 2 Wochen. Deshalb funktioniert's nicht.</p>
-        </div>
-
-        <div class="action-box">
-            <h2>Brauchst du Hilfe bei der Umsetzung?</h2>
-            <p>Positionierung alleine bringt nichts wenn du:</p>
-            <ul class="example-list" style="text-align: left; max-width: 600px; margin: 1rem auto;">
-                <li>Nicht weißt wie du sie kommunizierst</li>
-                <li>Kein System hast um sichtbar zu werden</li>
-                <li>60h/Woche arbeitest und keine Zeit für Marketing hast</li>
-            </ul>
-            <p style="margin-top: 2rem; font-size: 1.25rem;"><strong>Dann:</strong> <a href="https://www.carinaannaprav.at#angebote">www.carinaannaprav.at</a></p>
-            <p style="margin-top: 1rem;">Oder reply auf die Email die du bekommen hast – ich antworte persönlich.</p>
+            <h2>Und jetzt?</h2>
+            <p style="font-size: 1.1rem; max-width: 600px; margin: 0 auto 1.5rem;">Du hast 30 Beispiele gesehen. Du verstehst das Prinzip. Jetzt ist die Frage: Machst du was draus?</p>
+            <p>Positionierung alleine bringt nichts, wenn du nicht weißt, wie du sie kommunizierst. Wenn du kein System hast, um sichtbar zu werden. Wenn du 60 Stunden arbeitest und keine Zeit für Marketing hast.</p>
+            <a href="https://www.carinaannaprav.at/mentoring.html">Dann lass uns reden →</a>
         </div>
 
         <footer>
             <p class="logo">CARINA ANNA PRAV</p>
-            <p>Business-Automatisierung & Systemaufbau für Selbstständige</p>
+            <p>Systeme für Selbstständige, die ihr Business besitzen wollen – nicht davon besessen werden.</p>
             <p style="margin-top: 2rem; font-size: 0.9rem;">© 2026 Carina Anna Prav. Alle Rechte vorbehalten.</p>
         </footer>
     </div>

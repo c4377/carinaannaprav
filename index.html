@@ -1,2608 +1,1344 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Business-Systeme. Positionierung, Funnel, Automatisierung. Carina Anna Prav.">
-    <title>Carina Anna Prav</title>
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        :root {
-            --white: #FFFFFF;
-            --off-white: #F8F9FA;
-            --light-gray: #E9ECEF;
-            --medium-gray: #6C757D;
-            --dark-gray: #343A40;
-            --charcoal: #212529;
-            --slate-blue: #4A5568;
-            --accent-blue: #2C5282;
-            --accent-blue-light: #3182CE;
-            
-            --font-serif: 'Playfair Display', Georgia, serif;
-            --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-            
-            --spacing-xs: 0.5rem;
-            --spacing-sm: 1rem;
-            --spacing-md: 2rem;
-            --spacing-lg: 4rem;
-            --spacing-xl: 6rem;
-            
-            --max-width: 1200px;
-        }
-        
-        body {
-            font-family: var(--font-sans);
-            color: var(--charcoal);
-            background: var(--white);
-            line-height: 1.7;
-            -webkit-font-smoothing: antialiased;
-            overflow-x: hidden;
-        }
-        
-        h1, h2, h3, h4 {
-            font-family: var(--font-serif);
-            font-weight: 400;
-            line-height: 1.2;
-            letter-spacing: -0.02em;
-            color: var(--charcoal);
-        }
-        
-        h1 {
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            margin-bottom: var(--spacing-md);
-        }
-        
-        h2 {
-            font-size: clamp(2rem, 5vw, 3rem);
-            margin-bottom: var(--spacing-md);
-        }
-        
-        h3 {
-            font-size: clamp(1.5rem, 4vw, 2rem);
-            margin-bottom: var(--spacing-sm);
-        }
-        
-        p {
-            font-size: clamp(1rem, 2vw, 1.125rem);
-            margin-bottom: var(--spacing-sm);
-            color: var(--slate-blue);
-        }
-        
-        a {
-            color: var(--charcoal);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
-        
-        .container {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: 0 var(--spacing-md);
-        }
-        
-        .container-narrow {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 var(--spacing-md);
-        }
-        
-        section {
-            padding: var(--spacing-xl) 0;
-        }
-        
-        @media (max-width: 768px) {
-            section {
-                padding: var(--spacing-lg) 0;
-            }
-        }
-        
-        /* BUTTONS */
-        .btn {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            font-size: 0.95rem;
-            font-weight: 500;
-            text-align: center;
-            border: 2px solid var(--charcoal);
-            background: transparent;
-            color: var(--charcoal);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-family: var(--font-sans);
-            text-decoration: none;
-        }
-        
-        .btn:hover {
-            background: var(--white);
-            color: var(--white);
-            transform: translateY(-2px);
-        }
-        
-        .btn-primary {
-            background: var(--accent-blue);
-            color: #FFFFFF;
-            border-color: var(--accent-blue);
-        }
-        
-        .btn-primary:hover {
-            background: var(--accent-blue-light);
-            border-color: var(--accent-blue-light);
-            color: #FFFFFF;
-        }
-        
-        .btn-large {
-            padding: 1.25rem 3rem;
-            font-size: 1rem;
-        }
-        
-        @media (max-width: 768px) {
-            .btn {
-                width: 100%;
-                padding: 1rem 1.5rem;
-            }
-        }
-        
-        /* NAVIGATION */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid var(--light-gray);
-        }
-        
-        .nav-container {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: var(--spacing-sm) var(--spacing-md);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-family: var(--font-serif);
-            font-size: 1.25rem;
-            font-weight: 400;
-            letter-spacing: 0.05em;
-            color: var(--charcoal);
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: var(--spacing-md);
-            list-style: none;
-        }
-        
-        .nav-links a {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-weight: 500;
-            color: var(--slate-blue);
-            position: relative;
-        }
-        
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--white);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-links a:hover {
-            color: var(--charcoal);
-        }
-        
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-        
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--charcoal);
-        }
-        
-        @media (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                top: 70px;
-                left: 0;
-                right: 0;
-                background: var(--white);
-                flex-direction: column;
-                padding: var(--spacing-md);
-                gap: var(--spacing-sm);
-                border-bottom: 1px solid var(--light-gray);
-                transform: translateY(-100%);
-                opacity: 0;
-                transition: all 0.3s ease;
-                pointer-events: none;
-            }
-            
-            .nav-links.active {
-                transform: translateY(0);
-                opacity: 1;
-                pointer-events: all;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-        }
-        
-        /* HERO */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding-top: 80px;
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(rgba(33, 37, 41, 0.7), rgba(33, 37, 41, 0.7)), url('bilder/hero-bg.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-        }
-        
-        .hero-eyebrow {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--white);
-            margin-bottom: var(--spacing-sm);
-            font-weight: 600;
-            opacity: 0.9;
-        }
-        
-        .hero h1 {
-            margin-bottom: var(--spacing-md);
-            color: var(--white);
-        }
-        
-        .hero-subheading {
-            font-size: clamp(1.125rem, 2.5vw, 1.375rem);
-            color: var(--light-gray);
-            margin-bottom: var(--spacing-lg);
-            line-height: 1.7;
-        }
-        
-        .hero-cta {
-            display: flex;
-            gap: var(--spacing-sm);
-            flex-wrap: wrap;
-        }
-        
-        .hero-cta .btn:not(.btn-primary) {
-            border-color: var(--white);
-            color: var(--white);
-            background: transparent;
-        }
-        
-        .hero-cta .btn:not(.btn-primary):hover {
-            background: var(--white);
-            color: var(--charcoal);
-        }
-        
-        @media (max-width: 768px) {
-            .hero {
-                min-height: 90vh;
-                text-align: center;
-            }
-            
-            .hero-content {
-                margin: 0 auto;
-            }
-            
-            .hero-cta {
-                flex-direction: column;
-            }
-        }
-        
-        /* PROBLEM SECTION */
-        .problem {
-            background: var(--off-white);
-            text-align: center;
-        }
-        
-        .problem-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: var(--spacing-lg);
-            margin-top: var(--spacing-lg);
-        }
-        
-        .problem-card {
-            background: var(--white);
-            padding: var(--spacing-lg) var(--spacing-md);
-            border: 1px solid var(--light-gray);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .problem-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
-        }
-        
-        .problem-number {
-            font-family: var(--font-serif);
-            font-size: 3rem;
-            color: var(--accent-blue);
-            opacity: 0.3;
-            margin-bottom: var(--spacing-sm);
-            line-height: 1;
-        }
-        
-        .problem-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: var(--spacing-sm);
-        }
-        
-        .problem-card p {
-            font-size: 1rem;
-            margin-bottom: 0;
-        }
-        
-        .problem-summary {
-            margin-top: var(--spacing-lg);
-            padding: var(--spacing-md);
-            background: var(--white);
-            color: var(--charcoal);
-        }
-        
-        .problem-summary p {
-            color: var(--slate-blue);
-            font-size: 1.125rem;
-            margin: 0;
-        }
-        
-        /* SOLUTION SECTION */
-        .solution {
-            background: var(--white);
-        }
-        
-        .solution-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--spacing-xl);
-            align-items: center;
-        }
-        
-        .solution-features {
-            list-style: none;
-            margin-top: var(--spacing-md);
-        }
-        
-        .solution-features li {
-            display: flex;
-            align-items: flex-start;
-            gap: var(--spacing-sm);
-            margin-bottom: var(--spacing-md);
-            font-size: 1.125rem;
-            color: var(--slate-blue);
-        }
-        
-        .solution-features li::before {
-            content: '';
-            width: 8px;
-            height: 8px;
-            background: var(--accent-blue);
-            border-radius: 50%;
-            flex-shrink: 0;
-            margin-top: 0.5rem;
-        }
-        
-        .solution-image {
-            width: 100%;
-            height: 500px;
-            object-fit: cover;
-            border: 1px solid var(--light-gray);
-        }
-        
-        .solution-result {
-            margin-top: var(--spacing-md);
-            padding: var(--spacing-md);
-            background: var(--off-white);
-            border-left: 4px solid var(--accent-blue);
-        }
-        
-        .solution-result p {
-            margin: 0;
-            font-size: 1.125rem;
-            color: var(--charcoal);
-        }
-        
-        @media (max-width: 768px) {
-            .solution-content {
-                grid-template-columns: 1fr;
-                gap: var(--spacing-md);
-            }
-            
-            .solution-image {
-                order: -1;
-                height: 300px;
-            }
-        }
-        
-        /* ABOUT SECTION */
-        .about {
-            background: linear-gradient(135deg, var(--off-white) 0%, var(--light-gray) 100%);
-        }
-        
-        .about-intro {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto var(--spacing-lg);
-        }
-        
-        .about-intro p {
-            font-size: 1.25rem;
-        }
-        
-        .about-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: var(--spacing-md);
-        }
-        
-        .about-card {
-            background: var(--white);
-            padding: var(--spacing-md);
-            border-left: 4px solid var(--accent-blue);
-        }
-        
-        .about-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: var(--spacing-sm);
-            color: var(--charcoal);
-        }
-        
-        .about-card p {
-            margin-bottom: 0;
-            color: var(--dark-gray);
-        }
-        
-        .about-not-for {
-            background: var(--white);
-            padding: var(--spacing-lg);
-            margin-top: var(--spacing-lg);
-            text-align: center;
-            border: 1px solid var(--light-gray);
-        }
-        
-        .about-not-for h3 {
-            color: var(--medium-gray);
-            margin-bottom: var(--spacing-sm);
-        }
-        
-        .about-not-for p {
-            color: var(--medium-gray);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        /* QUIZ CTA SECTION */
-        .quiz-cta {
-            background: var(--off-white);
-            text-align: center;
-        }
-        
-        .quiz-cta-box {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        .quiz-cta h2 {
-            margin-bottom: var(--spacing-sm);
-        }
-        
-        .quiz-cta p {
-            font-size: 1.25rem;
-            margin-bottom: var(--spacing-md);
-        }
-        
-        .quiz-cta .btn {
-            font-size: 1.125rem;
-            padding: 1.5rem 3rem;
-        }
-        
-        .quiz-cta .subtext {
-            margin-top: var(--spacing-sm);
-            font-size: 0.95rem;
-            color: var(--medium-gray);
-        }
-        
-        /* AUDIO KURS SECTION */
-        .audio-kurs {
-            background: var(--off-white);
-        }
-        
-        .audio-kurs-card {
-            max-width: 800px;
-            margin: 0 auto;
-            background: var(--white);
-            padding: var(--spacing-lg);
-            border: 1px solid var(--light-gray);
-            position: relative;
-        }
-        
-        .audio-kurs-badge {
-            position: absolute;
-            top: -12px;
-            left: 30px;
-            background: var(--accent-blue);
-            color: var(--charcoal);
-            padding: 0.5rem 1rem;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-weight: 600;
-        }
-        
-        .audio-kurs-header {
-            text-align: center;
-            margin-bottom: var(--spacing-md);
-            padding-top: var(--spacing-sm);
-        }
-        
-        .audio-kurs-header h3 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .audio-kurs-header .subtitle {
-            font-style: italic;
-            color: var(--slate-blue);
-            margin-bottom: var(--spacing-sm);
-        }
-        
-        .audio-kurs-price {
-            font-family: var(--font-serif);
-            font-size: 3rem;
-            color: var(--accent-blue);
-            font-weight: 400;
-        }
-        
-        .audio-kurs-features {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--spacing-md);
-            margin: var(--spacing-md) 0;
-        }
-        
-        .audio-kurs-features ul {
-            list-style: none;
-        }
-        
-        .audio-kurs-features li {
-            padding: 0.75rem 0;
-            padding-left: 1.5rem;
-            position: relative;
-            color: var(--slate-blue);
-            border-bottom: 1px solid var(--light-gray);
-        }
-        
-        .audio-kurs-features li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 6px;
-            height: 6px;
-            background: var(--accent-blue);
-            border-radius: 50%;
-        }
-        
-        .audio-kurs-features li:last-child {
-            border-bottom: none;
-        }
-        
-        .audio-kurs-cta {
-            text-align: center;
-            margin-top: var(--spacing-md);
-        }
-        
-        @media (max-width: 768px) {
-            .audio-kurs-features {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        /* PODCAST SECTION */
-        .podcast {
-            background: var(--white);
-        }
-        
-        .podcast-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--spacing-xl);
-            align-items: center;
-        }
-        
-        .podcast-text {
-            order: 2;
-        }
-        
-        .podcast-image-container {
-            order: 1;
-        }
-        
-        .podcast-image {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            border: 1px solid var(--light-gray);
-        }
-        
-        .podcast-platforms {
-            display: flex;
-            gap: var(--spacing-sm);
-            flex-wrap: wrap;
-            margin-top: var(--spacing-md);
-        }
-        
-        .platform-link {
-            padding: 0.75rem 1.5rem;
-            border: 1px solid var(--charcoal);
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--charcoal);
-            transition: all 0.3s ease;
-        }
-        
-        .platform-link:hover {
-            background: var(--white);
-            color: var(--charcoal);
-        }
-        
-        @media (max-width: 768px) {
-            .podcast-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .podcast-text {
-                order: 1;
-            }
-            
-            .podcast-image-container {
-                order: 2;
-            }
-            
-            .podcast-image {
-                height: 300px;
-            }
-        }
-        
-        /* FAQ SECTION */
-        .faq {
-            background: var(--off-white);
-        }
-        
-        .faq h2 {
-            text-align: center;
-            color: var(--charcoal);
-        }
-        
-        .faq-container {
-            max-width: 800px;
-            margin: var(--spacing-lg) auto 0;
-        }
-        
-        .faq-item {
-            background: var(--white);
-            margin-bottom: var(--spacing-sm);
-            border: 1px solid var(--light-gray);
-        }
-        
-        .faq-question {
-            width: 100%;
-            padding: var(--spacing-md);
-            background: none;
-            border: none;
-            text-align: left;
-            font-size: 1.0625rem;
-            font-weight: 600;
-            color: var(--charcoal);
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s ease;
-            font-family: var(--font-sans);
-        }
-        
-        .faq-question:hover {
-            color: var(--accent-blue);
-        }
-        
-        .faq-icon {
-            font-size: 1.5rem;
-            transition: transform 0.3s ease;
-            color: var(--accent-blue);
-        }
-        
-        .faq-item.active .faq-icon {
-            transform: rotate(45deg);
-        }
-        
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease, padding 0.3s ease;
-            padding: 0 var(--spacing-md);
-            color: var(--dark-gray);
-        }
-        
-        .faq-item.active .faq-answer {
-            max-height: 500px;
-            padding: 0 var(--spacing-md) var(--spacing-md);
-        }
-        
-        .faq-answer p {
-            margin-bottom: 0;
-            color: var(--dark-gray);
-        }
-        
-        /* NEWSLETTER SECTION */
-        .newsletter {
-            background: var(--white);
-            color: var(--charcoal);
-            text-align: center;
-            padding: var(--spacing-xl) 0;
-        }
-        
-        .newsletter h2 {
-            color: var(--charcoal);
-        }
-        
-        .newsletter p {
-            color: var(--slate-blue);
-            max-width: 600px;
-            margin: 0 auto var(--spacing-md);
-        }
-        
-        .newsletter-form {
-            max-width: 600px;
-            margin: var(--spacing-md) auto 0;
-            display: flex;
-            gap: var(--spacing-sm);
-        }
-        
-        .newsletter-input {
-            flex: 1;
-            padding: 1rem;
-            border: 1px solid var(--light-gray);
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--charcoal);
-            font-size: 1rem;
-            font-family: var(--font-sans);
-        }
-        
-        .newsletter-input::placeholder {
-            color: var(--medium-gray);
-        }
-        
-        .newsletter-btn {
-            padding: 1rem 2rem;
-            background: var(--accent-blue);
-            color: var(--charcoal);
-            border: none;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            font-family: var(--font-sans);
-        }
-        
-        .newsletter-btn:hover {
-            background: var(--accent-blue-light);
-        }
-        
-        .newsletter .disclaimer {
-            font-size: 0.85rem;
-            margin-top: var(--spacing-sm);
-            color: var(--medium-gray);
-        }
-        
-        @media (max-width: 600px) {
-            .newsletter-form {
-                flex-direction: column;
-            }
-        }
-        
-        /* FOOTER */
-        footer {
-            background: var(--white);
-            color: var(--slate-blue);
-            padding: var(--spacing-lg) 0 var(--spacing-md);
-            border-top: 1px solid var(--light-gray);
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: var(--spacing-lg);
-            margin-bottom: var(--spacing-lg);
-        }
-        
-        .footer-section h4 {
-            color: var(--charcoal);
-            font-size: 1rem;
-            margin-bottom: var(--spacing-sm);
-            font-family: var(--font-sans);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-weight: 600;
-        }
-        
-        .footer-section p {
-            color: var(--medium-gray);
-            font-size: 0.95rem;
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: var(--spacing-xs);
-        }
-        
-        .footer-links a {
-            color: var(--medium-gray);
-            font-size: 0.95rem;
-            transition: color 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            color: var(--charcoal);
-        }
-        
-        .footer-bottom {
-            text-align: center;
-            padding-top: var(--spacing-md);
-            border-top: 1px solid var(--light-gray);
-            font-size: 0.9rem;
-            color: var(--medium-gray);
-        }
-        
-        /* UTILITIES */
-        .text-center {
-            text-align: center;
-        }
-        
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .fade-in {
-            animation: fadeIn 0.6s ease-out;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>The House of Dynamics — Carina</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* QUOTE BLOCK */
-        .quote-block {
-            background: var(--off-white);
-            padding: var(--spacing-lg);
-            border-left: 4px solid var(--accent-blue);
-            margin: var(--spacing-lg) 0;
-        }
+html { scroll-behavior: smooth; font-size: 16px; }
 
-        .quote-block p {
-            font-family: var(--font-serif);
-            font-size: 1.5rem;
-            font-style: italic;
-            color: var(--charcoal);
-            margin: 0;
-        }
+body {
+  background: #F6F3EF;
+  color: #1A1A1A;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  line-height: 1.7;
+}
 
-        .quote-block .attribution {
-            font-family: var(--font-sans);
-            font-size: 1rem;
-            font-style: normal;
-            color: var(--medium-gray);
-            margin-top: var(--spacing-sm);
-        }
-        
-        /* FLOATING BADGE */
-        .floating-badge {
-            position: fixed;
-            top: 100px;
-            right: 20px;
-            background: var(--accent-blue);
-            color: var(--white);
-            padding: 1rem 1.5rem;
-            padding-right: 2.5rem;
-            border-radius: 8px;
-            cursor: pointer;
-            z-index: 998;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            max-width: 280px;
-        }
-        
-        .floating-badge:hover {
-            background: var(--accent-blue-light);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(0,0,0,0.2);
-        }
-        
-        .floating-badge-text {
-            display: flex;
-            flex-direction: column;
-            line-height: 1.4;
-            color: var(--white);
-        }
-        
-        .floating-badge-title {
-            font-weight: 600;
-            font-size: 0.9rem;
-            color: var(--white);
-        }
-        
-        .floating-badge-cta {
-            font-size: 0.8rem;
-            opacity: 0.9;
-            margin-top: 0.15rem;
-            color: var(--white);
-        }
-        
-        .floating-badge-close {
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            width: 20px;
-            height: 20px;
-            background: rgba(255,255,255,0.2);
-            color: var(--white);
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 0.7rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s;
-        }
-        
-        .floating-badge-close:hover {
-            background: rgba(255,255,255,0.3);
-        }
-        
-        .floating-badge.hidden {
-            display: none;
-        }
-        
-        @media (max-width: 768px) {
-            .floating-badge {
-                top: 80px;
-                right: 10px;
-                left: 10px;
-                max-width: none;
-                justify-content: center;
-                text-align: center;
-            }
-            
-            .floating-badge-text {
-                align-items: center;
-            }
-        }
-    </style>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+::selection { background: #7B4A3A; color: #fff; }
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  padding: 1.5rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(246, 243, 239, 0.95);
+  backdrop-filter: blur(20px);
+  transition: all 0.4s;
+}
+
+nav.scrolled {
+  padding: 1rem 3rem;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  text-decoration: none;
+}
+
+.nav-logo-mark {
+  height: 38px;
+  flex-shrink: 0;
+}
+
+.nav-logo-mark img {
+  height: 100%;
+  width: auto;
+}
+
+.nav-logo-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #1A1A1A;
+  letter-spacing: 0.04em;
+  line-height: 1.15;
+}
+
+.nav-logo-text span {
+  font-style: italic;
+  font-weight: 300;
+  color: #5C1518;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-links a {
+  color: #1A1A1A;
+  text-decoration: none;
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 400;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover { color: #5C1518; }
+
+.nav-cta {
+  padding: 0.65rem 1.8rem;
+  background: #5C1518;
+  color: #fff !important;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 0.68rem !important;
+  letter-spacing: 0.15em;
+}
+
+.nav-cta:hover { background: #4A1114; transform: translateY(-1px); }
+
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.nav-hamburger span {
+  width: 26px;
+  height: 1.5px;
+  background: #1A1A1A;
+  transition: all 0.3s;
+}
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 8rem 2rem 6rem;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 0;
+}
+
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(246, 243, 239, 0.88) 0%,
+    rgba(246, 243, 239, 0.75) 40%,
+    rgba(246, 243, 239, 0.92) 100%
+  );
+}
+
+.hero-content {
+  text-align: center;
+  max-width: 850px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-eyebrow {
+  font-size: 0.68rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #999;
+  margin-bottom: 2.5rem;
+  font-weight: 400;
+  animation: fadeUp 0.8s ease 0.2s both;
+}
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3.2rem, 9vw, 7rem);
+  font-weight: 300;
+  line-height: 1.0;
+  color: #1A1A1A;
+  margin-bottom: 0.3rem;
+  animation: fadeUp 0.8s ease 0.4s both;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: #5C1518;
+}
+
+.hero-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.1rem, 2.5vw, 1.45rem);
+  font-weight: 300;
+  font-style: italic;
+  color: #777;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  animation: fadeUp 0.8s ease 0.6s both;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1.2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: fadeUp 0.8s ease 0.8s both;
+}
+
+.btn-primary {
+  padding: 1rem 2.8rem;
+  background: #5C1518;
+  color: #fff;
+  border: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-primary:hover {
+  background: #7B4A3A;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(92, 21, 24, 0.2);
+}
+
+.btn-secondary {
+  padding: 1rem 2.8rem;
+  background: transparent;
+  color: #1A1A1A;
+  border: 1px solid #1A1A1A;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-secondary:hover {
+  background: #1A1A1A;
+  color: #F6F3EF;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* SECTIONS */
+section { padding: 7rem 3rem; }
+
+.section-line {
+  width: 40px;
+  height: 2px;
+  background: #5C1518;
+  margin: 0 auto 2rem;
+}
+
+.section-eyebrow {
+  font-size: 0.62rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #999;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 300;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+  color: #1A1A1A;
+}
+
+.section-title em { font-style: italic; color: #5C1518; }
+
+/* ABOUT */
+.about { background: #F6F3EF; position: relative; overflow: hidden; }
+
+.about-grid {
+  max-width: 1100px;
+  margin: 4rem auto 0;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 0;
+  align-items: center;
+  position: relative;
+}
+
+.about-image {
+  position: relative;
+  z-index: 1;
+  margin-right: -3rem;
+}
+
+.about-image img {
+  width: 100%;
+  height: 650px;
+  object-fit: cover;
+  object-position: center top;
+  filter: grayscale(15%);
+}
+
+.about-image .placeholder {
+  width: 100%;
+  height: 650px;
+  background: #EAE6E0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #bbb;
+  border: 1px dashed #ccc;
+}
+
+.about-text {
+  position: relative;
+  z-index: 2;
+  background: rgba(246, 243, 239, 0.95);
+  padding: 3rem 3rem 3rem 4rem;
+  margin-left: -3rem;
+}
+
+.about-text h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  font-weight: 300;
+  font-style: italic;
+  color: #1A1A1A;
+  margin-bottom: 1.5rem;
+  line-height: 1.3;
+}
+
+.about-text p {
+  font-size: 0.92rem;
+  color: #555;
+  margin-bottom: 1.2rem;
+  line-height: 1.8;
+}
+
+.about-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+.about-tags span {
+  padding: 0.35rem 0.9rem;
+  border: 1px solid #ddd;
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #888;
+}
+
+/* DYNAMIK BANNER */
+.dynamik {
+  background: #1A1A1A;
+  text-align: center;
+  padding: 5rem 3rem;
+}
+
+.dynamik-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.5rem, 4vw, 2.6rem);
+  font-weight: 300;
+  font-style: italic;
+  max-width: 750px;
+  margin: 0 auto;
+  line-height: 1.4;
+  color: #F6F3EF;
+}
+
+.dynamik-quote strong {
+  color: #5C1518;
+  font-weight: 400;
+}
+
+.dynamik-sub {
+  margin-top: 1.5rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+}
+
+/* OFFERS */
+.offers { background: #EFEBE5; }
+
+.offers-grid {
+  max-width: 1100px;
+  margin: 4rem auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.offer-card {
+  background: #F6F3EF;
+  padding: 2.5rem 2rem;
+  position: relative;
+  transition: all 0.4s;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.offer-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+  border-color: #5C1518;
+}
+
+.offer-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.5rem;
+  color: #ddd;
+  line-height: 1;
+  margin-bottom: 1.2rem;
+}
+
+.offer-card h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: #1A1A1A;
+  margin-bottom: 0.4rem;
+}
+
+.offer-price {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #999;
+  margin-bottom: 1.2rem;
+}
+
+.offer-card > p {
+  font-size: 0.88rem;
+  color: #666;
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+}
+
+.offer-includes {
+  list-style: none;
+  margin-bottom: 2rem;
+}
+
+.offer-includes li {
+  font-size: 0.8rem;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid #eee;
+  color: #555;
+}
+
+.offer-includes li::before {
+  content: '—';
+  color: #5C1518;
+  margin-right: 0.6rem;
+}
+
+.offer-featured {
+  border: 1px solid #5C1518;
+}
+
+.offer-badge {
+  position: absolute;
+  top: 0; right: 1.5rem;
+  background: #5C1518;
+  color: #fff;
+  padding: 0.4rem 1rem;
+  font-size: 0.55rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* QUIZ */
+.quiz-section {
+  background: #F6F3EF;
+  padding: 7rem 3rem;
+}
+
+.quiz-container {
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.quiz-intro {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.quiz-intro p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
+  font-style: italic;
+  color: #888;
+  margin-top: 0.8rem;
+}
+
+.quiz-progress {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.progress-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ddd;
+  transition: all 0.3s;
+}
+
+.progress-dot.active { background: #5C1518; }
+.progress-dot.done { background: #1A1A1A; }
+
+.quiz-step {
+  display: none;
+  animation: quizFade 0.5s ease;
+}
+
+.quiz-step.active { display: block; }
+
+@keyframes quizFade {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.quiz-message {
+  background: #fff;
+  border-left: 3px solid #5C1518;
+  padding: 1.5rem 1.8rem;
+  margin-bottom: 1.8rem;
+}
+
+.quiz-message .sender {
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #5C1518;
+  margin-bottom: 0.7rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 500;
+}
+
+.sender-dot {
+  width: 5px;
+  height: 5px;
+  background: #5C1518;
+  border-radius: 50%;
+}
+
+.quiz-message p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #1A1A1A;
+}
+
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 1.2rem;
+}
+
+.quiz-option {
+  padding: 1.1rem 1.3rem;
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  color: #333;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-align: left;
+}
+
+.quiz-option:hover {
+  border-color: #5C1518;
+  background: rgba(92, 21, 24, 0.03);
+  padding-left: 1.6rem;
+}
+
+.quiz-option.selected {
+  border-color: #5C1518;
+  background: rgba(92, 21, 24, 0.05);
+}
+
+.quiz-reaction {
+  padding: 1rem 1.5rem;
+  background: #EFEBE5;
+  border-right: 3px solid #1A1A1A;
+  margin-bottom: 1.8rem;
+  text-align: right;
+}
+
+.quiz-reaction p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  font-style: italic;
+  color: #555;
+}
+
+/* QUIZ RESULT */
+.quiz-result {
+  display: none;
+  text-align: center;
+  animation: quizFade 0.8s ease;
+}
+
+.quiz-result.active { display: block; }
+
+.result-type {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.8rem;
+  font-style: italic;
+  color: #5C1518;
+  margin-bottom: 1rem;
+}
+
+.result-description {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
+  color: #555;
+  margin-bottom: 2rem;
+  line-height: 1.7;
+}
+
+/* TESTIMONIALS */
+.testimonials { background: #EFEBE5; }
+
+.testimonial {
+  max-width: 700px;
+  margin: 4rem auto 0;
+  text-align: center;
+}
+
+.testimonial blockquote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-style: italic;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.testimonial blockquote::before {
+  content: '"';
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 4rem;
+  color: #5C1518;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.testimonial .author {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #999;
+}
+
+.testimonial-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 2rem;
+}
+
+.testimonial-dots button {
+  width: 25px;
+  height: 2px;
+  background: #ccc;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.testimonial-dots button.active {
+  background: #5C1518;
+  width: 40px;
+}
+
+/* WEBINAR */
+.webinar {
+  background: #1A1A1A;
+  position: relative;
+  overflow: hidden;
+}
+
+.webinar-content {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  text-align: center;
+  color: #F6F3EF;
+}
+
+.webinar-badge {
+  display: inline-block;
+  padding: 0.45rem 1.3rem;
+  border: 1px solid #5C1518;
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #5C1518;
+  margin-bottom: 2rem;
+}
+
+.webinar-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  font-weight: 300;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.webinar-title em { color: #5C1518; font-style: italic; }
+
+.webinar-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
+  font-style: italic;
+  color: rgba(255,255,255,0.6);
+  margin-top: 0.8rem;
+}
+
+.webinar-details {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin: 3rem 0;
+  flex-wrap: wrap;
+}
+
+.webinar-detail .label {
+  font-size: 0.55rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 0.3rem;
+}
+
+.webinar-detail .value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  color: #F6F3EF;
+}
+
+.webinar-form {
+  max-width: 450px;
+  margin: 2.5rem auto 0;
+}
+
+.webinar-form input {
+  width: 100%;
+  padding: 0.9rem 1.3rem;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #F6F3EF;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 300;
+  margin-bottom: 0.8rem;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.webinar-form input::placeholder { color: rgba(255,255,255,0.3); }
+.webinar-form input:focus { border-color: #5C1518; }
+
+.webinar-spots {
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.4);
+  margin-top: 0.8rem;
+}
+
+#webinarSuccess {
+  display: none;
+  margin-top: 2rem;
+}
+
+#webinarSuccess p:first-child {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  color: #F6F3EF;
+}
+
+#webinarSuccess p:last-child {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  color: rgba(255,255,255,0.6);
+  font-style: italic;
+  margin-top: 0.4rem;
+}
+
+/* FOOTER */
+footer {
+  background: #F6F3EF;
+  border-top: 1px solid #e5e5e5;
+  padding: 4rem 3rem;
+}
+
+.footer-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 4rem;
+}
+
+.footer-brand h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: #1A1A1A;
+}
+
+.footer-brand h2 em { color: #5C1518; font-style: italic; }
+
+.footer-brand p {
+  font-size: 0.82rem;
+  color: #999;
+  line-height: 1.7;
+  margin-top: 0.5rem;
+}
+
+.footer-col h4 {
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #999;
+  margin-bottom: 1.2rem;
+}
+
+.footer-col a {
+  display: block;
+  color: #555;
+  text-decoration: none;
+  font-size: 0.82rem;
+  padding: 0.25rem 0;
+  transition: color 0.3s;
+}
+
+.footer-col a:hover { color: #5C1518; }
+
+.footer-bottom {
+  max-width: 1100px;
+  margin: 2.5rem auto 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e5e5e5;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.65rem;
+  color: #bbb;
+}
+
+/* REVEAL */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  section { padding: 5rem 1.5rem; }
+  nav { padding: 1rem 1.5rem; }
+
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(246, 243, 239, 0.98);
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    gap: 2rem;
+  }
+
+  .nav-links.open a { font-size: 1rem; }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .about-image {
+    margin-right: 0;
+  }
+
+  .about-image img,
+  .about-image .placeholder {
+    height: 400px;
+  }
+
+  .about-text {
+    margin-left: 0;
+    padding: 2rem 1.5rem;
+    margin-top: -3rem;
+  }
+
+  .offers-grid { grid-template-columns: 1fr; }
+
+  .footer-content { grid-template-columns: 1fr; gap: 2rem; }
+  .webinar-details { gap: 1.5rem; }
+
+  .hero { padding: 7rem 1.5rem 4rem; }
+}
+</style>
 </head>
-
 <body>
-    <!-- NAVIGATION -->
-    <nav>
-        <div class="nav-container">
-            <a href="index.html" class="logo">CARINA ANNA PRAV</a>
-            <button class="mobile-menu-btn" aria-label="Toggle menu">☰</button>
-            <ul class="nav-links">
-                <li><a href="mentoring.html">Mentoring</a></li>
-                <li><a href="angebote.html">Angebote</a></li>
-                <li><a href="freebies.html">Freebies</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="ueber-mich.html">Über mich</a></li>
-            </ul>
-        </div>
-    </nav>
 
-    <!-- HERO -->
-    <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-content fade-in">
-                <p class="hero-eyebrow">Positionierung · Systeme · Automatisierung</p>
-                <h1>Mit klaren Systemen zu einem Business das läuft auch wenn du mal nicht da bist</h1>
-                <p class="hero-subheading">
-                    Du arbeitest viel aber dein Umsatz schwankt und du hast Kunden aber keine Systeme und genau das muss sich ändern damit du endlich ein Business hast das dir Freiheit gibt statt dich aufzufressen
-                </p>
-                <div class="hero-cta">
-                    <a href="mentoring.html" class="btn btn-primary btn-large">
-                        1:1 Mentoring
-                    </a>
-                    <a href="angebote.html" class="btn btn-large">
-                        Alle Angebote
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-mark"><img src="data:image/png;base64,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" alt="CA"></div>
+    <div class="nav-logo-text">THE HOUSE OF<br><span>Dynamics</span></div>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">Über mich</a></li>
+    <li><a href="#angebote">Angebote</a></li>
+    <li><a href="#quiz">Quiz</a></li>
+    <li><a href="#webinar">Webinar</a></li>
+    <li><a href="#webinar" class="nav-cta">Jetzt starten</a></li>
+  </ul>
+  <div class="nav-hamburger" id="hamburger" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
 
-    <!-- PROBLEM -->
-    <section class="problem" id="problem">
-        <div class="container">
-            <h2>Kennst du das?</h2>
-            <p style="text-align: center; color: var(--slate-blue); font-size: 1.1rem; margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto;">
-                Du gibst alles aber irgendwie kommst du nicht weiter und jeden Monat ist es dasselbe Spiel
-            </p>
-            <div class="problem-grid">
-                <div class="problem-card fade-in">
-                    <div class="problem-number">01</div>
-                    <h3>Schwankende Umsätze</h3>
-                    <p>Der eine Monat läuft gut und der nächste ist eine Katastrophe und du kannst nicht planen weil du nicht weißt was reinkommt und genau deswegen brauchst du Systeme die konstant Leads bringen</p>
-                </div>
-                <div class="problem-card fade-in">
-                    <div class="problem-number">02</div>
-                    <h3>Unklare Positionierung</h3>
-                    <p>Du erklärst ständig was du machst aber die Leute verstehen es nicht wirklich und deshalb buchen sie auch nicht weil sie nicht sofort begreifen was du anbietest und für wen</p>
-                </div>
-                <div class="problem-card fade-in">
-                    <div class="problem-number">03</div>
-                    <h3>Alles läuft über dich</h3>
-                    <p>Kein System keine Automatisierung und fällst du aus steht alles still und du bist gefangen in deinem eigenen Business weil du jeden Lead manuell betreuen musst</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="bilder/hero-carina.jpg" alt="">
+  </div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Business · Energie · Klarheit</p>
+    <h1 class="hero-title">Dein<br><em>Business</em><br>braucht nicht<br>noch eine Strategie.</h1>
+    <p class="hero-subtitle">Es braucht dich. Ohne die Story, die dich klein hält.<br>Ohne den Block, der zwischen dir und deinem Umsatz steht.</p>
+    <div class="hero-buttons">
+      <button class="btn-primary" onclick="scrollTo('#quiz')">Finde heraus, was dich bremst</button>
+      <button class="btn-secondary" onclick="scrollTo('#webinar')">Kostenloses Live-Event</button>
+    </div>
+  </div>
+</section>
 
-    <!-- SOLUTION -->
-    <section class="solution" id="system">
-        <div class="container">
-            <div class="solution-content">
-                <div class="solution-text fade-in">
-                    <h2>Das ändert sich, wenn wir zusammenarbeiten</h2>
-                    <p style="font-size: 1.1rem; color: var(--slate-blue); margin-bottom: 2rem;">Kein Wunschdenken sondern das was passiert wenn du die richtigen Dinge in der richtigen Reihenfolge tust und das ist das was viele falsch machen dass sie an tausend Baustellen gleichzeitig arbeiten statt sich auf das zu konzentrieren was wirklich den Unterschied macht</p>
-                    
-                    <ul class="solution-features">
-                        <li><strong>Klare Positionierung</strong> – Menschen verstehen sofort was du machst und für wen. Sie müssen nicht erst drei Sätze von dir hören um zu begreifen ob du für sie relevant bist</li>
-                        <li><strong>Attraktives Angebot</strong> – High-Ticket das sich verkauft weil es ein echtes Problem löst. Die Leute verstehen von selbst dass sie das brauchen</li>
-                        <li><strong>Automatisierter Funnel</strong> – Deine Kundenreise läuft von Erstkontakt bis Kauf ohne dass du jeden Lead manuell betreuen musst. Der Funnel tut das für dich</li>
-                        <li><strong>Systeme, die arbeiten</strong> – E-Mails Onboarding Follow-ups alles einmal gebaut und dann immer nutzbar. Du musst nicht jedes Mal von vorne anfangen</li>
-                    </ul>
-                    
-                    <div style="margin-top: 2rem;">
-                        <a href="angebote.html" class="btn btn-primary">Angebote ansehen</a>
-                    </div>
-                </div>
-                <div class="fade-in">
-                    <img src="bilder/solution-system.jpg" alt="Das System" class="solution-image">
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-line"></div>
+  <p class="section-eyebrow">Wer dahinter steht</p>
+  <h2 class="section-title">Haltung statt <em>Hype</em></h2>
+  <div class="about-grid">
+    <div class="about-image reveal">
+      <div class="placeholder">Dein Foto</div>
+      <!-- Replace with: <img src="bilder/about-carina.jpg" alt="Carina"> -->
+    </div>
+    <div class="about-text reveal">
+      <h3>Ich höre, was du sagst. Und ich höre, was du nicht sagst.</h3>
+      <p>Ich bin Carina. Ex-Rocksängerin, preisgekrönte Projektmanagerin, Mutter. Ich habe ein 50k-Business auf Instagram aufgebaut – mit zwei Stunden am Tag und einem Dreijährigen neben mir.</p>
+      <p>Der Weg hierher war nicht gradlinig. Aus einer überarbeiteten Einzelkämpferin wurde Schritt für Schritt ein Business, das trägt – ohne mich aufzufressen. Heute begleite ich Unternehmerinnen dabei, genau das auch zu schaffen.</p>
+      <p>Nicht durch lauter sein. Nicht durch mehr tun. Sondern durch Klarheit, Energie und eine Positionierung, die wirklich zu ihnen passt.</p>
+      <div class="about-tags">
+        <span>Strategin</span>
+        <span>Energiearbeit</span>
+        <span>Mutter</span>
+        <span>Ex-Rocksängerin</span>
+        <span>Projektmanagerin</span>
+        <span>Mentorin</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- ABOUT / WORK WITH ME -->
-    <section class="about">
-        <div class="container">
-            <div class="about-intro">
-                <h2>Wie ich arbeite</h2>
-                <p style="text-align: center; color: var(--slate-blue); font-size: 1.1rem; margin-bottom: 2rem;">
-                    Kein Coaching-Blabla keine leeren Versprechen sondern klare Strategien und echte Umsetzung weil genau das ist was du brauchst nicht noch mehr Theorie sondern endlich mal jemanden der dir sagt was du konkret tun sollst und wie
-                </p>
-            </div>
-            
-            <div class="about-grid">
-                <div class="about-card">
-                    <h3>Direkt & ehrlich</h3>
-                    <p>Ich sage dir was Sache ist auch wenn es unbequem ist. Du hast davon mehr als von Komplimenten weil ich nicht hier bin um dein Ego zu streicheln sondern um dein Business voranzubringen</p>
-                </div>
-                
-                <div class="about-card">
-                    <h3>Individuell</h3>
-                    <p>Kein 08/15-Fahrplan sondern wir bauen das was für DEIN Business funktioniert. Jedes Business ist anders und Copy-Paste funktioniert nicht</p>
-                </div>
-                
-                <div class="about-card">
-                    <h3>Umsetzungsorientiert</h3>
-                    <p>Weniger Theorie mehr Praxis. Du gehst aus jedem Call mit konkreten nächsten Schritten raus weil ich nicht hier bin um dir Konzepte zu erklären sondern um sicherzustellen dass du umsetzt</p>
-                </div>
-            </div>
-            
-            <div class="about-not-for">
-                <h3>Das Mentoring ist nichts für dich, wenn...</h3>
-                <p>Das Mentoring ist nichts für dich wenn du eine magische Lösung suchst die von heute auf morgen alles ändert oder wenn du nicht bereit bist wirklich umzusetzen. Das hier ist intensive 1:1 Begleitung und die kostet was sie kostet</p>
-            </div>
-        </div>
-    </section>
+<!-- DYNAMIK -->
+<section class="dynamik">
+  <div class="reveal">
+    <p class="dynamik-quote">
+      Du kannst nicht gleichzeitig an deiner Angst festhalten und dein Business skalieren.<br>
+      <strong>Eins muss gehen. Du entscheidest, was.</strong>
+    </p>
+    <p class="dynamik-sub">Das Dynamik-Prinzip</p>
+  </div>
+</section>
 
-    <!-- MENTORING -->
-    <section class="mentoring-cta" style="padding: 5rem 0; background: var(--charcoal); color: var(--white);">
-        <div class="container" style="text-align: center;">
-            <p style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--accent-blue-light); margin-bottom: 1rem;">1:1 Mentoring</p>
-            <h2 style="font-size: clamp(2rem, 4vw, 2.5rem); margin-bottom: 1.5rem; color: var(--white);">Mit intensiver Begleitung zu einem Business das läuft auch wenn du mal nicht da bist</h2>
-            <p style="font-size: 1.1rem; color: var(--light-gray); margin-bottom: 1rem; max-width: 650px; margin-left: auto; margin-right: auto;">
-                6 Monate wöchentliche 1:1 Calls Telegram Support und alles individuell auf dich abgestimmt nicht 08/15. Genau das was du brauchst damit dein Business endlich so läuft wie es laufen soll
-            </p>
-            <p style="font-size: 1rem; color: var(--medium-gray); margin-bottom: 2rem;">
-                Für Selbstständige die wissen dass es besser gehen muss und die bereit sind zu investieren nicht nur Geld sondern auch Zeit und Energie weil ohne das wird sich nichts ändern und das weißt du selbst
-            </p>
-            <a href="mentoring.html" class="btn btn-primary" style="background: var(--white); color: var(--charcoal);">Mehr erfahren</a>
-        </div>
-    </section>
-
-    <!-- QUIZ CTA -->
-    <section class="quiz-cta">
-        <div class="container">
-            <h2 style="text-align: center; margin-bottom: 0.5rem;">Wo stehst du gerade?</h2>
-            <p style="text-align: center; color: var(--slate-blue); margin-bottom: 2.5rem;">Zwei kurze Analysen ehrliche Antworten und danach weißt du wo du ansetzen solltest weil genau das ist oft das Problem dass du nicht weißt wo du anfangen sollst und genau deswegen machen wir erstmal Bestandsaufnahme</p>
-            
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; max-width: 700px; margin: 0 auto;">
-                
-                <div style="background: var(--white); border: 1px solid var(--light-gray); padding: 2rem; text-align: center; display: flex; flex-direction: column;">
-                    <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Bestandsaufnahme</h3>
-                    <p style="color: var(--slate-blue); font-size: 0.95rem; margin-bottom: 1.5rem; flex-grow: 1;">5 Fragen und was fehlt deinem Business ist es die Positionierung das Angebot der Traffic die Systeme oder die Zeit und genau diese Klarheit brauchst du bevor wir überhaupt anfangen können zusammenzuarbeiten</p>
-                    <button onclick="openBestandsaufnahme()" class="btn btn-primary">
-                        Starten
-                    </button>
-                </div>
-                
-                <div style="background: var(--white); border: 1px solid var(--light-gray); padding: 2rem; text-align: center; display: flex; flex-direction: column;">
-                    <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Positionierungs-Check</h3>
-                    <p style="color: var(--slate-blue); font-size: 0.95rem; margin-bottom: 1.5rem; flex-grow: 1;">8 Fragen und ist deine Positionierung klar genug oder verlierst du Kunden weil sie nicht sofort verstehen was du machst und für wen und genau das kostet dich jeden Tag Geld</p>
-                    <button onclick="openPositionierung()" class="btn btn-primary">
-                        Starten
-                    </button>
-                </div>
-                
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="faq" id="faq">
-        <div class="container">
-            <h2>Häufige Fragen</h2>
-            <div class="faq-container">
-                
-                <div class="faq-item fade-in">
-                    <button class="faq-question">
-                        <span>Für wen ist das hier?</span>
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Für Selbstständige die bereits Kunden und Umsatz haben aber wissen dass ihr Business besser laufen könnte. Du arbeitest viel aber die Umsätze schwanken. Dann bist du hier richtig</p>
-                    </div>
-                </div>
-
-                <div class="faq-item fade-in">
-                    <button class="faq-question">
-                        <span>Ich bin noch ganz am Anfang – passt das trotzdem?</span>
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Ehrlich wahrscheinlich nicht. Meine Angebote sind für Menschen die schon Kunden hatten und wissen dass sie etwas verkaufen können. Die 1:1 Zusammenarbeit macht erst Sinn wenn du bereits ein funktionierendes Angebot hast</p>
-                    </div>
-                </div>
-
-                <div class="faq-item fade-in">
-                    <button class="faq-question">
-                        <span>Was unterscheidet dich von anderen Coaches?</span>
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Ich bin keine Motivationsrednerin sondern ich baue Systeme. Ich denke in Prozessen und Automatisierungen. Bei mir gibt es keine vagen Tipps sondern konkrete Schritte. Und ich sage dir ehrlich was Sache ist auch wenn es unbequem ist</p>
-                    </div>
-                </div>
-
-                <div class="faq-item fade-in">
-                    <button class="faq-question">
-                        <span>Wie schnell kann ich mit Ergebnissen rechnen?</span>
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Das hängt davon ab wo du startest und wie konsequent du umsetzt. Die Positionierung steht oft nach 2-4 Wochen. Ein komplettes System braucht 3-6 Monate. Das ist keine Magie sondern Arbeit aber Arbeit die sich auszahlt</p>
-                    </div>
-                </div>
-
-                <div class="faq-item fade-in">
-                    <button class="faq-question">
-                        <span>Muss ich auf Instagram sein?</span>
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Nein musst du nicht. Ich bin selbst nicht mehr auf Instagram aktiv genau weil ich weiß wie viel Zeit das frisst. Wir finden die Traffic-Quelle die zu dir passt Pinterest SEO Paid Ads oder Referrals</p>
-                    </div>
-                </div>
-
-                <div class="faq-item fade-in">
-                    <button class="faq-question">
-                        <span>Was kostet die Zusammenarbeit?</span>
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Das 1:1 Mentoring kostet 7.997 € für 6 Monate. Das sind keine Schnäppchen sondern ernsthafte Investitionen in dein Business. Ratenzahlung ist möglich</p>
-                    </div>
-                </div>
-
-                <div class="faq-item fade-in">
-                    <button class="faq-question">
-                        <span>Ich habe schon so viele Kurse gekauft und nichts umgesetzt...</span>
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Das höre ich oft. Genau deshalb funktioniert 1:1 Begleitung besser als Selbstlernkurse. Du hast jemanden der nachfragt mitdenkt und dich auch mal schubst wenn du feststeckst. Das ist der Unterschied zwischen kaufen und wirklich umsetzen</p>
-                    </div>
-                </div>
-
-                <div class="faq-item fade-in">
-                    <button class="faq-question">
-                        <span>Wie läuft der erste Schritt?</span>
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Schreib mir eine E-Mail oder nutze die Bestandsaufnahme auf dieser Seite. Dann vereinbaren wir ein unverbindliches Erstgespräch. Kein Verkaufsdruck nur eine ehrliche Einschätzung</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- NEWSLETTER -->
-    <section class="newsletter" id="newsletter">
-        <div class="container-narrow">
-            <h2>Newsletter</h2>
-            <p>Wöchentlich. Kein Spam.</p>
-            
-            <form class="newsletter-form" id="newsletter-form">
-                <input type="text" id="firstname" class="newsletter-input" placeholder="Vorname" required>
-                <input type="email" id="email" class="newsletter-input" placeholder="E-Mail" required>
-                <button type="submit" class="newsletter-btn">Anmelden</button>
-            </form>
-            
-            <p id="form-message" style="margin-top: 1rem;"></p>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Carina Anna Prav</h4>
-                    <p>Business-Systeme.</p>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Navigation</h4>
-                    <ul class="footer-links">
-                        <li><a href="angebote.html">Angebote</a></li>
-                        <li><a href="freebies.html">Ressourcen</a></li>
-                        <li><a href="ueber-mich.html">Über mich</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Legal</h4>
-                    <ul class="footer-links">
-                        <li><a href="impressum.html">Impressum</a></li>
-                        <li><a href="datenschutz.html">Datenschutz</a></li>
-                        <li><a href="agb.html">AGB</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>© 2026 Carina Anna Prav</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- JAVASCRIPT -->
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        // Netlify Function für Quiz-Submissions (sendet an ActiveCampaign + Google Sheets)
-        const QUIZ_SUBMISSION_URL = '/.netlify/functions/quiz-submission';
-        const TIDYCAL_LINK = 'https://tidycal.com/socials1/erstgespraeche';
-
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const navLinks = document.querySelector('.nav-links');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            mobileMenuBtn.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
-        });
-        
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                mobileMenuBtn.textContent = '☰';
-            });
-        });
-        
-        // FAQ Accordion
-        document.querySelectorAll('.faq-question').forEach(button => {
-            button.addEventListener('click', () => {
-                const faqItem = button.parentElement;
-                const isActive = faqItem.classList.contains('active');
-                
-                document.querySelectorAll('.faq-item').forEach(item => {
-                    item.classList.remove('active');
-                });
-                
-                if (!isActive) {
-                    faqItem.classList.add('active');
-                }
-            });
-        });
-        
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    const offsetTop = target.offsetTop - 80;
-                    window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-        
-        // Intersection Observer for fade-in
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-        
-        document.querySelectorAll('.fade-in').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-            observer.observe(el);
-        });
-        
-        // Nav shadow on scroll
-        const nav = document.querySelector('nav');
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 100) {
-                nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.06)';
-            } else {
-                nav.style.boxShadow = 'none';
-            }
-        });
-
-        // Newsletter Form
-        document.getElementById('newsletter-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const firstname = document.getElementById('firstname').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const messageEl = document.getElementById('form-message');
-            const button = e.target.querySelector('button');
-            const originalButtonText = button.textContent;
-            
-            if (!firstname || !email) {
-                messageEl.textContent = 'Bitte fülle alle Felder aus.';
-                messageEl.style.color = '#ff6b6b';
-                return;
-            }
-            
-            button.disabled = true;
-            button.textContent = 'Wird gesendet...';
-            messageEl.textContent = '';
-            
-            try {
-                const response = await fetch('/.netlify/functions/newsletter-signup', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, firstname })
-                });
-                
-                const data = await response.json();
-                
-                if (response.ok && data.success) {
-                    messageEl.textContent = 'Danke! Check deine E-Mails.';
-                    messageEl.style.color = '#3182CE';
-                    e.target.reset();
-                } else {
-                    throw new Error(data.error || 'Submission failed');
-                }
-            } catch (error) {
-                messageEl.textContent = 'Etwas ist schiefgelaufen. Bitte nochmal versuchen.';
-                messageEl.style.color = '#ff6b6b';
-            } finally {
-                button.disabled = false;
-                button.textContent = originalButtonText;
-            }
-        });
-    </script>
-
-    <!-- BESTANDSAUFNAHME QUIZ MODAL -->
-    <div id="bestandsaufnahme-modal" class="quiz-modal">
-        <div class="quiz-modal-content">
-            <button class="quiz-close" onclick="closeBestandsaufnahme()">×</button>
-            
-            <div class="quiz-progress">
-                <div class="quiz-progress-bar" id="bestandsaufnahme-progress-bar"></div>
-            </div>
-            
-            <div id="bestandsaufnahme-container">
-                <!-- Start Screen -->
-                <div class="quiz-screen active" id="ba-screen-start">
-                    <h2>Bestandsaufnahme</h2>
-                    <p style="font-size: 1.125rem; margin-bottom: 2rem;">
-                        5 Fragen. Ehrliche Analyse. Danach weißt du, welche Bausteine dir noch fehlen.
-                    </p>
-                    <button class="quiz-btn-primary" onclick="startBestandsaufnahme()">Starten</button>
-                </div>
-                
-                <!-- Question 1: Positionierung -->
-                <div class="quiz-screen" id="ba-screen-q1">
-                    <p class="quiz-label">Frage 1 von 5</p>
-                    <h3>Positionierung</h3>
-                    <p class="quiz-question">Wenn jemand fragt "Was machst du?" – hast du eine klare Antwort, die sofort verstanden wird?</p>
-                    <div class="quiz-options">
-                        <button class="quiz-option" onclick="baAnswer(1, 2)">
-                            <strong>Ja, glasklar</strong><br>
-                            <span>Ich weiß genau, wem ich helfe und womit</span>
-                        </button>
-                        <button class="quiz-option" onclick="baAnswer(1, 1)">
-                            <strong>Teilweise</strong><br>
-                            <span>Ich hab was, aber es fühlt sich noch nicht richtig an</span>
-                        </button>
-                        <button class="quiz-option" onclick="baAnswer(1, 0)">
-                            <strong>Nein</strong><br>
-                            <span>Ich sage jedes Mal etwas anderes</span>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Question 2: Angebot -->
-                <div class="quiz-screen" id="ba-screen-q2">
-                    <p class="quiz-label">Frage 2 von 5</p>
-                    <h3>Angebot</h3>
-                    <p class="quiz-question">Hast du ein klares High-Ticket-Angebot (1.000€+), das du selbstbewusst verkaufen kannst?</p>
-                    <div class="quiz-options">
-                        <button class="quiz-option" onclick="baAnswer(2, 2)">
-                            <strong>Ja</strong><br>
-                            <span>Ich weiß, was ich verkaufe und für wie viel</span>
-                        </button>
-                        <button class="quiz-option" onclick="baAnswer(2, 1)">
-                            <strong>Arbeite dran</strong><br>
-                            <span>Hab was, aber bin unsicher beim Preis</span>
-                        </button>
-                        <button class="quiz-option" onclick="baAnswer(2, 0)">
-                            <strong>Nein</strong><br>
-                            <span>Verkaufe nur kleine Produkte</span>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Question 3: Traffic -->
-                <div class="quiz-screen" id="ba-screen-q3">
-                    <p class="quiz-label">Frage 3 von 5</p>
-                    <h3>Traffic</h3>
-                    <p class="quiz-question">Woher kommen deine Interessenten aktuell?</p>
-                    <div class="quiz-options">
-                        <button class="quiz-option" onclick="baAnswer(3, 2)">
-                            <strong>Automatisch</strong><br>
-                            <span>SEO, Ads oder Funnel – Leute finden mich von selbst</span>
-                        </button>
-                        <button class="quiz-option" onclick="baAnswer(3, 1)">
-                            <strong>Social Media</strong><br>
-                            <span>Instagram – ich muss ständig präsent sein</span>
-                        </button>
-                        <button class="quiz-option" onclick="baAnswer(3, 0)">
-                            <strong>Zufall</strong><br>
-                            <span>Empfehlungen, kein echtes System</span>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Question 4: Systeme -->
-                <div class="quiz-screen" id="ba-screen-q4">
-                    <p class="quiz-label">Frage 4 von 5</p>
-                    <h3>Automatisierung</h3>
-                    <p class="quiz-question">Hast du Systeme, die für dich arbeiten, auch wenn du offline bist?</p>
-                    <div class="quiz-options">
-                        <button class="quiz-option" onclick="baAnswer(4, 2)">
-                            <strong>Ja</strong><br>
-                            <span>E-Mail-Funnel, automatische Lead-Generierung</span>
-                        </button>
-                        <button class="quiz-option" onclick="baAnswer(4, 1)">
-                            <strong>Teilweise</strong><br>
-                            <span>Hab Newsletter, aber nicht wirklich automatisiert</span>
-                        </button>
-                        <button class="quiz-option" onclick="baAnswer(4, 0)">
-                            <strong>Nein</strong><br>
-                            <span>Alles manuell</span>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Question 5: Zeit -->
-                <div class="quiz-screen" id="ba-screen-q5">
-                    <p class="quiz-label">Frage 5 von 5</p>
-                    <h3>Arbeitszeit</h3>
-                    <p class="quiz-question">Wie viele Stunden pro Woche arbeitest du an deinem Business?</p>
-                    <div class="quiz-options">
-                        <button class="quiz-option" onclick="baAnswer(5, 2)">
-                            <strong>Unter 20h</strong><br>
-                            <span>Mein Business läuft auch ohne mich</span>
-                        </button>
-                        <button class="quiz-option" onclick="baAnswer(5, 1)">
-                            <strong>20-40h</strong><br>
-                            <span>Normal, aber könnte weniger sein</span>
-                        </button>
-                        <button class="quiz-option" onclick="baAnswer(5, 0)">
-                            <strong>40h+</strong><br>
-                            <span>Non-stop, und es reicht trotzdem nicht</span>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Loading -->
-                <div class="quiz-screen" id="ba-screen-loading">
-                    <h3>Analysiere...</h3>
-                    <div class="quiz-loader"></div>
-                </div>
-                
-                <!-- Result -->
-                <div class="quiz-screen" id="ba-screen-result">
-                    <div id="ba-result-content"></div>
-                </div>
-            </div>
-        </div>
+<!-- OFFERS -->
+<section class="offers" id="angebote">
+  <div class="section-line"></div>
+  <p class="section-eyebrow">Zusammenarbeit</p>
+  <h2 class="section-title">Drei Wege. Ein <em>Ziel.</em></h2>
+  <div class="offers-grid">
+    <div class="offer-card reveal">
+      <div class="offer-number">01</div>
+      <h3>Sofort-Session</h3>
+      <p class="offer-price">333 € · Einmalig</p>
+      <p>Eine Stunde. Ein Block. Keine Ausreden. Du sprichst, ich höre – und finde, woran es wirklich hängt.</p>
+      <ul class="offer-includes">
+        <li>60 Min. intensive 1:1 Session</li>
+        <li>Energetische Aktivierung</li>
+        <li>Dein zentraler Block identifiziert</li>
+        <li>Konkreter nächster Schritt</li>
+      </ul>
+      <button class="btn-primary" onclick="scrollTo('#webinar')">Session buchen</button>
     </div>
 
-    <!-- POSITIONIERUNGSQUIZ MODAL -->
-    <div id="positionierung-modal" class="quiz-modal">
-        <div class="quiz-modal-content">
-            <button class="quiz-close" onclick="closePositionierung()">×</button>
-            
-            <div class="quiz-progress">
-                <div class="quiz-progress-bar" id="positionierung-progress-bar"></div>
-            </div>
-            
-            <div id="positionierung-container">
-                <!-- Start Screen -->
-                <div class="quiz-screen active" id="pos-screen-start">
-                    <h2>Positionierungs-Check</h2>
-                    <p style="font-size: 1.125rem; margin-bottom: 2rem;">
-                        8 Fragen. Ehrliche Analyse. Danach weißt du, ob deine Positionierung sitzt – oder ob hier dein Problem liegt.
-                    </p>
-                    <button class="quiz-btn-primary" onclick="startPositionierung()">Starten</button>
-                </div>
-                
-                <!-- Question 1 -->
-                <div class="quiz-screen" id="pos-screen-q1">
-                    <p class="quiz-label">Frage 1 von 8</p>
-                    <h3>Der Elevator Pitch</h3>
-                    <p class="quiz-question">Kannst du in einem Satz sagen, was du machst?</p>
-                    <div class="quiz-options">
-                        <button class="quiz-option" onclick="posAnswer(1, 2)">
-                            <strong>Ja, glasklar</strong><br>
-                            <span>Jeder versteht es sofort</span>
-                        </button>
-                        <button class="quiz-option" onclick="posAnswer(1, 1)">
-                            <strong>Irgendwie schon</strong><br>
-                            <span>Aber ich formuliere es jedes Mal anders</span>
-                        </button>
-                        <button class="quiz-option" onclick="posAnswer(1, 0)">
-                            <strong>Nein</strong><br>
-                            <span>Ich erkläre immer viel</span>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Question 2 -->
-                <div class="quiz-screen" id="pos-screen-q2">
-                    <p class="quiz-label">Frage 2 von 8</p>
-                    <h3>Zielgruppe</h3>
-                    <p class="quiz-question">Weißt du genau, für wen dein Angebot ist?</p>
-                    <div class="quiz-options">
-                        <button class="quiz-option" onclick="posAnswer(2, 2)">
-                            <strong>Ja, glasklar</strong><br>
-                            <span>Ich kann meine Zielgruppe genau beschreiben</span>
-                        </button>
-                        <button class="quiz-option" onclick="posAnswer(2, 1)">
-                            <strong>So ungefähr</strong><br>
-                            <span>Ich hab eine Idee, aber nicht scharf definiert</span>
-                        </button>
-                        <button class="quiz-option" onclick="posAnswer(2, 0)">
-                            <strong>Eigentlich für jeden</strong><br>
-                            <span>Wer zahlt, ist mein Kunde</span>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Question 3 -->
-                <div class="quiz-screen" id="pos-screen-q3">
-                    <p class="quiz-label">Frage 3 von 8</p>
-                    <h3>Das Problem</h3>
-                    <p class="quiz-question">Welches Problem löst du?</p>
-                    <div class="quiz-options">
-                        <button class="quiz-option" onclick="posAnswer(3, 2)">
-                            <strong>Ein konkretes, dringendes Problem</strong><br>
-                            <span>Meine Kunden wissen genau warum sie mich brauchen</span>
-                        </button>
-                        <button class="quiz-option" onclick="posAnswer(3, 1)">
-                            <strong>Mehrere verschiedene Dinge</strong><br>
-                            <span>Kommt drauf an wer fragt</span>
-                        </button>
-                        <button class="quiz-option" onclick="posAnswer(3, 0)">
-                            <strong>Ich helfe allgemein weiter</strong><br>
-                            <span>Beratung, Support, was halt so anfällt</span>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Question 4 -->
-                <div class="quiz-screen" id="pos-screen-q4">
-                    <p class="quiz-label">Frage 4 von 8</p>
-                    <h3>Verständlichkeit</h3>
-                    <p class="quiz-question">Verstehen Fremde sofort, was du anbietest?</p>
-                    <div class="quiz-options">
-                        <button class="quiz-option" onclick="posAnswer(4, 2)">
-                            <strong>Ja, ohne Nachfragen</strong><br>
-                            <span>Meine Website/Bio erklärt alles</span>
-                        </button>
-                        <button class="quiz-option" onclick="posAnswer(4, 1)">
-                            <strong>Nach kurzer Erklärung</strong><br>
-                            <span>Ein, zwei Sätze mehr und sie verstehen es</span>
-                        </button>
-                        <button class="quiz-option" onclick="posAnswer(4, 0)">
-                            <strong>Ich muss immer viel erklären</strong><br>
-                            <span>Die meisten verstehen es nicht sofort</span>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Question 5 -->
-                <div class="quiz-screen" id="pos-screen-q5">
-                    <p class="quiz-label">Frage 5 von 8</p>
-                    <h3>Hauptangebot</h3>
-                    <p class="quiz-question">Hast du ein klares Hauptangebot?</p>
-                    <div class="quiz-options">
-                        <button class="quiz-option" onclick="posAnswer(5, 2)">
-                            <strong>Ja, eins das ich pushe</strong><br>
-                            <span>Mein Signature-Angebot ist klar</span>
-                        </button>
-                        <button class="quiz-option" onclick="posAnswer(5, 1)">
-                            <strong>Mehrere gleichwertige</strong><br>
-                            <span>Ich hab verschiedene Optionen</span>
-                        </button>
-                        <button class="quiz-option" onclick="posAnswer(5, 0)">
-                            <strong>Ich mache was Kunden wollen</strong><br>
-                            <span>Flexibel, je nach Anfrage</span>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Question 6 -->
-                <div class="quiz-screen" id="pos-screen-q6">
-                    <p class="quiz-label">Frage 6 von 8</p>
-                    <h3>Differenzierung</h3>
-                    <p class="quiz-question">Warum sollte jemand DICH buchen statt andere?</p>
-                    <div class="quiz-options">
-                        <button class="quiz-option" onclick="posAnswer(6, 2)">
-                            <strong>Ich weiß genau was mich unterscheidet</strong><br>
-                            <span>Mein USP ist klar</span>
-                        </button>
-                        <button class="quiz-option" onclick="posAnswer(6, 1)">
-                            <strong>Bin günstiger/netter/flexibler</strong><br>
-                            <span>Irgendwas halt</span>
-                        </button>
-                        <button class="quiz-option" onclick="posAnswer(6, 0)">
-                            <strong>Keine Ahnung</strong><br>
-                            <span>Gute Frage...</span>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Question 7 -->
-                <div class="quiz-screen" id="pos-screen-q7">
-                    <p class="quiz-label">Frage 7 von 8</p>
-                    <h3>Anfragen</h3>
-                    <p class="quiz-question">Kommen Anfragen von den richtigen Leuten?</p>
-                    <div class="quiz-options">
-                        <button class="quiz-option" onclick="posAnswer(7, 2)">
-                            <strong>Ja, passende Wunschkunden</strong><br>
-                            <span>Die meisten Anfragen passen perfekt</span>
-                        </button>
-                        <button class="quiz-option" onclick="posAnswer(7, 1)">
-                            <strong>Gemischt</strong><br>
-                            <span>Manche passen, manche nicht</span>
-                        </button>
-                        <button class="quiz-option" onclick="posAnswer(7, 0)">
-                            <strong>Meistens die falschen</strong><br>
-                            <span>Viele Anfragen die nicht passen</span>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Question 8 -->
-                <div class="quiz-screen" id="pos-screen-q8">
-                    <p class="quiz-label">Frage 8 von 8</p>
-                    <h3>Stabilität</h3>
-                    <p class="quiz-question">Wie oft änderst du deine Positionierung?</p>
-                    <div class="quiz-options">
-                        <button class="quiz-option" onclick="posAnswer(8, 2)">
-                            <strong>Selten, sie sitzt</strong><br>
-                            <span>Ich bin klar und bleibe dabei</span>
-                        </button>
-                        <button class="quiz-option" onclick="posAnswer(8, 1)">
-                            <strong>Ab und zu Anpassungen</strong><br>
-                            <span>Ich optimiere noch</span>
-                        </button>
-                        <button class="quiz-option" onclick="posAnswer(8, 0)">
-                            <strong>Ständig</strong><br>
-                            <span>Nichts funktioniert richtig</span>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Loading -->
-                <div class="quiz-screen" id="pos-screen-loading">
-                    <h3>Analysiere...</h3>
-                    <div class="quiz-loader"></div>
-                </div>
-                
-                <!-- Result -->
-                <div class="quiz-screen" id="pos-screen-result">
-                    <div id="pos-result-content"></div>
-                </div>
-            </div>
-        </div>
+    <div class="offer-card offer-featured reveal">
+      <div class="offer-badge">Beliebteste Wahl</div>
+      <div class="offer-number">02</div>
+      <h3>Dynamik Business Academy</h3>
+      <p class="offer-price">129 €/Monat</p>
+      <p>Struktur, Klarheit und Community. Für Unternehmerinnen, die nicht mehr alleine vor sich hin arbeiten wollen.</p>
+      <ul class="offer-includes">
+        <li>Monatliche Live-Sessions</li>
+        <li>Energetische Gruppenarbeit</li>
+        <li>Content-Frameworks & Templates</li>
+        <li>Telegram-Community mit KI-Support</li>
+        <li>Sales-Training & Positionierung</li>
+      </ul>
+      <button class="btn-primary" onclick="scrollTo('#webinar')">Jetzt einsteigen</button>
     </div>
 
-    <!-- QUIZ STYLES -->
-    <style>
-        .quiz-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(33, 37, 41, 0.95);
-            z-index: 10000;
-            overflow-y: auto;
-            padding: 2rem;
-        }
+    <div class="offer-card reveal">
+      <div class="offer-number">03</div>
+      <h3>The House of Dynamics</h3>
+      <p class="offer-price">Premium · Sommer 2026</p>
+      <p>Das volle Programm. Energie, Positionierung, Content, Sales-System, Fototermin. Alles, was du brauchst – in einem Raum.</p>
+      <ul class="offer-includes">
+        <li>Alles aus der Academy +</li>
+        <li>1:1 Intensiv-Begleitung</li>
+        <li>Professioneller Fototermin</li>
+        <li>Sales-System mit KI-Training</li>
+        <li>Website & Salespage Strategie</li>
+        <li>Limitierte Plätze</li>
+      </ul>
+      <button class="btn-secondary" onclick="scrollTo('#webinar')">Auf Warteliste</button>
+    </div>
+  </div>
+</section>
 
-        .quiz-modal.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .quiz-modal-content {
-            background: var(--white);
-            max-width: 650px;
-            width: 100%;
-            padding: 3rem;
-            position: relative;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .quiz-close {
-            position: absolute;
-            top: 1rem;
-            right: 1.5rem;
-            font-size: 2rem;
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: var(--medium-gray);
-            transition: color 0.3s;
-        }
-
-        .quiz-close:hover {
-            color: var(--charcoal);
-        }
-
-        .quiz-progress {
-            width: 100%;
-            height: 3px;
-            background: var(--light-gray);
-            margin-bottom: 2rem;
-        }
-
-        .quiz-progress-bar {
-            height: 100%;
-            background: var(--accent-blue);
-            width: 0;
-            transition: width 0.5s ease;
-        }
-
-        .quiz-screen {
-            display: none;
-            animation: fadeIn 0.4s;
-        }
-
-        .quiz-screen.active {
-            display: block;
-        }
-
-        .quiz-screen h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .quiz-screen h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .quiz-label {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--accent-blue);
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .quiz-question {
-            font-size: 1.125rem;
-            margin-bottom: 1.5rem;
-            color: var(--slate-blue);
-        }
-
-        .quiz-options {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .quiz-option {
-            padding: 1.25rem;
-            background: var(--off-white);
-            border: 2px solid var(--light-gray);
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-align: left;
-            color: var(--charcoal);
-            font-family: var(--font-sans);
-        }
-
-        .quiz-option:hover {
-            border-color: var(--accent-blue);
-            background: var(--white);
-        }
-
-        .quiz-option strong {
-            display: block;
-            margin-bottom: 0.25rem;
-        }
-
-        .quiz-option span {
-            font-size: 0.9rem;
-            color: var(--medium-gray);
-        }
-
-        .quiz-btn-primary {
-            padding: 1.25rem 3rem;
-            background: var(--white);
-            color: var(--charcoal);
-            border: none;
-            font-size: 1rem;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-weight: 600;
-            transition: all 0.3s;
-            margin-top: 1rem;
-            width: 100%;
-            font-family: var(--font-sans);
-        }
-
-        .quiz-btn-primary:hover {
-            background: var(--light-gray);
-        }
-
-        .quiz-loader {
-            border: 3px solid var(--light-gray);
-            border-top: 3px solid var(--accent-blue);
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-            margin: 2rem auto;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .result-box {
-            background: var(--off-white);
-            padding: 2rem;
-            margin: 1.5rem 0;
-            border-left: 4px solid var(--accent-blue);
-        }
-
-        .result-box h3 {
-            font-size: 1.75rem;
-            margin-bottom: 1rem;
-        }
-
-        @media (max-width: 768px) {
-            .quiz-modal-content {
-                padding: 2rem 1.5rem;
-            }
-        }
-    </style>
-
-    <!-- QUIZ JAVASCRIPT -->
-    <script>
-        // ============ BESTANDSAUFNAHME QUIZ ============
-        let baAnswers = {};
-        let baScores = {
-            positionierung: 0,
-            angebot: 0,
-            traffic: 0,
-            systeme: 0,
-            zeit: 0
-        };
-
-        const baLabels = {
-            1: 'positionierung',
-            2: 'angebot',
-            3: 'traffic',
-            4: 'systeme',
-            5: 'zeit'
-        };
-
-        const baNames = {
-            positionierung: 'Positionierung',
-            angebot: 'High-Ticket Angebot',
-            traffic: 'Traffic',
-            systeme: 'Automatisierung',
-            zeit: 'Zeit-Freiheit'
-        };
-
-        // ============ POSITIONIERUNGSQUIZ ============
-        let posAnswers = {};
-        let posScore = 0;
-
-        function openPositionierung() {
-            document.getElementById('positionierung-modal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closePositionierung() {
-            document.getElementById('positionierung-modal').classList.remove('active');
-            document.body.style.overflow = 'auto';
-            resetPositionierung();
-        }
-
-        function resetPositionierung() {
-            posAnswers = {};
-            posScore = 0;
-            document.querySelectorAll('#positionierung-container .quiz-screen').forEach(s => s.classList.remove('active'));
-            document.getElementById('pos-screen-start').classList.add('active');
-            document.getElementById('positionierung-progress-bar').style.width = '0%';
-        }
-
-        function startPositionierung() {
-            showPosScreen('pos-screen-q1');
-            updatePosProgress(1, 8);
-        }
-
-        const posAnswerTexts = {
-            1: { 2: 'Kann in einem Satz sagen was sie macht', 1: 'Formuliert es jedes Mal anders', 0: 'Muss immer viel erklären' },
-            2: { 2: 'Weiß genau für wen das Angebot ist', 1: 'Zielgruppe nur ungefähr klar', 0: 'Angebot ist für jeden' },
-            3: { 2: 'Löst ein konkretes, dringendes Problem', 1: 'Löst mehrere verschiedene Probleme', 0: 'Hilft allgemein weiter' },
-            4: { 2: 'Fremde verstehen sofort was sie anbietet', 1: 'Braucht kurze Erklärung', 0: 'Muss immer viel erklären' },
-            5: { 2: 'Hat ein klares Hauptangebot', 1: 'Hat mehrere gleichwertige Angebote', 0: 'Macht was Kunden wollen' },
-            6: { 2: 'Weiß genau was sie unterscheidet', 1: 'Ist günstiger/netter/flexibler', 0: 'Weiß nicht was sie unterscheidet' },
-            7: { 2: 'Anfragen kommen von Wunschkunden', 1: 'Anfragen sind gemischt', 0: 'Meistens falsche Anfragen' },
-            8: { 2: 'Positionierung sitzt, ändert selten', 1: 'Passt ab und zu an', 0: 'Ändert Positionierung ständig' }
-        };
-
-        function posAnswer(questionNum, score) {
-            posAnswers['q' + questionNum] = posAnswerTexts[questionNum][score];
-            posScore += score;
-            
-            const btn = event.target.closest('.quiz-option');
-            btn.style.background = 'var(--accent-blue)';
-            btn.style.color = 'white';
-            btn.style.borderColor = 'var(--accent-blue)';
-            
-            setTimeout(() => {
-                if (questionNum < 8) {
-                    showPosScreen('pos-screen-q' + (questionNum + 1));
-                    updatePosProgress(questionNum + 1, 8);
-                } else {
-                    showPosScreen('pos-screen-loading');
-                    updatePosProgress(8, 8);
-                    
-                    setTimeout(() => {
-                        showPositionierungResult();
-                    }, 1500);
-                }
-            }, 400);
-        }
-
-        function showPosScreen(screenId) {
-            document.querySelectorAll('#positionierung-container .quiz-screen').forEach(s => s.classList.remove('active'));
-            document.getElementById(screenId).classList.add('active');
-        }
-
-        function updatePosProgress(step, total) {
-            const progress = (step / total) * 100;
-            document.getElementById('positionierung-progress-bar').style.width = progress + '%';
-        }
-
-        function showPositionierungResult() {
-            const maxScore = 16;
-            const percentage = Math.round((posScore / maxScore) * 100);
-            
-            let headline, description, color;
-            
-            if (posScore >= 13) {
-                headline = "Deine Positionierung sitzt.";
-                description = "Glückwunsch! Du weißt wer du bist, für wen du da bist und was dich unterscheidet. Deine Positionierung ist kein akutes Problem – schau dir an, ob es an Traffic, Systemen oder Angebot liegt.";
-                color = "#22c55e";
-            } else if (posScore >= 7) {
-                headline = "Fast da, aber noch unscharf.";
-                description = "Du hast eine Richtung, aber es fehlt noch die Klarheit. Deine Positionierung braucht Feinschliff – dann werden Anfragen und Verkäufe leichter.";
-                color = "#f59e0b";
-            } else {
-                headline = "Hier liegt dein Problem.";
-                description = "Solange deine Positionierung nicht sitzt, werden alle anderen Maßnahmen nicht richtig greifen. Das ist der erste Hebel, an dem wir arbeiten sollten.";
-                color = "#ef4444";
-            }
-            
-            window.posResultData = {
-                totalScore: posScore,
-                percentage: percentage,
-                headline: headline
-            };
-            
-            const resultHTML = `
-                <div class="result-box" style="border-left-color: ${color};">
-                    <h3 style="color: ${color};">${headline}</h3>
-                    <p style="font-size: 1.5rem; margin: 1rem 0;">${posScore} von ${maxScore} Punkten (${percentage}%)</p>
-                    <p style="color: var(--slate-blue);">${description}</p>
-                </div>
-                
-                <div style="background: var(--charcoal); color: var(--white); padding: 2rem; margin-top: 2rem;">
-                    <h4 style="margin-bottom: 1rem; text-align: center; font-size: 1rem; font-family: var(--font-sans);">Wie geht's weiter?</h4>
-                    
-                    <form id="pos-contact-form" onsubmit="submitPositionierungForm(event)">
-                        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-                            <input type="text" id="pos-firstname" placeholder="Vorname" required
-                                style="flex: 1; min-width: 150px; padding: 0.875rem; border: 1px solid var(--light-gray); font-size: 1rem; background: rgba(255,255,255,0.05); color: white;">
-                            <input type="email" id="pos-email" placeholder="E-Mail" required
-                                style="flex: 1; min-width: 150px; padding: 0.875rem; border: 1px solid var(--light-gray); font-size: 1rem; background: rgba(255,255,255,0.05); color: white;">
-                        </div>
-                        
-                        <div style="display: flex; gap: 0.75rem; margin-top: 0.75rem; flex-wrap: wrap;">
-                            <button type="button" onclick="submitPosWithPDF()" style="flex: 1; min-width: 200px; padding: 1rem; background: transparent; color: var(--white); border: 1px solid var(--light-gray); font-weight: 600; cursor: pointer; font-size: 0.9rem;">
-                                📄 Kostenloses PDF holen
-                            </button>
-                            <button type="submit" style="flex: 1; min-width: 200px; padding: 1rem; background: var(--white); color: var(--charcoal); border: none; font-weight: 600; cursor: pointer; font-size: 0.9rem;">
-                                📅 Erstgespräch buchen
-                            </button>
-                        </div>
-                        <p style="font-size: 0.75rem; color: var(--medium-gray); margin-top: 0.75rem; text-align: center;">
-                            Du meldest dich für den Newsletter an. Abmelden jederzeit.
-                        </p>
-                    </form>
-                    <p id="pos-form-message" style="text-align: center; margin-top: 1rem;"></p>
-                    
-                    <button onclick="closePositionierung()" style="padding: 0.75rem 2rem; background: transparent; border: 1px solid var(--light-gray); cursor: pointer; color: var(--medium-gray); font-size: 0.9rem; display: block; margin: 1.5rem auto 0;">
-                        Schließen
-                    </button>
-                </div>
-            `;
-            
-            document.getElementById('pos-result-content').innerHTML = resultHTML;
-            showPosScreen('pos-screen-result');
-        }
-
-        async function submitPosWithPDF() {
-            const firstname = document.getElementById('pos-firstname').value.trim();
-            const email = document.getElementById('pos-email').value.trim();
-            const messageEl = document.getElementById('pos-form-message');
-            
-            if (!firstname || !email) {
-                messageEl.textContent = 'Bitte Vorname und E-Mail eingeben.';
-                messageEl.style.color = '#ef4444';
-                return;
-            }
-            
-            messageEl.textContent = 'Wird gespeichert...';
-            messageEl.style.color = 'var(--medium-gray)';
-            
-            try {
-                const response = await fetch(QUIZ_SUBMISSION_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        quizType: 'pdf-download',
-                        firstName: firstname,
-                        email: email,
-                        answers: posAnswers,
-                        result: window.posResultData.headline
-                    })
-                });
-                
-                if (!response.ok) {
-                    throw new Error('Submission failed');
-                }
-                
-                messageEl.style.color = '#22c55e';
-                messageEl.textContent = '✓ PDF wird geöffnet...';
-                
-                setTimeout(() => {
-                    window.open('/30-positionierungen.html', '_blank');
-                    closePositionierung();
-                }, 1000);
-                
-            } catch (error) {
-                console.error('Quiz submission error:', error);
-                // Bei Fehler trotzdem weiterleiten
-                window.open('/30-positionierungen.html', '_blank');
-                closePositionierung();
-            }
-        }
-
-        async function submitPositionierungForm(e) {
-            e.preventDefault();
-            
-            const firstname = document.getElementById('pos-firstname').value.trim();
-            const email = document.getElementById('pos-email').value.trim();
-            const messageEl = document.getElementById('pos-form-message');
-            const button = e.target.querySelector('button');
-            
-            button.disabled = true;
-            button.textContent = 'Wird gespeichert...';
-            messageEl.textContent = '';
-            
-            try {
-                const response = await fetch(QUIZ_SUBMISSION_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        quizType: 'positioning',
-                        firstName: firstname,
-                        email: email,
-                        answers: posAnswers,
-                        result: window.posResultData.headline
-                    })
-                });
-                
-                if (!response.ok) {
-                    throw new Error('Submission failed');
-                }
-                
-                const tidycalURL = `${TIDYCAL_LINK}?name=${encodeURIComponent(firstname)}&email=${encodeURIComponent(email)}&note=${encodeURIComponent(`Positionierung: ${window.posResultData.totalScore}/16 (${window.posResultData.percentage}%) - ${window.posResultData.headline}`)}`;
-                
-                messageEl.textContent = 'Gespeichert. Weiterleitung...';
-                
-                setTimeout(() => {
-                    window.open(tidycalURL, '_blank');
-                    closePositionierung();
-                }, 1500);
-                
-            } catch (error) {
-                console.error('Quiz submission error:', error);
-                // Bei Fehler trotzdem zu TidyCal weiterleiten
-                const tidycalURL = `${TIDYCAL_LINK}?name=${encodeURIComponent(firstname)}&email=${encodeURIComponent(email)}`;
-                setTimeout(() => {
-                    window.open(tidycalURL, '_blank');
-                    closePositionierung();
-                }, 1500);
-            }
-        }
-
-        // ============ BESTANDSAUFNAHME FUNCTIONS ============
-        function openBestandsaufnahme() {
-            document.getElementById('bestandsaufnahme-modal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeBestandsaufnahme() {
-            document.getElementById('bestandsaufnahme-modal').classList.remove('active');
-            document.body.style.overflow = 'auto';
-            resetBestandsaufnahme();
-        }
-
-        function resetBestandsaufnahme() {
-            baAnswers = {};
-            baScores = { positionierung: 0, angebot: 0, traffic: 0, systeme: 0, zeit: 0 };
-            document.querySelectorAll('#bestandsaufnahme-container .quiz-screen').forEach(s => s.classList.remove('active'));
-            document.getElementById('ba-screen-start').classList.add('active');
-            document.getElementById('bestandsaufnahme-progress-bar').style.width = '0%';
-        }
-
-        function startBestandsaufnahme() {
-            showBAScreen('ba-screen-q1');
-            updateBAProgress(1, 5);
-        }
-
-        const baAnswerTexts = {
-            1: { 2: 'Positionierung ist glasklar', 1: 'Positionierung teilweise klar', 0: 'Keine klare Positionierung' },
-            2: { 2: 'Hat klares High-Ticket Angebot', 1: 'High-Ticket Angebot teilweise', 0: 'Kein High-Ticket Angebot' },
-            3: { 2: 'Traffic läuft automatisch', 1: 'Etwas Traffic', 0: 'Kein funktionierender Traffic' },
-            4: { 2: 'Prozesse sind automatisiert', 1: 'Teilweise automatisiert', 0: 'Alles manuell' },
-            5: { 2: 'Hat genug Zeit für sich', 1: 'Zeit ist okay', 0: 'Arbeitet non-stop' }
-        };
-
-        function baAnswer(questionNum, score) {
-            const label = baLabels[questionNum];
-            baScores[label] = score;
-            baAnswers['q' + questionNum] = baAnswerTexts[questionNum][score];
-            
-            const btn = event.target.closest('.quiz-option');
-            btn.style.background = 'var(--accent-blue)';
-            btn.style.color = 'white';
-            btn.style.borderColor = 'var(--accent-blue)';
-            
-            setTimeout(() => {
-                if (questionNum < 5) {
-                    showBAScreen('ba-screen-q' + (questionNum + 1));
-                    updateBAProgress(questionNum + 1, 5);
-                } else {
-                    showBAScreen('ba-screen-loading');
-                    updateBAProgress(5, 5);
-                    
-                    setTimeout(() => {
-                        showBestandsaufnahmeResult();
-                    }, 1500);
-                }
-            }, 400);
-        }
-
-        function showBAScreen(screenId) {
-            document.querySelectorAll('#bestandsaufnahme-container .quiz-screen').forEach(s => s.classList.remove('active'));
-            document.getElementById(screenId).classList.add('active');
-        }
-
-        function updateBAProgress(step, total) {
-            const progress = (step / total) * 100;
-            document.getElementById('bestandsaufnahme-progress-bar').style.width = progress + '%';
-        }
-
-        function showBestandsaufnahmeResult() {
-            const totalScore = Object.values(baScores).reduce((a, b) => a + b, 0);
-            const maxScore = 10;
-            const percentage = Math.round((totalScore / maxScore) * 100);
-            
-            const missing = [];
-            const solid = [];
-            
-            for (const [key, score] of Object.entries(baScores)) {
-                if (score === 0) {
-                    missing.push({ key, name: baNames[key], status: 'fehlt' });
-                } else if (score === 1) {
-                    missing.push({ key, name: baNames[key], status: 'teilweise' });
-                } else {
-                    solid.push({ key, name: baNames[key] });
-                }
-            }
-            
-            // Generate visual bars
-            let barsHTML = '';
-            for (const [key, score] of Object.entries(baScores)) {
-                const percent = (score / 2) * 100;
-                const color = score === 2 ? 'var(--accent-blue)' : score === 1 ? 'var(--medium-gray)' : 'var(--light-gray)';
-                barsHTML += `
-                    <div style="margin-bottom: 1rem;">
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.25rem; font-size: 0.9rem;">
-                            <span>${baNames[key]}</span>
-                            <span style="color: ${score === 2 ? 'var(--accent-blue)' : score === 1 ? 'var(--medium-gray)' : 'var(--light-gray)'};">${score === 2 ? 'Steht' : score === 1 ? 'Teilweise' : 'Fehlt'}</span>
-                        </div>
-                        <div style="background: var(--light-gray); height: 6px;">
-                            <div style="background: ${color}; height: 100%; width: ${percent}%; transition: width 0.5s;"></div>
-                        </div>
-                    </div>
-                `;
-            }
-            
-            let headline, subline;
-            if (percentage >= 80) {
-                headline = 'Solide Basis';
-                subline = 'Die wichtigsten Bausteine stehen. Kleine Optimierungen können viel bewirken.';
-            } else if (percentage >= 50) {
-                headline = 'Gute Basis, aber Lücken';
-                subline = 'Einiges steht, aber ein paar Bausteine fehlen noch für echte Freiheit.';
-            } else if (percentage >= 30) {
-                headline = 'Grundlagen fehlen';
-                subline = 'Du hast angefangen, aber die wichtigsten Systeme fehlen noch.';
-            } else {
-                headline = 'Am Anfang';
-                subline = 'Kein Problem. Wichtig ist der erste Schritt.';
-            }
-            
-            let missingHTML = '';
-            if (missing.length > 0) {
-                missingHTML = `
-                    <div style="background: var(--off-white); border: 1px solid var(--light-gray); padding: 1.5rem; margin: 1.5rem 0;">
-                        <h4 style="margin-bottom: 1rem; font-size: 1rem; font-family: var(--font-sans);">Was dir fehlt:</h4>
-                        <ul style="list-style: none; padding: 0; margin: 0;">
-                            ${missing.map(m => `
-                                <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--light-gray); display: flex; justify-content: space-between; font-size: 0.95rem;">
-                                    <span>${m.name}</span>
-                                    <span style="color: ${m.status === 'fehlt' ? 'var(--light-gray)' : 'var(--medium-gray)'};">
-                                        ${m.status === 'fehlt' ? 'Fehlt' : 'Braucht Arbeit'}
-                                    </span>
-                                </li>
-                            `).join('')}
-                        </ul>
-                    </div>
-                `;
-            }
-            
-            const resultHTML = `
-                <div style="text-align: center; margin-bottom: 2rem;">
-                    <h2 style="margin-bottom: 0.5rem;">${headline}</h2>
-                    <p style="color: var(--slate-blue); font-size: 1.1rem;">${subline}</p>
-                </div>
-                
-                <div style="background: var(--off-white); padding: 1.5rem; margin-bottom: 1.5rem;">
-                    <h4 style="margin-bottom: 1rem; text-align: center; font-size: 1rem; font-family: var(--font-sans);">Deine Bestandsaufnahme</h4>
-                    ${barsHTML}
-                    <div style="text-align: center; margin-top: 1.5rem;">
-                        <span style="font-size: 2rem; font-weight: 600; color: var(--accent-blue);">${percentage}%</span>
-                        <span style="color: var(--medium-gray); margin-left: 0.5rem;">komplett</span>
-                    </div>
-                </div>
-                
-                ${missingHTML}
-                
-                <div style="background: var(--off-white); color: var(--charcoal); padding: 2rem; margin-top: 1.5rem;">
-                    <h4 style="color: var(--charcoal); margin-bottom: 1rem; font-size: 1.125rem;">Wie geht's weiter?</h4>
-                    
-                    <form id="ba-contact-form" onsubmit="submitBestandsaufnahmeForm(event)">
-                        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1rem;">
-                            <input 
-                                type="text" 
-                                id="ba-firstname"
-                                placeholder="Vorname" 
-                                required
-                                style="flex: 1; min-width: 150px; padding: 0.875rem; border: 1px solid var(--light-gray); font-size: 1rem;"
-                            >
-                            <input 
-                                type="email" 
-                                id="ba-email"
-                                placeholder="E-Mail" 
-                                required
-                                style="flex: 1; min-width: 150px; padding: 0.875rem; border: 1px solid var(--light-gray); font-size: 1rem;"
-                            >
-                        </div>
-                        
-                        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-                            <button type="button" onclick="submitBAWithFreebies()" style="flex: 1; min-width: 200px; padding: 1rem; background: transparent; color: var(--charcoal); border: 1px solid var(--charcoal); font-weight: 600; cursor: pointer; font-size: 0.9rem;">
-                                🎁 Kostenlose Ressourcen
-                            </button>
-                            <button type="submit" style="flex: 1; min-width: 200px; padding: 1rem; background: var(--accent-blue); color: white; border: none; font-weight: 600; cursor: pointer; font-size: 0.9rem;">
-                                📅 Erstgespräch buchen
-                            </button>
-                        </div>
-                        
-                        <p style="font-size: 0.75rem; color: var(--medium-gray); margin-top: 0.75rem; text-align: center;">
-                            Du meldest dich für den Newsletter an. Abmelden jederzeit.
-                        </p>
-                        
-                        <p id="ba-form-message" style="margin-top: 1rem; text-align: center;"></p>
-                    </form>
-                </div>
-                
-                <div style="text-align: center; margin-top: 1.5rem;">
-                    <button onclick="closeBestandsaufnahme()" style="padding: 0.75rem 2rem; background: transparent; border: 1px solid var(--light-gray); cursor: pointer; color: var(--medium-gray); font-size: 0.9rem;">
-                        Schließen
-                    </button>
-                </div>
-            `;
-            
-            document.getElementById('ba-result-content').innerHTML = resultHTML;
-            showBAScreen('ba-screen-result');
-            
-            window.baResultData = {
-                totalScore: totalScore,
-                percentage: percentage,
-                headline: headline,
-                missing: missing.map(m => m.name).join(', ')
-            };
-        }
-
-        async function submitBAWithFreebies() {
-            const firstname = document.getElementById('ba-firstname').value.trim();
-            const email = document.getElementById('ba-email').value.trim();
-            const messageEl = document.getElementById('ba-form-message');
-            
-            if (!firstname || !email) {
-                messageEl.textContent = 'Bitte Vorname und E-Mail eingeben.';
-                messageEl.style.color = '#ef4444';
-                return;
-            }
-            
-            messageEl.textContent = 'Wird gespeichert...';
-            messageEl.style.color = 'var(--medium-gray)';
-            
-            try {
-                const response = await fetch(QUIZ_SUBMISSION_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        quizType: 'bestandsaufnahme',
-                        firstName: firstname,
-                        email: email,
-                        answers: baAnswers,
-                        totalScore: window.baResultData.totalScore,
-                        percentage: window.baResultData.percentage,
-                        resultHeadline: window.baResultData.headline,
-                        missing: window.baResultData.missing,
-                        result: `${window.baResultData.totalScore}/10 (${window.baResultData.percentage}%)`
-                    })
-                });
-                
-                if (!response.ok) {
-                    throw new Error('Submission failed');
-                }
-                
-                messageEl.style.color = '#22c55e';
-                messageEl.textContent = '✓ Weiterleitung...';
-                
-                setTimeout(() => {
-                    window.location.href = '/freebies.html';
-                }, 1000);
-                
-            } catch (error) {
-                console.error('Quiz submission error:', error);
-                // Bei Fehler trotzdem weiterleiten
-                window.location.href = '/freebies.html';
-            }
-        }
-
-        async function submitBestandsaufnahmeForm(e) {
-            e.preventDefault();
-            
-            const firstname = document.getElementById('ba-firstname').value.trim();
-            const email = document.getElementById('ba-email').value.trim();
-            const messageEl = document.getElementById('ba-form-message');
-            const button = e.target.querySelector('button');
-            
-            button.disabled = true;
-            button.textContent = 'Wird gespeichert...';
-            messageEl.textContent = '';
-            
-            try {
-                const response = await fetch(QUIZ_SUBMISSION_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        quizType: 'bestandsaufnahme',
-                        firstName: firstname,
-                        email: email,
-                        answers: baAnswers,
-                        totalScore: window.baResultData.totalScore,
-                        percentage: window.baResultData.percentage,
-                        resultHeadline: window.baResultData.headline,
-                        missing: window.baResultData.missing,
-                        result: `${window.baResultData.totalScore}/10 (${window.baResultData.percentage}%)`
-                    })
-                });
-                
-                if (!response.ok) {
-                    throw new Error('Submission failed');
-                }
-                
-                const tidycalURL = `${TIDYCAL_LINK}?name=${encodeURIComponent(firstname)}&email=${encodeURIComponent(email)}&note=${encodeURIComponent(`Score: ${window.baResultData.totalScore}/10 (${window.baResultData.percentage}%) | Fehlt: ${window.baResultData.missing}`)}`;
-                
-                messageEl.textContent = 'Gespeichert. Weiterleitung...';
-                
-                setTimeout(() => {
-                    window.open(tidycalURL, '_blank');
-                    closeBestandsaufnahme();
-                }, 1500);
-                
-            } catch (error) {
-                console.error('Quiz submission error:', error);
-                // Bei Fehler trotzdem zu TidyCal weiterleiten
-                const tidycalURL = `${TIDYCAL_LINK}?name=${encodeURIComponent(firstname)}&email=${encodeURIComponent(email)}`;
-                setTimeout(() => {
-                    window.open(tidycalURL, '_blank');
-                    closeBestandsaufnahme();
-                }, 1500);
-            }
-        }
-
-        // Close modal on outside click
-        document.addEventListener('click', function(e) {
-            if (e.target.classList.contains('quiz-modal')) {
-                closeBestandsaufnahme();
-            }
-        });
-
-        // URL parameter handling
-        document.addEventListener('DOMContentLoaded', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.has('quiz')) {
-                openBestandsaufnahme();
-            }
-        });
-    </script>
-
-    <!-- FLOATING BADGE -->
-    <div class="floating-badge" onclick="openBestandsaufnahme()">
-        <button class="floating-badge-close" onclick="event.stopPropagation(); this.parentElement.classList.add('hidden');">✕</button>
-        <div class="floating-badge-text">
-            <span class="floating-badge-title">Wo stehst du?</span>
-            <span class="floating-badge-cta">Bestandsaufnahme →</span>
-        </div>
+<!-- QUIZ -->
+<section class="quiz-section" id="quiz">
+  <div class="quiz-container">
+    <div class="quiz-intro reveal">
+      <div class="section-line"></div>
+      <p class="section-eyebrow">Selbstcheck</p>
+      <h2 class="section-title">Fünf Fragen. <em>Ehrlich.</em></h2>
+      <p>Kein Spaß-Quiz. Eher ein kurzes Gespräch, das dir zeigt, wo du wirklich stehst – und was dich dort hält.</p>
     </div>
 
+    <div class="quiz-progress" id="quizProgress">
+      <div class="progress-dot active"></div>
+      <div class="progress-dot"></div>
+      <div class="progress-dot"></div>
+      <div class="progress-dot"></div>
+      <div class="progress-dot"></div>
+    </div>
+
+    <div class="quiz-chat" id="quizChat">
+      <div class="quiz-step active" data-step="1">
+        <div class="quiz-message">
+          <div class="sender"><span class="sender-dot"></span> Carina</div>
+          <p>Stell dir vor, du wachst morgen auf und denkst an dein Business. Was ist das Erste, das du fühlst?</p>
+        </div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(1, 'fire', this)">Feuer. Ich will loslegen, aber irgendwas bremst mich.</button>
+          <button class="quiz-option" onclick="quizAnswer(1, 'overwhelm', this)">Überforderung. So viel zu tun, keine Ahnung wo anfangen.</button>
+          <button class="quiz-option" onclick="quizAnswer(1, 'doubt', this)">Zweifel. Ob das alles überhaupt funktioniert.</button>
+          <button class="quiz-option" onclick="quizAnswer(1, 'nothing', this)">Gar nichts mehr. Ich funktioniere nur noch.</button>
+        </div>
+      </div>
+
+      <div class="quiz-step" data-step="2">
+        <div class="quiz-reaction"><p id="reaction1"></p></div>
+        <div class="quiz-message">
+          <div class="sender"><span class="sender-dot"></span> Carina</div>
+          <p>Wenn jemand deinen Online-Auftritt sieht – was soll hängen bleiben?</p>
+        </div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(2, 'authority', this)">Die weiß, wovon sie redet. Punkt.</button>
+          <button class="quiz-option" onclick="quizAnswer(2, 'real', this)">Die ist echt. Kein Fake, keine Fassade.</button>
+          <button class="quiz-option" onclick="quizAnswer(2, 'magnetic', this)">Ich will mehr von ihr. Die zieht mich an.</button>
+          <button class="quiz-option" onclick="quizAnswer(2, 'unsure', this)">Ehrlich? Ich weiß nicht mal, was ich ausstrahlen will.</button>
+        </div>
+      </div>
+
+      <div class="quiz-step" data-step="3">
+        <div class="quiz-reaction"><p id="reaction2"></p></div>
+        <div class="quiz-message">
+          <div class="sender"><span class="sender-dot"></span> Carina</div>
+          <p>Dein größter Block sitzt nicht in deiner Strategie. Er sitzt in deiner Geschichte. Was löst dieser Satz in dir aus?</p>
+        </div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(3, 'yes', this)">Stimmt. Ich weiß genau, welche Geschichte mich hält.</button>
+          <button class="quiz-option" onclick="quizAnswer(3, 'curious', this)">Interessant. Welche Geschichte meinst du?</button>
+          <button class="quiz-option" onclick="quizAnswer(3, 'resist', this)">Nein. Ich brauche eine bessere Strategie, nicht Innenschau.</button>
+          <button class="quiz-option" onclick="quizAnswer(3, 'both', this)">Beides. Meine Geschichte und meine Strategie brauchen Arbeit.</button>
+        </div>
+      </div>
+
+      <div class="quiz-step" data-step="4">
+        <div class="quiz-reaction"><p id="reaction3"></p></div>
+        <div class="quiz-message">
+          <div class="sender"><span class="sender-dot"></span> Carina</div>
+          <p>Wie viele Stunden pro Tag arbeitest du an deinem Business?</p>
+        </div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(4, 'hustle', this)">Viel zu viel. 6+ Stunden und trotzdem nicht genug Ergebnisse.</button>
+          <button class="quiz-option" onclick="quizAnswer(4, 'moderate', this)">2-4 Stunden. Ich versuch's mit Balance.</button>
+          <button class="quiz-option" onclick="quizAnswer(4, 'minimal', this)">Kaum. Vielleicht 1 Stunde, wenn's gut läuft.</button>
+          <button class="quiz-option" onclick="quizAnswer(4, 'chaos', this)">Total unregelmäßig. Mal alles, mal nichts.</button>
+        </div>
+      </div>
+
+      <div class="quiz-step" data-step="5">
+        <div class="quiz-reaction"><p id="reaction4"></p></div>
+        <div class="quiz-message">
+          <div class="sender"><span class="sender-dot"></span> Carina</div>
+          <p>Letzte Frage. Wenn in sechs Monaten alles anders wäre – was genau ist anders?</p>
+        </div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="quizAnswer(5, 'freedom', this)">Ich will frei sein. Zeitlich, finanziell, emotional.</button>
+          <button class="quiz-option" onclick="quizAnswer(5, 'clarity', this)">Klarheit. Ich will wissen, wer ich bin und was ich will.</button>
+          <button class="quiz-option" onclick="quizAnswer(5, 'income', this)">Umsatz. Ich will endlich das verdienen, was ich wert bin.</button>
+          <button class="quiz-option" onclick="quizAnswer(5, 'all', this)">Alles davon. Ich bin bereit für die komplette Transformation.</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="quiz-result" id="quizResult">
+      <div class="result-type" id="resultType"></div>
+      <div class="result-description" id="resultDesc"></div>
+      <div class="section-line"></div>
+      <p style="font-size: 0.88rem; color: #666; margin-top: 2rem;" id="resultReco"></p>
+      <button class="btn-primary" onclick="scrollTo('#webinar')" style="margin-top: 2rem;">Zum kostenlosen Live-Event</button>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="section-line"></div>
+  <p class="section-eyebrow">Ergebnisse</p>
+  <h2 class="section-title">Nicht meine Worte. <em>Ihre.</em></h2>
+  <div class="testimonial reveal">
+    <blockquote id="testimonialQuote">Eine Session. Ein Satz von Carina. Und ich habe verstanden, warum ich seit Monaten auf der Stelle trete. Es lag nicht an der Strategie. Es lag an mir.</blockquote>
+    <p class="author" id="testimonialAuthor">— Unternehmerin, 32, Hamburg</p>
+  </div>
+  <div class="testimonial-dots">
+    <button class="active" onclick="showTestimonial(0)"></button>
+    <button onclick="showTestimonial(1)"></button>
+    <button onclick="showTestimonial(2)"></button>
+  </div>
+</section>
+
+<!-- WEBINAR -->
+<section class="webinar" id="webinar">
+  <div class="webinar-content reveal">
+    <div class="webinar-badge">Kostenlos · Live · Begrenzte Plätze</div>
+    <h2 class="webinar-title">Warum dein Business<br><em>nicht wächst</em> –<br>obwohl du alles richtig machst</h2>
+    <p class="webinar-sub">60 Minuten. Ein Block. Kein Verkaufspitch, sondern Klarheit.</p>
+
+    <div class="webinar-details">
+      <div class="webinar-detail">
+        <p class="label">Datum</p>
+        <p class="value">Coming Soon</p>
+      </div>
+      <div class="webinar-detail">
+        <p class="label">Uhrzeit</p>
+        <p class="value">20:00 Uhr</p>
+      </div>
+      <div class="webinar-detail">
+        <p class="label">Dauer</p>
+        <p class="value">60 Min.</p>
+      </div>
+      <div class="webinar-detail">
+        <p class="label">Plätze</p>
+        <p class="value" id="spotsLeft">47 frei</p>
+      </div>
+    </div>
+
+    <div class="webinar-form" id="webinarForm">
+      <input type="text" placeholder="Dein Vorname" id="webinarName">
+      <input type="email" placeholder="Deine E-Mail-Adresse" id="webinarEmail">
+      <button class="btn-primary" style="width: 100%;" onclick="registerWebinar()">Platz sichern</button>
+      <p class="webinar-spots">Kein Spam. Keine Maschen. Nur Substanz.</p>
+    </div>
+
+    <div id="webinarSuccess">
+      <p>Du bist dabei. ✦</p>
+      <p>Check deine Mails — wir sehen uns live.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-brand">
+      <h2>House of <em>Dynamics</em></h2>
+      <p style="font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: #999; margin-top: 0.3rem;">by Carina Anna Prav</p>
+      <p>Klarheit, Energie und Positionierung für Unternehmerinnen, die es ernst meinen.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <a href="#about">Über mich</a>
+      <a href="#angebote">Angebote</a>
+      <a href="#quiz">Dynamik-Quiz</a>
+      <a href="#webinar">Webinar</a>
+    </div>
+    <div class="footer-col">
+      <h4>Rechtliches</h4>
+      <a href="#">Impressum</a>
+      <a href="#">Datenschutz</a>
+      <a href="#">AGB</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Carina — The House of Dynamics</span>
+    <span>Built with Dynamik</span>
+  </div>
+</footer>
+
+<script>
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+function toggleNav() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+
+function scrollTo(sel) {
+  document.querySelector(sel).scrollIntoView({ behavior: 'smooth' });
+  document.getElementById('navLinks').classList.remove('open');
+}
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.15 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+let quizAnswers = {};
+const reactions = {
+  1: { fire: "Gut. Die Energie ist da. Dann finden wir jetzt, was sie blockiert.", overwhelm: "Das kenne ich. Und es liegt nicht daran, dass du zu wenig tust.", doubt: "Zweifel sind laut. Aber sie lügen. Meistens jedenfalls.", nothing: "Ehrlich. Und genau hier setzen wir an." },
+  2: { authority: "Autorität kommt von Klarheit. Nicht von laut sein.", real: "Echtheit ist selten geworden. Das ist dein Vorsprung.", magnetic: "Anziehung ist kein Zufall. Es ist Positionierung.", unsure: "Kein Problem. Genau dafür bin ich da." },
+  3: { yes: "Wer seine Geschichte kennt, ist schon halb durch.", curious: "Die Geschichte zeigt sich schneller, als du denkst.", resist: "Verstehe ich. Aber was, wenn die Strategie erst greift, wenn der Block weg ist?", both: "Dann arbeiten wir an beidem. Gleichzeitig." },
+  4: { hustle: "Mehr Stunden sind nicht die Lösung. Dein System braucht ein Update.", moderate: "Gut. Dann sorgen wir dafür, dass diese Stunden wirklich zählen.", minimal: "Wenig Zeit heißt: jede Minute muss sitzen. Genau mein Ansatz.", chaos: "Chaos ist Energie ohne Richtung. Die Richtung kommt jetzt." }
+};
+
+const results = {
+  fire: { type: "Die Antreiberin", desc: "Du hast die Energie – aber etwas bremst dich. Dein Block tarnt sich als Vernunft. Als Vorsicht. Als \"noch nicht bereit\". Das ist er nicht. Er ist eine alte Geschichte, die du dir erzählst.", reco: "Nächster Schritt: Eine Sofort-Session. 60 Minuten, ein Block, Klarheit." },
+  overwhelm: { type: "Die Strategin ohne System", desc: "Du arbeitest viel, aber nicht am Richtigen. Dein Kopf ist voll mit Taktiken, die du irgendwo aufgeschnappt hast. Was fehlt, ist kein Wissen – es ist ein System, das zu dir und deiner Realität passt.", reco: "Nächster Schritt: Die Dynamik Business Academy. Struktur statt Hustle." },
+  doubt: { type: "Die Unterschätzte", desc: "Unter deinem Zweifel liegt Substanz. Du wartest auf Erlaubnis – von dir selbst. Die bekommst du hier nicht. Aber die Klarheit, dass du sie nie gebraucht hast.", reco: "Nächster Schritt: Komm zum kostenlosen Live-Event. Manchmal reicht ein klarer Gedanke." },
+  nothing: { type: "Die vor dem Neuanfang", desc: "Du funktionierst. Aber du lebst dein Business nicht mehr. Das Nichts-Fühlen ist kein Versagen – es ist ein Signal. Dein System sagt dir: So wie bisher geht es nicht weiter.", reco: "Nächster Schritt: The House of Dynamics. Das volle Programm. Alles neu." }
+};
+
+function quizAnswer(step, value, el) {
+  quizAnswers[step] = value;
+  el.parentElement.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+
+  if (step < 5 && reactions[step]) {
+    const r = document.getElementById('reaction' + step);
+    if (r) r.textContent = reactions[step][value];
+  }
+
+  const dots = document.querySelectorAll('.progress-dot');
+  dots[step - 1].classList.remove('active');
+  dots[step - 1].classList.add('done');
+
+  setTimeout(() => {
+    if (step < 5) {
+      document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
+      document.querySelector('[data-step="' + (step + 1) + '"]').classList.add('active');
+      dots[step].classList.add('active');
+    } else {
+      showQuizResult();
+    }
+  }, 500);
+}
+
+function showQuizResult() {
+  document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
+  document.getElementById('quizProgress').style.display = 'none';
+  const primary = quizAnswers[1] || 'fire';
+  const r = results[primary];
+  document.getElementById('resultType').textContent = r.type;
+  document.getElementById('resultDesc').textContent = r.desc;
+  document.getElementById('resultReco').textContent = r.reco;
+  document.getElementById('quizResult').classList.add('active');
+}
+
+const testimonials = [
+  { quote: "Eine Session. Ein Satz von Carina. Und ich habe verstanden, warum ich seit Monaten auf der Stelle trete. Es lag nicht an der Strategie. Es lag an mir.", author: "— Unternehmerin, 32, Hamburg" },
+  { quote: "Ich dachte, ich brauche ein neues Angebot. Carina hat mir gezeigt, dass ich eine neue Haltung brauche. Seitdem verkaufe ich anders. Besser. Leichter.", author: "— Online-Coach, 28, München" },
+  { quote: "Kein Wischi-Waschi, kein Wohlfühl-Coaching. Carina sagt dir, was Sache ist. Und genau das hat mir gefehlt.", author: "— Selbstständige, 35, Berlin" }
+];
+
+let currentTestimonial = 0;
+function showTestimonial(i) {
+  currentTestimonial = i;
+  document.getElementById('testimonialQuote').textContent = testimonials[i].quote;
+  document.getElementById('testimonialAuthor').textContent = testimonials[i].author;
+  document.querySelectorAll('.testimonial-dots button').forEach((b, j) => b.classList.toggle('active', j === i));
+}
+
+setInterval(() => { currentTestimonial = (currentTestimonial + 1) % testimonials.length; showTestimonial(currentTestimonial); }, 6000);
+
+function registerWebinar() {
+  const n = document.getElementById('webinarName').value;
+  const e = document.getElementById('webinarEmail').value;
+  if (!n || !e) return;
+  document.getElementById('webinarForm').style.display = 'none';
+  document.getElementById('webinarSuccess').style.display = 'block';
+}
+</script>
 </body>
 </html>

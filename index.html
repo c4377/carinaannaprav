@@ -595,11 +595,35 @@ section { padding: 7rem 3rem; }
 .quiz-section {
   background: #F6F3EF;
   padding: 7rem 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.quiz-bg {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 0;
+}
+
+.quiz-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.quiz-bg::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(246, 243, 239, 0.88);
 }
 
 .quiz-container {
   max-width: 650px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 .quiz-intro {
@@ -1184,14 +1208,11 @@ footer {
   </div>
 </section>
 
-<!-- IMAGE BREAK -->
-<section class="image-break">
-  <img src="bilder/carina-working.jpg" alt="">
-  <span class="photo-credit">@sandralavinia</span>
-</section>
-
 <!-- QUIZ -->
 <section class="quiz-section" id="quiz">
+  <div class="quiz-bg">
+    <img src="bilder/carina-working.jpg" alt="">
+  </div>
   <div class="quiz-container">
     <div class="quiz-intro reveal">
       <div class="section-line"></div>

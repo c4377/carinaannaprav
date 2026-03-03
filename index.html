@@ -368,7 +368,27 @@ section { padding: 7rem 3rem; }
 .dynamik {
   background: #1A1A1A;
   text-align: center;
-  padding: 5rem 3rem;
+  padding: 6rem 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.dynamik-bg {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+}
+
+.dynamik-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.2;
+  filter: grayscale(40%);
+}
+
+.dynamik .reveal {
+  position: relative;
+  z-index: 1;
 }
 
 .dynamik-quote {
@@ -393,6 +413,90 @@ section { padding: 7rem 3rem; }
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: rgba(255,255,255,0.35);
+}
+
+/* PHOTO CREDITS */
+.photo-credit {
+  position: absolute;
+  bottom: 1rem;
+  right: 1.5rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.4);
+  z-index: 2;
+}
+
+.photo-credit a {
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+}
+
+.photo-credit a:hover {
+  color: rgba(255,255,255,0.8);
+}
+
+/* IMAGE BREAKS */
+.image-break {
+  position: relative;
+  height: 55vh;
+  overflow: hidden;
+}
+
+.image-break > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: grayscale(15%);
+}
+
+.image-break > .photo-credit {
+  position: absolute;
+  bottom: 1rem;
+  right: 1.5rem;
+}
+
+/* SPLIT IMAGE BREAK */
+.image-break-split {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  height: auto;
+}
+
+.split-left {
+  overflow: hidden;
+}
+
+.split-left img {
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+  object-fit: cover;
+  object-position: center top;
+  filter: grayscale(15%);
+}
+
+.split-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem;
+  background: #1A1A1A;
+}
+
+.split-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-weight: 300;
+  font-style: italic;
+  color: #F6F3EF;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.split-quote em {
+  color: #C49A8A;
+  font-style: italic;
 }
 
 /* OFFERS */
@@ -928,6 +1032,17 @@ footer {
     margin-top: -3rem;
   }
 
+  .image-break { height: 40vh; }
+  
+  .image-break-split { 
+    grid-template-columns: 1fr; 
+    height: auto;
+  }
+  
+  .split-left img { min-height: 350px; }
+  
+  .split-right { padding: 3rem 2rem; }
+
   .offers-grid { grid-template-columns: 1fr; }
 
   .footer-content { grid-template-columns: 1fr; gap: 2rem; }
@@ -960,6 +1075,7 @@ footer {
 <section class="hero">
   <div class="hero-bg">
     <img src="bilder/hero-carina.jpg" alt="">
+    <span class="photo-credit">Foto: <a href="https://instagram.com/sandralavinia" target="_blank">@sandralavinia</a></span>
   </div>
   <div class="hero-content">
     <p class="hero-eyebrow">Business · Energie · Klarheit</p>
@@ -979,8 +1095,8 @@ footer {
   <h2 class="section-title">Haltung statt <em>Hype</em></h2>
   <div class="about-grid">
     <div class="about-image reveal">
-      <div class="placeholder">Dein Foto</div>
-      <!-- Replace with: <img src="bilder/about-carina.jpg" alt="Carina"> -->
+      <img src="bilder/about-you.jpg" alt="Carina">
+      <span class="photo-credit">Foto: <a href="https://instagram.com/sandralavinia" target="_blank">@sandralavinia</a></span>
     </div>
     <div class="about-text reveal">
       <h3>Ich höre, was du sagst. Und ich höre, was du nicht sagst.</h3>
@@ -1001,6 +1117,9 @@ footer {
 
 <!-- DYNAMIK -->
 <section class="dynamik">
+  <div class="dynamik-bg">
+    <img src="bilder/dynamik-bg.jpg" alt="">
+  </div>
   <div class="reveal">
     <p class="dynamik-quote">
       Du kannst nicht gleichzeitig an deiner Angst festhalten und dein Business skalieren.<br>
@@ -1062,6 +1181,12 @@ footer {
       <button class="btn-secondary" onclick="scrollTo('#webinar')">Auf Warteliste</button>
     </div>
   </div>
+</section>
+
+<!-- IMAGE BREAK -->
+<section class="image-break">
+  <img src="bilder/carina-working.jpg" alt="">
+  <span class="photo-credit">@sandralavinia</span>
 </section>
 
 <!-- QUIZ -->
@@ -1163,6 +1288,16 @@ footer {
   </div>
 </section>
 
+<!-- IMAGE BREAK 2 -->
+<section class="image-break image-break-split">
+  <div class="split-left">
+    <img src="bilder/carina-portrait-2.jpg" alt="">
+  </div>
+  <div class="split-right">
+    <p class="split-quote">Ich höre, was du sagst.<br>Und ich höre, was du <em>nicht</em> sagst.</p>
+  </div>
+</section>
+
 <!-- TESTIMONIALS -->
 <section class="testimonials" id="testimonials">
   <div class="section-line"></div>
@@ -1242,6 +1377,7 @@ footer {
   </div>
   <div class="footer-bottom">
     <span>© 2026 Carina — The House of Dynamics</span>
+    <span style="display: block; margin-top: 0.4rem; font-size: 0.7rem; color: #555;">Fotos: <a href="https://instagram.com/sandralavinia" target="_blank" style="color: #999; text-decoration: none;">@sandralavinia</a></span>
     <span>Built with Dynamik</span>
   </div>
 </footer>

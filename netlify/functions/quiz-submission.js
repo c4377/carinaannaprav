@@ -39,6 +39,7 @@ exports.handler = async (event, context) => {
     const AC_API_URL = process.env.ACTIVECAMPAIGN_API_URL;
     const AC_API_KEY = process.env.ACTIVECAMPAIGN_API_KEY;
     const AC_LIST_POSITIONING = process.env.AC_LIST_POSITIONING;
+    const AC_LIST_MASTERCLASS = process.env.AC_LIST_MASTERCLASS || '3';
 
     if (!AC_API_URL || !AC_API_KEY) {
       console.error('Missing ActiveCampaign credentials');
@@ -55,16 +56,19 @@ exports.handler = async (event, context) => {
     
     if (quizType === 'positioning') {
   listId = AC_LIST_POSITIONING;
-  tags = ['Quiz-Positionierung'];
+  tags = ['Quiz-Positionierung', 'Masterclass-Anmeldung'];
 } else if (quizType === 'pdf-download') {
   listId = AC_LIST_POSITIONING;
-  tags = ['PDF-Download'];
+  tags = ['PDF-Download', 'Masterclass-Anmeldung'];
 } else if (quizType === 'systemcheck') {
   listId = AC_LIST_POSITIONING;
-  tags = ['System-Check'];
+  tags = ['System-Check', 'Masterclass-Anmeldung'];
 } else if (quizType === 'bestandsaufnahme') {
-  tags = ['Quiz-Bestandsaufnahme'];
+  tags = ['Quiz-Bestandsaufnahme', 'Masterclass-Anmeldung'];
 }
+
+    // Additional lists: Masterclass + Newsletter
+    const additionalLists = [AC_LIST_MASTERCLASS];
 
     // Prepare contact name
     let contactFirstName = firstName || '';
@@ -145,6 +149,20 @@ exports.handler = async (event, context) => {
         console.error('List subscription error:', errorText);
       } else {
         console.log('Added to list:', listId);
+      }
+    }
+
+    // 2b. Add to Masterclass + Newsletter lists
+    for (const extraList of additionalLists) {
+      if (extraList) {
+        try {
+          await fetch(`${AC_API_URL}/api/3/contactLists`, {
+            method: 'POST',
+            headers: { 'Api-Token': AC_API_KEY, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ contactList: { list: extraList, contact: contactId, status: 1 } })
+          });
+          console.log('Added to additional list:', extraList);
+        } catch (e) { console.error('Additional list error:', e); }
       }
     }
 

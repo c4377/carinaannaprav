@@ -35,7 +35,7 @@ exports.handler = async (event, context) => {
     // ActiveCampaign Config
     const AC_API_URL = process.env.ACTIVECAMPAIGN_API_URL;
     const AC_API_KEY = process.env.ACTIVECAMPAIGN_API_KEY;
-    const AC_LIST_30TAGE = process.env.AC_LIST_30TAGE || '3'; // 30-Tage-System Liste
+    const AC_LIST_MASTERCLASS = process.env.AC_LIST_MASTERCLASS || '3'; // 30-Tage-System Liste
 
     if (!AC_API_URL || !AC_API_KEY) {
       console.error('Missing ActiveCampaign credentials');
@@ -76,10 +76,10 @@ exports.handler = async (event, context) => {
     console.log('Newsletter contact synced, ID:', contactId);
 
     // 2. Add to 30-Tage-System Liste
-    console.log('Adding to list:', AC_LIST_30TAGE);
+    console.log('Adding to list:', AC_LIST_MASTERCLASS);
     const listPayload = {
       contactList: {
-        list: AC_LIST_30TAGE,
+        list: AC_LIST_MASTERCLASS,
         contact: contactId,
         status: 1
       }

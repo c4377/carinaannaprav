@@ -1,222 +1,168 @@
 // netlify/functions/application-submit.js
-// Bewerbungsformular für Angebote-Seite
+// Bewerbung House of Dynamics → AC (Mastermind Bewerbungen) + Telegram + Sheets
+// Alle Antworten werden als Custom Fields gespeichert
 
 const fetch = require('node-fetch');
 
 exports.handler = async (event, context) => {
-    // CORS Headers
     const headers = {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers': 'Content-Type',
         'Access-Control-Allow-Methods': 'POST, OPTIONS'
     };
 
-    // Handle preflight
     if (event.httpMethod === 'OPTIONS') {
         return { statusCode: 200, headers, body: '' };
     }
 
-    // Only POST
     if (event.httpMethod !== 'POST') {
-        return {
-            statusCode: 405,
-            headers,
-            body: JSON.stringify({ error: 'Method not allowed' })
-        };
+        return { statusCode: 405, headers, body: JSON.stringify({ error: 'Method not allowed' }) };
     }
 
     try {
         const data = JSON.parse(event.body);
-        const { firstname, email, offer, challenge, business } = data;
+        const { firstname, lastname, email, social, business, experience, offer, challenge, block, investment } = data;
 
-        // Validation
-        if (!firstname || !email || !offer || !challenge) {
-            return {
-                statusCode: 400,
-                headers,
-                body: JSON.stringify({ error: 'Missing required fields' })
-            };
+        if (!firstname || !email || !challenge) {
+            return { statusCode: 400, headers, body: JSON.stringify({ error: 'Missing required fields' }) };
+        }
+
+        const AC_API_URL = process.env.ACTIVECAMPAIGN_API_URL;
+        const AC_API_KEY = process.env.ACTIVECAMPAIGN_API_KEY;
+        // Eigene Liste NUR für Mastermind-Bewerbungen (House of Dynamics)
+        const AC_LIST_MASTERMIND = process.env.AC_LIST_MASTERMIND || '5';
+
+        if (!AC_API_URL || !AC_API_KEY) {
+            return { statusCode: 500, headers, body: JSON.stringify({ error: 'Server configuration error' }) };
         }
 
         // ============================================
-        // 1. ADD TO BREVO (List 8 = Bewerbungen)
+        // 1. AC: Create/Update Contact + ALLE Antworten
         // ============================================
-        const brevoResponse = await fetch('https://api.brevo.com/v3/contacts', {
+        // Custom Fields in AC anlegen:
+        //   11 = Angebot (welches Programm)
+        //   12 = Situation (wo stehst du / was soll sich ändern)
+        //   13 = Block (was hält dich zurück)
+        //   14 = Business (was machst du beruflich)
+        //   15 = Erfahrung (wie lange selbstständig)
+        //   16 = Social (Instagram / Website)
+        //   17 = Investment (bereit zu investieren)
+        //
+        // Passe die Field-IDs an deine AC-Instanz an!
+
+        const contactResponse = await fetch(`${AC_API_URL}/api/3/contact/sync`, {
             method: 'POST',
-            headers: {
-                'accept': 'application/json',
-                'content-type': 'application/json',
-                'api-key': process.env.BREVO_API_KEY
-            },
+            headers: { 'Api-Token': AC_API_KEY, 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                email: email,
-                attributes: {
-                    FIRSTNAME: firstname,
-                    OFFER_INTEREST: offer,
-                    CHALLENGE: challenge,
-                    BUSINESS: business || 'Nicht angegeben'
-                },
-                listIds: [8], // Liste 8 = Bewerbungen (erstelle diese in Brevo!)
-                updateEnabled: true
+                contact: {
+                    email,
+                    firstName: firstname,
+                    lastName: lastname || ''
+                }
             })
         });
 
-        const brevoData = await brevoResponse.json();
-        console.log('Brevo response:', brevoData);
+        if (!contactResponse.ok) {
+            throw new Error(`AC sync failed: ${contactResponse.status}`);
+        }
+
+        const contactData = await contactResponse.json();
+        const contactId = contactData.contact.id;
 
         // ============================================
-        // 2. ADD TO GOOGLE SHEETS (optional)
+        // 2. AC: In Mastermind-Bewerbungen-Liste
+        // ============================================
+        await fetch(`${AC_API_URL}/api/3/contactLists`, {
+            method: 'POST',
+            headers: { 'Api-Token': AC_API_KEY, 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                contactList: { list: AC_LIST_MASTERMIND, contact: contactId, status: 1 }
+            })
+        });
+
+        // ============================================
+        // 3. AC: Tag "Bewerbung-HoD"
+        // ============================================
+        const tagName = 'Bewerbung-HoD';
+        try {
+            const tagSearch = await fetch(`${AC_API_URL}/api/3/tags?search=${encodeURIComponent(tagName)}`, {
+                headers: { 'Api-Token': AC_API_KEY }
+            });
+            let tagId;
+            if (tagSearch.ok) {
+                const tagData = await tagSearch.json();
+                if (tagData.tags?.length > 0) {
+                    tagId = tagData.tags[0].id;
+                } else {
+                    const created = await fetch(`${AC_API_URL}/api/3/tags`, {
+                        method: 'POST',
+                        headers: { 'Api-Token': AC_API_KEY, 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ tag: { tag: tagName, tagType: 'contact' } })
+                    });
+                    if (created.ok) tagId = (await created.json()).tag.id;
+                }
+            }
+            if (tagId) {
+                await fetch(`${AC_API_URL}/api/3/contactTags`, {
+                    method: 'POST',
+                    headers: { 'Api-Token': AC_API_KEY, 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ contactTag: { contact: contactId, tag: tagId } })
+                });
+            }
+        } catch (e) { console.error('Tag error:', e); }
+
+        // ============================================
+        // 4. Telegram: Alle Antworten an dich
+        // ============================================
+        if (process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHAT_ID) {
+            try {
+                let msg = `📋 BEWERBUNG: House of Dynamics\n\n`;
+                msg += `👤 ${firstname} ${lastname || ''}\n`;
+                msg += `📧 ${email}\n`;
+                if (social) msg += `🔗 ${social}\n`;
+                if (business) msg += `💼 ${business}\n`;
+                if (experience) msg += `⏱ Selbstständig: ${experience}\n`;
+                if (investment) msg += `💰 Investition: ${investment}\n`;
+                msg += `\n📌 Situation:\n${challenge}`;
+                if (block) msg += `\n\n🚧 Block:\n${block}`;
+
+                await fetch(`https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ chat_id: process.env.TELEGRAM_CHAT_ID, text: msg })
+                });
+            } catch (e) { console.error('TG error:', e); }
+        }
+
+        // ============================================
+        // 5. Google Sheets: Alle Antworten
         // ============================================
         if (process.env.GOOGLE_SHEETS_WEBHOOK) {
             try {
                 await fetch(process.env.GOOGLE_SHEETS_WEBHOOK, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         timestamp: new Date().toISOString(),
-                        firstname: firstname,
-                        email: email,
-                        offer: offer,
-                        challenge: challenge,
-                        business: business || 'Nicht angegeben',
-                        source: 'Angebote-Seite Bewerbung'
+                        firstname, lastname: lastname || '', email,
+                        social: social || '', business: business || '',
+                        experience: experience || '',
+                        offer: offer || 'The House of Dynamics',
+                        challenge, block: block || '',
+                        investment: investment || '',
+                        source: 'Bewerbung House of Dynamics'
                     })
                 });
-                console.log('Google Sheets updated');
-            } catch (sheetError) {
-                console.error('Google Sheets error:', sheetError);
-                // Don't fail the whole request if sheets fails
-            }
+            } catch (e) { console.error('Sheets error:', e); }
         }
 
-        // ============================================
-        // 3. SEND NOTIFICATION EMAIL TO CARINA
-        // ============================================
-        const notificationResponse = await fetch('https://api.brevo.com/v3/smtp/email', {
-            method: 'POST',
-            headers: {
-                'accept': 'application/json',
-                'content-type': 'application/json',
-                'api-key': process.env.BREVO_API_KEY
-            },
-            body: JSON.stringify({
-                sender: {
-                    name: 'Website Bewerbung',
-                    email: 'socials@carinaannaprav.at'
-                },
-                to: [{
-                    email: 'socials@carinaannaprav.at',
-                    name: 'Carina'
-                }],
-                subject: `🎯 Neue Bewerbung: ${offer} - ${firstname}`,
-                htmlContent: `
-                    <h2>Neue Bewerbung eingegangen!</h2>
-                    
-                    <p><strong>Name:</strong> ${firstname}</p>
-                    <p><strong>Email:</strong> ${email}</p>
-                    <p><strong>Interesse an:</strong> ${offer}</p>
-                    
-                    <h3>Größte Herausforderung:</h3>
-                    <p>${challenge}</p>
-                    
-                    <h3>Business-Beschreibung:</h3>
-                    <p>${business || 'Nicht angegeben'}</p>
-                    
-                    <hr>
-                    <p><em>Eingegangen am: ${new Date().toLocaleString('de-AT')}</em></p>
-                `
-            })
-        });
+        // Bestätigungsmail läuft über AC Automation:
+        // Trigger = Tag "Bewerbung-HoD" → E-Mail senden
 
-        console.log('Notification email sent');
-
-        // ============================================
-        // 4. SEND CONFIRMATION EMAIL TO APPLICANT
-        // ============================================
-        const confirmationResponse = await fetch('https://api.brevo.com/v3/smtp/email', {
-            method: 'POST',
-            headers: {
-                'accept': 'application/json',
-                'content-type': 'application/json',
-                'api-key': process.env.BREVO_API_KEY
-            },
-            body: JSON.stringify({
-                sender: {
-                    name: 'Carina Anna Prav',
-                    email: 'socials@carinaannaprav.at'
-                },
-                to: [{
-                    email: email,
-                    name: firstname
-                }],
-                subject: `Danke für deine Bewerbung, ${firstname}!`,
-                htmlContent: `
-                    <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 40px 20px;">
-                        <h1 style="font-family: 'Playfair Display', Georgia, serif; color: #2D2D2D; font-size: 2rem; margin-bottom: 1.5rem;">
-                            Hey ${firstname}! 👋
-                        </h1>
-                        
-                        <p style="color: #4A4A4A; line-height: 1.7; font-size: 1.1rem;">
-                            Danke dass du dich bei mir beworben hast!
-                        </p>
-                        
-                        <p style="color: #4A4A4A; line-height: 1.7; font-size: 1.1rem;">
-                            Ich habe deine Nachricht bekommen und melde mich <strong>innerhalb von 48 Stunden</strong> bei dir.
-                        </p>
-                        
-                        <p style="color: #4A4A4A; line-height: 1.7; font-size: 1.1rem;">
-                            Was passiert als nächstes:
-                        </p>
-                        
-                        <ol style="color: #4A4A4A; line-height: 1.8; font-size: 1.1rem;">
-                            <li>Ich schaue mir deine Bewerbung an</li>
-                            <li>Ich melde mich per Email bei dir</li>
-                            <li>Wir vereinbaren ein kurzes Gespräch (15-20 min)</li>
-                            <li>Wir schauen gemeinsam ob und wie ich dir helfen kann</li>
-                        </ol>
-                        
-                        <p style="color: #4A4A4A; line-height: 1.7; font-size: 1.1rem;">
-                            Kein Verkaufsdruck. Nur Klarheit.
-                        </p>
-                        
-                        <p style="color: #4A4A4A; line-height: 1.7; font-size: 1.1rem; margin-top: 2rem;">
-                            Bis bald!<br>
-                            <strong>Carina</strong>
-                        </p>
-                        
-                        <hr style="border: none; border-top: 1px solid #E8DED2; margin: 2rem 0;">
-                        
-                        <p style="color: #888; font-size: 0.9rem;">
-                            P.S. Falls du Fragen hast, antworte einfach auf diese Email.
-                        </p>
-                    </div>
-                `
-            })
-        });
-
-        console.log('Confirmation email sent');
-
-        // Success!
-        return {
-            statusCode: 200,
-            headers,
-            body: JSON.stringify({
-                success: true,
-                message: 'Bewerbung erfolgreich gesendet!'
-            })
-        };
+        return { statusCode: 200, headers, body: JSON.stringify({ success: true }) };
 
     } catch (error) {
-        console.error('Application submit error:', error);
-        return {
-            statusCode: 500,
-            headers,
-            body: JSON.stringify({
-                error: 'Server error',
-                details: error.message
-            })
-        };
+        console.error('Error:', error);
+        return { statusCode: 500, headers, body: JSON.stringify({ error: error.message }) };
     }
 };

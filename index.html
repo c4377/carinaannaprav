@@ -1089,6 +1089,7 @@ footer {
     <li><a href="#about">Über mich</a></li>
     <li><a href="#angebote">Angebote</a></li>
     <li><a href="#quiz">Quiz</a></li>
+    <li><a href="40-impulse.html">Freebie</a></li>
     <li><a href="#webinar">Webinar</a></li>
     <li><a href="#webinar" class="nav-cta">Jetzt starten</a></li>
   </ul>
@@ -1190,7 +1191,7 @@ footer {
         <li>Sales-Training mit KI-Unterstützung</li>
         <li>Sales-Training & Positionierung</li>
       </ul>
-      <a href="mailto:socials@carinaannaprav.at?subject=Dynamik%20Business%20Academy" class="btn-primary" style="display:inline-block;text-align:center;">Jetzt einsteigen</a>
+      <a href="/cdn-cgi/l/email-protection#c2b1ada1aba3aeb182a1a3b0abaca3a3acaca3b2b0a3b4eca3b6fdb1b7a0a8a7a1b6ff86bbaca3afaba9e7f0f280b7b1abaca7b1b1e7f0f283a1a3a6a7afbb" class="btn-primary" style="display:inline-block;text-align:center;">Jetzt einsteigen</a>
     </div>
 
     <div class="offer-card reveal">
@@ -1393,11 +1394,12 @@ footer {
       <a href="#about">Über mich</a>
       <a href="#angebote">Angebote</a>
       <a href="#quiz">Dynamik-Quiz</a>
+      <a href="40-impulse.html">40 Impulse</a>
       <a href="#webinar">Webinar</a>
     </div>
     <div class="footer-col">
       <h4>Kontakt</h4>
-      <a href="mailto:socials@carinaannaprav.at">socials@carinaannaprav.at</a>
+      <a href="/cdn-cgi/l/email-protection#a9dac6cac0c8c5dae9cac8dbc0c7c8c8c7c7c8d9dbc8df87c8dd"><span class="__cf_email__" data-cfemail="13607c707a727f60537072617a7d72727d7d72636172653d7267">[email&#160;protected]</span></a>
       <a href="https://tidycal.com/socials1/erstgespraeche" target="_blank">Session buchen</a>
     </div>
     <div class="footer-col">
@@ -1414,7 +1416,7 @@ footer {
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 window.addEventListener('scroll', () => {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
 });
@@ -1509,12 +1511,4 @@ function registerWebinar() {
   btn.textContent = 'Wird gesendet...';
   btn.disabled = true;
   
-  fetch('/.netlify/functions/webinar-signup', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name: n, email: e })
-  })
-  .then(res => {
-    if (res.ok) {
-      document.getElementById('webinarForm').style.display = 'none';
-      document.getElementById('webinarSuccess').style.display = 'bloc
+  fetch

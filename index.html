@@ -954,7 +954,7 @@ footer {
   max-width: 1100px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
   gap: 4rem;
 }
 
@@ -1173,7 +1173,7 @@ footer {
         <li>Dein zentraler Block identifiziert</li>
         <li>Konkreter nächster Schritt</li>
       </ul>
-      <button class="btn-primary" onclick="scrollTo('#webinar')">Session buchen</button>
+      <a href="https://tidycal.com/socials1/erstgespraeche" target="_blank" class="btn-primary" style="display:inline-block;text-align:center;">Session buchen</a>
     </div>
 
     <div class="offer-card offer-featured reveal">
@@ -1189,7 +1189,7 @@ footer {
         <li>Telegram-Community mit KI-Support</li>
         <li>Sales-Training & Positionierung</li>
       </ul>
-      <button class="btn-primary" onclick="scrollTo('#webinar')">Jetzt einsteigen</button>
+      <a href="mailto:socials@carinaannaprav.at?subject=Dynamik%20Business%20Academy" class="btn-primary" style="display:inline-block;text-align:center;">Jetzt einsteigen</a>
     </div>
 
     <div class="offer-card reveal">
@@ -1205,7 +1205,7 @@ footer {
         <li>Website & Salespage Strategie</li>
         <li>Limitierte Plätze</li>
       </ul>
-      <button class="btn-secondary" onclick="scrollTo('#webinar')">Auf Warteliste</button>
+      <a href="bewerbung.html" class="btn-secondary" style="display:inline-block;text-align:center;">Bewerben</a>
     </div>
   </div>
 </section>
@@ -1395,10 +1395,15 @@ footer {
       <a href="#webinar">Webinar</a>
     </div>
     <div class="footer-col">
+      <h4>Kontakt</h4>
+      <a href="mailto:socials@carinaannaprav.at">socials@carinaannaprav.at</a>
+      <a href="https://tidycal.com/socials1/erstgespraeche" target="_blank">Session buchen</a>
+    </div>
+    <div class="footer-col">
       <h4>Rechtliches</h4>
-      <a href="#">Impressum</a>
-      <a href="#">Datenschutz</a>
-      <a href="#">AGB</a>
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+      <a href="agb.html">AGB</a>
     </div>
   </div>
   <div class="footer-bottom">
@@ -1495,11 +1500,34 @@ function showTestimonial(i) {
 setInterval(() => { currentTestimonial = (currentTestimonial + 1) % testimonials.length; showTestimonial(currentTestimonial); }, 6000);
 
 function registerWebinar() {
-  const n = document.getElementById('webinarName').value;
-  const e = document.getElementById('webinarEmail').value;
+  const n = document.getElementById('webinarName').value.trim();
+  const e = document.getElementById('webinarEmail').value.trim();
   if (!n || !e) return;
-  document.getElementById('webinarForm').style.display = 'none';
-  document.getElementById('webinarSuccess').style.display = 'block';
+  
+  const btn = document.querySelector('#webinarForm .btn-primary');
+  btn.textContent = 'Wird gesendet...';
+  btn.disabled = true;
+  
+  fetch('/.netlify/functions/webinar-signup', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name: n, email: e })
+  })
+  .then(res => {
+    if (res.ok) {
+      document.getElementById('webinarForm').style.display = 'none';
+      document.getElementById('webinarSuccess').style.display = 'block';
+    } else {
+      btn.textContent = 'Platz sichern';
+      btn.disabled = false;
+      alert('Etwas ist schiefgelaufen. Bitte versuche es erneut.');
+    }
+  })
+  .catch(() => {
+    btn.textContent = 'Platz sichern';
+    btn.disabled = false;
+    alert('Verbindungsfehler. Bitte versuche es erneut.');
+  });
 }
 </script>
 </body>

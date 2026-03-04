@@ -30,7 +30,7 @@ exports.handler = async (event, context) => {
         const AC_API_URL = process.env.ACTIVECAMPAIGN_API_URL;
         const AC_API_KEY = process.env.ACTIVECAMPAIGN_API_KEY;
         // Eigene Liste NUR für Mastermind-Bewerbungen (House of Dynamics)
-        const AC_LIST_MASTERMIND = process.env.AC_LIST_MASTERMIND || '5';
+        const AC_LIST_MASTERMIND = process.env.AC_LIST_MASTERMIND || '9';
 
         if (!AC_API_URL || !AC_API_KEY) {
             return { statusCode: 500, headers, body: JSON.stringify({ error: 'Server configuration error' }) };

@@ -29,7 +29,7 @@ exports.handler = async (event, context) => {
 
     const AC_API_URL = process.env.ACTIVECAMPAIGN_API_URL;
     const AC_API_KEY = process.env.ACTIVECAMPAIGN_API_KEY;
-    const AC_LIST_MASTERCLASS = process.env.AC_LIST_MASTERCLASS || '3';
+    const AC_LIST_MASTERCLASS = process.env.AC_LIST_MASTERCLASS || '7';
 
     if (!AC_API_URL || !AC_API_KEY) {
       return { statusCode: 500, headers, body: JSON.stringify({ error: 'Server configuration error' }) };

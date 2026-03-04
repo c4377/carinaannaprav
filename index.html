@@ -1517,4 +1517,19 @@ function registerWebinar() {
   .then(res => {
     if (res.ok) {
       document.getElementById('webinarForm').style.display = 'none';
-      document.getElementById('webinarSuccess').style.display = 'bloc
+      document.getElementById('webinarSuccess').style.display = 'block';
+    } else {
+      btn.textContent = 'Platz sichern';
+      btn.disabled = false;
+      alert('Etwas ist schiefgelaufen. Bitte versuche es erneut.');
+    }
+  })
+  .catch(() => {
+    btn.textContent = 'Platz sichern';
+    btn.disabled = false;
+    alert('Verbindungsfehler. Bitte versuche es erneut.');
+  });
+}
+</script>
+</body>
+</html>

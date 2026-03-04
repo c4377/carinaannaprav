@@ -167,34 +167,56 @@
         let supabase;
 
         const PROGRAMS = {
-          foundation: {
-            name: "Foundation Intensive",
-            duration: "6 Wochen",
+          houseofdynamics: {
+            name: "The House of Dynamics",
+            duration: "6 Säulen · Premium",
             modules: [
-              { id: 1, title: "Woche 1-2: Positionierung", tasks: ["Zielgruppen-Analyse", "Unique Angle finden", "Messaging Workshop"] },
-              { id: 2, title: "Woche 3-4: Offer Design", tasks: ["High-Ticket Angebot strukturieren", "Transformation definieren", "Premium-Pricing", "Packaging"] },
-              { id: 3, title: "Woche 5: Sales Skills", tasks: ["Ethisches Verkaufen", "Einwände behandeln", "Abschluss-Techniken"] },
-              { id: 4, title: "Woche 6: Launch-Strategie", tasks: ["Erste Kunden finden", "Launch-Plan erstellen", "Content-Strategie"] }
-            ]
-          },
-          system: {
-            name: "System-Setup",
-            duration: "6-8 Wochen",
-            modules: [
-              { id: 1, title: "Woche 1-2: Website Build", tasks: ["Kickoff-Call", "Design-Konzept", "Copy-Review", "Development"] },
-              { id: 2, title: "Woche 3-4: Pinterest Setup", tasks: ["Account optimieren", "Pin-Templates erstellen", "Keyword-Strategie", "Content-Plan"] },
-              { id: 3, title: "Woche 5-6: Automatisierung", tasks: ["Email-Tool Setup", "Welcome-Serie", "Quiz/Formular bauen", "Google Sheets Integration"] },
-              { id: 4, title: "Woche 7-8: Training & Go-Live", tasks: ["Tech-Training", "Testing", "Go-Live", "30-Tage Support"] }
-            ]
-          },
-          vip: {
-            name: "VIP Komplett",
-            duration: "12 Wochen",
-            modules: [
-              { id: 1, title: "Woche 1-4: Foundation + Website", tasks: ["Positionierung + Offer Design", "Website-Konzept + Development", "4x 90min Calls", "Telegram Support"] },
-              { id: 2, title: "Woche 5-8: Sales + Pinterest", tasks: ["Sales Training", "Pinterest + Email-Automation", "4x 90min Calls", "Erste Gespräche"] },
-              { id: 3, title: "Woche 9-10: Launch Vorbereitung", tasks: ["Content-Strategie", "Finale Tests", "Launch-Plan", "2x Calls"] },
-              { id: 4, title: "Woche 11-12: Go-Live", tasks: ["System live", "Erste Kunden", "Performance-Tracking", "2x Optimierung Calls"] }
+              { id: 1, title: "Säule 1: Energetische Position", tasks: [
+                "Dein energetischer Fingerabdruck identifizieren",
+                "Das Dynamik-Prinzip als Fundament verstehen",
+                "Limiting Beliefs identifizieren — die 3-Sätze-Methode",
+                "RAS aktivieren: Dein Gehirn auf Erfolg umprogrammieren",
+                "Human Design als unternehmerisches Werkzeug (optional)",
+                "Kernübung: \"Wer bin ich wirklich?\"-Audit abschließen"
+              ]},
+              { id: 2, title: "Säule 2: Polarisierender Content", tasks: [
+                "Warum polished Content unsichtbar macht",
+                "Reels: authentisch, unpoliert, magnetisch",
+                "Carousel-Framework: Bold Statement + Proof + Transformation",
+                "Nähe von oben — Verbindung ohne Gleichsetzung",
+                "Live Creation-Session: Dein erster Polarisierungs-Post",
+                "Kernübung: Content-Audit + 1 Carousel + 1 Reel erstellen"
+              ]},
+              { id: 3, title: "Säule 3: Die Bridge — Website vs. Salespage", tasks: [
+                "Website = Sog. Salespage = Entscheidung.",
+                "Anatomie einer konvertierenden Salespage",
+                "Content-Routing: Welcher Post führt wohin?",
+                "SEO-Grundlagen für Coaches (ohne Technik-Overkill)",
+                "Kernübung: Routing-Map für deine 3 Hauptangebote erstellen"
+              ]},
+              { id: 4, title: "Säule 4: Das Quiz — Menschlich wie ein Gespräch", tasks: [
+                "Quizze als erste Gesprächs-Simulation",
+                "Aufbau: Frage → Reaktion → Folgefrage (konversationell)",
+                "Qualifizieren UND vorwärmen gleichzeitig",
+                "Ergebnis-Segmentierung: 3 Typen, 3 Wege",
+                "Tech-Setup: Typeform / Tally / eigene Lösung",
+                "Kernübung: 7 Quiz-Fragen im Gesprächs-Stil schreiben"
+              ]},
+              { id: 5, title: "Säule 5: Energetisches Sales-System", tasks: [
+                "Telegram Channel als energetischer Raum aufsetzen",
+                "KI-Agent trainieren: Qualifizieren, antworten, weiterleiten",
+                "Setter/Closer-Struktur im 2h-Modell",
+                "KI-Gesprächssimulation: Einwände ohne Druck auflösen",
+                "Das energetische Sales-Gespräch (NEPQ + Dynamik)",
+                "Kernübung: Sales-Simulation — 3 Runden, 3 Einwand-Typen"
+              ]},
+              { id: 6, title: "Säule 6: Fototermin & Visual Identity", tasks: [
+                "Was deine Bilder kommunizieren — bewusst und unbewusst",
+                "Fototermin-Briefing: Location, Outfits, Energie",
+                "Editorial vs. Candid: Wann welcher Style wirkt",
+                "Feed-Planung: Bilder strategisch einsetzen",
+                "Kernübung: Persönliches Fototermin-Briefing erstellen"
+              ]}
             ]
           }
         };

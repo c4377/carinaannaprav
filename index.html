@@ -107,16 +107,19 @@ nav.scrolled {
 
 .nav-badge {
   padding: 0.45rem 1.1rem !important;
-  background: #3D3530 !important;
-  color: #F6F3EF !important;
+  background: transparent !important;
+  color: #3D3530 !important;
+  border: 1.5px solid #3D3530;
   font-size: 0.62rem !important;
   letter-spacing: 0.12em;
   position: relative;
   transition: all 0.3s;
+  text-decoration: none !important;
 }
 
 .nav-badge:hover {
-  background: #4A433E !important;
+  background: #3D3530 !important;
+  color: #F6F3EF !important;
   transform: translateY(-1px);
 }
 
@@ -1044,7 +1047,7 @@ footer {
   nav { padding: 1rem 1.5rem; }
 
   .nav-links { display: none; }
-  .nav-hamburger { display: flex; }
+  .nav-hamburger { display: flex; z-index: 1001; }
 
   .nav-links.open {
     display: flex;
@@ -1054,11 +1057,15 @@ footer {
     background: rgba(246, 243, 239, 0.98);
     justify-content: center;
     align-items: center;
-    z-index: 999;
+    z-index: 1000;
     gap: 2rem;
   }
 
   .nav-links.open a { font-size: 1rem; }
+
+  .nav-links.open .nav-badge {
+    font-size: 0.75rem !important;
+  }
 
   .about-grid {
     grid-template-columns: 1fr;
@@ -1421,7 +1428,7 @@ footer {
     </div>
     <div class="footer-col">
       <h4>Kontakt</h4>
-      <a href="/cdn-cgi/l/email-protection#a9dac6cac0c8c5dae9cac8dbc0c7c8c8c7c7c8d9dbc8df87c8dd"><span class="__cf_email__" data-cfemail="13607c707a727f60537072617a7d72727d7d72636172653d7267">[email&#160;protected]</span></a>
+      <a href="mailto:socials@carinaannaprav.at">socials@carinaannaprav.at</a>
       <a href="https://tidycal.com/socials1/erstgespraeche" target="_blank">Session buchen</a>
     </div>
     <div class="footer-col">

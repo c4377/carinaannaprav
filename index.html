@@ -144,6 +144,18 @@ nav.scrolled {
   transition: all 0.3s;
 }
 
+.nav-hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(4.5px, 4.5px);
+}
+
+.nav-hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(4.5px, -4.5px);
+}
+
 /* HERO */
 .hero {
   min-height: 100vh;
@@ -1046,32 +1058,32 @@ footer {
   section { padding: 5rem 1.5rem; }
   nav { padding: 1rem 1.5rem; }
 
-  .nav-links { 
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; position: relative; z-index: 1002; }
+
+  .nav-links.open {
     display: flex;
-    gap: 0.8rem;
-  }
-  .nav-links a {
-    font-size: 0.5rem !important;
-    letter-spacing: 0.08em;
-  }
-  .nav-hamburger { display: none !important; }
-
-  .nav-cta {
-    padding: 0.45rem 0.8rem !important;
-    font-size: 0.48rem !important;
+    flex-direction: column;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: #F6F3EF;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+    gap: 2rem;
+    padding: 2rem;
   }
 
-  .nav-badge {
-    padding: 0.3rem 0.6rem !important;
-    font-size: 0.48rem !important;
+  .nav-links.open a { font-size: 1.1rem; }
+
+  .nav-links.open .nav-badge {
+    font-size: 0.75rem !important;
+    padding: 0.6rem 1.5rem !important;
   }
 
-  .nav-badge::before {
-    font-size: 0.4rem;
+  .nav-links.open .nav-cta {
+    margin-top: 1rem;
   }
-
-  .nav-logo-mark { height: 28px; }
-  .nav-logo-text { font-size: 0.8rem; }
 
   .about-grid {
     grid-template-columns: 1fr;
@@ -1457,8 +1469,19 @@ window.addEventListener('scroll', () => {
 });
 
 function toggleNav() {
-  document.getElementById('navLinks').classList.toggle('open');
+  const navLinks = document.getElementById('navLinks');
+  const hamburger = document.getElementById('hamburger');
+  navLinks.classList.toggle('open');
+  hamburger.classList.toggle('active');
 }
+
+// Close mobile menu when clicking any nav link
+document.querySelectorAll('#navLinks a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.getElementById('navLinks').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('active');
+  });
+});
 
 function smoothScroll(sel) {
   document.querySelector(sel).scrollIntoView({ behavior: 'smooth' });

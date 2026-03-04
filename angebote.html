@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Angebote. Foundation Intensive, System-Setup, VIP Komplett.">
+    <title>Angebote | House of Dynamics</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --white: #FAFAF7;
+            --off-white: #F6F3EF;
+            --light-gray: #EFEBE5;
+            --medium-gray: #6C757D;
+            --dark-gray: #343A40;
+            --charcoal: #212529;
+            --slate-blue: #4A5568;
+            --accent-blue: #5C1518;
+            --accent-blue-light: #4A1114;
+            
+            --font-serif: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+            --font-sans: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            font-family: var(--font-sans);
+            color: var(--charcoal);
+            background: #F6F3EF;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: var(--font-serif);
+            font-weight: 400;
+            line-height: 1.2;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* NAVIGATION */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(246, 243, 239, 0.97);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            text-decoration: none;
+            color: var(--charcoal);
+            letter-spacing: 0.05em;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--slate-blue);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--charcoal);
+        }
+        
+        /* HERO */
+        .hero {
+            min-height: 35vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+            padding-bottom: 3rem;
+            background: var(--off-white);
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            color: var(--charcoal);
+        }
+        
+        /* OFFERS SECTION */
+        .offers-section {
+            padding: 4rem 0;
+        }
+        
+        .offer-card {
+            border: 1px solid var(--light-gray);
+            margin-bottom: 1rem;
+            background: #F6F3EF;
+            transition: border-color 0.3s;
+        }
+        
+        .offer-card:hover {
+            border-color: var(--slate-blue);
+        }
+        
+        .offer-card.featured {
+            border-color: var(--accent-blue);
+        }
+        
+        .offer-header {
+            padding: 1.5rem 2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+        
+        .offer-header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .offer-badge {
+            background: var(--accent-blue);
+            color: var(--white);
+            padding: 0.25rem 0.75rem;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+        }
+        
+        .offer-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--medium-gray);
+            font-weight: 600;
+        }
+        
+        .offer-title {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            color: var(--charcoal);
+            margin-top: 0.25rem;
+        }
+        
+        .offer-subtitle {
+            font-size: 0.9rem;
+            color: var(--slate-blue);
+            margin-top: 0.25rem;
+        }
+        
+        .offer-toggle {
+            font-size: 1.5rem;
+            color: var(--slate-blue);
+            transition: transform 0.3s;
+            font-weight: 300;
+        }
+        
+        .offer-card.open .offer-toggle {
+            transform: rotate(45deg);
+        }
+        
+        .offer-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+        
+        .offer-card.open .offer-content {
+            max-height: 2000px;
+        }
+        
+        .offer-body {
+            padding: 0 2rem 2rem;
+            border-top: 1px solid var(--light-gray);
+        }
+        
+        .offer-intro {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .offer-intro h4 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--medium-gray);
+            margin-bottom: 0.75rem;
+            font-family: var(--font-sans);
+            font-weight: 600;
+        }
+        
+        .offer-intro p {
+            color: var(--slate-blue);
+            font-size: 0.95rem;
+        }
+        
+        .offer-details {
+            padding: 1.5rem 0;
+        }
+        
+        .offer-details h4 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--medium-gray);
+            margin-bottom: 1rem;
+            font-family: var(--font-sans);
+            font-weight: 600;
+        }
+        
+        .offer-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem 2rem;
+        }
+        
+        .offer-list li {
+            padding: 0.5rem 0;
+            padding-left: 1rem;
+            position: relative;
+            color: var(--slate-blue);
+            font-size: 0.9rem;
+        }
+        
+        .offer-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 4px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+        }
+        
+        .offer-list li strong {
+            color: var(--charcoal);
+            font-weight: 600;
+        }
+        
+        .offer-timeline {
+            padding: 1.5rem 0;
+            border-top: 1px solid var(--light-gray);
+        }
+        
+        .offer-timeline h4 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--medium-gray);
+            margin-bottom: 1rem;
+            font-family: var(--font-sans);
+            font-weight: 600;
+        }
+        
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+        }
+        
+        .timeline-item {
+            padding: 1rem;
+            background: var(--off-white);
+        }
+        
+        .timeline-item strong {
+            display: block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent-blue);
+            margin-bottom: 0.25rem;
+        }
+        
+        .timeline-item span {
+            font-size: 0.9rem;
+            color: var(--slate-blue);
+        }
+        
+        .offer-testimonial {
+            padding: 1.5rem;
+            background: var(--off-white);
+            margin-top: 1.5rem;
+            border-left: 3px solid var(--accent-blue);
+        }
+        
+        .offer-testimonial p {
+            font-style: italic;
+            color: var(--slate-blue);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .offer-testimonial cite {
+            font-size: 0.85rem;
+            color: var(--medium-gray);
+            font-style: normal;
+        }
+        
+        .offer-cta {
+            margin-top: 1.5rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.875rem 2rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-family: var(--font-sans);
+            border: 1px solid var(--charcoal);
+            background: #1A1A1A;
+            color: var(--white);
+        }
+        
+        .btn:hover {
+            background: var(--slate-blue);
+            border-color: var(--slate-blue);
+        }
+        
+        /* VIP EXTRAS */
+        .vip-extras {
+            padding: 1rem 0;
+            border-top: 1px solid var(--light-gray);
+        }
+        
+        .vip-extras h4 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--medium-gray);
+            margin-bottom: 1rem;
+            font-family: var(--font-sans);
+            font-weight: 600;
+        }
+        
+        .vip-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .vip-list span {
+            background: var(--accent-blue);
+            color: var(--white);
+            padding: 0.4rem 0.75rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        /* CTA SECTION */
+        .cta-section {
+            padding: 4rem 0;
+            background: var(--off-white);
+        }
+        
+        .cta-box {
+            text-align: center;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .cta-box h2 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-box p {
+            color: var(--slate-blue);
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-box .btn {
+            background: var(--accent-blue);
+            border-color: var(--accent-blue);
+        }
+        
+        .cta-box .btn:hover {
+            background: var(--accent-blue-light);
+            border-color: var(--accent-blue-light);
+        }
+        
+        /* CONTACT */
+        .contact-section {
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .contact-section h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .contact-link {
+            text-decoration: none;
+            color: var(--slate-blue);
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+        
+        .contact-link:hover {
+            color: var(--accent-blue);
+        }
+        
+        .contact-link strong {
+            display: block;
+            color: var(--charcoal);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.25rem;
+        }
+        
+        /* FOOTER */
+        footer {
+            background: #1A1A1A;
+            color: var(--medium-gray);
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        footer p {
+            font-size: 0.9rem;
+        }
+        
+        footer a {
+            color: var(--medium-gray);
+            margin: 0 1rem;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        footer a:hover {
+            color: var(--white);
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .offer-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .offer-header {
+                padding: 1.25rem 1.5rem;
+            }
+            
+            .offer-body {
+                padding: 0 1.5rem 1.5rem;
+            }
+        }
+    </style>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">THE HOUSE OF DYNAMICS</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="angebote.html">Angebote</a></li>
+                <li><a href="ueber-mich.html">Über mich</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="ueber-mich.html">Über mich</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <h1>Drei Wege. Ein Ziel.</h1>
+            <p style="color: var(--slate-blue); font-size: 1.15rem; margin-top: 1rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Klarheit darüber, was dich bremst – und ein System, das dich trägt.
+            </p>
+        </div>
+    </section>
+
+    <!-- OFFERS -->
+    <section class="offers-section">
+        <div class="container">
+            
+            <!-- MENTORING -->
+            <div class="offer-card featured" id="mentoring">
+                <div class="offer-header" onclick="toggleOffer(this)">
+                    <div class="offer-header-left">
+                        <span class="offer-badge">Empfohlen</span>
+                        <div>
+                            <p class="offer-label">Sofort</p>
+                            <h2 class="offer-title">Sofort-Session</h2>
+                            <p class="offer-subtitle">60 Minuten. Ein Block.</p>
+                        </div>
+                    </div>
+                    <span class="offer-toggle">+</span>
+                </div>
+                <div class="offer-content">
+                    <div class="offer-body">
+                        <div class="offer-intro">
+                            <h4>Für wen</h4>
+                            <p>Für Schnellentscheiderinnen. Du sprichst – ich höre. Und finde, woran es wirklich hängt. In einer Session.</p>
+                        </div>
+                        
+                        <div class="offer-details">
+                            <h4>Was du bekommst</h4>
+                            <ul class="offer-list">
+                                <li><strong>60 Min. 1:1 Session</strong> Per Zoom, intensiv</li>
+                                <li><strong>Energetische Aktivierung</strong> Dein zentraler Block identifiziert</li>
+                                <li><strong>Klarheit</strong> Was dich bremst und warum</li>
+                                <li><strong>Konkreter nächster Schritt</strong> Was du sofort umsetzen kannst</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="offer-timeline">
+                            <h4>Was wir aufbauen</h4>
+                            <div class="timeline-grid">
+                                <div class="timeline-item">
+                                    <strong>Vor der Session</strong>
+                                    <span>Kurzer Fragebogen</span>
+                                </div>
+                                <div class="timeline-item">
+                                    <strong>Die Session</strong>
+                                    <span>60 Min. intensiv</span>
+                                </div>
+                                <div class="timeline-item">
+                                    <strong>Danach</strong>
+                                    <span>Zusammenfassung + Umsetzungsplan</span>
+                                </div>
+                                <div class="timeline-item">
+                                    <strong>Follow-up</strong>
+                                    <span>7 Tage E-Mail-Support</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="offer-price" style="margin-top: 2rem; padding: 1.5rem; background: var(--off-white); border-left: 3px solid var(--accent-blue);">
+                            <strong style="font-size: 1.5rem; font-family: var(--font-serif);">333 €</strong>
+                            <span style="color: var(--slate-blue); display: block; margin-top: 0.25rem;">Einmalig. Sofort buchbar.</span>
+                        </div>
+                        
+                        <div class="offer-cta">
+                            <a href="mentoring.html" class="btn">Mehr erfahren</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- FOUNDATION INTENSIVE -->
+            <div class="offer-card" id="foundation">
+                <div class="offer-header" onclick="toggleOffer(this)">
+                    <div class="offer-header-left">
+                        <div>
+                            <p class="offer-label">Monatlich</p>
+                            <h2 class="offer-title">Dynamik Business Academy</h2>
+                            <p class="offer-subtitle">129 €/Monat</p>
+                        </div>
+                    </div>
+                    <span class="offer-toggle">+</span>
+                </div>
+                <div class="offer-content">
+                    <div class="offer-body">
+                        <div class="offer-intro">
+                            <h4>Für wen</h4>
+                            <p>Struktur, Klarheit und Community. Für Unternehmerinnen, die nicht mehr alleine vor sich hin arbeiten wollen.</p>
+                        </div>
+                        
+                        <div class="offer-details">
+                            <h4>Was du bekommst</h4>
+                            <ul class="offer-list">
+                                <li><strong>Monatliche Live-Sessions</strong> Gruppencoaching mit Energiearbeit</li>
+                                <li><strong>Content-Frameworks</strong> Templates und Strategien</li>
+                                <li><strong>Telegram-Community</strong> Austausch und KI-Support</li>
+                                <li><strong>Sales-Training</strong> Gespräche führen ohne Druck</li>
+                                <li><strong>Positionierungs-Arbeit</strong> Monatlicher Fokus</li>
+                                <li><strong>Energetische Gruppenarbeit</strong> Blocks gemeinsam lösen</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="offer-timeline">
+                            <h4>6 Wochen</h4>
+                            <div class="timeline-grid">
+                                <div class="timeline-item">
+                                    <strong>Woche 1-2</strong>
+                                    <span>Positionierung</span>
+                                </div>
+                                <div class="timeline-item">
+                                    <strong>Woche 3-4</strong>
+                                    <span>Offer Design</span>
+                                </div>
+                                <div class="timeline-item">
+                                    <strong>Woche 5</strong>
+                                    <span>Sales</span>
+                                </div>
+                                <div class="timeline-item">
+                                    <strong>Woche 6</strong>
+                                    <span>Launch</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="offer-testimonial">
+                            <p>"Was Carina mir nach kürzester Zeit gegeben hat an Expertise, Beistand und Support ist nicht von dieser Welt."</p>
+                            <cite>— Klientin, Foundation Intensive</cite>
+                        </div>
+                        
+                        <div class="offer-cta">
+                            <a href="/cdn-cgi/l/email-protection#661509050f070a15260507140f08070708080716140710480712" class="btn">Anfragen</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SYSTEM-SETUP -->
+            <div class="offer-card featured" id="system-setup">
+                <div class="offer-header" onclick="toggleOffer(this)">
+                    <div class="offer-header-left">
+                        <span class="offer-badge">Beliebt</span>
+                        <div>
+                            <p class="offer-label">Premium</p>
+                            <h2 class="offer-title">The House of Dynamics</h2>
+                            <p class="offer-subtitle">Sommer 2026 · Limitiert</p>
+                        </div>
+                    </div>
+                    <span class="offer-toggle">+</span>
+                </div>
+                <div class="offer-content">
+                    <div class="offer-body">
+                        <div class="offer-intro">
+                            <h4>Für wen</h4>
+                            <p>Das volle Programm. Energie, Positionierung, Content, Sales-System, Fototermin. Alles in einem Raum – für Unternehmerinnen, die bereit sind für die komplette Transformation.</p>
+                        </div>
+                        
+                        <div class="offer-details">
+                            <h4>Was ich baue</h4>
+                            <ul class="offer-list">
+                                <li><strong>Alles aus der Academy +</strong></li>
+                                <li><strong>1:1 Intensiv-Begleitung</strong> Persönlich und individuell</li>
+                                <li><strong>Professioneller Fototermin</strong> Visual Identity als Teil des Programms</li>
+                                <li><strong>Sales-System mit KI</strong> Telegram-Agent und Automatisierung</li>
+                                <li><strong>Website <li><strong>Google Sheets Integration</strong> Leads automatisch erfasst</li> Salespage</strong> Komplettstrategie</li>
+                                <li><strong>6 Säulen</strong> Position, Content, Bridge, Quiz, Sales, Visuelles</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="offer-timeline">
+                            <h4>6-8 Wochen</h4>
+                            <div class="timeline-grid">
+                                <div class="timeline-item">
+                                    <strong>Woche 1-2</strong>
+                                    <span>Website</span>
+                                </div>
+                                <div class="timeline-item">
+                                    <strong>Woche 3-4</strong>
+                                    <span>DYF System</span>
+                                </div>
+                                <div class="timeline-item">
+                                    <strong>Woche 5-6</strong>
+                                    <span>Automatisierung</span>
+                                </div>
+                                <div class="timeline-item">
+                                    <strong>Woche 7-8</strong>
+                                    <span>Training + Launch</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="offer-testimonial">
+                            <p>"Carina – jeder der dich noch nicht entdeckt hat verpasst soviel! Direkt wieder neue Impulse für mein Business erhalten."</p>
+                            <cite>— Klientin, System-Setup</cite>
+                        </div>
+                        
+                        <div class="offer-cta">
+                            <a href="/cdn-cgi/l/email-protection#c7b4a8a4aea6abb487a4a6b5aea9a6a6a9a9a6b7b5a6b1e9a6b3" class="btn">Anfragen</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- VIP KOMPLETT -->
+            <div class="offer-card" id="vip">
+                <div class="offer-header" onclick="toggleOffer(this)">
+                    <div class="offer-header-left">
+                        <span class="offer-badge" style="background: #1A1A1A;">VIP</span>
+                        <div>
+                            <p class="offer-label">Warteliste</p>
+                            <h2 class="offer-title">VIP Intensiv</h2>
+                            <p class="offer-subtitle">Auf Anfrage</p>
+                        </div>
+                    </div>
+                    <span class="offer-toggle">+</span>
+                </div>
+                <div class="offer-content">
+                    <div class="offer-body">
+                        <div class="offer-intro">
+                            <h4>Für wen</h4>
+                            <p>Für Unternehmerinnen, die den schnellsten Weg wollen. Alles aus dem House of Dynamics – plus 1:1 Priority-Zugang und individuelle Betreuung auf höchstem Level.</p>
+                        </div>
+                        
+                        <div class="offer-details">
+                            <h4>Was du bekommst</h4>
+                            <ul class="offer-list">
+                                <li><strong>Alles aus Foundation</strong> Positionierung, Offer, Sales</li>
+                                <li><strong>Alles aus System-Setup</strong> Website, DYF System, Automation</li>
+                                <li><strong>12x 1:1 Calls</strong> Wöchentlich oder bi-weekly</li>
+                                <li><strong>Priority Support</strong> Schnellere Response-Times</li>
+                                <li><strong>Strategie + Umsetzung</strong> Parallel</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="vip-extras">
+                            <h4>VIP Vorteile</h4>
+                            <div class="vip-list">
+                                <span>Schnellster Weg</span>
+                                <span>Keine Wartezeiten</span>
+                                <span>Priority Support</span>
+                                <span>All-in Lösung</span>
+                            </div>
+                        </div>
+                        
+                        <div class="offer-timeline">
+                            <h4>12 Wochen</h4>
+                            <div class="timeline-grid">
+                                <div class="timeline-item">
+                                    <strong>Woche 1-4</strong>
+                                    <span>Foundation + Website</span>
+                                </div>
+                                <div class="timeline-item">
+                                    <strong>Woche 5-8</strong>
+                                    <span>Sales + DYF System + Automation</span>
+                                </div>
+                                <div class="timeline-item">
+                                    <strong>Woche 9-10</strong>
+                                    <span>Launch-Vorbereitung</span>
+                                </div>
+                                <div class="timeline-item">
+                                    <strong>Woche 11-12</strong>
+                                    <span>Go-Live + Optimierung</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="offer-testimonial">
+                            <p>"Du hattest wirklich eine der bedeutendsten Rollen in meinem Leben."</p>
+                            <cite>— VIP Klientin</cite>
+                        </div>
+                        
+                        <div class="offer-cta">
+                            <a href="/cdn-cgi/l/email-protection#9fecf0fcf6fef3ecdffcfeedf6f1fefef1f1feefedfee9b1feeb" class="btn">Anfragen</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-box">
+                <h2>Noch unsicher?</h2>
+                <p>Mach den Selbstcheck. 5 Fragen, ehrliche Antworten.</p>
+                <a href="index.html#quiz" class="btn">Bestandsaufnahme</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact-section">
+        <div class="container">
+            <h3>Direkt schreiben</h3>
+            <div class="contact-links">
+                <a href="/cdn-cgi/l/email-protection#7c0f131f151d100f3c1f1d0e15121d1d12121d0c0e1d0a521d08" class="contact-link">
+                    <strong>E-Mail</strong>
+                    <span class="__cf_email__" data-cfemail="275448444e464b54674446554e49464649494657554651094653">[email&#160;protected]</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 The House of Dynamics — Carina Anna Prav</p>
+            <p style="margin-top: 1rem;">
+                <a href="impressum.html">Impressum</a>
+                <a href="datenschutz.html">Datenschutz</a>
+                <a href="agb.html">AGB</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        function toggleOffer(header) {
+            const card = header.parentElement;
+            const isOpen = card.classList.contains('open');
+            
+            // Schließe alle anderen
+            document.querySelectorAll('.offer-card').forEach(c => {
+                c.classList.remove('open');
+            });
+            
+            // Toggle aktuelle Karte
+            if (!isOpen) {
+                card.classList.add('open');
+            }
+        }
+
+        // URL Parameter für direktes Öffnen
+        document.addEventListener('DOMContentLoaded', function() {
+            const hash = window.location.hash;
+            if (hash) {
+                const card = document.querySelector(hash);
+                if (card && card.classList.contains('offer-card')) {
+                    card

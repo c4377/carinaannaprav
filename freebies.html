@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ressourcen für dein Business. 10-Tage E-Mail-Serie, Positionierungs-Guide.">
+    <title>Ressourcen | Carina Anna Prav</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --white: #FFFFFF;
+            --off-white: #F8F9FA;
+            --light-gray: #E9ECEF;
+            --medium-gray: #6C757D;
+            --dark-gray: #343A40;
+            --charcoal: #212529;
+            --slate-blue: #4A5568;
+            --accent-blue: #2C5282;
+            --accent-blue-light: #3182CE;
+            
+            --font-serif: 'Playfair Display', Georgia, serif;
+            --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            font-family: var(--font-sans);
+            color: var(--charcoal);
+            background: var(--white);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: var(--font-serif);
+            font-weight: 400;
+            line-height: 1.2;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* NAVIGATION */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            text-decoration: none;
+            color: var(--charcoal);
+            letter-spacing: 0.05em;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--slate-blue);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--charcoal);
+        }
+        
+        /* HERO */
+        .hero {
+            min-height: 40vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+            padding-bottom: 4rem;
+            background: var(--off-white);
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
+            color: var(--charcoal);
+        }
+        
+        .hero p {
+            font-size: 1.125rem;
+            color: var(--slate-blue);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        /* FREEBIES SECTION */
+        .freebies-section {
+            padding: 5rem 0;
+        }
+        
+        .freebies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+        
+        .freebie-card {
+            background: var(--white);
+            border: 1px solid var(--light-gray);
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .freebie-card:hover {
+            border-color: var(--accent-blue);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+        }
+        
+        .freebie-card.featured {
+            border-color: var(--accent-blue);
+            position: relative;
+        }
+        
+        .freebie-badge {
+            position: absolute;
+            top: -12px;
+            right: 24px;
+            background: var(--accent-blue);
+            color: var(--white);
+            padding: 0.4rem 1rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+        }
+        
+        .freebie-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent-blue);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .freebie-card h2 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            color: var(--charcoal);
+        }
+        
+        .freebie-card > p {
+            color: var(--slate-blue);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        .freebie-features {
+            list-style: none;
+            margin: 1.5rem 0;
+            padding: 0;
+        }
+        
+        .freebie-features li {
+            padding: 0.6rem 0;
+            padding-left: 1.25rem;
+            position: relative;
+            border-bottom: 1px solid var(--light-gray);
+            color: var(--slate-blue);
+            font-size: 0.95rem;
+        }
+        
+        .freebie-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .freebie-features li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+        }
+        
+        /* FORMS */
+        .freebie-form {
+            margin-top: 1.5rem;
+        }
+        
+        .freebie-form input[type="text"],
+        .freebie-form input[type="email"] {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 1px solid var(--light-gray);
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+            font-family: var(--font-sans);
+            background: var(--off-white);
+            transition: border-color 0.3s;
+        }
+        
+        .freebie-form input:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            background: var(--white);
+        }
+        
+        .freebie-form button {
+            width: 100%;
+            padding: 1rem;
+            background: var(--charcoal);
+            color: var(--white);
+            border: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: var(--font-sans);
+        }
+        
+        .freebie-form button:hover {
+            background: var(--slate-blue);
+        }
+        
+        .freebie-form .btn-accent {
+            background: var(--accent-blue);
+        }
+        
+        .freebie-form .btn-accent:hover {
+            background: var(--accent-blue-light);
+        }
+        
+        .privacy-checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            margin: 1rem 0;
+        }
+        
+        .privacy-checkbox input {
+            width: auto;
+            margin: 0;
+            margin-top: 0.2rem;
+        }
+        
+        .privacy-checkbox span {
+            font-size: 0.8rem;
+            color: var(--medium-gray);
+            line-height: 1.5;
+        }
+        
+        .privacy-checkbox a {
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+        
+        .privacy-checkbox a:hover {
+            text-decoration: underline;
+        }
+        
+        .form-message {
+            margin-top: 1rem;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+        
+        /* FOOTER */
+        footer {
+            background: var(--charcoal);
+            color: var(--medium-gray);
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        footer p {
+            font-size: 0.9rem;
+        }
+        
+        footer a {
+            color: var(--medium-gray);
+            margin: 0 1rem;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        footer a:hover {
+            color: var(--white);
+        }
+        
+        @media (max-width: 968px) {
+            .freebies-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .freebie-card {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">CARINA ANNA PRAV</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="mentoring.html">Mentoring</a></li>
+                <li><a href="angebote.html">Angebote</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="ueber-mich.html">Über mich</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <h1>Kostenlose Ressourcen</h1>
+            <p style="max-width: 550px; margin-left: auto; margin-right: auto;">Framework und Beispiele um dein Business strategisch aufzubauen</p>
+        </div>
+    </section>
+
+    <!-- FREEBIES -->
+    <section class="freebies-section">
+        <div class="container">
+            <div class="freebies-grid">
+                
+                <!-- FREEBIE 1: 10-Tage Email-Serie -->
+                <div class="freebie-card">
+                    <p class="freebie-label">E-Mail-Serie</p>
+                    <h2>10 Tage zum System</h2>
+                    <p>Jeden Tag eine strategische Komponente und nach 10 Tagen hast du das Framework um dein Business systematisch aufzubauen</p>
+                    
+                    <ul class="freebie-features">
+                        <li>Tag 1: Identifiziere deinen Engpass</li>
+                        <li>Tag 2-3: Positionierung & Angebots-Architektur</li>
+                        <li>Tag 4-5: Technische Infrastruktur & Traffic-Strategie</li>
+                        <li>Tag 6-7: Conversion-Prozess & Automatisierung</li>
+                        <li>Tag 8-9: Pricing-Strategie & Einwand-Behandlung</li>
+                        <li>Tag 10: Skalierung - von hier zu 10k/Monat</li>
+                    </ul>
+                    
+                    <form class="freebie-form" id="newsletter-form">
+                        <input type="text" id="nl-firstname" placeholder="Vorname" required>
+                        <input type="email" id="nl-email" placeholder="E-Mail" required>
+                        
+                        <label class="privacy-checkbox">
+                            <input type="checkbox" id="nl-privacy" required>
+                            <span>
+                                Ich stimme der <a href="/datenschutz.html" target="_blank">Datenschutzerklärung</a> zu.
+                            </span>
+                        </label>
+                        
+                        <button type="submit">Jetzt starten</button>
+                    </form>
+                    <p class="form-message" id="nl-message"></p>
+                </div>
+                
+                <!-- FREEBIE 2: 30 Positionierungen -->
+                <div class="freebie-card featured">
+                    <div class="freebie-badge">PDF</div>
+                    <p class="freebie-label">Guide</p>
+                    <h2>30 Positionierungen die verkaufen</h2>
+                    <p>Konkrete Beispiele aus 4 Branchen mit Preisen und von ich mache irgendwie alles zu genau DAS mache ich für genau DIESE Menschen</p>
+                    
+                    <ul class="freebie-features">
+                        <li>30 fertige Positionierungsbeispiele</li>
+                        <li>Mit realistischen Preisempfehlungen</li>
+                        <li>Klare Zielgruppen statt "für alle"</li>
+                        <li>3 Angebots-Stufen pro Positionierung</li>
+                    </ul>
+                    
+                    <form class="freebie-form" id="positioning-form">
+                        <input type="text" id="pos-firstname" placeholder="Vorname" required>
+                        <input type="email" id="pos-email" placeholder="E-Mail" required>
+                        
+                        <label class="privacy-checkbox">
+                            <input type="checkbox" id="pos-privacy" required>
+                            <span>
+                                Ich stimme der <a href="/datenschutz.html" target="_blank">Datenschutzerklärung</a> zu und melde mich für den Newsletter an.
+                            </span>
+                        </label>
+                        
+                        <button type="submit" class="btn-accent">PDF anfordern</button>
+                        <p style="font-size: 0.8rem; color: var(--medium-gray); margin-top: 0.5rem; text-align: center;">Du bekommst das PDF + gelegentliche Mails von mir. Abmelden jederzeit.</p>
+                    </form>
+                    <p class="form-message" id="pos-message"></p>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Carina Anna Prav</p>
+            <p style="margin-top: 1rem;">
+                <a href="mailto:socials@carinaannaprav.at">socials@carinaannaprav.at</a>
+            </p>
+            <p style="margin-top: 1rem;">
+                <a href="impressum.html">Impressum</a>
+                <a href="datenschutz.html">Datenschutz</a>
+                <a href="agb.html">AGB</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Newsletter Form (10-Tage Serie)
+        document.getElementById('newsletter-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const firstname = document.getElementById('nl-firstname').value.trim();
+            const email = document.getElementById('nl-email').value.trim();
+            const privacy = document.getElementById('nl-privacy').checked;
+            const messageEl = document.getElementById('nl-message');
+            const button = e.target.querySelector('button');
+            const originalText = button.textContent;
+            
+            if (!privacy) {
+                messageEl.textContent = 'Bitte Datenschutz bestätigen.';
+                messageEl.style.color = '#dc3545';
+                return;
+            }
+            
+            button.disabled = true;
+            button.textContent = 'Wird gesendet...';
+            messageEl.textContent = '';
+            
+            try {
+                const response = await fetch('/.netlify/functions/newsletter-signup', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: email,
+                        firstname: firstname,
+                        list: '10tage'
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok && data.success) {
+                    messageEl.textContent = 'Check deine E-Mails.';
+                    messageEl.style.color = '#2C5282';
+                    e.target.reset();
+                } else {
+                    throw new Error(data.error || 'Fehler');
+                }
+            } catch (error) {
+                messageEl.textContent = 'Fehler. Versuch es nochmal.';
+                messageEl.style.color = '#dc3545';
+            } finally {
+                button.disabled = false;
+                button.textContent = originalText;
+            }
+        });
+
+        // Positioning Form (30 Positionierungen)
+        document.getElementById('positioning-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const firstname = document.getElementById('pos-firstname').value.trim();
+            const email = document.getElementById('pos-email').value.trim();
+            const privacy = document.getElementById('pos-privacy').checked;
+            const messageEl = document.getElementById('pos-message');
+            const button = e.target.querySelector('button');
+            const originalText = button.textContent;
+            
+            if (!privacy) {
+                messageEl.textContent = 'Bitte Datenschutz bestätigen.';
+                messageEl.style.color = '#dc3545';
+                return;
+            }
+            
+            button.disabled = true;
+            button.textContent = 'Wird gesendet...';
+            messageEl.textContent = '';
+            
+            try {
+                const response = await fetch('/.netlify/functions/quiz-submission', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: email,
+                        firstname: firstname,
+                        firstName: firstname,
+                        quizType: 'pdf-download',
+                        answers: {},
+                        result: 'PDF Download'
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok && data.success) {
+                    messageEl.textContent = 'Check deine E-Mails.';
+                    messageEl.style.color = '#2C5282';
+                    e.target.reset();
+                } else {
+                    throw new Error(data.error || 'Fehler');
+                }
+            } catch (error) {
+                messageEl.textContent = 'Fehler. Versuch es nochmal.';
+                messageEl.style.color = '#dc3545';
+            } finally {
+                button.disabled = false;
+                button.textContent = originalText;
+            }
+        });
+    </script>
+</body>
+</html>

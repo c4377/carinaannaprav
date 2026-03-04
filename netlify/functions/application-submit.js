@@ -81,6 +81,29 @@ exports.handler = async (event, context) => {
         });
 
         // ============================================
+        // 2b. AC: Notiz mit allen Bewerbungs-Antworten
+        // ============================================
+        let noteText = `BEWERBUNG: House of Dynamics\n\n`;
+        if (social) noteText += `Social/Website: ${social}\n`;
+        if (business) noteText += `Business: ${business}\n`;
+        if (experience) noteText += `Erfahrung: ${experience}\n`;
+        if (investment) noteText += `Investment-Bereitschaft: ${investment}\n`;
+        noteText += `\nSituation:\n${challenge}`;
+        if (block) noteText += `\n\nBlock:\n${block}`;
+
+        await fetch(`${AC_API_URL}/api/3/notes`, {
+            method: 'POST',
+            headers: { 'Api-Token': AC_API_KEY, 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                note: {
+                    note: noteText,
+                    relid: contactId,
+                    reltype: 'Subscriber'
+                }
+            })
+        });
+
+        // ============================================
         // 3. AC: Tag "Bewerbung-HoD"
         // ============================================
         const tagName = 'Bewerbung-HoD';

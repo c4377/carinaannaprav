@@ -1008,9 +1008,8 @@ footer {
 .reveal {
   opacity: 0;
   transform: translateY(30px);
-  transition: all 0.7s ease;
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
-
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
@@ -1432,6 +1431,11 @@ const observer = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.15 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Failsafe: show all content after 2 seconds if observer fails
+setTimeout(() => {
+  document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+}, 2000);
 
 let quizAnswers = {};
 const reactions = {

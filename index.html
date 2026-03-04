@@ -246,7 +246,7 @@ nav.scrolled {
 }
 
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(25px); }
+  from { opacity: 1; transform: translateY(25px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
@@ -666,7 +666,7 @@ section { padding: 7rem 3rem; }
 .quiz-step.active { display: block; }
 
 @keyframes quizFade {
-  from { opacity: 0; transform: translateY(15px); }
+  from { opacity: 1; transform: translateY(15px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
@@ -1006,10 +1006,11 @@ footer {
 
 /* REVEAL */
 .reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.7s ease;
 }
+
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
@@ -1189,7 +1190,7 @@ footer {
         <li>Sales-Training mit KI-Unterstützung</li>
         <li>Sales-Training & Positionierung</li>
       </ul>
-      <a href="/cdn-cgi/l/email-protection#4f3c202c262e233c0f2c2e3d26212e2e21212e3f3d2e39612e3b703c3a2d252a2c3b720b36212e2226246a7d7f0d3a3c26212a3c3c6a7d7f0e2c2e2b2a2236" class="btn-primary" style="display:inline-block;text-align:center;">Jetzt einsteigen</a>
+      <a href="/cdn-cgi/l/email-protection#8af9e5e9e3ebe6f9cae9ebf8e3e4ebebe4e4ebfaf8ebfca4ebfeb5f9ffe8e0efe9feb7cef3e4ebe7e3e1afb8bac8fff9e3e4eff9f9afb8bacbe9ebeeefe7f3" class="btn-primary" style="display:inline-block;text-align:center;">Jetzt einsteigen</a>
     </div>
 
     <div class="offer-card reveal">
@@ -1396,7 +1397,7 @@ footer {
     </div>
     <div class="footer-col">
       <h4>Kontakt</h4>
-      <a href="/cdn-cgi/l/email-protection#a1d2cec2c8c0cdd2e1c2c0d3c8cfc0c0cfcfc0d1d3c0d78fc0d5"><span class="__cf_email__" data-cfemail="6c1f030f050d001f2c0f0d1e05020d0d02020d1c1e0d1a420d18">[email&#160;protected]</span></a>
+      <a href="/cdn-cgi/l/email-protection#0b786468626a67784b686a7962656a6a65656a7b796a7d256a7f"><span class="__cf_email__" data-cfemail="55263a363c343926153634273c3b34343b3b34252734237b3421">[email&#160;protected]</span></a>
       <a href="https://tidycal.com/socials1/erstgespraeche" target="_blank">Session buchen</a>
     </div>
     <div class="footer-col">
@@ -1431,11 +1432,6 @@ const observer = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.15 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-// Failsafe: show all content after 2 seconds if observer fails
-setTimeout(() => {
-  document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
-}, 2000);
 
 let quizAnswers = {};
 const reactions = {

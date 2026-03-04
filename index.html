@@ -105,6 +105,21 @@ nav.scrolled {
 
 .nav-cta:hover { background: #2E2825; transform: translateY(-1px); }
 
+.nav-badge {
+  padding: 0.4rem 1rem !important;
+  border: 1px solid #3D3530 !important;
+  font-size: 0.62rem !important;
+  letter-spacing: 0.12em;
+  position: relative;
+}
+
+.nav-badge::before {
+  content: '✦';
+  margin-right: 0.4em;
+  font-size: 0.5rem;
+  vertical-align: middle;
+}
+
 .nav-hamburger {
   display: none;
   flex-direction: column;
@@ -1089,7 +1104,7 @@ footer {
     <li><a href="#about">Über mich</a></li>
     <li><a href="#angebote">Angebote</a></li>
     <li><a href="#quiz">Quiz</a></li>
-    <li><a href="40-impulse.html">Freebie</a></li>
+    <li><a href="40-impulse.html" class="nav-badge">Gratis Guide</a></li>
     <li><a href="#webinar">Webinar</a></li>
     <li><a href="#webinar" class="nav-cta">Jetzt starten</a></li>
   </ul>

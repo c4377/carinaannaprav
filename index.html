@@ -1108,8 +1108,8 @@ footer {
     <h1 class="hero-title">Dein<br><em>Business</em><br>braucht nicht<br>noch eine Strategie.</h1>
     <p class="hero-subtitle">Es braucht dich. Ohne die Story, die dich klein hält.<br>Ohne den Block, der zwischen dir und deinem Umsatz steht.</p>
     <div class="hero-buttons">
-      <button class="btn-primary" onclick="scrollTo('#quiz')">Finde heraus, was dich bremst</button>
-      <button class="btn-secondary" onclick="scrollTo('#webinar')">Kostenloses Live-Event</button>
+      <button class="btn-primary" onclick="smoothScroll('#quiz')">Finde heraus, was dich bremst</button>
+      <button class="btn-secondary" onclick="smoothScroll('#webinar')">Kostenloses Live-Event</button>
     </div>
   </div>
 </section>
@@ -1309,7 +1309,7 @@ footer {
       <div class="result-description" id="resultDesc"></div>
       <div class="section-line"></div>
       <p style="font-size: 0.88rem; color: #666; margin-top: 2rem;" id="resultReco"></p>
-      <button class="btn-primary" onclick="scrollTo('#webinar')" style="margin-top: 2rem;">Zum kostenlosen Live-Event</button>
+      <button class="btn-primary" onclick="smoothScroll('#webinar')" style="margin-top: 2rem;">Zum kostenlosen Live-Event</button>
     </div>
   </div>
 </section>
@@ -1423,7 +1423,7 @@ function toggleNav() {
   document.getElementById('navLinks').classList.toggle('open');
 }
 
-function scrollTo(sel) {
+function smoothScroll(sel) {
   document.querySelector(sel).scrollIntoView({ behavior: 'smooth' });
   document.getElementById('navLinks').classList.remove('open');
 }
@@ -1517,19 +1517,4 @@ function registerWebinar() {
   .then(res => {
     if (res.ok) {
       document.getElementById('webinarForm').style.display = 'none';
-      document.getElementById('webinarSuccess').style.display = 'block';
-    } else {
-      btn.textContent = 'Platz sichern';
-      btn.disabled = false;
-      alert('Etwas ist schiefgelaufen. Bitte versuche es erneut.');
-    }
-  })
-  .catch(() => {
-    btn.textContent = 'Platz sichern';
-    btn.disabled = false;
-    alert('Verbindungsfehler. Bitte versuche es erneut.');
-  });
-}
-</script>
-</body>
-</html>
+      document.getElementById('webinarSuccess').style.display = 'bloc

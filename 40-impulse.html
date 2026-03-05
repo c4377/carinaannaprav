@@ -52,7 +52,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center center;
   filter: grayscale(10%);
 }
 
@@ -165,13 +165,14 @@ body {
 .cover-image {
   position: relative;
   overflow: hidden;
+  aspect-ratio: 3 / 2;
 }
 
 .cover-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
+  object-position: center center;
   filter: grayscale(10%);
 }
 
@@ -314,8 +315,7 @@ body {
 
 .chapter-image {
   position: relative;
-  height: 45vh;
-  min-height: 350px;
+  aspect-ratio: 3 / 2;
   overflow: hidden;
 }
 
@@ -323,7 +323,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center center;
   filter: grayscale(15%);
 }
 
@@ -434,9 +434,10 @@ body {
 .photo-break img {
   max-width: 420px;
   width: 85%;
-  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  object-position: center center;
   filter: grayscale(10%);
-  border-radius: 0;
 }
 
 .photo-break-full {
@@ -447,10 +448,9 @@ body {
 .photo-break-full img {
   width: 100%;
   max-width: none;
-  height: 50vh;
-  min-height: 300px;
+  aspect-ratio: 3 / 2;
   object-fit: cover;
-  object-position: center top;
+  object-position: center center;
   filter: grayscale(10%);
 }
 
@@ -463,10 +463,9 @@ body {
 
 .photo-break-duo img {
   width: 100%;
-  height: 50vh;
-  min-height: 300px;
+  aspect-ratio: 3 / 2;
   object-fit: cover;
-  object-position: center;
+  object-position: center center;
   filter: grayscale(10%);
 }
 
@@ -526,8 +525,7 @@ body {
 /* ===== PHOTO + QUOTE OVERLAY ===== */
 .photo-quote {
   position: relative;
-  height: 60vh;
-  min-height: 400px;
+  aspect-ratio: 3 / 2;
   overflow: hidden;
 }
 
@@ -535,7 +533,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center center;
   filter: grayscale(15%);
 }
 
@@ -733,11 +731,11 @@ body {
   .impulse .highlight { font-size: 1rem; }
   .impulse-num { font-size: 2.8rem; }
   .chapter { padding: 3.5rem 1.2rem; }
-  .chapter-image { height: 35vh; min-height: 280px; }
+  .chapter-image { aspect-ratio: 3 / 2; }
   .photo-break img { max-width: 100%; width: 100%; }
   .photo-break-duo { grid-template-columns: 1fr; }
-  .photo-break-duo img { height: 40vh; }
-  .photo-quote { height: 50vh; min-height: 350px; }
+  .photo-break-duo img { aspect-ratio: 3 / 2; }
+  .photo-quote { aspect-ratio: 3 / 2; }
   .photo-quote .overlay { padding: 1.5rem; }
   .intro { padding: 5rem 1.2rem; }
   .intro h2 { font-size: 1.4rem; }
@@ -1173,7 +1171,7 @@ body {
 
 <!-- PHOTO BREAK: Editorial -->
 <div class="photo-break-full">
-  <img src="bilder/IMG_6737.JPG" alt="" style="object-position: center 30%;">
+  <img src="bilder/IMG_6737.JPG" alt="">
 </div>
 
 <div class="impulse-section">

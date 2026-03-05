@@ -184,12 +184,7 @@ nav.scrolled {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(246, 243, 239, 0.88) 0%,
-    rgba(246, 243, 239, 0.75) 40%,
-    rgba(246, 243, 239, 0.92) 100%
-  );
+  background: rgba(10, 10, 10, 0.6);
 }
 
 .hero-content {
@@ -203,7 +198,7 @@ nav.scrolled {
   font-size: 0.68rem;
   letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: #1A1A1A;
+  color: rgba(255,255,255,0.6);
   margin-bottom: 2.5rem;
   font-weight: 400;
   animation: fadeUp 0.8s ease 0.2s both;
@@ -214,14 +209,14 @@ nav.scrolled {
   font-size: clamp(3.2rem, 9vw, 7rem);
   font-weight: 500;
   line-height: 1.0;
-  color: #1A1A1A;
+  color: #fff;
   margin-bottom: 0.3rem;
   animation: fadeUp 0.8s ease 0.4s both;
 }
 
 .hero-title em {
   font-style: italic;
-  color: #1A1A1A;
+  color: rgba(255,255,255,0.7);
 }
 
 .hero-subtitle {
@@ -229,7 +224,7 @@ nav.scrolled {
   font-size: clamp(1.1rem, 2.5vw, 1.45rem);
   font-weight: 400;
   font-style: italic;
-  color: #1A1A1A;
+  color: rgba(255,255,255,0.7);
   margin-top: 2rem;
   margin-bottom: 3rem;
   animation: fadeUp 0.8s ease 0.6s both;
@@ -245,8 +240,8 @@ nav.scrolled {
 
 .btn-primary {
   padding: 1rem 2.8rem;
-  background: #1A1A1A;
-  color: #fff;
+  background: #fff;
+  color: #0A0A0A;
   border: none;
   font-family: 'Montserrat', sans-serif;
   font-size: 0.68rem;
@@ -258,16 +253,16 @@ nav.scrolled {
 }
 
 .btn-primary:hover {
-  background: #2A2A2A;
+  background: rgba(255,255,255,0.85);
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(92, 21, 24, 0.2);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
 }
 
 .btn-secondary {
   padding: 1rem 2.8rem;
   background: transparent;
-  color: #1A1A1A;
-  border: 1px solid #1A1A1A;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.5);
   font-family: 'Montserrat', sans-serif;
   font-size: 0.68rem;
   letter-spacing: 0.18em;
@@ -278,8 +273,8 @@ nav.scrolled {
 }
 
 .btn-secondary:hover {
-  background: #1A1A1A;
-  color: #F6F3EF;
+  background: #fff;
+  color: #0A0A0A;
 }
 
 @keyframes fadeUp {

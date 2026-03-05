@@ -8,13 +8,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --cream: #F6F3EF;
-  --dark: #1A1A1A;
-  --warm: #3D3530;
-  --muted: #D4CEC6;
-  --sand: #EFEBE5;
-  --text: #444;
-  --light-text: #888;
+  --cream: #FAF8F5;
+  --dark: #2C2420;
+  --warm: #8B6F5C;
+  --warm-dark: #5C4A3D;
+  --muted: #C4B5A5;
+  --sand: #F0EBE3;
+  --rose: #D4A89A;
+  --text: #5A4F47;
+  --light-text: #9A8E84;
+  --gold: #B89968;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -31,160 +34,152 @@ body {
 
 ::selection { background: var(--warm); color: #fff; }
 
-/* ===== EMAIL GATE ===== */
-#emailGate {
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  z-index: 9999;
+/* ===== INLINE GATE (after impulse 05) ===== */
+.inline-gate {
   background: var(--dark);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 500px;
+  overflow: hidden;
+}
+
+.gate-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.gate-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: grayscale(10%);
+}
+
+.gate-content {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-  transition: opacity 0.8s ease, visibility 0.8s ease;
-}
-
-#emailGate.hidden {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-
-.gate-container {
-  max-width: 520px;
-  width: 90%;
-  text-align: center;
-  padding: 3rem 2rem;
+  padding: 4rem 3.5rem;
 }
 
 .gate-brand {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 0.75rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.65rem;
   letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.4);
-  margin-bottom: 3rem;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
 }
 
 .gate-number {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 8rem;
+  font-size: 5rem;
   font-weight: 300;
-  color: rgba(255,255,255,0.85);
+  color: var(--gold);
   line-height: 1;
-  margin-bottom: -1rem;
+  margin-bottom: 0.5rem;
 }
 
 .gate-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
   font-weight: 400;
   color: var(--cream);
-  line-height: 1.2;
+  line-height: 1.25;
   margin-bottom: 0.5rem;
 }
 
-.gate-title em { font-style: italic; color: var(--muted); }
+.gate-title em { font-style: italic; color: var(--rose); }
 
 .gate-sub {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.1rem;
-  font-style: italic;
-  color: rgba(255,255,255,0.5);
-  margin-bottom: 2.5rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 2rem;
+  line-height: 1.7;
 }
 
 .gate-form {
   display: flex;
   flex-direction: column;
-  gap: 0.7rem;
-  max-width: 380px;
-  margin: 0 auto;
+  gap: 0.6rem;
+  max-width: 360px;
 }
 
 .gate-form input {
   width: 100%;
-  padding: 0.95rem 1.3rem;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.12);
+  padding: 0.9rem 1.2rem;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.15);
   color: var(--cream);
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   outline: none;
   transition: border-color 0.3s;
 }
 
-.gate-form input::placeholder { color: rgba(255,255,255,0.3); }
-.gate-form input:focus { border-color: var(--muted); }
+.gate-form input::placeholder { color: rgba(255,255,255,0.35); }
+.gate-form input:focus { border-color: var(--gold); }
 
 .gate-btn {
-  padding: 1rem;
-  background: var(--warm);
-  color: var(--cream);
+  padding: 0.95rem;
+  background: var(--gold);
+  color: var(--dark);
   border: none;
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.68rem;
+  font-size: 0.65rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.3s;
 }
 
-.gate-btn:hover { background: #4A433E; }
+.gate-btn:hover { background: var(--rose); }
 
 .gate-legal {
-  font-size: 0.65rem;
-  color: rgba(255,255,255,0.25);
-  margin-top: 1.2rem;
+  font-size: 0.6rem;
+  color: rgba(255,255,255,0.3);
+  margin-top: 0.8rem;
   line-height: 1.6;
 }
 
-.gate-legal a { color: rgba(255,255,255,0.4); }
+.gate-legal a { color: rgba(255,255,255,0.45); }
 
-.gate-skip {
-  display: inline-block;
-  margin-top: 2rem;
-  font-size: 0.65rem;
-  letter-spacing: 0.12em;
-  color: rgba(255,255,255,0.2);
-  text-decoration: none;
-  cursor: pointer;
-  transition: color 0.3s;
-}
+/* Hidden content until unlocked */
+.gated-content { display: none; }
+.gated-content.unlocked { display: block; }
 
-.gate-skip:hover { color: rgba(255,255,255,0.5); }
+.inline-gate.hidden { display: none; }
 
 /* ===== COVER ===== */
 .cover {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 80vh;
+  background: var(--dark);
+  overflow: hidden;
+}
+
+.cover-image {
   position: relative;
   overflow: hidden;
-  background: var(--dark);
 }
 
-.cover-bg {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-}
-
-.cover-bg img {
+.cover-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center top;
-  opacity: 0.25;
-  filter: grayscale(30%);
+  filter: grayscale(10%);
 }
 
 .cover-content {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  padding: 4rem 2rem;
-  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem 3.5rem;
 }
 
 .cover-eyebrow {
@@ -192,52 +187,54 @@ body {
   letter-spacing: 0.4em;
   text-transform: uppercase;
   color: var(--muted);
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   opacity: 0;
-  animation: fadeUp 0.8s ease 0.3s forwards;
+  animation: fadeUp 0.8s ease 0.2s forwards;
 }
 
 .cover-number {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(6rem, 15vw, 12rem);
-  font-weight: 300;
-  color: rgba(255,255,255,0.85);
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(4rem, 10vw, 7rem);
+  font-weight: 200;
+  color: var(--gold);
   line-height: 0.9;
   opacity: 0;
   animation: fadeUp 0.8s ease 0.1s forwards;
 }
 
 .cover-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2.5rem, 7vw, 5rem);
-  font-weight: 400;
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 600;
   color: var(--cream);
-  line-height: 1.1;
-  margin-top: -1.5rem;
+  line-height: 1.15;
+  margin-top: 0.5rem;
+  letter-spacing: -0.01em;
   opacity: 0;
-  animation: fadeUp 0.8s ease 0.5s forwards;
+  animation: fadeUp 0.8s ease 0.4s forwards;
 }
 
-.cover-title em { font-style: italic; color: var(--muted); }
+.cover-title em { font-style: italic; font-weight: 300; color: var(--rose); }
 
 .cover-subtitle {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.15rem;
-  font-style: italic;
-  color: rgba(255,255,255,0.5);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 300;
+  color: var(--muted);
   margin-top: 1.5rem;
+  line-height: 1.7;
   opacity: 0;
-  animation: fadeUp 0.8s ease 0.7s forwards;
+  animation: fadeUp 0.8s ease 0.6s forwards;
 }
 
 .cover-author {
-  margin-top: 3rem;
+  margin-top: 2.5rem;
   font-size: 0.6rem;
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: rgba(255,255,255,0.3);
   opacity: 0;
-  animation: fadeUp 0.8s ease 0.9s forwards;
+  animation: fadeUp 0.8s ease 0.8s forwards;
 }
 
 .cover-scroll {
@@ -278,12 +275,11 @@ body {
 }
 
 .intro h2 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(1.6rem, 4vw, 2.4rem);
-  font-weight: 400;
-  font-style: italic;
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  font-weight: 500;
   color: var(--dark);
-  line-height: 1.4;
+  line-height: 1.5;
   margin-bottom: 2rem;
 }
 
@@ -394,21 +390,21 @@ body {
 .impulse:last-child { border-bottom: none; }
 
 .impulse-num {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 3.5rem;
-  font-weight: 300;
-  color: #eee;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 200;
+  color: var(--muted);
   line-height: 1;
   margin-bottom: 0.5rem;
 }
 
 .impulse h3 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.5rem;
-  font-weight: 400;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 600;
   color: var(--dark);
   margin-bottom: 0.8rem;
-  line-height: 1.3;
+  line-height: 1.4;
 }
 
 .impulse p {
@@ -418,13 +414,13 @@ body {
 }
 
 .impulse .highlight {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.1rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.92rem;
   font-style: italic;
   color: var(--warm);
   margin-top: 1rem;
   padding-left: 1.2rem;
-  border-left: 2px solid var(--warm);
+  border-left: 2px solid var(--gold);
 }
 
 /* ===== INLINE PHOTO BREAK ===== */
@@ -628,20 +624,20 @@ body {
 .cta-btn {
   display: inline-block;
   padding: 1.1rem 3rem;
-  background: var(--warm);
-  color: var(--cream);
+  background: var(--gold);
+  color: var(--dark);
   text-decoration: none;
   font-family: 'Montserrat', sans-serif;
   font-size: 0.68rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 600;
   transition: all 0.3s;
   border: none;
   cursor: pointer;
 }
 
-.cta-btn:hover { background: #4A433E; transform: translateY(-2px); }
+.cta-btn:hover { background: var(--rose); transform: translateY(-2px); }
 
 .cta-secondary {
   display: block;
@@ -691,9 +687,9 @@ body {
 }
 
 .toc h3 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.6rem;
-  font-weight: 400;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 500;
   color: var(--dark);
   margin-bottom: 2.5rem;
 }
@@ -712,9 +708,9 @@ body {
 .toc-item:hover { padding-left: 0.5rem; color: var(--warm); }
 
 .toc-chapter {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.1rem;
-  font-style: italic;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 400;
 }
 
 .toc-range {
@@ -726,7 +722,7 @@ body {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-  .cover-number { font-size: 5rem; }
+  .cover-number { font-size: 3.5rem; }
   .impulse-section { padding: 1.5rem 1.2rem; }
   .impulse { padding: 1.5rem 0; }
   .impulse h3 { font-size: 1.25rem; }
@@ -747,9 +743,15 @@ body {
   .pull-quote { padding: 3.5rem 1.2rem; }
   .dark-quote { padding: 3.5rem 1.2rem; }
   .cta-section { padding: 4rem 1.2rem; }
-  .gate-container { padding: 2rem 1.2rem; }
-  .gate-number { font-size: 5rem; }
   .cover-content { padding: 3rem 1.2rem; }
+  .cover { grid-template-columns: 1fr; min-height: auto; }
+  .cover-image { min-height: 300px; }
+  .cover-number { font-size: 3.5rem; }
+}
+  .gate-image { min-height: 250px; }
+  .inline-gate { grid-template-columns: 1fr; }
+  .gate-content { padding: 2.5rem 1.5rem; }
+  .gate-number { font-size: 3.5rem; }
 }
 </style>
 </head>
@@ -758,26 +760,9 @@ body {
 <!-- PROGRESS BAR -->
 <div id="progressBar"></div>
 
-<!-- EMAIL GATE -->
-<div id="emailGate">
-  <div class="gate-container">
-    <p class="gate-brand">The House of Dynamics</p>
-    <div class="gate-number">40</div>
-    <h1 class="gate-title">Positionierungs-<em>Impulse</em></h1>
-    <p class="gate-sub">Die dich ehrlicher machen als jede Strategie.</p>
-    <div class="gate-form">
-      <input type="text" placeholder="Dein Vorname" id="gateName">
-      <input type="email" placeholder="Deine E-Mail-Adresse" id="gateEmail">
-      <button class="gate-btn" onclick="unlockGuide()">Impulse freischalten</button>
-    </div>
-    <p class="gate-legal">Kein Spam. Du wirst in unseren Newsletter eingetragen. <a href="datenschutz.html">Datenschutz</a></p>
-    <a class="gate-skip" onclick="skipGate()">Ich möchte nur reinschauen →</a>
-  </div>
-</div>
-
 <!-- COVER -->
 <section class="cover">
-  <div class="cover-bg">
+  <div class="cover-image">
     <img src="bilder/IMG_6809.JPG" alt="">
   </div>
   <div class="cover-content">
@@ -787,15 +772,76 @@ body {
     <p class="cover-subtitle">Nicht für dein Marketing. Für dich.<br>Weil Positionierung dort anfängt, wo du aufhörst, dich zu verstecken.</p>
     <p class="cover-author">von Carina Anna Prav</p>
   </div>
-  <p class="cover-scroll">Scroll ↓</p>
 </section>
 
-<!-- INTRO -->
+<!-- INLINE GATE -->
+<div class="inline-gate" id="inlineGate">
+  <div class="gate-image">
+    <img src="bilder/IMG_6862.JPG" alt="">
+  </div>
+  <div class="gate-content">
+    <p class="gate-brand">The House of Dynamics</p>
+    <div class="gate-number">40</div>
+    <h1 class="gate-title">Positionierungs-<em>Impulse</em></h1>
+    <p class="gate-sub">40 Gedanken, die dich ehrlicher machen als jede Strategie. Trag dich ein und lies kostenlos.</p>
+    <div class="gate-form">
+      <input type="text" placeholder="Dein Vorname" id="gateName">
+      <input type="email" placeholder="Deine E-Mail-Adresse" id="gateEmail">
+      <button class="gate-btn" onclick="unlockGuide()">Impulse freischalten</button>
+    </div>
+    <p class="gate-legal">Kein Spam. Du wirst in unseren Newsletter eingetragen. <a href="datenschutz.html">Datenschutz</a></p>
+  </div>
+</div>
+
+<!-- FREE PREVIEW: 5 Impulse sichtbar ohne Anmeldung -->
+<section class="intro">
+  <div class="intro-line"></div>
+  <h2>Ein kleiner Vorgeschmack — 5 von 40 Impulsen.</h2>
+  <p>Manche werden dich bestätigen. Manche werden dich ärgern. Und manche werden genau den Nerv treffen, den du bisher umgangen bist.</p>
+</section>
+
+<div class="impulse-section">
+  <div class="impulse">
+    <div class="impulse-num">01</div>
+    <h3>Deine Positionierung beginnt nicht bei deinem Angebot.</h3>
+    <p>Sie beginnt bei der Frage, wer du bist, wenn niemand zuschaut. Was du glaubst. Was du nicht akzeptierst. Was dich nachts wach hält — nicht wegen Sorgen, sondern wegen Feuer.</p>
+    <p class="highlight">Positionierung ist kein Marketing-Trick. Es ist die Entscheidung, sichtbar zu werden mit dem, was du wirklich denkst.</p>
+  </div>
+
+  <div class="impulse">
+    <div class="impulse-num">02</div>
+    <h3>Du musst nicht laut sein, um gehört zu werden.</h3>
+    <p>Die meisten verwechseln Sichtbarkeit mit Lautstärke. Aber die Menschen, die wirklich Eindruck hinterlassen, sprechen oft leiser als alle anderen. Sie haben Substanz statt Show. Und genau das ist der Unterschied zwischen Aufmerksamkeit und Autorität.</p>
+  </div>
+
+  <div class="impulse">
+    <div class="impulse-num">03</div>
+    <h3>Deine Geschichte ist dein Wettbewerbsvorteil.</h3>
+    <p>Nicht dein Zertifikat. Nicht dein Preis. Nicht dein Logo. Sondern das, was dich hierher gebracht hat. Die Brüche, die Umwege, die Momente, in denen du fast aufgegeben hast. Das kann dir niemand kopieren.</p>
+  </div>
+
+  <div class="impulse">
+    <div class="impulse-num">04</div>
+    <h3>Authentizität ist kein Freibrief für Chaos.</h3>
+    <p>Echt sein heißt nicht, alles zu zeigen. Es heißt, bewusst zu wählen, was du zeigst — und warum. Strategische Authentizität ist keine Lüge. Sie ist Respekt vor deinem Publikum und vor dir selbst.</p>
+  </div>
+
+  <div class="impulse">
+    <div class="impulse-num">05</div>
+    <h3>Du bist nicht für alle da. Und das ist kein Problem.</h3>
+    <p>Es ist deine Superkraft. Je klarer du sagst, für wen du nicht bist, desto magnetischer wirst du für die, die bleiben sollen. Polarisierung ist keine Aggression — sie ist Klarheit.</p>
+    <p class="highlight">Die Angst, jemanden zu verlieren, kostet dich die Menschen, die dich wirklich brauchen.</p>
+  </div>
+</div>
+
+<!-- GATED CONTENT: Visible after signup -->
+<div class="gated-content" id="gatedContent">
+
+<!-- FULL INTRO -->
 <section class="intro">
   <div class="intro-line"></div>
   <h2>Dieser Guide ist kein Workbook. Kein Fahrplan. Kein „In 5 Schritten zur perfekten Positionierung".</h2>
   <p>Es sind 40 Gedanken. 40 Impulse. 40 Momente, in denen du ehrlich mit dir sein darfst — über dein Business, deine Haltung und die Geschichte, die du dir über beides erzählst.</p>
-  <p>Manche werden dich bestätigen. Manche werden dich ärgern. Und manche werden genau den Nerv treffen, den du bisher umgangen bist.</p>
   <p>Lies sie nicht auf einmal. Lies eine am Morgen. Eine vor dem Einschlafen. Eine, wenn du wieder mal an deinem Angebot zweifelst. Sie arbeiten im Hintergrund — versprochen.</p>
   <p class="signature">Carina</p>
 </section>
@@ -1174,6 +1220,9 @@ body {
   </div>
 </section>
 
+<!-- END GATED CONTENT -->
+</div>
+
 <!-- FOOTER -->
 <footer class="guide-footer">
   <p>© 2026 <a href="https://www.carinaannaprav.at">The House of Dynamics</a> · Carina Anna Prav</p>
@@ -1188,7 +1237,7 @@ window.addEventListener('scroll', () => {
   document.getElementById('progressBar').style.width = pct + '%';
 });
 
-// Email gate
+// Inline gate
 function unlockGuide() {
   const name = document.getElementById('gateName').value.trim();
   const email = document.getElementById('gateEmail').value.trim();
@@ -1208,22 +1257,14 @@ function unlockGuide() {
     })
   })
   .then(() => {
-    document.getElementById('emailGate').classList.add('hidden');
-    document.body.style.overflow = '';
+    document.getElementById('inlineGate').classList.add('hidden');
+    document.getElementById('gatedContent').classList.add('unlocked');
   })
   .catch(() => {
-    document.getElementById('emailGate').classList.add('hidden');
-    document.body.style.overflow = '';
+    document.getElementById('inlineGate').classList.add('hidden');
+    document.getElementById('gatedContent').classList.add('unlocked');
   });
 }
-
-function skipGate() {
-  document.getElementById('emailGate').classList.add('hidden');
-  document.body.style.overflow = '';
-}
-
-// Lock scroll when gate is visible
-document.body.style.overflow = 'hidden';
 </script>
 
 </body>

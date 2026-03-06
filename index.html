@@ -1134,6 +1134,65 @@ footer {
 
   .hero { padding: 7rem 1.5rem 4rem; }
 }
+
+/* ===== FLYING PODCAST BADGE ===== */
+.flying-badge {
+  position: fixed;
+  top: 5rem;
+  right: 2rem;
+  z-index: 999;
+  background: #0A0A0A;
+  color: #fff;
+  text-decoration: none;
+  padding: 0.8rem 1.3rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: all 0.3s;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  animation: badgeSlideIn 0.8s ease 2s both;
+}
+
+.flying-badge:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+}
+
+.flying-badge-icon {
+  font-size: 1rem;
+}
+
+.flying-badge-text span {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-style: italic;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+@keyframes badgeSlideIn {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@media (max-width: 768px) {
+  .flying-badge {
+    top: 4.5rem;
+    right: 1rem;
+    padding: 0.6rem 1rem;
+    font-size: 0.55rem;
+  }
+  .flying-badge-text span {
+    font-size: 0.75rem;
+  }
+}
 </style>
 </head>
 <body>
@@ -1473,6 +1532,15 @@ footer {
     <span>Built with Dynamik</span>
   </div>
 </footer>
+
+<!-- FLYING PODCAST BADGE -->
+<a href="podcast.html" class="flying-badge">
+  <span class="flying-badge-icon">🎙</span>
+  <div class="flying-badge-text">
+    Neuer Podcast<br>
+    <span>Truth or Dare</span>
+  </div>
+</a>
 
 <script>
 window.addEventListener('scroll', () => {

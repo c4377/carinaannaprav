@@ -34,21 +34,31 @@ body {
 
 /* ===== HERO ===== */
 .hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: var(--dark);
+}
+
+.hero-image {
   position: relative;
   overflow: hidden;
-  background: var(--dark);
-  text-align: center;
-  padding: 6rem 2rem;
+}
+
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
 }
 
 .hero-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5rem 4rem;
   position: relative;
   z-index: 1;
-  max-width: 800px;
 }
 
 .hero-badge {
@@ -60,16 +70,6 @@ body {
   letter-spacing: 0.3em;
   text-transform: uppercase;
   margin-bottom: 2.5rem;
-}
-
-.hero-or {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(5rem, 15vw, 12rem);
-  font-weight: 700;
-  color: rgba(255,255,255,0.03);
-  line-height: 0.85;
-  margin-bottom: -1.5rem;
-  letter-spacing: -0.03em;
 }
 
 .hero-title {
@@ -92,9 +92,7 @@ body {
   color: rgba(255,255,255,0.5);
   margin-top: 1.5rem;
   line-height: 1.8;
-  max-width: 550px;
-  margin-left: auto;
-  margin-right: auto;
+  max-width: 480px;
 }
 
 .hero-cta {
@@ -118,23 +116,6 @@ body {
 }
 
 .btn-gold:hover { background: var(--rose); transform: translateY(-2px); }
-
-.hero-scroll {
-  position: absolute;
-  bottom: 2.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 0.55rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.2);
-  animation: pulse 2s ease infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 0.2; }
-  50% { opacity: 0.6; }
-}
 
 /* ===== CONCEPT ===== */
 .concept {
@@ -458,7 +439,9 @@ body {
 @media (max-width: 768px) {
   .how-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
-  .hero { padding: 5rem 1.5rem; }
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-image { min-height: 400px; }
+  .hero-content { padding: 3rem 1.5rem; }
   .concept { padding: 4rem 1.2rem; }
   .who { padding: 4rem 1.2rem; }
   .apply { padding: 4rem 1.2rem; }
@@ -467,18 +450,32 @@ body {
 </head>
 <body>
 
+<!-- NAV -->
+<nav style="position: fixed; top: 0; left: 0; right: 0; z-index: 1003; padding: 1.2rem 3rem; display: flex; justify-content: space-between; align-items: center; background: rgba(10,10,10,0.95); backdrop-filter: blur(20px);">
+  <a href="index.html" style="text-decoration: none; display: flex; align-items: center; gap: 0.7rem;">
+    <span style="font-family: 'Playfair Display', serif; font-size: 1rem; color: #fff; font-weight: 500;">THE HOUSE OF <em style="font-weight: 400; color: rgba(255,255,255,0.6);">Dynamics</em></span>
+  </a>
+  <div style="display: flex; gap: 2rem; align-items: center;">
+    <a href="index.html" style="color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s;">Home</a>
+    <a href="academy.html" style="color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s;">Academy</a>
+    <a href="40-impulse.html" style="color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s;">40 Impulse</a>
+    <a href="#apply" style="padding: 0.5rem 1.2rem; background: var(--gold); color: var(--dark); text-decoration: none; font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 600; transition: all 0.3s;">Bewerben</a>
+  </div>
+</nav>
+
 <!-- HERO -->
 <section class="hero">
+  <div class="hero-image">
+    <img src="bilder/podcast-cover.png" alt="Truth or Dare Podcast">
+  </div>
   <div class="hero-content">
-    <div class="hero-badge">Podcast · Coming Soon</div>
-    <div class="hero-or">or</div>
+    <div class="hero-badge">Podcast · Gäste gesucht</div>
     <h1 class="hero-title">Truth <em>or</em> Dare</h1>
     <p class="hero-sub">Der Podcast für Business-Klartext. Kein Small Talk. Kein Wischi-Waschi. Deine Gäste wählen: Eine unbequeme Wahrheit teilen — oder eine Aufgabe live erfüllen.</p>
     <div class="hero-cta">
       <a href="#apply" class="btn-gold">Als Gast bewerben</a>
     </div>
   </div>
-  <p class="hero-scroll">Scroll ↓</p>
 </section>
 
 <!-- CONCEPT -->

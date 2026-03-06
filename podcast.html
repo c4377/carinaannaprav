@@ -435,31 +435,115 @@ body {
 
 .page-footer a { color: var(--dark); text-decoration: none; }
 
+/* ===== NAV ===== */
+.pod-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1003;
+  padding: 1.2rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(10,10,10,0.95);
+  backdrop-filter: blur(20px);
+}
+
+.pod-nav-logo {
+  text-decoration: none;
+}
+
+.pod-nav-logo span {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: #fff;
+  font-weight: 500;
+}
+
+.pod-nav-logo em {
+  font-weight: 400;
+  color: rgba(255,255,255,0.6);
+}
+
+.pod-nav-right {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.pod-nav-links {
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+
+.pod-nav-links:hover { color: #fff; }
+
+.pod-nav-cta {
+  padding: 0.5rem 1.2rem;
+  background: var(--gold);
+  color: var(--dark);
+  text-decoration: none;
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.pod-nav-cta:hover { background: var(--rose); }
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .how-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
   .hero { grid-template-columns: 1fr; min-height: auto; }
-  .hero-image { min-height: 400px; }
-  .hero-content { padding: 3rem 1.5rem; }
-  .concept { padding: 4rem 1.2rem; }
-  .who { padding: 4rem 1.2rem; }
-  .apply { padding: 4rem 1.2rem; }
+  .hero-image { min-height: 350px; }
+  .hero-content { padding: 2.5rem 1.2rem; }
+  .hero-title { font-size: 2.2rem; }
+  .hero-sub { font-size: 0.85rem; }
+  .hero-badge { font-size: 0.5rem; }
+  .concept { padding: 3.5rem 1.2rem; }
+  .concept h2 { font-size: 1.3rem; }
+  .concept p { font-size: 0.85rem; }
+  .how-it-works { padding: 4rem 1.2rem; }
+  .how-it-works h2 { font-size: 1.4rem; margin-bottom: 2rem; }
+  .how-card { padding: 1.8rem 1.2rem; }
+  .how-card h3 { font-size: 1.4rem; }
+  .how-card p { font-size: 0.82rem; }
+  .how-card-examples p { font-size: 0.75rem; }
+  .who { padding: 3.5rem 1.2rem; }
+  .who h2 { font-size: 1.2rem; }
+  .who-item { font-size: 0.85rem; }
+  .quote-break { padding: 3.5rem 1.2rem; }
+  .quote-break blockquote { font-size: 1.2rem; }
+  .apply { padding: 3.5rem 1.2rem; }
+  .apply h2 { font-size: 1.4rem; }
+  .form-group input,
+  .form-group textarea,
+  .form-group select { font-size: 0.82rem; padding: 0.85rem 1rem; }
+  .form-group label { font-size: 0.65rem; }
+  .btn-gold { font-size: 0.6rem; padding: 0.95rem 2rem; }
+  .pod-nav { padding: 0.8rem 1rem !important; }
+  .pod-nav-links { display: none; }
+  .pod-nav-cta { font-size: 0.55rem !important; padding: 0.4rem 0.8rem !important; }
 }
 </style>
 </head>
 <body>
 
 <!-- NAV -->
-<nav style="position: fixed; top: 0; left: 0; right: 0; z-index: 1003; padding: 1.2rem 3rem; display: flex; justify-content: space-between; align-items: center; background: rgba(10,10,10,0.95); backdrop-filter: blur(20px);">
-  <a href="index.html" style="text-decoration: none; display: flex; align-items: center; gap: 0.7rem;">
-    <span style="font-family: 'Playfair Display', serif; font-size: 1rem; color: #fff; font-weight: 500;">THE HOUSE OF <em style="font-weight: 400; color: rgba(255,255,255,0.6);">Dynamics</em></span>
+<nav class="pod-nav">
+  <a href="index.html" class="pod-nav-logo">
+    <span>THE HOUSE OF <em>Dynamics</em></span>
   </a>
-  <div style="display: flex; gap: 2rem; align-items: center;">
-    <a href="index.html" style="color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s;">Home</a>
-    <a href="academy.html" style="color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s;">Academy</a>
-    <a href="40-impulse.html" style="color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s;">40 Impulse</a>
-    <a href="#apply" style="padding: 0.5rem 1.2rem; background: var(--gold); color: var(--dark); text-decoration: none; font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 600; transition: all 0.3s;">Bewerben</a>
+  <div class="pod-nav-right">
+    <a href="index.html" class="pod-nav-links">Home</a>
+    <a href="academy.html" class="pod-nav-links">Academy</a>
+    <a href="40-impulse.html" class="pod-nav-links">40 Impulse</a>
+    <a href="#apply" class="pod-nav-cta">Bewerben</a>
   </div>
 </nav>
 

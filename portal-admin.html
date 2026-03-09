@@ -15,7 +15,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         * {
@@ -25,24 +25,24 @@
         }
         
         :root {
-            --cream: #FAF9F6;
-            --beige: #E8DED2;
-            --warm-beige: #D4C5B0;
-            --charcoal: #2D2D2D;
+            --cream: #000;
+            --beige: #111;
+            --warm-beige: #222;
+            --charcoal: #fff;
             --dark-gray: #4A4A4A;
-            --light-gray: #F5F5F5;
-            --accent: #B89968;
+            --light-gray: rgba(255,255,255,0.06);
+            --accent: #C8102E;
         }
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            color: var(--charcoal);
-            background: var(--cream);
+            color: #fff;
+            background: #000;
             line-height: 1.7;
         }
         
         h1, h2, h3, h4 {
-            font-family: 'Playfair Display', Georgia, serif;
+            font-family: 'Poppins', sans-serif;
             font-weight: 400;
             line-height: 1.2;
         }
@@ -73,7 +73,7 @@
 
         .btn {
             padding: 1rem 2rem;
-            background: #1A1A1A;
+            background: #0D0D0D;
             color: white;
             border: none;
             border-radius: 8px;
@@ -129,7 +129,7 @@
             margin-bottom: 0.5rem;
             font-weight: 600;
             font-size: 0.9rem;
-            color: var(--charcoal);
+            color: #fff;
         }
 
         .hidden {
@@ -194,7 +194,7 @@
         .alert-success {
             background: #E8F5E9;
             border: 1px solid #4CAF50;
-            color: var(--charcoal);
+            color: #fff;
         }
 
         .alert-error {
@@ -257,7 +257,7 @@
         .badge {
             display: inline-block;
             padding: 0.35rem 0.75rem;
-            background: #1A1A1A;
+            background: #0D0D0D;
             color: white;
             font-size: 0.75rem;
             font-weight: 600;
@@ -306,7 +306,7 @@
         // ============================================
         const PROGRAMS = {
           houseofdynamics: {
-            name: "The House of Dynamics",
+            name: "The carinaannaprav",
             duration: "6 Säulen · Premium",
             modules: [
               { id: 1, title: "Säule 1: Energetische Position" },
@@ -359,7 +359,7 @@
                 document.getElementById('app').innerHTML = `
                     <div style="min-height: 100vh; background: linear-gradient(135deg, var(--cream) 0%, var(--beige) 100%); display: flex; align-items: center; justify-content: center; padding: 2rem;">
                         <div style="background: white; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); padding: 3rem; max-width: 450px; width: 100%;">
-                            <h1 style="font-family: 'Playfair Display', Georgia, serif; font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--charcoal);">
+                            <h1 style="font-family: 'Poppins', sans-serif; font-size: 2.5rem; margin-bottom: 0.5rem; color: #fff;">
                                 Admin Login
                             </h1>
                             <p style="color: var(--dark-gray); margin-bottom: 2rem;">Kundenportal Verwaltung</p>
@@ -479,7 +479,7 @@
                         <div style="background: white; border-bottom: 2px solid var(--beige); padding: 1.5rem 2rem;">
                             <div style="max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
                                 <div>
-                                    <h1 style="font-family: 'Playfair Display', Georgia, serif; font-size: 2rem; color: var(--charcoal);">
+                                    <h1 style="font-family: 'Poppins', sans-serif; font-size: 2rem; color: #fff;">
                                         Admin Dashboard
                                     </h1>
                                     <p style="color: var(--dark-gray); font-size: 0.9rem;">
@@ -534,7 +534,7 @@
                         <div class="card">
                             <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
                                 <div style="flex: 1;">
-                                    <h3 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.5rem; margin-bottom: 0.5rem;">
+                                    <h3 style="font-family: 'Poppins', sans-serif; font-size: 1.5rem; margin-bottom: 0.5rem;">
                                         ${customer.name}
                                     </h3>
                                     <p style="color: var(--dark-gray); font-size: 0.9rem;">${customer.email}</p>
@@ -544,7 +544,7 @@
                                 </span>
                             </div>
 
-                            <div style="padding: 0.75rem; background: #1A1A1A; color: white; border-radius: 6px; margin-bottom: 1rem; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">
+                            <div style="padding: 0.75rem; background: #0D0D0D; color: white; border-radius: 6px; margin-bottom: 1rem; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">
                                 ${program.name}
                             </div>
 
@@ -562,7 +562,7 @@
                                 <button class="btn btn-small" onclick="admin.showResetPasswordModal('${customer.id}', '${customer.email}', '${customer.name}')" style="background: var(--accent);">
                                     🔑 Passwort
                                 </button>
-                                <button class="btn btn-small" onclick="admin.editCustomer('${customer.id}')" style="background: transparent; color: var(--charcoal); border: 2px solid var(--beige);">
+                                <button class="btn btn-small" onclick="admin.editCustomer('${customer.id}')" style="background: transparent; color: #fff; border: 2px solid var(--beige);">
                                     ✏️ Bearbeiten
                                 </button>
                                 <button class="btn btn-small" onclick="admin.deleteCustomer('${customer.id}', '${customer.name}')" style="background: #FEE; color: #C33;">
@@ -579,7 +579,7 @@
 
                 content.innerHTML = `
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-                        <h2 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.75rem; color: var(--charcoal);">
+                        <h2 style="font-family: 'Poppins', sans-serif; font-size: 1.75rem; color: #fff;">
                             Kunden-Übersicht
                         </h2>
                         <button class="btn btn-accent" onclick="admin.showNewCustomerModal()">
@@ -589,7 +589,7 @@
 
                     ${this.customers.length === 0 ? `
                         <div class="card" style="text-align: center; padding: 3rem;">
-                            <h3 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.5rem; margin-bottom: 1rem;">
+                            <h3 style="font-family: 'Poppins', sans-serif; font-size: 1.5rem; margin-bottom: 1rem;">
                                 Noch keine Kunden
                             </h3>
                             <p style="color: var(--dark-gray); margin-bottom: 2rem;">
@@ -621,7 +621,7 @@
 
                 content.innerHTML = `
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-                        <h2 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.75rem; color: var(--charcoal);">
+                        <h2 style="font-family: 'Poppins', sans-serif; font-size: 1.75rem; color: #fff;">
                             Media-Bibliothek
                         </h2>
                         <button class="btn btn-accent" onclick="admin.showNewMediaModal()">
@@ -633,7 +633,7 @@
                         const program = PROGRAMS[programKey];
                         return `
                             <div style="margin-bottom: 3rem;">
-                                <h3 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--charcoal);">
+                                <h3 style="font-family: 'Poppins', sans-serif; font-size: 1.5rem; margin-bottom: 1.5rem; color: #fff;">
                                     ${program.name}
                                 </h3>
 
@@ -641,7 +641,7 @@
                                     const moduleMedia = mediaByProgram[programKey][module.id] || [];
                                     return `
                                         <div class="card" style="margin-bottom: 1rem;">
-                                            <h4 style="font-size: 1.1rem; margin-bottom: 1rem; color: var(--charcoal); font-weight: 600;">
+                                            <h4 style="font-size: 1.1rem; margin-bottom: 1rem; color: #fff; font-weight: 600;">
                                                 ${module.title}
                                             </h4>
 
@@ -652,7 +652,7 @@
                                             ` : `
                                                 <div style="display: flex; flex-direction: column; gap: 0.75rem;">
                                                     ${moduleMedia.map(media => `
-                                                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: var(--cream); border-radius: 8px;">
+                                                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: #000; border-radius: 8px;">
                                                             <div style="flex: 1;">
                                                                 <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.25rem;">
                                                                     <span style="font-size: 1.2rem;">${media.type === 'vimeo' || media.type === 'youtube' ? '🎬' : '🎵'}</span>
@@ -669,7 +669,7 @@
                                                                 <button class="btn btn-small" onclick="admin.previewMedia('${media.id}')" style="background: var(--accent);">
                                                                     👁️
                                                                 </button>
-                                                                <button class="btn btn-small" onclick="admin.editMedia('${media.id}')" style="background: transparent; color: var(--charcoal); border: 2px solid var(--beige);">
+                                                                <button class="btn btn-small" onclick="admin.editMedia('${media.id}')" style="background: transparent; color: #fff; border: 2px solid var(--beige);">
                                                                     ✏️
                                                                 </button>
                                                                 <button class="btn btn-small" onclick="admin.deleteMedia('${media.id}', '${media.title}')" style="background: #FEE; color: #C33;">
@@ -715,7 +715,7 @@
                 modal.innerHTML = `
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h2 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.75rem; color: var(--charcoal);">
+                            <h2 style="font-family: 'Poppins', sans-serif; font-size: 1.75rem; color: #fff;">
                                 Neuer Kunde
                             </h2>
                             <button class="close-btn" onclick="this.closest('.modal').remove()">×</button>
@@ -750,7 +750,7 @@
                             <div class="form-group">
                                 <label>Programm *</label>
                                 <select id="customerProgram" required>
-                                    <option value="houseofdynamics">The House of Dynamics</option>
+                                    <option value="houseofdynamics">The carinaannaprav</option>
                                 </select>
                             </div>
 
@@ -808,7 +808,7 @@
                             <div class="alert alert-success">
                                 <strong>✅ Kunde angelegt!</strong><br><br>
                                 <strong>Zugangsdaten zum Versenden:</strong><br>
-                                <div style="background: var(--cream); padding: 1rem; border-radius: 6px; margin-top: 0.5rem; font-family: monospace; font-size: 0.9rem;">
+                                <div style="background: #000; padding: 1rem; border-radius: 6px; margin-top: 0.5rem; font-family: monospace; font-size: 0.9rem;">
                                     Portal: ${window.location.origin}/portal-password.html<br>
                                     Email: ${email}<br>
                                     Passwort: ${password}
@@ -852,7 +852,7 @@
                 modal.innerHTML = `
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h2 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.75rem; color: var(--charcoal);">
+                            <h2 style="font-family: 'Poppins', sans-serif; font-size: 1.75rem; color: #fff;">
                                 Passwort zurücksetzen
                             </h2>
                             <button class="close-btn" onclick="this.closest('.modal').remove()">×</button>
@@ -927,7 +927,7 @@
                         alertDiv.innerHTML = `
                             <div class="alert alert-success">
                                 <strong>✅ Passwort geändert!</strong><br><br>
-                                <div style="background: var(--cream); padding: 1rem; border-radius: 6px; margin-top: 0.5rem; font-family: monospace; font-size: 0.9rem;">
+                                <div style="background: #000; padding: 1rem; border-radius: 6px; margin-top: 0.5rem; font-family: monospace; font-size: 0.9rem;">
                                     Email: ${email}<br>
                                     Neues Passwort: ${password}
                                 </div>
@@ -983,7 +983,7 @@
                 modal.innerHTML = `
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h2 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.75rem; color: var(--charcoal);">
+                            <h2 style="font-family: 'Poppins', sans-serif; font-size: 1.75rem; color: #fff;">
                                 Neues Video/Audio
                             </h2>
                             <button class="close-btn" onclick="this.closest('.modal').remove()">×</button>
@@ -995,7 +995,7 @@
                             <div class="form-group">
                                 <label>Programm *</label>
                                 <select id="mediaProgram" required onchange="admin.updateModuleSelect()">
-                                    <option value="houseofdynamics">The House of Dynamics</option>
+                                    <option value="houseofdynamics">The carinaannaprav</option>
                                 </select>
                             </div>
 
@@ -1131,7 +1131,7 @@
                 modal.innerHTML = `
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h2 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.75rem; color: var(--charcoal);">
+                            <h2 style="font-family: 'Poppins', sans-serif; font-size: 1.75rem; color: #fff;">
                                 Media bearbeiten
                             </h2>
                             <button class="close-btn" onclick="this.closest('.modal').remove()">×</button>
@@ -1143,7 +1143,7 @@
                             <div class="form-group">
                                 <label>Programm *</label>
                                 <select id="editMediaProgram" required onchange="admin.updateEditModuleSelect()">
-                                    <option value="houseofdynamics" ${media.program === 'houseofdynamics' ? 'selected' : ''}>The House of Dynamics</option>
+                                    <option value="houseofdynamics" ${media.program === 'houseofdynamics' ? 'selected' : ''}>The carinaannaprav</option>
                                 </select>
                             </div>
 
@@ -1283,7 +1283,7 @@
                 modal.innerHTML = `
                     <div class="modal-content" style="max-width: 800px;">
                         <div class="modal-header">
-                            <h2 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.75rem; color: var(--charcoal);">
+                            <h2 style="font-family: 'Poppins', sans-serif; font-size: 1.75rem; color: #fff;">
                                 ${media.title}
                             </h2>
                             <button class="close-btn" onclick="this.closest('.modal').remove()">×</button>
@@ -1316,7 +1316,7 @@
                 modal.innerHTML = `
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h2 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.75rem; color: var(--charcoal);">
+                            <h2 style="font-family: 'Poppins', sans-serif; font-size: 1.75rem; color: #fff;">
                                 Kunde bearbeiten
                             </h2>
                             <button class="close-btn" onclick="this.closest('.modal').remove()">×</button>
@@ -1341,7 +1341,7 @@
                             <div class="form-group">
                                 <label>Programm *</label>
                                 <select id="editCustomerProgram" required>
-                                    <option value="houseofdynamics" ${customer.program === 'houseofdynamics' ? 'selected' : ''}>The House of Dynamics</option>
+                                    <option value="houseofdynamics" ${customer.program === 'houseofdynamics' ? 'selected' : ''}>The carinaannaprav</option>
                                 </select>
                             </div>
 

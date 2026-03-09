@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kundenportal | House of Dynamics</title>
+    <title>Kundenportal | carinaannaprav</title>
     
     <!-- Supabase Client -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.0/dist/umd/supabase.min.js" defer></script>
@@ -11,30 +11,30 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         :root {
-            --cream: #FAF9F6;
-            --beige: #E8DED2;
-            --warm-beige: #D4C5B0;
-            --charcoal: #2D2D2D;
+            --cream: #000;
+            --beige: #111;
+            --warm-beige: #222;
+            --charcoal: #fff;
             --dark-gray: #4A4A4A;
-            --light-gray: #F5F5F5;
-            --accent: #B89968;
+            --light-gray: rgba(255,255,255,0.06);
+            --accent: #C8102E;
         }
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            color: var(--charcoal);
-            background: var(--cream);
+            color: #fff;
+            background: #000;
             line-height: 1.7;
         }
         
         h1, h2, h3, h4 {
-            font-family: 'Playfair Display', Georgia, serif;
+            font-family: 'Poppins', sans-serif;
             font-weight: 400;
         }
 
@@ -67,7 +67,7 @@
 
         .btn {
             padding: 1rem 2rem;
-            background: #1A1A1A;
+            background: #0D0D0D;
             color: white;
             border: none;
             border-radius: 8px;
@@ -149,7 +149,7 @@
         }
 
         .nav-btn:hover { background: var(--light-gray); }
-        .nav-btn.active { background: var(--beige); color: var(--charcoal); }
+        .nav-btn.active { background: var(--beige); color: #fff; }
     </style>
 </head>
 <body>
@@ -168,7 +168,7 @@
 
         const PROGRAMS = {
           houseofdynamics: {
-            name: "The House of Dynamics",
+            name: "The carinaannaprav",
             duration: "6 Säulen · Premium",
             modules: [
               { id: 1, title: "Säule 1: Energetische Position", tasks: [
@@ -313,7 +313,7 @@
                     <div style="min-height: 100vh; background: linear-gradient(135deg, var(--cream) 0%, var(--beige) 100%); display: flex; align-items: center; justify-content: center; padding: 2rem;">
                         <div style="background: white; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); padding: 3rem; max-width: 450px; width: 100%;">
                             <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem;">Kundenportal</h1>
-                            <p style="color: var(--dark-gray); margin-bottom: 2rem;">House of Dynamics</p>
+                            <p style="color: var(--dark-gray); margin-bottom: 2rem;">carinaannaprav</p>
 
                             ${message ? `<div style="padding: 1rem; background: #FFF9E6; border: 1px solid #FFE066; border-radius: 8px; margin-bottom: 1.5rem; color: #856404; font-size: 0.9rem;">${message}</div>` : ''}
 
@@ -431,7 +431,7 @@
                             ${program.modules.map(module => {
                                 const moduleProgress = this.getModuleProgress(module.id);
                                 return `
-                                    <div style="padding: 1rem; margin-bottom: 0.75rem; background: var(--cream); border-radius: 8px; border-left: 4px solid var(--accent);">
+                                    <div style="padding: 1rem; margin-bottom: 0.75rem; background: #000; border-radius: 8px; border-left: 4px solid var(--accent);">
                                         <div style="display: flex; justify-content: space-between; align-items: center;">
                                             <strong>${module.title}</strong>
                                             <span style="color: var(--dark-gray);">${moduleProgress}%</span>
@@ -464,7 +464,7 @@
                                         </div>
 
                                         ${moduleMedia.length > 0 ? `
-                                            <div style="margin-bottom: 1.5rem; padding: 1.5rem; background: var(--cream); border-radius: 8px;">
+                                            <div style="margin-bottom: 1.5rem; padding: 1.5rem; background: #000; border-radius: 8px;">
                                                 <h4 style="margin-bottom: 1rem;">🎬 Videos & Audios</h4>
                                                 ${moduleMedia.map(media => `
                                                     <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem; background: white; border-radius: 8px; margin-bottom: 0.5rem;">

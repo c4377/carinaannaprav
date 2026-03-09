@@ -3,1667 +3,343 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="color-scheme" content="light">
-<title>The House of Dynamics — Carina</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<meta name="color-scheme" content="dark">
+<title>Business Mentoring — carinaannaprav</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet">
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-html { scroll-behavior: smooth; font-size: 16px; }
-
-body {
-  background: #F6F3EF;
-  color: #1A1A1A;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 400;
-  overflow-x: hidden;
-  line-height: 1.7;
-}
-
-::selection { background: #2A2A2A; color: #fff; }
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#000;color:#fff;font-family:'Poppins',sans-serif;font-weight:400;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+::selection{background:#C8102E;color:#fff}
+:root{--red:#C8102E;--red-glow:rgba(200,16,46,0.15);--white:#fff;--off:#F2F2F2;--gray:#999;--dark:#0D0D0D;--card:#111}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
 
 /* NAV */
-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 1003;
-  padding: 1.5rem 3rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(246, 243, 239, 0.95);
-  backdrop-filter: blur(20px);
-  transition: all 0.4s;
-}
-
-nav.scrolled {
-  padding: 1rem 3rem;
-  box-shadow: 0 1px 0 rgba(0,0,0,0.06);
-}
-
-.nav-logo {
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
-  text-decoration: none;
-}
-
-.nav-logo-mark {
-  height: 38px;
-  flex-shrink: 0;
-}
-
-.nav-logo-mark img {
-  height: 100%;
-  width: auto;
-}
-
-.nav-logo-text {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: #1A1A1A;
-  letter-spacing: 0.04em;
-  line-height: 1.15;
-}
-
-.nav-logo-text span {
-  font-style: italic;
-  font-weight: 400;
-  color: #1A1A1A;
-}
-
-.nav-links {
-  display: flex;
-  gap: 2.5rem;
-  list-style: none;
-  align-items: center;
-}
-
-.nav-links a {
-  color: #1A1A1A;
-  text-decoration: none;
-  font-size: 0.72rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  font-weight: 400;
-  transition: color 0.3s;
-}
-
-.nav-links a:hover { color: #1A1A1A; }
-
-.nav-cta {
-  padding: 0.65rem 1.8rem;
-  background: #1A1A1A;
-  color: #fff !important;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s;
-  font-size: 0.68rem !important;
-  letter-spacing: 0.15em;
-}
-
-.nav-cta:hover { background: #111111; transform: translateY(-1px); }
-
-.nav-badge {
-  padding: 0.45rem 1.1rem !important;
-  background: transparent !important;
-  color: #1A1A1A !important;
-  border: 1.5px solid #1A1A1A;
-  font-size: 0.62rem !important;
-  letter-spacing: 0.12em;
-  position: relative;
-  transition: all 0.3s;
-  text-decoration: none !important;
-}
-
-.nav-badge:hover {
-  background: #1A1A1A !important;
-  color: #F6F3EF !important;
-  transform: translateY(-1px);
-}
-
-.nav-badge::before {
-  content: '✦';
-  margin-right: 0.4em;
-  font-size: 0.5rem;
-  vertical-align: middle;
-}
-
-.nav-hamburger {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  cursor: pointer;
-}
-
-.nav-hamburger span {
-  width: 26px;
-  height: 1.5px;
-  background: #1A1A1A;
-  transition: all 0.3s;
-}
-
-.nav-hamburger.active span:nth-child(1) {
-  transform: rotate(45deg) translate(4.5px, 4.5px);
-}
-
-.nav-hamburger.active span:nth-child(2) {
-  opacity: 0;
-}
-
-.nav-hamburger.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(4.5px, -4.5px);
-}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1rem 2.5rem;display:flex;justify-content:space-between;align-items:center;background:rgba(0,0,0,0.88);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.04)}
+.logo{font-weight:700;font-size:.95rem;letter-spacing:.02em;color:#fff}
+.logo span{color:var(--red)}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+.nav-links a{color:var(--gray);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;font-weight:500;transition:color .25s}
+.nav-links a:hover{color:#fff}
+.nav-cta{background:var(--red);color:#fff!important;padding:.5rem 1.4rem;font-size:.65rem!important;letter-spacing:.08em;font-weight:600;transition:background .25s}
+.nav-cta:hover{background:#E01535}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.hamburger span{width:24px;height:1.5px;background:#fff}
 
 /* HERO */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  padding: 8rem 2rem 6rem;
-  overflow: hidden;
-}
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(105deg,rgba(0,0,0,0.92) 0%,rgba(0,0,0,0.75) 45%,rgba(0,0,0,0.4) 100%)}
+.hero-inner{position:relative;z-index:1;max-width:620px;padding:8rem 3rem 6rem}
+.hero-label{font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--red);font-weight:600;margin-bottom:1.5rem}
+.hero-title{font-size:clamp(2.4rem,5.5vw,3.8rem);font-weight:800;line-height:1.1;margin-bottom:1.2rem}
+.hero-title span{color:var(--red)}
+.hero-desc{font-size:.95rem;color:var(--gray);font-weight:300;margin-bottom:2.5rem;line-height:1.8;max-width:500px}
+.hero-btns{display:flex;gap:.8rem;flex-wrap:wrap}
 
-.hero-bg {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  z-index: 0;
-}
+/* BUTTONS */
+.btn{display:inline-block;padding:.85rem 2.2rem;font-family:'Poppins',sans-serif;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;transition:all .25s;cursor:pointer;border:none;text-align:center}
+.btn-r{background:var(--red);color:#fff}.btn-r:hover{background:#E01535;transform:translateY(-1px)}
+.btn-o{background:transparent;color:#fff;border:1px solid rgba(255,255,255,0.2)}.btn-o:hover{border-color:var(--red);color:var(--red)}
+.btn-w{background:#fff;color:#000}.btn-w:hover{transform:translateY(-1px)}
 
-.hero-bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
-}
-
-.hero-bg::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(10, 10, 10, 0.6);
-}
-
-.hero-content {
-  text-align: center;
-  max-width: 850px;
-  position: relative;
-  z-index: 1;
-}
-
-.hero-eyebrow {
-  font-size: 0.68rem;
-  letter-spacing: 0.35em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.6);
-  margin-bottom: 2.5rem;
-  font-weight: 400;
-  animation: fadeUp 0.8s ease 0.2s both;
-}
-
-.hero-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(3.2rem, 9vw, 7rem);
-  font-weight: 500;
-  line-height: 1.0;
-  color: #fff;
-  margin-bottom: 0.3rem;
-  animation: fadeUp 0.8s ease 0.4s both;
-}
-
-.hero-title em {
-  font-style: italic;
-  color: rgba(255,255,255,0.7);
-}
-
-.hero-subtitle {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.1rem, 2.5vw, 1.45rem);
-  font-weight: 400;
-  font-style: italic;
-  color: rgba(255,255,255,0.7);
-  margin-top: 2rem;
-  margin-bottom: 3rem;
-  animation: fadeUp 0.8s ease 0.6s both;
-}
-
-.hero-buttons {
-  display: flex;
-  gap: 1.2rem;
-  justify-content: center;
-  flex-wrap: wrap;
-  animation: fadeUp 0.8s ease 0.8s both;
-}
-
-.btn-primary {
-  padding: 1rem 2.8rem;
-  background: #fff;
-  color: #0A0A0A;
-  border: none;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.68rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.btn-primary:hover {
-  background: rgba(255,255,255,0.85);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-}
-
-.btn-secondary {
-  padding: 1rem 2.8rem;
-  background: transparent;
-  color: #fff;
-  border: 1px solid rgba(255,255,255,0.5);
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.68rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  font-weight: 400;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.btn-secondary:hover {
-  background: #fff;
-  color: #0A0A0A;
-}
-
-@keyframes fadeUp {
-  from { opacity: 1; transform: translateY(25px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* SECTIONS */
-section { padding: 7rem 3rem; }
-
-.section-line {
-  width: 40px;
-  height: 2px;
-  background: #1A1A1A;
-  margin: 0 auto 2rem;
-}
-
-.section-eyebrow {
-  font-size: 0.62rem;
-  letter-spacing: 0.35em;
-  text-transform: uppercase;
-  color: #1A1A1A;
-  text-align: center;
-  margin-bottom: 1rem;
-  font-weight: 400;
-}
-
-.section-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2rem, 5vw, 3.2rem);
-  font-weight: 500;
-  text-align: center;
-  margin-bottom: 1.5rem;
-  line-height: 1.2;
-  color: #1A1A1A;
-}
-
-.section-title em { font-style: italic; color: #1A1A1A; }
+/* STRIP */
+.strip{background:var(--red);padding:1.8rem 2rem;display:flex;justify-content:center;gap:3.5rem;flex-wrap:wrap}
+.strip-item{text-align:center}
+.strip-num{font-size:1.8rem;font-weight:800;color:#fff;line-height:1}
+.strip-label{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-top:.25rem;font-weight:500}
 
 /* ABOUT */
-.about { background: #F6F3EF; position: relative; overflow: hidden; }
+.about{display:grid;grid-template-columns:1fr 1fr;min-height:600px}
+.about-img{overflow:hidden}
+.about-img img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.about-text{padding:4rem 3.5rem;display:flex;flex-direction:column;justify-content:center;background:var(--dark)}
+.label{font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--red);font-weight:600;margin-bottom:.8rem}
+.about-text h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;line-height:1.2;margin-bottom:1.2rem}
+.about-text p{color:var(--gray);font-size:.88rem;font-weight:300;margin-bottom:.8rem;line-height:1.8}
+.about-text strong{color:#fff;font-weight:600}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.2rem}
+.tags span{padding:.25rem .65rem;border:1px solid rgba(255,255,255,0.1);font-size:.55rem;letter-spacing:.08em;text-transform:uppercase;color:var(--gray);font-weight:500}
 
-.about-grid {
-  max-width: 1100px;
-  margin: 4rem auto 0;
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: 0;
-  align-items: center;
-  position: relative;
-}
-
-.about-image {
-  position: relative;
-  z-index: 1;
-  margin-right: -3rem;
-}
-
-.about-image img {
-  width: 100%;
-  height: 650px;
-  object-fit: cover;
-  object-position: center top;
-  filter: grayscale(15%);
-}
-
-.about-image .placeholder {
-  width: 100%;
-  height: 650px;
-  background: #EAE6E0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.7rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: #555;
-  border: 1px dashed #ccc;
-}
-
-.about-text {
-  position: relative;
-  z-index: 2;
-  background: rgba(246, 243, 239, 0.95);
-  padding: 3rem 3rem 3rem 4rem;
-  margin-left: -3rem;
-}
-
-.about-text h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.8rem;
-  font-weight: 400;
-  font-style: italic;
-  color: #1A1A1A;
-  margin-bottom: 1.5rem;
-  line-height: 1.3;
-}
-
-.about-text p {
-  font-size: 0.92rem;
-  color: #1A1A1A;
-  margin-bottom: 1.2rem;
-  line-height: 1.8;
-}
-
-.about-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 2rem;
-}
-
-.about-tags span {
-  padding: 0.35rem 0.9rem;
-  border: 1px solid #ddd;
-  font-size: 0.6rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #1A1A1A;
-}
-
-/* DYNAMIK BANNER */
-.dynamik {
-  background: #1A1A1A;
-  text-align: center;
-  padding: 6rem 3rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.dynamik-bg {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-}
-
-.dynamik-bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.2;
-  filter: grayscale(40%);
-}
-
-.dynamik .reveal {
-  position: relative;
-  z-index: 1;
-}
-
-.dynamik-quote {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.5rem, 4vw, 2.6rem);
-  font-weight: 400;
-  font-style: italic;
-  max-width: 750px;
-  margin: 0 auto;
-  line-height: 1.4;
-  color: #F6F3EF;
-}
-
-.dynamik-quote strong {
-  color: #D4CEC6;
-  font-weight: 400;
-}
-
-.dynamik-sub {
-  margin-top: 1.5rem;
-  font-size: 0.62rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.5);
-}
-
-/* PHOTO CREDITS */
-.photo-credit {
-  position: absolute;
-  bottom: 1rem;
-  right: 1.5rem;
-  font-size: 0.65rem;
-  letter-spacing: 0.12em;
-  color: rgba(255,255,255,0.7);
-  z-index: 2;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-}
-
-.photo-credit a {
-  color: rgba(255,255,255,0.85);
-  text-decoration: none;
-}
-
-.photo-credit a:hover {
-  color: #fff;
-}
-
-/* IMAGE BREAKS */
-.image-break {
-  position: relative;
-  height: 55vh;
-  overflow: hidden;
-}
-
-.image-break > img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  filter: grayscale(15%);
-}
-
-.image-break > .photo-credit {
-  position: absolute;
-  bottom: 1rem;
-  right: 1.5rem;
-}
-
-/* SPLIT IMAGE BREAK */
-.image-break-split {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  height: auto;
-}
-
-.split-left {
-  overflow: hidden;
-  position: relative;
-}
-
-.split-left img {
-  width: 100%;
-  height: 100%;
-  min-height: 500px;
-  object-fit: cover;
-  object-position: center top;
-  filter: grayscale(15%);
-}
-
-.split-right {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4rem;
-  background: #1A1A1A;
-}
-
-.split-quote {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
-  font-weight: 400;
-  font-style: italic;
-  color: #F6F3EF;
-  line-height: 1.4;
-  text-align: center;
-}
-
-.split-quote em {
-  color: #D4CEC6;
-  font-style: italic;
-}
+/* IMG BREAK */
+.img-break{height:40vh;overflow:hidden;position:relative}
+.img-break img{width:100%;height:100%;object-fit:cover;filter:grayscale(25%)}
+.img-break::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.2),rgba(0,0,0,0.5))}
 
 /* OFFERS */
-.offers { background: #EFEBE5; }
+.offers-section{padding:5rem 2.5rem;max-width:1200px;margin:0 auto}
+.offers-section h2{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;margin-bottom:.5rem}
+.offers-section .sub{color:var(--gray);font-size:.9rem;font-weight:300;margin-bottom:3rem;max-width:500px}
+.offers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.card{background:var(--card);border:1px solid rgba(255,255,255,0.04);padding:2.5rem 2rem;position:relative;transition:all .35s}
+.card:hover{border-color:var(--red);transform:translateY(-3px)}
+.card-tier{font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;color:var(--red);font-weight:700;margin-bottom:.8rem}
+.card h3{font-size:1.3rem;font-weight:700;margin-bottom:.2rem}
+.card-price{font-size:.65rem;color:var(--gray);letter-spacing:.06em;margin-bottom:1rem;font-weight:500}
+.card>p{font-size:.82rem;color:var(--gray);font-weight:300;margin-bottom:1.3rem;line-height:1.7}
+.card ul{list-style:none;margin-bottom:1.8rem}
+.card ul li{font-size:.75rem;color:var(--gray);padding:.3rem 0;border-bottom:1px solid rgba(255,255,255,0.03);font-weight:300}
+.card ul li::before{content:'→';color:var(--red);margin-right:.5rem;font-weight:700}
+.featured{border-color:var(--red);background:linear-gradient(180deg,rgba(200,16,46,0.06) 0%,var(--card) 35%)}
+.badge{position:absolute;top:0;right:1.2rem;background:var(--red);color:#fff;padding:.3rem .8rem;font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700}
 
-.offers-grid {
-  max-width: 1100px;
-  margin: 4rem auto 0;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-}
+/* PROOF */
+.proof{padding:5rem 2.5rem;text-align:center;background:var(--dark)}
+.proof h2{font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;margin-bottom:2.5rem}
+.proof-card{max-width:680px;margin:0 auto}
+.proof-card blockquote{font-size:1.15rem;font-style:italic;color:var(--off);font-weight:300;line-height:1.7;margin-bottom:1rem}
+.proof-card blockquote::before{content:'"';display:block;font-size:3.5rem;color:var(--red);line-height:.8;margin-bottom:.8rem;font-style:normal;font-weight:700}
+.proof-card cite{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gray);font-style:normal;font-weight:500}
+.dots{display:flex;justify-content:center;gap:.35rem;margin-top:2rem}
+.dots button{width:22px;height:2px;background:rgba(255,255,255,0.12);border:none;cursor:pointer;transition:all .25s}
+.dots button.on{background:var(--red);width:36px}
 
-.offer-card {
-  background: #F6F3EF;
-  padding: 2.5rem 2rem;
-  position: relative;
-  transition: all 0.4s;
-  cursor: pointer;
-  border: 1px solid transparent;
-}
+/* NEWSLETTER */
+.nl{padding:4.5rem 2.5rem;text-align:center;border-top:1px solid rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.04)}
+.nl h2{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;margin-bottom:.6rem}
+.nl p{color:var(--gray);font-size:.85rem;font-weight:300;max-width:420px;margin:0 auto 2rem}
+.nl-form{max-width:440px;margin:0 auto;display:flex;gap:.4rem}
+.nl-form input{flex:1;padding:.8rem 1rem;background:var(--card);border:1px solid rgba(255,255,255,0.08);color:#fff;font-family:'Poppins',sans-serif;font-size:.8rem;font-weight:300;outline:none;transition:border-color .25s}
+.nl-form input::placeholder{color:#555}
+.nl-form input:focus{border-color:var(--red)}
+#nlOk{display:none;color:var(--red);font-size:.85rem;font-weight:500;margin-top:1rem}
 
-.offer-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 15px 40px rgba(0,0,0,0.06);
-  border-color: #1A1A1A;
-}
-
-.offer-number {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 2.5rem;
-  color: #ddd;
-  line-height: 1;
-  margin-bottom: 1.2rem;
-}
-
-.offer-card h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.4rem;
-  font-weight: 400;
-  color: #1A1A1A;
-  margin-bottom: 0.4rem;
-}
-
-.offer-price {
-  font-size: 0.65rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: #1A1A1A;
-  margin-bottom: 1.2rem;
-}
-
-.offer-card > p {
-  font-size: 0.88rem;
-  color: #1A1A1A;
-  margin-bottom: 1.5rem;
-  line-height: 1.7;
-}
-
-.offer-includes {
-  list-style: none;
-  margin-bottom: 2rem;
-}
-
-.offer-includes li {
-  font-size: 0.8rem;
-  padding: 0.4rem 0;
-  border-bottom: 1px solid #eee;
-  color: #1A1A1A;
-}
-
-.offer-includes li::before {
-  content: '—';
-  color: #1A1A1A;
-  margin-right: 0.6rem;
-}
-
-.offer-featured {
-  border: 1px solid #1A1A1A;
-}
-
-.offer-badge {
-  position: absolute;
-  top: 0; right: 1.5rem;
-  background: #1A1A1A;
-  color: #fff;
-  padding: 0.4rem 1rem;
-  font-size: 0.55rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-weight: 500;
-}
-
-/* QUIZ */
-.quiz-section {
-  background: #F6F3EF;
-  padding: 7rem 3rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.quiz-bg {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  z-index: 0;
-}
-
-.quiz-bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-.quiz-bg::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(246, 243, 239, 0.88);
-}
-
-.quiz-container {
-  max-width: 650px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
-}
-
-.quiz-intro {
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-.quiz-intro p {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.15rem;
-  font-style: italic;
-  color: #1A1A1A;
-  margin-top: 0.8rem;
-}
-
-.quiz-progress {
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-bottom: 2.5rem;
-}
-
-.progress-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #ddd;
-  transition: all 0.3s;
-}
-
-.progress-dot.active { background: #1A1A1A; }
-.progress-dot.done { background: #1A1A1A; }
-
-.quiz-step {
-  display: none;
-  animation: quizFade 0.5s ease;
-}
-
-.quiz-step.active { display: block; }
-
-@keyframes quizFade {
-  from { opacity: 1; transform: translateY(15px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.quiz-message {
-  background: #fff;
-  border-left: 3px solid #1A1A1A;
-  padding: 1.5rem 1.8rem;
-  margin-bottom: 1.8rem;
-}
-
-.quiz-message .sender {
-  font-size: 0.6rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #1A1A1A;
-  margin-bottom: 0.7rem;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-weight: 500;
-}
-
-.sender-dot {
-  width: 5px;
-  height: 5px;
-  background: #1A1A1A;
-  border-radius: 50%;
-}
-
-.quiz-message p {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.2rem;
-  line-height: 1.6;
-  color: #1A1A1A;
-}
-
-.quiz-options {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-  margin-top: 1.2rem;
-}
-
-.quiz-option {
-  padding: 1.1rem 1.3rem;
-  background: #fff;
-  border: 1px solid #e5e5e5;
-  color: #2A2A2A;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 400;
-  cursor: pointer;
-  transition: all 0.3s;
-  text-align: left;
-}
-
-.quiz-option:hover {
-  border-color: #1A1A1A;
-  background: rgba(92, 21, 24, 0.03);
-  padding-left: 1.6rem;
-}
-
-.quiz-option.selected {
-  border-color: #1A1A1A;
-  background: rgba(92, 21, 24, 0.05);
-}
-
-.quiz-reaction {
-  padding: 1rem 1.5rem;
-  background: #EFEBE5;
-  border-right: 3px solid #1A1A1A;
-  margin-bottom: 1.8rem;
-  text-align: right;
-}
-
-.quiz-reaction p {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.05rem;
-  font-style: italic;
-  color: #1A1A1A;
-}
-
-/* QUIZ RESULT */
-.quiz-result {
-  display: none;
-  text-align: center;
-  animation: quizFade 0.8s ease;
-}
-
-.quiz-result.active { display: block; }
-
-.result-type {
-  font-family: 'Playfair Display', serif;
-  font-size: 2.8rem;
-  font-style: italic;
-  color: #1A1A1A;
-  margin-bottom: 1rem;
-}
-
-.result-description {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.15rem;
-  color: #1A1A1A;
-  margin-bottom: 2rem;
-  line-height: 1.7;
-}
-
-/* TESTIMONIALS */
-.testimonials { background: #EFEBE5; }
-
-.testimonial {
-  max-width: 700px;
-  margin: 4rem auto 0;
-  text-align: center;
-}
-
-.testimonial blockquote {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.4rem;
-  font-style: italic;
-  line-height: 1.6;
-  color: #2A2A2A;
-  margin-bottom: 1.5rem;
-}
-
-.testimonial blockquote::before {
-  content: '"';
-  display: block;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 4rem;
-  color: #1A1A1A;
-  line-height: 1;
-  margin-bottom: 0.5rem;
-}
-
-.testimonial .author {
-  font-size: 0.7rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: #1A1A1A;
-}
-
-.testimonial-dots {
-  display: flex;
-  justify-content: center;
-  gap: 0.4rem;
-  margin-top: 2rem;
-}
-
-.testimonial-dots button {
-  width: 25px;
-  height: 2px;
-  background: #ccc;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.testimonial-dots button.active {
-  background: #1A1A1A;
-  width: 40px;
-}
-
-/* WEBINAR */
-.webinar {
-  background: #1A1A1A;
-  position: relative;
-  overflow: hidden;
-}
-
-.webinar-content {
-  max-width: 800px;
-  margin: 0 auto;
-  position: relative;
-  text-align: center;
-  color: #F6F3EF;
-}
-
-.webinar-badge {
-  display: inline-block;
-  padding: 0.45rem 1.3rem;
-  border: 1px solid rgba(255,255,255,0.5);
-  font-size: 0.6rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: #F6F3EF;
-  margin-bottom: 2rem;
-}
-
-.webinar-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.8rem, 5vw, 3rem);
-  font-weight: 400;
-  line-height: 1.2;
-  margin-bottom: 1rem;
-}
-
-.webinar-title em { color: #D4CEC6; font-style: italic; }
-
-.webinar-sub {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.15rem;
-  font-style: italic;
-  color: rgba(255,255,255,0.85);
-  margin-top: 0.8rem;
-}
-
-.webinar-details {
-  display: flex;
-  justify-content: center;
-  gap: 3rem;
-  margin: 3rem 0;
-  flex-wrap: wrap;
-}
-
-.webinar-detail .label {
-  font-size: 0.55rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.6);
-  margin-bottom: 0.3rem;
-}
-
-.webinar-detail .value {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.2rem;
-  color: #F6F3EF;
-}
-
-.webinar-form {
-  max-width: 450px;
-  margin: 2.5rem auto 0;
-}
-
-.webinar-form input {
-  width: 100%;
-  padding: 0.9rem 1.3rem;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.15);
-  color: #F6F3EF;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 400;
-  margin-bottom: 0.8rem;
-  outline: none;
-  transition: border-color 0.3s;
-}
-
-.webinar-form input::placeholder { color: rgba(255,255,255,0.4); }
-.webinar-form input:focus { border-color: #D4CEC6; }
-
-.webinar-spots {
-  font-size: 0.7rem;
-  color: rgba(255,255,255,0.6);
-  margin-top: 0.8rem;
-}
-
-#webinarSuccess {
-  display: none;
-  margin-top: 2rem;
-}
-
-#webinarSuccess p:first-child {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.6rem;
-  color: #F6F3EF;
-}
-
-#webinarSuccess p:last-child {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1rem;
-  color: rgba(255,255,255,0.6);
-  font-style: italic;
-  margin-top: 0.4rem;
-}
+/* CTA */
+.cta{background:var(--red);text-align:center;padding:4.5rem 2.5rem}
+.cta h2{font-size:clamp(1.8rem,4vw,3rem);font-weight:800;color:#fff;margin-bottom:.8rem}
+.cta p{color:rgba(255,255,255,0.8);font-size:.9rem;font-weight:300;max-width:480px;margin:0 auto 2rem}
 
 /* FOOTER */
-footer {
-  background: #F6F3EF;
-  border-top: 1px solid #e5e5e5;
-  padding: 4rem 3rem;
-}
-
-.footer-content {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 4rem;
-}
-
-.footer-brand h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.6rem;
-  font-weight: 400;
-  color: #1A1A1A;
-}
-
-.footer-brand h2 em { color: #D4CEC6; font-style: italic; }
-
-.footer-brand p {
-  font-size: 0.82rem;
-  color: #1A1A1A;
-  line-height: 1.7;
-  margin-top: 0.5rem;
-}
-
-.footer-col h4 {
-  font-size: 0.6rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: #1A1A1A;
-  margin-bottom: 1.2rem;
-}
-
-.footer-col a {
-  display: block;
-  color: #1A1A1A;
-  text-decoration: none;
-  font-size: 0.82rem;
-  padding: 0.25rem 0;
-  transition: color 0.3s;
-}
-
-.footer-col a:hover { color: #D4CEC6; }
-
-.footer-bottom {
-  max-width: 1100px;
-  margin: 2.5rem auto 0;
-  padding-top: 1.5rem;
-  border-top: 1px solid #e5e5e5;
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.65rem;
-  color: #555;
-}
-
-/* REVEAL */
-.reveal {
-  opacity: 1;
-  transform: translateY(0);
-  transition: all 0.7s ease;
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+footer{background:#000;border-top:1px solid rgba(255,255,255,0.04);padding:2.5rem}
+.f-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem}
+.f-brand{font-weight:700;font-size:.9rem;margin-bottom:.3rem}
+.f-brand span{color:var(--red)}
+.f-brand+p{font-size:.75rem;color:var(--gray);font-weight:300}
+.f-col h4{font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gray);margin-bottom:.8rem;font-weight:600}
+.f-col a{display:block;color:#555;font-size:.75rem;padding:.15rem 0;transition:color .25s;font-weight:300}
+.f-col a:hover{color:var(--red)}
+.f-bottom{max-width:1100px;margin:1.5rem auto 0;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,0.04);display:flex;justify-content:space-between;font-size:.6rem;color:rgba(255,255,255,0.2)}
+.f-bottom a{color:rgba(255,255,255,0.2)}
 
 /* RESPONSIVE */
-@media (max-width: 900px) {
-  section { padding: 5rem 1.5rem; }
-  nav { padding: 1rem 1.5rem; }
-
-  .nav-links { display: none; }
-  .nav-hamburger { display: flex; position: relative; z-index: 1002; }
-
-  .nav-links.open {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    top: 60px;
-    left: 0; right: 0;
-    background: #F6F3EF;
-    align-items: center;
-    z-index: 1001;
-    gap: 0;
-    padding: 1.5rem 2rem 2rem;
-    list-style: none;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-    border-bottom: 1px solid #e5e0d9;
-  }
-
-  .nav-links.open li {
-    width: 100%;
-    text-align: center;
-    padding: 0.5rem 0;
-  }
-
-  .nav-links.open li a { 
-    font-size: 0.85rem; 
-    display: inline-block;
-  }
-
-  .nav-links.open .nav-badge {
-    font-size: 0.75rem !important;
-    padding: 0.6rem 1.5rem !important;
-  }
-
-  .nav-links.open .nav-cta {
-    margin-top: 0.5rem;
-  }
-
-  nav {
-    z-index: 1000;
-  }
-
-  .about-grid {
-    grid-template-columns: 1fr;
-    gap: 0;
-  }
-
-  .about-image {
-    margin-right: 0;
-  }
-
-  .about-image img,
-  .about-image .placeholder {
-    height: 400px;
-  }
-
-  .about-text {
-    margin-left: 0;
-    padding: 2rem 1.5rem;
-    margin-top: -3rem;
-  }
-
-  .image-break { height: 40vh; }
-  
-  .image-break-split { 
-    grid-template-columns: 1fr; 
-    height: auto;
-  }
-  
-  .split-left img { min-height: 350px; }
-  
-  .split-right { padding: 3rem 2rem; }
-
-  .offers-grid { grid-template-columns: 1fr; }
-
-  .footer-content { grid-template-columns: 1fr; gap: 2rem; }
-  .webinar-details { gap: 1.5rem; }
-
-  .hero { padding: 7rem 1.5rem 4rem; }
-}
-
-/* ===== FLYING PODCAST BADGE ===== */
-.flying-badge {
-  position: fixed;
-  top: 5rem;
-  right: 2rem;
-  z-index: 999;
-  background: #0A0A0A;
-  color: #fff;
-  text-decoration: none;
-  padding: 0.8rem 1.3rem;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.62rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-weight: 600;
-  transition: all 0.3s;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  animation: badgeSlideIn 0.8s ease 2s both;
-}
-
-.flying-badge:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
-}
-
-.flying-badge-icon {
-  font-size: 1rem;
-}
-
-.flying-badge-text span {
-  display: block;
-  font-family: 'Playfair Display', serif;
-  font-size: 0.85rem;
-  font-weight: 600;
-  font-style: italic;
-  letter-spacing: 0;
-  text-transform: none;
-}
-
-@keyframes badgeSlideIn {
-  from { opacity: 0; transform: translateX(20px); }
-  to { opacity: 1; transform: translateX(0); }
-}
-
-@media (max-width: 768px) {
-  .flying-badge {
-    top: 4.5rem;
-    right: 1rem;
-    padding: 0.6rem 1rem;
-    font-size: 0.55rem;
-  }
-  .flying-badge-text span {
-    font-size: 0.75rem;
-  }
+@media(max-width:900px){
+  nav{padding:.8rem 1.2rem}
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .nav-links.open{display:flex;flex-direction:column;position:fixed;inset:0;background:#000;justify-content:center;align-items:center;z-index:999;gap:1.8rem}
+  .nav-links.open a{font-size:.9rem;color:#fff}
+  .hero-inner{padding:7rem 1.5rem 4rem}
+  .about{grid-template-columns:1fr}
+  .about-img img{height:350px}
+  .about-text{padding:2.5rem 1.5rem}
+  .offers-grid{grid-template-columns:1fr}
+  .strip{gap:1.8rem;padding:1.5rem 1.2rem}
+  .f-grid{grid-template-columns:1fr;gap:1.5rem}
+  .nl-form{flex-direction:column}
+  .img-break{height:25vh}
+  section,.offers-section,.proof,.nl,.cta{padding-left:1.5rem;padding-right:1.5rem}
 }
 </style>
 </head>
 <body>
 
-<nav id="navbar">
-  <a href="#" class="nav-logo">
-    <div class="nav-logo-mark"><img src="data:image/png;base64,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" alt="CA"></div>
-    <div class="nav-logo-text">THE HOUSE OF<br><span>Dynamics</span></div>
-  </a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#about">Über mich</a></li>
-    <li><a href="#angebote">Angebote</a></li>
-    <li><a href="#quiz">Quiz</a></li>
-    <li><a href="40-impulse.html" class="nav-badge">Gratis Guide</a></li>
-    <li><a href="#webinar">Webinar</a></li>
-    <li><a href="#webinar" class="nav-cta">Jetzt starten</a></li>
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">carina<span>annaprav</span></a>
+  <ul class="nav-links" id="nav">
+    <li><a href="#about">About</a></li>
+    <li><a href="#offers">Angebote</a></li>
+    <li><a href="#proof">Results</a></li>
+    <li><a href="https://tidycal.com/socials1/erstgespraeche" target="_blank" class="nav-cta">Book a Call</a></li>
   </ul>
-  <div class="nav-hamburger" id="hamburger" onclick="toggleNav()">
-    <span></span><span></span><span></span>
-  </div>
+  <div class="hamburger" onclick="document.getElementById('nav').classList.toggle('open')"><span></span><span></span><span></span></div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-bg">
-    <img src="bilder/hero-carina.jpg" alt="">
-    <span class="photo-credit">Foto: <a href="https://instagram.com/sandralavinia" target="_blank">@sandralavinia</a></span>
-  </div>
-  <div class="hero-content">
-    <p class="hero-eyebrow">Business · Energie · Klarheit</p>
-    <h1 class="hero-title">Dein<br><em>Business</em><br>braucht nicht<br>noch eine Strategie.</h1>
-    <p class="hero-subtitle">Es braucht dich. Ohne die Story, die dich klein hält.<br>Ohne den Block, der zwischen dir und deinem Umsatz steht.</p>
-    <div class="hero-buttons">
-      <a href="#quiz" class="btn-primary" style="text-decoration:none;display:inline-block;">Finde heraus, was dich bremst</a>
-      <a href="#webinar" class="btn-secondary" style="text-decoration:none;display:inline-block;">Kostenloses Live-Event</a>
+  <div class="hero-bg"><img src="bilder/hero-carina.jpg" alt="Carina"></div>
+  <div class="hero-inner">
+    <p class="hero-label">Business Mentoring</p>
+    <h1 class="hero-title">Ich sage dir was sich <span>ändern muss.</span> Und dann ändern wir es.</h1>
+    <p class="hero-desc">Hands-on Business Mentoring für Unternehmerinnen die auf 5–20K Monate wollen. Keine Coaching-Sprache. Strategie, Klarheit, Resultate.</p>
+    <div class="hero-btns">
+      <a href="#offers" class="btn btn-r">Angebote</a>
+      <a href="https://tidycal.com/socials1/erstgespraeche" target="_blank" class="btn btn-o">Gespräch buchen</a>
     </div>
   </div>
 </section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-item"><div class="strip-num">795€</div><div class="strip-label">The Intensive</div></div>
+  <div class="strip-item"><div class="strip-num">6 MO</div><div class="strip-label">Intensive Begleitung</div></div>
+  <div class="strip-item"><div class="strip-num">60 MIN</div><div class="strip-label">Und du hast Klarheit</div></div>
+  <div class="strip-item"><div class="strip-num">5–20K</div><div class="strip-label">Dein nächstes Level</div></div>
+</div>
 
 <!-- ABOUT -->
 <section class="about" id="about">
-  <div class="section-line"></div>
-  <p class="section-eyebrow">Wer dahinter steht</p>
-  <h2 class="section-title">Haltung statt <em>Hype</em></h2>
-  <div class="about-grid">
-    <div class="about-image reveal">
-      <img src="bilder/about-you.jpg" alt="Carina">
-      <span class="photo-credit">Foto: <a href="https://instagram.com/sandralavinia" target="_blank">@sandralavinia</a></span>
-    </div>
-    <div class="about-text reveal">
-      <h3>Ich höre, was du sagst. Und ich höre, was du nicht sagst.</h3>
-      <p>Ich bin Carina. Ex-Rocksängerin, preisgekrönte Projektmanagerin, Mutter. Ich habe ein 50k-Business auf Instagram aufgebaut – mit zwei Stunden am Tag und einem Dreijährigen neben mir.</p>
-      <p>Der Weg hierher war nicht gradlinig. Aus einer überarbeiteten Einzelkämpferin wurde Schritt für Schritt ein Business, das trägt – ohne mich aufzufressen. Heute begleite ich Unternehmerinnen dabei, genau das auch zu schaffen.</p>
-      <p>Nicht durch lauter sein. Nicht durch mehr tun. Sondern durch Klarheit, Energie und eine Positionierung, die wirklich zu ihnen passt.</p>
-      <div class="about-tags">
-        <span>Strategin</span>
-        <span>Energiearbeit</span>
-        <span>Mutter</span>
-        <span>Ex-Rocksängerin</span>
-        <span>Projektmanagerin</span>
-        <span>Mentorin</span>
-      </div>
+  <div class="about-img"><img src="bilder/about-you.jpg" alt="Carina"></div>
+  <div class="about-text">
+    <p class="label">Über mich</p>
+    <h2>Ich bin nicht die die nett nickt. Ich bin die die dir sagt was Sache ist.</h2>
+    <p>Ich bin Carina. Ich durchleuchte dein Business in 60 Minuten und sage dir <strong>genau</strong> was sich ändern muss. Angebot, Pricing, Messaging, Content, Sales — alles kommt auf den Tisch.</p>
+    <p>Die meisten geben dir Strategie ODER arbeiten an dir als Mensch. <strong>Ich mache beides.</strong> Weil du beides brauchst um ein Business aufzubauen das Umsatz macht und sich nach dir anfühlt.</p>
+    <p>Genauso warm wie hart. Ich feiere dich wenn du lieferst. Und ich sage dir die Wahrheit wenn du dich selbst belügst.</p>
+    <div class="tags">
+      <span>Strategin</span>
+      <span>Mentorin</span>
+      <span>Ex-Rocksängerin</span>
+      <span>Mama</span>
+      <span>Warm & Hart</span>
     </div>
   </div>
 </section>
 
-<!-- DYNAMIK -->
-<section class="dynamik">
-  <div class="dynamik-bg">
-    <img src="bilder/dynamik-bg.jpg" alt="">
-  </div>
-  <span class="photo-credit">Foto: <a href="https://instagram.com/sandralavinia" target="_blank">@sandralavinia</a></span>
-  <div class="reveal">
-    <p class="dynamik-quote">
-      Du kannst nicht gleichzeitig an deiner Angst festhalten und dein Business skalieren.<br>
-      <strong>Eins muss gehen. Du entscheidest, was.</strong>
-    </p>
-    <p class="dynamik-sub">Das Dynamik-Prinzip</p>
-  </div>
-</section>
+<!-- IMG BREAK -->
+<div class="img-break"><img src="bilder/carina-working.jpg" alt=""></div>
 
 <!-- OFFERS -->
-<section class="offers" id="angebote">
-  <div class="section-line"></div>
-  <p class="section-eyebrow">Zusammenarbeit</p>
-  <h2 class="section-title">Drei Wege. Ein <em>Ziel.</em></h2>
+<section id="offers">
+<div class="offers-section">
+  <p class="label">Angebote</p>
+  <h2>Drei Wege mit mir zu arbeiten.</h2>
+  <p class="sub">Jedes Angebot hat einen klaren Job. Und jedes führt dich weiter.</p>
   <div class="offers-grid">
-    <div class="offer-card reveal">
-      <div class="offer-number">01</div>
-      <h3>Sofort-Session</h3>
-      <p class="offer-price">333 € · Einmalig</p>
-      <p>Eine Stunde. Ein Block. Keine Ausreden. Du sprichst, ich höre – und finde, woran es wirklich hängt.</p>
-      <ul class="offer-includes">
-        <li>60 Min. intensive 1:1 Session</li>
-        <li>Energetische Aktivierung</li>
-        <li>Dein zentraler Block identifiziert</li>
-        <li>Konkreter nächster Schritt</li>
+
+    <div class="card">
+      <div class="card-tier">Tier 1</div>
+      <h3>The Intensive</h3>
+      <p class="card-price">795 € · EINMALIG</p>
+      <p>60 Minuten Business Audit. Ich durchleuchte alles und sage dir was sich ändern muss. Eine Session. Klarheit.</p>
+      <ul>
+        <li>60 Min. 1:1 Business Audit</li>
+        <li>Angebot, Pricing, Messaging — alles auf den Tisch</li>
+        <li>Konkreter Aktionsplan</li>
+        <li>Aufnahme zum Nachhören</li>
       </ul>
-      <a href="https://tidycal.com/socials1/erstgespraeche" target="_blank" class="btn-primary" style="display:inline-block;text-align:center;">Session buchen</a>
+      <a href="https://tidycal.com/socials1/erstgespraeche" target="_blank" class="btn btn-r" style="display:block">Session buchen</a>
     </div>
 
-    <div class="offer-card offer-featured reveal">
-      <div class="offer-badge">Beliebteste Wahl</div>
-      <div class="offer-number">02</div>
-      <h3>Dynamik Business Academy</h3>
-      <p class="offer-price">129 €/Monat</p>
-      <p>Struktur, Klarheit und Community. Für Unternehmerinnen, die nicht mehr alleine vor sich hin arbeiten wollen.</p>
-      <ul class="offer-includes">
-        <li>Monatliche Live-Sessions</li>
-        <li>Energetische Gruppenarbeit</li>
-        <li>Content-Frameworks & Templates</li>
-        <li>Telegram-Community</li>
-        <li>Sales-Training mit KI-Unterstützung</li>
-        <li>Sales-Training & Positionierung</li>
+    <div class="card featured">
+      <div class="badge">Most Popular</div>
+      <div class="card-tier">Tier 2</div>
+      <h3>The Mastermind</h3>
+      <p class="card-price">6 MONATE · LIMITIERT · 5–8K</p>
+      <p>Hands-on Mentoring. Wir bauen dein Business zusammen auf — Strategie, Content, Sales, und ja, auch an dir.</p>
+      <ul>
+        <li>Wöchentliche 1:1 Calls</li>
+        <li>Telegram Support — hands-on, nicht irgendwann</li>
+        <li>Monatliche Group Hot Seats</li>
+        <li>Alle Frameworks & Aufzeichnungen</li>
+        <li>Klarheit → Struktur → Dynamik</li>
+        <li>6 Monate. Bis es steht.</li>
       </ul>
-      <a href="academy.html" class="btn-primary" style="display:inline-block;text-align:center;">Jetzt einsteigen</a>
+      <a href="bewerbung.html" class="btn btn-r" style="display:block">Bewerben</a>
     </div>
 
-    <div class="offer-card reveal">
-      <div class="offer-number">03</div>
-      <h3>The House of Dynamics</h3>
-      <p class="offer-price">Premium · Sommer 2026</p>
-      <p>Das volle Programm. Energie, Positionierung, Content, Sales-System, Fototermin. Alles, was du brauchst – in einem Raum.</p>
-      <ul class="offer-includes">
-        <li>Alles aus der Academy +</li>
-        <li>1:1 Intensiv-Begleitung</li>
-        <li>Professioneller Fototermin</li>
-        <li>Sales-System & Training</li>
-        <li>Website & Salespage Strategie</li>
-        <li>Limitierte Plätze</li>
+    <div class="card">
+      <div class="card-tier">Tier 3</div>
+      <h3>The Collective</h3>
+      <p class="card-price">149 €/MONAT</p>
+      <p>Für Frauen die nicht mehr alleine rumwurschteln wollen aber noch nicht ready für den Mastermind sind.</p>
+      <ul>
+        <li>Monatliche Live Group Calls</li>
+        <li>Content & Sales Frameworks</li>
+        <li>Telegram Community</li>
+        <li>Aufzeichnungen & Templates</li>
       </ul>
-      <a href="bewerbung.html" class="btn-secondary" style="display:inline-block;text-align:center;">Bewerben</a>
+      <a href="/cdn-cgi/l/email-protection#2c5f434f454d405f6c4f4d5e45424d4d42424d5c5e4d5a024d58135f594e46494f5811784449091e1c6f434040494f58455a49" class="btn btn-o" style="display:block">Anfragen</a>
     </div>
+
+  </div>
+</div>
+</section>
+
+<!-- IMG BREAK 2 -->
+<div class="img-break"><img src="bilder/carina-portrait-2.jpg" alt=""></div>
+
+<!-- PROOF -->
+<section class="proof" id="proof">
+  <p class="label">Results</p>
+  <h2>Das sagen die Frauen die mit mir arbeiten.</h2>
+  <div class="proof-card">
+    <blockquote id="pQ">Was Carina mir nach kürzester Zeit gegeben hat an Expertise, Beistand und Support ist nicht von dieser Welt. Hands on!</blockquote>
+    <cite id="pA">— Klientin</cite>
+  </div>
+  <div class="dots">
+    <button class="on" onclick="sp(0)"></button>
+    <button onclick="sp(1)"></button>
+    <button onclick="sp(2)"></button>
+    <button onclick="sp(3)"></button>
   </div>
 </section>
 
-<!-- QUIZ -->
-<section class="quiz-section" id="quiz">
-  <div class="quiz-bg">
-    <img src="bilder/carina-working.jpg" alt="">
+<!-- NEWSLETTER -->
+<section class="nl">
+  <h2>Du willst wissen wie ich denke?</h2>
+  <p>Kein Spam. Kein Funnel-Theater. Strategie, Klartext, und ab und zu ein Tritt.</p>
+  <div class="nl-form" id="nlF">
+    <input type="text" placeholder="Vorname" id="nlN">
+    <input type="email" placeholder="Email" id="nlE">
+    <button class="btn btn-r" onclick="nlSub()">Rein da</button>
   </div>
-  <span class="photo-credit">Foto: <a href="https://instagram.com/sandralavinia" target="_blank">@sandralavinia</a></span>
-  <div class="quiz-container">
-    <div class="quiz-intro reveal">
-      <div class="section-line"></div>
-      <p class="section-eyebrow">Selbstcheck</p>
-      <h2 class="section-title">Fünf Fragen. <em>Ehrlich.</em></h2>
-      <p>Kein Spaß-Quiz. Eher ein kurzes Gespräch, das dir zeigt, wo du wirklich stehst – und was dich dort hält.</p>
-    </div>
-
-    <div class="quiz-progress" id="quizProgress">
-      <div class="progress-dot active"></div>
-      <div class="progress-dot"></div>
-      <div class="progress-dot"></div>
-      <div class="progress-dot"></div>
-      <div class="progress-dot"></div>
-    </div>
-
-    <div class="quiz-chat" id="quizChat">
-      <div class="quiz-step active" data-step="1">
-        <div class="quiz-message">
-          <div class="sender"><span class="sender-dot"></span> Carina</div>
-          <p>Stell dir vor, du wachst morgen auf und denkst an dein Business. Was ist das Erste, das du fühlst?</p>
-        </div>
-        <div class="quiz-options">
-          <button class="quiz-option" onclick="quizAnswer(1, 'fire', this)">Feuer. Ich will loslegen, aber irgendwas bremst mich.</button>
-          <button class="quiz-option" onclick="quizAnswer(1, 'overwhelm', this)">Überforderung. So viel zu tun, keine Ahnung wo anfangen.</button>
-          <button class="quiz-option" onclick="quizAnswer(1, 'doubt', this)">Zweifel. Ob das alles überhaupt funktioniert.</button>
-          <button class="quiz-option" onclick="quizAnswer(1, 'nothing', this)">Gar nichts mehr. Ich funktioniere nur noch.</button>
-        </div>
-      </div>
-
-      <div class="quiz-step" data-step="2">
-        <div class="quiz-reaction"><p id="reaction1"></p></div>
-        <div class="quiz-message">
-          <div class="sender"><span class="sender-dot"></span> Carina</div>
-          <p>Wenn jemand deinen Online-Auftritt sieht – was soll hängen bleiben?</p>
-        </div>
-        <div class="quiz-options">
-          <button class="quiz-option" onclick="quizAnswer(2, 'authority', this)">Die weiß, wovon sie redet. Punkt.</button>
-          <button class="quiz-option" onclick="quizAnswer(2, 'real', this)">Die ist echt. Kein Fake, keine Fassade.</button>
-          <button class="quiz-option" onclick="quizAnswer(2, 'magnetic', this)">Ich will mehr von ihr. Die zieht mich an.</button>
-          <button class="quiz-option" onclick="quizAnswer(2, 'unsure', this)">Ehrlich? Ich weiß nicht mal, was ich ausstrahlen will.</button>
-        </div>
-      </div>
-
-      <div class="quiz-step" data-step="3">
-        <div class="quiz-reaction"><p id="reaction2"></p></div>
-        <div class="quiz-message">
-          <div class="sender"><span class="sender-dot"></span> Carina</div>
-          <p>Dein größter Block sitzt nicht in deiner Strategie. Er sitzt in deiner Geschichte. Was löst dieser Satz in dir aus?</p>
-        </div>
-        <div class="quiz-options">
-          <button class="quiz-option" onclick="quizAnswer(3, 'yes', this)">Stimmt. Ich weiß genau, welche Geschichte mich hält.</button>
-          <button class="quiz-option" onclick="quizAnswer(3, 'curious', this)">Interessant. Welche Geschichte meinst du?</button>
-          <button class="quiz-option" onclick="quizAnswer(3, 'resist', this)">Nein. Ich brauche eine bessere Strategie, nicht Innenschau.</button>
-          <button class="quiz-option" onclick="quizAnswer(3, 'both', this)">Beides. Meine Geschichte und meine Strategie brauchen Arbeit.</button>
-        </div>
-      </div>
-
-      <div class="quiz-step" data-step="4">
-        <div class="quiz-reaction"><p id="reaction3"></p></div>
-        <div class="quiz-message">
-          <div class="sender"><span class="sender-dot"></span> Carina</div>
-          <p>Wie viele Stunden pro Tag arbeitest du an deinem Business?</p>
-        </div>
-        <div class="quiz-options">
-          <button class="quiz-option" onclick="quizAnswer(4, 'hustle', this)">Viel zu viel. 6+ Stunden und trotzdem nicht genug Ergebnisse.</button>
-          <button class="quiz-option" onclick="quizAnswer(4, 'moderate', this)">2-4 Stunden. Ich versuch's mit Balance.</button>
-          <button class="quiz-option" onclick="quizAnswer(4, 'minimal', this)">Kaum. Vielleicht 1 Stunde, wenn's gut läuft.</button>
-          <button class="quiz-option" onclick="quizAnswer(4, 'chaos', this)">Total unregelmäßig. Mal alles, mal nichts.</button>
-        </div>
-      </div>
-
-      <div class="quiz-step" data-step="5">
-        <div class="quiz-reaction"><p id="reaction4"></p></div>
-        <div class="quiz-message">
-          <div class="sender"><span class="sender-dot"></span> Carina</div>
-          <p>Letzte Frage. Wenn in sechs Monaten alles anders wäre – was genau ist anders?</p>
-        </div>
-        <div class="quiz-options">
-          <button class="quiz-option" onclick="quizAnswer(5, 'freedom', this)">Ich will frei sein. Zeitlich, finanziell, emotional.</button>
-          <button class="quiz-option" onclick="quizAnswer(5, 'clarity', this)">Klarheit. Ich will wissen, wer ich bin und was ich will.</button>
-          <button class="quiz-option" onclick="quizAnswer(5, 'income', this)">Umsatz. Ich will endlich das verdienen, was ich wert bin.</button>
-          <button class="quiz-option" onclick="quizAnswer(5, 'all', this)">Alles davon. Ich bin bereit für die komplette Transformation.</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="quiz-result" id="quizResult">
-      <div class="result-type" id="resultType"></div>
-      <div class="result-description" id="resultDesc"></div>
-      <div class="section-line"></div>
-      <p style="font-size: 0.88rem; color: #1A1A1A; margin-top: 2rem;" id="resultReco"></p>
-      <a href="#webinar" class="btn-primary" style="margin-top: 2rem;text-decoration:none;display:inline-block;">Zum kostenlosen Live-Event</a>
-    </div>
-  </div>
+  <p id="nlOk">Du bist drin. Check deine Mails.</p>
 </section>
 
-<!-- IMAGE BREAK 2 -->
-<section class="image-break image-break-split">
-  <div class="split-left">
-    <img src="bilder/carina-portrait-2.jpg" alt="">
-    <span class="photo-credit">Foto: <a href="https://instagram.com/sandralavinia" target="_blank">@sandralavinia</a></span>
-  </div>
-  <div class="split-right">
-    <p class="split-quote">Ich höre, was du sagst.<br>Und ich höre, was du <em>nicht</em> sagst.</p>
-  </div>
+<!-- CTA -->
+<section class="cta">
+  <h2>Bereit?</h2>
+  <p>DM mich auf Instagram oder buch dir ein Gespräch. Kein Pitch. Nur ein ehrlicher Check ob wir zusammenpassen.</p>
+  <a href="https://tidycal.com/socials1/erstgespraeche" target="_blank" class="btn btn-w">Gespräch buchen</a>
 </section>
 
-<!-- TESTIMONIALS -->
-<section class="testimonials" id="testimonials">
-  <div class="section-line"></div>
-  <p class="section-eyebrow">Ergebnisse</p>
-  <h2 class="section-title">Nicht meine Worte. <em>Ihre.</em></h2>
-  <div class="testimonial reveal">
-    <blockquote id="testimonialQuote">Eine Session. Ein Satz von Carina. Und ich habe verstanden, warum ich seit Monaten auf der Stelle trete. Es lag nicht an der Strategie. Es lag an mir.</blockquote>
-    <p class="author" id="testimonialAuthor">— Unternehmerin, 32, Hamburg</p>
-  </div>
-  <div class="testimonial-dots">
-    <button class="active" onclick="showTestimonial(0)"></button>
-    <button onclick="showTestimonial(1)"></button>
-    <button onclick="showTestimonial(2)"></button>
-  </div>
-</section>
-
-<!-- WEBINAR -->
-<section class="webinar" id="webinar">
-  <div class="webinar-content reveal">
-    <div class="webinar-badge">Kostenlos · Live · Begrenzte Plätze</div>
-    <h2 class="webinar-title">Warum dein Business<br><em>nicht wächst</em> –<br>obwohl du alles richtig machst</h2>
-    <p class="webinar-sub">60 Minuten. Ein Block. Kein Verkaufspitch, sondern Klarheit.</p>
-
-    <div class="webinar-details">
-      <div class="webinar-detail">
-        <p class="label">Datum</p>
-        <p class="value">Coming Soon</p>
-      </div>
-      <div class="webinar-detail">
-        <p class="label">Uhrzeit</p>
-        <p class="value">20:00 Uhr</p>
-      </div>
-      <div class="webinar-detail">
-        <p class="label">Dauer</p>
-        <p class="value">60 Min.</p>
-      </div>
-      <div class="webinar-detail">
-        <p class="label">Plätze</p>
-        <p class="value" id="spotsLeft">47 frei</p>
-      </div>
-    </div>
-
-    <div class="webinar-form" id="webinarForm">
-      <input type="text" placeholder="Dein Vorname" id="webinarName">
-      <input type="email" placeholder="Deine E-Mail-Adresse" id="webinarEmail">
-      <button class="btn-primary" style="width: 100%;" onclick="registerWebinar()">Platz sichern</button>
-      <p class="webinar-spots">Kein Spam. Keine Maschen. Nur Substanz.</p>
-    </div>
-
-    <div id="webinarSuccess">
-      <p>Du bist dabei. ✦</p>
-      <p>Check deine Mails — wir sehen uns live.</p>
-    </div>
-  </div>
-</section>
-
+<!-- FOOTER -->
 <footer>
-  <div class="footer-content">
-    <div class="footer-brand">
-      <h2>House of <em>Dynamics</em></h2>
-      <p style="font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: #333; margin-top: 0.3rem;">by Carina Anna Prav</p>
-      <p>Klarheit, Energie und Positionierung für Unternehmerinnen, die es ernst meinen.</p>
+  <div class="f-grid">
+    <div>
+      <p class="f-brand">carina<span>annaprav</span></p>
+      <p>Dein Business Mentoring. Strategie, Klarheit, Resultate.</p>
     </div>
-    <div class="footer-col">
+    <div class="f-col">
       <h4>Navigation</h4>
-      <a href="#about">Über mich</a>
-      <a href="#angebote">Angebote</a>
-      <a href="#quiz">Dynamik-Quiz</a>
-      <a href="40-impulse.html">40 Impulse</a>
-      <a href="#webinar">Webinar</a>
+      <a href="#about">About</a>
+      <a href="#offers">Angebote</a>
+      <a href="#proof">Results</a>
     </div>
-    <div class="footer-col">
+    <div class="f-col">
       <h4>Kontakt</h4>
-      <a href="mailto:socials@carinaannaprav.at">socials@carinaannaprav.at</a>
-      <a href="https://tidycal.com/socials1/erstgespraeche" target="_blank">Session buchen</a>
+      <a href="/cdn-cgi/l/email-protection#295a464a4048455a694a485b40474848474748595b485f07485d"><span class="__cf_email__" data-cfemail="9be8f4f8f2faf7e8dbf8fae9f2f5fafaf5f5faebe9faedb5faef">[email&#160;protected]</span></a>
+      <a href="https://tidycal.com/socials1/erstgespraeche" target="_blank">Gespräch buchen</a>
     </div>
-    <div class="footer-col">
+    <div class="f-col">
       <h4>Rechtliches</h4>
       <a href="impressum.html">Impressum</a>
       <a href="datenschutz.html">Datenschutz</a>
       <a href="agb.html">AGB</a>
     </div>
   </div>
-  <div class="footer-bottom">
-    <span>© 2026 Carina — The House of Dynamics</span>
-    <span style="display: block; margin-top: 0.4rem; font-size: 0.7rem; color: #1A1A1A;">Fotos: <a href="https://instagram.com/sandralavinia" target="_blank" style="color: #444; text-decoration: none;">@sandralavinia</a></span>
-    <span>Built with Dynamik</span>
+  <div class="f-bottom">
+    <span>© 2026 carinaannaprav</span>
+    <span>Fotos: <a href="https://instagram.com/sandralavinia" target="_blank">@sandralavinia</a></span>
   </div>
 </footer>
 
-<!-- FLYING PODCAST BADGE -->
-<a href="podcast.html" class="flying-badge">
-  <span class="flying-badge-icon">🎙</span>
-  <div class="flying-badge-text">
-    Neuer Podcast<br>
-    <span>Truth or Dare</span>
-  </div>
-</a>
-
-<script>
-window.addEventListener('scroll', () => {
-  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
-});
-
-function toggleNav() {
-  const navLinks = document.getElementById('navLinks');
-  const hamburger = document.getElementById('hamburger');
-  navLinks.classList.toggle('open');
-  hamburger.classList.toggle('active');
-}
-
-// Close mobile menu when clicking any nav link
-document.querySelectorAll('#navLinks a').forEach(link => {
-  link.addEventListener('click', () => {
-    document.getElementById('navLinks').classList.remove('open');
-    document.getElementById('hamburger').classList.remove('active');
-  });
-});
-
-function smoothScroll(sel) {
-  document.querySelector(sel).scrollIntoView({ behavior: 'smooth' });
-  document.getElementById('navLinks').classList.remove('open');
-}
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.15 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-let quizAnswers = {};
-const reactions = {
-  1: { fire: "Gut. Die Energie ist da. Dann finden wir jetzt, was sie blockiert.", overwhelm: "Das kenne ich. Und es liegt nicht daran, dass du zu wenig tust.", doubt: "Zweifel sind laut. Aber sie lügen. Meistens jedenfalls.", nothing: "Ehrlich. Und genau hier setzen wir an." },
-  2: { authority: "Autorität kommt von Klarheit. Nicht von laut sein.", real: "Echtheit ist selten geworden. Das ist dein Vorsprung.", magnetic: "Anziehung ist kein Zufall. Es ist Positionierung.", unsure: "Kein Problem. Genau dafür bin ich da." },
-  3: { yes: "Wer seine Geschichte kennt, ist schon halb durch.", curious: "Die Geschichte zeigt sich schneller, als du denkst.", resist: "Verstehe ich. Aber was, wenn die Strategie erst greift, wenn der Block weg ist?", both: "Dann arbeiten wir an beidem. Gleichzeitig." },
-  4: { hustle: "Mehr Stunden sind nicht die Lösung. Dein System braucht ein Update.", moderate: "Gut. Dann sorgen wir dafür, dass diese Stunden wirklich zählen.", minimal: "Wenig Zeit heißt: jede Minute muss sitzen. Genau mein Ansatz.", chaos: "Chaos ist Energie ohne Richtung. Die Richtung kommt jetzt." }
-};
-
-const results = {
-  fire: { type: "Die Antreiberin", desc: "Du hast die Energie – aber etwas bremst dich. Dein Block tarnt sich als Vernunft. Als Vorsicht. Als \"noch nicht bereit\". Das ist er nicht. Er ist eine alte Geschichte, die du dir erzählst.", reco: "Nächster Schritt: Eine Sofort-Session. 60 Minuten, ein Block, Klarheit." },
-  overwhelm: { type: "Die Strategin ohne System", desc: "Du arbeitest viel, aber nicht am Richtigen. Dein Kopf ist voll mit Taktiken, die du irgendwo aufgeschnappt hast. Was fehlt, ist kein Wissen – es ist ein System, das zu dir und deiner Realität passt.", reco: "Nächster Schritt: Die Dynamik Business Academy. Struktur statt Hustle." },
-  doubt: { type: "Die Unterschätzte", desc: "Unter deinem Zweifel liegt Substanz. Du wartest auf Erlaubnis – von dir selbst. Die bekommst du hier nicht. Aber die Klarheit, dass du sie nie gebraucht hast.", reco: "Nächster Schritt: Komm zum kostenlosen Live-Event. Manchmal reicht ein klarer Gedanke." },
-  nothing: { type: "Die vor dem Neuanfang", desc: "Du funktionierst. Aber du lebst dein Business nicht mehr. Das Nichts-Fühlen ist kein Versagen – es ist ein Signal. Dein System sagt dir: So wie bisher geht es nicht weiter.", reco: "Nächster Schritt: The House of Dynamics. Das volle Programm. Alles neu." }
-};
-
-function quizAnswer(step, value, el) {
-  quizAnswers[step] = value;
-  el.parentElement.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('selected'));
-  el.classList.add('selected');
-
-  if (step < 5 && reactions[step]) {
-    const r = document.getElementById('reaction' + step);
-    if (r) r.textContent = reactions[step][value];
-  }
-
-  const dots = document.querySelectorAll('.progress-dot');
-  dots[step - 1].classList.remove('active');
-  dots[step - 1].classList.add('done');
-
-  setTimeout(() => {
-    if (step < 5) {
-      document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
-      document.querySelector('[data-step="' + (step + 1) + '"]').classList.add('active');
-      dots[step].classList.add('active');
-    } else {
-      showQuizResult();
-    }
-  }, 500);
-}
-
-function showQuizResult() {
-  document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
-  document.getElementById('quizProgress').style.display = 'none';
-  const primary = quizAnswers[1] || 'fire';
-  const r = results[primary];
-  document.getElementById('resultType').textContent = r.type;
-  document.getElementById('resultDesc').textContent = r.desc;
-  document.getElementById('resultReco').textContent = r.reco;
-  document.getElementById('quizResult').classList.add('active');
-}
-
-const testimonials = [
-  { quote: "Eine Session. Ein Satz von Carina. Und ich habe verstanden, warum ich seit Monaten auf der Stelle trete. Es lag nicht an der Strategie. Es lag an mir.", author: "— Unternehmerin, 32, Hamburg" },
-  { quote: "Ich dachte, ich brauche ein neues Angebot. Carina hat mir gezeigt, dass ich eine neue Haltung brauche. Seitdem verkaufe ich anders. Besser. Leichter.", author: "— Online-Coach, 28, München" },
-  { quote: "Kein Wischi-Waschi, kein Wohlfühl-Coaching. Carina sagt dir, was Sache ist. Und genau das hat mir gefehlt.", author: "— Selbstständige, 35, Berlin" }
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+const P=[
+  {q:"Was Carina mir nach kürzester Zeit gegeben hat an Expertise, Beistand und Support ist nicht von dieser Welt. Hands on!",a:"— Klientin"},
+  {q:"So mitreißend und straight. Deine Energie ist echt der Hammer. Und gleichzeitig so knallhart auf den Punkt.",a:"— Klientin"},
+  {q:"Unfassbar ist immer diese Schnelligkeit — ich weiß schon genau wie ich es machen will.",a:"— Klientin"},
+  {q:"Die 2-3 Switches haben soviel gemacht. 2 die fürs 1:1 sprechen wollen und 5 Anmeldungen im Pre Launch!",a:"— Klientin"}
 ];
+let ci=0;
+function sp(i){ci=i;document.getElementById('pQ').textContent=P[i].q;document.getElementById('pA').textContent=P[i].a;document.querySelectorAll('.dots button').forEach((b,j)=>{b.className=j===i?'on':''})}
+setInterval(()=>{ci=(ci+1)%P.length;sp(ci)},5000);
 
-let currentTestimonial = 0;
-function showTestimonial(i) {
-  currentTestimonial = i;
-  document.getElementById('testimonialQuote').textContent = testimonials[i].quote;
-  document.getElementById('testimonialAuthor').textContent = testimonials[i].author;
-  document.querySelectorAll('.testimonial-dots button').forEach((b, j) => b.classList.toggle('active', j === i));
-}
-
-setInterval(() => { currentTestimonial = (currentTestimonial + 1) % testimonials.length; showTestimonial(currentTestimonial); }, 6000);
-
-function registerWebinar() {
-  const n = document.getElementById('webinarName').value.trim();
-  const e = document.getElementById('webinarEmail').value.trim();
-  if (!n || !e) return;
-  
-  const btn = document.querySelector('#webinarForm .btn-primary');
-  btn.textContent = 'Wird gesendet...';
-  btn.disabled = true;
-  
-  fetch('/.netlify/functions/newsletter-signup', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name: n, email: e, source: 'Webinar' })
-  })
-  .then(res => {
-    if (res.ok) {
-      document.getElementById('webinarForm').style.display = 'none';
-      document.getElementById('webinarSuccess').style.display = 'block';
-    }
-  })
-  .catch(() => {
-    document.getElementById('webinarForm').style.display = 'none';
-    document.getElementById('webinarSuccess').style.display = 'block';
-  });
-}
-</script>
-</body>
-</html>
+function nlSub(){
+  const n=document.getElementById('nlN').value.trim(),e=document.getElementById('nlE').value.trim();
+  if(!n||!e)return;
+  const b=document.querySelector('#nlF .btn');b.textContent='...';b.disabled=true;
+  fetch('/.netlify/functions/newsletter-signup',{method:'POST',headers:{'Content-

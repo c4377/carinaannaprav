@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Collective — carinaannaprav</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#000;color:#fff;font-family:'Montserrat',sans-serif;font-weight:700;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+:root{--r:#6B0F1A;--rh:#8B1A2B}
+a{color:inherit;text-decoration:none}img{display:block;max-width:100%}
+.b{padding:25px 20px;text-align:center;max-width:700px;margin:0 auto}
+.rbar{background:var(--r);padding:22px 20px;text-align:center}
+.rbar p{font-size:clamp(.8rem,2.5vw,1rem);font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:.02em;line-height:1.7;max-width:650px;margin:0 auto}
+.bhead{font-family:'Anton',sans-serif;font-size:clamp(2rem,7vw,4rem);font-weight:400;text-transform:uppercase;letter-spacing:.02em;line-height:1.1;text-align:center;padding:20px;color:#fff}
+.bhead span{color:var(--r)}
+.top-title{font-family:'Anton',sans-serif;font-size:clamp(1.8rem,6vw,3rem);font-weight:400;text-transform:uppercase;letter-spacing:.03em;line-height:1.1;margin-bottom:12px}
+.subhead{font-size:clamp(.85rem,2.5vw,1.1rem);font-weight:800;color:#ddd;line-height:1.7;text-transform:uppercase;max-width:600px;margin:0 auto 15px}
+.bt{font-size:clamp(1rem,2.8vw,1.15rem);font-weight:700;color:#bbb;line-height:1.8;margin-bottom:12px;text-align:center;max-width:650px;margin-left:auto;margin-right:auto}
+.bt strong{color:#fff;font-weight:800}.bt-left{text-align:left}
+.hero-img{position:relative;max-width:500px;margin:0 auto 15px;overflow:hidden}
+.hero-img img{width:100%;display:block}
+.hero-img::after{content:'';position:absolute;bottom:0;left:0;right:0;height:50%;background:linear-gradient(to top,#000,transparent)}
+.rbtn{display:block;width:100%;max-width:480px;margin:15px auto;background:var(--r);color:#fff;padding:16px 20px;font-family:'Montserrat',sans-serif;font-size:.85rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;border:none;cursor:pointer;transition:all .15s;text-decoration:none;border-radius:6px;text-align:center}.rbtn:hover{background:var(--rh);transform:scale(1.01)}
+.wbtn{background:#fff;color:#000;border-radius:6px}.wbtn:hover{background:#eee}
+.ediv{text-align:center;padding:8px 0;font-size:1rem;letter-spacing:.3rem}
+.fimg{width:100%;overflow:hidden}.fimg img{width:100%;display:block;max-height:380px;object-fit:cover;object-position:top center}
+.sit{text-align:left;margin:0 auto 20px;max-width:650px;padding:0 5px}
+.sit h3{font-size:clamp(1.05rem,2.8vw,1.3rem);font-weight:800;line-height:1.6;color:#fff;margin-bottom:8px}
+.sit p{font-size:clamp(1rem,2.8vw,1.12rem);font-weight:700;color:#bbb;line-height:1.8;margin-bottom:8px}
+.sit .ans{color:var(--r);font-weight:800}.sit .ans strong{color:#fff}
+.bai{font-size:clamp(1rem,2.8vw,1.12rem);font-weight:700;color:#bbb;line-height:1.8;margin-bottom:12px;text-align:left;max-width:650px;margin-left:auto;margin-right:auto;padding:0 5px}
+.bai strong{color:#fff;font-weight:800}
+.wg{text-align:left;max-width:650px;margin:0 auto;padding:18px 5px;border-bottom:1px solid rgba(255,255,255,0.04)}.wg:last-of-type{border-bottom:none}
+.wg h3{font-size:clamp(1rem,2.8vw,1.2rem);font-weight:900;text-transform:uppercase;margin-bottom:8px;letter-spacing:.02em}.wg h3 span{color:var(--r)}
+.wg p{font-size:clamp(1rem,2.8vw,1.12rem);font-weight:700;color:#bbb;line-height:1.8;margin-bottom:8px}.wg p strong{color:#fff}
+.wall{font-size:clamp(1rem,2.8vw,1.12rem);font-weight:800;color:#bbb;margin-bottom:6px;text-align:center}
+.price{font-family:'Anton',sans-serif;font-size:clamp(4rem,15vw,8rem);font-weight:400;color:var(--r);line-height:1;margin-bottom:3px;letter-spacing:.02em}
+.psub{font-size:.9rem;color:#777;font-weight:700;margin-bottom:20px}
+.chk{list-style:none;max-width:460px;margin:0 auto 20px;text-align:left}
+.chk li{font-size:clamp(1rem,2.8vw,1.2rem);font-weight:800;padding:6px 0;color:#fff}
+.fq{text-align:left;max-width:650px;margin:0 auto;border-bottom:1px solid rgba(255,255,255,0.04);padding:14px 0}
+.fq-q{font-size:clamp(.95rem,2.5vw,1.15rem);font-weight:900;text-transform:uppercase;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;transition:color .15s}.fq-q:hover{color:var(--r)}
+.fq-q::after{content:'+';color:var(--r);font-size:1.3rem;font-weight:300;flex-shrink:0;transition:transform .2s}
+.fq.o .fq-q::after{transform:rotate(45deg)}
+.fq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}.fq.o .fq-a{max-height:400px}
+.fq-a p{font-size:1rem;font-weight:700;color:#999;line-height:1.8;padding-top:10px}
+.ph{max-width:550px;margin:0 auto 12px;border:1px dashed rgba(255,255,255,0.06);padding:20px;text-align:center}
+.ph b{display:block;font-size:.95rem;color:#fff;margin-bottom:2px}.ph i{display:block;font-size:.75rem;color:#555;font-style:normal;margin-bottom:4px}.ph em{font-size:.9rem;color:#888;font-weight:600}
+.aphoto{max-width:420px;margin:0 auto 15px;overflow:hidden}.aphoto img{width:100%;object-fit:cover}
+footer{text-align:center;padding:30px 20px;border-top:1px solid rgba(255,255,255,0.04);font-size:.65rem;color:#333;font-weight:600}
+footer a{color:#444;margin:0 4px}footer a:hover{color:var(--r)}
+footer .fb{font-family:'Anton',sans-serif;font-size:.85rem;font-weight:400;color:#444;margin-bottom:5px;text-transform:uppercase;letter-spacing:.03em}footer .fb span{color:var(--r)}
+
+.bg-hero{position:relative;min-height:90vh;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:60px 20px;overflow:hidden}
+.bg-hero::before{content:'';position:absolute;inset:0;background:url('bilder/hero-carina.jpg') center top/cover no-repeat}
+.bg-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.8) 50%,#000 100%)}
+.bg-hero>*{position:relative;z-index:1}
+</style>
+</head>
+<!-- HINTERGRUNDBILD: Ändere 'bilder/hero-carina.jpg' in der .bg-hero CSS Klasse um ein anderes Bild zu verwenden -->
+<body>
+
+<div class="bg-hero">
+  <div class="top-title">THE <span style="color:var(--r)">COLLECTIVE</span></div>
+  <p class="subhead">NEBENWIRKUNGEN: KLARHEIT DIE WEHTUT. NACHFRAGE DIE SICH AUFBAUT. UND EIN BUSINESS DAS NICHT MEHR VON DEINER TAGESFORM ABHÄNGT.</p>
+  <a href="#invest" class="rbtn" style="max-width:400px">JETZT STARTEN 💸</a>
+</div>
+
+<div class="ediv">🔥💸🔥💸🔥</div>
+
+<div class="b">
+  <p class="subhead">HIER MACHEN WIR AUS DEINEN GUTEN MONATEN DEINE <strong>NORMALITÄT</strong> — OHNE DASS DU DAFÜR DEIN LEBEN OPFERST, DICH VERSTELLST ODER RUND UM DIE UHR ONLINE SEIN MUSST.</p>
+</div>
+
+<div class="ediv">🔥💸🔥💸🔥</div>
+
+<!-- 3 SITUATIONEN -->
+<div class="bhead">DAS COLLECTIVE IST GENAU DAS RICHTIGE FÜR DICH WENN EINE DIESER 3 SITUATIONEN GERADE <span>DEINE REALITÄT IST...</span></div>
+
+<div class="b">
+  <div class="sit">
+    <p>👊</p>
+    <h3>Du arbeitest. Jeden. Verdammten. Tag. Du bist die disziplinierteste Person die du kennst wenn es um Content geht... aber dein Umsatz, deine Nachfrage und deine Verkäufe bewegen sich einfach nicht — und du hast es SO satt dir zu sagen „gib dem Ganzen noch mehr Zeit".</h3>
+    <p>Hier respektieren wir den Aufwand den dieses Business braucht, wir wissen dass es hart ist, UND wir wissen auch dass es IMMER einen Grund gibt warum die Ergebnisse nicht kommen. Im Collective finden wir die Lücke und schließen sie.</p>
+  </div>
+
+  <div class="sit">
+    <p>👊</p>
+    <h3>Du hast Nachfrage und Umsatz in deinem Business — aber NUR wenn du gerade einen Aktionspreis anbietest, ein Freebie rausbringst oder ein Mini-Angebot als „Berührungspunkt" gibst. Es funktioniert — deshalb machst du es ja weiter — ABER dein Business hängt jetzt davon ab und die Nachfrage verschwindet genauso schnell wie sie kam.</h3>
+    <p>Hier bauen wir echten wiederkehrenden Umsatz auf weil wir wissen wie man Nachfrage nicht nur ERZEUGT sondern auch HÄLT — ohne Gratis-Angebote, Billig-Aktionen oder Preise drücken. JA BITTE.</p>
+  </div>
+
+  <div class="sit">
+    <p>👊</p>
+    <h3>Dein Umsatz und deine Nachfrage sind auf einem ALLZEITHOCH, Kundinnen kaufen links und rechts, deine Angebote sind ausverkauft — und du willst dass dieses Hoch dein MINIMUM wird.</h3>
+    <p>Hier verdoppeln wir unsere Verkäufe indem wir die Nachfrage nutzen um noch MEHR Nachfrage aufzubauen. Das funktioniert das ganze Jahr — nicht nur wenn du gerade „im Flow" bist.</p>
+  </div>
+
+  <a href="#invest" class="rbtn">JA DAS BIN ICH — ICH BIN DABEI! 🔥</a>
+</div>
+
+<!-- EHRLICHKEIT -->
+<div class="rbar"><p>ICH BIN JETZT BRUTAL EHRLICH MIT DIR WEIL ICH WEISS DASS DU DIE ART FRAU BIST DIE VERSTEHEN WILL WARUM ES NOCH NICHT LÄUFT — STATT SICH MIT „WIRD SCHON" ABSPEISEN ZU LASSEN.</p></div>
+
+<!-- KLARHEIT -->
+<div class="bhead">KLARHEIT <span>AUFBAUEN</span></div>
+<div class="b">
+  <p class="bt bt-left">Wenn du...</p>
+  <p class="bt bt-left">👉 <strong>eine Änderung im Algorithmus</strong><br>👉 <strong>eine blöde Phase im Privatleben</strong><br>👉 <strong>ein paar Kundinnen die abspringen</strong><br>👉 <strong>1-2 Verträge die auslaufen</strong><br>👉 oder <strong>EINEN schwachen Monat</strong></p>
+  <p class="bt bt-left">...davon entfernt bist in Panik zu geraten wegen deines Umsatzes...</p>
+  <p class="bt bt-left"><strong>dann ist dein größter Hebel: Klarheit und Struktur aufbauen.</strong></p>
+  <p class="bt bt-left">NICHT...</p>
+  <p class="bt bt-left">Noch ein Gratis-Webinar machen<br>Deine Preise halbieren<br>Alle zwei Monate eine neue Strategie<br>Noch mehr posten obwohl das offensichtlich nicht das Problem ist<br>Noch ein neues Mini-Angebot basteln<br>„Abwarten"<br>Alles zum halben Preis raushauen</p>
+  <p class="bt bt-left">...erwischt? Ich mich auch. Aber hier ist was ich gelernt hab: <strong>Das alles erzeugt nur kurze Strohfeuer.</strong> Die Nachfrage kommt und geht genauso schnell. Es gibt dir ein kurzes Hoch und dann stehst du wieder da wo du angefangen hast. Das ändern wir hier.</p>
+</div>
+
+<!-- STRUKTUR -->
+<div class="bhead">STRUKTUR <span>HALTEN</span></div>
+<div class="b">
+  <p class="bt bt-left">Dein innerer Dialog? Lenkt dich ab und zerstört deine Nachfrage. <strong>Und ich bin die Erste die dir sagt: Ständig wieder bei null anfangen zu müssen ist NICHT normal.</strong></p>
+  <p class="bt bt-left"><strong>„Was werden die über mich denken wenn ich Grenzen setze?"</strong></p>
+  <p class="bt bt-left"><strong>„Was wenn jemand mich dafür öffentlich angreift?"</strong></p>
+  <p class="bt bt-left"><strong>„Das wird doch niemand bezahlen."</strong></p>
+  <p class="bt bt-left">Und wohin führt das? Du verlangst viel zu wenig für das was du lieferst. Deine Kundinnen bekommen Support den es nirgendwo sonst gibt — und du gibst ihn für einen Preis her bei dem fünfstellige Monate mathematisch gar nicht möglich sind.</p>
+  <p class="bt bt-left">Du traust dich in deinem Content nicht so zu reden wie du es hinter den Kulissen tust. Du verwässerst deine Wahrheit. Und wir wissen beide: wenn du stabile fünfstellige Monate willst, <strong>dann ist klare Überzeugung kein Nice-to-have sondern Voraussetzung.</strong></p>
+  <p class="bt bt-left"><strong>Deine Grenzen? Stehen felsenfest.</strong> Angst vor Gegenwind? Den nutzt du. Selbstzweifel? Dafür bist du viel zu beschäftigt mit Umsetzen... und genau das passiert wenn du dich mit jemandem umgibst der versteht wie Nachfrage wirklich entsteht und bleibt.</p>
+</div>
+
+<div class="fimg"><img src="bilder/carina-portrait-2.jpg" alt="" style="object-position:top"></div>
+
+<!-- DYNAMIK -->
+<div class="bhead"><span>DYNAMIK</span> NUTZEN</div>
+<div class="b">
+  <p class="bt"><strong>Diese Arbeit macht mich an!!!!</strong> Die vorhandene Nachfrage nutzen um NOCH MEHR Nachfrage, Verkäufe und Umsatz aufzubauen ist mit Abstand die beste Phase. Meine Kundinnen verdoppeln ihren Umsatz — MINIMUM — ohne mehr zu tun als vorher. <strong>Wenn du deine Nachfrage nicht nutzt, verschenkst du Geld. Punkt.</strong></p>
+</div>
+
+<div style="height:2px;background:linear-gradient(90deg,var(--r),#000,var(--r))"></div>
+
+<!-- VORHER -->
+<div class="bhead">DU VORHER...</div>
+<div style="background:#0a0a0a;padding:25px 20px">
+  <div class="bai">🫣 <strong>Du hast Angst dass dir jemand widerspricht</strong>, also klingt dein Content wie eine weichgespülte Version von dem was du einer Kundin wirklich sagen würdest.</div>
+  <div class="bai">🫣 <strong>Deine Grenzen sind verhandelbar</strong> — je nachdem wer gerade Druck macht. Du tust so als wäre dein Wert davon abhängig wie viel Zugang du gibst, weil du ja „sO sEhR cArSt" — und erklärst dich ständig dafür.</div>
+  <div class="bai">🫣 <strong>Du behandelst Nachfrage wie etwas das dir zufällt</strong> statt wie etwas das du aufbaust. Deshalb kommt sie in Wellen — abhängig von deiner Tagesform, deiner Stimmung oder davon ob gerade jemand von außen anschiebt.</div>
+  <div class="bai">🫣 <strong>Wenn es sich schwer anfühlt denkst du sofort etwas stimmt nicht mit dir.</strong> Du ziehst dich zurück, wirst unsichtbar, verwechselst eine ruhige Phase mit „ich bin auf dem falschen Weg" und lässt deine Gefühle dein Business steuern statt in Führung zu bleiben.</div>
+  <div class="bai">🫣 <strong>Du entscheidest was sich andere leisten können bevor DIE es tun.</strong> Du nimmst niedrigere Preise weil sich das sicherer anfühlt und filterst deine Angebote danach wer du GLAUBST dass kauft.</div>
+  <div class="bai">🫣 <strong>Du denkst Vertrauen entsteht durch Nähe.</strong></div>
+</div>
+
+<!-- NACHHER -->
+<div class="bhead" style="color:var(--r)">DU NACHHER... 💰</div>
+<div class="b">
+  <div class="bai">💰 <strong>Du stehst so fest in dir selbst dass Gegenwind dich nicht mehr verunsichert</strong> — du nutzt ihn für deinen Content und deine Verkaufsgespräche.</div>
+  <div class="bai">💰 <strong>Deine Grenzen stehen nicht zur Diskussion.</strong> Wer sie nicht akzeptiert darf gehen. So oder so — du bist gut damit.</div>
+  <div class="bai">💰 <strong>Nachfrage ist dein Normalzustand</strong> — egal was passiert. Du handelst bevor die Angst überhaupt zu Ende denken kann. Deine Überzeugung führt und die Ergebnisse folgen. Nicht andersrum.</div>
+  <div class="bai">💰 <strong>Schwere Phasen werfen dich nicht um — sie machen dich stärker.</strong> Du bleibst sichtbar, entscheidungsfreudig und bei dir selbst auch wenn es sich gerade schwer anfühlt.</div>
+  <div class="bai">💰 <strong>Du erwartest das Beste von jedem Tag.</strong> Du hörst auf zu entscheiden ob andere „bereit" sind. Du führst Menschen zu dem was sie können — nicht zu ihren Ausreden. Dein Preis zeigt auf welchem Level du arbeitest.</div>
+  <div class="bai">💰 <strong>Du WEISST: Vertrauen entsteht durch Positionierung.</strong></div>
+  <div class="bai">💰 <strong>Du versuchst nicht mehr souverän zu klingen — du BIST es.</strong> Dein Content fühlt sich unvermeidlich an, dein Publikum fühlt sich geführt, und Verkäufe sind ein Nebenprodukt davon wer du bist — nichts was du erzwingst.</div>
+</div>
+
+<!-- ÜBER MICH -->
+<div class="bhead">HALLO HALLO HALLO!!! ICH BIN <span>CARINA,</span></div>
+<div class="b">
+  <p class="bt"><strong>Ex-Rocksängerin, preisgekrönte Projektmanagerin, Mama, und Strategin die absolut HUNGRIG nach Wirkung ist.</strong></p>
+  <div class="aphoto"><img src="bilder/about-you.jpg" alt="Carina"></div>
+  <p class="bt bt-left">Ich hab auf internationalen Bühnen gesungen bevor ich angefangen hab Frauen zu zeigen wie sie ihr Business aufbauen — mit Kind auf dem Arm.</p>
+  <p class="bt bt-left">Was mich von den meisten unterscheidet? <strong>Ich gebe dir nicht nur Strategie.</strong> Ich durchleuchte dein gesamtes Business — Angebot, Preise, Content, Verkauf, Positionierung — und sage dir GENAU was sich ändern muss. Und dann ändern wir es zusammen.</p>
+  <p class="bt bt-left">Ich liebe gute Kundenerfahrung, ich liebe es wenn meine Kundinnen unverhältnismäßig gut verdienen, und ich liebe es dass ich das alles machen kann <strong>während ich für die Momente da bin die wirklich zählen.</strong></p>
+  <p class="bt bt-left"><strong>Bei mir bekommst du jemanden der sich darauf freut ALLES mit dir mitzumachen.</strong> Die Hochs und die Tiefs. Ich feiere mit dir wenn es läuft — und ich halte dich wenn es sich schwer anfühlt und erinnere dich daran dass das eine Wachstumsphase ist, kein Rückschritt.</p>
+  <p class="bt" style="color:#fff"><strong>Für dich gibt es keine Obergrenze.</strong></p>
+  <p class="bt" style="color:#fff">Mit Klarheit, Carina.</p>
+</div>
+
+<!-- ERGEBNISSE -->
+<div class="bhead">KUNDINNEN DIE DEN <span>COLLECTIVE EFFEKT</span> VERKÖRPERN...</div>
+<div class="b">
+  <div class="ph"><b>[Name]</b><i>@[handle]</i><em>[Ergebnis + Screenshot hier]</em></div>
+  <div class="ph"><b>[Name]</b><i>@[handle]</i><em>[Ergebnis]</em></div>
+  <div class="ph"><b>[Name]</b><i>@[handle]</i><em>[Ergebnis]</em></div>
+  <div class="ph"><b>[Name]</b><i>@[handle]</i><em>[Ergebnis]</em></div>
+</div>
+
+<div class="rbar"><p>DAS HIER IST WO FLAUTEN AUFHÖREN ZU EXISTIEREN...</p></div>
+
+<!-- WAS DU BEKOMMST -->
+<div class="bhead">DAS STECKT IM <span>COLLECTIVE.</span></div>
+<div class="b">
+  <div class="wg"><h3>VIDEO-TRAININGS: <span>KLARHEIT → STRUKTUR → DYNAMIK</span></h3><p>Das ist der Content den du auf Instagram NICHT bekommst. <strong>Mein komplettes Framework als tiefe Video-Trainings</strong> — Schritt für Schritt, von Positionierung über Angebotserstellung bis zu Content der verkauft. Kein Oberflächen-Wissen. Das hier geht unter die Haut.</p></div>
+  <div class="wg"><h3>LIVE GROUP CALLS <span>2X PRO MONAT — MIT MIR</span></h3><p><strong>Zweimal im Monat sitzt du mit mir live im Call.</strong> Das ist kein aufgezeichnetes Webinar und kein Call den jemand anderes macht. ICH bin da. Du bringst mit was gerade bei dir los ist, wir schauen es uns an, finden die Lücke — <strong>und du gehst mit einem klaren nächsten Schritt raus.</strong></p></div>
+  <div class="wg"><h3>SLACK <span>COMMUNITY</span></h3><p><strong>Keine Wohlfühl-Gruppe.</strong> Eine Community von Frauen die umsetzen, sich gegenseitig herausfordern und sich nicht mit Mittelmaß zufriedengeben. Hier feierst du deine Erfolge. Hier stellst du die Fragen die du dich sonst nicht traust. <strong>Verbindlichkeit macht dich nicht „unsicher". Es macht dich zur Frau die die Messlatte so hoch legt dass es ihr selbst manchmal Angst macht.</strong></p></div>
+  <div class="wg"><h3>VORLAGEN & <span>RESSOURCEN</span></h3><p>Fertige Vorlagen, Content-Gerüste, Positionierungs-Werkzeuge — <strong>alles was du brauchst um nicht bei null anzufangen.</strong></p></div>
+</div>
+
+<div class="fimg"><img src="bilder/carina-working.jpg" alt="" style="max-height:320px;object-fit:cover"></div>
+
+<!-- WAS DU NICHT BEKOMMST -->
+<div class="bhead">WAS DU IM COLLECTIVE <span>NICHT</span> BEKOMMST.</div>
+<div class="b">
+  <div class="wall">❌ <strong>Keinen direkten Zugang zu mir im Einzelgespräch</strong></div>
+  <div class="wall">❌ <strong>Keinen Voxer-Support</strong></div>
+  <div class="wall">❌ <strong>Kein 1:1-Feedback</strong></div>
+  <br>
+  <p class="bt">Collective = <strong>Video-Trainings + Live Group Calls + Slack Community.</strong> Inner Circle = <strong>MICH. Jede Woche. Direkt auf deinem Business.</strong> Wer im Collective merkt „ich brauch mehr" — <strong><a href="inner-circle.html" style="color:var(--r)">bewirbt sich.</a></strong></p>
+</div>
+
+<div class="rbar"><p>ES GIBT IMMER EINEN GRUND WARUM DU NICHT DIE ERGEBNISSE HAST DIE DU WILLST. DAS HIER IST DAS PROGRAMM IN DEM WIR DIESEN GRUND FINDEN UND DEIN BUSINESS SO AUFSTELLEN DASS ERGEBNISSE WIE DIESE DEIN STANDARD WERDEN...</p></div>
+
+<!-- INVESTMENT -->
+<div class="b" id="invest" style="padding-top:30px">
+  <div class="bhead">DEIN <span>INVESTMENT:</span></div>
+  <div class="price">297€</div>
+  <div class="psub">PRO MONAT · MONATLICH KÜNDBAR</div>
+  <ul class="chk">
+    <li>✅ Video-Trainings: Klarheit → Struktur → Dynamik</li>
+    <li>✅ Live Group Calls 2x pro Monat mit Carina</li>
+    <li>✅ Slack Community</li>
+    <li>✅ Vorlagen & Ressourcen</li>
+  </ul>
+  <a href="#" class="rbtn">JETZT INS COLLECTIVE 💸</a>
+</div>
+
+<!-- FAQ -->
+<div class="bhead">HÄUFIGE <span>FRAGEN</span></div>
+<div class="b">
+  <div class="fq"><div class="fq-q" onclick="this.parentElement.classList.toggle('o')">FÜR WEN IST DAS COLLECTIVE?</div><div class="fq-a"><p>Für selbstständige Frauen die endlich aufhören wollen zu raten. Du brauchst kein bestimmtes Umsatz-Level. Du brauchst die Bereitschaft ehrlich hinzuschauen und umzusetzen.</p></div></div>
+  <div class="fq"><div class="fq-q" onclick="this.parentElement.classList.toggle('o')">WIE LANGE BIN ICH DABEI?</div><div class="fq-a"><p>Monatlich kündbar. Kein Vertrag. Du bleibst solange es dir Ergebnisse bringt.</p></div></div>
+  <div class="fq"><div class="fq-q" onclick="this.parentElement.classList.toggle('o')">WAS WENN ICH MERKE DASS ICH MEHR BRAUCHE?</div><div class="fq-a"><p>Dann gibt es den Inner Circle. Bewerbungspflicht, mindestens 3 Monate. Kein automatischer Wechsel — du bewirbst dich, wir sprechen, und dann entscheiden wir gemeinsam.</p></div></div>
+  <div class="fq"><div class="fq-q" onclick="this.parentElement.classList.toggle('o')">ICH HAB SCHON SO VIEL GEKAUFT UND NICHTS HAT FUNKTIONIERT.</div><div class="fq-a"><p>Weil du hier nicht noch mehr Wissen bekommst. Du bekommst Klarheit darüber was du mit dem Wissen tun sollst. Die meisten scheitern nicht am Wissen — sie scheitern an der Reihenfolge.</p></div></div>
+</div>
+
+<div class="b" style="padding:40px 20px">
+  <div class="bhead">DU WEISST DASS DU <span>BEREIT BIST.</span></div>
+  <p class="bt"><strong>Hör auf zu warten. Hör auf zu raten. Fang an umzusetzen.</strong></p>
+  <a href="#" class="rbtn wbtn">JETZT INS COLLECTIVE 🔥</a>
+</div>
+
+<footer>
+  <div class="fb">CARINA<span>ANNAPRAV</span></div>
+  <a href="index.html">Home</a> · <a href="inner-circle.html">Inner Circle</a> · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <a href="agb.html">AGB</a>
+  <p style="margin-top:10px">© 2026 carinaannaprav · Fotos: <a href="https://instagram.com/sandralavinia" target="_blank">@sandralavinia</a></p>
+</footer>
+
+</body>
+</html>

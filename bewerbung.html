@@ -3,129 +3,74 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="color-scheme" content="dark">
-<title>Bewerbung — The Mastermind</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
+<title>Bewerbung — The Inner Circle</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{background:#000;color:#fff;font-family:'Poppins',sans-serif;font-weight:400;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-::selection{background:#C8102E;color:#fff}
-:root{--red:#C8102E;--gray:#999;--card:#111}
+body{background:#000;color:#fff;font-family:'Montserrat',sans-serif;font-weight:700;line-height:1.7;-webkit-font-smoothing:antialiased}
+:root{--r:#6B0F1A;--rh:#8B1A2B}
 a{color:inherit;text-decoration:none}
 
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1rem 2.5rem;display:flex;justify-content:space-between;align-items:center;background:rgba(0,0,0,0.88);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.04)}
-.logo{font-weight:700;font-size:.95rem;letter-spacing:.02em;color:#fff}
-.logo span{color:var(--red)}
+.top{padding:1rem 2rem;text-align:center;border-bottom:1px solid rgba(255,255,255,0.04)}
+.top a{font-family:'Anton',sans-serif;font-size:.85rem;font-weight:400;color:#555;text-transform:uppercase;letter-spacing:.03em}.top a span{color:var(--r)}
 
-.page-top{padding:9rem 2.5rem 3rem;text-align:center;max-width:650px;margin:0 auto}
-.page-top h1{font-size:clamp(2rem,5vw,3.5rem);font-weight:800;margin-bottom:.8rem}
-.page-top h1 span{color:var(--red)}
-.page-top p{color:var(--gray);font-size:.9rem;font-weight:300;line-height:1.8}
+.hero{padding:50px 20px 25px;text-align:center;max-width:600px;margin:0 auto}
+.hero h1{font-family:'Anton',sans-serif;font-size:clamp(2rem,7vw,3.5rem);font-weight:400;text-transform:uppercase;letter-spacing:.02em;line-height:1.1;margin-bottom:12px}
+.hero h1 span{color:var(--r)}
+.hero p{font-size:1rem;font-weight:700;color:#bbb;line-height:1.8}
+.hero p strong{color:#fff}
 
-.form-wrap{max-width:560px;margin:0 auto;padding:2rem 2rem 5rem}
-.note{font-size:.78rem;color:var(--gray);font-weight:300;padding:1rem 1.2rem;border-left:2px solid var(--red);background:rgba(200,16,46,0.04);margin-bottom:2.5rem;line-height:1.7}
-.fg{margin-bottom:1.8rem}
-.fg label{display:block;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--red);margin-bottom:.5rem;font-weight:700}
-.fg input,.fg textarea,.fg select{width:100%;padding:.85rem 1rem;background:var(--card);border:1px solid rgba(255,255,255,0.08);color:#fff;font-family:'Poppins',sans-serif;font-size:.85rem;font-weight:300;outline:none;transition:border-color .25s}
-.fg input::placeholder,.fg textarea::placeholder{color:#444}
-.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--red)}
-.fg textarea{min-height:110px;resize:vertical}
-.fg select{appearance:none;cursor:pointer}
-.fg select option{background:var(--card);color:#fff}
+.form-wrap{max-width:520px;margin:20px auto;padding:0 20px 50px}
+.note{font-size:.9rem;color:#999;font-weight:700;padding:15px 18px;border-left:3px solid var(--r);background:rgba(155,17,30,0.05);margin-bottom:30px;line-height:1.8}
+.fg{margin-bottom:20px}
+.fg label{display:block;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--r);margin-bottom:6px;font-weight:800}
+.fg input,.fg textarea,.fg select{width:100%;padding:14px 16px;background:#0a0a0a;border:1px solid rgba(255,255,255,0.06);color:#fff;font-family:'Montserrat',sans-serif;font-size:.9rem;font-weight:600;outline:none;transition:border-color .15s;border-radius:4px}
+.fg input::placeholder,.fg textarea::placeholder{color:#444;font-weight:500}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--r)}
+.fg textarea{min-height:120px;resize:vertical}
+.fg select{appearance:none;cursor:pointer}.fg select option{background:#0a0a0a;color:#fff}
 
-.btn{display:inline-block;padding:.85rem 2.2rem;font-family:'Poppins',sans-serif;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;transition:all .25s;cursor:pointer;border:none;width:100%;text-align:center;background:var(--red);color:#fff}
-.btn:hover{background:#E01535}
-.btn:disabled{opacity:.5;cursor:not-allowed}
+.submit{display:block;width:100%;padding:16px;background:var(--r);color:#fff;font-family:'Montserrat',sans-serif;font-size:.85rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;border:none;cursor:pointer;transition:all .15s;border-radius:6px}
+.submit:hover{background:var(--rh)}.submit:disabled{opacity:.5;cursor:not-allowed}
 
-#ok{display:none;text-align:center;padding:4rem 2rem}
-#ok h2{font-size:2.2rem;font-weight:800;margin-bottom:.8rem}
-#ok h2 span{color:var(--red)}
-#ok p{color:var(--gray);font-size:.88rem;font-weight:300}
+#ok{display:none;text-align:center;padding:60px 20px}
+#ok h2{font-family:'Anton',sans-serif;font-size:2rem;font-weight:400;text-transform:uppercase;margin-bottom:12px}
+#ok h2 span{color:var(--r)}
+#ok p{font-size:1rem;font-weight:700;color:#999;line-height:1.8}
 
-footer{background:#000;border-top:1px solid rgba(255,255,255,0.04);padding:2rem 2.5rem;text-align:center}
-footer a{color:#444;font-size:.7rem;margin:0 .8rem;transition:color .25s;font-weight:300}
-footer a:hover{color:var(--red)}
-
-@media(max-width:900px){
-  .page-top{padding:7rem 1.5rem 2rem}
-  .form-wrap{padding:1.5rem 1.5rem 4rem}
-  nav{padding:.8rem 1.2rem}
-}
+footer{text-align:center;padding:25px;border-top:1px solid rgba(255,255,255,0.04);font-size:.65rem;color:#333;font-weight:600}
+footer a{color:#444;margin:0 4px}footer a:hover{color:var(--r)}
 </style>
 </head>
 <body>
 
-<nav>
-  <a href="index.html" class="logo">carina<span>annaprav</span></a>
-</nav>
+<div class="top"><a href="index.html">carina<span>annaprav</span></a></div>
 
-<div class="page-top">
-  <h1>The <span>Mastermind</span></h1>
-  <p>6 Monate. Limitierte Plätze. Hands-on. Wenn du bereit bist wirklich was zu ändern — bewirb dich. Ich melde mich innerhalb von 48h.</p>
+<div class="hero">
+  <h1>THE <span>INNER CIRCLE</span></h1>
+  <p>Bewerbungspflicht. Begrenzte Plätze. Hands-on. Wenn du bereit bist wirklich etwas zu verändern — bewirb dich. <strong>Ich melde mich innerhalb von 48 Stunden.</strong></p>
 </div>
 
 <div class="form-wrap" id="form">
-  <div class="note">Ich nehme nicht jede Bewerberin an. Nicht weil ich besser bin — sondern weil ich weiß wem ich wirklich helfen kann. Diese Fragen helfen mir das einzuschätzen.</div>
-
+  <div class="note">Ich nehme nicht jede Bewerberin an. Nicht weil ich mich für etwas Besseres halte — sondern weil ich weiß wem ich wirklich helfen kann. Diese Fragen helfen mir das einzuschätzen.</div>
   <div class="fg"><label>Vorname</label><input type="text" id="fn" placeholder="Dein Vorname"></div>
   <div class="fg"><label>Nachname</label><input type="text" id="ln" placeholder="Dein Nachname"></div>
   <div class="fg"><label>Email</label><input type="email" id="em" placeholder="Deine Email"></div>
   <div class="fg"><label>Instagram / Website</label><input type="text" id="so" placeholder="Handle oder URL"></div>
   <div class="fg"><label>Was ist dein Business?</label><textarea id="biz" placeholder="Was bietest du an, für wen, und seit wann?"></textarea></div>
-  <div class="fg"><label>Wo stehst du umsatzmäßig?</label>
-    <select id="exp">
-      <option value="">Bitte wählen</option>
-      <option value="0-1k">0–1K/Monat</option>
-      <option value="1-3k">1–3K/Monat</option>
-      <option value="3-5k">3–5K/Monat</option>
-      <option value="5-10k">5–10K/Monat</option>
-      <option value="10k+">10K+/Monat</option>
-    </select>
-  </div>
+  <div class="fg"><label>Wo stehst du umsatzmäßig?</label><select id="exp"><option value="">Bitte wählen</option><option value="0-1k">0–1K/Monat</option><option value="1-3k">1–3K/Monat</option><option value="3-5k">3–5K/Monat</option><option value="5-10k">5–10K/Monat</option><option value="10k+">10K+/Monat</option></select></div>
   <div class="fg"><label>Größte Herausforderung gerade?</label><textarea id="ch" placeholder="Sei ehrlich. Je konkreter desto besser."></textarea></div>
-  <div class="fg"><label>Wo willst du in 6 Monaten stehen?</label><textarea id="go" placeholder="Umsatz, Lifestyle, Angebot — was soll anders sein?"></textarea></div>
-  <div class="fg"><label>Bereit zu investieren?</label>
-    <select id="inv">
-      <option value="">Bitte wählen</option>
-      <option value="ja">Ja, ich bin bereit</option>
-      <option value="kommt-drauf-an">Kommt auf das Angebot an</option>
-      <option value="unsicher">Noch unsicher</option>
-    </select>
-  </div>
-  <button class="btn" onclick="send()">Bewerbung absenden</button>
+  <div class="fg"><label>Wo willst du in 3 Monaten stehen?</label><textarea id="go" placeholder="Umsatz, Alltag, Angebote — was soll anders sein?"></textarea></div>
+  <div class="fg"><label>Bereit zu investieren?</label><select id="inv"><option value="">Bitte wählen</option><option value="ja">Ja, ich bin bereit</option><option value="kommt-drauf-an">Kommt auf das Gespräch an</option><option value="unsicher">Noch unsicher</option></select></div>
+  <button class="submit" onclick="send()">BEWERBUNG ABSENDEN 🔥</button>
 </div>
 
-<div id="ok">
-  <h2>Bewerbung <span>erhalten.</span></h2>
-  <p>Ich lese deine Antworten persönlich und melde mich innerhalb von 48h. Kein Pitch — nur ein ehrlicher Check ob wir zusammenpassen.</p>
-</div>
+<div id="ok"><h2>BEWERBUNG <span>ERHALTEN.</span></h2><p>Ich lese deine Antworten persönlich und melde mich innerhalb von 48 Stunden. Kein Verkaufsgespräch — nur ein ehrlicher Check ob wir zusammenpassen.</p></div>
 
-<footer>
-  <a href="index.html">Zurück</a>
-  <a href="impressum.html">Impressum</a>
-  <a href="datenschutz.html">Datenschutz</a>
-</footer>
+<footer><a href="index.html">Zurück</a> · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></footer>
 
 <script>
-function send(){
-  const d={
-    firstname:document.getElementById('fn').value.trim(),
-    lastname:document.getElementById('ln').value.trim(),
-    email:document.getElementById('em').value.trim(),
-    social:document.getElementById('so').value.trim(),
-    business:document.getElementById('biz').value.trim(),
-    experience:document.getElementById('exp').value,
-    challenge:document.getElementById('ch').value.trim(),
-    goal:document.getElementById('go').value.trim(),
-    investment:document.getElementById('inv').value
-  };
-  if(!d.firstname||!d.email||!d.business||!d.challenge){alert('Bitte Vorname, Email, Business und Herausforderung ausfüllen.');return}
-  const b=document.querySelector('#form .btn');b.textContent='Wird gesendet...';b.disabled=true;
-  fetch('/.netlify/functions/application-submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)})
-  .then(r=>{if(r.ok){document.getElementById('form').style.display='none';document.getElementById('ok').style.display='block'}else{b.textContent='Bewerbung absenden';b.disabled=false;alert('Fehler. Bitte nochmal.')}})
-  .catch(()=>{b.textContent='Bewerbung absenden';b.disabled=false;alert('Verbindungsfehler.')});
-}
+function send(){const d={firstname:document.getElementById('fn').value.trim(),lastname:document.getElementById('ln').value.trim(),email:document.getElementById('em').value.trim(),social:document.getElementById('so').value.trim(),business:document.getElementById('biz').value.trim(),experience:document.getElementById('exp').value,challenge:document.getElementById('ch').value.trim(),goal:document.getElementById('go').value.trim(),investment:document.getElementById('inv').value};if(!d.firstname||!d.email||!d.business||!d.challenge){alert('Bitte Vorname, Email, Business und Herausforderung ausfüllen.');return}const b=document.querySelector('#form .submit');b.textContent='WIRD GESENDET...';b.disabled=true;fetch('/.netlify/functions/application-submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)}).then(r=>{if(r.ok){document.getElementById('form').style.display='none';document.getElementById('ok').style.display='block'}else{b.textContent='BEWERBUNG ABSENDEN 🔥';b.disabled=false;alert('Fehler. Bitte nochmal.')}}).catch(()=>{b.textContent='BEWERBUNG ABSENDEN 🔥';b.disabled=false;alert('Verbindungsfehler.')})}
 </script>
 </body>
 </html>

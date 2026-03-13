@@ -9,175 +9,303 @@
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#000;color:#fff;font-family:'Montserrat',sans-serif;font-weight:700;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-:root{--r:#6B0F1A;--rh:#8B1A2B}
+body{background:#fff;color:#1a1a1a;font-family:'Montserrat',sans-serif;font-weight:600;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+:root{--r:#6B0F1A;--rh:#8B1A2B;--dark:#1a1a1a;--gray:#f5f5f5;--border:#e0e0e0}
 a{color:inherit;text-decoration:none}img{display:block;max-width:100%}
-.b{padding:25px 20px;text-align:center;max-width:700px;margin:0 auto}
-.rbar{background:var(--r);padding:22px 20px;text-align:center}
-.rbar p{font-size:clamp(.8rem,2.5vw,1rem);font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:.02em;line-height:1.7;max-width:650px;margin:0 auto}
-.bhead{font-family:'Anton',sans-serif;font-size:clamp(2rem,7vw,4rem);font-weight:400;text-transform:uppercase;letter-spacing:.02em;line-height:1.1;text-align:center;padding:20px;color:#fff}.bhead span{color:var(--r)}
-.top-title{font-family:'Anton',sans-serif;font-size:clamp(1.8rem,6vw,3rem);font-weight:400;text-transform:uppercase;letter-spacing:.03em;line-height:1.1;margin-bottom:12px}
-.subhead{font-size:clamp(.85rem,2.5vw,1.1rem);font-weight:800;color:#ddd;line-height:1.7;text-transform:uppercase;max-width:600px;margin:0 auto 15px}
-.bt{font-size:clamp(1rem,2.8vw,1.15rem);font-weight:700;color:#bbb;line-height:1.8;margin-bottom:12px;text-align:center;max-width:650px;margin-left:auto;margin-right:auto}.bt strong{color:#fff;font-weight:800}.bt-left{text-align:left}
-.hero-img{position:relative;max-width:500px;margin:0 auto 15px;overflow:hidden}.hero-img img{width:100%;display:block}.hero-img::after{content:'';position:absolute;bottom:0;left:0;right:0;height:50%;background:linear-gradient(to top,#000,transparent)}
-.rbtn{display:block;width:100%;max-width:480px;margin:15px auto;background:var(--r);color:#fff;padding:16px 20px;font-family:'Montserrat',sans-serif;font-size:.85rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;border:none;cursor:pointer;transition:all .15s;text-decoration:none;border-radius:6px;text-align:center}.rbtn:hover{background:var(--rh);transform:scale(1.01)}
-.wbtn{background:#fff;color:#000;border-radius:6px}.wbtn:hover{background:#eee}
-.ediv{text-align:center;padding:8px 0;font-size:1rem;letter-spacing:.3rem}
-.fimg{width:100%;overflow:hidden}.fimg img{width:100%;display:block;max-height:380px;object-fit:cover;object-position:top center}
-.sit{text-align:left;margin:0 auto 20px;max-width:650px;padding:0 5px}
-.sit h3{font-size:clamp(1.05rem,2.8vw,1.3rem);font-weight:800;line-height:1.6;color:#fff;margin-bottom:8px}
-.sit p{font-size:clamp(1rem,2.8vw,1.12rem);font-weight:700;color:#bbb;line-height:1.8;margin-bottom:8px}
-.sit .ans{color:var(--r);font-weight:800}.sit .ans strong{color:#fff}
-.bai{font-size:clamp(1rem,2.8vw,1.12rem);font-weight:700;color:#bbb;line-height:1.8;margin-bottom:12px;text-align:left;max-width:650px;margin-left:auto;margin-right:auto;padding:0 5px}.bai strong{color:#fff;font-weight:800}
-.wg{text-align:left;max-width:650px;margin:0 auto;padding:18px 5px;border-bottom:1px solid rgba(255,255,255,0.04)}.wg:last-of-type{border-bottom:none}
-.wg h3{font-size:clamp(1rem,2.8vw,1.2rem);font-weight:900;text-transform:uppercase;margin-bottom:8px;letter-spacing:.02em}.wg h3 span{color:var(--r)}
-.wg p{font-size:clamp(1rem,2.8vw,1.12rem);font-weight:700;color:#bbb;line-height:1.8;margin-bottom:8px}.wg p strong{color:#fff}
-.aphoto{max-width:420px;margin:0 auto 15px;overflow:hidden}.aphoto img{width:100%;object-fit:cover}
-.ph{max-width:550px;margin:0 auto 12px;border:1px dashed rgba(255,255,255,0.06);padding:20px;text-align:center}
-.ph b{display:block;font-size:.95rem;color:#fff;margin-bottom:2px}.ph i{display:block;font-size:.75rem;color:#555;font-style:normal;margin-bottom:4px}.ph em{font-size:.9rem;color:#888;font-weight:600}
-.price{font-family:'Anton',sans-serif;font-size:clamp(4rem,15vw,8rem);font-weight:400;color:var(--r);line-height:1;margin-bottom:3px;letter-spacing:.02em}
-.psub{font-size:.9rem;color:#777;font-weight:700;margin-bottom:20px}
-.chk{list-style:none;max-width:460px;margin:0 auto 20px;text-align:left}
-.chk li{font-size:clamp(1rem,2.8vw,1.2rem);font-weight:800;padding:6px 0;color:#fff}
-.fq{text-align:left;max-width:650px;margin:0 auto;border-bottom:1px solid rgba(255,255,255,0.04);padding:14px 0}
-.fq-q{font-size:clamp(.95rem,2.5vw,1.15rem);font-weight:900;text-transform:uppercase;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;transition:color .15s}.fq-q:hover{color:var(--r)}
-.fq-q::after{content:'+';color:var(--r);font-size:1.3rem;font-weight:300;flex-shrink:0;transition:transform .2s}
-.fq.o .fq-q::after{transform:rotate(45deg)}
-.fq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}.fq.o .fq-a{max-height:400px}
-.fq-a p{font-size:1rem;font-weight:700;color:#999;line-height:1.8;padding-top:10px}
-.upg{text-align:center;padding:18px;font-size:1rem;font-weight:800;color:#888}.upg a{color:var(--r)}
-footer{text-align:center;padding:30px 20px;border-top:1px solid rgba(255,255,255,0.04);font-size:.65rem;color:#333;font-weight:600}
-footer a{color:#444;margin:0 4px}footer a:hover{color:var(--r)}
-footer .fb{font-family:'Anton',sans-serif;font-size:.85rem;font-weight:400;color:#444;margin-bottom:5px;text-transform:uppercase;letter-spacing:.03em}footer .fb span{color:var(--r)}
 
-.bg-hero{position:relative;min-height:90vh;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:60px 20px;overflow:hidden}
-.bg-hero::before{content:'';position:absolute;inset:0;background:url('bilder/hero-carina.jpg') center top/cover no-repeat}
-.bg-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.8) 50%,#000 100%)}
-.bg-hero>*{position:relative;z-index:1}
+/* SECTIONS */
+.sec{padding:60px 20px}
+.sec-dark{background:var(--dark);color:#fff}
+.sec-gray{background:var(--gray)}
+.sec-red{background:var(--r);color:#fff}
+
+/* CONTAINER */
+.cont{max-width:800px;margin:0 auto;text-align:center}
+.cont-wide{max-width:1100px}
+
+/* TYPOGRAPHY */
+.bhead{font-family:'Anton',sans-serif;font-size:clamp(2.2rem,7vw,4.5rem);font-weight:400;text-transform:uppercase;letter-spacing:.02em;line-height:1.1;text-align:center;margin-bottom:20px}
+.bhead span{color:var(--r)}
+.sec-dark .bhead span{color:#fff;text-decoration:underline;text-decoration-color:var(--r);text-decoration-thickness:4px;text-underline-offset:8px}
+
+.subhead{font-size:clamp(.95rem,2.5vw,1.2rem);font-weight:800;line-height:1.6;text-transform:uppercase;max-width:700px;margin:0 auto 25px;letter-spacing:.02em}
+
+.bt{font-size:clamp(1.05rem,2.8vw,1.25rem);font-weight:600;line-height:1.8;margin-bottom:15px;color:#333}
+.bt strong{color:var(--dark);font-weight:800}
+.bt-left{text-align:left}
+.sec-dark .bt{color:#ddd}
+.sec-dark .bt strong{color:#fff}
+
+/* BUTTONS */
+.rbtn{display:inline-block;background:var(--r);color:#fff;padding:18px 40px;font-family:'Montserrat',sans-serif;font-size:.9rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;border:none;cursor:pointer;transition:all .2s;text-decoration:none;border-radius:8px;margin:10px 0;box-shadow:0 4px 20px rgba(107,15,26,0.25)}.rbtn:hover{background:var(--rh);transform:translateY(-2px);box-shadow:0 6px 25px rgba(107,15,26,0.35)}
+.wbtn{background:#fff;color:var(--dark);box-shadow:0 4px 20px rgba(0,0,0,0.1)}.wbtn:hover{background:#f5f5f5;box-shadow:0 6px 25px rgba(0,0,0,0.15)}
+
+/* HERO */
+.hero{position:relative;min-height:85vh;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:80px 20px;overflow:hidden;background:var(--dark)}
+.hero::before{content:'';position:absolute;inset:0;background:url('bilder/hero-carina.jpg') center top/cover no-repeat;opacity:0.15}
+.hero>*{position:relative;z-index:1}
+.hero-title{font-family:'Anton',sans-serif;font-size:clamp(2.5rem,9vw,5.5rem);font-weight:400;text-transform:uppercase;letter-spacing:.02em;line-height:1;color:#fff;margin-bottom:25px}
+.hero-title span{color:var(--r)}
+.hero-sub{font-size:clamp(1rem,3vw,1.35rem);font-weight:800;color:#bbb;line-height:1.6;text-transform:uppercase;max-width:750px;margin:0 auto 35px;letter-spacing:.02em}
+
+/* DIVIDERS */
+.ediv{text-align:center;padding:15px 0;font-size:1.2rem;letter-spacing:.4rem;background:var(--gray)}
+
+/* CARDS */
+.card{background:#fff;border-radius:12px;padding:35px 25px;margin:25px auto;max-width:700px;box-shadow:0 4px 20px rgba(0,0,0,0.06);border:1px solid var(--border);text-align:left}
+.sec-dark .card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);box-shadow:none}
+.card h3{font-size:clamp(1.15rem,3vw,1.45rem);font-weight:900;line-height:1.5;color:var(--dark);margin-bottom:12px;text-transform:uppercase;letter-spacing:.01em}
+.card p{font-size:clamp(1.05rem,2.8vw,1.2rem);font-weight:600;color:#555;line-height:1.8}
+.sec-dark .card h3{color:#fff}
+.sec-dark .card p{color:#bbb}
+.card-emoji{font-size:2rem;margin-bottom:10px;display:block}
+
+/* IMAGE SECTIONS */
+.fimg{width:100%;max-height:450px;overflow:hidden;background:var(--gray)}
+.fimg img{width:100%;height:100%;object-fit:cover;object-position:center}
+
+/* ABOUT PHOTO */
+.aphoto{max-width:500px;margin:0 auto 30px;border-radius:16px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,0.12)}
+.aphoto img{width:100%;display:block}
+
+/* FEATURES */
+.feat{background:#fff;border-radius:12px;padding:30px 25px;margin:20px 0;border-left:4px solid var(--r);box-shadow:0 2px 15px rgba(0,0,0,0.05)}
+.feat h3{font-size:clamp(1.1rem,3vw,1.35rem);font-weight:900;text-transform:uppercase;margin-bottom:10px;letter-spacing:.01em;color:var(--dark)}
+.feat h3 span{color:var(--r)}
+.feat p{font-size:clamp(1.05rem,2.8vw,1.2rem);font-weight:600;color:#555;line-height:1.8}
+.feat p strong{color:var(--dark);font-weight:800}
+
+/* PRICING */
+.price-box{background:#fff;border-radius:16px;padding:50px 30px;max-width:600px;margin:0 auto;box-shadow:0 8px 35px rgba(0,0,0,0.12);border:2px solid var(--r)}
+.price{font-family:'Anton',sans-serif;font-size:clamp(4rem,15vw,8.5rem);font-weight:400;color:var(--r);line-height:1;margin-bottom:8px;letter-spacing:.02em}
+.psub{font-size:1rem;color:#777;font-weight:700;margin-bottom:30px;text-transform:uppercase;letter-spacing:.05em}
+.chk{list-style:none;text-align:left;max-width:480px;margin:0 auto 30px}
+.chk li{font-size:clamp(1.05rem,2.8vw,1.25rem);font-weight:800;padding:10px 0;color:var(--dark);border-bottom:1px solid var(--border)}
+.chk li:last-child{border-bottom:none}
+
+/* FAQ */
+.fq{max-width:750px;margin:0 auto;background:#fff;border-radius:12px;margin-bottom:15px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.06);border:1px solid var(--border)}
+.fq-q{font-size:clamp(1rem,2.5vw,1.2rem);font-weight:900;text-transform:uppercase;cursor:pointer;padding:20px 25px;display:flex;justify-content:space-between;align-items:center;gap:15px;transition:all .2s;color:var(--dark)}
+.fq-q:hover{background:var(--gray);color:var(--r)}
+.fq-q::after{content:'+';color:var(--r);font-size:1.8rem;font-weight:300;flex-shrink:0;transition:transform .2s}
+.fq.o .fq-q::after{transform:rotate(45deg)}
+.fq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;background:var(--gray)}
+.fq.o .fq-a{max-height:500px}
+.fq-a p{font-size:1.05rem;font-weight:600;color:#555;line-height:1.8;padding:20px 25px}
+
+/* FOOTER */
+footer{text-align:center;padding:40px 20px;background:var(--dark);color:#666;font-size:.75rem;font-weight:600}
+footer a{color:#888;margin:0 6px;transition:color .2s}
+footer a:hover{color:var(--r)}
+footer .fb{font-family:'Anton',sans-serif;font-size:1rem;font-weight:400;color:#888;margin-bottom:8px;text-transform:uppercase;letter-spacing:.03em}
+footer .fb span{color:var(--r)}
+
+/* UPGRADE */
+.upg{background:rgba(107,15,26,0.05);border-radius:12px;padding:25px;margin:30px 0;border:2px dashed var(--r)}
+.upg p{font-size:1.1rem;font-weight:800;color:var(--dark);text-align:center}
+.upg a{color:var(--r);text-decoration:underline}
 </style>
 </head>
-<!-- HINTERGRUNDBILD: Ändere 'bilder/hero-carina.jpg' in der .bg-hero CSS Klasse um ein anderes Bild zu verwenden -->
 <body>
 
-<div class="bg-hero">
-  <div class="top-title">THE <span style="color:var(--r)">INNER CIRCLE</span></div>
-  <p class="subhead">NEBENWIRKUNGEN: ENTSCHEIDUNGEN IN MINUTEN STATT TAGEN. EINE MENTORIN DIE WIRKLICH MITARBEITET. UND EIN BUSINESS DAS STEHT — WEIL WIR ES ZUSAMMEN GEBAUT HABEN.</p>
-  <a href="#invest" class="rbtn" style="max-width:400px">JETZT BEWERBEN 🔥</a>
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-title">THE <span>INNER CIRCLE</span></div>
+  <p class="hero-sub">NEBENWIRKUNGEN: ENTSCHEIDUNGEN IN MINUTEN STATT TAGEN. EINE MENTORIN DIE WIRKLICH MITARBEITET. UND EIN BUSINESS DAS STEHT — WEIL WIR ES ZUSAMMEN GEBAUT HABEN.</p>
+  <a href="#invest" class="rbtn">JETZT BEWERBEN 🔥</a>
 </div>
 
-<div class="ediv">🔥💸🔥💸🔥</div>
-
-<div class="b"><p class="bt"><strong>Hier arbeitest du nicht alleine an deinem Business. Hier arbeiten WIR daran.</strong> Ich bin nicht im Hintergrund. Ich bin neben dir. Jede. Verdammte. Woche.</p></div>
-
-<div class="ediv">🔥💸🔥💸🔥</div>
-
-<div class="bhead">DER INNER CIRCLE IST GENAU DAS RICHTIGE FÜR DICH WENN EINE DIESER 3 SITUATIONEN <span>AUF DICH ZUTRIFFT...</span></div>
-
-<div class="b">
-  <div class="sit"><p>👊</p><h3>Du machst Umsatz, aber es fühlt sich an wie ein Kartenhaus. Ein schlechter Monat, eine Stornierung, ein Launch der nicht zündet — und alles wackelt. Du brauchst keine Tipps. Du brauchst jemanden der mit dir zusammen das Fundament neu baut.</h3><p class="ans"><strong>Im Inner Circle</strong> bauen wir dein Business so auf dass es nicht zusammenbricht wenn du mal eine Woche nicht postest.</p></div>
-
-  <div class="sit"><p>👊</p><h3>Du weißt was du kannst. Deine Kundinnen lieben dich. Aber du steckst fest — irgendwo zwischen „läuft ganz gut" und „das ist nicht das was ich eigentlich will". Du siehst dass mehr drin ist aber du kommst alleine nicht drauf WO der Hebel ist.</h3><p class="ans"><strong>Im Inner Circle</strong> finde ICH den Hebel. Nicht du alleine. Wir zusammen. Und dann drücken wir.</p></div>
-
-  <div class="sit"><p>👊</p><h3>Du hast das Collective gemacht — oder etwas Vergleichbares — und merkst: Du hast das Wissen. Was du jetzt brauchst ist MICH. Auf deinem Business. Nicht auf einer Gruppe. Auf DEINEM. Jede Woche. Mein Blick. Mein Feedback. Meine Strategie.</h3><p class="ans"><strong>Im Inner Circle</strong> bekommst du genau das.</p></div>
-
-  <a href="#invest" class="rbtn">JA DAS BIN ICH — ICH BIN DABEI!</a>
+<!-- INTRO -->
+<div class="sec sec-gray">
+  <div class="cont">
+    <div class="ediv">🔥💸🔥💸🔥</div>
+    <p class="bt" style="margin-top:30px"><strong>Hier arbeitest du nicht alleine an deinem Business. Hier arbeiten WIR daran.</strong> Ich bin nicht im Hintergrund. Ich bin neben dir. Jede. Verdammte. Woche.</p>
+  </div>
 </div>
 
-<div class="rbar"><p>ICH BIN BRUTAL EHRLICH MIT DIR. DAS IST MEIN JOB. UND DAS IST DER GRUND WARUM MEINE KUNDINNEN ERGEBNISSE HABEN VON DENEN ANDERE DENKEN SIE SEIEN UNMÖGLICH.</p></div>
+<!-- 3 SITUATIONEN -->
+<div class="sec">
+  <div class="cont">
+    <div class="bhead">DER INNER CIRCLE IST GENAU DAS RICHTIGE FÜR DICH WENN EINE DIESER 3 SITUATIONEN <span>AUF DICH ZUTRIFFT...</span></div>
+    
+    <div class="card">
+      <span class="card-emoji">👊</span>
+      <h3>Dein Business fühlt sich an wie ein Kartenhaus.</h3>
+      <p>Du machst Umsatz, aber es fühlt sich zerbrechlich an. Ein schlechter Monat, eine Stornierung, ein Launch der nicht zündet — und alles wackelt. Du brauchst keine Tipps. Du brauchst jemanden der mit dir zusammen das Fundament neu baut.</p>
+      <p style="margin-top:15px;color:var(--r);font-weight:800">→ Im Inner Circle bauen wir dein Business so auf dass es nicht zusammenbricht wenn du mal eine Woche nicht postest.</p>
+    </div>
 
-<div class="bhead">DU VORHER...</div>
-<div style="background:#0a0a0a;padding:25px 20px">
-  <div class="bai">🫣 <strong>Du triffst Entscheidungen alleine</strong> — und zweifelst danach drei Tage ob es die richtige war. Du wünschst dir jemanden der dein Business so gut kennt wie du — und trotzdem den Blick von außen hat den du nicht haben KANNST weil du mittendrin steckst.</div>
-  <div class="bai">🫣 <strong>Du hast ein Angebot das „eigentlich gut" ist</strong> aber irgendwas stimmt nicht und du weißt nicht was. Also schraubst du dran rum. Wieder. Und wieder. Und wieder.</div>
-  <div class="bai">🫣 <strong>Du investierst in Programme in denen du eine von 50 bist.</strong> Du stellst deine Frage im Call und bekommst eine Standardantwort die auf jede passt. Oder noch schlimmer: „Schau dir das Training nochmal an." Igitt.</div>
-  <div class="bai">🫣 <strong>Du machst vieles richtig.</strong> Aber du verschwendest Zeit mit Dingen die nicht den größten Hebel haben — weil dir niemand sagt was du WEGLASSEN sollst.</div>
-  <div class="bai">🫣 <strong>Du bist erschöpft.</strong> Nicht weil du zu wenig willst. Sondern weil du zu viel alleine trägst.</div>
+    <div class="card">
+      <span class="card-emoji">👊</span>
+      <h3>Du steckst zwischen „läuft ganz gut" und „das ist nicht das was ich eigentlich will".</h3>
+      <p>Du weißt was du kannst. Deine Kundinnen lieben dich. Aber du siehst dass mehr drin ist — und du kommst alleine nicht drauf WO der Hebel ist.</p>
+      <p style="margin-top:15px;color:var(--r);font-weight:800">→ Im Inner Circle finde ICH den Hebel. Nicht du alleine. Wir zusammen. Und dann drücken wir.</p>
+    </div>
+
+    <div class="card">
+      <span class="card-emoji">👊</span>
+      <h3>Du bist es leid alleine zu entscheiden.</h3>
+      <p>Jede Entscheidung wird zum Drama weil niemand da ist der versteht was du tust. Du brauchst keine weiteren Frameworks. Du brauchst eine Sparringspartnerin die dein Business kennt wie ihre eigene Handtasche.</p>
+      <p style="margin-top:15px;color:var(--r);font-weight:800">→ Im Inner Circle kennen wir dein Business SO gut dass du nicht mehr alles alleine durchdenken musst. Wir denken es gemeinsam durch.</p>
+    </div>
+  </div>
 </div>
 
-<div class="fimg"><img src="bilder/carina-portrait-2.jpg" alt="" style="object-position:top"></div>
+<!-- IMAGE BREAK -->
+<div class="fimg"><img src="bilder/carina-portrait-2.jpg" alt=""></div>
 
-<div class="bhead" style="color:var(--r)">DU NACHHER... 💰</div>
-<div class="b">
-  <div class="bai">💰 <strong>Du triffst Entscheidungen in Minuten statt Tagen</strong> — weil du eine Sparringspartnerin hast die mitdenkt. Du schickst eine Nachricht, du bekommst eine Antwort. Nicht in fünf Tagen. DAZWISCHEN.</div>
-  <div class="bai">💰 <strong>Dein Angebot steht so fest dass du aufhörst daran rumzuschrauben.</strong> Es verkauft sich. Du weißt warum. Diskussion beendet.</div>
-  <div class="bai">💰 <strong>Du bekommst kein „schau dir das Training an."</strong> Du bekommst: „Ändere DAS an deinem Angebot. Schreib DIESEN Post. Setz DIESEN Preis." Konkret. Für DICH. Nicht für eine Gruppe von 50.</div>
-  <div class="bai">💰 <strong>Du hast eine Mentorin die dein Business im Detail kennt</strong> — und die Lücken sieht BEVOR du reinfällst.</div>
-  <div class="bai">💰 <strong>Du bist nicht mehr allein mit den schweren Entscheidungen.</strong> Und das. Ändert. Alles.</div>
+<!-- WIE ES FUNKTIONIERT -->
+<div class="sec sec-dark">
+  <div class="cont">
+    <div class="bhead">SO FUNKTIONIERT DER <span>INNER CIRCLE.</span></div>
+    <p class="bt">Das Collective gibt dir Strategie. <strong>Der Inner Circle gibt dir mich.</strong> Jede Woche. Direkt auf deinem Business. Ich bin nicht da um dir zu sagen was du machen sollst — ich bin da um es mit dir zu machen.</p>
+  </div>
 </div>
 
-<div class="bhead">IM INNER CIRCLE BEKOMMST DU NICHT „EINE MENTORIN". DU BEKOMMST <span>MICH.</span></div>
-<div class="b">
-  <p class="bt" style="color:#fff"><strong>Strategin. Mentorin. Ex-Rocksängerin. Mama. </strong></p>
-  <div class="aphoto"><img src="bilder/about-you.jpg" alt="Carina"></div>
-  <p class="bt bt-left">Ich sage dir nicht was du hören willst. <strong>Ich sage dir was du hören musst.</strong> Und dann zeige ich dir wie du es umsetzt.</p>
-  <p class="bt bt-left">Ich feiere mit dir wenn es läuft und bin genauso aufgeregt wie du. Ich halte dich wenn es schwer wird. <strong>Und ich sage dir die Wahrheit auch wenn sie unbequem ist — weil ich deine Ergebnisse respektiere und deine Zeit wertschätze.</strong></p>
-
+<!-- ÜBER MICH -->
+<div class="sec">
+  <div class="cont">
+    <div class="bhead">NOCH MAL FÜR ALLE DIE NEU SIND — <span>ICH BIN CARINA,</span></div>
+    <p class="bt"><strong>Ex-Rocksängerin, preisgekrönte Projektmanagerin, Mama, und Strategin die absolut HUNGRIG nach Wirkung ist.</strong></p>
+    <div class="aphoto"><img src="bilder/about-you.jpg" alt="Carina"></div>
+    <p class="bt bt-left">Ich hab auf internationalen Bühnen gesungen bevor ich angefangen hab Frauen zu zeigen wie sie ihr Business aufbauen — mit Kind auf dem Arm.</p>
+    <p class="bt bt-left">Was mich von den meisten unterscheidet? <strong>Ich gebe dir nicht nur Strategie.</strong> Ich durchleuchte dein gesamtes Business — Angebot, Preise, Content, Verkauf, Positionierung — und sage dir GENAU was sich ändern muss. Und dann ändern wir es zusammen.</p>
+    <p class="bt bt-left"><strong>Im Inner Circle bin ich nicht deine Cheerleaderin.</strong> Ich bin die Person die dir sagt „das funktioniert nicht" wenn es nicht funktioniert — UND die mit dir zusammen rausfindet was stattdessen funktioniert.</p>
+    <p class="bt bt-left">Ich bin nicht nett. Ich bin klar. Und wenn du bereit bist für jemanden der sich nicht scheut dir die Wahrheit zu sagen — dann ist der Inner Circle dein Platz.</p>
+    <p class="bt" style="color:var(--r);font-weight:900;font-size:1.3rem;margin-top:25px"><strong>Für dich gibt es keine Obergrenze.</strong></p>
+    <p class="bt" style="font-weight:900">Mit Klarheit, Carina.</p>
+  </div>
 </div>
 
-<div class="bhead">KUNDINNEN DIE AUFGEHÖRT HABEN <span>ALLEINE ZU KÄMPFEN.</span></div>
-<div class="b">
-  <div class="ph"><b>[Name]</b><i>@[handle]</i><em>[Ergebnis — Veränderung durch direkte Zusammenarbeit]</em></div>
-  <div class="ph"><b>[Name]</b><i>@[handle]</i><em>[Ergebnis]</em></div>
-  <div class="ph"><b>[Name]</b><i>@[handle]</i><em>[Ergebnis]</em></div>
+<!-- RED BAR -->
+<div class="sec sec-red">
+  <div class="cont">
+    <p class="subhead" style="margin:0">DAS HIER IST WO WIR AUS DEINEM BUSINESS ETWAS BAUEN DAS HÄLT...</p>
+  </div>
 </div>
 
-<div class="rbar"><p>DAS HIER IST WO DU AUFHÖRST ALLEINE ZU BAUEN...</p></div>
+<!-- WAS DU BEKOMMST -->
+<div class="sec sec-gray">
+  <div class="cont">
+    <div class="bhead">DAS STECKT IM <span>INNER CIRCLE.</span></div>
+    
+    <div class="feat">
+      <h3>WÖCHENTLICHE <span>HOT SEAT CALLS — MIT MIR</span></h3>
+      <p><strong>Jede Woche sitzt du mit mir im Call.</strong> Keine Gruppe. Keine anderen. Nur du und ich. Wir schauen uns an was bei dir los ist, wo du feststeckst, was funktioniert, was nicht — <strong>und du gehst mit glasklaren nächsten Schritten raus.</strong></p>
+    </div>
 
-<div class="bhead">DAS STECKT IM <span>INNER CIRCLE.</span></div>
-<div class="b">
-  <div class="wg"><h3>WÖCHENTLICHE EINZELGESPRÄCHE <span>MIT MIR</span></h3><p><strong>Jede Woche. Nicht einmal im Monat. JEDE WOCHE.</strong> Du bringst dein Business auf den Tisch. Ich sage dir was ich sehe. Nicht was nett klingt — <strong>was STIMMT.</strong> Das sind keine Gruppencalls mit 30 Frauen in denen du hoffst dass du drankommst. <strong>DEIN Business hat Priorität.</strong></p></div>
-  <div class="wg"><h3><span>VOXER</span>-SUPPORT</h3><p>Du stehst vor einer Entscheidung? <strong>Du schickst mir eine Nachricht. Ich antworte.</strong> Nicht in fünf Tagen. Nicht erst beim nächsten Call. DAZWISCHEN. Das ist der Unterschied zwischen „ich hab eine Mentorin" und <strong>„ich hab jemanden der WIRKLICH mitarbeitet."</strong></p></div>
-  <div class="wg"><h3>DIREKTES <span>FEEDBACK</span></h3><p>Deinen Content. Dein Angebot. Deine Preise. Deine Verkaufsgespräche. Kein „passt schon, mach weiter so." Sondern: <strong>„Ändere das. So. Aus diesem Grund."</strong> Schonungslos ehrlich weil ich deine Ergebnisse wichtiger nehme als dein Wohlbefinden in dem Moment.</p></div>
-  <div class="wg"><h3>DAS KOMPLETTE <span>FRAMEWORK</span></h3><p>Klarheit → Struktur → Dynamik — aber nicht als Selbstlernkurs. <strong>Durch MICH. Angewandt auf DEIN Business. In DEINER Situation.</strong> Das ist der Unterschied.</p></div>
+    <div class="feat">
+      <h3>TELEGRAM-SUPPORT <span>NUR FÜR DICH</span></h3>
+      <p><strong>Privater Kanal. Nur wir beide.</strong> Du brauchst Feedback zu deinem Content? Du bist dir unsicher bei einer Entscheidung? Du willst dass ich was durchschaue? Du schickst es mir — <strong>und ich antworte.</strong> Kein Community-Channel. Kein „frag mal die Gruppe". Direkter Draht.</p>
+    </div>
+
+    <div class="feat">
+      <h3>MIGHTY NETWORKS <span>+ KOMPLETTES FRAMEWORK</span></h3>
+      <p>Du bekommst Zugang zu allen Video-Trainings (Klarheit → Struktur → Dynamik), der Community und allen Ressourcen. <strong>Aber wir priorisieren zusammen was du JETZT brauchst.</strong> Du musst nicht alles durcharbeiten — wir picken uns raus was dein Business voranbringt.</p>
+    </div>
+
+    <div class="feat">
+      <h3>DIREKTES <span>FEEDBACK AUF ALLES</span></h3>
+      <p>Content? Schick es mir. Angebot? Schick es mir. Pricing? Schick es mir. Sales Page? Schick es mir. <strong>Ich geb dir meine ungefilterte Meinung — und sag dir was du ändern musst.</strong></p>
+    </div>
+  </div>
 </div>
 
-<div class="fimg"><img src="bilder/carina-working.jpg" alt="" style="max-height:320px;object-fit:cover"></div>
+<!-- IMAGE BREAK -->
+<div class="fimg"><img src="bilder/carina-working.jpg" alt=""></div>
 
-<div class="bhead">HIER KOMMST DU NUR MIT <span>BEWERBUNG REIN.</span></div>
-<div class="b">
-  <p class="bt bt-left">Nicht weil ich mich wichtig machen will. <strong>Sondern weil das hier nur funktioniert wenn ich weiß dass wir zusammenpassen.</strong></p>
-  <p class="bt bt-left">Ich arbeite eng mit dir. Jede Woche. Das heißt: ich muss wissen wo du stehst, was du willst, und ob ich die Richtige bin um dich dahin zu bringen.</p>
-  <p class="bt bt-left"><strong>Die Bewerbung ist kein Test. Es ist ein Gespräch.</strong> Du erzählst mir wo du stehst. Ich sage dir ehrlich ob der Inner Circle gerade das Richtige für dich ist.</p>
-  <p class="bt" style="color:#fff"><strong>Nicht jede die sich bewirbt kommt rein. Und das ist gut so. Für dich und für mich.</strong></p>
+<!-- WER SOLLTE SICH BEWERBEN -->
+<div class="sec">
+  <div class="cont">
+    <div class="bhead">WER SOLLTE SICH <span>BEWERBEN?</span></div>
+    
+    <div class="card">
+      <p><strong>✅ Du machst schon Umsatz.</strong> Du bist nicht bei null. Du weißt dass es funktioniert — aber du weißt auch dass es besser gehen muss.</p>
+    </div>
+
+    <div class="card">
+      <p><strong>✅ Du willst jemanden der mitarbeitet.</strong> Nicht nur zuhört. Nicht nur nickt. Sondern aktiv mit dir zusammen baut.</p>
+    </div>
+
+    <div class="card">
+      <p><strong>✅ Du bist bereit für Klarheit die wehtut.</strong> Ich sag dir nicht was du hören willst. Ich sag dir was du wissen musst.</p>
+    </div>
+
+    <div class="card">
+      <p><strong>✅ Du bist committed.</strong> Mindestens 3 Monate. Das hier ist kein Sprint. Das ist ein Aufbau.</p>
+    </div>
+  </div>
 </div>
 
-<div class="rbar"><p>ES GIBT IMMER EINEN GRUND WARUM DU NICHT DIE ERGEBNISSE HAST DIE DU WILLST. DAS HIER IST DER RAUM IN DEM WIR DAS ZUSAMMEN ÄNDERN.</p></div>
-
-<div class="b" id="invest" style="padding-top:30px">
-  <div class="bhead">DEIN <span>INVESTMENT:</span></div>
-  <div class="price">2.500€</div>
-  <div class="psub">PRO MONAT · BEWERBUNGSPFLICHT · MINDESTENS 3 MONATE</div>
-  <ul class="chk">
-    <li>✅ Wöchentliche Einzelgespräche mit Carina</li>
-    <li>✅ Voxer-Support — direkter Draht</li>
-    <li>✅ Direktes Feedback auf alles</li>
-    <li>✅ Komplettes Framework inklusive</li>
-    <li>✅ Ein Raum in dem du nicht alleine bist</li>
-  </ul>
-  <a href="bewerbung.html" class="rbtn">JETZT BEWERBEN 🔥</a>
+<!-- INVESTMENT -->
+<div class="sec sec-dark" id="invest">
+  <div class="cont">
+    <div class="bhead">DEIN <span>INVESTMENT:</span></div>
+    <div class="price-box">
+      <div class="price">2.500€</div>
+      <div class="psub">PRO MONAT · MINDESTENS 3 MONATE</div>
+      <ul class="chk">
+        <li>✅ Wöchentliche Hot Seat Calls mit Carina (nur du + ich)</li>
+        <li>✅ Privater Telegram-Support (direkter Draht)</li>
+        <li>✅ Direktes Feedback auf Content, Angebote, Sales Pages</li>
+        <li>✅ Mighty Networks: Framework + Community + Ressourcen</li>
+      </ul>
+      <a href="bewerbung.html" class="rbtn" style="width:100%">JETZT BEWERBEN 🔥</a>
+    </div>
+    <p class="bt" style="margin-top:30px;color:#999">Du kannst nach 3 Monaten monatlich kündigen. Aber ehrlich? Die meisten bleiben länger — weil sie merken dass das der Unterschied zwischen „läuft" und „läuft richtig gut" ist.</p>
+  </div>
 </div>
 
-<div class="bhead">HÄUFIGE <span>FRAGEN</span></div>
-<div class="b">
-  <div class="fq"><div class="fq-q" onclick="this.parentElement.classList.toggle('o')">WAS IST DER UNTERSCHIED ZUM COLLECTIVE?</div><div class="fq-a"><p>Collective = Video-Trainings + Live Group Calls + Slack Community. Inner Circle = MICH. Jede Woche. Direkt auf deinem Business. Das ist der Unterschied.</p></div></div>
-  <div class="fq"><div class="fq-q" onclick="this.parentElement.classList.toggle('o')">MUSS ICH VORHER IM COLLECTIVE GEWESEN SEIN?</div><div class="fq-a"><p>Nein. Aber du musst bereit sein ehrlich hinzuschauen und hart zu arbeiten. Mir ist weniger wichtig wie viel du verdienst und mehr wie sehr du willst dass sich etwas ändert.</p></div></div>
-  <div class="fq"><div class="fq-q" onclick="this.parentElement.classList.toggle('o')">WARUM BEWERBUNGSPFLICHT?</div><div class="fq-a"><p>Weil ich eng mit dir arbeite. Jede Woche. Die Bewerbung schützt dich genauso wie mich — ich will sicher sein dass ich dir wirklich helfen kann bevor du investierst.</p></div></div>
-  <div class="fq"><div class="fq-q" onclick="this.parentElement.classList.toggle('o')">WIE LANGE DAUERT ES MINDESTENS?</div><div class="fq-a"><p>3 Monate. Weil echte Veränderung nicht in vier Wochen passiert. In drei Monaten bauen wir ein Fundament das hält.</p></div></div>
-  <div class="fq"><div class="fq-q" onclick="this.parentElement.classList.toggle('o')">KANN ICH VOM COLLECTIVE WECHSELN?</div><div class="fq-a"><p>Ja, aber nicht automatisch. Bewerbung, Gespräch, Ja oder Nein. Kein Upgrade-Knopf. Das ist eine bewusste Entscheidung — von dir und von mir.</p></div></div>
+<!-- FAQ -->
+<div class="sec">
+  <div class="cont">
+    <div class="bhead">HÄUFIGE <span>FRAGEN</span></div>
+    
+    <div class="fq">
+      <div class="fq-q" onclick="this.parentElement.classList.toggle('o')">WIE LÄUFT DIE BEWERBUNG AB?</div>
+      <div class="fq-a"><p>Du füllst das Formular aus. Ich schau es mir an. Wenn ich denke dass wir zusammenpassen, melden wir uns für ein Gespräch. Im Gespräch klären wir ob es wirklich passt — für dich UND für mich.</p></div>
+    </div>
+
+    <div class="fq">
+      <div class="fq-q" onclick="this.parentElement.classList.toggle('o')">WARUM MINDESTENS 3 MONATE?</div>
+      <div class="fq-a"><p>Weil echte Veränderung Zeit braucht. In Monat 1 schauen wir uns an wo du stehst. In Monat 2 bauen wir auf. In Monat 3 siehst du die ersten echten Ergebnisse. Wer nach 2 Wochen raus will hat nicht verstanden worum es hier geht.</p></div>
+    </div>
+
+    <div class="fq">
+      <div class="fq-q" onclick="this.parentElement.classList.toggle('o')">WAS IST DER UNTERSCHIED ZUM COLLECTIVE?</div>
+      <div class="fq-a"><p>Collective = Gruppe. Inner Circle = DU. Im Collective bist du eine von vielen. Hier bist du die Einzige. Wöchentlich. Mit direktem Zugang zu mir.</p></div>
+    </div>
+
+    <div class="fq">
+      <div class="fq-q" onclick="this.parentElement.classList.toggle('o')">ICH BIN SCHON IM COLLECTIVE — WIE LÄUFT DER WECHSEL?</div>
+      <div class="fq-a"><p>Du bewirbst dich. Wir sprechen. Wenn es passt, kündigst du das Collective und startest im Inner Circle. Kein automatischer Wechsel. Ich will dass du WEISST was du tust.</p></div>
+    </div>
+  </div>
 </div>
 
-<div class="upg">Noch nicht sicher? <a href="collective.html">→ SCHAU DIR DAS COLLECTIVE AN</a></div>
-
-<div class="b" style="padding:35px 20px">
-  <div class="bhead">DU WEISST OB DU <span>HIERHER GEHÖRST.</span></div>
-  <p class="bt"><strong>Nicht weil ich es dir sage. Sondern weil du es schon länger spürst.</strong></p>
-  <a href="bewerbung.html" class="rbtn wbtn">JETZT BEWERBEN 🔥</a>
+<!-- UPGRADE BOX -->
+<div class="sec sec-gray">
+  <div class="cont">
+    <div class="upg">
+      <p>Du bist noch nicht bereit für den Inner Circle? Fang im <a href="collective.html">Collective</a> an.</p>
+    </div>
+  </div>
 </div>
 
+<!-- FINAL CTA -->
+<div class="sec sec-dark">
+  <div class="cont">
+    <div class="bhead">DU WEISST DASS DU <span>BEREIT BIST.</span></div>
+    <p class="bt"><strong>Hör auf alleine zu grübeln. Bewirb dich.</strong></p>
+    <a href="bewerbung.html" class="wbtn rbtn">JETZT BEWERBEN 🔥</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
 <footer>
   <div class="fb">CARINA<span>ANNAPRAV</span></div>
-  <a href="index.html">Home</a> · <a href="collective.html">Collective</a> · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <a href="agb.html">AGB</a>
-  <p style="margin-top:10px">© 2026 carinaannaprav · Fotos: <a href="https://instagram.com/sandralavinia" target="_blank">@sandralavinia</a></p>
+  <a href="index.html">Home</a> · <a href="collective.html">The Collective</a> · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <a href="agb.html">AGB</a>
+  <p style="margin-top:15px">© 2026 carinaannaprav</p>
 </footer>
 
 </body>

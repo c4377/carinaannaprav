@@ -9,48 +9,45 @@
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#000;background-image:url('bilder/hero-carina.jpg');background-size:cover;background-position:top center;background-attachment:fixed;color:#fff;font-family:'Montserrat',sans-serif;font-weight:700;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column;align-items:center}
+body{background:#e8e8e8;color:#1a1a1a;font-family:'Montserrat',sans-serif;font-weight:700;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px}
 :root{--r:#6B0F1A;--rh:#8B1A2B}
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
 
-.page{max-width:480px;position:relative;z-index:1;width:100%;padding:40px 20px 50px;text-align:center}
+.page{max-width:520px;width:100%;background:#f5f5f5;border-radius:20px;padding:50px 30px;text-align:center;box-shadow:0 8px 40px rgba(0,0,0,0.12);position:relative;z-index:1;border:1px solid #e0e0e0}
 
-.photo{width:140px;height:140px;border-radius:50%;overflow:hidden;margin:0 auto 20px;border:3px solid var(--r)}
+.photo{width:160px;height:160px;border-radius:50%;overflow:hidden;margin:0 auto 25px;border:4px solid var(--r);box-shadow:0 4px 20px rgba(107,15,26,0.2)}
 .photo img{width:100%;height:100%;object-fit:cover;object-position:top center}
 
-.name{font-family:'Anton',sans-serif;font-size:1.8rem;font-weight:400;text-transform:uppercase;letter-spacing:.03em;margin-bottom:4px}
+.name{font-family:'Anton',sans-serif;font-size:2rem;font-weight:400;text-transform:uppercase;letter-spacing:.03em;margin-bottom:6px;color:#1a1a1a}
 .name span{color:var(--r)}
 
-.tagline{font-size:.75rem;font-weight:700;color:#888;letter-spacing:.05em;text-transform:uppercase;margin-bottom:6px}
+.tagline{font-size:.8rem;font-weight:800;color:#666;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px}
 
-.tags{font-size:.65rem;font-weight:600;color:#555;margin-bottom:25px;line-height:1.8}
+.tags{font-size:.7rem;font-weight:600;color:#999;margin-bottom:30px;line-height:1.8}
 
-.link{display:block;width:100%;padding:16px 20px;margin-bottom:12px;font-family:'Montserrat',sans-serif;font-size:.85rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;border-radius:6px;transition:all .15s;text-align:center}
-.link:hover{transform:scale(1.02)}
+.link{display:block;width:100%;padding:18px 25px;margin-bottom:14px;font-family:'Montserrat',sans-serif;font-size:.85rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;border-radius:10px;transition:all .2s;text-align:center;box-shadow:0 3px 15px rgba(0,0,0,0.08)}
+.link:hover{transform:translateY(-2px);box-shadow:0 5px 20px rgba(0,0,0,0.12)}
 .link-red{background:var(--r);color:#fff}
-.link-red:hover{background:var(--rh)}
-.link-outline{background:transparent;border:2px solid rgba(255,255,255,0.15);color:#fff}
-.link-outline:hover{border-color:var(--r);color:var(--r)}
-.link-white{background:#fff;color:#000}
-.link-white:hover{background:#eee}
+.link-red:hover{background:var(--rh);box-shadow:0 5px 20px rgba(107,15,26,0.3)}
+.link-outline{background:#fff;border:2px solid #e0e0e0;color:#1a1a1a}
+.link-outline:hover{border-color:var(--r);color:var(--r);box-shadow:0 5px 20px rgba(107,15,26,0.15)}
+.link-dark{background:#1a1a1a;color:#fff}
+.link-dark:hover{background:#2a2a2a}
 
-.divider{height:1px;background:rgba(255,255,255,0.06);margin:20px 0}
+.divider{height:1px;background:#e0e0e0;margin:25px 0}
 
-.section-label{font-family:'Anton',sans-serif;font-size:1rem;font-weight:400;text-transform:uppercase;letter-spacing:.05em;color:var(--r);margin-bottom:12px;margin-top:8px}
+.section-label{font-family:'Anton',sans-serif;font-size:1.1rem;font-weight:400;text-transform:uppercase;letter-spacing:.05em;color:var(--r);margin-bottom:15px;margin-top:12px}
 
-.bio{font-size:.85rem;font-weight:600;color:#888;line-height:1.8;margin-bottom:20px}
-.bio strong{color:#fff}
+.bio{font-size:.95rem;font-weight:600;color:#555;line-height:1.8;margin-bottom:25px;text-align:left;padding:0 5px}
+.bio strong{color:#1a1a1a;font-weight:900}
 
-footer{font-size:.6rem;color:#333;font-weight:600;margin-top:auto;padding:20px;text-align:center;width:100%}
-footer a{color:#444;margin:0 3px}footer a:hover{color:var(--r)}
-
-.bg-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.82);z-index:0}
-.page,.page~footer{position:relative;z-index:1}
+footer{font-size:.65rem;color:#999;font-weight:600;margin-top:30px;padding:20px;text-align:center;width:100%;max-width:520px}
+footer a{color:#666;margin:0 4px;transition:color .2s}
+footer a:hover{color:var(--r)}
 </style>
 </head>
 <body>
-<div class="bg-overlay"></div>
 
 <div class="page">
 
@@ -71,15 +68,15 @@ footer a{color:#444;margin:0 3px}footer a:hover{color:var(--r)}
 
   <div class="section-label">Mehr</div>
 
-  <a href="truth-or-dare.html" class="link link-outline">TRUTH OR DARE — PODCAST 🎙️</a>
   <a href="https://www.instagram.com/carinaannaprav/" target="_blank" class="link link-outline">INSTAGRAM</a>
-
-  <div class="divider"></div>
-
-  <a href="/cdn-cgi/l/email-protection#fd8e929e949c918ebd9e9c8f94939c9c93939c8d8f9c8bd39c89" class="link link-white">EMAIL SCHREIBEN</a>
+  <a href="mailto:socials@carinaannaprav.at" class="link link-dark">EMAIL SCHREIBEN</a>
 
 </div>
 
 <footer>
   <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <a href="agb.html">AGB</a>
-  <br>© 2026 carinaannaprav · Fotos: <a href="https://instagram.com/sandralavinia" target="_blank
+  <br>© 2026 carinaannaprav
+</footer>
+
+</body>
+</html>

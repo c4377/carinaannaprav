@@ -1,191 +1,218 @@
-// netlify/functions/application-submit.js
-// Bewerbung House of Dynamics → AC (Mastermind Bewerbungen) + Telegram + Sheets
-// Alle Antworten werden als Custom Fields gespeichert
-
 const fetch = require('node-fetch');
 
-exports.handler = async (event, context) => {
-    const headers = {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'Content-Type',
-        'Access-Control-Allow-Methods': 'POST, OPTIONS'
+exports.handler = async (event) => {
+  // Only allow POST
+  if (event.httpMethod !== 'POST') {
+    return {
+      statusCode: 405,
+      body: JSON.stringify({ error: 'Method not allowed' })
+    };
+  }
+
+  try {
+    const data = JSON.parse(event.body);
+    
+    // ActiveCampaign API credentials
+    const AC_API_URL = process.env.ACTIVECAMPAIGN_API_URL;
+    const AC_API_KEY = process.env.ACTIVECAMPAIGN_API_KEY;
+
+    // Determine which list based on form type
+    let listId;
+    if (data.formType === 'inner-circle') {
+      listId = '13'; // Inner Circle Bewerber
+    } else if (data.formType === 'podcast') {
+      listId = '19'; // Podcast Bewerber
+    }
+
+    // Create or update contact in ActiveCampaign
+    const contactPayload = {
+      contact: {
+        email: data.email,
+        firstName: data.firstName || '',
+        lastName: data.lastName || '',
+        phone: data.phone || '',
+        fieldValues: []
+      }
     };
 
-    if (event.httpMethod === 'OPTIONS') {
-        return { statusCode: 200, headers, body: '' };
+    // Add custom fields based on form type
+    if (data.formType === 'inner-circle') {
+      // Inner Circle Bewerbung fields
+      if (data.business) {
+        contactPayload.contact.fieldValues.push({
+          field: '11', // Business (Was machst du?)
+          value: data.business
+        });
+      }
+      if (data.currentRevenue) {
+        contactPayload.contact.fieldValues.push({
+          field: '12', // Current Revenue (Aktueller Umsatz)
+          value: data.currentRevenue
+        });
+      }
+      if (data.goal) {
+        contactPayload.contact.fieldValues.push({
+          field: '13', // Goal (Ziel)
+          value: data.goal
+        });
+      }
+      if (data.challenge) {
+        contactPayload.contact.fieldValues.push({
+          field: '14', // Challenge (Größte Herausforderung)
+          value: data.challenge
+        });
+      }
+      if (data.why) {
+        contactPayload.contact.fieldValues.push({
+          field: '15', // Why (Warum Inner Circle)
+          value: data.why
+        });
+      }
+    } else if (data.formType === 'podcast') {
+      // Podcast fields
+      if (data.topic) {
+        contactPayload.contact.fieldValues.push({
+          field: '16', // Topic (Themenvorschlag)
+          value: data.topic
+        });
+      }
+      if (data.expertise) {
+        contactPayload.contact.fieldValues.push({
+          field: '17', // Expertise (Deine Expertise)
+          value: data.expertise
+        });
+      }
+      if (data.story) {
+        contactPayload.contact.fieldValues.push({
+          field: '18', // Story (Deine Story)
+          value: data.story
+        });
+      }
     }
 
-    if (event.httpMethod !== 'POST') {
-        return { statusCode: 405, headers, body: JSON.stringify({ error: 'Method not allowed' }) };
+    // Sync contact to ActiveCampaign
+    const acResponse = await fetch(`${AC_API_URL}/api/3/contact/sync`, {
+      method: 'POST',
+      headers: {
+        'Api-Token': AC_API_KEY,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(contactPayload)
+    });
+
+    const acData = await acResponse.json();
+    
+    if (!acResponse.ok) {
+      throw new Error(`ActiveCampaign error: ${JSON.stringify(acData)}`);
     }
 
-    try {
-        const data = JSON.parse(event.body);
-        const { firstname, lastname, email, social, business, experience, offer, challenge, block, investment } = data;
+    const contactId = acData.contact.id;
 
-        if (!firstname || !email || !challenge) {
-            return { statusCode: 400, headers, body: JSON.stringify({ error: 'Missing required fields' }) };
+    // Add contact to list
+    if (listId) {
+      const listPayload = {
+        contactList: {
+          list: listId,
+          contact: contactId,
+          status: 1
         }
+      };
 
-        const AC_API_URL = process.env.ACTIVECAMPAIGN_API_URL;
-        const AC_API_KEY = process.env.ACTIVECAMPAIGN_API_KEY;
-        // Eigene Liste NUR für Mastermind-Bewerbungen (House of Dynamics)
-        const AC_LIST_MASTERMIND = process.env.AC_LIST_MASTERMIND || '9';
+      await fetch(`${AC_API_URL}/api/3/contactLists`, {
+        method: 'POST',
+        headers: {
+          'Api-Token': AC_API_KEY,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(listPayload)
+      });
+    }
 
-        if (!AC_API_URL || !AC_API_KEY) {
-            return { statusCode: 500, headers, body: JSON.stringify({ error: 'Server configuration error' }) };
+    // Add tag based on form type
+    let tagName;
+    if (data.formType === 'inner-circle') {
+      tagName = 'inner-circle-bewerber';
+    } else if (data.formType === 'podcast') {
+      tagName = 'podcast-bewerber';
+    }
+
+    if (tagName) {
+      // First, get or create the tag
+      const tagSearchResponse = await fetch(
+        `${AC_API_URL}/api/3/tags?search=${encodeURIComponent(tagName)}`,
+        {
+          headers: {
+            'Api-Token': AC_API_KEY
+          }
         }
+      );
 
-        // ============================================
-        // 1. AC: Create/Update Contact + ALLE Antworten
-        // ============================================
-        // Custom Fields in AC anlegen:
-        //   11 = Angebot (welches Programm)
-        //   12 = Situation (wo stehst du / was soll sich ändern)
-        //   13 = Block (was hält dich zurück)
-        //   14 = Business (was machst du beruflich)
-        //   15 = Erfahrung (wie lange selbstständig)
-        //   16 = Social (Instagram / Website)
-        //   17 = Investment (bereit zu investieren)
-        //
-        // Passe die Field-IDs an deine AC-Instanz an!
+      const tagSearchData = await tagSearchResponse.json();
+      let tagId;
 
-        const contactResponse = await fetch(`${AC_API_URL}/api/3/contact/sync`, {
-            method: 'POST',
-            headers: { 'Api-Token': AC_API_KEY, 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                contact: {
-                    email,
-                    firstName: firstname,
-                    lastName: lastname || ''
-                }
-            })
-        });
-
-        if (!contactResponse.ok) {
-            throw new Error(`AC sync failed: ${contactResponse.status}`);
-        }
-
-        const contactData = await contactResponse.json();
-        const contactId = contactData.contact.id;
-
-        // ============================================
-        // 2. AC: In Mastermind-Bewerbungen-Liste
-        // ============================================
-        await fetch(`${AC_API_URL}/api/3/contactLists`, {
-            method: 'POST',
-            headers: { 'Api-Token': AC_API_KEY, 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                contactList: { list: AC_LIST_MASTERMIND, contact: contactId, status: 1 }
-            })
-        });
-
-        // ============================================
-        // 2b. AC: Notiz mit allen Bewerbungs-Antworten
-        // ============================================
-        let noteText = `BEWERBUNG: House of Dynamics\n\n`;
-        if (social) noteText += `Social/Website: ${social}\n`;
-        if (business) noteText += `Business: ${business}\n`;
-        if (experience) noteText += `Erfahrung: ${experience}\n`;
-        if (investment) noteText += `Investment-Bereitschaft: ${investment}\n`;
-        noteText += `\nSituation:\n${challenge}`;
-        if (block) noteText += `\n\nBlock:\n${block}`;
-
-        await fetch(`${AC_API_URL}/api/3/notes`, {
-            method: 'POST',
-            headers: { 'Api-Token': AC_API_KEY, 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                note: {
-                    note: noteText,
-                    relid: contactId,
-                    reltype: 'Subscriber'
-                }
-            })
-        });
-
-        // ============================================
-        // 3. AC: Tag "Bewerbung-HoD"
-        // ============================================
-        const tagName = 'Bewerbung-HoD';
-        try {
-            const tagSearch = await fetch(`${AC_API_URL}/api/3/tags?search=${encodeURIComponent(tagName)}`, {
-                headers: { 'Api-Token': AC_API_KEY }
-            });
-            let tagId;
-            if (tagSearch.ok) {
-                const tagData = await tagSearch.json();
-                if (tagData.tags?.length > 0) {
-                    tagId = tagData.tags[0].id;
-                } else {
-                    const created = await fetch(`${AC_API_URL}/api/3/tags`, {
-                        method: 'POST',
-                        headers: { 'Api-Token': AC_API_KEY, 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ tag: { tag: tagName, tagType: 'contact' } })
-                    });
-                    if (created.ok) tagId = (await created.json()).tag.id;
-                }
+      if (tagSearchData.tags && tagSearchData.tags.length > 0) {
+        tagId = tagSearchData.tags[0].id;
+      } else {
+        // Create tag if it doesn't exist
+        const createTagResponse = await fetch(`${AC_API_URL}/api/3/tags`, {
+          method: 'POST',
+          headers: {
+            'Api-Token': AC_API_KEY,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            tag: {
+              tag: tagName,
+              tagType: 'contact'
             }
-            if (tagId) {
-                await fetch(`${AC_API_URL}/api/3/contactTags`, {
-                    method: 'POST',
-                    headers: { 'Api-Token': AC_API_KEY, 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ contactTag: { contact: contactId, tag: tagId } })
-                });
-            }
-        } catch (e) { console.error('Tag error:', e); }
+          })
+        });
 
-        // ============================================
-        // 4. Telegram: Alle Antworten an dich
-        // ============================================
-        if (process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHAT_ID) {
-            try {
-                let msg = `📋 BEWERBUNG: House of Dynamics\n\n`;
-                msg += `👤 ${firstname} ${lastname || ''}\n`;
-                msg += `📧 ${email}\n`;
-                if (social) msg += `🔗 ${social}\n`;
-                if (business) msg += `💼 ${business}\n`;
-                if (experience) msg += `⏱ Selbstständig: ${experience}\n`;
-                if (investment) msg += `💰 Investition: ${investment}\n`;
-                msg += `\n📌 Situation:\n${challenge}`;
-                if (block) msg += `\n\n🚧 Block:\n${block}`;
+        const createTagData = await createTagResponse.json();
+        tagId = createTagData.tag.id;
+      }
 
-                await fetch(`https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ chat_id: process.env.TELEGRAM_CHAT_ID, text: msg })
-                });
-            } catch (e) { console.error('TG error:', e); }
-        }
-
-        // ============================================
-        // 5. Google Sheets: Alle Antworten
-        // ============================================
-        if (process.env.GOOGLE_SHEETS_WEBHOOK) {
-            try {
-                await fetch(process.env.GOOGLE_SHEETS_WEBHOOK, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        timestamp: new Date().toISOString(),
-                        firstname, lastname: lastname || '', email,
-                        social: social || '', business: business || '',
-                        experience: experience || '',
-                        offer: offer || 'The House of Dynamics',
-                        challenge, block: block || '',
-                        investment: investment || '',
-                        source: 'Bewerbung House of Dynamics'
-                    })
-                });
-            } catch (e) { console.error('Sheets error:', e); }
-        }
-
-        // Bestätigungsmail läuft über AC Automation:
-        // Trigger = Tag "Bewerbung-HoD" → E-Mail senden
-
-        return { statusCode: 200, headers, body: JSON.stringify({ success: true }) };
-
-    } catch (error) {
-        console.error('Error:', error);
-        return { statusCode: 500, headers, body: JSON.stringify({ error: error.message }) };
+      // Add tag to contact
+      await fetch(`${AC_API_URL}/api/3/contactTags`, {
+        method: 'POST',
+        headers: {
+          'Api-Token': AC_API_KEY,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          contactTag: {
+            contact: contactId,
+            tag: tagId
+          }
+        })
+      });
     }
+
+    return {
+      statusCode: 200,
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      },
+      body: JSON.stringify({
+        success: true,
+        message: 'Bewerbung erfolgreich eingereicht!'
+      })
+    };
+
+  } catch (error) {
+    console.error('Error:', error);
+    
+    return {
+      statusCode: 500,
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      },
+      body: JSON.stringify({
+        success: false,
+        error: error.message
+      })
+    };
+  }
 };

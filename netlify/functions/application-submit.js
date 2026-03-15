@@ -94,11 +94,11 @@ exports.handler = async (event) => {
     const contactId = acData.contact.id;
     console.log('Contact created/updated, ID:', contactId);
 
-    // Add contact to Newsletter list (17) - Inner Circle Bewerber per Tag erkennbar
-    console.log('Adding to Newsletter list (17)');
+    // Add contact to Newsletter list (26)
+    console.log('Adding to Newsletter list (26)');
     const listPayload = {
       contactList: {
-        list: '17',
+        list: '26',
         contact: contactId,
         status: 1
       }
@@ -113,7 +113,7 @@ exports.handler = async (event) => {
       body: JSON.stringify(listPayload)
     });
 
-    console.log('Added to list 17 (Newsletter)');
+    console.log('Added to list 26 (Newsletter)');
 
     // Add tag
     console.log('Looking for tag:', tagName);

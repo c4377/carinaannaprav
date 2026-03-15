@@ -115,11 +115,11 @@ exports.handler = async (event) => {
 
     console.log('Added to list 13');
 
-    // Add contact to Newsletter list (17)
-    console.log('Adding to Newsletter list (17)');
+    // Add contact to Newsletter list (24)
+    console.log('Adding to Newsletter list (24)');
     const listPayload2 = {
       contactList: {
-        list: '17',
+        list: '24',
         contact: contactId,
         status: 1
       }
@@ -134,7 +134,7 @@ exports.handler = async (event) => {
       body: JSON.stringify(listPayload2)
     });
 
-    console.log('Added to list 17 (Newsletter)');
+    console.log('Added to list 24 (Newsletter)');
 
     // Add tag
     console.log('Looking for tag:', tagName);

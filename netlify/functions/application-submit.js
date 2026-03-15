@@ -21,7 +21,7 @@ exports.handler = async (event) => {
     const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 
     // This is an Inner Circle application
-    const listId = '13'; // Inner Circle Bewerber
+    const listId = '24'; // Inner Circle Bewerber (UPDATED)
     const tagName = 'inner-circle-bewerber';
 
     // Create or update contact in ActiveCampaign
@@ -94,11 +94,11 @@ exports.handler = async (event) => {
     const contactId = acData.contact.id;
     console.log('Contact created/updated, ID:', contactId);
 
-    // Add contact to Inner Circle Bewerber list (13)
-    console.log('Adding to Inner Circle Bewerber list (13)');
+    // Add contact to Inner Circle Bewerber list (24)
+    console.log('Adding to Inner Circle Bewerber list (24)');
     const listPayload1 = {
       contactList: {
-        list: '13',
+        list: '24',
         contact: contactId,
         status: 1
       }
@@ -113,7 +113,7 @@ exports.handler = async (event) => {
       body: JSON.stringify(listPayload1)
     });
 
-    console.log('Added to list 13');
+    console.log('Added to list 24');
 
     // Add contact to Newsletter list (24)
     console.log('Adding to Newsletter list (24)');

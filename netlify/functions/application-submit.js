@@ -94,11 +94,11 @@ exports.handler = async (event) => {
     const contactId = acData.contact.id;
     console.log('Contact created/updated, ID:', contactId);
 
-    // Add contact to Inner Circle Bewerber list (24)
-    console.log('Adding to Inner Circle Bewerber list (24)');
-    const listPayload1 = {
+    // Add contact to Newsletter list (17) - Inner Circle Bewerber per Tag erkennbar
+    console.log('Adding to Newsletter list (17)');
+    const listPayload = {
       contactList: {
-        list: '24',
+        list: '17',
         contact: contactId,
         status: 1
       }
@@ -110,31 +110,10 @@ exports.handler = async (event) => {
         'Api-Token': AC_API_KEY,
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(listPayload1)
+      body: JSON.stringify(listPayload)
     });
 
-    console.log('Added to list 24');
-
-    // Add contact to Newsletter list (24)
-    console.log('Adding to Newsletter list (24)');
-    const listPayload2 = {
-      contactList: {
-        list: '24',
-        contact: contactId,
-        status: 1
-      }
-    };
-
-    await fetch(`${AC_API_URL}/api/3/contactLists`, {
-      method: 'POST',
-      headers: {
-        'Api-Token': AC_API_KEY,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(listPayload2)
-    });
-
-    console.log('Added to list 24 (Newsletter)');
+    console.log('Added to list 17 (Newsletter)');
 
     // Add tag
     console.log('Looking for tag:', tagName);

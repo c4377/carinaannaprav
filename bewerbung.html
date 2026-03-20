@@ -4,8 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bewerbung — 1:1-Betreuung | PRAV Business Consulting</title>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Dancing+Script:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
+@font-face{font-family:'Biro Script';src:url('fonts/Biro_Script_reduced.woff2') format('woff2'),url('fonts/Biro_Script_reduced.ttf') format('truetype');font-weight:400;font-display:swap}
 :root{--bg:#4A464A;--bg-light:#5C575B;--bg-card:rgba(58,54,57,0.82);--white:#FAFAF8;--white-soft:rgba(250,250,248,0.75);--white-muted:rgba(250,250,248,0.5);--accent:rgba(250,250,248,0.12);--overlay:rgba(55,51,54,0.75)}
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--white);font-family:'Outfit',sans-serif;font-weight:300;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
@@ -21,20 +22,18 @@ a{color:var(--white);text-decoration:none}
 .img-sec .overlay{position:absolute;inset:0}
 .img-sec .content{position:relative;z-index:2}
 
-/* ── HERO ── */
 .hero{min-height:60vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 40px 60px;text-align:center}
 .hero .bg{background-image:url('bilder/about-you.jpg');background-position:center 20%}
 .hero .overlay{background:linear-gradient(to bottom,rgba(55,51,54,0.3) 0%,rgba(55,51,54,0.85) 65%,rgba(74,70,74,1) 100%)}
 .hero .content{max-width:580px;margin:0 auto;opacity:0;animation:softIn 1s ease forwards 0.2s}
 .hero-label{font-size:0.65rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--white-muted);margin-bottom:24px}
 .hero h1{font-weight:500;font-size:clamp(1.8rem,4.5vw,2.8rem);line-height:1.2;margin-bottom:20px}
-.hero h1 em{font-family:'Dancing Script',cursive;font-style:normal;font-weight:400;font-size:1.1em}
+.hero h1 em{font-family:'Biro Script',cursive;font-style:normal;font-weight:400;font-size:1.1em}
 .hero p{font-size:0.95rem;color:var(--white-soft);line-height:1.8;max-width:520px;margin:0 auto}
 .hero p strong{color:var(--white);font-weight:500}
 
 .line{width:50px;height:1px;background:var(--white-muted);margin:0 auto}
 
-/* ── FORM ── */
 .form-wrap{max-width:520px;margin:40px auto;padding:0 32px 80px}
 .note{font-size:0.86rem;color:var(--white-soft);padding:20px 24px;border-left:2px solid rgba(250,250,248,0.2);background:rgba(250,250,248,0.03);margin-bottom:40px;line-height:1.75}
 .fg{margin-bottom:24px}
@@ -51,11 +50,11 @@ a{color:var(--white);text-decoration:none}
 
 #ok{display:none;text-align:center;padding:100px 32px;max-width:520px;margin:0 auto}
 #ok h2{font-weight:500;font-size:1.8rem;margin-bottom:16px}
-#ok h2 em{font-family:'Dancing Script',cursive;font-style:normal;font-weight:400}
+#ok h2 em{font-family:'Biro Script',cursive;font-style:normal;font-weight:400}
 #ok p{font-size:0.92rem;color:var(--white-soft);line-height:1.8;max-width:420px;margin:0 auto}
 
 footer{text-align:center;padding:40px 24px 50px}
-.sig{font-family:'Dancing Script',cursive;font-size:1.4rem;color:var(--white-soft);margin-bottom:20px}
+.sig{font-family:'Biro Script',cursive;font-size:1.4rem;color:var(--white-soft);margin-bottom:20px}
 .foot-links{font-size:0.68rem;color:var(--white-muted)}
 .foot-links a{color:var(--white-muted);margin:0 6px;transition:color 0.3s}.foot-links a:hover{color:var(--white)}
 .foot-copy{font-size:0.62rem;color:var(--white-muted);margin-top:12px;opacity:0.6}
@@ -103,9 +102,7 @@ footer{text-align:center;padding:40px 24px 50px}
 
 <footer>
   <div class="sig">Carina Anna Prav.</div>
-  <div class="foot-links">
-    <a href="index.html">Home</a> · <a href="collective.html">The Collective</a> · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a>
-  </div>
+  <div class="foot-links"><a href="index.html">Home</a> · <a href="collective.html">The Collective</a> · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></div>
   <div class="foot-copy">© 2026 PRAV Business Consulting</div>
 </footer>
 

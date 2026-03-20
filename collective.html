@@ -3,314 +3,245 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Collective — carinaannaprav</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&display=swap" rel="stylesheet">
+<title>The Collective — PRAV Business Consulting</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Dancing+Script:wght@400;500&display=swap" rel="stylesheet">
 <style>
+:root{--bg:#4A464A;--bg-light:#5C575B;--bg-card:rgba(58,54,57,0.82);--bg-card-hover:rgba(68,64,67,0.88);--white:#FAFAF8;--white-soft:rgba(250,250,248,0.75);--white-muted:rgba(250,250,248,0.5);--accent:rgba(250,250,248,0.12);--overlay:rgba(55,51,54,0.75)}
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#e8e8e8;color:#1a1a1a;font-family:'Montserrat',sans-serif;font-weight:600;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-:root{--r:#6B0F1A;--rh:#8B1A2B;--dark:#1a1a1a;--gray:#d8d8d8;--border:#c0c0c0}
-a{color:inherit;text-decoration:none}img{display:block;max-width:100%}
+body{background:var(--bg);color:var(--white);font-family:'Outfit',sans-serif;font-weight:300;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:var(--white);text-decoration:none}
+.page{position:relative;z-index:1}
 
-/* SECTIONS */
-.sec{padding:60px 20px}
-.sec-dark{background:var(--dark);color:#fff}
-.sec-gray{background:var(--gray)}
-.sec-red{background:var(--r);color:#fff}
+.nav{position:absolute;top:0;left:0;right:0;z-index:10;padding:28px 36px;display:flex;justify-content:space-between;align-items:center}
+.nav-logo{font-weight:300;font-size:0.68rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--white-muted);transition:color 0.3s}.nav-logo:hover{color:var(--white)}
+.nav-back{font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--white-muted);transition:color 0.3s}.nav-back:hover{color:var(--white)}
 
-/* CONTAINER */
-.cont{max-width:800px;margin:0 auto;text-align:center}
-.cont-wide{max-width:1100px}
+/* ── IMAGE SECTION ── */
+.img-sec{position:relative;overflow:hidden}
+.img-sec .bg{position:absolute;inset:0;background-size:cover;background-position:center top}
+.img-sec .overlay{position:absolute;inset:0}
+.img-sec .content{position:relative;z-index:2}
 
-/* TYPOGRAPHY */
-.bhead{font-family:'Anton',sans-serif;font-size:clamp(2.2rem,7vw,4.5rem);font-weight:400;text-transform:uppercase;letter-spacing:.02em;line-height:1.1;text-align:center;margin-bottom:20px}
-.bhead span{color:var(--r)}
-.sec-dark .bhead span{color:#fff;text-decoration:underline;text-decoration-color:var(--r);text-decoration-thickness:4px;text-underline-offset:8px}
+/* ── HERO ── */
+.hero{min-height:90vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 40px 80px}
+.hero .bg{background-image:url('bilder/hero-carina.jpg')}
+.hero .overlay{background:linear-gradient(to bottom,rgba(55,51,54,0.3) 0%,rgba(55,51,54,0.85) 65%,rgba(74,70,74,1) 100%)}
+.hero .content{max-width:700px;opacity:0;animation:softIn 1.2s ease forwards 0.3s}
+.hero-label{font-size:0.65rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--white-muted);margin-bottom:24px}
+.hero h1{font-weight:500;font-size:clamp(2rem,5vw,3.4rem);line-height:1.15;letter-spacing:-0.01em}
+.hero h1 em{font-family:'Dancing Script',cursive;font-style:normal;font-weight:400;font-size:1.1em}
+.hero-sub{font-size:1rem;color:var(--white-soft);max-width:520px;margin-top:24px;line-height:1.8}
 
-.subhead{font-size:clamp(.95rem,2.5vw,1.2rem);font-weight:800;line-height:1.6;text-transform:uppercase;max-width:700px;margin:0 auto 25px;letter-spacing:.02em}
+.line{width:50px;height:1px;background:var(--white-muted);margin:0 auto}
 
-.bt{font-size:clamp(1.05rem,2.8vw,1.25rem);font-weight:600;line-height:1.8;margin-bottom:15px;color:#333}
-.bt strong{color:var(--dark);font-weight:800}
-.bt-left{text-align:left}
-.sec-dark .bt{color:#ddd}
-.sec-dark .bt strong{color:#fff}
+/* ── STANDARD SECTION ── */
+.sec{padding:80px 40px;max-width:720px;margin:0 auto}
+.sec h2{font-weight:500;font-size:clamp(1.4rem,3.5vw,2rem);line-height:1.2;margin-bottom:28px}
+.sec h2 em{font-family:'Dancing Script',cursive;font-style:normal;font-weight:400;font-size:1.05em}
+.sec p{font-size:0.92rem;color:var(--white-soft);line-height:1.8;margin-bottom:16px}
+.sec p strong{color:var(--white);font-weight:500}
 
-/* BUTTONS */
-.rbtn{display:inline-block;background:var(--r);color:#fff;padding:18px 40px;font-family:'Montserrat',sans-serif;font-size:.9rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;border:none;cursor:pointer;transition:all .2s;text-decoration:none;border-radius:8px;margin:10px 0;box-shadow:0 4px 20px rgba(107,15,26,0.25)}.rbtn:hover{background:var(--rh);transform:translateY(-2px);box-shadow:0 6px 25px rgba(107,15,26,0.35)}
-.wbtn{background:#fff;color:var(--dark);box-shadow:0 4px 20px rgba(0,0,0,0.1)}.wbtn:hover{background:#f5f5f5;box-shadow:0 6px 25px rgba(0,0,0,0.15)}
+/* ── SITUATION CARDS ── */
+.situations{padding:80px 40px;max-width:720px;margin:0 auto}
+.situations h2{font-weight:500;font-size:clamp(1.4rem,3.5vw,2rem);line-height:1.2;margin-bottom:40px;text-align:center}
+.sit{background:var(--bg-card);border:1px solid var(--accent);padding:32px 28px;margin-bottom:20px}
+.sit h3{font-weight:500;font-size:1.05rem;margin-bottom:12px}
+.sit p{font-size:0.88rem;color:var(--white-soft);line-height:1.75}
+.sit .result{font-size:0.84rem;color:var(--white);font-weight:400;margin-top:16px;padding-top:16px;border-top:1px solid var(--accent)}
 
-/* HERO */
-.hero{position:relative;min-height:85vh;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:80px 20px;overflow:hidden;background:var(--dark)}
-.hero::before{content:'';position:absolute;inset:0;background:url('bilder/hero-carina.jpg') center top/cover no-repeat;opacity:0.15}
-.hero>*{position:relative;z-index:1}
-.hero-title{font-family:'Anton',sans-serif;font-size:clamp(2.5rem,9vw,5.5rem);font-weight:400;text-transform:uppercase;letter-spacing:.02em;line-height:1;color:#fff;margin-bottom:25px}
-.hero-title span{color:var(--r)}
-.hero-sub{font-size:clamp(1rem,3vw,1.35rem);font-weight:800;color:#bbb;line-height:1.6;text-transform:uppercase;max-width:750px;margin:0 auto 35px;letter-spacing:.02em}
+/* ── FEATURES (image background) ── */
+.feat-sec{padding:100px 40px}
+.feat-sec .bg{background-image:url('bilder/carina-working.jpg')}
+.feat-sec .overlay{background:rgba(55,51,54,0.85)}
+.feat-sec .content{max-width:720px;margin:0 auto}
+.feat-sec h2{font-weight:500;font-size:clamp(1.4rem,3.5vw,2rem);line-height:1.2;margin-bottom:40px;text-align:center}
+.feat{padding:28px 0;border-bottom:1px solid var(--accent)}
+.feat:last-child{border-bottom:none}
+.feat h3{font-weight:500;font-size:1rem;margin-bottom:8px}
+.feat p{font-size:0.88rem;color:var(--white-soft);line-height:1.75}
 
-/* DIVIDERS */
-.ediv{text-align:center;padding:15px 0;font-size:1.2rem;letter-spacing:.4rem;background:var(--gray)}
+/* ── NOT INCLUDED ── */
+.not-included{padding:60px 40px;max-width:720px;margin:0 auto}
+.not-included h2{font-weight:400;font-size:1.1rem;margin-bottom:24px;text-align:center;color:var(--white-soft)}
+.ni-grid{display:grid;gap:12px}
+@media(min-width:500px){.ni-grid{grid-template-columns:1fr 1fr}}
+.ni-item{font-size:0.84rem;color:var(--white-muted);padding:16px 20px;background:rgba(250,250,248,0.03);border-left:2px solid rgba(250,250,248,0.15)}
+.ni-upgrade{font-size:0.88rem;color:var(--white-soft);text-align:center;margin-top:24px;line-height:1.7}
+.ni-upgrade a{color:var(--white);text-decoration:underline;text-underline-offset:3px}
 
-/* CARDS */
-.card{background:#f0f0f0;border-radius:12px;padding:35px 25px;margin:25px auto;max-width:700px;box-shadow:0 4px 20px rgba(0,0,0,0.08);border:1px solid var(--border);text-align:left}
-.sec-dark .card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);box-shadow:none}
-.card h3{font-size:clamp(1.15rem,3vw,1.45rem);font-weight:900;line-height:1.5;color:var(--dark);margin-bottom:12px;text-transform:uppercase;letter-spacing:.01em}
-.card p{font-size:clamp(1.05rem,2.8vw,1.2rem);font-weight:600;color:#555;line-height:1.8}
-.sec-dark .card h3{color:#fff}
-.sec-dark .card p{color:#bbb}
-.card-emoji{font-size:2rem;margin-bottom:10px;display:block}
+/* ── PRICING ── */
+.pricing{padding:80px 40px;max-width:520px;margin:0 auto;text-align:center}
+.price-card{background:var(--bg-card);border:1px solid rgba(250,250,248,0.2);padding:48px 36px}
+.price-amount{font-weight:500;font-size:3rem;margin-bottom:4px;letter-spacing:-0.02em}
+.price-note{font-size:0.78rem;color:var(--white-muted);margin-bottom:32px}
+.price-list{list-style:none;text-align:left;margin-bottom:36px}
+.price-list li{font-size:0.86rem;color:var(--white-soft);padding:10px 0;border-bottom:1px solid var(--accent);padding-left:16px;position:relative}
+.price-list li::before{content:'–';position:absolute;left:0;color:var(--white-muted)}
+.price-list li:last-child{border-bottom:none}
+.price-cta{display:block;text-align:center;font-weight:400;font-size:0.78rem;letter-spacing:0.2em;text-transform:uppercase;padding:16px;border:1px solid rgba(250,250,248,0.35);color:var(--white);transition:all 0.35s ease;background:transparent}
+.price-cta:hover{background:var(--white);color:var(--bg);border-color:var(--white)}
 
-/* IMAGE SECTIONS */
-.fimg{width:100%;max-height:450px;overflow:hidden;background:var(--gray)}
-.fimg img{width:100%;height:100%;object-fit:cover;object-position:center}
+/* ── FAQ ── */
+.faq{padding:80px 40px;max-width:720px;margin:0 auto}
+.faq h2{font-weight:500;font-size:clamp(1.4rem,3.5vw,2rem);margin-bottom:40px;text-align:center}
+.fq{border-bottom:1px solid var(--accent)}
+.fq:last-of-type{border-bottom:none}
+.fq-q{font-weight:400;font-size:0.9rem;cursor:pointer;padding:20px 0;display:flex;justify-content:space-between;align-items:center;gap:16px;transition:color 0.3s}
+.fq-q:hover{color:var(--white-soft)}
+.fq-q::after{content:'+';font-size:1.4rem;font-weight:300;color:var(--white-muted);flex-shrink:0;transition:transform 0.3s}
+.fq.open .fq-q::after{transform:rotate(45deg)}
+.fq-a{max-height:0;overflow:hidden;transition:max-height 0.4s ease}
+.fq.open .fq-a{max-height:300px}
+.fq-a p{font-size:0.86rem;color:var(--white-muted);line-height:1.75;padding-bottom:20px}
 
-/* ABOUT PHOTO */
-.aphoto{max-width:500px;margin:0 auto 30px;border-radius:16px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,0.12)}
-.aphoto img{width:100%;display:block}
+/* ── FINAL CTA (image background) ── */
+.cta-sec{padding:120px 40px;text-align:center}
+.cta-sec .bg{background-image:url('bilder/about-you.jpg');background-position:center 20%}
+.cta-sec .overlay{background:rgba(55,51,54,0.8)}
+.cta-sec .content{max-width:560px;margin:0 auto}
+.cta-sec h2{font-weight:500;font-size:clamp(1.6rem,4vw,2.4rem);line-height:1.2;margin-bottom:16px}
+.cta-sec h2 em{font-family:'Dancing Script',cursive;font-style:normal;font-weight:400;font-size:1.05em}
+.cta-sec p{font-size:0.92rem;color:var(--white-muted);margin-bottom:36px;line-height:1.7}
+.cta-sec a.cta-btn{display:inline-block;font-weight:400;font-size:0.76rem;letter-spacing:0.2em;text-transform:uppercase;padding:16px 44px;border:1px solid rgba(250,250,248,0.4);color:var(--white);transition:all 0.35s ease}
+.cta-sec a.cta-btn:hover{background:var(--white);color:var(--bg);border-color:var(--white)}
 
-/* PROOF */
-.proof-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px;max-width:1000px;margin:0 auto;padding:20px 0}
-.proof-item{border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.08)}
-.proof-item img{width:100%;display:block}
+footer{text-align:center;padding:40px 24px 50px}
+.sig{font-family:'Dancing Script',cursive;font-size:1.4rem;color:var(--white-soft);margin-bottom:20px}
+.foot-links{font-size:0.68rem;color:var(--white-muted)}
+.foot-links a{color:var(--white-muted);margin:0 6px;transition:color 0.3s}.foot-links a:hover{color:var(--white)}
+.foot-copy{font-size:0.62rem;color:var(--white-muted);margin-top:12px;opacity:0.6}
 
-/* FEATURES */
-.feat{background:#f0f0f0;border-radius:12px;padding:30px 25px;margin:20px 0;border-left:4px solid var(--r);box-shadow:0 2px 15px rgba(0,0,0,0.08)}
-.feat h3{font-size:clamp(1.1rem,3vw,1.35rem);font-weight:900;text-transform:uppercase;margin-bottom:10px;letter-spacing:.01em;color:var(--dark)}
-.feat h3 span{color:var(--r)}
-.feat p{font-size:clamp(1.05rem,2.8vw,1.2rem);font-weight:600;color:#555;line-height:1.8}
-.feat p strong{color:var(--dark);font-weight:800}
-
-/* PRICING */
-.price-box{background:#f0f0f0;border-radius:16px;padding:50px 30px;max-width:600px;margin:0 auto;box-shadow:0 8px 35px rgba(0,0,0,0.15);border:2px solid var(--r)}
-.price{font-family:'Anton',sans-serif;font-size:clamp(4.5rem,15vw,9rem);font-weight:400;color:var(--r);line-height:1;margin-bottom:8px;letter-spacing:.02em}
-.psub{font-size:1rem;color:#777;font-weight:700;margin-bottom:30px;text-transform:uppercase;letter-spacing:.05em}
-.chk{list-style:none;text-align:left;max-width:480px;margin:0 auto 30px}
-.chk li{font-size:clamp(1.05rem,2.8vw,1.25rem);font-weight:800;padding:10px 0;color:var(--dark);border-bottom:1px solid #ccc}
-.chk li:last-child{border-bottom:none}
-
-/* FAQ */
-.fq{max-width:750px;margin:0 auto;background:#f0f0f0;border-radius:12px;margin-bottom:15px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);border:1px solid var(--border)}
-.fq-q{font-size:clamp(1rem,2.5vw,1.2rem);font-weight:900;text-transform:uppercase;cursor:pointer;padding:20px 25px;display:flex;justify-content:space-between;align-items:center;gap:15px;transition:all .2s;color:var(--dark)}
-.fq-q:hover{background:var(--gray);color:var(--r)}
-.fq-q::after{content:'+';color:var(--r);font-size:1.8rem;font-weight:300;flex-shrink:0;transition:transform .2s}
-.fq.o .fq-q::after{transform:rotate(45deg)}
-.fq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;background:var(--gray)}
-.fq.o .fq-a{max-height:500px}
-.fq-a p{font-size:1.05rem;font-weight:600;color:#555;line-height:1.8;padding:20px 25px}
-
-/* FOOTER */
-footer{text-align:center;padding:40px 20px;background:var(--dark);color:#666;font-size:.75rem;font-weight:600}
-footer a{color:#888;margin:0 6px;transition:color .2s}
-footer a:hover{color:var(--r)}
-footer .fb{font-family:'Anton',sans-serif;font-size:1rem;font-weight:400;color:#888;margin-bottom:8px;text-transform:uppercase;letter-spacing:.03em}
-footer .fb span{color:var(--r)}
+@keyframes softIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:767px){.hero{padding:0 28px 60px}.nav{padding:20px 24px}.sec,.situations,.faq,.not-included{padding:60px 24px}.feat-sec,.cta-sec{padding:80px 24px}.pricing{padding:60px 24px}.sit{padding:28px 24px}}
 </style>
 </head>
 <body>
+<div class="page">
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-title">THE <span>COLLECTIVE</span></div>
-  <p class="hero-sub">NEBENWIRKUNGEN: KLARHEIT DIE WEHTUT. NACHFRAGE DIE SICH AUFBAUT. UND EIN BUSINESS DAS NICHT MEHR VON DEINER TAGESFORM ABHÄNGT.</p>
-  <a href="#invest" class="rbtn">JETZT STARTEN 💸</a>
-</div>
+<nav class="nav">
+  <a href="index.html" class="nav-logo">Prav · Business Consulting</a>
+  <a href="index.html" class="nav-back">← Alle Services</a>
+</nav>
 
-<!-- INTRO -->
-<div class="sec sec-gray">
-  <div class="cont">
-    <div class="ediv">🔥💸🔥💸🔥</div>
-    <p class="subhead" style="margin-top:30px">HIER MACHEN WIR AUS DEINEN GUTEN MONATEN DEINE <strong>NORMALITÄT</strong> — OHNE DASS DU DAFÜR DEIN LEBEN OPFERST, DICH VERSTELLST ODER RUND UM DIE UHR ONLINE SEIN MUSST.</p>
+<!-- ── HERO ── -->
+<section class="img-sec hero">
+  <div class="bg"></div>
+  <div class="overlay"></div>
+  <div class="content">
+    <div class="hero-label">The Collective</div>
+    <h1>Dein Angebot steht.<br>Dein Umsatz <em>nicht.</em></h1>
+    <p class="hero-sub">Du postest, du arbeitest, du investierst Zeit. Aber am Ende des Monats fragst du dich trotzdem, ob es reicht. Das Collective gibt dir die Struktur, die aus guten Wochen deinen Standard macht.</p>
+  </div>
+</section>
+
+<!-- ── SITUATIONS ── -->
+<div class="situations">
+  <h2>Das hier klingt nach dir.</h2>
+  <div class="sit">
+    <h3>Du arbeitest konstant — dein Umsatz nicht.</h3>
+    <p>Du bist nicht faul. Du bist nicht planlos. Trotzdem schwankt dein Umsatz von Monat zu Monat, und du weißt nicht warum der eine funktioniert und der andere nicht.</p>
+    <div class="result">Im Collective findest du das Muster. Und baust ein System, das nicht von deiner Tagesform abhängt.</div>
+  </div>
+  <div class="sit">
+    <h3>Du hast zu viele Ideen — und keine klare Linie.</h3>
+    <p>Ein neues Angebot, ein neuer Kanal, eine neue Strategie. Du fängst an, probierst aus, wechselst. Und am Ende hast du viel gemacht aber nichts, das sich aufgebaut hat.</p>
+    <div class="result">Das Collective bringt Fokus. Eine Richtung. Und die Disziplin, daran festzuhalten.</div>
+  </div>
+  <div class="sit">
+    <h3>Du weißt, dass dein Angebot gut ist — aber es kauft niemand.</h3>
+    <p>Deine Kundinnen lieben die Zusammenarbeit. Aber neue kommen nicht nach. Dein Problem ist nicht dein Können — es ist wie du es verpackst, kommunizierst und verkaufst.</p>
+    <div class="result">Im Collective lernst du, aus einem guten Angebot eines zu machen, das sich verkauft.</div>
   </div>
 </div>
 
-<!-- 3 SITUATIONEN -->
-<div class="sec">
-  <div class="cont">
-    <div class="bhead">DAS COLLECTIVE IST GENAU DAS RICHTIGE FÜR DICH WENN EINE DIESER 3 SITUATIONEN GERADE <span>DEINE REALITÄT IST...</span></div>
-    
-    <div class="card">
-      <span class="card-emoji">👊</span>
-      <h3>Du arbeitest. Jeden. Verdammten. Tag.</h3>
-      <p>Du bist die disziplinierteste Person die du kennst wenn es um Content geht... aber dein Umsatz, deine Nachfrage und deine Verkäufe bewegen sich einfach nicht — und du hast es SO satt dir zu sagen „gib dem Ganzen noch mehr Zeit".</p>
-      <p style="margin-top:15px;color:var(--r);font-weight:800">→ Hier respektieren wir den Aufwand den dieses Business braucht. Im Collective finden wir die Lücke und schließen sie.</p>
-    </div>
+<div class="line"></div>
 
-    <div class="card">
-      <span class="card-emoji">👊</span>
-      <h3>Deine Zahlen schwanken wie eine Achterbahn.</h3>
-      <p>Dieser Monat läuft. Nächster Monat tot. Du weißt nie ob am Ende des Monats genug da ist — und das macht dich fertig weil du DOCH konstant arbeitest. Du brauchst kein Motivationscoaching. Du brauchst ein System.</p>
-      <p style="margin-top:15px;color:var(--r);font-weight:800">→ Hier bringen wir deinem Business bei wie es für dich arbeitet — statt dass du ständig nachjagst.</p>
-    </div>
-
-    <div class="card">
-      <span class="card-emoji">👊</span>
-      <h3>Du fühlst dich wie der bestgehütete Geheimtipp deiner Branche.</h3>
-      <p>Die Leute die mit dir arbeiten LIEBEN dich. Aber es sind zu wenige. Und du weißt nicht wie du aus „geliebt von den wenigen" zu „bekannt bei den vielen" kommst ohne dich zu verbiegen.</p>
-      <p style="margin-top:15px;color:var(--r);font-weight:800">→ Hier lernst du wie du die Menschen erreichst für die du gemacht bist — ohne dich anzupassen.</p>
-    </div>
-  </div>
-</div>
-
-<!-- IMAGE BREAK -->
-<div class="fimg"><img src="bilder/carina-portrait-2.jpg" alt=""></div>
-
-<!-- WIE ES FUNKTIONIERT -->
-<div class="sec sec-dark">
-  <div class="cont">
-    <div class="bhead">SO FUNKTIONIERT DAS <span>COLLECTIVE.</span></div>
-    <p class="bt">Andere Programme geben dir Content. Wir geben dir <strong>die Reihenfolge.</strong> Andere Programme geben dir Motivation. Wir geben dir <strong>Struktur.</strong> Andere Programme lassen dich alleine raten. Hier arbeitest du mit Menschen die verstehen wie hart das ist — und die trotzdem nicht nachlassen bis du da bist wo du hinwillst.</p>
-  </div>
-</div>
-
-<!-- ÜBER MICH -->
-<div class="sec">
-  <div class="cont">
-    <div class="bhead">HALLO HALLO HALLO!!! ICH BIN <span>CARINA,</span></div>
-    <p class="bt"><strong>Ex-Rocksängerin, preisgekrönte Projektmanagerin, Mama, und Strategin die absolut HUNGRIG nach Wirkung ist.</strong></p>
-    <div class="aphoto"><img src="bilder/about-you.jpg" alt="Carina"></div>
-    <p class="bt bt-left">Ich hab auf internationalen Bühnen gesungen bevor ich angefangen hab Frauen zu zeigen wie sie ihr Business aufbauen — mit Kind auf dem Arm.</p>
-    <p class="bt bt-left">Was mich von den meisten unterscheidet? <strong>Ich gebe dir nicht nur Strategie.</strong> Ich durchleuchte dein gesamtes Business — Angebot, Preise, Content, Verkauf, Positionierung — und sage dir GENAU was sich ändern muss. Und dann ändern wir es zusammen.</p>
-    <p class="bt bt-left">Ich liebe gute Kundenerfahrung, ich liebe es wenn meine Kundinnen unverhältnismäßig gut verdienen, und ich liebe es dass ich das alles machen kann <strong>während ich für die Momente da bin die wirklich zählen.</strong></p>
-    <p class="bt bt-left"><strong>Bei mir bekommst du jemanden der sich darauf freut ALLES mit dir mitzumachen.</strong> Die Hochs und die Tiefs. Ich feiere mit dir wenn es läuft — und ich halte dich wenn es sich schwer anfühlt und erinnere dich daran dass das eine Wachstumsphase ist, kein Rückschritt.</p>
-    <p class="bt" style="color:var(--r);font-weight:900;font-size:1.3rem;margin-top:25px"><strong>Für dich gibt es keine Obergrenze.</strong></p>
-    <p class="bt" style="font-weight:900">Mit Klarheit, Carina.</p>
-  </div>
-</div>
-
-<!-- ERGEBNISSE -->
-<div class="sec sec-gray">
-  <div class="cont cont-wide">
-    <div class="bhead">KUNDINNEN DIE DEN <span>COLLECTIVE EFFEKT</span> VERKÖRPERN...</div>
-    <div class="proof-grid">
-      <div class="proof-item"><img src="bilder/proof-1.jpg" alt="Kundinnen-Feedback"></div>
-      <div class="proof-item"><img src="bilder/proof-2.jpg" alt="Kundinnen-Feedback"></div>
-      <div class="proof-item"><img src="bilder/proof-3.jpg" alt="Kundinnen-Feedback"></div>
-      <div class="proof-item"><img src="bilder/proof-4.jpg" alt="Kundinnen-Feedback"></div>
-      <div class="proof-item"><img src="bilder/proof-5.jpg" alt="Kundinnen-Feedback"></div>
-      <div class="proof-item"><img src="bilder/proof-6.jpg" alt="Kundinnen-Feedback"></div>
-      <div class="proof-item"><img src="bilder/proof-7.jpg" alt="Kundinnen-Feedback"></div>
-      <div class="proof-item"><img src="bilder/proof-8.jpg" alt="Kundinnen-Feedback"></div>
-    </div>
-  </div>
-</div>
-
-<!-- RED BAR -->
-<div class="sec sec-red">
-  <div class="cont">
-    <p class="subhead" style="margin:0">DAS HIER IST WO FLAUTEN AUFHÖREN ZU EXISTIEREN...</p>
-  </div>
-</div>
-
-<!-- WAS DU BEKOMMST -->
-<div class="sec">
-  <div class="cont">
-    <div class="bhead">DAS STECKT IM <span>COLLECTIVE.</span></div>
-    
+<!-- ── FEATURES (image background) ── -->
+<section class="img-sec feat-sec">
+  <div class="bg"></div>
+  <div class="overlay"></div>
+  <div class="content">
+    <h2>Was im Collective steckt.</h2>
     <div class="feat">
-      <h3>VIDEO-TRAININGS: <span>KLARHEIT → STRUKTUR → DYNAMIK</span></h3>
-      <p>Das ist der Content den du auf Instagram NICHT bekommst. <strong>Mein komplettes Framework als tiefe Video-Trainings</strong> — Schritt für Schritt, von Positionierung über Angebotserstellung bis zu Content der verkauft. Kein Oberflächen-Wissen. Das hier geht unter die Haut.</p>
+      <h3>Video-Trainings: Klarheit → Struktur → Dynamik</h3>
+      <p>Mein komplettes Framework in tiefen Trainings. Positionierung, Angebotsarchitektur, Content der verkauft, Verkaufsprozesse. Kein Oberflächen-Wissen — jedes Training hat einen klaren nächsten Schritt.</p>
     </div>
-
     <div class="feat">
-      <h3>LIVE GROUP CALLS <span>2X PRO MONAT — MIT MIR</span></h3>
-      <p><strong>Zweimal im Monat sitzt du mit mir live im Call.</strong> Das ist kein aufgezeichnetes Webinar und kein Call den jemand anderes macht. ICH bin da. Du bringst mit was gerade bei dir los ist, wir schauen es uns an, finden die Lücke — <strong>und du gehst mit einem klaren nächsten Schritt raus.</strong></p>
+      <h3>Live Group Calls — alle 2 Wochen mit mir</h3>
+      <p>Du bringst mit, woran du arbeitest. Wir schauen gemeinsam drauf, finden die Lücke, klären den nächsten Schritt. Kein aufgezeichnetes Webinar. Ich bin da, live, für dich.</p>
     </div>
-
     <div class="feat">
-      <h3>MIGHTY NETWORKS <span>COMMUNITY</span></h3>
-      <p><strong>Keine Wohlfühl-Gruppe.</strong> Eine Community von Frauen die umsetzen, sich gegenseitig herausfordern und sich nicht mit Mittelmaß zufriedengeben. Hier feierst du deine Erfolge. Hier stellst du die Fragen die du dich sonst nicht traust. <strong>Verbindlichkeit macht dich nicht „unsicher". Es macht dich zur Frau die die Messlatte so hoch legt dass es ihr selbst manchmal Angst macht.</strong></p>
+      <h3>Community in Mighty Networks</h3>
+      <p>Frauen, die umsetzen. Die sich nicht mit Mittelmaß zufriedengeben. Hier stellst du die Fragen, die du dich sonst nicht traust. Hier feierst du Ergebnisse, die du dir nicht alleine zugetraut hättest.</p>
     </div>
-
     <div class="feat">
-      <h3>VORLAGEN & <span>RESSOURCEN</span></h3>
-      <p>Fertige Vorlagen, Content-Gerüste, Positionierungs-Werkzeuge — <strong>alles was du brauchst um nicht bei null anzufangen.</strong></p>
+      <h3>Vorlagen, Skripte, Frameworks</h3>
+      <p>Du fängst nicht bei null an. Angebotsvorlagen, Content-Gerüste, Positionierungs-Werkzeuge — alles, was du brauchst, um direkt loszulegen.</p>
     </div>
+  </div>
+</section>
+
+<!-- ── NOT INCLUDED ── -->
+<div class="not-included">
+  <h2>Was du im Collective nicht bekommst:</h2>
+  <div class="ni-grid">
+    <div class="ni-item">Keinen 1:1-Zugang zu mir</div>
+    <div class="ni-item">Keinen Telegram-Support</div>
+    <div class="ni-item">Kein individuelles Feedback auf deine Inhalte</div>
+    <div class="ni-item">Keine maßgeschneiderte Strategie</div>
+  </div>
+  <p class="ni-upgrade">Wenn du merkst, dass du mehr brauchst — die <a href="bewerbung.html">1:1-Betreuung</a> ist der nächste Schritt.</p>
+</div>
+
+<div class="line"></div>
+
+<!-- ── PRICING ── -->
+<div class="pricing" id="invest">
+  <div class="price-card">
+    <div class="price-amount">133€</div>
+    <div class="price-note">pro Monat · monatlich kündbar</div>
+    <ul class="price-list">
+      <li>Video-Trainings: Klarheit → Struktur → Dynamik</li>
+      <li>Live Group Calls 2× pro Monat</li>
+      <li>Mighty Networks Community</li>
+      <li>Vorlagen und Ressourcen</li>
+    </ul>
+    <a href="https://carinaannaprav.thrivecart.com/the-collective/" class="price-cta">Jetzt starten</a>
   </div>
 </div>
 
-<!-- IMAGE BREAK -->
-<div class="fimg"><img src="bilder/carina-working.jpg" alt=""></div>
+<div class="line"></div>
 
-<!-- WAS DU NICHT BEKOMMST -->
-<div class="sec sec-dark">
-  <div class="cont">
-    <div class="bhead">WAS DU IM COLLECTIVE <span>NICHT</span> BEKOMMST.</div>
-    <div class="card">
-      <p style="font-size:1.2rem;margin-bottom:15px">❌ <strong>Keinen direkten Zugang zu mir im Einzelgespräch</strong></p>
-      <p style="font-size:1.2rem;margin-bottom:15px">❌ <strong>Keinen Telegram-Support</strong></p>
-      <p style="font-size:1.2rem">❌ <strong>Kein 1:1-Feedback</strong></p>
-    </div>
-    <p class="bt" style="margin-top:30px">Collective = <strong>Video-Trainings + Live Group Calls + Mighty Networks Community.</strong> Inner Circle = <strong>MICH. Jede Woche. Direkt auf deinem Business.</strong> Wer im Collective merkt „ich brauch mehr" — <strong><a href="inner-circle.html" style="color:var(--r);text-decoration:underline">steigt ein.</a></strong></p>
-  </div>
+<!-- ── FAQ ── -->
+<div class="faq">
+  <h2>Häufige Fragen</h2>
+  <div class="fq"><div class="fq-q" onclick="this.parentElement.classList.toggle('open')">Für wen ist das Collective?</div><div class="fq-a"><p>Für selbstständige Frauen, die aufhören wollen zu raten. Du brauchst kein bestimmtes Umsatz-Level. Du brauchst die Bereitschaft, ehrlich hinzuschauen und umzusetzen.</p></div></div>
+  <div class="fq"><div class="fq-q" onclick="this.parentElement.classList.toggle('open')">Wie lange bin ich gebunden?</div><div class="fq-a"><p>Gar nicht. Monatlich kündbar. Du bleibst, solange es dir Ergebnisse bringt.</p></div></div>
+  <div class="fq"><div class="fq-q" onclick="this.parentElement.classList.toggle('open')">Was wenn ich merke, dass ich mehr brauche?</div><div class="fq-a"><p>Dann ist die 1:1-Betreuung dein nächster Schritt. Bewerbungspflicht, mindestens 3 Monate. Kein automatischer Wechsel — du bewirbst dich, wir sprechen, und dann entscheiden wir.</p></div></div>
+  <div class="fq"><div class="fq-q" onclick="this.parentElement.classList.toggle('open')">Ich habe schon viel investiert und nichts hat funktioniert.</div><div class="fq-a"><p>Weil du hier nicht noch mehr Wissen bekommst. Du bekommst Klarheit darüber, was du mit dem Wissen tun sollst. Die meisten scheitern nicht am Wissen. Sie scheitern an der Reihenfolge.</p></div></div>
 </div>
 
-<!-- RED BAR -->
-<div class="sec sec-red">
-  <div class="cont">
-    <p class="subhead" style="margin:0">ES GIBT IMMER EINEN GRUND WARUM DU NICHT DIE ERGEBNISSE HAST DIE DU WILLST. DAS HIER IST DAS PROGRAMM IN DEM WIR DIESEN GRUND FINDEN UND DEIN BUSINESS SO AUFSTELLEN DASS ERGEBNISSE WIE DIESE DEIN STANDARD WERDEN...</p>
+<div class="line"></div>
+
+<!-- ── FINAL CTA (image background) ── -->
+<section class="img-sec cta-sec">
+  <div class="bg"></div>
+  <div class="overlay"></div>
+  <div class="content">
+    <h2>Du hast genug <em>gewartet.</em></h2>
+    <p>Hör auf zu raten. Fang an, mit System aufzubauen. Das Collective gibt dir den Rahmen.</p>
+    <a href="https://carinaannaprav.thrivecart.com/the-collective/" class="cta-btn">Jetzt starten</a>
   </div>
-</div>
+</section>
 
-<!-- INVESTMENT -->
-<div class="sec sec-gray" id="invest">
-  <div class="cont">
-    <div class="bhead">DEIN <span>INVESTMENT:</span></div>
-    <div class="price-box">
-      <div class="price">297€</div>
-      <div class="psub">PRO MONAT · MONATLICH KÜNDBAR</div>
-      <ul class="chk">
-        <li>✅ Video-Trainings: Klarheit → Struktur → Dynamik</li>
-        <li>✅ Live Group Calls 2x pro Monat mit Carina</li>
-        <li>✅ Mighty Networks Community</li>
-        <li>✅ Vorlagen & Ressourcen</li>
-      </ul>
-      <a href="https://carinaannaprav.thrivecart.com/the-collective/" class="rbtn" style="width:100%">JETZT INS COLLECTIVE 💸</a>
-    </div>
-  </div>
-</div>
-
-<!-- FAQ -->
-<div class="sec">
-  <div class="cont">
-    <div class="bhead">HÄUFIGE <span>FRAGEN</span></div>
-    
-    <div class="fq">
-      <div class="fq-q" onclick="this.parentElement.classList.toggle('o')">FÜR WEN IST DAS COLLECTIVE?</div>
-      <div class="fq-a"><p>Für selbstständige Frauen die endlich aufhören wollen zu raten. Du brauchst kein bestimmtes Umsatz-Level. Du brauchst die Bereitschaft ehrlich hinzuschauen und umzusetzen.</p></div>
-    </div>
-
-    <div class="fq">
-      <div class="fq-q" onclick="this.parentElement.classList.toggle('o')">WIE LANGE BIN ICH DABEI?</div>
-      <div class="fq-a"><p>Monatlich kündbar. Kein Vertrag. Du bleibst solange es dir Ergebnisse bringt.</p></div>
-    </div>
-
-    <div class="fq">
-      <div class="fq-q" onclick="this.parentElement.classList.toggle('o')">WAS WENN ICH MERKE DASS ICH MEHR BRAUCHE?</div>
-      <div class="fq-a"><p>Dann gibt es den Inner Circle. Bewerbungspflicht, mindestens 3 Monate. Kein automatischer Wechsel — du bewirbst dich, wir sprechen, und dann entscheiden wir gemeinsam.</p></div>
-    </div>
-
-    <div class="fq">
-      <div class="fq-q" onclick="this.parentElement.classList.toggle('o')">ICH HAB SCHON SO VIEL GEKAUFT UND NICHTS HAT FUNKTIONIERT.</div>
-      <div class="fq-a"><p>Weil du hier nicht noch mehr Wissen bekommst. Du bekommst Klarheit darüber was du mit dem Wissen tun sollst. Die meisten scheitern nicht am Wissen — sie scheitern an der Reihenfolge.</p></div>
-    </div>
-  </div>
-</div>
-
-<!-- FINAL CTA -->
-<div class="sec sec-dark">
-  <div class="cont">
-    <div class="bhead">DU WEISST DASS DU <span>BEREIT BIST.</span></div>
-    <p class="bt"><strong>Hör auf zu warten. Hör auf zu raten. Fang an umzusetzen.</strong></p>
-    <a href="https://carinaannaprav.thrivecart.com/the-collective/" class="wbtn rbtn">JETZT INS COLLECTIVE 🔥</a>
-  </div>
-</div>
-
-<!-- FOOTER -->
 <footer>
-  <div class="fb">CARINA<span>ANNAPRAV</span></div>
-  <a href="index.html">Home</a> · <a href="inner-circle.html">Inner Circle</a> · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <a href="agb.html">AGB</a>
-  <p style="margin-top:15px">© 2026 carinaannaprav</p>
+  <div class="sig">Carina Anna Prav.</div>
+  <div class="foot-links">
+    <a href="index.html">Home</a> · <a href="bewerbung.html">1:1 Bewerbung</a> · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <a href="agb.html">AGB</a>
+  </div>
+  <div class="foot-copy">© 2026 PRAV Business Consulting</div>
 </footer>
 
+</div>
 </body>
 </html>

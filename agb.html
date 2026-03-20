@@ -1,395 +1,111 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Allgemeine Geschäftsbedingungen - carinaannaprav">
-    <title>AGB | carinaannaprav</title>
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        :root {
-            --white: #FAFAF7;
-            --light-gray: rgba(255,255,255,0.06);
-            --charcoal: #fff;
-            --dark-gray: #4A4A4A;
-            --accent: #C8102E;
-            --font-serif: 'Poppins', 'Poppins', sans-serif;
-            --font-sans: 'Poppins', sans-serif;
-            --spacing-sm: 1rem;
-            --spacing-md: 2rem;
-            --spacing-lg: 4rem;
-            --max-width: 1200px;
-        }
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            color: #fff;
-            background: #000;
-            line-height: 1.7;
-        }
-        
-        h1, h2, h3 {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 400;
-            line-height: 1.2;
-            margin-bottom: var(--spacing-sm);
-        }
-        
-        h1 {
-            font-size: clamp(2rem, 5vw, 3rem);
-            margin-bottom: var(--spacing-md);
-        }
-        
-        h2 {
-            font-size: clamp(1.5rem, 4vw, 2rem);
-            margin-top: var(--spacing-md);
-            color: #fff;
-        }
-        
-        h3 {
-            font-size: clamp(1.2rem, 3vw, 1.5rem);
-            margin-top: var(--spacing-sm);
-        }
-        
-        p {
-            font-size: 1.125rem;
-            margin-bottom: var(--spacing-sm);
-            color: var(--dark-gray);
-        }
-        
-        ul, ol {
-            margin-left: 2rem;
-            margin-bottom: var(--spacing-sm);
-        }
-        
-        li {
-            margin-bottom: 0.5rem;
-            color: var(--dark-gray);
-        }
-        
-        a {
-            color: #fff;
-            text-decoration: none;
-        }
-        
-        a:hover {
-            color: #fff;
-        }
-        
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 var(--spacing-md);
-        }
-        
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(0,0,0,0.88);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border: 1px solid var(--light-gray);
-        }
-        
-        .nav-container {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: var(--spacing-sm) var(--spacing-md);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 400;
-            letter-spacing: 0.05em;
-            color: #fff;
-        }
-        
-        .back-link {
-            font-size: 0.95rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-weight: 500;
-            color: #fff;
-        }
-        
-        .content {
-            padding: 120px 0 var(--spacing-lg);
-        }
-        
-        .legal-section {
-            margin-bottom: var(--spacing-lg);
-        }
-        
-        footer {
-            background: #0D0D0D;
-            color: var(--medium-gray);
-            padding: var(--spacing-md) 0;
-            text-align: center;
-            font-size: 0.9rem;
-        }
-    </style>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AGB — PRAV Business Consulting</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Dancing+Script:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#4A464A;--white:#FAFAF8;--white-soft:rgba(250,250,248,0.75);--white-muted:rgba(250,250,248,0.5)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--white);font-family:'Outfit',sans-serif;font-weight:300;line-height:1.65;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 20% 20%,rgba(90,82,88,0.4) 0%,transparent 60%),radial-gradient(ellipse at 80% 80%,rgba(70,64,68,0.3) 0%,transparent 60%);pointer-events:none;z-index:0}
+a{color:var(--white);text-decoration:underline;text-underline-offset:3px;transition:color 0.3s}a:hover{color:var(--white-soft)}
+.page{position:relative;z-index:1}
+.nav{padding:28px 36px;display:flex;justify-content:space-between;align-items:center}
+.nav-logo{font-weight:300;font-size:0.68rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--white-muted);text-decoration:none;transition:color 0.3s}.nav-logo:hover{color:var(--white)}
+.nav-back{font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--white-muted);text-decoration:none;transition:color 0.3s}.nav-back:hover{color:var(--white)}
+.wrap{max-width:640px;margin:0 auto;padding:40px 32px 100px}
+.wrap h1{font-weight:500;font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:40px;opacity:0;animation:softIn 0.8s ease forwards 0.2s}
+.wrap h1 em{font-family:'Dancing Script',cursive;font-style:normal;font-weight:400}
+.wrap h2{font-weight:500;font-size:0.92rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--white-soft);margin-top:36px;margin-bottom:12px}
+.wrap p{font-size:0.9rem;color:var(--white-muted);margin-bottom:8px;line-height:1.8}
+.wrap p strong{color:var(--white);font-weight:500}
+.wrap ul,.wrap ol{margin-left:1.2rem;margin-bottom:12px}
+.wrap li{margin-bottom:4px;color:var(--white-muted);font-size:0.86rem;line-height:1.7}
+footer{text-align:center;padding:40px 24px 50px;font-size:0.68rem;color:var(--white-muted)}
+footer a{color:var(--white-muted);margin:0 6px;text-decoration:none}footer a:hover{color:var(--white)}
+@keyframes softIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+</style>
 </head>
-
 <body>
-    <nav>
-        <div class="nav-container">
-            <a href="index.html" class="logo">carinaannaprav</a>
-            <a href="index.html" class="back-link">← Zurück</a>
-        </div>
-    </nav>
+<div class="page">
+<nav class="nav"><a href="index.html" class="nav-logo">Prav · Business Consulting</a><a href="index.html" class="nav-back">← Zurück</a></nav>
+<div class="wrap">
+  <h1>Allgemeine Geschäfts<em>bedingungen</em></h1>
 
-    <div class="content">
-        <div class="container">
-            <h1>Allgemeine Geschäftsbedingungen</h1>
-            
-            <div class="legal-section">
-                <h2>1. Geltungsbereich</h2>
-                <p>
-                    Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für alle Verträge zwischen Carina Anna Prav 
-                    (nachfolgend "Auftragnehmerin") und dem Kunden (nachfolgend "Auftraggeber") über die Erbringung von 
-                    Coaching-, Beratungs- und Mentoring-Dienstleistungen im Bereich Business-Entwicklung, Positionierung, 
-                    Energiearbeit und Content-Strategie.
-                </p>
-                <p>
-                    Abweichende Bedingungen des Auftraggebers werden nicht anerkannt, es sei denn, die Auftragnehmerin 
-                    stimmt ihrer Geltung ausdrücklich schriftlich zu.
-                </p>
-            </div>
-            
-            <div class="legal-section">
-                <h2>2. Vertragsschluss</h2>
-                <p>
-                    Der Vertrag kommt zustande durch:
-                </p>
-                <ul>
-                    <li>Buchung eines kostenpflichtigen Angebots über die Website</li>
-                    <li>Schriftliche Auftragsbestätigung per E-Mail</li>
-                    <li>Bezahlung der Rechnung bzw. Anzahlung</li>
-                </ul>
-                <p>
-                    Mit der Buchung bzw. Auftragserteilung erkennt der Auftraggeber diese AGB als verbindlich an.
-                </p>
-            </div>
-            
-            <div class="legal-section">
-                <h2>3. Leistungsumfang</h2>
-                <p>
-                    Die Auftragnehmerin bietet folgende Dienstleistungen an:
-                </p>
-                <ul>
-                    <li>Sofort-Sessions (1:1 Einzelsessions)</li>
-                    <li>Dynamik Business Academy (Gruppencoaching mit monatlicher Laufzeit)</li>
-                    <li>The carinaannaprav (Premium-Programm mit 1:1-Begleitung)</li>
-                    <li>Energetische Aktivierung und Block-Arbeit</li>
-                    <li>Positionierungs- und Content-Strategie</li>
-                    <li>Sales-Training und Business-Mentoring</li>
-                    <li>Bereitstellung von Templates, Frameworks und digitalen Materialien</li>
-                </ul>
-                <p>
-                    Der konkrete Leistungsumfang, die Laufzeit und der Preis ergeben sich aus dem individuellen Angebot 
-                    bzw. der Leistungsbeschreibung zum Zeitpunkt der Buchung.
-                </p>
-                <p>
-                    Die Leistungen werden online (via Zoom, Telegram oder andere digitale Kanäle) erbracht. 
-                    Alle bereitgestellten Materialien, Templates und Anleitungen dienen ausschließlich der persönlichen 
-                    Nutzung des Auftraggebers und dürfen nicht weitergegeben oder kommerziell genutzt werden.
-                </p>
-            </div>
-            
-            <div class="legal-section">
-                <h2>4. Preise und Zahlung</h2>
-                <p>
-                    Es gelten die zum Zeitpunkt der Buchung individuell vereinbarten Preise.
-                </p>
-                <p>
-                    <strong>Zahlungsmodalitäten:</strong>
-                </p>
-                <ul>
-                    <li>Einmalige Leistungen (z.B. Strategy Calls): Vollzahlung vor Leistungserbringung</li>
-                    <li>Längerfristige Programme: Vollzahlung, Ratenzahlung oder monatliche Zahlung je nach Vereinbarung</li>
-                </ul>
-                <p>
-                    Die Zahlung erfolgt per Überweisung. Zahlungsziel: 7 Tage nach Rechnungsstellung, 
-                    sofern nicht anders vereinbart.
-                </p>
-                <p>
-                    Bei Zahlungsverzug können Verzugszinsen in gesetzlicher Höhe berechnet werden. Die Auftragnehmerin 
-                    behält sich vor, bei Zahlungsverzug die Leistungserbringung bis zum Zahlungseingang auszusetzen.
-                </p>
-            </div>
-            
-            <div class="legal-section">
-                <h2>5. Mitwirkungspflichten des Auftraggebers</h2>
-                <p>
-                    Der Auftraggeber verpflichtet sich:
-                </p>
-                <ul>
-                    <li>Alle erforderlichen Informationen und Unterlagen rechtzeitig bereitzustellen</li>
-                    <li>An vereinbarten Terminen teilzunehmen bzw. rechtzeitig abzusagen (mind. 48h vorher)</li>
-                    <li>Die bereitgestellten Materialien und Anleitungen eigenverantwortlich umzusetzen</li>
-                    <li>Bei technischen Problemen aktiv mitzuwirken</li>
-                </ul>
-                <p>
-                    Verzögerungen durch fehlende Mitwirkung des Auftraggebers gehen nicht zu Lasten der Auftragnehmerin 
-                    und führen nicht zu einer Verlängerung der Vertragslaufzeit.
-                </p>
-            </div>
-            
-            <div class="legal-section">
-                <h2>6. Termine und Fristen</h2>
-                <p>
-                    Termine werden einvernehmlich vereinbart. Bei kurzfristiger Absage (weniger als 48h vor dem Termin) 
-                    durch den Auftraggeber ohne wichtigen Grund, wird der Termin als wahrgenommen gewertet.
-                </p>
-                <p>
-                    Die Auftragnehmerin behält sich vor, Termine bei Krankheit oder wichtigen Gründen zu verschieben. 
-                    In diesem Fall wird ein Ersatztermin zeitnah angeboten.
-                </p>
-            </div>
-            
-            <div class="legal-section">
-                <h2>7. Widerrufsrecht</h2>
-                <p>
-                    Bei Verträgen über Dienstleistungen besteht gemäß § 312g Abs. 2 BGB kein Widerrufsrecht, wenn die 
-                    Auftragnehmerin die Dienstleistung vollständig erbracht hat und mit der Ausführung der Dienstleistung 
-                    erst begonnen hat, nachdem der Auftraggeber dazu seine ausdrückliche Zustimmung gegeben hat und 
-                    gleichzeitig seine Kenntnis davon bestätigt hat, dass er sein Widerrufsrecht bei vollständiger 
-                    Vertragserfüllung verliert.
-                </p>
-                <p>
-                    Bei digitalen Inhalten (Templates, Anleitungen, Videos) erlischt das Widerrufsrecht mit Beginn des Downloads.
-                </p>
-            </div>
-            
-            <div class="legal-section">
-                <h2>8. Kündigung</h2>
-                <p>
-                    <strong>Einmalige Leistungen:</strong> Keine Kündigung möglich.
-                </p>
-                <p>
-                    <strong>Programme mit fester Laufzeit (z.B. 3 Monate, 6 Monate):</strong> 
-                    Keine ordentliche Kündigung während der Laufzeit möglich. Außerordentliche Kündigung aus 
-                    wichtigem Grund bleibt vorbehalten.
-                </p>
-                <p>
-                    <strong>Programme mit monatlicher Zahlung:</strong> 
-                    Ordentliche Kündigung zum Monatsende mit einer Frist von 4 Wochen möglich. 
-                    Bei Programmen mit Mindestlaufzeit gilt die Kündigungsmöglichkeit erst nach Ablauf dieser Frist.
-                </p>
-                <p>
-                    Kündigungen bedürfen der Schriftform (E-Mail ausreichend).
-                </p>
-                <p>
-                    Bereits gezahlte Beträge für erbrachte Leistungen werden nicht erstattet.
-                </p>
-            </div>
-            
-            <div class="legal-section">
-                <h2>9. Gewährleistung und Haftung</h2>
-                <p>
-                    Die Auftragnehmerin erbringt ihre Leistungen nach bestem Wissen und Gewissen. Es wird jedoch 
-                    keine Garantie für den wirtschaftlichen Erfolg der Beratung übernommen.
-                </p>
-                <p>
-                    Die Haftung der Auftragnehmerin ist beschränkt auf Vorsatz und grobe Fahrlässigkeit. Für leichte 
-                    Fahrlässigkeit haftet die Auftragnehmerin nur bei Verletzung wesentlicher Vertragspflichten 
-                    (Kardinalpflichten), wobei die Haftung auf den vertragstypischen, vorhersehbaren Schaden begrenzt ist.
-                </p>
-                <p>
-                    Die Haftung für mittelbare Schäden, entgangenen Gewinn und Folgeschäden ist ausgeschlossen, 
-                    soweit gesetzlich zulässig.
-                </p>
-                <p>
-                    Die vorstehenden Haftungsbeschränkungen gelten nicht für Schäden aus der Verletzung des Lebens, 
-                    des Körpers oder der Gesundheit sowie bei Vorsatz oder grober Fahrlässigkeit.
-                </p>
-            </div>
-            
-            <div class="legal-section">
-                <h2>10. Urheberrechte und Nutzungsrechte</h2>
-                <p>
-                    Alle bereitgestellten Materialien, Templates, Anleitungen und Inhalte sind urheberrechtlich geschützt 
-                    und bleiben Eigentum der Auftragnehmerin.
-                </p>
-                <p>
-                    Der Auftraggeber erhält ein einfaches, nicht übertragbares Nutzungsrecht für den eigenen geschäftlichen 
-                    Gebrauch. Eine Weitergabe, Vervielfältigung oder kommerzielle Nutzung (z.B. Weiterverkauf) ist untersagt.
-                </p>
-                <p>
-                    Bei Verstoß gegen diese Regelung behält sich die Auftragnehmerin rechtliche Schritte vor.
-                </p>
-            </div>
-            
-            <div class="legal-section">
-                <h2>11. Vertraulichkeit</h2>
-                <p>
-                    Beide Parteien verpflichten sich, alle im Rahmen der Zusammenarbeit bekannt gewordenen vertraulichen 
-                    Informationen streng vertraulich zu behandeln und nicht an Dritte weiterzugeben.
-                </p>
-                <p>
-                    Diese Verpflichtung besteht auch nach Beendigung des Vertragsverhältnisses fort.
-                </p>
-            </div>
-            
-            <div class="legal-section">
-                <h2>12. Datenschutz</h2>
-                <p>
-                    Die Verarbeitung personenbezogener Daten erfolgt gemäß der Datenschutzerklärung, die unter 
-                    <a href="datenschutz.html">www.carinaannaprav.at/datenschutz</a> einsehbar ist.
-                </p>
-            </div>
-            
-            <div class="legal-section">
-                <h2>13. Änderungen der AGB</h2>
-                <p>
-                    Die Auftragnehmerin behält sich vor, diese AGB zu ändern. Bestehende Verträge werden davon nicht berührt, 
-                    es sei denn, die Änderungen sind zur Anpassung an gesetzliche Vorgaben erforderlich.
-                </p>
-                <p>
-                    Kunden werden über Änderungen per E-Mail informiert.
-                </p>
-            </div>
-            
-            <div class="legal-section">
-                <h2>14. Schlussbestimmungen</h2>
-                <p>
-                    <strong>Anwendbares Recht:</strong> Es gilt österreichisches Recht unter Ausschluss des UN-Kaufrechts.
-                </p>
-                <p>
-                    <strong>Gerichtsstand:</strong> Soweit gesetzlich zulässig, ist ausschließlicher Gerichtsstand Wien.
-                </p>
-                <p>
-                    <strong>Salvatorische Klausel:</strong> Sollten einzelne Bestimmungen dieser AGB unwirksam sein oder werden, 
-                    bleibt die Wirksamkeit der übrigen Bestimmungen davon unberührt. An die Stelle der unwirksamen Bestimmung 
-                    tritt eine wirksame Regelung, die dem wirtschaftlichen Zweck der unwirksamen Bestimmung möglichst nahe kommt.
-                </p>
-            </div>
-            
-            <div class="legal-section">
-                <p><strong>Stand: März 2026</strong></p>
-            </div>
-        </div>
-    </div>
+  <h2>1. Geltungsbereich</h2>
+  <p>Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für alle Verträge zwischen Carina Anna Prav (nachfolgend „Auftragnehmerin") und dem Kunden (nachfolgend „Auftraggeber") über die Erbringung von Beratungs- und Mentoring-Dienstleistungen im Bereich Angebotsdesign, Positionierung und Business-Entwicklung.</p>
+  <p>Abweichende Bedingungen des Auftraggebers werden nicht anerkannt, es sei denn, die Auftragnehmerin stimmt ihrer Geltung ausdrücklich schriftlich zu.</p>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 The carinaannaprav — Carina Anna Prav</p>
-        </div>
-    </footer>
+  <h2>2. Vertragsschluss</h2>
+  <p>Der Vertrag kommt zustande durch:</p>
+  <ul><li>Buchung eines kostenpflichtigen Angebots über die Website</li><li>Schriftliche Auftragsbestätigung per E-Mail</li><li>Bezahlung der Rechnung bzw. Anzahlung</li></ul>
+  <p>Mit der Buchung bzw. Auftragserteilung erkennt der Auftraggeber diese AGB als verbindlich an.</p>
+
+  <h2>3. Leistungsumfang</h2>
+  <p>Die Auftragnehmerin bietet folgende Dienstleistungen an:</p>
+  <ul><li>Offer Incubator (kostenlose Analyse-Gespräche)</li><li>The Collective (Gruppenformat mit Video-Trainings, Group Calls und Community)</li><li>1:1-Betreuung (individuelles Mentoring mit Strategie-Sessions und direktem Zugang)</li><li>Positionierungs- und Content-Strategie</li><li>Sales-Training und Business-Mentoring</li><li>Bereitstellung von Templates, Frameworks und digitalen Materialien</li></ul>
+  <p>Der konkrete Leistungsumfang, die Laufzeit und der Preis ergeben sich aus dem individuellen Angebot bzw. der Leistungsbeschreibung zum Zeitpunkt der Buchung.</p>
+  <p>Die Leistungen werden online (via Zoom, Telegram oder andere digitale Kanäle) erbracht. Alle bereitgestellten Materialien, Templates und Anleitungen dienen ausschließlich der persönlichen Nutzung des Auftraggebers und dürfen nicht weitergegeben oder kommerziell genutzt werden.</p>
+
+  <h2>4. Preise und Zahlung</h2>
+  <p>Es gelten die zum Zeitpunkt der Buchung individuell vereinbarten Preise.</p>
+  <p><strong>Zahlungsmodalitäten:</strong></p>
+  <ul><li>Einmalige Leistungen: Vollzahlung vor Leistungserbringung</li><li>Längerfristige Programme: Vollzahlung, Ratenzahlung oder monatliche Zahlung je nach Vereinbarung</li></ul>
+  <p>Die Zahlung erfolgt per Überweisung. Zahlungsziel: 7 Tage nach Rechnungsstellung, sofern nicht anders vereinbart.</p>
+  <p>Bei Zahlungsverzug können Verzugszinsen in gesetzlicher Höhe berechnet werden. Die Auftragnehmerin behält sich vor, bei Zahlungsverzug die Leistungserbringung bis zum Zahlungseingang auszusetzen.</p>
+
+  <h2>5. Mitwirkungspflichten des Auftraggebers</h2>
+  <p>Der Auftraggeber verpflichtet sich:</p>
+  <ul><li>Alle erforderlichen Informationen und Unterlagen rechtzeitig bereitzustellen</li><li>An vereinbarten Terminen teilzunehmen bzw. rechtzeitig abzusagen (mind. 48h vorher)</li><li>Die bereitgestellten Materialien und Anleitungen eigenverantwortlich umzusetzen</li><li>Bei technischen Problemen aktiv mitzuwirken</li></ul>
+  <p>Verzögerungen durch fehlende Mitwirkung des Auftraggebers gehen nicht zu Lasten der Auftragnehmerin und führen nicht zu einer Verlängerung der Vertragslaufzeit.</p>
+
+  <h2>6. Termine und Fristen</h2>
+  <p>Termine werden einvernehmlich vereinbart. Bei kurzfristiger Absage (weniger als 48h vor dem Termin) durch den Auftraggeber ohne wichtigen Grund wird der Termin als wahrgenommen gewertet.</p>
+  <p>Die Auftragnehmerin behält sich vor, Termine bei Krankheit oder wichtigen Gründen zu verschieben. In diesem Fall wird ein Ersatztermin zeitnah angeboten.</p>
+
+  <h2>7. Widerrufsrecht</h2>
+  <p>Bei Verträgen über Dienstleistungen besteht gemäß § 312g Abs. 2 BGB kein Widerrufsrecht, wenn die Auftragnehmerin die Dienstleistung vollständig erbracht hat und mit der Ausführung erst begonnen hat, nachdem der Auftraggeber dazu seine ausdrückliche Zustimmung gegeben hat und gleichzeitig seine Kenntnis davon bestätigt hat, dass er sein Widerrufsrecht bei vollständiger Vertragserfüllung verliert.</p>
+  <p>Bei digitalen Inhalten (Templates, Anleitungen, Videos) erlischt das Widerrufsrecht mit Beginn des Downloads.</p>
+
+  <h2>8. Kündigung</h2>
+  <p><strong>Einmalige Leistungen:</strong> Keine Kündigung möglich.</p>
+  <p><strong>Programme mit fester Laufzeit (z.B. 3 Monate):</strong> Keine ordentliche Kündigung während der Laufzeit möglich. Außerordentliche Kündigung aus wichtigem Grund bleibt vorbehalten.</p>
+  <p><strong>Programme mit monatlicher Zahlung:</strong> Ordentliche Kündigung zum Monatsende mit einer Frist von 4 Wochen möglich. Bei Programmen mit Mindestlaufzeit gilt die Kündigungsmöglichkeit erst nach Ablauf dieser Frist.</p>
+  <p>Kündigungen bedürfen der Schriftform (E-Mail ausreichend).</p>
+  <p>Bereits gezahlte Beträge für erbrachte Leistungen werden nicht erstattet.</p>
+
+  <h2>9. Gewährleistung und Haftung</h2>
+  <p>Die Auftragnehmerin erbringt ihre Leistungen nach bestem Wissen und Gewissen. Es wird jedoch keine Garantie für den wirtschaftlichen Erfolg der Beratung übernommen.</p>
+  <p>Die Haftung der Auftragnehmerin ist beschränkt auf Vorsatz und grobe Fahrlässigkeit. Für leichte Fahrlässigkeit haftet die Auftragnehmerin nur bei Verletzung wesentlicher Vertragspflichten (Kardinalpflichten), wobei die Haftung auf den vertragstypischen, vorhersehbaren Schaden begrenzt ist.</p>
+  <p>Die Haftung für mittelbare Schäden, entgangenen Gewinn und Folgeschäden ist ausgeschlossen, soweit gesetzlich zulässig.</p>
+  <p>Die vorstehenden Haftungsbeschränkungen gelten nicht für Schäden aus der Verletzung des Lebens, des Körpers oder der Gesundheit sowie bei Vorsatz oder grober Fahrlässigkeit.</p>
+
+  <h2>10. Urheberrechte und Nutzungsrechte</h2>
+  <p>Alle bereitgestellten Materialien, Templates, Anleitungen und Inhalte sind urheberrechtlich geschützt und bleiben Eigentum der Auftragnehmerin.</p>
+  <p>Der Auftraggeber erhält ein einfaches, nicht übertragbares Nutzungsrecht für den eigenen geschäftlichen Gebrauch. Eine Weitergabe, Vervielfältigung oder kommerzielle Nutzung (z.B. Weiterverkauf) ist untersagt.</p>
+  <p>Bei Verstoß gegen diese Regelung behält sich die Auftragnehmerin rechtliche Schritte vor.</p>
+
+  <h2>11. Vertraulichkeit</h2>
+  <p>Beide Parteien verpflichten sich, alle im Rahmen der Zusammenarbeit bekannt gewordenen vertraulichen Informationen streng vertraulich zu behandeln und nicht an Dritte weiterzugeben.</p>
+  <p>Diese Verpflichtung besteht auch nach Beendigung des Vertragsverhältnisses fort.</p>
+
+  <h2>12. Datenschutz</h2>
+  <p>Die Verarbeitung personenbezogener Daten erfolgt gemäß der Datenschutzerklärung, die unter <a href="datenschutz.html">carinaannaprav.at/datenschutz</a> einsehbar ist.</p>
+
+  <h2>13. Änderungen der AGB</h2>
+  <p>Die Auftragnehmerin behält sich vor, diese AGB zu ändern. Bestehende Verträge werden davon nicht berührt, es sei denn, die Änderungen sind zur Anpassung an gesetzliche Vorgaben erforderlich.</p>
+  <p>Kunden werden über Änderungen per E-Mail informiert.</p>
+
+  <h2>14. Schlussbestimmungen</h2>
+  <p><strong>Anwendbares Recht:</strong> Es gilt österreichisches Recht unter Ausschluss des UN-Kaufrechts.</p>
+  <p><strong>Gerichtsstand:</strong> Soweit gesetzlich zulässig, ist ausschließlicher Gerichtsstand Wien.</p>
+  <p><strong>Salvatorische Klausel:</strong> Sollten einzelne Bestimmungen dieser AGB unwirksam sein oder werden, bleibt die Wirksamkeit der übrigen Bestimmungen davon unberührt. An die Stelle der unwirksamen Bestimmung tritt eine wirksame Regelung, die dem wirtschaftlichen Zweck der unwirksamen Bestimmung möglichst nahe kommt.</p>
+
+  <p style="margin-top:36px"><strong>Stand: März 2026</strong></p>
+</div>
+<footer><a href="index.html">Home</a> · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a><br><br>© 2026 PRAV Business Consulting</footer>
+</div>
 </body>
 </html>

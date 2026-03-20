@@ -3,78 +3,123 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bewerbung — The Inner Circle</title>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<title>Bewerbung — 1:1-Betreuung | PRAV Business Consulting</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Dancing+Script:wght@400;500&display=swap" rel="stylesheet">
 <style>
+:root{--bg:#4A464A;--bg-light:#5C575B;--bg-card:rgba(58,54,57,0.82);--white:#FAFAF8;--white-soft:rgba(250,250,248,0.75);--white-muted:rgba(250,250,248,0.5);--accent:rgba(250,250,248,0.12);--overlay:rgba(55,51,54,0.75)}
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#e8e8e8;color:#1a1a1a;font-family:'Montserrat',sans-serif;font-weight:600;line-height:1.7;-webkit-font-smoothing:antialiased}
-:root{--r:#6B0F1A;--rh:#8B1A2B}
-a{color:inherit;text-decoration:none}
+body{background:var(--bg);color:var(--white);font-family:'Outfit',sans-serif;font-weight:300;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:var(--white);text-decoration:none}
+.page{position:relative;z-index:1}
 
-.top{padding:1.5rem 2rem;text-align:center;background:#f0f0f0;border-bottom:2px solid #f0f0f0}
-.top a{font-family:'Anton',sans-serif;font-size:.9rem;font-weight:400;color:#666;text-transform:uppercase;letter-spacing:.03em;transition:color .2s}.top a span{color:var(--r)}
-.top a:hover{color:var(--r)}
+.nav{position:absolute;top:0;left:0;right:0;z-index:10;padding:28px 36px;display:flex;justify-content:space-between;align-items:center}
+.nav-logo{font-weight:300;font-size:0.68rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--white-muted);transition:color 0.3s}.nav-logo:hover{color:var(--white)}
+.nav-back{font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--white-muted);transition:color 0.3s}.nav-back:hover{color:var(--white)}
 
-.hero{padding:60px 20px 40px;text-align:center;max-width:650px;margin:0 auto;background:#fff}
-.hero h1{font-family:'Anton',sans-serif;font-size:clamp(2.2rem,7vw,3.8rem);font-weight:400;text-transform:uppercase;letter-spacing:.02em;line-height:1.1;margin-bottom:15px;color:#1a1a1a}
-.hero h1 span{color:var(--r)}
-.hero p{font-size:1.05rem;font-weight:600;color:#555;line-height:1.8;max-width:600px;margin:0 auto}
-.hero p strong{color:#1a1a1a;font-weight:900}
+.img-sec{position:relative;overflow:hidden}
+.img-sec .bg{position:absolute;inset:0;background-size:cover;background-position:center top}
+.img-sec .overlay{position:absolute;inset:0}
+.img-sec .content{position:relative;z-index:2}
 
-.form-wrap{max-width:600px;margin:30px auto;padding:0 20px 60px}
-.note{font-size:.95rem;color:#555;font-weight:600;padding:20px 25px;border-left:4px solid var(--r);background:#f0f0f0;margin-bottom:35px;line-height:1.8;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,0.05)}
+/* ── HERO ── */
+.hero{min-height:60vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 40px 60px;text-align:center}
+.hero .bg{background-image:url('bilder/about-you.jpg');background-position:center 20%}
+.hero .overlay{background:linear-gradient(to bottom,rgba(55,51,54,0.3) 0%,rgba(55,51,54,0.85) 65%,rgba(74,70,74,1) 100%)}
+.hero .content{max-width:580px;margin:0 auto;opacity:0;animation:softIn 1s ease forwards 0.2s}
+.hero-label{font-size:0.65rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--white-muted);margin-bottom:24px}
+.hero h1{font-weight:500;font-size:clamp(1.8rem,4.5vw,2.8rem);line-height:1.2;margin-bottom:20px}
+.hero h1 em{font-family:'Dancing Script',cursive;font-style:normal;font-weight:400;font-size:1.1em}
+.hero p{font-size:0.95rem;color:var(--white-soft);line-height:1.8;max-width:520px;margin:0 auto}
+.hero p strong{color:var(--white);font-weight:500}
 
-.fg{margin-bottom:22px}
-.fg label{display:block;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--r);margin-bottom:8px;font-weight:900}
-.fg input,.fg textarea,.fg select{width:100%;padding:16px 18px;background:#f0f0f0;border:2px solid #e0e0e0;color:#1a1a1a;font-family:'Montserrat',sans-serif;font-size:.95rem;font-weight:600;outline:none;transition:all .2s;border-radius:8px}
-.fg input::placeholder,.fg textarea::placeholder{color:#999;font-weight:500}
-.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--r);box-shadow:0 0 0 3px rgba(107,15,26,0.1)}
-.fg textarea{min-height:130px;resize:vertical}
-.fg select{appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath fill='%236B0F1A' d='M0 0l6 8 6-8z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 15px center}
-.fg select option{background:#f0f0f0;color:#1a1a1a}
+.line{width:50px;height:1px;background:var(--white-muted);margin:0 auto}
 
-.submit{display:block;width:100%;padding:18px;background:var(--r);color:#fff;font-family:'Montserrat',sans-serif;font-size:.9rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;border:none;cursor:pointer;transition:all .2s;border-radius:10px;box-shadow:0 4px 20px rgba(107,15,26,0.25)}
-.submit:hover{background:var(--rh);transform:translateY(-2px);box-shadow:0 6px 25px rgba(107,15,26,0.35)}
-.submit:disabled{opacity:.5;cursor:not-allowed;transform:none}
+/* ── FORM ── */
+.form-wrap{max-width:520px;margin:40px auto;padding:0 32px 80px}
+.note{font-size:0.86rem;color:var(--white-soft);padding:20px 24px;border-left:2px solid rgba(250,250,248,0.2);background:rgba(250,250,248,0.03);margin-bottom:40px;line-height:1.75}
+.fg{margin-bottom:24px}
+.fg label{display:block;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--white-muted);margin-bottom:8px;font-weight:400}
+.fg input,.fg textarea,.fg select{width:100%;padding:14px 16px;background:rgba(250,250,248,0.05);border:1px solid rgba(250,250,248,0.15);color:var(--white);font-family:'Outfit',sans-serif;font-size:0.9rem;font-weight:300;outline:none;transition:all 0.3s}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--white-muted);font-weight:300}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:rgba(250,250,248,0.4);background:rgba(250,250,248,0.08)}
+.fg textarea{min-height:120px;resize:vertical}
+.fg select{appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath fill='rgba(250,250,248,0.5)' d='M0 0l5 6 5-6z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
+.fg select option{background:var(--bg);color:var(--white)}
+.submit{display:block;width:100%;padding:16px;font-family:'Outfit',sans-serif;font-weight:400;font-size:0.78rem;letter-spacing:0.2em;text-transform:uppercase;border:1px solid rgba(250,250,248,0.35);color:var(--white);background:transparent;cursor:pointer;transition:all 0.35s ease}
+.submit:hover{background:var(--white);color:var(--bg);border-color:var(--white)}
+.submit:disabled{opacity:0.4;cursor:not-allowed}
 
-#ok{display:none;text-align:center;padding:80px 20px;background:#fff}
-#ok h2{font-family:'Anton',sans-serif;font-size:2.2rem;font-weight:400;text-transform:uppercase;margin-bottom:15px;color:#1a1a1a}
-#ok h2 span{color:var(--r)}
-#ok p{font-size:1.1rem;font-weight:600;color:#555;line-height:1.8;max-width:550px;margin:0 auto}
+#ok{display:none;text-align:center;padding:100px 32px;max-width:520px;margin:0 auto}
+#ok h2{font-weight:500;font-size:1.8rem;margin-bottom:16px}
+#ok h2 em{font-family:'Dancing Script',cursive;font-style:normal;font-weight:400}
+#ok p{font-size:0.92rem;color:var(--white-soft);line-height:1.8;max-width:420px;margin:0 auto}
 
-footer{text-align:center;padding:30px 20px;background:#1a1a1a;color:#666;font-size:.7rem;font-weight:600}
-footer a{color:#888;margin:0 6px;transition:color .2s}footer a:hover{color:var(--r)}
+footer{text-align:center;padding:40px 24px 50px}
+.sig{font-family:'Dancing Script',cursive;font-size:1.4rem;color:var(--white-soft);margin-bottom:20px}
+.foot-links{font-size:0.68rem;color:var(--white-muted)}
+.foot-links a{color:var(--white-muted);margin:0 6px;transition:color 0.3s}.foot-links a:hover{color:var(--white)}
+.foot-copy{font-size:0.62rem;color:var(--white-muted);margin-top:12px;opacity:0.6}
+
+@keyframes softIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:600px){.hero{padding:0 24px 40px;min-height:55vh}.nav{padding:20px 24px}.form-wrap{padding:0 24px 60px}}
 </style>
 </head>
 <body>
+<div class="page">
 
-<div class="top"><a href="index.html">carina<span>annaprav</span></a></div>
+<nav class="nav">
+  <a href="index.html" class="nav-logo">Prav · Business Consulting</a>
+  <a href="index.html" class="nav-back">← Alle Services</a>
+</nav>
 
-<div class="hero">
-  <h1>THE <span>INNER CIRCLE</span></h1>
-  <p>Bewerbungspflicht. Begrenzte Plätze. Hands-on. Wenn du bereit bist wirklich etwas zu verändern — bewirb dich. <strong>Ich melde mich innerhalb von 48 Stunden.</strong></p>
-</div>
+<section class="img-sec hero">
+  <div class="bg"></div>
+  <div class="overlay"></div>
+  <div class="content">
+    <div class="hero-label">1:1-Betreuung · Bewerbung</div>
+    <h1>Du willst, dass jemand <em>mitarbeitet.</em></h1>
+    <p>Die 1:1-Betreuung ist für Frauen, die bereit sind, ihr Business mit mir zusammen umzubauen. Begrenzte Plätze. <strong>Ich melde mich innerhalb von 48 Stunden.</strong></p>
+  </div>
+</section>
 
 <div class="form-wrap" id="form">
-  <div class="note">Ich nehme nicht jede Bewerberin an. Nicht weil ich mich für etwas Besseres halte — sondern weil ich weiß wem ich wirklich helfen kann. Diese Fragen helfen mir das einzuschätzen.</div>
+  <div class="note">Ich nehme nicht jede Bewerberin an. Nicht aus Arroganz — sondern weil ich weiß, wem ich wirklich helfen kann. Diese Fragen helfen mir, das einzuschätzen.</div>
   <div class="fg"><label>Vorname</label><input type="text" id="fn" placeholder="Dein Vorname"></div>
   <div class="fg"><label>Nachname</label><input type="text" id="ln" placeholder="Dein Nachname"></div>
   <div class="fg"><label>Email</label><input type="email" id="em" placeholder="Deine Email"></div>
   <div class="fg"><label>Instagram / Website</label><input type="text" id="so" placeholder="Handle oder URL"></div>
   <div class="fg"><label>Was ist dein Business?</label><textarea id="biz" placeholder="Was bietest du an, für wen, und seit wann?"></textarea></div>
-  <div class="fg"><label>Wo stehst du umsatzmäßig?</label><select id="exp"><option value="">Bitte wählen</option><option value="0-1k">0–1K/Monat</option><option value="1-3k">1–3K/Monat</option><option value="3-5k">3–5K/Monat</option><option value="5-10k">5–10K/Monat</option><option value="10k+">10K+/Monat</option></select></div>
-  <div class="fg"><label>Größte Herausforderung gerade?</label><textarea id="ch" placeholder="Sei ehrlich. Je konkreter desto besser."></textarea></div>
+  <div class="fg"><label>Wo stehst du umsatzmäßig?</label><select id="exp"><option value="">Bitte wählen</option><option value="0-1k">0–1K / Monat</option><option value="1-3k">1–3K / Monat</option><option value="3-5k">3–5K / Monat</option><option value="5-10k">5–10K / Monat</option><option value="10k+">10K+ / Monat</option></select></div>
+  <div class="fg"><label>Größte Herausforderung gerade?</label><textarea id="ch" placeholder="Sei ehrlich. Je konkreter, desto besser."></textarea></div>
   <div class="fg"><label>Wo willst du in 3 Monaten stehen?</label><textarea id="go" placeholder="Umsatz, Alltag, Angebote — was soll anders sein?"></textarea></div>
   <div class="fg"><label>Bereit zu investieren?</label><select id="inv"><option value="">Bitte wählen</option><option value="ja">Ja, ich bin bereit</option><option value="kommt-drauf-an">Kommt auf das Gespräch an</option><option value="unsicher">Noch unsicher</option></select></div>
-  <button class="submit" onclick="send()">BEWERBUNG ABSENDEN 🔥</button>
+  <button class="submit" onclick="send()">Bewerbung absenden</button>
 </div>
 
-<div id="ok"><h2>BEWERBUNG <span>ERHALTEN.</span></h2><p>Ich lese deine Antworten persönlich und melde mich innerhalb von 48 Stunden. Kein Verkaufsgespräch — nur ein ehrlicher Check ob wir zusammenpassen.</p></div>
+<div id="ok">
+  <h2>Bewerbung <em>erhalten.</em></h2>
+  <p>Ich lese deine Antworten persönlich und melde mich innerhalb von 48 Stunden. Kein Verkaufsgespräch — nur ein ehrlicher Check, ob wir zusammenpassen.</p>
+</div>
 
-<footer><a href="index.html">Zurück</a> · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></footer>
+<footer>
+  <div class="sig">Carina Anna Prav.</div>
+  <div class="foot-links">
+    <a href="index.html">Home</a> · <a href="collective.html">The Collective</a> · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a>
+  </div>
+  <div class="foot-copy">© 2026 PRAV Business Consulting</div>
+</footer>
+
+</div>
 
 <script>
-function send(){const d={firstname:document.getElementById('fn').value.trim(),lastname:document.getElementById('ln').value.trim(),email:document.getElementById('em').value.trim(),social:document.getElementById('so').value.trim(),business:document.getElementById('biz').value.trim(),experience:document.getElementById('exp').value,challenge:document.getElementById('ch').value.trim(),goal:document.getElementById('go').value.trim(),investment:document.getElementById('inv').value};if(!d.firstname||!d.email||!d.business||!d.challenge){alert('Bitte Vorname, Email, Business und Herausforderung ausfüllen.');return}const b=document.querySelector('#form .submit');b.textContent='WIRD GESENDET...';b.disabled=true;fetch('/.netlify/functions/application-submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)}).then(r=>{if(r.ok){document.getElementById('form').style.display='none';document.getElementById('ok').style.display='block'}else{b.textContent='BEWERBUNG ABSENDEN 🔥';b.disabled=false;alert('Fehler. Bitte nochmal.')}}).catch(()=>{b.textContent='BEWERBUNG ABSENDEN 🔥';b.disabled=false;alert('Verbindungsfehler.')})}
+function send(){
+  const d={firstname:document.getElementById('fn').value.trim(),lastname:document.getElementById('ln').value.trim(),email:document.getElementById('em').value.trim(),social:document.getElementById('so').value.trim(),business:document.getElementById('biz').value.trim(),experience:document.getElementById('exp').value,challenge:document.getElementById('ch').value.trim(),goal:document.getElementById('go').value.trim(),investment:document.getElementById('inv').value};
+  if(!d.firstname||!d.email||!d.business||!d.challenge){alert('Bitte Vorname, Email, Business und Herausforderung ausfüllen.');return}
+  const b=document.querySelector('.submit');b.textContent='WIRD GESENDET...';b.disabled=true;
+  fetch('/.netlify/functions/application-submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)})
+  .then(r=>{if(r.ok){document.getElementById('form').style.display='none';document.getElementById('ok').style.display='block'}else{b.textContent='BEWERBUNG ABSENDEN';b.disabled=false;alert('Fehler. Bitte nochmal.')}})
+  .catch(()=>{b.textContent='BEWERBUNG ABSENDEN';b.disabled=false;alert('Verbindungsfehler.')})
+}
 </script>
 </body>
 </html>

@@ -3,245 +3,327 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PRAV Business Consulting — Angebotsdesign das verkauft.</title>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>carinaannaprav</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-@font-face{font-family:'Biro Script';src:url('fonts/Biro_Script_reduced.ttf') format('truetype');font-weight:400;font-display:swap}
-:root{--bg:#4A464A;--bg-light:#5C575B;--bg-card:rgba(58,54,57,0.82);--bg-card-hover:rgba(68,64,67,0.88);--white:#FAFAF8;--white-soft:rgba(250,250,248,0.75);--white-muted:rgba(250,250,248,0.5);--accent:rgba(250,250,248,0.12);--overlay:rgba(55,51,54,0.75)}
+:root{
+  --white:#FFFFFF;
+  --off:#F7F7F5;
+  --text:#1C1917;
+  --text-mid:#57534E;
+  --text-light:#A8A29E;
+  --red:#8A2E3C;
+  --red-dark:#6B1D2A;
+  --red-soft:rgba(138,46,60,0.06);
+  --border:#E7E5E4;
+  --serif:'Times New Roman',Times,serif;
+  --sans:'Poppins',sans-serif;
+}
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--white);font-family:'Outfit',sans-serif;font-weight:300;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-a{color:var(--white);text-decoration:none}
-.page{position:relative;z-index:1}
+html,body{background:var(--white)}
+body{font-family:var(--sans);color:var(--text);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--red);color:#fff}
+img{max-width:100%;display:block}
 
-.nav{position:absolute;top:0;left:0;right:0;z-index:10;padding:28px 36px;display:flex;justify-content:space-between;align-items:center}
-.nav-logo{font-weight:300;font-size:0.68rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--white-muted);transition:color 0.3s}.nav-logo:hover{color:var(--white)}
-.nav-links{display:flex;gap:24px}
-.nav-links a{font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--white-muted);transition:color 0.3s}.nav-links a:hover{color:var(--white)}
+/* NAV */
+nav{background:var(--white);border-bottom:1px solid var(--border);padding:16px 40px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-mark{font-family:var(--serif);font-weight:700;font-size:1.7rem;color:var(--text)}
+.logo-sub{font-size:0.5rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-light);line-height:1.3}
+.nav-r{display:flex;gap:22px;align-items:center}
+.nav-r a{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.05em;font-weight:500;color:var(--text-mid);transition:color 0.2s}
+.nav-r a:hover{color:var(--red)}
 
-.img-sec{position:relative;overflow:hidden}
-.img-sec .bg{position:absolute;inset:0;background-size:cover;background-position:center 30%}
-.img-sec .overlay{position:absolute;inset:0}
-.img-sec .content{position:relative;z-index:2}
+/* HERO — burgundy */
+.hero{background:var(--red);color:#fff;text-align:center;padding:80px 40px 65px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background-size:cover;background-position:center 20%;opacity:0.07}
+.hero-ct{position:relative;z-index:1;max-width:620px;margin:0 auto}
+.hero-tag{font-size:0.75rem;letter-spacing:0.22em;text-transform:uppercase;opacity:0.55;margin-bottom:14px}
+.hero h1{font-family:var(--serif);font-weight:700;font-size:clamp(2.6rem,7vw,4.4rem);line-height:1.05;letter-spacing:0.01em}
+.hero-script{font-family:var(--sans);font-style:italic;font-size:clamp(1.1rem,2.5vw,1.5rem);opacity:0.8;margin-top:6px}
+.hero-sub{font-size:0.95rem;opacity:0.7;margin-top:14px;max-width:460px;margin-left:auto;margin-right:auto}
 
-/* ── HERO ── */
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 40px 80px}
-.hero .bg{background-image:url('bilder/hero-carina.jpg')}
-.hero .overlay{background:linear-gradient(to bottom,rgba(55,51,54,0.4) 0%,rgba(55,51,54,0.85) 70%,rgba(74,70,74,1) 100%)}
-.hero .content{max-width:800px;opacity:0;animation:softIn 1.2s ease forwards 0.3s}
-.hero-brand{font-weight:300;font-size:0.68rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--white-muted);margin-bottom:32px}
-.hero h1{font-weight:500;font-size:clamp(2.4rem,6vw,4rem);line-height:1.12;letter-spacing:-0.01em;margin-bottom:12px}
-.hero h1 em{font-family:'Biro Script',cursive;font-style:normal;font-weight:400;font-size:1.1em}
-.hero-sub{font-size:1.05rem;color:var(--white-soft);max-width:500px;margin-top:20px;line-height:1.8}
-.hero-cta{display:inline-block;margin-top:32px;font-weight:400;font-size:0.76rem;letter-spacing:0.2em;text-transform:uppercase;padding:16px 40px;border:1px solid rgba(250,250,248,0.35);color:var(--white);transition:all 0.35s ease}
-.hero-cta:hover{background:var(--white);color:var(--bg);border-color:var(--white)}
+/* CTA BAR */
+.cta-bar{display:block;max-width:420px;margin:-28px auto 0;position:relative;z-index:2;background:var(--text);color:#fff;text-align:center;padding:18px 36px;font-family:var(--serif);font-weight:700;font-size:1.4rem;letter-spacing:0.06em;box-shadow:0 4px 20px rgba(0,0,0,0.08);transition:all 0.3s}
+.cta-bar:hover{background:#333;transform:translateY(-2px)}
 
-.line{width:50px;height:1px;background:var(--white-muted);margin:0 auto}
+/* SECTION HEAD */
+.sec-h{text-align:center;padding:56px 40px 32px;max-width:600px;margin:0 auto}
+.sec-h h2{font-family:var(--serif);font-weight:700;font-size:1.5rem;color:var(--text)}
+.sec-h p{font-size:0.9rem;color:var(--text-mid);margin-top:8px}
 
-/* ── SECTION HEADER ── */
-.sec-head{text-align:center;padding:80px 40px 48px;max-width:650px;margin:0 auto}
-.sec-head h2{font-weight:400;font-size:clamp(1.4rem,3vw,1.9rem);letter-spacing:0.02em;margin-bottom:16px}
-.sec-head p{font-size:0.92rem;color:var(--white-muted);line-height:1.7}
+/* PRODUCT ROW */
+.prods{max-width:700px;margin:0 auto;padding:0 40px 48px;display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.pcard{text-align:center;padding:28px 20px;border:1px solid var(--border);background:var(--white);transition:all 0.3s}
+.pcard:hover{border-color:var(--red);box-shadow:0 4px 16px var(--red-soft)}
+.pcard-tag{font-family:var(--serif);font-weight:700;font-size:0.65rem;letter-spacing:0.16em;color:var(--red);margin-bottom:8px}
+.pcard h3{font-family:var(--serif);font-weight:700;font-size:1.2rem;margin-bottom:6px}
+.pcard p{font-size:0.85rem;color:var(--text-mid);line-height:1.6;margin-bottom:16px}
+.pcard-btn{display:inline-block;font-family:var(--serif);font-weight:700;font-size:0.7rem;letter-spacing:0.1em;padding:10px 26px;border:1.5px solid var(--red);color:var(--red);transition:all 0.2s}
+.pcard-btn:hover{background:var(--red);color:#fff}
 
-/* ── OFFER CARDS ── */
-.offers{display:grid;gap:24px;padding:20px 32px 100px;max-width:1060px;margin:0 auto}
-@media(min-width:768px){.offers{grid-template-columns:1fr 1fr 1fr;align-items:start}}
-.offer{background:var(--bg-card);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--accent);padding:44px 32px 40px;transition:all 0.4s ease;opacity:0;animation:softIn 0.8s ease forwards}
-.offer:nth-child(1){animation-delay:0.4s}.offer:nth-child(2){animation-delay:0.6s}.offer:nth-child(3){animation-delay:0.8s}
-.offer:hover{background:var(--bg-card-hover);border-color:rgba(250,250,248,0.2);transform:translateY(-4px)}
-.offer-type{font-size:0.65rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--white-muted);margin-bottom:20px}
-.offer h3{font-weight:500;font-size:1.45rem;letter-spacing:0.01em;margin-bottom:6px}
-.offer-price{font-weight:400;font-size:1.15rem;margin-bottom:4px}
-.offer-note{font-size:0.78rem;color:var(--white-muted);margin-bottom:24px}
-.offer-desc{font-size:0.88rem;color:var(--white-soft);line-height:1.7;margin-bottom:28px}
-.offer-list{list-style:none;margin-bottom:36px}
-.offer-list li{font-size:0.84rem;color:var(--white-soft);padding:9px 0;border-bottom:1px solid var(--accent);padding-left:16px;position:relative}
-.offer-list li::before{content:'–';position:absolute;left:0;color:var(--white-muted)}
-.offer-list li:last-child{border-bottom:none}
-.offer-cta{display:block;text-align:center;font-weight:400;font-size:0.76rem;letter-spacing:0.2em;text-transform:uppercase;padding:14px 24px;border:1px solid rgba(250,250,248,0.3);color:var(--white);background:transparent;cursor:pointer;transition:all 0.35s ease}
-.offer-cta:hover{background:var(--white);color:var(--bg);border-color:var(--white)}
+/* FULL IMAGE */
+.full-img{width:100%;overflow:hidden}
+.full-img img{width:100%;max-height:260px;object-fit:cover}
 
-/* ── ABOUT (image background) ── */
-.about-sec{padding:100px 40px}
-.about-sec .bg{background-image:url('bilder/carina-working.jpg');background-position:center 30%}
-.about-sec .overlay{background:rgba(55,51,54,0.82)}
-.about-sec .content{max-width:680px;margin:0 auto}
-.about-sec h2{font-weight:500;font-size:clamp(1.4rem,3.5vw,2rem);line-height:1.2;margin-bottom:28px}
-.about-sec h2 em{font-family:'Biro Script',cursive;font-style:normal;font-weight:400;font-size:1.05em}
-.about-sec p{font-size:0.92rem;color:var(--white-soft);line-height:1.8;margin-bottom:16px}
-.about-sec p strong{color:var(--white);font-weight:500}
+/* KURSE GRID */
+.kurse{max-width:900px;margin:0 auto;padding:0 40px 48px}
+.kgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.kcard{border:1px solid var(--border);overflow:hidden;transition:transform 0.3s}
+.kcard:hover{transform:translateY(-3px)}
+.kcard-top{background:var(--red);padding:18px 14px 14px}
+.kcard-nr{font-family:var(--serif);font-weight:700;font-size:0.6rem;letter-spacing:0.12em;color:rgba(255,255,255,0.5);display:block;margin-bottom:3px}
+.kcard-top h4{font-family:var(--serif);font-weight:700;font-size:1rem;color:#fff;line-height:1.2}
+.kcard-top h4 a{color:#fff}
+.kcard-body{padding:10px 14px 14px;background:var(--white)}
+.kcard-body p{font-size:0.78rem;color:var(--text-mid);line-height:1.55;margin-bottom:8px}
+.kcard-badge{display:inline-block;font-size:0.58rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:3px 10px}
+.kcard-badge.live{background:var(--red);color:#fff}
+.kcard-badge.soon{background:var(--off);color:var(--text-light)}
 
-/* ── NOT FOR ── */
-.not-for{padding:60px 40px 80px;max-width:640px;margin:0 auto;text-align:center}
-.not-for h2{font-weight:400;font-size:1.2rem;margin-bottom:32px;color:var(--white-soft)}
-.not-for-items{display:grid;gap:12px}
-@media(min-width:500px){.not-for-items{grid-template-columns:1fr 1fr}}
-.not-for-item{font-size:0.84rem;color:var(--white-muted);padding:16px 20px;text-align:left;background:rgba(250,250,248,0.03);border-left:2px solid rgba(250,250,248,0.15)}
+/* QUOTE */
+.quote{background:var(--red);padding:40px;text-align:center;margin-top:8px}
+.quote p{font-family:var(--sans);font-style:italic;font-size:clamp(1.2rem,3vw,1.7rem);color:#fff;max-width:500px;margin:0 auto;line-height:1.45}
 
-/* ── CTA (image background) ── */
-.cta-sec{padding:120px 40px;text-align:center}
-.cta-sec .bg{background-image:url('bilder/about-you.jpg');background-position:center 30%}
-.cta-sec .overlay{background:rgba(55,51,54,0.8)}
-.cta-sec .content{max-width:560px;margin:0 auto}
-.cta-sec h2{font-weight:500;font-size:clamp(1.6rem,4vw,2.4rem);line-height:1.2;margin-bottom:16px}
-.cta-sec h2 em{font-family:'Biro Script',cursive;font-style:normal;font-weight:400;font-size:1.05em}
-.cta-sec p{font-size:0.92rem;color:var(--white-muted);margin-bottom:36px;line-height:1.7}
-.cta-sec a.cta-btn{display:inline-block;font-weight:400;font-size:0.76rem;letter-spacing:0.2em;text-transform:uppercase;padding:16px 44px;border:1px solid rgba(250,250,248,0.4);color:var(--white);transition:all 0.35s ease}
-.cta-sec a.cta-btn:hover{background:var(--white);color:var(--bg);border-color:var(--white)}
+/* STORY */
+.story{display:grid;grid-template-columns:240px 1fr;gap:40px;max-width:860px;margin:0 auto;padding:56px 40px;align-items:start}
+.story-img{aspect-ratio:3/4;overflow:hidden}
+.story-img img{width:100%;height:100%;object-fit:cover}
+.story-txt h2{font-family:var(--serif);font-weight:700;font-size:0.8rem;letter-spacing:0.12em;color:var(--text-light);margin-bottom:2px}
+.story-txt h3{font-family:var(--sans);font-style:italic;font-size:1.3rem;color:var(--red);margin-bottom:20px}
+.story-txt p{font-size:0.9rem;color:var(--text-mid);line-height:1.8;margin-bottom:12px}
+.story-txt p strong{color:var(--text);font-weight:600}
 
-.socials{text-align:center;padding:40px 40px 20px}
-.socials a{display:inline-block;font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--white-muted);border:1px solid var(--accent);padding:12px 32px;transition:all 0.35s ease}
-.socials a:hover{color:var(--white);border-color:rgba(250,250,248,0.3)}
+/* DM TESTIMONIALS */
+.dms{background:var(--off);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:56px 40px}
+.dm-grid{column-count:3;column-gap:8px;max-width:900px;margin:0 auto}
+.dm-grid img{width:100%;break-inside:avoid;margin-bottom:8px;border-radius:8px;box-shadow:0 1px 6px rgba(0,0,0,0.04)}
 
-footer{text-align:center;padding:40px 24px 50px}
-.sig{font-family:'Biro Script',cursive;font-size:1.4rem;color:var(--white-soft);margin-bottom:20px}
-.foot-links{font-size:0.68rem;color:var(--white-muted)}
-.foot-links a{color:var(--white-muted);margin:0 6px;transition:color 0.3s}.foot-links a:hover{color:var(--white)}
-.foot-copy{font-size:0.62rem;color:var(--white-muted);margin-top:12px;opacity:0.6}
+/* CONTACT */
+.contact{max-width:480px;margin:0 auto;padding:48px 40px}
+.cform{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cfield{display:flex;flex-direction:column}
+.cfield.w{grid-column:1/-1}
+.cfield label{font-size:0.62rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-light);margin-bottom:4px;font-weight:500}
+.cfield input,.cfield textarea{border:1px solid var(--border);padding:10px 12px;font-family:var(--sans);font-size:0.82rem;color:var(--text);outline:none;background:var(--white)}
+.cfield textarea{resize:vertical;min-height:80px}
+.cfield input:focus,.cfield textarea:focus{border-color:var(--red)}
+.cbtn{grid-column:1/-1;font-family:var(--serif);font-weight:700;font-size:0.85rem;letter-spacing:0.1em;padding:12px;background:var(--red);color:#fff;border:none;cursor:pointer;margin-top:4px;transition:background 0.2s}
+.cbtn:hover{background:var(--red-dark)}
 
-@keyframes softIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-@media(max-width:767px){
-  .hero{padding:0 28px 60px;min-height:90vh}
-  .nav{padding:20px 24px}.nav-links{gap:16px}
-  .offers{padding:20px 24px 80px}.offer{padding:36px 28px 36px}
-  .about-sec{padding:60px 24px}
-  .not-for{padding:40px 24px 60px}
-  .cta-sec{padding:80px 24px}
-  .sec-head{padding:60px 24px 40px}
+/* SOCIALS */
+.socials{text-align:center;padding:44px 40px;border-top:1px solid var(--border)}
+.socials h3{font-family:var(--sans);font-style:italic;font-size:0.95rem;color:var(--text-mid);margin-bottom:14px}
+.s-icons{display:flex;gap:12px;justify-content:center}
+.s-icons a{width:32px;height:32px;border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.62rem;color:var(--text-light);transition:all 0.2s}
+.s-icons a:hover{border-color:var(--red);color:var(--red)}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:14px 40px;display:flex;justify-content:space-between;align-items:center;font-size:0.62rem;color:var(--text-light)}
+footer a{color:var(--text-light);margin:0 6px}
+footer a:hover{color:var(--red)}
+
+@media(max-width:800px){
+  .prods{grid-template-columns:1fr 1fr;gap:16px;padding:0 20px 40px}
+  .kgrid{grid-template-columns:repeat(3,1fr);gap:8px}
+  .story{grid-template-columns:1fr}
+  .story-img{max-width:220px;margin:0 auto}
+  .dm-grid{column-count:3;column-gap:6px}
+}
+@media(max-width:520px){
+  nav{padding:12px 16px;flex-wrap:wrap;gap:8px}
+  .nav-r{gap:12px;flex-wrap:wrap}
+  .hero{padding:55px 20px 45px}
+  .cta-bar{margin:-20px 16px 0;font-size:1.15rem}
+  .sec-h{padding:40px 20px 24px}
+  .prods{padding:0 16px 32px;gap:12px}
+  .kurse{padding:0 16px 32px}
+  .kgrid{gap:6px}
+  .kcard-top{padding:12px 10px 10px}
+  .kcard-top h4{font-size:0.75rem}
+  .kcard-body{padding:8px 10px 10px}
+  .kcard-body p{font-size:0.65rem}
+  .kcard-badge{font-size:0.48rem}
+  .story{padding:36px 16px}
+  .dms{padding:36px 16px}
+  .contact{padding:36px 16px}
+  .cform{grid-template-columns:1fr}
+  footer{flex-direction:column;gap:6px;text-align:center}
 }
 </style>
 </head>
 <body>
-<div class="page">
 
-<nav class="nav">
-  <a href="index.html" class="nav-logo">Prav · Business Consulting</a>
-  <div class="nav-links">
-    <a href="collective.html">Collective</a>
-    <a href="bewerbung.html">1:1 Bewerbung</a>
+<nav>
+  <a href="index.html" class="logo"><span class="logo-mark">CP</span><span class="logo-sub">CARINA ANNA PRAV<br>BUSINESS MENTORIN & STRATEGIN</span></a>
+  <div class="nav-r">
+    <a href="#">Home</a>
+    <a href="#story">Über mich</a>
+    <a href="#prods">Angebote</a>
+    <a href="#kurse">Kurse</a>
+    <a href="mentoring.html">Mentoring</a>
   </div>
 </nav>
 
-<!-- ── HERO ── -->
-<section class="img-sec hero">
-  <div class="bg"></div>
-  <div class="overlay"></div>
-  <div class="content">
-    <div class="hero-brand">Prav · Business Consulting</div>
-    <h1>Angebotsdesign<br>das <em>verkauft.</em></h1>
-    <p class="hero-sub">Dein Angebot ist gut. Aber es verkauft sich nicht so, wie es sollte. Ich finde raus, warum — und zeige dir, was sich ändern muss.</p>
-    <a href="https://tidycal.com/carina-anna-prav/kennenlernen" class="hero-cta">Kostenloses Erstgespräch</a>
+<section class="hero">
+  <div class="hero-bg" style="background-image:url('data:image/jpeg;base64,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')"></div>
+  <div class="hero-ct">
+    <p class="hero-tag">CARINAANNAPRAV</p>
+    <h1>LERNE, WIE DU EIN BUSINESS AUFBAUST, DAS VERKAUFT</h1>
+    <p class="hero-script">und nicht nur existiert.</p>
+    <p class="hero-sub">Strategien, Struktur und ein System für planbaren Umsatz.</p>
   </div>
 </section>
 
-<!-- ── SERVICES ── -->
-<div class="sec-head">
-  <h2>Drei Wege, mit mir zu arbeiten.</h2>
-  <p>Kein Stufenmodell. Drei eigenständige Angebote für unterschiedliche Bedürfnisse. Im kostenlosen Erstgespräch finden wir raus, was für dich das Richtige ist.</p>
+<a href="#prods" class="cta-bar">ARBEITE MIT MIR</a>
+
+<div class="sec-h" id="prods"><h2>DEIN WEG ZU EINEM BUSINESS, DAS FUNKTIONIERT.</h2><p>Ob klarer Blick von außen oder intensive Begleitung — hier findest du, was passt.</p></div>
+
+<div class="prods">
+  <div class="pcard">
+    <p class="pcard-tag">EINMALIGES AUDIT · 795€</p>
+    <h3>OFFER AUDIT</h3>
+    <p>Ich durchleuchte dein Business-Setup: Angebot, Positionierung, Pricing, Messaging, Verkauf.</p>
+    <a href="offer-audit.html" class="pcard-btn">MEHR ERFAHREN</a>
+  </div>
+  <div class="pcard">
+    <p class="pcard-tag">6 MONATE · 5.555€</p>
+    <h3>MENTORING</h3>
+    <p>Die engste Form der Zusammenarbeit. Angebot, Content, Sales, Skalierung — das volle System.</p>
+    <a href="mentoring.html" class="pcard-btn">MEHR ERFAHREN</a>
+  </div>
 </div>
 
-<div class="offers">
+<div class="sec-h" id="kurse"><h2>SELBSTSTUDIUM — JEDER KURS EIN SYSTEM.</h2><p>Kompakte Kurse für jedes Business-Thema.</p></div>
 
-  <!-- OFFER INCUBATOR -->
-  <div class="offer">
-    <div class="offer-type">Einmaliges Audit</div>
-    <h3>Offer Incubator</h3>
-    <div class="offer-price">488€</div>
-    <div class="offer-note">Einmalig. 90 Minuten. Inkl. Vorab-Analyse.</div>
-    <p class="offer-desc">Ich nehme dein Angebot komplett auseinander — Positionierung, Pricing, Zielgruppe, Kommunikation, Verkaufsprozess. Du gehst mit einem klaren Ergebnis raus.</p>
-    <ul class="offer-list">
-      <li>Vorab-Analyse deines Angebots</li>
-      <li>90-Minuten-Live-Audit mit mir</li>
-      <li>Konkrete, sofort umsetzbare Handlungsschritte</li>
-      <li>Aufzeichnung zum Nachschauen</li>
-    </ul>
-    <a href="https://tidycal.com/carina-anna-prav/offer-incubator" class="offer-cta">Audit buchen</a>
+<div class="kurse">
+  <div class="kgrid">
+    <div class="kcard">
+      <div class="kcard-top"><span class="kcard-nr">01</span><h4><a href="challenge.html">CONTENT THAT SELLS</a></h4></div>
+      <div class="kcard-body"><p>Content der verkauft, nicht nur Reichweite bringt.</p><span class="kcard-badge live">3-TAGE CHALLENGE</span></div>
+    </div>
+<div class="kcard">
+      <div class="kcard-top"><span class="kcard-nr">02</span><h4><a href="dream-offer-blueprint.html">DREAM OFFER BLUEPRINT</a></h4></div>
+      <div class="kcard-body"><p>Bau ein Angebot, das deine Traumkundin sofort will.</p><span class="kcard-badge soon">COMING SOON</span></div>
+    </div>
+<div class="kcard">
+      <div class="kcard-top"><span class="kcard-nr">03</span><h4><a href="the-pricing-strategy.html">THE PRICING STRATEGY</a></h4></div>
+      <div class="kcard-body"><p>Den Preis finden, der passt — und verkauft.</p><span class="kcard-badge soon">COMING SOON</span></div>
+    </div>
+<div class="kcard">
+      <div class="kcard-top"><span class="kcard-nr">04</span><h4><a href="dream-client-messaging.html">THE DREAM CLIENT MESSAGING</a></h4></div>
+      <div class="kcard-body"><p>Sprich so, dass sie sich sofort gemeint fühlt.</p><span class="kcard-badge soon">COMING SOON</span></div>
+    </div>
+<div class="kcard">
+      <div class="kcard-top"><span class="kcard-nr">05</span><h4><a href="sales-on-autopilot.html">SALES ON AUTOPILOT</a></h4></div>
+      <div class="kcard-body"><p>Ein System, das für dich verkauft.</p><span class="kcard-badge soon">COMING SOON</span></div>
+    </div>
+<div class="kcard">
+      <div class="kcard-top"><span class="kcard-nr">06</span><h4><a href="launch-with-clarity.html">LAUNCH WITH CLARITY</a></h4></div>
+      <div class="kcard-body"><p>Von der Idee zum Launch — ohne Panik.</p><span class="kcard-badge soon">COMING SOON</span></div>
+    </div>
+<div class="kcard">
+      <div class="kcard-top"><span class="kcard-nr">07</span><h4><a href="storytelling-secrets.html">THE STORYTELLING SECRETS</a></h4></div>
+      <div class="kcard-body"><p>Deine Story als Verkaufsinstrument.</p><span class="kcard-badge soon">COMING SOON</span></div>
+    </div>
+<div class="kcard">
+      <div class="kcard-top"><span class="kcard-nr">08</span><h4><a href="personal-brand-code.html">THE PERSONAL BRAND CODE</a></h4></div>
+      <div class="kcard-body"><p>Unverwechselbar werden.</p><span class="kcard-badge soon">COMING SOON</span></div>
+    </div>
+<div class="kcard">
+      <div class="kcard-top"><span class="kcard-nr">09</span><h4><a href="freedom-business-blueprint.html">THE FREEDOM BUSINESS BLUEPRINT</a></h4></div>
+      <div class="kcard-body"><p>Von 1:1 zu skalierbar.</p><span class="kcard-badge soon">COMING SOON</span></div>
+    </div>
+
   </div>
-
-  <!-- THE COLLECTIVE -->
-  <div class="offer">
-    <div class="offer-type">Gruppenformat · laufend</div>
-    <h3>The Collective</h3>
-    <div class="offer-price">133€ / Monat</div>
-    <div class="offer-note">Monatlich kündbar.</div>
-    <p class="offer-desc">Struktur, Strategie und eine Community, die dich nicht mit Affirmationen abspeist. Du lernst, setzt um und baust — mit System.</p>
-    <ul class="offer-list">
-      <li>Video-Trainings: Klarheit → Struktur → Dynamik</li>
-      <li>Group Calls alle 2 Wochen</li>
-      <li>Community in Mighty Networks</li>
-      <li>Vorlagen, Skripte, Frameworks</li>
-    </ul>
-    <a href="collective.html" class="offer-cta">Mehr erfahren</a>
-  </div>
-
-  <!-- 1:1-BETREUUNG -->
-  <div class="offer">
-    <div class="offer-type">Individuell · Premium</div>
-    <h3>1:1-Betreuung</h3>
-    <div class="offer-price">1.500€ / Monat</div>
-    <div class="offer-note">Min. 3 Monate. Bewerbung erforderlich.</div>
-    <p class="offer-desc">Du bekommst mich. Offer, Content, Positionierung, Verkaufsstrategie — individuell auf das, was bei dir den größten Hebel hat.</p>
-    <ul class="offer-list">
-      <li>Alles aus dem Collective inklusive</li>
-      <li>1:1-Strategie-Sessions</li>
-      <li>Telegram-Zugang für laufende Fragen</li>
-      <li>Individueller Scope: Offer, Content oder beides</li>
-      <li>Direktes Feedback auf alles, was du produzierst</li>
-    </ul>
-    <a href="bewerbung.html" class="offer-cta">Jetzt bewerben</a>
-  </div>
-
 </div>
 
-<div class="line"></div>
+<div class="full-img"><img src="bilder/dm-01.jpg" alt=""></div>
 
-<!-- ── ABOUT (image background) ── -->
-<section class="img-sec about-sec">
-  <div class="bg"></div>
-  <div class="overlay"></div>
-  <div class="content">
-    <h2>Ich sage dir, was sich <em>ändern muss.</em></h2>
-    <p><strong>Ich bin Carina.</strong> Strategin, Mentorin, Ex-Rocksängerin, Mama. Ich habe mein Business neben einem Vollzeitjob aufgebaut — ohne Team, ohne Werbebudget, ohne die Bereitschaft, jeden Tag auf Instagram zu tanzen.</p>
-    <p>Was mich von den meisten unterscheidet: Ich gebe dir nicht nur Strategie. Ich durchleuchte dein gesamtes Business und sage dir genau, was sich ändern muss. Und dann ändern wir es.</p>
-    <p><strong>Kein Coaching-Bingo. Keine Motivationsreden. Klarheit, Struktur und ein Business, das verkauft.</strong></p>
+<div class="quote"><p>„Kleine Mädchen mit Träumen werden zu Frauen mit Visionen."</p></div>
+
+<section class="story" id="story">
+  <div class="story-img"><img src="bilder/dm-02.jpg" alt="Carina Anna Prav"></div>
+  <div class="story-txt">
+    <h2>BUSINESS MENTORIN & STRATEGIN</h2>
+    <h3>Carina Anna Prav</h3>
+    <p>Ich war Rocksängerin in Amerika. Ich hab auf Bühnen gestanden, bevor ich wusste, was ein Funnel ist. Dann kam das Leben — Kinder, Verantwortung, der Wunsch nach Freiheit.</p>
+    <p>Ich habe mein Business neben einem Vollzeitjob aufgebaut. Ohne Team. Ohne Budget. <strong>Und ich habe jeden Fehler gemacht, den man machen kann.</strong></p>
+    <p><strong>Ein Business, das verkauft, braucht mehr als Sichtbarkeit.</strong> Es braucht ein klares Angebot, eine Botschaft die sitzt, einen Verkaufsprozess der funktioniert.</p>
+    <p>Heute liefere ich dir die <strong>exakten Strategien, Vorlagen und Methoden</strong>, die ich täglich nutze — und du kannst dir jetzt direkten Zugang dazu verschaffen.</p>
   </div>
 </section>
 
-<!-- ── NOT FOR ── -->
-<section class="not-for">
-  <h2>Nicht das Richtige für dich, wenn:</h2>
-  <div class="not-for-items">
-    <div class="not-for-item">Du nach Motivation statt Strategie suchst</div>
-    <div class="not-for-item">Du glaubst, Content allein reicht</div>
-    <div class="not-for-item">Du nette Worte statt ehrliches Feedback brauchst</div>
-    <div class="not-for-item">Du nicht bereit bist, etwas zu verändern</div>
-  </div>
-</section>
-
-<div class="line"></div>
-
-<!-- ── ERSTGESPRÄCH CTA (image background) ── -->
-<section class="img-sec cta-sec">
-  <div class="bg"></div>
-  <div class="overlay"></div>
-  <div class="content">
-    <h2>Nicht sicher, was das <em>Richtige</em> für dich ist?</h2>
-    <p>Buch dir ein kostenloses Erstgespräch. Wir schauen gemeinsam, wo du stehst und welches Angebot für dich Sinn macht. Kein Verkaufsdruck.</p>
-    <a href="https://tidycal.com/carina-anna-prav/kennenlernen" class="cta-btn">Erstgespräch buchen</a>
-  </div>
-</section>
-
-<div class="socials">
-  <a href="https://www.instagram.com/carinaannaprav/" target="_blank">Instagram</a>
+<section class="dms">
+  <div class="sec-h" style="padding-top:0"><h2>DAS SAGEN MEINE KUNDINNEN</h2></div>
+  <div class="dm-grid">
+<img src="bilder/dm-03.jpg" alt="Kundenstimme" style="width:100%;margin-bottom:8px;border-radius:8px">
+<img src="bilder/dm-04.jpg" alt="Kundenstimme" style="width:100%;margin-bottom:8px;border-radius:8px">
+<img src="bilder/dm-05.png" alt="Kundenstimme" style="width:100%;margin-bottom:8px;border-radius:8px">
+<img src="bilder/dm-06.png" alt="Kundenstimme" style="width:100%;margin-bottom:8px;border-radius:8px">
+<img src="bilder/dm-07.png" alt="Kundenstimme" style="width:100%;margin-bottom:8px;border-radius:8px">
+<img src="bilder/dm-08.png" alt="Kundenstimme" style="width:100%;margin-bottom:8px;border-radius:8px">
+<img src="bilder/dm-09.jpg" alt="Kundenstimme" style="width:100%;margin-bottom:8px;border-radius:8px">
+<img src="bilder/dm-10.png" alt="Kundenstimme" style="width:100%;margin-bottom:8px;border-radius:8px">
+<img src="bilder/dm-11.png" alt="Kundenstimme" style="width:100%;margin-bottom:8px;border-radius:8px">
+<img src="bilder/dm-12.png" alt="Kundenstimme" style="width:100%;margin-bottom:8px;border-radius:8px">
+<img src="bilder/dm-13.jpg" alt="Kundenstimme" style="width:100%;margin-bottom:8px;border-radius:8px">
+<img src="bilder/dm-14.png" alt="Kundenstimme" style="width:100%;margin-bottom:8px;border-radius:8px">
+<img src="bilder/dm-15.jpg" alt="Kundenstimme" style="width:100%;margin-bottom:8px;border-radius:8px">
+<img src="bilder/dm-16.png" alt="Kundenstimme" style="width:100%;margin-bottom:8px;border-radius:8px">
+<img src="bilder/dm-17.png" alt="Kundenstimme" style="width:100%;margin-bottom:8px;border-radius:8px">
+<img src="bilder/dm-18.png" alt="Kundenstimme" style="width:100%;margin-bottom:8px;border-radius:8px">
+<img src="bilder/dm-19.jpg" alt="Kundenstimme" style="width:100%;margin-bottom:8px;border-radius:8px">
+<img src="bilder/dm-20.jpg" alt="Kundenstimme" style="width:100%;margin-bottom:8px;border-radius:8px">
+<img src="bilder/dm-21.jpg" alt="Kundenstimme" style="width:100%;margin-bottom:8px;border-radius:8px">
+<img src="bilder/dm-22.jpg" alt="Kundenstimme" style="width:100%;margin-bottom:8px;border-radius:8px">
+<img src="bilder/dm-23.jpg" alt="Kundenstimme" style="width:100%;margin-bottom:8px;border-radius:8px">
 </div>
+</section>
+
+
+<section style="background:var(--red);padding:56px 40px;text-align:center">
+  <div style="max-width:480px;margin:0 auto">
+    <h2 style="font-family:var(--serif);font-weight:700;font-size:1.4rem;color:#fff;margin-bottom:8px">BLEIB DRAN.</h2>
+    <p style="font-size:0.9rem;color:rgba(255,255,255,0.75);margin-bottom:24px">Strategien, Impulse und Klartext — direkt in dein Postfach. Kein Spam. Kein Coaching-Bingo.</p>
+    <form method="POST" action="https://DEINE-ACTIVECAMPAIGN-URL.activehosted.com/proc.php" id="_form_newsletter" style="display:flex;gap:8px;max-width:420px;margin:0 auto">
+      <input type="hidden" name="u" value="DEINE_FORM_ID">
+      <input type="hidden" name="f" value="DEINE_FORM_ID">
+      <input type="hidden" name="s">
+      <input type="hidden" name="c" value="0">
+      <input type="hidden" name="m" value="0">
+      <input type="hidden" name="act" value="sub">
+      <input type="hidden" name="v" value="2">
+      <input type="email" name="email" placeholder="Deine E-Mail" required style="flex:1;padding:12px 16px;border:none;font-family:var(--sans);font-size:0.85rem;outline:none;color:var(--text)">
+      <button type="submit" style="padding:12px 24px;background:#fff;color:var(--red);font-family:var(--serif);font-weight:700;font-size:0.8rem;letter-spacing:0.08em;border:none;cursor:pointer;transition:all 0.2s;white-space:nowrap">ANMELDEN</button>
+    </form>
+    <p style="font-size:0.65rem;color:rgba(255,255,255,0.4);margin-top:10px">Mit der Anmeldung stimmst du der <a href="datenschutz.html" style="color:rgba(255,255,255,0.6)">Datenschutzerklärung</a> zu.</p>
+  </div>
+</section>
+
+<section class="contact" id="kontakt">
+  <div class="cform">
+    <div class="cfield"><label>Name</label><input type="text"></div>
+    <div class="cfield"><label>Email</label><input type="email"></div>
+    <div class="cfield w"><label>Telefon</label><input type="tel"></div>
+    <div class="cfield w"><label>Nachricht</label><textarea></textarea></div>
+    <button class="cbtn">SENDEN</button>
+  </div>
+</section>
+
+<section class="socials">
+  <h3>Hast du schon meine letzten Beiträge gesehen?</h3>
+  <div class="s-icons">
+    <a href="https://www.instagram.com/carinaannaprav/" target="_blank">IG</a>
+    <a href="https://www.tiktok.com/@carinaannaprav" target="_blank">TT</a>
+  </div>
+</section>
 
 <footer>
-  <div class="sig">Carina Anna Prav.</div>
-  <div class="foot-links">
-    <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <a href="agb.html">AGB</a>
-  </div>
-  <div class="foot-copy">© 2026 PRAV Business Consulting</div>
+  <div><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a></div>
+  <span>© 2026 carinaannaprav</span>
 </footer>
 
-</div>
 </body>
 </html>

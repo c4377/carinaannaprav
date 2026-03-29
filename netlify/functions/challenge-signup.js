@@ -19,13 +19,12 @@ exports.handler = async (event, context) => {
   try {
     const data = JSON.parse(event.body);
     const email = data.email;
+    const firstname = data.firstname || '';
+    const lastname = data.lastname || '';
+    const instagram = data.instagram || '';
 
     if (!email) {
-      return {
-        statusCode: 400,
-        headers,
-        body: JSON.stringify({ error: 'Email is required' })
-      };
+      return { statusCode: 400, headers, body: JSON.stringify({ error: 'Email is required' }) };
     }
 
     const AC_API_URL = process.env.ACTIVECAMPAIGN_API_URL;
@@ -43,14 +42,29 @@ exports.handler = async (event, context) => {
       'Content-Type': 'application/json'
     };
 
-    // 1. Create/Update Contact
+    // 1. Create/Update Contact with name
     console.log('Challenge signup — syncing contact...');
+    const contactPayload = {
+      contact: {
+        email: email,
+        firstName: firstname,
+        lastName: lastname,
+        fieldValues: []
+      }
+    };
+
+    // Instagram in custom field (adjust field ID to match your AC setup)
+    if (instagram) {
+      contactPayload.contact.fieldValues.push({
+        field: '16', // Social/Website field — same as in application-submit.js
+        value: instagram
+      });
+    }
+
     const contactResponse = await fetch(`${AC_API_URL}/api/3/contact/sync`, {
       method: 'POST',
       headers: acHeaders,
-      body: JSON.stringify({
-        contact: { email: email }
-      })
+      body: JSON.stringify(contactPayload)
     });
 
     if (!contactResponse.ok) {
@@ -83,7 +97,11 @@ exports.handler = async (event, context) => {
 
     // 4. Telegram notification
     if (TELEGRAM_BOT_TOKEN && TELEGRAM_CHAT_ID) {
-      const message = `🔥 NEUE CHALLENGE-ANMELDUNG\n\n📧 ${email}\n\nContent that Sells Challenge, ab 3. April`;
+      let message = `🔥 NEUE CHALLENGE-ANMELDUNG\n\n`;
+      message += `👤 ${firstname} ${lastname}\n`;
+      message += `📧 ${email}\n`;
+      if (instagram) message += `📸 ${instagram}\n`;
+      message += `\nContent that Sells Challenge, ab 3. April`;
 
       await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
         method: 'POST',
@@ -131,7 +149,6 @@ async function assignTag(apiUrl, headers, contactId, tagName) {
 
       if (exactMatch) {
         tagId = exactMatch.id;
-        console.log('Found existing tag:', tagName, 'ID:', tagId);
       } else {
         const createTagResponse = await fetch(`${apiUrl}/api/3/tags`, {
           method: 'POST',
@@ -144,7 +161,6 @@ async function assignTag(apiUrl, headers, contactId, tagName) {
         if (createTagResponse.ok) {
           const newTagData = await createTagResponse.json();
           tagId = newTagData.tag.id;
-          console.log('Created new tag:', tagName, 'ID:', tagId);
         }
       }
     }

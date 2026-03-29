@@ -47,21 +47,43 @@ footer a{color:var(--text-light);margin:0 6px}footer a:hover{color:var(--red)}
 <p>Selbstständige Frauen, die posten aber nichts verkaufen. <strong>Die bereit sind, 3 Tage lang ehrlich hinzuschauen.</strong></p>
 <div class="price-box"><div class="price">KOSTENLOS</div><div class="note">3.–5. April · Per Telegram · Kein Haken.</div></div>
 <div style="text-align:center">
-    <!-- ActiveCampaign via Netlify Function: Liste 28, Tag challenge-april-2025 -->
-    <div id="challenge-form" style="display:flex;gap:8px;max-width:400px;margin:0 auto">
-      <input type="email" id="challenge-email" placeholder="Deine E-Mail" required style="flex:1;padding:14px 16px;border:1px solid var(--border);font-family:var(--sans);font-size:0.85rem;outline:none;color:var(--text);background:var(--white)">
-      <button onclick="submitChallenge()" class="cta-btn" id="challenge-btn" style="border:none;cursor:pointer;white-space:nowrap">ICH BIN DABEI</button>
+    <div id="challenge-form" style="max-width:400px;margin:0 auto;display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;gap:8px">
+        <input type="text" id="challenge-firstname" placeholder="Vorname" required style="flex:1;padding:14px 16px;border:1px solid var(--border);font-family:var(--sans);font-size:0.85rem;outline:none;color:var(--text);background:var(--white)">
+        <input type="text" id="challenge-lastname" placeholder="Nachname" required style="flex:1;padding:14px 16px;border:1px solid var(--border);font-family:var(--sans);font-size:0.85rem;outline:none;color:var(--text);background:var(--white)">
+      </div>
+      <input type="email" id="challenge-email" placeholder="Deine E-Mail" required style="padding:14px 16px;border:1px solid var(--border);font-family:var(--sans);font-size:0.85rem;outline:none;color:var(--text);background:var(--white)">
+      <input type="text" id="challenge-instagram" placeholder="@dein.instagram" style="padding:14px 16px;border:1px solid var(--border);font-family:var(--sans);font-size:0.85rem;outline:none;color:var(--text);background:var(--white)">
+      <label style="display:flex;align-items:flex-start;gap:8px;text-align:left;font-size:0.75rem;color:var(--text-mid);cursor:pointer">
+        <input type="checkbox" id="challenge-consent" required style="margin-top:3px;min-width:16px">
+        <span>Ich möchte die Challenge-Inhalte und danach den Newsletter von carinaannaprav erhalten. Ich stimme der <a href="datenschutz.html" style="color:var(--red)">Datenschutzerklärung</a> zu. Abmeldung jederzeit möglich.</span>
+      </label>
+      <button onclick="submitChallenge()" class="cta-btn" id="challenge-btn" style="border:none;cursor:pointer;width:100%;padding:16px">ICH BIN DABEI</button>
     </div>
-    <p id="challenge-msg" style="font-size:0.75rem;color:var(--text-light);margin-top:8px">Mit der Anmeldung stimmst du der <a href="datenschutz.html" style="color:var(--red)">Datenschutzerklärung</a> zu.</p>
+    <p id="challenge-msg" style="font-size:0.75rem;color:var(--text-light);margin-top:8px"></p>
   </div>
 <script>
 async function submitChallenge() {
+  const firstname = document.getElementById('challenge-firstname').value.trim();
+  const lastname = document.getElementById('challenge-lastname').value.trim();
   const email = document.getElementById('challenge-email').value.trim();
+  const instagram = document.getElementById('challenge-instagram').value.trim();
+  const consent = document.getElementById('challenge-consent').checked;
   const btn = document.getElementById('challenge-btn');
   const msg = document.getElementById('challenge-msg');
   
+  if (!firstname || !lastname) {
+    msg.textContent = 'Bitte gib deinen Vor- und Nachnamen ein.';
+    msg.style.color = 'var(--red)';
+    return;
+  }
   if (!email || !email.includes('@')) {
     msg.textContent = 'Bitte gib eine gültige E-Mail ein.';
+    msg.style.color = 'var(--red)';
+    return;
+  }
+  if (!consent) {
+    msg.textContent = 'Bitte stimme dem Newsletter-Erhalt zu.';
     msg.style.color = 'var(--red)';
     return;
   }
@@ -73,7 +95,7 @@ async function submitChallenge() {
     const res = await fetch('/.netlify/functions/challenge-signup', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email })
+      body: JSON.stringify({ email, firstname, lastname, instagram })
     });
     
     const data = await res.json();

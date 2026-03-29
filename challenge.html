@@ -47,24 +47,51 @@ footer a{color:var(--text-light);margin:0 6px}footer a:hover{color:var(--red)}
 <p>Selbstständige Frauen, die posten aber nichts verkaufen. <strong>Die bereit sind, 3 Tage lang ehrlich hinzuschauen.</strong></p>
 <div class="price-box"><div class="price">KOSTENLOS</div><div class="note">3.–5. April · Per Telegram · Kein Haken.</div></div>
 <div style="text-align:center">
-    <!-- 
-      ANLEITUNG: ActiveCampaign Formular einbinden
-      1. Geh in ActiveCampaign → Listen → Neue Liste "Challenge 3. April"
-      2. Formulare → Neues Formular → Inline-Formular → nur E-Mail-Feld
-      3. Kopiere die Formular-Action-URL und die Feld-IDs
-      4. Ersetze DEINE_AC_URL, DEINE_U_ID und DEINE_F_ID unten
-    -->
-    <form method="POST" action="https://DEINE_AC_URL.activehosted.com/proc.php" style="display:flex;gap:8px;max-width:400px;margin:0 auto">
-      <input type="hidden" name="u" value="DEINE_U_ID">
-      <input type="hidden" name="f" value="DEINE_F_ID">
-      <input type="hidden" name="s">
-      <input type="hidden" name="c" value="0">
-      <input type="hidden" name="m" value="0">
-      <input type="hidden" name="act" value="sub">
-      <input type="hidden" name="v" value="2">
-      <input type="email" name="email" placeholder="Deine E-Mail" required style="flex:1;padding:14px 16px;border:1px solid var(--border);font-family:var(--sans);font-size:0.85rem;outline:none;color:var(--text);background:var(--white)">
-      <button type="submit" class="cta-btn" style="border:none;cursor:pointer;white-space:nowrap">ICH BIN DABEI</button>
-    </form>
-    <p style="font-size:0.65rem;color:var(--text-light);margin-top:8px">Mit der Anmeldung stimmst du der <a href="datenschutz.html" style="color:var(--red)">Datenschutzerklärung</a> zu.</p>
-  </div><a href="index.html" class="back">← Zurück</a></div>
+    <!-- ActiveCampaign via Netlify Function: Liste 28, Tag challenge-april-2025 -->
+    <div id="challenge-form" style="display:flex;gap:8px;max-width:400px;margin:0 auto">
+      <input type="email" id="challenge-email" placeholder="Deine E-Mail" required style="flex:1;padding:14px 16px;border:1px solid var(--border);font-family:var(--sans);font-size:0.85rem;outline:none;color:var(--text);background:var(--white)">
+      <button onclick="submitChallenge()" class="cta-btn" id="challenge-btn" style="border:none;cursor:pointer;white-space:nowrap">ICH BIN DABEI</button>
+    </div>
+    <p id="challenge-msg" style="font-size:0.75rem;color:var(--text-light);margin-top:8px">Mit der Anmeldung stimmst du der <a href="datenschutz.html" style="color:var(--red)">Datenschutzerklärung</a> zu.</p>
+  </div>
+<script>
+async function submitChallenge() {
+  const email = document.getElementById('challenge-email').value.trim();
+  const btn = document.getElementById('challenge-btn');
+  const msg = document.getElementById('challenge-msg');
+  
+  if (!email || !email.includes('@')) {
+    msg.textContent = 'Bitte gib eine gültige E-Mail ein.';
+    msg.style.color = 'var(--red)';
+    return;
+  }
+  
+  btn.disabled = true;
+  btn.textContent = '...';
+  
+  try {
+    const res = await fetch('/.netlify/functions/challenge-signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email })
+    });
+    
+    const data = await res.json();
+    
+    if (data.success) {
+      window.location.href = 'challenge-danke.html';
+    } else {
+      msg.textContent = 'Fehler: ' + (data.error || 'Bitte versuch es nochmal.');
+      msg.style.color = 'var(--red)';
+      btn.disabled = false;
+      btn.textContent = 'ICH BIN DABEI';
+    }
+  } catch (err) {
+    msg.textContent = 'Netzwerkfehler. Bitte versuch es nochmal.';
+    msg.style.color = 'var(--red)';
+    btn.disabled = false;
+    btn.textContent = 'ICH BIN DABEI';
+  }
+}
+</script><a href="index.html" class="back">← Zurück</a></div>
 <footer><div><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a></div><span>© 2026 carinaannaprav</span></footer></body></html>

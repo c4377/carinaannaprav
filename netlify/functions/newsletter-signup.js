@@ -38,7 +38,7 @@ exports.handler = async (event, context) => {
     // ActiveCampaign Config
     const AC_API_URL = process.env.ACTIVECAMPAIGN_API_URL;
     const AC_API_KEY = process.env.ACTIVECAMPAIGN_API_KEY;
-    const AC_LIST_MASTERCLASS = process.env.AC_LIST_MASTERCLASS || '7';
+    const AC_LIST_MASTERCLASS = process.env.AC_LIST_MASTERCLASS || '28';
 
     if (!AC_API_URL || !AC_API_KEY) {
       console.error('Missing ActiveCampaign credentials');

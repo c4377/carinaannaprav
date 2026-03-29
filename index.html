@@ -365,18 +365,50 @@ footer a:hover{color:var(--red)}
   <div style="max-width:480px;margin:0 auto">
     <h2 style="font-family:var(--serif);font-weight:700;font-size:1.4rem;color:#fff;margin-bottom:8px">BLEIB DRAN.</h2>
     <p style="font-size:0.9rem;color:rgba(255,255,255,0.75);margin-bottom:24px">Strategien, Impulse und Klartext — direkt in dein Postfach. Kein Spam. Kein Coaching-Bingo.</p>
-    <form method="POST" action="https://DEINE-ACTIVECAMPAIGN-URL.activehosted.com/proc.php" id="_form_newsletter" style="display:flex;gap:8px;max-width:420px;margin:0 auto">
-      <input type="hidden" name="u" value="DEINE_FORM_ID">
-      <input type="hidden" name="f" value="DEINE_FORM_ID">
-      <input type="hidden" name="s">
-      <input type="hidden" name="c" value="0">
-      <input type="hidden" name="m" value="0">
-      <input type="hidden" name="act" value="sub">
-      <input type="hidden" name="v" value="2">
-      <input type="email" name="email" placeholder="Deine E-Mail" required style="flex:1;padding:12px 16px;border:none;font-family:var(--sans);font-size:0.85rem;outline:none;color:var(--text)">
-      <button type="submit" style="padding:12px 24px;background:#fff;color:var(--red);font-family:var(--serif);font-weight:700;font-size:0.8rem;letter-spacing:0.08em;border:none;cursor:pointer;transition:all 0.2s;white-space:nowrap">ANMELDEN</button>
-    </form>
-    <p style="font-size:0.65rem;color:rgba(255,255,255,0.4);margin-top:10px">Mit der Anmeldung stimmst du der <a href="datenschutz.html" style="color:rgba(255,255,255,0.6)">Datenschutzerklärung</a> zu.</p>
+    <div id="nl-form" style="display:flex;gap:8px;max-width:420px;margin:0 auto">
+      <input type="text" id="nl-firstname" placeholder="Vorname" required style="flex:0.7;padding:12px 16px;border:none;font-family:var(--sans);font-size:0.85rem;outline:none;color:var(--text)">
+      <input type="email" id="nl-email" placeholder="Deine E-Mail" required style="flex:1;padding:12px 16px;border:none;font-family:var(--sans);font-size:0.85rem;outline:none;color:var(--text)">
+      <button onclick="submitNewsletter()" id="nl-btn" style="padding:12px 24px;background:#fff;color:var(--red);font-family:var(--serif);font-weight:700;font-size:0.8rem;letter-spacing:0.08em;border:none;cursor:pointer;transition:all 0.2s;white-space:nowrap">ANMELDEN</button>
+    </div>
+    <p id="nl-msg" style="font-size:0.65rem;color:rgba(255,255,255,0.4);margin-top:10px">Mit der Anmeldung stimmst du der <a href="datenschutz.html" style="color:rgba(255,255,255,0.6)">Datenschutzerklärung</a> zu.</p>
+<script>
+async function submitNewsletter() {
+  const firstname = document.getElementById('nl-firstname').value.trim();
+  const email = document.getElementById('nl-email').value.trim();
+  const btn = document.getElementById('nl-btn');
+  const msg = document.getElementById('nl-msg');
+
+  if (!firstname) { msg.textContent = 'Bitte gib deinen Vornamen ein.'; msg.style.color = '#fff'; return; }
+  if (!email || !email.includes('@')) { msg.textContent = 'Bitte gib eine gültige E-Mail ein.'; msg.style.color = '#fff'; return; }
+
+  btn.disabled = true;
+  btn.textContent = '...';
+
+  try {
+    const res = await fetch('/.netlify/functions/newsletter-signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, firstname })
+    });
+    const data = await res.json();
+    if (data.success) {
+      msg.textContent = '✓ Du bist dabei! Check deine Inbox.';
+      msg.style.color = '#fff';
+      document.getElementById('nl-form').style.display = 'none';
+    } else {
+      msg.textContent = 'Fehler — bitte versuch es nochmal.';
+      msg.style.color = '#fff';
+      btn.disabled = false;
+      btn.textContent = 'ANMELDEN';
+    }
+  } catch (err) {
+    msg.textContent = 'Netzwerkfehler — bitte versuch es nochmal.';
+    msg.style.color = '#fff';
+    btn.disabled = false;
+    btn.textContent = 'ANMELDEN';
+  }
+}
+</script>
   </div>
 </section>
 

@@ -42,7 +42,7 @@ exports.handler = async (event, context) => {
       'Content-Type': 'application/json'
     };
 
-    // 1. Create/Update Contact with name
+    // 1. Create/Update Contact
     console.log('Challenge signup — syncing contact...');
     const contactPayload = {
       contact: {
@@ -53,10 +53,9 @@ exports.handler = async (event, context) => {
       }
     };
 
-    // Instagram in custom field (adjust field ID to match your AC setup)
     if (instagram) {
       contactPayload.contact.fieldValues.push({
-        field: '16', // Social/Website field — same as in application-submit.js
+        field: '16',
         value: instagram
       });
     }
@@ -77,9 +76,9 @@ exports.handler = async (event, context) => {
     const contactId = contactData.contact.id;
     console.log('Contact synced, ID:', contactId);
 
-    // 2. Add to Newsletter list (28)
+    // 2. Add to Newsletter list (28) — MUST succeed before tag
     console.log('Adding to Newsletter list (28)...');
-    await fetch(`${AC_API_URL}/api/3/contactLists`, {
+    const listResponse = await fetch(`${AC_API_URL}/api/3/contactLists`, {
       method: 'POST',
       headers: acHeaders,
       body: JSON.stringify({
@@ -90,12 +89,24 @@ exports.handler = async (event, context) => {
         }
       })
     });
-    console.log('Added to list 28');
 
-    // 3. Tag: challenge-april-2025
+    if (!listResponse.ok) {
+      const listError = await listResponse.text();
+      console.error('List subscription error:', listError);
+      throw new Error(`Failed to add to list: ${listResponse.status}`);
+    }
+
+    const listData = await listResponse.json();
+    console.log('Added to list 28, confirmed:', JSON.stringify(listData));
+
+    // 3. Wait 2 seconds for AC to process list subscription
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
+    // 4. NOW set the tag — list is confirmed first
+    console.log('Setting challenge tag...');
     await assignTag(AC_API_URL, acHeaders, contactId, 'challenge-april-2025');
 
-    // 4. Telegram notification
+    // 5. Telegram notification
     if (TELEGRAM_BOT_TOKEN && TELEGRAM_CHAT_ID) {
       let message = `🔥 NEUE CHALLENGE-ANMELDUNG\n\n`;
       message += `👤 ${firstname} ${lastname}\n`;
@@ -133,7 +144,6 @@ exports.handler = async (event, context) => {
   }
 };
 
-// Helper: Find or create tag, then assign to contact
 async function assignTag(apiUrl, headers, contactId, tagName) {
   try {
     const tagSearchResponse = await fetch(`${apiUrl}/api/3/tags?search=${encodeURIComponent(tagName)}`, {

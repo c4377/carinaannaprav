@@ -83,7 +83,7 @@ exports.handler = async (event, context) => {
       headers: acHeaders,
       body: JSON.stringify({
         contactList: {
-          list: '28',
+          list: '7',
           contact: contactId,
           status: 1
         }

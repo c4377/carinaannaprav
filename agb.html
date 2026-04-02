@@ -1,64 +1,168 @@
-<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>carinaannaprav — AGB</title><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>carinaannaprav — AGB</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--white:#FFFFFF;--off:#F7F7F5;--text:#1C1917;--text-mid:#57534E;--text-light:#A8A29E;--red:#8A2E3C;--border:#E7E5E4;--serif:'Times New Roman',Times,serif;--sans:'Poppins',sans-serif}
-*{margin:0;padding:0;box-sizing:border-box}html,body{background:var(--white)}
-body{font-family:var(--sans);color:var(--text);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased}
-a{color:var(--red);text-decoration:none}a:hover{text-decoration:underline}
-nav{background:var(--white);border-bottom:1px solid var(--border);padding:16px 40px;display:flex;align-items:center;justify-content:space-between}
-.logo{display:flex;align-items:center;gap:10px;color:var(--text);text-decoration:none}
-.logo-mark{font-family:var(--serif);font-weight:700;font-size:1.7rem}.logo-sub{font-size:0.5rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-light);line-height:1.3}
-.nav-r{display:flex;gap:22px;align-items:center}.nav-r a{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.05em;font-weight:500;color:var(--text-mid);text-decoration:none}.nav-r a:hover{color:var(--red);text-decoration:none}
-.content{max-width:680px;margin:0 auto;padding:52px 40px}
-.content h1{font-family:var(--serif);font-weight:700;font-size:1.8rem;margin-bottom:24px}
-.content h2{font-family:var(--serif);font-weight:700;font-size:1.2rem;margin-top:28px;margin-bottom:10px}
-.content h3{font-family:var(--serif);font-weight:700;font-size:1rem;margin-top:20px;margin-bottom:8px;color:var(--text-mid)}
-.content p{font-size:0.88rem;color:var(--text-mid);line-height:1.8;margin-bottom:10px}
-.content ul,.content ol{margin:8px 0 16px 20px}.content li{font-size:0.88rem;color:var(--text-mid);line-height:1.8;margin-bottom:4px}
-footer{border-top:1px solid var(--border);padding:14px 40px;display:flex;justify-content:space-between;align-items:center;font-size:0.62rem;color:var(--text-light);margin-top:36px}
-footer a{color:var(--text-light);margin:0 6px;text-decoration:none}footer a:hover{color:var(--red)}
-@media(max-width:600px){nav{padding:12px 16px;flex-wrap:wrap;gap:8px}.nav-r{gap:12px;flex-wrap:wrap}.content{padding:36px 20px}footer{flex-direction:column;gap:6px;text-align:center}}
-</style></head><body>
-<nav><a href="index.html" class="logo"><span class="logo-mark">CP</span><span class="logo-sub">CARINA ANNA PRAV<br>BUSINESS MENTORIN & STRATEGIN</span></a><div class="nav-r"><a href="index.html">Home</a><a href="index.html#prods">Angebote</a><a href="index.html#kurse"></a><a href="blog.html">Kurse</a></div></nav>
-<div class="content">
-<h1>Allgemeine Geschäftsbedingungen</h1>
-<p>Stand: März 2026</p>
+:root {
+  --bg: #1C1917;
+  --bg-warm: #231F1D;
+  --burgundy: #8A2E3C;
+  --burgundy-deep: #5C1A28;
+  --burgundy-glow: rgba(138,46,60,0.15);
+  --cream: #F5F0EB;
+  --cream-soft: rgba(245,240,235,0.88);
+  --cream-muted: rgba(245,240,235,0.6);
+  --cream-faint: rgba(245,240,235,0.1);
+  --border: rgba(245,240,235,0.15);
+  --serif: 'Times New Roman MT Std', 'Times New Roman', Times, serif;
+  --sans: 'Outfit', sans-serif;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { background:var(--bg); color:var(--cream); font-family:var(--sans); font-weight:300; font-size:16px; line-height:1.7; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+a { color:var(--cream); text-decoration:none; }
+::selection { background:var(--burgundy); color:var(--cream); }
+img { max-width:100%; display:block; }
+strong { font-weight:500; }
 
-<h2>§ 1 Geltungsbereich</h2>
-<p>Diese AGB gelten für alle Dienstleistungen und digitalen Produkte von Carina Anna Prav (nachfolgend „Anbieterin"), die über die Website carinaannaprav oder verbundene Plattformen angeboten werden.</p>
+/* NAV */
+.nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:20px 40px; display:flex; justify-content:space-between; align-items:center; background:rgba(28,25,23,0.92); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border-bottom:1px solid var(--border); }
+.nav-logo { font-family:var(--serif); font-weight:400; font-size:1.1rem; letter-spacing:0.08em; color:var(--cream); }
+.nav-links { display:flex; gap:28px; align-items:center; }
+.nav-links a { font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; font-weight:400; color:var(--cream-muted); transition:color 0.3s; }
+.nav-links a:hover { color:var(--cream); }
+.nav-cta { border:1px solid var(--burgundy); padding:10px 24px; transition:all 0.35s; }
+.nav-cta:hover { background:var(--burgundy); color:var(--cream); }
 
-<h2>§ 2 Vertragsschluss</h2>
-<p>Ein Vertrag kommt zustande durch die Buchung eines Angebots (Kurs, Audit, Mentoring) über die Website oder über die bereitgestellten Buchungslinks. Mit der Buchung bestätigst du, dass du diese AGB gelesen und akzeptiert hast.</p>
+/* PAGE HERO */
+.page-hero { padding:140px 40px 80px; text-align:center; position:relative; overflow:hidden; }
+.page-hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 50% 50%, rgba(138,46,60,0.12) 0%, transparent 60%), var(--bg); }
+.page-hero * { position:relative; z-index:2; }
+.page-hero .tag { font-size:0.68rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--burgundy); margin-bottom:16px; }
+.page-hero h1 { font-family:var(--serif); font-weight:400; font-size:clamp(2rem,5vw,3.2rem); line-height:1.1; margin-bottom:12px; }
+.page-hero .sub { font-size:0.95rem; color:var(--cream-soft); max-width:460px; margin:0 auto; }
 
-<h2>§ 3 Leistungen</h2>
-<h3>Digitale Kurse (Self-Study)</h3>
-<p>Nach Zahlungseingang erhältst du sofortigen Zugang zu den Kursinhalten. Die Inhalte stehen dir zeitlich unbegrenzt zur Verfügung, solange die Plattform existiert.</p>
-<h3>Offer Audit (795€)</h3>
-<p>Einmalige 90-Minuten-Session inkl. Vorab-Analyse und Aufzeichnung. Der Termin wird nach Zahlungseingang vereinbart.</p>
-<h3>6-Monats-Mentoring (5.555€)</h3>
-<p>6 Monate individuelle Begleitung via Telegram. Beginn nach Bewerbungsgespräch und Zahlungseingang. Die Zusammenarbeit ist nicht vorzeitig kündbar.</p>
-<h3>3-Tage Challenge (kostenlos)</h3>
-<p>Kostenlose Teilnahme. Kein Vertrag im Sinne eines entgeltlichen Leistungsaustauschs.</p>
+/* CONTENT */
+.content { max-width:700px; margin:0 auto; padding:60px 40px; }
+.content h2 { font-family:var(--serif); font-weight:400; font-size:1.4rem; margin-bottom:16px; }
+.content h3 { font-family:var(--serif); font-weight:400; font-size:1.1rem; margin-bottom:12px; margin-top:32px; color:var(--burgundy); }
+.content p { font-size:0.92rem; color:var(--cream-soft); line-height:1.85; margin-bottom:14px; }
+.content p strong { color:var(--cream); font-weight:500; }
+.content ul { list-style:none; margin:16px 0 24px; }
+.content ul li { font-size:0.88rem; color:var(--cream-soft); padding:10px 0 10px 22px; position:relative; border-bottom:1px solid var(--border); }
+.content ul li:last-child { border-bottom:none; }
+.content ul li::before { content:'—'; position:absolute; left:0; color:var(--burgundy); font-weight:500; }
+.content a { color:var(--burgundy); transition:color 0.3s; }
+.content a:hover { color:var(--cream); }
 
-<h2>§ 4 Preise und Zahlung</h2>
-<p>Alle Preise verstehen sich als Endpreise. Gemäß § 6 Abs. 1 Z 27 UStG wird keine Umsatzsteuer ausgewiesen (Kleinunternehmerregelung).</p>
-<p>Zahlung erfolgt über ThriveCart. Ratenzahlung ist beim Mentoring nach Vereinbarung möglich.</p>
+/* PRICE BOX */
+.price-box { background:var(--bg-warm); border:1px solid var(--border); padding:36px; text-align:center; margin:32px 0; }
+.price-box .price { font-family:var(--serif); font-weight:400; font-size:2.2rem; color:var(--cream); }
+.price-box .note { font-size:0.8rem; color:var(--cream-muted); margin-top:6px; }
 
-<h2>§ 5 Widerrufsrecht</h2>
-<p>Für digitale Produkte (Kurse) gilt: Mit dem sofortigen Zugang zu den Inhalten stimmst du ausdrücklich zu, dass das Widerrufsrecht mit Bereitstellung der Inhalte erlischt.</p>
-<p>Für das Offer Audit gilt ein 14-tägiges Widerrufsrecht ab Buchungsdatum, sofern die Session noch nicht stattgefunden hat.</p>
-<p>Für das 6-Monats-Mentoring gilt: Nach dem Bewerbungsgespräch und der Bestätigung der Zusammenarbeit besteht ein 14-tägiges Widerrufsrecht ab Vertragsschluss.</p>
+/* CTA BTN */
+.cta-btn { display:inline-block; padding:16px 44px; background:var(--burgundy); border:1px solid var(--burgundy); color:var(--cream); font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase; font-weight:400; transition:all 0.35s; cursor:pointer; font-family:var(--sans); }
+.cta-btn:hover { background:transparent; color:var(--cream); }
 
-<h2>§ 6 Haftung</h2>
-<p>Meine Leistungen sind Beratung und Wissensvermittlung. Ich übernehme keine Garantie für bestimmte geschäftliche Ergebnisse. Der Erfolg hängt von der individuellen Umsetzung ab.</p>
+/* PHASES */
+.phases { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; margin:24px 0; }
+.phase { background:var(--bg-warm); border:1px solid var(--border); padding:20px; }
+.phase h4 { font-family:var(--serif); font-weight:400; font-size:0.85rem; color:var(--burgundy); margin-bottom:6px; }
+.phase p { font-size:0.8rem; color:var(--cream-soft); line-height:1.6; margin:0; }
 
-<h2>§ 7 Urheberrecht</h2>
-<p>Alle Inhalte (Kursmaterialien, Vorlagen, Frameworks, Aufzeichnungen) sind urheberrechtlich geschützt. Eine Weitergabe an Dritte ist nicht gestattet.</p>
+/* BACK LINK */
+.back { display:inline-block; margin-top:32px; font-size:0.8rem; color:var(--cream-muted); transition:color 0.3s; }
+.back:hover { color:var(--cream); }
 
-<h2>§ 8 Vertraulichkeit</h2>
-<p>Informationen, die im Rahmen der Zusammenarbeit geteilt werden, werden vertraulich behandelt — von beiden Seiten.</p>
+/* FOOTER */
+footer { padding:40px 60px; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; margin-top:40px; }
+.foot-sig { font-family:var(--serif); font-style:italic; font-size:1rem; color:var(--cream-soft); }
+.foot-links { display:flex; gap:20px; }
+.foot-links a { font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--cream-muted); transition:color 0.3s; }
+.foot-links a:hover { color:var(--cream); }
+.foot-copy { font-size:0.65rem; color:var(--cream-muted); opacity:0.8; }
 
-<h2>§ 9 Schlussbestimmungen</h2>
-<p>Es gilt österreichisches Recht. Gerichtsstand ist Wien, Österreich.</p>
-<p>Sollten einzelne Bestimmungen dieser AGB unwirksam sein, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt.</p>
+/* BLOG */
+.blog-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:2px; max-width:800px; margin:0 auto; padding:0 40px 60px; }
+.blog-card { background:var(--bg-warm); border:1px solid var(--border); padding:28px; transition:all 0.4s; }
+.blog-card:hover { border-color:rgba(138,46,60,0.3); background:rgba(138,46,60,0.06); }
+.blog-card .btag { font-size:0.6rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--burgundy); font-weight:400; margin-bottom:8px; }
+.blog-card h3 { font-family:var(--serif); font-weight:400; font-size:1.05rem; margin-bottom:8px; line-height:1.3; }
+.blog-card h3 a { color:var(--cream); }
+.blog-card h3 a:hover { color:var(--burgundy); }
+.blog-card p { font-size:0.8rem; color:var(--cream-muted); line-height:1.6; }
+.blog-card .date { font-size:0.65rem; color:var(--cream-muted); margin-top:10px; opacity:0.7; }
+
+/* FORM INPUTS */
+.form-input { padding:14px 18px; background:var(--bg-warm); border:1px solid var(--border); color:var(--cream); font-family:var(--sans); font-size:0.85rem; font-weight:300; outline:none; transition:border-color 0.3s; width:100%; }
+.form-input::placeholder { color:var(--cream-muted); }
+.form-input:focus { border-color:var(--burgundy); }
+
+/* RESPONSIVE */
+@media(max-width:768px) {
+  .nav { padding:16px 20px; }
+  .nav-links { gap:14px; }
+  .nav-links a:not(.nav-cta) { display:none; }
+  .page-hero { padding:110px 24px 50px; }
+  .content { padding:40px 24px; }
+  .phases { grid-template-columns:1fr; }
+  .blog-grid { grid-template-columns:1fr; padding:0 24px 40px; }
+  footer { flex-direction:column; gap:16px; text-align:center; padding:30px 24px; }
+}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a href="index.html" class="nav-logo">carinaannaprav</a>
+  <div class="nav-links">
+    <a href="index.html#angebote">Angebote</a>
+    <a href="index.html#kurse">Kurse</a>
+    <a href="index.html#story">Über mich</a>
+    <a href="blog.html">Blog</a>
+    <a href="https://www.instagram.com/carinaannaprav/" target="_blank">Instagram</a>
+  </div>
+</nav>
+<div class="content" style="padding-top:140px">
+  <h2 style="font-size:1.8rem;margin-bottom:28px">Allgemeine Geschäftsbedingungen</h2>
+  <p style="color:var(--cream-muted);font-size:0.8rem">Stand: März 2026</p>
+  <h3>§ 1 Geltungsbereich</h3>
+  <p>Diese AGB gelten für alle Dienstleistungen und digitalen Produkte von Carina Anna Prav (nachfolgend „Anbieterin"), die über die Website carinaannaprav.at oder verbundene Plattformen angeboten werden.</p>
+  <h3>§ 2 Vertragsschluss</h3>
+  <p>Ein Vertrag kommt zustande durch die Buchung eines Angebots über die Website oder über die bereitgestellten Buchungslinks. Mit der Buchung bestätigst du, dass du diese AGB gelesen und akzeptiert hast.</p>
+  <h3>§ 3 Leistungen</h3>
+  <p><strong>Digitale Kurse (Self-Study):</strong> Nach Zahlungseingang erhältst du sofortigen Zugang zu den Kursinhalten. Die Inhalte stehen dir zeitlich unbegrenzt zur Verfügung, solange die Plattform existiert.</p>
+  <p><strong>Offer Audit (795€):</strong> Einmalige 90-Minuten-Session inkl. Vorab-Analyse und Aufzeichnung. Der Termin wird nach Zahlungseingang vereinbart.</p>
+  <p><strong>6-Monats-Mentoring (5.555€):</strong> 6 Monate individuelle Begleitung via Telegram. Beginn nach Bewerbungsgespräch und Zahlungseingang. Die Zusammenarbeit ist nicht vorzeitig kündbar.</p>
+  <p><strong>3-Tage Challenge (kostenlos):</strong> Kostenlose Teilnahme. Kein Vertrag im Sinne eines entgeltlichen Leistungsaustauschs.</p>
+  <h3>§ 4 Preise und Zahlung</h3>
+  <p>Alle Preise verstehen sich als Endpreise. Gemäß § 6 Abs. 1 Z 27 UStG wird keine Umsatzsteuer ausgewiesen (Kleinunternehmerregelung).</p>
+  <p>Zahlung erfolgt über ThriveCart. Ratenzahlung ist beim Mentoring nach Vereinbarung möglich.</p>
+  <h3>§ 5 Widerrufsrecht</h3>
+  <p>Für digitale Produkte (Kurse): Mit dem sofortigen Zugang zu den Inhalten stimmst du ausdrücklich zu, dass das Widerrufsrecht mit Bereitstellung der Inhalte erlischt.</p>
+  <p>Für das Offer Audit: 14-tägiges Widerrufsrecht ab Buchungsdatum, sofern die Session noch nicht stattgefunden hat.</p>
+  <p>Für das 6-Monats-Mentoring: Nach Bestätigung der Zusammenarbeit besteht ein 14-tägiges Widerrufsrecht ab Vertragsschluss.</p>
+  <h3>§ 6 Haftung</h3>
+  <p>Meine Leistungen sind Beratung und Wissensvermittlung. Ich übernehme keine Garantie für bestimmte geschäftliche Ergebnisse. Der Erfolg hängt von der individuellen Umsetzung ab.</p>
+  <h3>§ 7 Urheberrecht</h3>
+  <p>Alle Inhalte (Kursmaterialien, Vorlagen, Frameworks, Aufzeichnungen) sind urheberrechtlich geschützt. Eine Weitergabe an Dritte ist nicht gestattet.</p>
+  <h3>§ 8 Vertraulichkeit</h3>
+  <p>Informationen, die im Rahmen der Zusammenarbeit geteilt werden, werden vertraulich behandelt — von beiden Seiten.</p>
+  <h3>§ 9 Schlussbestimmungen</h3>
+  <p>Es gilt österreichisches Recht. Gerichtsstand ist Wien, Österreich.</p>
+  <p>Sollten einzelne Bestimmungen dieser AGB unwirksam sein, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt.</p>
 </div>
-<footer><div><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="agb.html">AGB</a></div><span>© 2026 carinaannaprav</span></footer></body></html>
+<footer>
+  <span class="foot-sig">Carina Anna Prav.</span>
+  <div class="foot-links">
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html">Datenschutz</a>
+    <a href="agb.html">AGB</a>
+    <a href="https://www.instagram.com/carinaannaprav/" target="_blank">Instagram</a>
+  </div>
+  <span class="foot-copy">© 2026 carinaannaprav</span>
+</footer>
+</body>
+</html>

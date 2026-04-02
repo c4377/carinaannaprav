@@ -1,54 +1,89 @@
-<!DOCTYPE html><html lang="de"><head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Warum dein Content nicht verkauft — und was du ändern musst — carinaannaprav</title>
 <meta name="description" content="Warum dein Content nicht verkauft — und was du ändern musst">
 <meta property="og:title" content="Warum dein Content nicht verkauft — und was du ändern musst">
 <meta property="og:type" content="article">
 <link rel="canonical" href="https://carinaannaprav.at/blog/warum-dein-content-nicht-verkauft.html">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--white:#FFFFFF;--off:#F7F7F5;--text:#1C1917;--text-mid:#57534E;--text-light:#A8A29E;--red:#8A2E3C;--red-dark:#6B1D2A;--border:#E7E5E4;--serif:'Times New Roman',Times,serif;--sans:'Poppins',sans-serif}
-*{margin:0;padding:0;box-sizing:border-box}html,body{background:var(--white)}body{font-family:var(--sans);color:var(--text);font-size:15px;line-height:1.7}
-a{color:var(--red);text-decoration:none}a:hover{text-decoration:underline}
-nav{background:var(--white);border-bottom:1px solid var(--border);padding:16px 40px;display:flex;align-items:center;justify-content:space-between}
-.logo{display:flex;align-items:center;gap:10px;color:var(--text);text-decoration:none}.logo-mark{font-family:var(--serif);font-weight:700;font-size:1.7rem}.logo-sub{font-size:0.5rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-light)}
-.nav-r{display:flex;gap:22px;align-items:center}.nav-r a{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.05em;font-weight:500;color:var(--text-mid);text-decoration:none}.nav-r a:hover{color:var(--red)}
-.content{max-width:720px;margin:0 auto;padding:48px 40px}
-.content h1{font-family:var(--serif);font-weight:700;font-size:1.8rem;margin-bottom:12px}
-.content h2{font-family:var(--serif);font-weight:700;font-size:1.3rem;margin-top:28px;margin-bottom:10px}
-.content p{font-size:0.92rem;color:var(--text-mid);line-height:1.85;margin-bottom:14px}
-.content p strong{color:var(--text);font-weight:600}
-.content ul{margin:12px 0 20px 20px}.content li{font-size:0.9rem;color:var(--text-mid);line-height:1.8;margin-bottom:4px}
-.pin-cta{display:inline-block;background:var(--red);color:#fff;font-family:var(--serif);font-weight:700;font-size:0.8rem;padding:8px 20px;text-decoration:none}.pin-cta:hover{background:var(--red-dark);text-decoration:none}
-footer{border-top:1px solid var(--border);padding:14px 40px;display:flex;justify-content:space-between;align-items:center;font-size:0.62rem;color:var(--text-light);margin-top:36px}footer a{color:var(--text-light);margin:0 6px;text-decoration:none}footer a:hover{color:var(--red)}
-@media(max-width:600px){nav{padding:12px 16px;flex-wrap:wrap;gap:8px}.nav-r{gap:12px;flex-wrap:wrap}.content{padding:36px 20px}footer{flex-direction:column;gap:6px;text-align:center}}
-</style></head><body>
-<nav><a href="../index.html" class="logo"><span class="logo-mark">CP</span><span class="logo-sub">CARINA ANNA PRAV</span></a><div class="nav-r"><a href="../index.html">Home</a><a href="../index.html#prods">Angebote</a><a href="../blog.html">Blog</a></div></nav>
+:root {
+  --bg:#1C1917;--bg-warm:#231F1D;--burgundy:#8A2E3C;--burgundy-deep:#5C1A28;
+  --cream:#F5F0EB;--cream-soft:rgba(245,240,235,0.88);--cream-muted:rgba(245,240,235,0.6);
+  --border:rgba(245,240,235,0.15);
+  --serif:'Times New Roman MT Std','Times New Roman',Times,serif;--sans:'Outfit',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--cream);font-family:var(--sans);font-weight:300;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:var(--cream);text-decoration:none}::selection{background:var(--burgundy);color:var(--cream)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 40px;display:flex;justify-content:space-between;align-items:center;background:rgba(28,25,23,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--serif);font-weight:400;font-size:1.1rem;letter-spacing:0.08em}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:400;color:var(--cream-muted);transition:color 0.3s}
+.nav-links a:hover{color:var(--cream)}
+.content{max-width:700px;margin:0 auto;padding:140px 40px 60px}
+.content h1{font-family:var(--serif);font-weight:400;font-size:clamp(1.8rem,3.5vw,2.4rem);line-height:1.2;margin-bottom:16px}
+.content h2{font-family:var(--serif);font-weight:400;font-size:1.3rem;margin:32px 0 14px;color:var(--cream)}
+.content p{font-size:0.92rem;color:var(--cream-soft);line-height:1.85;margin-bottom:14px}
+.content p strong{color:var(--cream);font-weight:500}
+.content a{color:var(--burgundy);transition:color 0.3s}.content a:hover{color:var(--cream)}
+.tag{font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--burgundy);margin-bottom:8px}
+.date{font-size:0.75rem;color:var(--cream-muted);margin-bottom:32px}
+.pin-box{margin-top:40px;padding:28px;background:var(--bg-warm);border:1px solid var(--border);text-align:center}
+.pin-box p{font-family:var(--serif);font-size:1rem;margin-bottom:12px;color:var(--cream-soft)}
+.pin-btn{display:inline-block;padding:10px 28px;background:var(--burgundy);color:var(--cream);font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;transition:all 0.3s}
+.pin-btn:hover{background:var(--burgundy-deep);color:var(--cream)}
+.back{display:inline-block;margin-top:28px;font-size:0.8rem;color:var(--cream-muted)}
+.back:hover{color:var(--cream)}
+footer{padding:40px 60px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.foot-sig{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--cream-soft)}
+.foot-links{display:flex;gap:20px}.foot-links a{font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--cream-muted)}.foot-links a:hover{color:var(--cream)}
+.foot-copy{font-size:0.65rem;color:var(--cream-muted);opacity:0.8}
+@media(max-width:600px){.nav{padding:16px 20px}.nav-links a:not(:first-child){display:none}.content{padding:100px 20px 40px}footer{flex-direction:column;gap:16px;text-align:center;padding:30px 24px}}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">carinaannaprav</a>
+  <div class="nav-links">
+    <a href="../blog.html">Blog</a>
+    <a href="../index.html">Home</a>
+    <a href="https://www.instagram.com/carinaannaprav/" target="_blank">Instagram</a>
+  </div>
+</nav>
 <div class="content">
-  <p style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--red);font-weight:600;margin-bottom:4px">CONTENT · 5 MIN LESEZEIT</p>
+  <p class="tag">CONTENT · 5 MIN LESEZEIT</p>
   <h1>Warum dein Content nicht verkauft — und was du ändern musst</h1>
-  <p style="font-size:0.8rem;color:var(--text-light)">März 2026 · von Carina Anna Prav</p>
-  <div style="background:var(--off);border:1px solid var(--border);padding:40px;text-align:center;margin:24px 0">
-    <p style="color:var(--text-light);font-size:0.8rem">[ Pinterest Pin Grafik · 1000x1500px ]</p>
+  <p class="date">März 2026 · von Carina Anna Prav</p>
+  
+  <p>Du postest regelmäßig. Du gibst dir Mühe. Du machst Reels, Carousels, Stories. <strong>Und trotzdem passiert nichts.</strong></p>
+  <p>Kein Wunder. Denn das Problem ist nicht, dass du zu wenig postest. Das Problem ist, dass dein Content keinen Job hat.</p>
+  <h2>Content ohne Job = Deko</h2>
+  <p>Die meisten selbstständigen Frauen posten Inhalte, die nett aussehen, vielleicht ein paar Likes bekommen — aber nichts bewegen. Kein Vertrauen aufbauen, keine Anfrage auslösen, keinen Verkauf einleiten.</p>
+  <p>Warum? Weil sie nie gefragt haben: <strong>Was soll dieser Post für mein Business tun?</strong></p>
+  <h2>Drei Arten von Content — und nur eine verkauft</h2>
+  <p>In meinem Framework gibt es drei Content-Typen: Magnet, Spiegel und Brücke.</p>
+  <p><strong>Magnet-Content</strong> zieht neue Leute an. Reichweite, Aufmerksamkeit, der erste Berührungspunkt.</p>
+  <p><strong>Spiegel-Content</strong> baut Vertrauen auf. Deine Followerin erkennt sich wieder, fühlt sich verstanden.</p>
+  <p><strong>Brücke-Content</strong> führt zum Angebot. Hier wird verkauft — klar, direkt, ohne Cringe.</p>
+  <p>Die meisten posten 90% Magnet und wundern sich, warum niemand kauft. Die gesunde Mischung: 2x Magnet, 2x Spiegel, 1x Brücke pro Woche.</p>
+  <h2>Der nächste Schritt</h2>
+  <p>Geh deine letzten 10 Posts durch. Ordne jeden zu: Magnet, Spiegel oder Brücke. Wenn du keine Brücke findest — da ist dein Problem.</p>
+  <p>Wenn du das System dahinter verstehen willst: <a href="../content-that-sells.html">Content that Sells</a> — mein Kurs mit dem kompletten Framework. Oder starte kostenlos mit der <a href="../challenge.html">3-Tage Challenge</a>.</p>
+
+  <div class="pin-box">
+    <p>Merken & Teilen</p>
+    <a href="https://www.pinterest.at/carinaannaprav/" class="pin-btn" target="_blank">Auf Pinterest merken</a>
   </div>
-  <p>Du postest dreimal die Woche. Manchmal sogar öfter. Du machst dir Gedanken über Hooks, Designs, Hashtags. Du investierst Stunden.</p>
-<p>Und dann? Likes kommen. Vielleicht ein netter Kommentar. Aber Anfragen? Buchungen? <strong>Nichts.</strong></p>
-<p>Ich sehe das bei fast jeder Kundin, die zu mir kommt. Es liegt nicht an dir. Es liegt nicht am Algorithmus. Es liegt daran, dass dein Content keinen Job hat.</p>
-<h2>Jeder Post macht eins von drei Dingen</h2>
-<ul><li><strong>MAGNET</strong> — Zieht neue Leute an. Reichweite.</li><li><strong>SPIEGEL</strong> — Zeigt deiner Traumkundin wo sie steht. Vertrauen.</li><li><strong>BRÜCKE</strong> — Führt zum Angebot. Verkauf.</li></ul>
-<p>Wenn dein Post keins davon macht, ist er Dekoration.</p>
-<h2>Der häufigste Fehler</h2>
-<p>Die meisten posten fast nur Magnet- und Spiegel-Content. Tipps, persönliche Stories, Infos. Aber sie sagen nie: <strong>Ich habe ein Angebot. So kann ich dir helfen.</strong></p>
-<p>Das fühlt sich „pushy" an. Also lässt man es. Und wundert sich, warum niemand bucht.</p>
-<h2>3 Schritte die das ändern</h2>
-<p><strong>Schritt 1:</strong> Content Scan. Letzte 10 Posts durchgehen. Jeden zuordnen: Magnet, Spiegel oder Brücke.</p>
-<p><strong>Schritt 2:</strong> Verhältnis checken. Gesund: 2x Magnet, 2x Spiegel, 1x Brücke pro Woche.</p>
-<p><strong>Schritt 3:</strong> Vor jedem Post fragen: Was ist der Job? Keine Antwort = nicht posten.</p>
-<p>Willst du tiefer einsteigen? <a href="../challenge.html">3-Tage Content Challenge (kostenlos)</a> oder <a href="../content-that-sells.html">Content that Sells (297€)</a>.</p>
-  <div style="margin-top:32px;padding:24px;background:var(--off);border:1px solid var(--border);text-align:center">
-    <p style="font-family:var(--serif);font-weight:700;font-size:1.1rem;margin-bottom:8px">Merken & Teilen</p>
-    <a href="https://www.pinterest.at/carinaannaprav/" class="pin-cta" target="_blank">AUF PINTEREST MERKEN</a>
-  </div>
-  <div style="margin-top:24px"><a href="../blog.html" style="font-size:0.82rem;color:var(--text-light);text-decoration:none">← Alle Artikel</a></div>
+  <a href="../blog.html" class="back">← Alle Artikel</a>
 </div>
-<footer><div><a href="../impressum.html">Impressum</a><a href="../datenschutz.html">Datenschutz</a></div><span>© 2026 carinaannaprav</span></footer></body></html>
+<footer>
+  <span class="foot-sig">Carina Anna Prav.</span>
+  <div class="foot-links"><a href="../impressum.html">Impressum</a><a href="../datenschutz.html">Datenschutz</a></div>
+  <span class="foot-copy">© 2026 carinaannaprav</span>
+</footer>
+</body>
+</html>

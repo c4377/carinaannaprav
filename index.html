@@ -3,279 +3,673 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>carinaannaprav</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>carinaannaprav — Business Mentorin & Strategin</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{
-  --white:#FFFFFF;
-  --off:#F7F7F5;
-  --text:#1C1917;
-  --text-mid:#57534E;
-  --text-light:#A8A29E;
-  --red:#8A2E3C;
-  --red-dark:#6B1D2A;
-  --red-soft:rgba(138,46,60,0.06);
-  --border:#E7E5E4;
-  --serif:'Times New Roman',Times,serif;
-  --sans:'Poppins',sans-serif;
+:root {
+  --bg: #1C1917;
+  --bg-warm: #231F1D;
+  --burgundy: #8A2E3C;
+  --burgundy-deep: #5C1A28;
+  --burgundy-glow: rgba(138,46,60,0.15);
+  --cream: #F5F0EB;
+  --cream-soft: rgba(245,240,235,0.88);
+  --cream-muted: rgba(245,240,235,0.6);
+  --cream-faint: rgba(245,240,235,0.1);
+  --border: rgba(245,240,235,0.15);
+  --serif: 'Times New Roman MT Std', 'Times New Roman', Times, serif;
+  --sans: 'Outfit', sans-serif;
 }
-*{margin:0;padding:0;box-sizing:border-box}
-html,body{background:var(--white)}
-body{font-family:var(--sans);color:var(--text);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}
-::selection{background:var(--red);color:#fff}
-img{max-width:100%;display:block}
 
-/* NAV */
-nav{background:var(--white);border-bottom:1px solid var(--border);padding:16px 40px;display:flex;align-items:center;justify-content:space-between}
-.logo{display:flex;align-items:center;gap:10px}
-.logo-mark{font-family:var(--serif);font-weight:700;font-size:1.7rem;color:var(--text)}
-.logo-sub{font-size:0.5rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-light);line-height:1.3}
-.nav-r{display:flex;gap:22px;align-items:center}
-.nav-r a{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.05em;font-weight:500;color:var(--text-mid);transition:color 0.2s}
-.nav-r a:hover{color:var(--red)}
-
-/* HERO — burgundy */
-.hero{background:var(--red);color:#fff;text-align:center;padding:0;overflow:hidden}
-.hero-inner{display:grid;grid-template-columns:1fr 1fr;max-width:1100px;margin:0 auto;min-height:500px}
-.hero-ct{display:flex;flex-direction:column;justify-content:center;padding:48px 24px 48px 48px;text-align:left}
-.hero-img-wrap{display:flex;align-items:flex-end;justify-content:center;overflow:hidden}
-.hero-img-wrap img{width:100%;max-width:420px;height:auto;display:block}
-.hero-tag{font-size:0.75rem;letter-spacing:0.22em;text-transform:uppercase;opacity:0.55;margin-bottom:14px}
-.hero h1{font-family:var(--serif);font-weight:700;font-size:clamp(2rem,4vw,3rem);line-height:1.08;letter-spacing:0.01em}
-.hero-script{font-family:var(--sans);font-style:italic;font-size:clamp(1rem,2vw,1.3rem);opacity:0.8;margin-top:6px}
-.hero-sub{font-size:0.9rem;opacity:0.7;margin-top:14px;max-width:400px}
-
-/* CTA BAR */
-.cta-bar{display:block;max-width:420px;margin:-28px auto 0;position:relative;z-index:2;background:var(--text);color:#fff;text-align:center;padding:18px 36px;font-family:var(--serif);font-weight:700;font-size:1.4rem;letter-spacing:0.06em;box-shadow:0 4px 20px rgba(0,0,0,0.08);transition:all 0.3s}
-.cta-bar:hover{background:#333;transform:translateY(-2px)}
-
-/* SECTION HEAD */
-.sec-h{text-align:center;padding:56px 40px 32px;max-width:600px;margin:0 auto}
-.sec-h h2{font-family:var(--serif);font-weight:700;font-size:1.5rem;color:var(--text)}
-.sec-h p{font-size:0.9rem;color:var(--text-mid);margin-top:8px}
-
-/* PRODUCT ROW */
-.prods{max-width:700px;margin:0 auto;padding:0 40px 48px;display:grid;grid-template-columns:1fr 1fr;gap:28px}
-.pcard{text-align:center;padding:28px 20px;border:1px solid var(--border);background:var(--white);transition:all 0.3s}
-.pcard:hover{border-color:var(--red);box-shadow:0 4px 16px var(--red-soft)}
-.pcard-tag{font-family:var(--serif);font-weight:700;font-size:0.65rem;letter-spacing:0.16em;color:var(--red);margin-bottom:8px}
-.pcard h3{font-family:var(--serif);font-weight:700;font-size:1.2rem;margin-bottom:6px}
-.pcard p{font-size:0.85rem;color:var(--text-mid);line-height:1.6;margin-bottom:16px}
-.pcard-btn{display:inline-block;font-family:var(--serif);font-weight:700;font-size:0.7rem;letter-spacing:0.1em;padding:10px 26px;border:1.5px solid var(--red);color:var(--red);transition:all 0.2s}
-.pcard-btn:hover{background:var(--red);color:#fff}
-
-/* FULL IMAGE */
-.full-img{width:100%;overflow:hidden}
-.full-img img{width:100%;max-height:260px;object-fit:cover}
-
-/* KURSE GRID */
-.kurse{max-width:900px;margin:0 auto;padding:0 40px 48px}
-.kgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.kcard{border:1px solid var(--border);overflow:hidden;transition:transform 0.3s}
-.kcard:hover{transform:translateY(-3px)}
-.kcard-top{background:var(--red);padding:18px 14px 14px}
-.kcard-nr{font-family:var(--serif);font-weight:700;font-size:0.6rem;letter-spacing:0.12em;color:rgba(255,255,255,0.5);display:block;margin-bottom:3px}
-.kcard-top h4{font-family:var(--serif);font-weight:700;font-size:1rem;color:#fff;line-height:1.2}
-.kcard-top h4 a{color:#fff}
-.kcard-body{padding:10px 14px 14px;background:var(--white)}
-.kcard-body p{font-size:0.78rem;color:var(--text-mid);line-height:1.55;margin-bottom:8px}
-.kcard-badge{display:inline-block;font-size:0.58rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:3px 10px}
-.kcard-badge.live{background:var(--red);color:#fff}
-.kcard-badge.soon{background:var(--off);color:var(--text-light)}
-
-/* QUOTE */
-.quote{background:var(--red);padding:40px;text-align:center;margin-top:8px}
-.quote p{font-family:var(--sans);font-style:italic;font-size:clamp(1.2rem,3vw,1.7rem);color:#fff;max-width:500px;margin:0 auto;line-height:1.45}
-
-/* STORY */
-.story{display:grid;grid-template-columns:240px 1fr;gap:40px;max-width:860px;margin:0 auto;padding:56px 40px;align-items:start}
-.story-img{aspect-ratio:3/4;overflow:hidden}
-.story-img img{width:100%;height:100%;object-fit:cover}
-.story-txt h2{font-family:var(--serif);font-weight:700;font-size:0.8rem;letter-spacing:0.12em;color:var(--text-light);margin-bottom:2px}
-.story-txt h3{font-family:var(--sans);font-style:italic;font-size:1.3rem;color:var(--red);margin-bottom:20px}
-.story-txt p{font-size:0.9rem;color:var(--text-mid);line-height:1.8;margin-bottom:12px}
-.story-txt p strong{color:var(--text);font-weight:600}
-
-/* DM TESTIMONIALS */
-.dms{background:var(--off);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:56px 40px}
-.dm-grid{column-count:3;column-gap:8px;max-width:900px;margin:0 auto}
-.dm-grid img{width:100%;break-inside:avoid;margin-bottom:8px;border-radius:8px;box-shadow:0 1px 6px rgba(0,0,0,0.04)}
-
-/* CONTACT */
-.contact{max-width:480px;margin:0 auto;padding:48px 40px}
-.cform{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.cfield{display:flex;flex-direction:column}
-.cfield.w{grid-column:1/-1}
-.cfield label{font-size:0.62rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-light);margin-bottom:4px;font-weight:500}
-.cfield input,.cfield textarea{border:1px solid var(--border);padding:10px 12px;font-family:var(--sans);font-size:0.82rem;color:var(--text);outline:none;background:var(--white)}
-.cfield textarea{resize:vertical;min-height:80px}
-.cfield input:focus,.cfield textarea:focus{border-color:var(--red)}
-.cbtn{grid-column:1/-1;font-family:var(--serif);font-weight:700;font-size:0.85rem;letter-spacing:0.1em;padding:12px;background:var(--red);color:#fff;border:none;cursor:pointer;margin-top:4px;transition:background 0.2s}
-.cbtn:hover{background:var(--red-dark)}
-
-/* SOCIALS */
-.socials{text-align:center;padding:44px 40px;border-top:1px solid var(--border)}
-.socials h3{font-family:var(--sans);font-style:italic;font-size:0.95rem;color:var(--text-mid);margin-bottom:14px}
-.s-icons{display:flex;gap:12px;justify-content:center}
-.s-icons a{width:32px;height:32px;border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.62rem;color:var(--text-light);transition:all 0.2s}
-.s-icons a:hover{border-color:var(--red);color:var(--red)}
-
-/* FOOTER */
-footer{border-top:1px solid var(--border);padding:14px 40px;display:flex;justify-content:space-between;align-items:center;font-size:0.62rem;color:var(--text-light)}
-footer a{color:var(--text-light);margin:0 6px}
-footer a:hover{color:var(--red)}
-
-@media(max-width:800px){
-  .prods{grid-template-columns:1fr 1fr;gap:16px;padding:0 20px 40px}
-  .kgrid{grid-template-columns:repeat(3,1fr);gap:8px}
-  .story{grid-template-columns:1fr}
-  .story-img{max-width:220px;margin:0 auto}
-  .dm-grid{column-count:2;column-gap:8px}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--cream);
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
-@media(max-width:768px){
-  .hero-inner{grid-template-columns:1fr!important;min-height:auto!important}
-  .hero-ct{text-align:center!important;padding:32px 20px 8px!important}
-  .hero-sub{margin-left:auto!important;margin-right:auto!important}
-  .hero-img-wrap{overflow:visible}
-  .hero-img-wrap img{max-width:320px!important;margin:0 auto}
+a { color: var(--cream); text-decoration: none; }
+::selection { background: var(--burgundy); color: var(--cream); }
+img { max-width: 100%; display: block; }
+strong { font-weight: 500; }
+
+/* ════════════════ NAV ════════════════ */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 20px 40px;
+  display: flex; justify-content: space-between; align-items: center;
+  background: rgba(28,25,23,0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  transition: padding 0.3s;
 }
-@media(max-width:520px){
-  nav{padding:12px 16px;flex-wrap:wrap;gap:6px}
-  .nav-r{gap:10px;flex-wrap:wrap}
-  .nav-r a{font-size:0.62rem}
-  .cta-bar{margin:-20px 16px 0;font-size:1.15rem}
-  .sec-h{padding:40px 20px 24px}
-  .prods{padding:0 16px 32px;gap:12px}
-  .kurse{padding:0 16px 32px}
-  .kgrid{gap:6px}
-  .kcard-top{padding:12px 10px 10px}
-  .kcard-top h4{font-size:0.75rem}
-  .kcard-body{padding:8px 10px 10px}
-  .kcard-body p{font-size:0.65rem}
-  .kcard-badge{font-size:0.48rem}
-  .story{padding:36px 16px}
-  .dms{padding:36px 16px}
-  .contact{padding:36px 16px}
-  .cform{grid-template-columns:1fr}
-  footer{flex-direction:column;gap:6px;text-align:center}
-  .dm-grid{column-count:1;column-gap:0}
+.nav-logo {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+  color: var(--cream);
+}
+.nav-links { display: flex; gap: 28px; align-items: center; }
+.nav-links a {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: var(--cream-muted);
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--cream); }
+.nav-cta {
+  border: 1px solid var(--burgundy);
+  padding: 10px 24px;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 400;
+  transition: all 0.35s;
+}
+.nav-cta:hover { background: var(--burgundy); color: var(--cream); }
+
+/* ════════════════ HERO ════════════════ */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: 
+    radial-gradient(ellipse at 30% 50%, rgba(138,46,60,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse at 70% 30%, rgba(92,26,40,0.08) 0%, transparent 50%),
+    var(--bg);
+}
+.hero-noise {
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  opacity: 0.5;
+}
+.hero-content {
+  position: relative; z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 140px 60px 100px;
+  align-items: center;
+}
+.hero-text { }
+.hero-pre {
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--cream-muted);
+  margin-bottom: 32px;
+}
+.hero-h1 {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+  line-height: 1.15;
+  margin-bottom: 28px;
+}
+.hero-h1 em {
+  font-style: italic;
+  color: var(--burgundy);
+}
+.hero-sub {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--cream-soft);
+  max-width: 460px;
+  margin-bottom: 40px;
+}
+.hero-cta {
+  display: inline-block;
+  padding: 16px 40px;
+  border: 1px solid var(--burgundy);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 400;
+  transition: all 0.4s;
+}
+.hero-cta:hover {
+  background: var(--burgundy);
+  border-color: var(--burgundy);
+}
+.hero-img {
+  position: relative;
+}
+.hero-img img {
+  width: 100%;
+  filter: grayscale(20%) contrast(1.05) brightness(0.85);
+}
+.hero-img::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(to right, var(--bg) 0%, transparent 30%, transparent 70%, var(--bg) 100%);
+  pointer-events: none;
+}
+
+/* ════════════════ DIVIDER ════════════════ */
+.divider {
+  text-align: center;
+  padding: 60px 40px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.divider p {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+  color: var(--cream-soft);
+  letter-spacing: 0.02em;
+}
+
+/* ════════════════ SECTION HEADERS ════════════════ */
+.sec-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--burgundy);
+  margin-bottom: 16px;
+}
+.sec-title {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+.sec-sub {
+  font-size: 0.95rem;
+  color: var(--cream-soft);
+  max-width: 560px;
+  line-height: 1.8;
+}
+
+/* ════════════════ ABOUT / STORY ════════════════ */
+.about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 60px;
+  gap: 80px;
+  align-items: center;
+}
+.about-img {
+  position: relative;
+}
+.about-img img {
+  width: 100%;
+}
+.about-img::before {
+  content: '';
+  position: absolute;
+  top: -20px; left: -20px;
+  width: 100%; height: 100%;
+  border: 1px solid var(--burgundy-glow);
+  z-index: -1;
+}
+.about-text { }
+.about-text p {
+  font-size: 0.95rem;
+  color: var(--cream-soft);
+  margin-bottom: 20px;
+  line-height: 1.85;
+}
+.about-text p strong {
+  color: var(--cream);
+}
+
+/* ════════════════ BURGUNDY SECTION ════════════════ */
+.burg-section {
+  position: relative;
+  padding: 100px 60px;
+  overflow: hidden;
+}
+.burg-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: 
+    radial-gradient(ellipse at 40% 50%, var(--burgundy-deep) 0%, transparent 70%),
+    radial-gradient(ellipse at 80% 20%, rgba(138,46,60,0.3) 0%, transparent 60%),
+    #3A1520;
+}
+.burg-section::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: 0.6;
+}
+.burg-inner {
+  position: relative; z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ════════════════ OFFERS ════════════════ */
+.offers {
+  padding: 100px 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.offers-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+.offers-header .sec-sub {
+  margin: 0 auto;
+}
+.offer-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+}
+.offer-card {
+  background: var(--bg-warm);
+  padding: 48px 40px;
+  border: 1px solid var(--border);
+  transition: all 0.4s;
+  position: relative;
+}
+.offer-card:hover {
+  background: rgba(138,46,60,0.06);
+  border-color: rgba(138,46,60,0.2);
+}
+.offer-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--burgundy);
+  margin-bottom: 16px;
+}
+.offer-name {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+}
+.offer-desc {
+  font-size: 0.88rem;
+  color: var(--cream-soft);
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+.offer-price {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 1.8rem;
+  color: var(--cream);
+  margin-bottom: 8px;
+}
+.offer-note {
+  font-size: 0.75rem;
+  color: var(--cream-muted);
+  margin-bottom: 28px;
+}
+.offer-btn {
+  display: inline-block;
+  padding: 12px 32px;
+  border: 1px solid var(--border);
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 400;
+  transition: all 0.35s;
+}
+.offer-btn:hover {
+  border-color: var(--burgundy);
+  background: var(--burgundy);
+}
+
+/* ════════════════ COURSES ════════════════ */
+.courses {
+  padding: 100px 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.courses-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+.courses-header .sec-sub { margin: 0 auto; }
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+.course-card {
+  background: var(--bg-warm);
+  border: 1px solid var(--border);
+  padding: 36px 32px;
+  transition: all 0.4s;
+}
+.course-card:hover {
+  background: rgba(138,46,60,0.06);
+  border-color: rgba(138,46,60,0.2);
+}
+.course-num {
+  font-family: var(--serif);
+  font-size: 0.8rem;
+  color: var(--burgundy);
+  margin-bottom: 12px;
+  font-style: italic;
+}
+.course-name {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 1.15rem;
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+.course-desc {
+  font-size: 0.8rem;
+  color: var(--cream-soft);
+  line-height: 1.65;
+}
+.course-card.highlight {
+  grid-column: span 3;
+  background: var(--burgundy-deep);
+  border-color: var(--burgundy);
+  text-align: center;
+  padding: 48px 40px;
+}
+.course-card.highlight .course-name {
+  font-size: 1.4rem;
+}
+.course-badge {
+  display: inline-block;
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border: 1px solid rgba(245,240,235,0.2);
+  margin-top: 16px;
+  color: var(--cream-soft);
+}
+
+/* ════════════════ TESTIMONIALS ════════════════ */
+.testi {
+  padding: 80px 60px;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+.testi-quote {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  line-height: 1.6;
+  color: var(--cream-soft);
+  margin-bottom: 20px;
+}
+.testi-name {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cream-muted);
+}
+
+/* ════════════════ NEWSLETTER ════════════════ */
+.newsletter {
+  padding: 80px 60px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.newsletter-inner {
+  max-width: 480px;
+  margin: 0 auto;
+}
+.newsletter h3 {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+}
+.newsletter p {
+  font-size: 0.88rem;
+  color: var(--cream-soft);
+  margin-bottom: 28px;
+}
+.nl-form {
+  display: flex;
+  gap: 0;
+}
+.nl-form input {
+  flex: 1;
+  padding: 14px 20px;
+  background: var(--bg-warm);
+  border: 1px solid var(--border);
+  color: var(--cream);
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  font-weight: 300;
+  outline: none;
+  transition: border-color 0.3s;
+}
+.nl-form input::placeholder { color: var(--cream-muted); }
+.nl-form input:focus { border-color: var(--burgundy); }
+.nl-form button {
+  padding: 14px 28px;
+  background: var(--burgundy);
+  border: 1px solid var(--burgundy);
+  color: var(--cream);
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.nl-form button:hover { background: var(--burgundy-deep); }
+
+/* ════════════════ FINAL CTA ════════════════ */
+.final-cta {
+  padding: 120px 60px;
+  text-align: center;
+}
+.final-cta .sec-title {
+  max-width: 600px;
+  margin: 0 auto 20px;
+}
+.final-cta .sec-title em {
+  font-style: italic;
+  color: var(--burgundy);
+}
+.final-cta p {
+  font-size: 0.95rem;
+  color: var(--cream-soft);
+  max-width: 480px;
+  margin: 0 auto 36px;
+  line-height: 1.8;
+}
+.final-btn {
+  display: inline-block;
+  padding: 18px 48px;
+  background: var(--burgundy);
+  border: 1px solid var(--burgundy);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 400;
+  transition: all 0.4s;
+}
+.final-btn:hover {
+  background: transparent;
+  color: var(--cream);
+}
+
+/* ════════════════ FOOTER ════════════════ */
+footer {
+  padding: 40px 60px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.foot-sig {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--cream-soft);
+}
+.foot-links {
+  display: flex;
+  gap: 20px;
+}
+.foot-links a {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cream-muted);
+  transition: color 0.3s;
+}
+.foot-links a:hover { color: var(--cream); }
+.foot-copy {
+  font-size: 0.65rem;
+  color: var(--cream-muted);
+  opacity: 0.8;
+}
+
+/* ════════════════ ANIMATIONS ════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ════════════════ DM GRID ════════════════ */
+.dm-grid { column-count:3; column-gap:8px; max-width:900px; margin:0 auto; }
+.dm-grid img { width:100%; break-inside:avoid; margin-bottom:8px; border-radius:6px; opacity:0.92; transition:opacity 0.3s; }
+.dm-grid img:hover { opacity:1; }
+
+/* ════════════════ RESPONSIVE ════════════════ */
+@media (max-width: 900px) {
+  .dm-grid { column-count:2; }
+  .hero-content { grid-template-columns: 1fr; padding: 120px 32px 60px; gap: 40px; }
+  .hero-img { order: -1; max-width: 400px; }
+  .about { grid-template-columns: 1fr; padding: 60px 32px; gap: 40px; }
+  .about-img { max-width: 360px; }
+  .offer-grid { grid-template-columns: 1fr; }
+  .course-grid { grid-template-columns: 1fr 1fr; }
+  .course-card.highlight { grid-column: span 2; }
+  .offers, .courses, .burg-section { padding: 60px 32px; }
+  .nav { padding: 16px 24px; }
+  .nav-links { gap: 16px; }
+  footer { flex-direction: column; gap: 16px; text-align: center; }
+}
+@media (max-width: 600px) {
+  .dm-grid { column-count:1; }
+  .hero-content { padding: 100px 20px 40px; }
+  .nav-links a:not(.nav-cta) { display: none; }
+  .course-grid { grid-template-columns: 1fr; }
+  .course-card.highlight { grid-column: span 1; }
+  .nl-form { flex-direction: column; }
+  .nl-form button { width: 100%; }
+  .offers, .courses, .burg-section, .testi, .newsletter, .final-cta { padding: 50px 20px; }
 }
 </style>
 </head>
 <body>
 
-<nav>
-  <a href="index.html" class="logo"><span class="logo-mark">CP</span><span class="logo-sub">CARINA ANNA PRAV<br>BUSINESS MENTORIN & STRATEGIN</span></a>
-  <div class="nav-r">
-    <a href="#">Home</a>
+<!-- ══════════ NAV ══════════ -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">carinaannaprav</a>
+  <div class="nav-links">
+    <a href="#kurs">Content that Sells</a>
     <a href="#story">Über mich</a>
-    <a href="#prods">Angebote</a>
-    <a href="#kurse">Kurse</a>
-    <a href="mentoring.html">Mentoring</a>
     <a href="blog.html">Blog</a>
+    <a href="https://www.instagram.com/carinaannaprav/" target="_blank">Instagram</a>
   </div>
 </nav>
 
+<!-- ══════════ HERO ══════════ -->
 <section class="hero">
-  <div class="hero-inner">
-    <div class="hero-ct">
-      <p class="hero-tag">CARINAANNAPRAV</p>
-      <h1>LERNE, WIE DU EIN ONLINE BUSINESS AUFBAUST, DAS VERKAUFT</h1>
-      <p class="hero-script">und nicht nur existiert.</p>
-      <p class="hero-sub">Strategien, Struktur und ein System für planbaren Online-Umsatz.</p>
+  <div class="hero-bg"></div>
+  <div class="hero-noise"></div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <p class="hero-pre">Business Mentorin & Strategin</p>
+      <h1 class="hero-h1">Ich mach dich zu der<br>Unternehmerin, die du<br><em>immer sein wolltest.</em></h1>
+      <p class="hero-sub">Kurse, Strategien und Begleitung für selbstständige Frauen, die aufhören wollen zu raten — und anfangen wollen zu verkaufen.</p>
+      <a href="#kurs" class="hero-cta">Kostenlose Challenge starten</a>
     </div>
-    <div class="hero-img-wrap">
-      <img src="bilder/hero-carina.png" alt="Carina Anna Prav">
+    <div class="hero-img">
+      <img src="bilder/hero-carina.jpg" alt="Carina Anna Prav">
     </div>
   </div>
 </section>
 
-<a href="challenge.html" class="cta-bar">KOSTENLOSE CHALLENGE — AB 3. APRIL</a>
-
-<div class="sec-h" id="prods"><h2>DEIN WEG ZU EINEM ONLINE BUSINESS, DAS FUNKTIONIERT.</h2><p>Ob klarer Blick von außen oder intensive Begleitung — hier findest du, was passt.</p></div>
-
-<div class="prods">
-  <div class="pcard">
-    <p class="pcard-tag">EINMALIGES AUDIT · 795€</p>
-    <h3>OFFER AUDIT</h3>
-    <p>Ich durchleuchte dein Business-Setup: Angebot, Positionierung, Pricing, Messaging, Verkauf.</p>
-    <a href="offer-audit.html" class="pcard-btn">MEHR ERFAHREN</a>
+<!-- ══════════ CHALLENGE ══════════ -->
+<section style="position:relative; padding:80px 60px; overflow:hidden;">
+  <div style="position:absolute; inset:0; background:radial-gradient(ellipse at 40% 50%, var(--burgundy-deep) 0%, transparent 70%), radial-gradient(ellipse at 80% 20%, rgba(138,46,60,0.3) 0%, transparent 60%), #3A1520;"></div>
+  <div style="position:relative; z-index:2; max-width:560px; margin:0 auto; text-align:center;">
+    <p class="sec-label" style="color:var(--cream-soft);">Kostenlose 3-Tage Challenge · Ab 3. April</p>
+    <h2 class="sec-title" style="margin-bottom:16px;">Content that Sells</h2>
+    <p style="font-size:0.95rem; color:var(--cream-soft); line-height:1.85; margin-bottom:28px;">In 3 Tagen lernst du, warum dein Content nicht verkauft — und was sich ändern muss. Per Sprachmemo direkt in deine Telegram-Inbox.</p>
+    <div style="max-width:400px; margin:0 auto; display:flex; flex-direction:column; gap:8px;">
+      <div style="display:flex; gap:8px;">
+        <input type="text" id="ch-fn" placeholder="Vorname" class="form-input">
+        <input type="text" id="ch-ln" placeholder="Nachname" class="form-input">
+      </div>
+      <input type="email" id="ch-em" placeholder="Deine E-Mail" class="form-input">
+      <label style="display:flex; align-items:flex-start; gap:8px; font-size:0.72rem; color:var(--cream-muted); cursor:pointer; text-align:left;">
+        <input type="checkbox" id="ch-ok" style="margin-top:3px; min-width:16px;">
+        <span>Ich möchte die Challenge-Inhalte und danach den Newsletter erhalten. <a href="datenschutz.html" style="color:var(--cream-soft);">Datenschutz</a></span>
+      </label>
+      <button onclick="chSub()" id="ch-btn" class="cta-btn" style="width:100%; background:var(--cream); color:var(--burgundy-deep); border-color:var(--cream);">KOSTENLOS ANMELDEN</button>
+    </div>
+    <p id="ch-msg" style="font-size:0.72rem; color:var(--cream-muted); margin-top:8px;"></p>
   </div>
-  <div class="pcard">
-    <p class="pcard-tag">6 MONATE · 5.555€</p>
-    <h3>MENTORING</h3>
-    <p>Die engste Form der Zusammenarbeit. Angebot, Content, Sales, Skalierung — das volle System.</p>
-    <a href="mentoring.html" class="pcard-btn">MEHR ERFAHREN</a>
-  </div>
-</div>
+</section>
+<script>
+async function chSub(){const f=document.getElementById('ch-fn').value.trim(),l=document.getElementById('ch-ln').value.trim(),e=document.getElementById('ch-em').value.trim(),c=document.getElementById('ch-ok').checked,b=document.getElementById('ch-btn'),m=document.getElementById('ch-msg');if(!f||!l){m.textContent='Bitte Vor- und Nachname.';return}if(!e||!e.includes('@')){m.textContent='Bitte gültige E-Mail.';return}if(!c){m.textContent='Bitte zustimmen.';return}b.disabled=true;b.textContent='...';try{const r=await fetch('/.netlify/functions/challenge-signup',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:e,firstname:f,lastname:l})});const d=await r.json();if(d.success){window.location.href='challenge-danke.html'}else{m.textContent='Fehler — bitte nochmal.';b.disabled=false;b.textContent='KOSTENLOS ANMELDEN'}}catch(err){m.textContent='Netzwerkfehler.';b.disabled=false;b.textContent='KOSTENLOS ANMELDEN'}}
+</script>
 
-<div class="sec-h" id="kurse"><h2>SELBSTSTUDIUM — JEDER KURS EIN SYSTEM.</h2><p>Kompakte Kurse für jedes Business-Thema.</p></div>
-
-<div class="kurse">
-  <div class="kgrid">
-    <div class="kcard">
-      <div class="kcard-top"><span class="kcard-nr">01</span><h4><a href="content-that-sells.html">CONTENT THAT SELLS</a></h4></div>
-      <div class="kcard-body"><p>Content der verkauft, nicht nur Reichweite bringt.</p><span class="kcard-badge live">KURS · 297€</span></div>
+<!-- ══════════ CONTENT THAT SELLS ══════════ -->
+<section id="kurs" style="padding:100px 60px; max-width:1000px; margin:0 auto;">
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;">
+    <div>
+      <p class="sec-label">Jetzt verfügbar · 297€</p>
+      <h2 class="sec-title" style="font-size:clamp(1.8rem,3vw,2.4rem);">Content that Sells</h2>
+      <p style="font-size:0.95rem; color:var(--cream-soft); line-height:1.85; margin-bottom:16px;">Du postest und postest — aber es passiert nichts. Dein Content sieht gut aus, bringt Likes, vielleicht Reichweite. Aber keinen Umsatz.</p>
+      <p style="font-size:0.95rem; color:var(--cream-soft); line-height:1.85; margin-bottom:16px;"><strong>Das liegt nicht an dir. Es liegt an deinem System.</strong> Content that Sells gibt dir das Framework, mit dem jeder Post einen Job hat.</p>
+      <p style="font-size:0.95rem; color:var(--cream-soft); line-height:1.85; margin-bottom:28px;">Magnet · Spiegel · Brücke — du weißt immer genau, was du postest und warum. Dazu: deine Wochenstruktur, Posts mit Pitch, und die Frage die alles verändert: <strong>Für wen ist das und was soll sie danach tun?</strong></p>
+      <a href="content-that-sells.html" style="display:inline-block; padding:16px 40px; border:1px solid var(--burgundy); font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase; font-weight:400; transition:all 0.4s; color:var(--cream);">Kurs ansehen — 297€</a>
     </div>
-    <div class="kcard">
-      <div class="kcard-top"><span class="kcard-nr" style="background:var(--red);color:#fff">★</span><h4><a href="challenge.html">3-TAGE CHALLENGE</a></h4></div>
-      <div class="kcard-body"><p>Dein Einstieg in Content that Sells — kostenlos.</p><span class="kcard-badge live">KOSTENLOS · AB 3. APRIL</span></div>
+    <div style="background:var(--bg-warm); border:1px solid var(--border); padding:48px 36px;">
+      <p style="font-family:var(--serif); font-style:italic; font-size:1.1rem; color:var(--cream-soft); margin-bottom:20px;">Was du bekommst:</p>
+      <p style="font-size:0.88rem; color:var(--cream-soft); line-height:2; margin:0;">— Mein komplettes Content-Framework<br>— Die Kundin im Kopf: für wen du wirklich schreibst<br>— Stop the Scroll: Hooks die funktionieren<br>— Post mit Pitch: Content der verkauft<br>— Deine Wochenstruktur: 2 Stunden, 5 Posts<br>— Audio-Lektionen + Worksheets<br>— Sofort verfügbar, Self-Study</p>
     </div>
-<div class="kcard">
-      <div class="kcard-top"><span class="kcard-nr">02</span><h4><a href="dream-offer-blueprint.html">DREAM OFFER BLUEPRINT</a></h4></div>
-      <div class="kcard-body"><p>Bau ein Angebot, das deine Traumkundin sofort will.</p><span class="kcard-badge soon">COMING SOON</span></div>
-    </div>
-<div class="kcard">
-      <div class="kcard-top"><span class="kcard-nr">03</span><h4><a href="the-pricing-strategy.html">THE PRICING STRATEGY</a></h4></div>
-      <div class="kcard-body"><p>Den Preis finden, der passt — und verkauft.</p><span class="kcard-badge soon">COMING SOON</span></div>
-    </div>
-<div class="kcard">
-      <div class="kcard-top"><span class="kcard-nr">04</span><h4><a href="dream-client-messaging.html">THE DREAM CLIENT MESSAGING</a></h4></div>
-      <div class="kcard-body"><p>Sprich so, dass sie sich sofort gemeint fühlt.</p><span class="kcard-badge soon">COMING SOON</span></div>
-    </div>
-<div class="kcard">
-      <div class="kcard-top"><span class="kcard-nr">05</span><h4><a href="sales-on-autopilot.html">SALES ON AUTOPILOT</a></h4></div>
-      <div class="kcard-body"><p>Ein System, das für dich verkauft.</p><span class="kcard-badge soon">COMING SOON</span></div>
-    </div>
-<div class="kcard">
-      <div class="kcard-top"><span class="kcard-nr">06</span><h4><a href="launch-with-clarity.html">LAUNCH WITH CLARITY</a></h4></div>
-      <div class="kcard-body"><p>Von der Idee zum Launch — ohne Panik.</p><span class="kcard-badge soon">COMING SOON</span></div>
-    </div>
-<div class="kcard">
-      <div class="kcard-top"><span class="kcard-nr">07</span><h4><a href="storytelling-secrets.html">THE STORYTELLING SECRETS</a></h4></div>
-      <div class="kcard-body"><p>Deine Story als Verkaufsinstrument.</p><span class="kcard-badge soon">COMING SOON</span></div>
-    </div>
-<div class="kcard">
-      <div class="kcard-top"><span class="kcard-nr">08</span><h4><a href="personal-brand-code.html">THE PERSONAL BRAND CODE</a></h4></div>
-      <div class="kcard-body"><p>Unverwechselbar werden.</p><span class="kcard-badge soon">COMING SOON</span></div>
-    </div>
-<div class="kcard">
-      <div class="kcard-top"><span class="kcard-nr">09</span><h4><a href="freedom-business-blueprint.html">THE FREEDOM BUSINESS BLUEPRINT</a></h4></div>
-      <div class="kcard-body"><p>Von 1:1 zu skalierbar.</p><span class="kcard-badge soon">COMING SOON</span></div>
-    </div>
-
-  </div>
-</div>
-
-
-
-<div class="quote"><p>„Dein Business verdient mehr als Hoffnung. Es verdient ein System."</p></div>
-
-<section class="story" id="story">
-  <div class="story-img"><img src="bilder/story.jpg" alt="Carina Anna Prav"></div>
-  <div class="story-txt">
-    <h2>BUSINESS MENTORIN & STRATEGIN</h2>
-    <h3>Carina Anna Prav</h3>
-    <p>Ich war Rocksängerin in Amerika. Ich hab auf Bühnen gestanden, bevor ich wusste, was ein Funnel ist. Dann kam das Leben — Kinder, Verantwortung, der Wunsch nach Freiheit.</p>
-    <p>Ich habe mein Business neben einem Vollzeitjob aufgebaut. Ohne Team. Ohne Budget. <strong>Und ich habe jeden Fehler gemacht, den man machen kann.</strong></p>
-    <p><strong>Ein Business, das verkauft, braucht mehr als Sichtbarkeit.</strong> Es braucht ein klares Angebot, eine Botschaft die sitzt, einen Verkaufsprozess der funktioniert.</p>
-    <p>Heute liefere ich dir die <strong>exakten Strategien, Vorlagen und Methoden</strong>, die ich täglich nutze — und du kannst dir jetzt direkten Zugang dazu verschaffen.</p>
   </div>
 </section>
 
-<section class="dms">
-  <div class="sec-h" style="padding-top:0"><h2>DAS SAGEN MEINE KUNDINNEN</h2></div>
+<!-- ══════════ TESTIMONIALS ══════════ -->
+<section style="padding:80px 40px; border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <div style="text-align:center; margin-bottom:40px;">
+    <p class="sec-label">Das sagen meine Kundinnen</p>
+  </div>
   <div class="dm-grid">
 <img src="bilder/IMG_1121.png" alt="Kundenstimme">
 <img src="bilder/IMG_1206.png" alt="Kundenstimme">
@@ -357,84 +751,64 @@ footer a:hover{color:var(--red)}
 <img src="bilder/proof-6.jpg" alt="Kundenstimme">
 <img src="bilder/proof-7.jpg" alt="Kundenstimme">
 <img src="bilder/proof-8.jpg" alt="Kundenstimme">
-</div>
+  </div>
 </section>
 
+<!-- ══════════ ABOUT ══════════ -->
+<section class="about reveal" id="story">
+  <div class="about-img">
+    <img src="bilder/carina-bw.jpg" alt="Carina Anna Prav">
+  </div>
+  <div class="about-text">
+    <p class="sec-label">Über mich</p>
+    <h2 class="sec-title">Ich war Rocksängerin in Amerika, bevor ich wusste was ein Funnel ist.</h2>
+    <p>Ich hab auf Bühnen gestanden. Ich hab vier Businesses aufgebaut — alle vor Social Media. Ich weiß, wie man verkauft. Nicht weil ich es gelernt hab, sondern weil ich es seit ich denken kann tue.</p>
+    <p><strong>Verkaufen ist kein Trick. Es ist eine Fähigkeit.</strong> Und jede Frau kann sie haben. Das ist, woran ich glaube. Das ist, wofür ich arbeite.</p>
+    <p>Heute baue ich mein Business neben einem 32-Stunden-Job auf. Allein. Ohne Team. Ohne Budget. Mit einem Kind, das bei mir lebt. Ich sage dir das nicht, damit du mich bewunderst. <strong>Ich sage dir das, damit du aufhörst, Ausreden zu suchen.</strong></p>
+    <p>Wenn ich es kann, kannst du es auch. Aber du musst aufhören zu warten.</p>
+  </div>
+</section>
 
-<section style="background:var(--red);padding:56px 40px;text-align:center">
-  <div style="max-width:480px;margin:0 auto">
-    <h2 style="font-family:var(--serif);font-weight:700;font-size:1.4rem;color:#fff;margin-bottom:8px">BLEIB DRAN.</h2>
-    <p style="font-size:0.9rem;color:rgba(255,255,255,0.75);margin-bottom:24px">Strategien, Impulse und Klartext — direkt in dein Postfach. Kein Spam. Kein Coaching-Bingo.</p>
-    <div id="nl-form" style="display:flex;gap:8px;max-width:420px;margin:0 auto">
-      <input type="text" id="nl-firstname" placeholder="Vorname" required style="flex:0.7;padding:12px 16px;border:none;font-family:var(--sans);font-size:0.85rem;outline:none;color:var(--text)">
-      <input type="email" id="nl-email" placeholder="Deine E-Mail" required style="flex:1;padding:12px 16px;border:none;font-family:var(--sans);font-size:0.85rem;outline:none;color:var(--text)">
-      <button onclick="submitNewsletter()" id="nl-btn" style="padding:12px 24px;background:#fff;color:var(--red);font-family:var(--serif);font-weight:700;font-size:0.8rem;letter-spacing:0.08em;border:none;cursor:pointer;transition:all 0.2s;white-space:nowrap">ANMELDEN</button>
+<!-- ══════════ NEWSLETTER ══════════ -->
+<section class="newsletter reveal">
+  <div class="newsletter-inner">
+    <h3>Klartext, kein Spam.</h3>
+    <p>Strategien, Denkanstöße und echte Einblicke — direkt in dein Postfach. Kein Coaching-Gelaber.</p>
+    <div class="nl-form">
+      <input type="email" placeholder="Deine E-Mail-Adresse">
+      <button type="button">Anmelden</button>
     </div>
-    <p id="nl-msg" style="font-size:0.65rem;color:rgba(255,255,255,0.4);margin-top:10px">Mit der Anmeldung stimmst du der <a href="datenschutz.html" style="color:rgba(255,255,255,0.6)">Datenschutzerklärung</a> zu.</p>
-<script>
-async function submitNewsletter() {
-  const firstname = document.getElementById('nl-firstname').value.trim();
-  const email = document.getElementById('nl-email').value.trim();
-  const btn = document.getElementById('nl-btn');
-  const msg = document.getElementById('nl-msg');
-
-  if (!firstname) { msg.textContent = 'Bitte gib deinen Vornamen ein.'; msg.style.color = '#fff'; return; }
-  if (!email || !email.includes('@')) { msg.textContent = 'Bitte gib eine gültige E-Mail ein.'; msg.style.color = '#fff'; return; }
-
-  btn.disabled = true;
-  btn.textContent = '...';
-
-  try {
-    const res = await fetch('/.netlify/functions/newsletter-signup', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, firstname })
-    });
-    const data = await res.json();
-    if (data.success) {
-      msg.textContent = '✓ Du bist dabei! Check deine Inbox.';
-      msg.style.color = '#fff';
-      document.getElementById('nl-form').style.display = 'none';
-    } else {
-      msg.textContent = 'Fehler — bitte versuch es nochmal.';
-      msg.style.color = '#fff';
-      btn.disabled = false;
-      btn.textContent = 'ANMELDEN';
-    }
-  } catch (err) {
-    msg.textContent = 'Netzwerkfehler — bitte versuch es nochmal.';
-    msg.style.color = '#fff';
-    btn.disabled = false;
-    btn.textContent = 'ANMELDEN';
-  }
-}
-</script>
   </div>
 </section>
 
-<section class="contact" id="kontakt">
-  <div class="cform">
-    <div class="cfield"><label>Name</label><input type="text"></div>
-    <div class="cfield"><label>Email</label><input type="email"></div>
-    <div class="cfield w"><label>Telefon</label><input type="tel"></div>
-    <div class="cfield w"><label>Nachricht</label><textarea></textarea></div>
-    <button class="cbtn">SENDEN</button>
-  </div>
+<!-- ══════════ FINAL CTA ══════════ -->
+<section class="final-cta reveal">
+  <p class="sec-label">Der nächste Schritt</p>
+  <h2 class="sec-title">Hör auf zu warten.<br>Fang an, zu <em>verkaufen.</em></h2>
+  <p>Du weißt, dass sich was ändern muss. Dann fang an. Content that Sells ist sofort verfügbar.</p>
+  <a href="content-that-sells.html" class="final-btn">ZUM KURS — 297€</a>
 </section>
 
-<section class="socials">
-  <h3>Hast du schon meine letzten Beiträge gesehen?</h3>
-  <div class="s-icons">
-    <a href="https://www.instagram.com/carinaannaprav/" target="_blank">IG</a>
-    <a href="https://www.tiktok.com/@carinaannaprav" target="_blank">TT</a>
-    <a href="https://www.pinterest.at/carinaannaprav/" target="_blank">PI</a>
-  </div>
-</section>
-
+<!-- ══════════ FOOTER ══════════ -->
 <footer>
-  <div><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a></div>
-  <span>© 2026 carinaannaprav</span>
+  <span class="foot-sig">Carina Anna Prav.</span>
+  <div class="foot-links">
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html">Datenschutz</a>
+    <a href="agb.html">AGB</a>
+    <a href="https://www.instagram.com/carinaannaprav/" target="_blank">Instagram</a>
+    <a href="https://www.tiktok.com/@carinaannaprav" target="_blank">TikTok</a>
+  </div>
+  <span class="foot-copy">© 2026 carinaannaprav</span>
 </footer>
+
+<!-- ══════════ SCROLL REVEAL ══════════ -->
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>

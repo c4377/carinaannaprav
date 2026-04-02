@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>carinaannaprav — Content that Sells</title>
+<meta name="description" content="Content that Sells — Dein Content-System für Posts die verkaufen. Von Carina Anna Prav.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FDFBF9;
+  --warm: #F3EDE7;
+  --white: #FFFFFF;
+  --text: #1C1917;
+  --text-mid: #57534E;
+  --text-light: #A8A29E;
+  --burgundy: #8A2E3C;
+  --burgundy-dark: #6B1D2A;
+  --border: #E7E5E4;
+  --serif: 'Playfair Display', 'Times New Roman', Georgia, serif;
+  --sans: 'Outfit', sans-serif;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:300;font-size:16px;line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+::selection{background:var(--burgundy);color:#fff}
+
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 40px;display:flex;justify-content:space-between;align-items:center;background:rgba(253,251,249,0.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--serif);font-weight:700;font-size:1rem;letter-spacing:0.04em}
+.nav-r{display:flex;gap:24px;align-items:center}
+.nav-r a{font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;font-weight:400;color:var(--text-light);transition:color 0.3s}
+.nav-r a:hover{color:var(--burgundy)}
+
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('bilder/hero-carina.jpg') center 20%/cover}
+.hero-bg::after{content:'';position:absolute;inset:0;background:rgba(20,15,13,0.55)}
+.hero-ct{position:relative;z-index:2;width:100%;max-width:680px;margin:0 auto;padding:160px 40px 120px;text-align:center;color:#F5F0EB}
+.hero-ct .label{font-size:0.68rem;letter-spacing:0.3em;text-transform:uppercase;opacity:0.5;margin-bottom:20px}
+.hero-ct h1{font-family:var(--serif);font-weight:400;font-size:clamp(2rem,5vw,3.2rem);line-height:1.15;margin-bottom:16px}
+.hero-ct h1 em{font-style:italic}
+.hero-ct .sub{font-size:0.95rem;line-height:1.8;opacity:0.8;max-width:480px;margin:0 auto 36px}
+.btn-w{display:inline-block;padding:16px 44px;background:#fff;color:var(--text);font-family:var(--serif);font-weight:700;font-size:0.85rem;letter-spacing:0.04em;transition:all 0.3s}
+.btn-w:hover{background:var(--burgundy);color:#fff}
+
+.agit{padding:80px 40px;text-align:center;background:var(--warm)}
+.agit-inner{max-width:640px;margin:0 auto}
+.agit h2{font-family:var(--serif);font-weight:700;font-size:clamp(1.4rem,3vw,2rem);line-height:1.3;margin-bottom:12px}
+.agit h2 em{font-style:italic;color:var(--burgundy)}
+.agit p{font-size:0.92rem;color:var(--text-mid);margin-bottom:16px}
+
+.pains{max-width:800px;margin:0 auto;padding:0 40px 60px;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.pain{background:var(--white);border:1px solid var(--border);padding:28px 24px}
+.pain-icon{font-size:1.4rem;margin-bottom:10px}
+.pain h4{font-family:var(--serif);font-weight:700;font-size:0.95rem;margin-bottom:6px}
+.pain p{font-size:0.82rem;color:var(--text-mid);line-height:1.65}
+
+.trans{padding:60px 40px;text-align:center;background:var(--burgundy);color:#fff}
+.trans h2{font-family:var(--serif);font-weight:700;font-size:clamp(1.3rem,2.5vw,1.8rem);line-height:1.35;max-width:560px;margin:0 auto 16px}
+.trans h2 em{font-style:italic}
+.trans p{font-size:0.88rem;opacity:0.8}
+.btn-light{display:inline-block;margin-top:24px;padding:14px 40px;background:#fff;color:var(--burgundy);font-family:var(--serif);font-weight:700;font-size:0.82rem;transition:all 0.3s}
+.btn-light:hover{background:var(--warm)}
+
+.dream{padding:80px 40px;text-align:center}
+.dream-inner{max-width:600px;margin:0 auto}
+.dream h2{font-family:var(--serif);font-weight:400;font-style:italic;font-size:clamp(1.5rem,3vw,2.2rem);line-height:1.35;margin-bottom:20px}
+.dream p{font-size:0.92rem;color:var(--text-mid);margin-bottom:12px}
+
+.product{padding:60px 40px;background:var(--warm)}
+.product-inner{max-width:800px;margin:0 auto;text-align:center}
+.product .label{font-size:0.65rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--burgundy);margin-bottom:12px}
+.product h2{font-family:var(--serif);font-weight:700;font-size:1.6rem;margin-bottom:8px}
+.product .desc{font-size:0.92rem;color:var(--text-mid);max-width:520px;margin:0 auto 36px}
+.features{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:700px;margin:0 auto 40px;text-align:left}
+.feat{background:var(--white);border:1px solid var(--border);padding:24px}
+.feat h4{font-family:var(--serif);font-weight:700;font-size:0.88rem;margin-bottom:6px;color:var(--burgundy)}
+.feat p{font-size:0.8rem;color:var(--text-mid);line-height:1.6}
+
+.price-cta{padding:60px 40px;text-align:center}
+.price-cta h2{font-family:var(--serif);font-weight:700;font-size:clamp(1.4rem,3vw,1.8rem);letter-spacing:0.04em;text-transform:uppercase;margin-bottom:20px}
+.price-now{font-family:var(--serif);font-size:3rem;font-weight:700;color:var(--burgundy);margin-bottom:4px}
+.price-sub{font-size:0.8rem;color:var(--text-light);margin-bottom:24px}
+.btn-burg{display:inline-block;padding:18px 56px;background:var(--burgundy);color:#fff;font-family:var(--serif);font-weight:700;font-size:0.9rem;letter-spacing:0.04em;transition:all 0.3s}
+.btn-burg:hover{background:var(--burgundy-dark)}
+
+.about{display:grid;grid-template-columns:1fr 1.2fr;max-width:900px;margin:0 auto;padding:80px 40px;gap:48px;align-items:center}
+.about-img img{width:100%}
+.about-txt .hey{font-family:var(--serif);font-weight:400;font-style:italic;font-size:1.6rem;color:var(--burgundy);margin-bottom:12px}
+.about-txt p{font-size:0.88rem;color:var(--text-mid);line-height:1.85;margin-bottom:14px}
+.about-txt p strong{color:var(--text);font-weight:500}
+
+.quotes{max-width:800px;margin:0 auto;padding:40px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.qcard{padding:24px;border-left:3px solid var(--burgundy);background:var(--white);border-top:1px solid var(--border);border-right:1px solid var(--border);border-bottom:1px solid var(--border)}
+.qcard p{font-family:var(--serif);font-style:italic;font-size:0.88rem;color:var(--text-mid);line-height:1.6;margin-bottom:8px}
+.qcard span{font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-light)}
+
+.challenge{padding:80px 40px;text-align:center;background:var(--warm)}
+.challenge-inner{max-width:460px;margin:0 auto}
+.challenge .label{font-size:0.62rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--burgundy);margin-bottom:12px}
+.challenge h3{font-family:var(--serif);font-weight:700;font-size:1.4rem;margin-bottom:8px}
+.challenge-inner>p{font-size:0.88rem;color:var(--text-mid);margin-bottom:24px}
+.ch-form{display:flex;flex-direction:column;gap:8px;max-width:360px;margin:0 auto}
+.ch-form input{padding:13px 16px;background:var(--white);border:1px solid var(--border);color:var(--text);font-family:var(--sans);font-size:0.85rem;font-weight:300;outline:none}
+.ch-form input:focus{border-color:var(--burgundy)}
+.ch-form input::placeholder{color:var(--text-light)}
+.ch-btn{padding:15px;background:var(--burgundy);border:1px solid var(--burgundy);color:#fff;font-family:var(--sans);font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:400;cursor:pointer;transition:all 0.3s}
+.ch-btn:hover{background:var(--burgundy-dark)}
+
+.dms{padding:60px 40px}
+.dms-label{text-align:center;margin-bottom:28px}
+.dms-label p{font-size:0.62rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--burgundy)}
+.dm-grid{column-count:3;column-gap:8px;max-width:900px;margin:0 auto}
+.dm-grid img{width:100%;break-inside:avoid;margin-bottom:8px;border-radius:5px;box-shadow:0 1px 6px rgba(0,0,0,0.05)}
+.dm-wrap{max-height:480px;overflow:hidden;position:relative;transition:max-height 0.5s ease}
+.dm-fade{position:absolute;bottom:0;left:0;right:0;height:100px;background:linear-gradient(transparent,var(--bg));pointer-events:none}
+.dm-toggle{display:block;margin:16px auto 0;padding:10px 28px;background:none;border:1px solid var(--border);color:var(--text-light);font-family:var(--sans);font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.3s}
+.dm-toggle:hover{border-color:var(--burgundy);color:var(--burgundy)}
+
+.nl{padding:60px 40px;text-align:center;border-top:1px solid var(--border)}
+.nl-inner{max-width:420px;margin:0 auto}
+.nl h3{font-family:var(--serif);font-weight:400;font-size:1.3rem;margin-bottom:6px}
+.nl p{font-size:0.85rem;color:var(--text-mid);margin-bottom:20px}
+.nl-form{display:flex}
+.nl-form input{flex:1;padding:13px 16px;background:var(--white);border:1px solid var(--border);color:var(--text);font-family:var(--sans);font-size:0.85rem;outline:none}
+.nl-form input::placeholder{color:var(--text-light)}
+.nl-form input:focus{border-color:var(--burgundy)}
+.nl-form button{padding:13px 20px;background:var(--burgundy);border:1px solid var(--burgundy);color:#fff;font-family:var(--sans);font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer}
+
+footer{padding:32px 40px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.foot-sig{font-family:var(--serif);font-style:italic;font-size:0.9rem;color:var(--text-mid)}
+.foot-links{display:flex;gap:16px}
+.foot-links a{font-size:0.62rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-light)}
+.foot-links a:hover{color:var(--burgundy)}
+
+.rv{opacity:0;transform:translateY(20px);transition:all 0.6s cubic-bezier(0.22,1,0.36,1)}.rv.v{opacity:1;transform:translateY(0)}
+
+@media(max-width:768px){
+  .nav{padding:14px 20px}.nav-r a:not(:last-child){display:none}
+  .hero-ct{padding:130px 24px 80px}
+  .pains{grid-template-columns:1fr;padding:0 24px 40px}
+  .features{grid-template-columns:1fr}
+  .quotes{grid-template-columns:1fr;gap:12px;padding:30px 24px}
+  .about{grid-template-columns:1fr;padding:50px 24px;gap:28px}
+  .about-img{max-width:280px}
+  .dm-grid{column-count:2}
+  .nl-form{flex-direction:column}.nl-form button{width:100%}
+  footer{flex-direction:column;gap:12px;text-align:center;padding:24px}
+  .agit,.trans,.dream,.product,.price-cta,.challenge,.dms,.nl{padding-left:24px;padding-right:24px}
+}
+@media(max-width:480px){.dm-grid{column-count:1}.pains{gap:12px}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">carinaannaprav</a>
+  <div class="nav-r">
+    <a href="#produkt">Der Kurs</a>
+    <a href="#story">Über mich</a>
+    <a href="blog.html">Blog</a>
+    <a href="https://www.instagram.com/carinaannaprav/" target="_blank">Instagram</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-ct">
+    <p class="label">Content that Sells</p>
+    <h1>Du hast keinen Plan,<br>wie dein Content <em>verkauft?</em></h1>
+    <p class="sub">Dein Feed sieht gut aus. Aber er bringt keinen Umsatz. Das ändern wir. In 6 Lektionen.</p>
+    <a href="#preis" class="btn-w">JETZT STARTEN — 297€</a>
+  </div>
+</section>
+
+<section class="agit rv">
+  <div class="agit-inner">
+    <h2>Jede sagt, Content ist der Schlüssel zu Kunden.<br>Aber bei dir kommen nur <em>Likes.</em></h2>
+    <p>Doch das ist kein Wunder:</p>
+  </div>
+</section>
+
+<div class="pains rv">
+  <div class="pain"><div class="pain-icon">📝</div><h4>Du lieferst die Worte</h4><p>Du schreibst Captions, machst Reels, gibst dir Mühe — aber keiner reagiert. Du redest in einen leeren Raum.</p></div>
+  <div class="pain"><div class="pain-icon">🕐</div><h4>Du investierst ewig Zeit</h4><p>Stundenlang an einem Post. Perfekt formuliert. Dann 14 Likes und Stille.</p></div>
+  <div class="pain"><div class="pain-icon">📉</div><h4>Deine Views gehen runter</h4><p>Der Algorithmus zeigt dich nicht. Es liegt nicht an dir — es liegt an deinem System.</p></div>
+  <div class="pain"><div class="pain-icon">😶</div><h4>Du fühlst dich unsichtbar</h4><p>Du siehst andere wachsen. Du weißt, du bist genauso gut. Aber irgendwas fehlt.</p></div>
+</div>
+
+<section class="trans rv">
+  <h2>Damit ist jetzt Schluss. Dein Content hat ab sofort <em>einen Job.</em></h2>
+  <p>Und der heißt: verkaufen.</p>
+  <a href="#preis" class="btn-light">ICH WILL DAS SYSTEM</a>
+</section>
+
+<section class="dream rv">
+  <div class="dream-inner">
+    <h2>Wie wäre es, wenn...</h2>
+    <p>...du genau wüsstest, was du posten sollst — und warum.</p>
+    <p>...jeder Post einen klaren Job hätte: anziehen, aufwärmen oder verkaufen.</p>
+    <p>...du in <strong>2 Stunden pro Woche 5 Posts</strong> hättest, die für dich arbeiten.</p>
+    <p>...dein Content endlich Anfragen bringt — nicht nur Herzchen.</p>
+  </div>
+</section>
+
+<section class="product rv" id="produkt">
+  <div class="product-inner">
+    <p class="label">Self-Study Kurs</p>
+    <h2>Content that Sells</h2>
+    <p class="desc">6 Audio-Lektionen. Worksheets. Das komplette Framework. In deinem Tempo.</p>
+    <div class="features">
+      <div class="feat"><h4>Die Kundin im Kopf</h4><p>Du lernst, für genau eine Person zu schreiben — so, dass sie sich sofort gemeint fühlt.</p></div>
+      <div class="feat"><h4>Magnet · Spiegel · Brücke</h4><p>Das Content-Framework, mit dem jeder Post einen Job hat.</p></div>
+      <div class="feat"><h4>Stop the Scroll</h4><p>Hooks, die funktionieren. Erste Zeilen, bei denen sie nicht weiterscrollt.</p></div>
+      <div class="feat"><h4>Post mit Pitch</h4><p>So wird aus Content ein Verkaufsgespräch — ohne Cringe.</p></div>
+      <div class="feat"><h4>Deine Wochenstruktur</h4><p>2 Stunden. 5 Posts. Jede Woche. Ein System, das du durchhältst.</p></div>
+      <div class="feat"><h4>6 Worksheets</h4><p>Zum Ausfüllen, Anwenden, Umsetzen. Kein Theorie-Overload.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="price-cta rv" id="preis">
+  <h2>Dein Content verdient ein System.</h2>
+  <div class="price-now">297 €</div>
+  <p class="price-sub">Einmalzahlung · Sofort verfügbar · Lebenslanger Zugang</p>
+  <a href="#" class="btn-burg">JETZT STARTEN</a>
+</section>
+
+<div class="quotes rv">
+  <div class="qcard"><p>„Endlich weiß ich, was ich posten soll — und warum."</p><span>— Coachin</span></div>
+  <div class="qcard"><p>„Carina sagt dir was Sache ist. Kein Drumherum."</p><span>— Dienstleisterin</span></div>
+  <div class="qcard"><p>„Zum ersten Mal hat mein Content einen Plan."</p><span>— Beraterin</span></div>
+</div>
+
+<section class="about rv" id="story">
+  <div class="about-img"><img src="bilder/carina-bw.jpg" alt="Carina Anna Prav"></div>
+  <div class="about-txt">
+    <p class="hey">Hey, ich bin Carina.</p>
+    <p>Ich war Rocksängerin in Amerika. Ich hab auf Bühnen gestanden, bevor ich wusste was ein Funnel ist. Dann kam das Leben — Kind, Verantwortung, der Wunsch nach Freiheit.</p>
+    <p><strong>Ich habe vier Businesses aufgebaut — alle vor Social Media.</strong> Ich weiß, wie man verkauft. Nicht weil ich es gelernt hab, sondern weil ich es seit ich denken kann tue.</p>
+    <p>Heute baue ich mein Business neben einem 32-Stunden-Job auf. Allein. Ohne Team. <strong>Wenn ich es kann, kannst du es auch.</strong></p>
+    <p>Verkaufen ist kein Trick. Es ist eine Fähigkeit. Und jede Frau kann sie haben.</p>
+  </div>
+</section>
+
+<section class="challenge rv" id="challenge">
+  <div class="challenge-inner">
+    <p class="label">Kostenlose 3-Tage Challenge</p>
+    <h3>Content that Sells</h3>
+    <p>In 3 Tagen lernst du, warum dein Content nicht verkauft. Per Sprachmemo in deine Telegram-Inbox.</p>
+    <div class="ch-form">
+      <div style="display:flex;gap:8px"><input type="text" id="ch-fn" placeholder="Vorname"><input type="text" id="ch-ln" placeholder="Nachname"></div>
+      <input type="email" id="ch-em" placeholder="Deine E-Mail">
+      <label style="display:flex;align-items:flex-start;gap:8px;font-size:0.7rem;color:var(--text-light);cursor:pointer;text-align:left">
+        <input type="checkbox" id="ch-ok" style="margin-top:3px;min-width:16px">
+        <span>Ich stimme der <a href="datenschutz.html" style="color:var(--burgundy)">Datenschutzerklärung</a> zu.</span>
+      </label>
+      <button onclick="chSub()" id="ch-btn" class="ch-btn">Kostenlos anmelden</button>
+    </div>
+    <p id="ch-msg" style="font-size:0.72rem;color:var(--text-light);margin-top:8px"></p>
+  </div>
+</section>
+
+<section class="price-cta rv" style="border-top:1px solid var(--border)">
+  <h2>Hör auf zu raten. Fang an zu verkaufen.</h2>
+  <div class="price-now">297 €</div>
+  <p class="price-sub">Einmalzahlung · Sofort verfügbar · Lebenslanger Zugang</p>
+  <a href="#" class="btn-burg">JETZT STARTEN</a>
+</section>
+
+<section class="dms">
+  <div class="dms-label"><p>80+ echte Nachrichten von Kundinnen</p></div>
+  <div class="dm-wrap" id="dm-wrap">
+    <div class="dm-grid">
+<img src="bilder/IMG_1121.png" alt="Kundenstimme">
+<img src="bilder/IMG_1206.png" alt="Kundenstimme">
+<img src="bilder/IMG_1298_Original.jpg" alt="Kundenstimme">
+<img src="bilder/IMG_2316_Original.jpg" alt="Kundenstimme">
+<img src="bilder/IMG_2323_Original.jpg" alt="Kundenstimme">
+<img src="bilder/IMG_2530.png" alt="Kundenstimme">
+<img src="bilder/IMG_3215_Original.jpg" alt="Kundenstimme">
+<img src="bilder/IMG_3601.png" alt="Kundenstimme">
+<img src="bilder/IMG_3861_Original.jpg" alt="Kundenstimme">
+<img src="bilder/IMG_4347.png" alt="Kundenstimme">
+<img src="bilder/IMG_4544.png" alt="Kundenstimme">
+<img src="bilder/IMG_4612.png" alt="Kundenstimme">
+<img src="bilder/IMG_4613.png" alt="Kundenstimme">
+<img src="bilder/IMG_5543_Original.jpg" alt="Kundenstimme">
+<img src="bilder/IMG_5665_Original.jpg" alt="Kundenstimme">
+<img src="bilder/IMG_6291.png" alt="Kundenstimme">
+<img src="bilder/IMG_6642.jpg" alt="Kundenstimme">
+<img src="bilder/IMG_6655.jpg" alt="Kundenstimme">
+<img src="bilder/IMG_6656.jpg" alt="Kundenstimme">
+<img src="bilder/IMG_6661.jpg" alt="Kundenstimme">
+<img src="bilder/IMG_6668.jpg" alt="Kundenstimme">
+<img src="bilder/IMG_6679.jpg" alt="Kundenstimme">
+<img src="bilder/IMG_6682.jpg" alt="Kundenstimme">
+<img src="bilder/IMG_6691.jpg" alt="Kundenstimme">
+<img src="bilder/IMG_6781_Original.jpg" alt="Kundenstimme">
+<img src="bilder/IMG_7502.png" alt="Kundenstimme">
+<img src="bilder/IMG_7504.png" alt="Kundenstimme">
+<img src="bilder/IMG_7521.png" alt="Kundenstimme">
+<img src="bilder/IMG_7522_Original.jpg" alt="Kundenstimme">
+<img src="bilder/IMG_7528.png" alt="Kundenstimme">
+<img src="bilder/IMG_7529.png" alt="Kundenstimme">
+<img src="bilder/IMG_7533_Original.jpg" alt="Kundenstimme">
+<img src="bilder/IMG_7536_Original.jpg" alt="Kundenstimme">
+<img src="bilder/IMG_7537_Original.jpg" alt="Kundenstimme">
+<img src="bilder/IMG_7539_Original.jpg" alt="Kundenstimme">
+<img src="bilder/IMG_7955_Original.jpg" alt="Kundenstimme">
+<img src="bilder/IMG_8337.png" alt="Kundenstimme">
+<img src="bilder/IMG_8338.png" alt="Kundenstimme">
+<img src="bilder/IMG_9100_Original.jpg" alt="Kundenstimme">
+<img src="bilder/IMG_9111_Original.jpg" alt="Kundenstimme">
+<img src="bilder/IMG_9112_Original.jpg" alt="Kundenstimme">
+<img src="bilder/IMG_9120_Original.jpg" alt="Kundenstimme">
+<img src="bilder/IMG_9121_Original.jpg" alt="Kundenstimme">
+<img src="bilder/original-1B533CC7-F2ED-4EDF-83D0-36A6180B835C.jpeg" alt="Kundenstimme">
+<img src="bilder/original-2ECC2A33-6953-41C7-83B3-F66580D19CF5.jpeg" alt="Kundenstimme">
+<img src="bilder/original-3A90FEF4-EBD9-4DFF-B126-9A56547C9256.jpeg" alt="Kundenstimme">
+<img src="bilder/original-04AA6F00-0C1B-4113-8ADA-50CB84CBB8E0.jpeg" alt="Kundenstimme">
+<img src="bilder/original-5F90752B-8EAD-42AA-85C7-4D14768B28B6.jpeg" alt="Kundenstimme">
+<img src="bilder/original-6C82273F-FF98-479C-A9B1-B0CBF70C223D.jpeg" alt="Kundenstimme">
+<img src="bilder/original-65C04497-05A7-41EC-9764-9E93774B4FD6.jpeg" alt="Kundenstimme">
+<img src="bilder/original-99B7C905-0625-4865-9EDB-4BE8409F2306.jpeg" alt="Kundenstimme">
+<img src="bilder/original-312C2E9C-7F19-4DA1-93B3-FF4873BDC9B2.jpeg" alt="Kundenstimme">
+<img src="bilder/original-411A41C8-388B-4928-9F40-E678CD5E0991.jpeg" alt="Kundenstimme">
+<img src="bilder/original-957F0BA5-C7E0-4C86-8419-F62563F7A047.jpeg" alt="Kundenstimme">
+<img src="bilder/original-1398F801-9406-4C0A-A0D8-A8908EF4CC2E.jpeg" alt="Kundenstimme">
+<img src="bilder/original-4416EF4A-6C08-47BD-A20C-BA82C0265117.jpeg" alt="Kundenstimme">
+<img src="bilder/original-7285B6E9-997B-4396-B6B6-CD57BE7F3FEE.jpeg" alt="Kundenstimme">
+<img src="bilder/original-82809621-917B-4691-8FFA-47C00820BB92.jpeg" alt="Kundenstimme">
+<img src="bilder/original-A6FA60B5-B3D8-4FE0-B4D1-A5E8E87A10AD.jpeg" alt="Kundenstimme">
+<img src="bilder/original-A648FAA7-664A-4A6B-80C0-74501BB0F2F7.jpeg" alt="Kundenstimme">
+<img src="bilder/original-AB7B540C-0E93-4F4C-AEA1-B3E92DDA92AE.jpeg" alt="Kundenstimme">
+<img src="bilder/original-B274C6CA-50FF-450C-BA1B-013D5A08A62B.jpeg" alt="Kundenstimme">
+<img src="bilder/original-B2789F91-83D3-4E11-AFAB-915B83A023DC.jpeg" alt="Kundenstimme">
+<img src="bilder/original-B3277BC9-7C2E-4E59-835A-288F2AE0C138.jpeg" alt="Kundenstimme">
+<img src="bilder/original-B3944818-B656-4973-B566-46AAC3CF0203.jpeg" alt="Kundenstimme">
+<img src="bilder/original-BABFACA4-C8C6-4CF6-B10A-6072C190E6B7.jpeg" alt="Kundenstimme">
+<img src="bilder/original-CFB39709-7504-4DE9-BA94-519A5F03C191.jpeg" alt="Kundenstimme">
+<img src="bilder/original-D23C42DC-C146-43BB-92C9-0C95CD0AF998.jpeg" alt="Kundenstimme">
+<img src="bilder/original-E1CF9CA0-3B57-4760-863E-C2C418298C99.jpeg" alt="Kundenstimme">
+<img src="bilder/original-E2E827D2-F65F-45EE-BB7F-9C3E43BB32DF.jpeg" alt="Kundenstimme">
+<img src="bilder/original-FA4AAD51-3381-4336-A406-55AFB8CEC268.jpeg" alt="Kundenstimme">
+<img src="bilder/original-FE218E4D-02E7-4D9A-8451-535CC836FD0F.jpeg" alt="Kundenstimme">
+<img src="bilder/proof-1.jpg" alt="Kundenstimme">
+<img src="bilder/proof-2.jpg" alt="Kundenstimme">
+<img src="bilder/proof-3.jpg" alt="Kundenstimme">
+<img src="bilder/proof-4.jpg" alt="Kundenstimme">
+<img src="bilder/proof-5.jpg" alt="Kundenstimme">
+<img src="bilder/proof-6.jpg" alt="Kundenstimme">
+<img src="bilder/proof-7.jpg" alt="Kundenstimme">
+<img src="bilder/proof-8.jpg" alt="Kundenstimme">
+    </div>
+    <div class="dm-fade" id="dm-fade"></div>
+  </div>
+  <button class="dm-toggle" id="dm-btn" onclick="toggleDM()">Alle anzeigen</button>
+</section>
+
+<section class="nl rv">
+  <div class="nl-inner">
+    <h3>Klartext, kein Spam.</h3>
+    <p>Strategien und echte Einblicke — direkt in dein Postfach.</p>
+    <div class="nl-form"><input type="email" placeholder="Deine E-Mail-Adresse"><button type="button">Anmelden</button></div>
+  </div>
+</section>
+
+<footer>
+  <span class="foot-sig">Carina Anna Prav.</span>
+  <div class="foot-links">
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html">Datenschutz</a>
+    <a href="agb.html">AGB</a>
+    <a href="https://www.instagram.com/carinaannaprav/" target="_blank">Instagram</a>
+    <a href="https://www.tiktok.com/@carinaannaprav" target="_blank">TikTok</a>
+  </div>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(e=>e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('v')}),{threshold:0.08,rootMargin:'0px 0px -20px 0px'});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+
+function toggleDM(){
+  const w=document.getElementById('dm-wrap'),f=document.getElementById('dm-fade'),b=document.getElementById('dm-btn');
+  if(!w.dataset.open){w.style.maxHeight=w.scrollHeight+'px';f.style.display='none';b.textContent='Weniger anzeigen';w.dataset.open='1'}
+  else{w.style.maxHeight='480px';f.style.display='block';b.textContent='Alle anzeigen';delete w.dataset.open}
+}
+
+async function chSub(){
+  const f=document.getElementById('ch-fn').value.trim(),l=document.getElementById('ch-ln').value.trim(),e=document.getElementById('ch-em').value.trim(),c=document.getElementById('ch-ok').checked,b=document.getElementById('ch-btn'),m=document.getElementById('ch-msg');
+  if(!f||!l){m.textContent='Bitte Vor- und Nachname.';return}
+  if(!e||!e.includes('@')){m.textContent='Bitte gültige E-Mail.';return}
+  if(!c){m.textContent='Bitte zustimmen.';return}
+  b.disabled=true;b.textContent='...';
+  try{const r=await fetch('/.netlify/functions/challenge-signup',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:e,firstname:f,lastname:l})});const d=await r.json();if(d.success){window.location.href='challenge-danke.html'}else{m.textContent='Fehler.';b.disabled=false;b.textContent='Kostenlos anmelden'}}
+  catch(err){m.textContent='Netzwerkfehler.';b.disabled=false;b.textContent='Kostenlos anmelden'}
+}
+</script>
+</body>
+</html>

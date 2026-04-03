@@ -112,6 +112,24 @@ exports.handler = async (event, context) => {
       // Add Waitlist tag
       await assignTag(AC_API_URL, acHeaders, contactId, 'Waitlist-Content-that-Sells');
 
+      // Telegram notification
+      const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
+      const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
+
+      if (TELEGRAM_BOT_TOKEN && TELEGRAM_CHAT_ID) {
+        const tgMessage = `📋 NEUE WAITLIST-ANMELDUNG\n\n👤 ${firstname}\n📧 ${email}\n\nContent that Sells — Waitlist`;
+
+        await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: TELEGRAM_CHAT_ID,
+            text: tgMessage
+          })
+        });
+        console.log('Waitlist Telegram notification sent');
+      }
+
     } else {
       // ===== DEFAULT FLOW: Liste + Nurture-Tag (bestehendes Verhalten) =====
       console.log('Default signup — adding to list:', AC_LIST_MASTERCLASS);

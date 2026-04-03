@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Waitlist — Content that Sells | carinaannaprav</title>
+<meta name="description" content="Trag dich auf die Waitlist ein und erfahre als Erste, wann Content that Sells verfügbar ist.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --white: #FFFFFF;
+    --dark: #1C1917;
+    --burgundy: #8A2E3C;
+    --burgundy-light: #A63D4E;
+    --cream: #F9F6F3;
+    --grey-light: #E8E4E0;
+    --grey-mid: #9A9490;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--white);
+    color: var(--dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* — Subtle texture — */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse at 20% 0%, rgba(138,46,60,0.04) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 100%, rgba(138,46,60,0.03) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page-wrapper {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 640px;
+    padding: 3rem 1.5rem 4rem;
+  }
+
+  /* — Brand mark — */
+  .brand {
+    text-align: center;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards;
+  }
+  .brand a {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--dark);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+
+  /* — Hero — */
+  .hero {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.6s ease 0.15s forwards;
+  }
+
+  .eyebrow {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--burgundy);
+    margin-bottom: 1rem;
+    padding: 0.35rem 1rem;
+    border: 1.5px solid var(--burgundy);
+    border-radius: 100px;
+  }
+
+  h1 {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(2rem, 6vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--dark);
+    margin-bottom: 0.4rem;
+  }
+
+  h1 .script {
+    font-family: 'Dancing Script', cursive;
+    font-weight: 700;
+    color: var(--burgundy);
+    font-size: 1.15em;
+  }
+
+  .subline {
+    font-size: 1.1rem;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--grey-mid);
+    margin-top: 1rem;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* — Pain points — */
+  .pain-section {
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.6s ease 0.3s forwards;
+  }
+
+  .pain-card {
+    background: var(--cream);
+    border-radius: 12px;
+    padding: 1.5rem 1.75rem;
+  }
+
+  .pain-card p {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--dark);
+    font-weight: 400;
+    margin-bottom: 0.6rem;
+    padding-left: 1.2rem;
+    position: relative;
+  }
+  .pain-card p:last-child { margin-bottom: 0; }
+
+  .pain-card p::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--burgundy);
+    font-weight: 600;
+  }
+
+  /* — Form area — */
+  .form-section {
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.6s ease 0.45s forwards;
+  }
+
+  .form-intro {
+    text-align: center;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--dark);
+    margin-bottom: 1.25rem;
+    line-height: 1.5;
+  }
+
+  .form-intro strong {
+    color: var(--burgundy);
+    font-weight: 600;
+  }
+
+  /* ActiveCampaign form container */
+  .ac-form-wrapper {
+    background: var(--white);
+    border: 1.5px solid var(--grey-light);
+    border-radius: 14px;
+    padding: 2rem 1.75rem;
+    transition: border-color 0.3s ease;
+  }
+  .ac-form-wrapper:focus-within {
+    border-color: var(--burgundy);
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--grey-mid);
+    margin-bottom: 0.4rem;
+  }
+
+  .form-group input {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--dark);
+    background: var(--cream);
+    border: 1.5px solid transparent;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.25s ease, background 0.25s ease;
+  }
+  .form-group input::placeholder {
+    color: var(--grey-mid);
+    font-weight: 300;
+  }
+  .form-group input:focus {
+    border-color: var(--burgundy);
+    background: var(--white);
+  }
+
+  .submit-btn {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    margin-top: 1.25rem;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    color: var(--white);
+    background: var(--burgundy);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.25s ease, transform 0.15s ease;
+  }
+  .submit-btn:hover {
+    background: var(--burgundy-light);
+    transform: translateY(-1px);
+  }
+  .submit-btn:active {
+    transform: translateY(0);
+  }
+
+  .privacy-note {
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--grey-mid);
+    margin-top: 0.75rem;
+    line-height: 1.5;
+  }
+  .privacy-note a {
+    color: var(--grey-mid);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  /* — What you get — */
+  .promise-section {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.6s ease 0.6s forwards;
+  }
+
+  .promise-section h2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--burgundy);
+    margin-bottom: 1rem;
+  }
+
+  .promise-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .promise-item {
+    background: var(--cream);
+    border-radius: 10px;
+    padding: 1rem 1rem;
+    text-align: left;
+  }
+
+  .promise-icon {
+    font-size: 1.2rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .promise-item span {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--dark);
+    line-height: 1.4;
+  }
+
+  /* — Success state — */
+  .success-message {
+    display: none;
+    text-align: center;
+    padding: 2rem 1.5rem;
+  }
+  .success-message.active {
+    display: block;
+    animation: fadeUp 0.5s ease forwards;
+  }
+  .success-check {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--burgundy);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+  .success-check svg {
+    width: 28px;
+    height: 28px;
+    stroke: var(--white);
+    fill: none;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .success-message h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 0.5rem;
+  }
+  .success-message p {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--grey-mid);
+    line-height: 1.6;
+  }
+
+  /* — Footer — */
+  .footer {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid var(--grey-light);
+    opacity: 0;
+    animation: fadeUp 0.6s ease 0.75s forwards;
+  }
+  .footer p {
+    font-size: 0.8rem;
+    color: var(--grey-mid);
+    font-weight: 300;
+  }
+  .footer a {
+    color: var(--burgundy);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  /* — Animations — */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* — Mobile — */
+  @media (max-width: 480px) {
+    .page-wrapper { padding: 2rem 1.25rem 3rem; }
+    .promise-grid { grid-template-columns: 1fr; }
+    .ac-form-wrapper { padding: 1.5rem 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <!-- Brand -->
+  <div class="brand">
+    <a href="https://carinaannaprav.at">carinaannaprav</a>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero">
+    <span class="eyebrow">Bald verfügbar</span>
+    <h1>Content that <span class="script">Sells</span></h1>
+    <p class="subline">Der Selbstlernkurs, der dir zeigt, wie du mit deinem Content verkaufst — ohne dich zu verbiegen, ohne Cringe, ohne leeren Raum.</p>
+  </div>
+
+  <!-- Pain points -->
+  <div class="pain-section">
+    <div class="pain-card">
+      <p>Du postest und postest — aber es fühlt sich an wie in einen leeren Raum reden.</p>
+      <p>Du weißt was du kannst, aber nicht wie du es sagen sollst.</p>
+      <p>Du brauchst jemanden, der dir sagt: DAS machst du jetzt. DAS lässt du weg.</p>
+    </div>
+  </div>
+
+  <!-- Form -->
+  <div class="form-section">
+    <p class="form-intro">Trag dich auf die <strong>Waitlist</strong> ein.<br>Du erfährst als Erste, wann du kaufen kannst.</p>
+
+    <div class="ac-form-wrapper" id="formWrapper">
+      <form id="waitlistForm" novalidate>
+        <div class="form-group">
+          <label for="fullname">Vorname</label>
+          <input type="text" id="fullname" name="firstname" placeholder="Dein Vorname" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">E-Mail</label>
+          <input type="email" id="email" name="email" placeholder="deine@email.at" required>
+        </div>
+
+        <button type="submit" class="submit-btn">Ja, ich will auf die Waitlist →</button>
+
+        <p class="privacy-note">Kein Spam. Du kannst dich jederzeit abmelden.<br><a href="https://carinaannaprav.at/datenschutz">Datenschutz</a></p>
+      </form>
+    </div>
+
+    <!-- Success state -->
+    <div class="success-message" id="successMessage">
+      <div class="success-check">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      </div>
+      <h3>Du bist auf der Liste!</h3>
+      <p>Sobald Content that Sells verfügbar ist, erfährst du es als Erste. Check sicherheitshalber deinen Spam-Ordner.</p>
+    </div>
+  </div>
+
+  <!-- Promises -->
+  <div class="promise-section" id="promiseSection">
+    <h2>Was dich erwartet</h2>
+    <div class="promise-grid">
+      <div class="promise-item">
+        <div class="promise-icon">✦</div>
+        <span>Dein Content-System für Posts, die verkaufen</span>
+      </div>
+      <div class="promise-item">
+        <div class="promise-icon">✦</div>
+        <span>Magnet · Spiegel · Brücke — das Framework</span>
+      </div>
+      <div class="promise-item">
+        <div class="promise-icon">✦</div>
+        <span>Worksheets & Vorlagen zum Sofort-Umsetzen</span>
+      </div>
+      <div class="promise-item">
+        <div class="promise-icon">✦</div>
+        <span>Kein Blabla. Kein Cringe. Nur was funktioniert.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p><a href="https://carinaannaprav.at">carinaannaprav.at</a> · Für selbstständige Frauen, die wissen was sie können.</p>
+  </div>
+
+</div>
+
+<script>
+  const form = document.getElementById('waitlistForm');
+  const formWrapper = document.getElementById('formWrapper');
+  const successMessage = document.getElementById('successMessage');
+  const promiseSection = document.getElementById('promiseSection');
+  const submitBtn = form.querySelector('.submit-btn');
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const email = document.getElementById('email').value.trim();
+    const firstname = document.getElementById('fullname').value.trim();
+
+    // Validation
+    if (!email || !firstname) {
+      if (!firstname) document.getElementById('fullname').style.borderColor = '#8A2E3C';
+      if (!email) document.getElementById('email').style.borderColor = '#8A2E3C';
+      return;
+    }
+
+    // Disable button, show loading
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Wird eingetragen…';
+    submitBtn.style.opacity = '0.7';
+
+    try {
+      const response = await fetch('/.netlify/functions/newsletter-signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: email,
+          firstname: firstname,
+          source: 'Waitlist-Content-that-Sells'
+        })
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        showSuccess();
+      } else {
+        showError('Etwas ist schiefgelaufen. Versuch es nochmal.');
+      }
+    } catch (error) {
+      console.error('Signup error:', error);
+      showError('Verbindungsfehler. Versuch es nochmal.');
+    }
+  });
+
+  function showSuccess() {
+    formWrapper.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+    formWrapper.style.opacity = '0';
+    formWrapper.style.transform = 'translateY(-8px)';
+
+    setTimeout(() => {
+      formWrapper.style.display = 'none';
+      promiseSection.style.display = 'none';
+      successMessage.classList.add('active');
+    }, 300);
+  }
+
+  function showError(msg) {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Ja, ich will auf die Waitlist →';
+    submitBtn.style.opacity = '1';
+
+    // Show inline error
+    let errorEl = document.getElementById('formError');
+    if (!errorEl) {
+      errorEl = document.createElement('p');
+      errorEl.id = 'formError';
+      errorEl.style.cssText = 'text-align:center;color:#8A2E3C;font-size:0.85rem;margin-top:0.75rem;font-weight:500;';
+      submitBtn.parentNode.insertBefore(errorEl, submitBtn.nextSibling);
+    }
+    errorEl.textContent = msg;
+  }
+
+  // Clear validation on input
+  document.querySelectorAll('#waitlistForm input').forEach(input => {
+    input.addEventListener('input', () => {
+      input.style.borderColor = 'transparent';
+      const errorEl = document.getElementById('formError');
+      if (errorEl) errorEl.remove();
+    });
+  });
+</script>
+
+</body>
+</html>

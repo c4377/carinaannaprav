@@ -85,6 +85,33 @@ exports.handler = async (event, context) => {
 
       await assignTag(AC_API_URL, acHeaders, contactId, tagName);
 
+    } else if (source === 'Waitlist-Content-that-Sells') {
+      // ===== WAITLIST FLOW: Liste + Waitlist-Tag =====
+      console.log('Waitlist signup — adding to list + waitlist tag');
+
+      // Add to newsletter list
+      const listResponse = await fetch(`${AC_API_URL}/api/3/contactLists`, {
+        method: 'POST',
+        headers: acHeaders,
+        body: JSON.stringify({
+          contactList: {
+            list: AC_LIST_MASTERCLASS,
+            contact: contactId,
+            status: 1
+          }
+        })
+      });
+
+      if (!listResponse.ok) {
+        const errorText = await listResponse.text();
+        console.error('List subscription error:', errorText);
+      } else {
+        console.log('Added to list');
+      }
+
+      // Add Waitlist tag
+      await assignTag(AC_API_URL, acHeaders, contactId, 'Waitlist-Content-that-Sells');
+
     } else {
       // ===== DEFAULT FLOW: Liste + Nurture-Tag (bestehendes Verhalten) =====
       console.log('Default signup — adding to list:', AC_LIST_MASTERCLASS);

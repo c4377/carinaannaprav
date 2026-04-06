@@ -104,7 +104,7 @@ exports.handler = async (event, context) => {
 
     // 4. NOW set the tag — list is confirmed first
     console.log('Setting challenge tag...');
-    await assignTag(AC_API_URL, acHeaders, contactId, 'challenge-april-2025');
+    await assignTag(AC_API_URL, acHeaders, contactId, 'challenge-2026');
 
     // 5. Telegram notification
     if (TELEGRAM_BOT_TOKEN && TELEGRAM_CHAT_ID) {
@@ -112,7 +112,7 @@ exports.handler = async (event, context) => {
       message += `👤 ${firstname} ${lastname}\n`;
       message += `📧 ${email}\n`;
       if (instagram) message += `📸 ${instagram}\n`;
-      message += `\nContent that Sells Challenge, ab 3. April`;
+      message += `\nContent that Sells Challenge 2026`;
 
       await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
         method: 'POST',
@@ -164,7 +164,7 @@ async function assignTag(apiUrl, headers, contactId, tagName) {
           method: 'POST',
           headers,
           body: JSON.stringify({
-            tag: { tag: tagName, tagType: 'contact', description: 'Challenge Content that Sells - April 2025' }
+            tag: { tag: tagName, tagType: 'contact', description: 'Challenge Content that Sells 2026' }
           })
         });
 

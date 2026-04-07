@@ -4,129 +4,36 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Waitlist — Content that Sells | carinaannaprav</title>
-<meta name="description" content="Trag dich auf die Waitlist ein und erfahre als Erste, wann Content that Sells verfügbar ist.">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#FDFBF9;--warm:#F3EDE7;--white:#FFFFFF;--text:#1C1917;--text-mid:#57534E;--text-light:#A8A29E;--burgundy:#8A2E3C;--burgundy-dark:#6B1D2A;--border:#E7E5E4;--serif:'Playfair Display','Times New Roman',Georgia,serif;--sans:'Outfit',sans-serif}
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:300;font-size:17px;line-height:1.8;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}::selection{background:var(--burgundy);color:#fff}
-
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 40px;display:flex;justify-content:space-between;align-items:center;background:rgba(253,251,249,0.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}.nav-logo{font-family:var(--serif);font-weight:700;font-size:1rem;letter-spacing:0.04em}.nav-r{display:flex;gap:24px;align-items:center}.nav-r a{font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;font-weight:400;color:var(--text-light);transition:color 0.3s}.nav-r a:hover{color:var(--burgundy)}
-
-.hero{background:var(--burgundy);color:#fff;text-align:center;padding:160px 40px 80px}
-.hero .label{font-size:0.72rem;letter-spacing:0.3em;text-transform:uppercase;opacity:0.6;margin-bottom:16px}
-.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(2.4rem,6vw,3.8rem);line-height:1.1;margin-bottom:20px}
-.hero h1 em{font-style:italic}
-.hero .sub{font-size:1.05rem;font-weight:300;line-height:1.8;opacity:0.85;max-width:520px;margin:0 auto 36px}
-.hero .price{font-family:var(--serif);font-size:2.4rem;font-weight:700;opacity:1}
-
-.pain{max-width:700px;margin:0 auto;padding:64px 40px}
-.pain p{font-size:1.1rem;line-height:1.9;color:var(--text);margin-bottom:16px;padding-left:28px;position:relative}
-.pain p:last-child{margin-bottom:0}
-.pain p::before{content:'—';position:absolute;left:0;color:var(--burgundy);font-weight:700;font-size:1.2rem}
-
-.features{background:var(--warm);padding:64px 40px}
-.feat-inner{max-width:700px;margin:0 auto}
-.feat-inner h2{font-family:var(--serif);font-weight:400;font-style:italic;font-size:clamp(1.5rem,3vw,2rem);text-align:center;margin-bottom:40px}
-.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.feat{background:var(--white);border:1px solid var(--border);padding:28px 24px}
-.feat h4{font-family:var(--serif);font-weight:700;font-size:1rem;margin-bottom:6px;color:var(--burgundy)}
-.feat p{font-size:0.9rem;color:var(--text-mid);line-height:1.65}
-
-.form-section{padding:64px 40px}
-.form-inner{max-width:520px;margin:0 auto}
-.form-intro{text-align:center;font-size:1.1rem;color:var(--text);margin-bottom:28px;line-height:1.7}
-.form-intro strong{color:var(--burgundy);font-weight:600}
-.form-wrap{background:var(--white);border:1px solid var(--border);padding:36px 32px}
-.form-group{margin-bottom:16px}
-.form-group label{display:block;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-light);margin-bottom:6px;font-weight:400}
-.form-group input{width:100%;padding:15px 18px;background:var(--bg);border:1px solid var(--border);color:var(--text);font-family:var(--sans);font-size:0.95rem;font-weight:300;outline:none;transition:border-color 0.2s}
-.form-group input:focus{border-color:var(--burgundy)}
-.form-group input::placeholder{color:var(--text-light)}
-.ch-btn{display:block;width:100%;padding:18px;background:var(--burgundy);border:none;color:#fff;font-family:var(--sans);font-size:0.85rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;cursor:pointer;transition:all 0.3s;margin-top:16px}
-.ch-btn:hover{background:var(--burgundy-dark)}
-.privacy{text-align:center;font-size:0.75rem;color:var(--text-light);margin-top:12px;line-height:1.5}.privacy a{color:var(--burgundy);text-decoration:underline}
-#formMsg{font-size:0.82rem;color:var(--burgundy);margin-top:10px;text-align:center}
-
-.success{display:none;text-align:center;padding:48px 24px}
-.success.active{display:block;animation:fadeUp 0.5s ease forwards}
-.success h3{font-family:var(--serif);font-weight:700;font-size:1.8rem;margin-bottom:12px}
-.success p{font-size:1rem;color:var(--text-mid);line-height:1.8}
-
-.foot{max-width:700px;margin:0 auto;padding:32px 40px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
-.foot-sig{font-family:var(--serif);font-style:italic;font-size:0.9rem;color:var(--text-mid)}
-.foot-links{display:flex;gap:16px}
-.foot-links a{font-size:0.62rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-light)}
-.foot-links a:hover{color:var(--burgundy)}
-
+:root{--bg:#FFFFFF;--warm:#F0EEEB;--white:#FFFFFF;--text:#1A1A1A;--text-mid:#555;--text-light:#999;--grey-dark:#3A3A3A;--grey:#4A4A4A;--gold:#C9A84C;--border:#E4E0DC;--serif:'Playfair Display','Times New Roman',Georgia,serif;--sans:'Outfit',sans-serif}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:300;font-size:17px;line-height:1.8;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}::selection{background:var(--grey-dark);color:#fff}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 40px;display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}.nav-logo{font-family:var(--serif);font-weight:700;font-size:1rem;letter-spacing:0.04em}.nav-r{display:flex;gap:24px;align-items:center}.nav-r a{font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;font-weight:400;color:var(--text-light);transition:color 0.3s}.nav-r a:hover{color:var(--gold)}
+.hero{background:var(--grey-dark);color:#fff;text-align:center;padding:160px 40px 80px}.hero .label{font-size:0.72rem;letter-spacing:0.3em;text-transform:uppercase;opacity:0.5;margin-bottom:16px}.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(2.4rem,6vw,3.8rem);line-height:1.1;margin-bottom:20px}.hero h1 em{font-style:italic;color:var(--gold)}.hero .sub{font-size:1.05rem;font-weight:300;line-height:1.8;opacity:0.85;max-width:520px;margin:0 auto 36px}.hero .price{font-family:var(--serif);font-size:2.4rem;font-weight:700;color:var(--gold)}
+.pain{max-width:700px;margin:0 auto;padding:64px 40px}.pain p{font-size:1.1rem;line-height:1.9;color:var(--text);margin-bottom:16px;padding-left:28px;position:relative}.pain p:last-child{margin-bottom:0}.pain p::before{content:'—';position:absolute;left:0;color:var(--gold);font-weight:700;font-size:1.2rem}
+.features{background:var(--warm);padding:64px 40px}.feat-inner{max-width:700px;margin:0 auto}.feat-inner h2{font-family:var(--serif);font-weight:400;font-style:italic;font-size:clamp(1.5rem,3vw,2rem);text-align:center;margin-bottom:40px}.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.feat{background:var(--white);border:1px solid var(--border);padding:28px 24px}.feat h4{font-family:var(--serif);font-weight:700;font-size:1rem;margin-bottom:6px;color:var(--grey-dark)}.feat p{font-size:0.9rem;color:var(--text-mid);line-height:1.65}
+.form-section{padding:64px 40px}.form-inner{max-width:520px;margin:0 auto}.form-intro{text-align:center;font-size:1.1rem;color:var(--text);margin-bottom:28px;line-height:1.7}.form-intro strong{color:var(--gold);font-weight:600}
+.form-wrap{background:var(--white);border:1px solid var(--border);padding:36px 32px}.form-group{margin-bottom:16px}.form-group label{display:block;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-light);margin-bottom:6px}.form-group input{width:100%;padding:15px 18px;background:var(--bg);border:1px solid var(--border);color:var(--text);font-family:var(--sans);font-size:0.95rem;font-weight:300;outline:none}.form-group input:focus{border-color:var(--gold)}.form-group input::placeholder{color:var(--text-light)}
+.ch-btn{display:block;width:100%;padding:18px;background:var(--grey-dark);border:none;color:#fff;font-family:var(--sans);font-size:0.85rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;cursor:pointer;transition:all 0.3s;margin-top:16px}.ch-btn:hover{background:#2A2A2A}
+.privacy{text-align:center;font-size:0.75rem;color:var(--text-light);margin-top:12px}.privacy a{color:var(--gold);text-decoration:underline}
+#formMsg{font-size:0.82rem;color:var(--gold);margin-top:10px;text-align:center}
+.success{display:none;text-align:center;padding:48px 24px}.success.active{display:block;animation:fadeUp 0.5s ease forwards}.success h3{font-family:var(--serif);font-weight:700;font-size:1.8rem;margin-bottom:12px}.success p{font-size:1rem;color:var(--text-mid);line-height:1.8}
+.foot{max-width:700px;margin:0 auto;padding:32px 40px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}.foot-sig{font-family:var(--serif);font-style:italic;font-size:0.9rem;color:var(--text-mid)}.foot-links{display:flex;gap:16px}.foot-links a{font-size:0.62rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-light)}.foot-links a:hover{color:var(--gold)}
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-@media(max-width:768px){
-  .nav{padding:14px 20px}.nav-r a:not(:last-child){display:none}
-  .hero{padding:140px 24px 60px}
-  .pain{padding:48px 24px}
-  .features{padding:48px 24px}
-  .feat-grid{grid-template-columns:1fr}
-  .form-section{padding:48px 24px}
-  .form-wrap{padding:28px 20px}
-  .foot{flex-direction:column;gap:12px;text-align:center;padding:24px}
-}
+@media(max-width:768px){.nav{padding:14px 20px}.nav-r a:not(:last-child){display:none}.hero{padding:140px 24px 60px}.pain{padding:48px 24px}.features{padding:48px 24px}.feat-grid{grid-template-columns:1fr}.form-section{padding:48px 24px}.form-wrap{padding:28px 20px}.foot{flex-direction:column;gap:12px;text-align:center;padding:24px}}
 </style>
 </head>
 <body>
-
 <nav class="nav"><a href="index.html" class="nav-logo">carinaannaprav</a><div class="nav-r"><a href="index.html#produkt">Der Kurs</a><a href="index.html#story">Über mich</a><a href="blog.html">Blog</a><a href="https://www.instagram.com/carinaannaprav/" target="_blank">Instagram</a></div></nav>
-
-<section class="hero">
-  <p class="label">Self-Study Kurs — Bald verfügbar</p>
-  <h1>Content that <em>Sells</em></h1>
-  <p class="sub">7 Lektionen. 8 Tools. Dein Content-System für Posts die verkaufen — plus eine Sales Page auf die dein Link in Bio führt.</p>
-  <div class="price">297€</div>
-</section>
-
-<div class="pain">
-  <p>Du postest und postest — aber es fühlt sich an wie in einen leeren Raum reden.</p>
-  <p>Du weißt was du kannst, aber nicht wie du es sagen sollst.</p>
-  <p>Du brauchst jemanden, der dir sagt: DAS machst du jetzt. DAS lässt du weg.</p>
-</div>
-
-<section class="features">
-  <div class="feat-inner">
-    <h2>Was dich erwartet</h2>
-    <div class="feat-grid">
-      <div class="feat"><h4>Die Kundin im Kopf</h4><p>Traumkundin-Profil das du jedes Mal nutzt wenn du Content planst.</p></div>
-      <div class="feat"><h4>Magnet · Spiegel · Brücke</h4><p>Post-Vorlagen für jeden Job. Lücken füllen, posten.</p></div>
-      <div class="feat"><h4>100 Hooks</h4><p>Für deine Nische. Sortiert nach Job. Sofort einsetzbar.</p></div>
-      <div class="feat"><h4>Post mit Pitch</h4><p>CTA-Baukasten + 3 Brücke-Vorlagen. Verkaufen ohne Cringe.</p></div>
-      <div class="feat"><h4>Deine Wochenstruktur</h4><p>4-Wochen-Plan. Mo–Fr. Jeder Post hat einen Job.</p></div>
-      <div class="feat"><h4>2 Stunden, 5 Posts</h4><p>Batching + Recycling. Sonntag fertig, Woche erledigt.</p></div>
-      <div class="feat"><h4>Deine Sales Page</h4><p>Damit der Link in Bio irgendwo hinführt wo jemand kaufen kann.</p></div>
-      <div class="feat"><h4>Content-Ideen-Generator</h4><p>20 Post-Ideen in 10 Minuten. Aus deiner Offer Lens.</p></div>
-    </div>
-  </div>
-</section>
-
-<div class="form-section">
-  <div class="form-inner">
-    <p class="form-intro">Trag dich auf die <strong>Waitlist</strong> ein.<br>Du erfährst als Erste, wann du kaufen kannst.</p>
-    <div class="form-wrap" id="formWrapper">
-      <form id="waitlistForm" novalidate>
-        <div class="form-group"><label for="fullname">Vorname</label><input type="text" id="fullname" placeholder="Dein Vorname" required></div>
-        <div class="form-group"><label for="email">E-Mail</label><input type="email" id="email" placeholder="deine@email.at" required></div>
-        <button type="submit" class="ch-btn" id="submitBtn">AUF DIE WAITLIST</button>
-        <p class="privacy">Kein Spam. Jederzeit abmelden. <a href="datenschutz.html">Datenschutz</a></p>
-        <p id="formMsg"></p>
-      </form>
-    </div>
-    <div class="success" id="successMessage"><h3>Du bist auf der Liste!</h3><p>Sobald Content that Sells verfügbar ist, erfährst du es als Erste.<br>Check sicherheitshalber deinen Spam-Ordner.</p></div>
-  </div>
-</div>
-
+<section class="hero"><p class="label">Self-Study Kurs — Bald verfügbar</p><h1>Content that <em>Sells</em></h1><p class="sub">7 Lektionen. 8 Tools. Dein Content-System für Posts die verkaufen — plus eine Sales Page auf die dein Link in Bio führt.</p><div class="price">297€</div></section>
+<div class="pain"><p>Du postest und postest — aber es fühlt sich an wie in einen leeren Raum reden.</p><p>Du weißt was du kannst, aber nicht wie du es sagen sollst.</p><p>Du brauchst jemanden, der dir sagt: DAS machst du jetzt. DAS lässt du weg.</p></div>
+<section class="features"><div class="feat-inner"><h2>Was dich erwartet</h2><div class="feat-grid"><div class="feat"><h4>Die Kundin im Kopf</h4><p>Traumkundin-Profil das du jedes Mal nutzt wenn du Content planst.</p></div><div class="feat"><h4>Magnet · Spiegel · Brücke</h4><p>Post-Vorlagen für jeden Job. Lücken füllen, posten.</p></div><div class="feat"><h4>100 Hooks</h4><p>Für deine Nische. Sortiert nach Job. Sofort einsetzbar.</p></div><div class="feat"><h4>Post mit Pitch</h4><p>CTA-Baukasten + 3 Brücke-Vorlagen. Verkaufen ohne Cringe.</p></div><div class="feat"><h4>Deine Wochenstruktur</h4><p>4-Wochen-Plan. Mo–Fr. Jeder Post hat einen Job.</p></div><div class="feat"><h4>2 Stunden, 5 Posts</h4><p>Batching + Recycling. Sonntag fertig, Woche erledigt.</p></div><div class="feat"><h4>Deine Sales Page</h4><p>Damit der Link in Bio irgendwo hinführt wo jemand kaufen kann.</p></div><div class="feat"><h4>Content-Ideen-Generator</h4><p>20 Post-Ideen in 10 Minuten. Aus deiner Offer Lens.</p></div></div></div></section>
+<div class="form-section"><div class="form-inner"><p class="form-intro">Trag dich auf die <strong>Waitlist</strong> ein.<br>Du erfährst als Erste, wann du kaufen kannst.</p><div class="form-wrap" id="formWrapper"><form id="waitlistForm" novalidate><div class="form-group"><label for="fullname">Vorname</label><input type="text" id="fullname" placeholder="Dein Vorname" required></div><div class="form-group"><label for="email">E-Mail</label><input type="email" id="email" placeholder="deine@email.at" required></div><button type="submit" class="ch-btn" id="submitBtn">AUF DIE WAITLIST</button><p class="privacy">Kein Spam. Jederzeit abmelden. <a href="datenschutz.html">Datenschutz</a></p><p id="formMsg"></p></form></div><div class="success" id="successMessage"><h3>Du bist auf der Liste!</h3><p>Sobald Content that Sells verfügbar ist, erfährst du es als Erste.<br>Check sicherheitshalber deinen Spam-Ordner.</p></div></div></div>
 <div class="foot"><span class="foot-sig">Carina Anna Prav.</span><div class="foot-links"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="agb.html">AGB</a></div></div>
-
 <script>
 const form=document.getElementById('waitlistForm'),formWrapper=document.getElementById('formWrapper'),successMessage=document.getElementById('successMessage'),submitBtn=document.getElementById('submitBtn'),formMsg=document.getElementById('formMsg');
 form.addEventListener('submit',async function(e){e.preventDefault();const fn=document.getElementById('fullname').value.trim(),em=document.getElementById('email').value.trim();if(!fn){showErr('Bitte Vorname eingeben.');return}if(!em||!em.includes('@')){showErr('Bitte gültige E-Mail eingeben.');return}submitBtn.disabled=true;submitBtn.textContent='...';try{const r=await fetch('/.netlify/functions/newsletter-signup',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:em,firstname:fn,source:'Waitlist-Content-that-Sells'})});const d=await r.json();if(d.success){formWrapper.style.transition='opacity 0.3s';formWrapper.style.opacity='0';setTimeout(()=>{formWrapper.style.display='none';successMessage.classList.add('active')},300)}else{showErr('Etwas ist schiefgelaufen. Versuch es nochmal.')}}catch(err){showErr('Verbindungsfehler. Versuch es nochmal.')}});
 function showErr(m){formMsg.textContent=m;submitBtn.disabled=false;submitBtn.textContent='AUF DIE WAITLIST'}
-document.querySelectorAll('#waitlistForm input').forEach(i=>i.addEventListener('input',()=>formMsg.textContent=''));
 </script>
 </body>
 </html>

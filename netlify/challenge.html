@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3-Tage Challenge — Content that Sells | carinaannaprav</title>
+<meta name="description" content="Kostenlose 3-Tage Challenge: Finde heraus warum dein Content nicht verkauft. Ab 25. April per Telegram.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FFFFFF;--warm:#F0EEEB;--white:#FFFFFF;--text:#1A1A1A;--text-mid:#555;--text-light:#999;--grey-dark:#3A3A3A;--grey:#4A4A4A;--gold:#C9A84C;--gold-light:#F5EFD8;--border:#E4E0DC;--serif:'Playfair Display','Times New Roman',Georgia,serif;--sans:'Outfit',sans-serif}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:300;font-size:17px;line-height:1.8;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}::selection{background:var(--grey-dark);color:#fff}
+
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 40px;display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}.nav-logo{font-family:var(--serif);font-weight:400;font-size:1rem;letter-spacing:0.04em}.nav-r{display:flex;gap:24px;align-items:center}.nav-r a{font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;font-weight:400;color:var(--text-light);transition:color 0.3s}.nav-r a:hover{color:var(--gold)}
+
+.hero{background:var(--grey-dark);color:#fff;text-align:center;padding:160px 40px 80px}
+.hero .label{font-size:0.72rem;letter-spacing:0.3em;text-transform:uppercase;opacity:0.5;margin-bottom:16px}
+.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(2.4rem,6vw,3.8rem);line-height:1.1;margin-bottom:20px}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero .sub{font-size:1.05rem;font-weight:300;line-height:1.8;opacity:0.8;max-width:500px;margin:0 auto 36px}
+.hero .date{display:inline-block;background:var(--gold);color:var(--grey-dark);font-size:0.78rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:14px 36px}
+
+.pain{max-width:700px;margin:0 auto;padding:64px 40px}
+.pain p{font-size:1.1rem;line-height:1.9;color:var(--text);margin-bottom:16px;padding-left:28px;position:relative}
+.pain p:last-child{margin-bottom:0}
+.pain p::before{content:'—';position:absolute;left:0;color:var(--gold);font-weight:700;font-size:1.2rem}
+
+.days-section{background:var(--warm);padding:64px 40px}
+.days-inner{max-width:700px;margin:0 auto}
+.days-inner h2{font-family:var(--serif);font-weight:400;font-style:italic;font-size:clamp(1.5rem,3vw,2rem);text-align:center;margin-bottom:40px}
+.day{display:flex;gap:20px;align-items:flex-start;margin-bottom:28px}
+.day-nr{flex-shrink:0;width:48px;height:48px;background:var(--grey-dark);color:#fff;font-weight:600;font-size:0.8rem;display:flex;align-items:center;justify-content:center}
+.day-title{font-family:var(--serif);font-weight:400;font-size:1.1rem;margin-bottom:4px}
+.day-desc{font-size:0.95rem;color:var(--text-mid)}
+
+.how{max-width:700px;margin:0 auto;padding:64px 40px}
+.how h2{font-family:var(--serif);font-weight:400;font-style:italic;font-size:clamp(1.5rem,3vw,2rem);text-align:center;margin-bottom:32px}
+.how-item{margin-bottom:20px}
+.how-item strong{display:block;font-family:var(--serif);font-weight:400;font-size:1rem;color:var(--grey-dark);margin-bottom:4px}
+.how-item p{font-size:0.95rem;color:var(--text-mid);line-height:1.7}
+.how-highlight{text-align:center;font-family:var(--serif);font-weight:400;font-size:1.15rem;color:var(--text);margin-top:32px}
+
+.form-section{background:var(--warm);padding:64px 40px}
+.form-inner{max-width:520px;margin:0 auto}
+.form-intro{text-align:center;font-size:1.05rem;color:var(--text-mid);margin-bottom:28px;line-height:1.7}
+.form-intro strong{color:var(--grey-dark);font-weight:500}
+.form-wrap{background:var(--white);border:1px solid var(--border);padding:36px 32px}
+.form-row{display:flex;gap:12px}
+.form-group{margin-bottom:16px;flex:1}
+.form-group label{display:block;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-light);margin-bottom:6px;font-weight:400}
+.form-group input{width:100%;padding:15px 18px;background:var(--bg);border:1px solid var(--border);color:var(--text);font-family:var(--sans);font-size:0.95rem;font-weight:300;outline:none;transition:border-color 0.2s}
+.form-group input:focus{border-color:var(--gold)}
+.form-group input::placeholder{color:var(--text-light)}
+.consent{display:flex;align-items:flex-start;gap:10px;margin:20px 0 12px}
+.consent input[type="checkbox"]{margin-top:5px;accent-color:var(--grey-dark);width:16px;height:16px}
+.consent span{font-size:0.78rem;color:var(--text-light);line-height:1.5}
+.consent a{color:var(--gold);text-decoration:underline}
+.ch-btn{display:block;width:100%;padding:18px;background:var(--grey-dark);border:none;color:#fff;font-family:var(--sans);font-size:0.85rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;cursor:pointer;transition:all 0.3s;margin-top:16px}
+.ch-btn:hover{background:#2A2A2A}
+#formMsg{font-size:0.82rem;color:var(--gold);margin-top:10px;text-align:center}
+
+.success{display:none;text-align:center;padding:48px 24px}.success.active{display:block;animation:fadeUp 0.5s ease forwards}.success h3{font-family:var(--serif);font-weight:400;font-size:1.8rem;margin-bottom:12px}.success p{font-size:1rem;color:var(--text-mid);line-height:1.8}
+
+.foot{max-width:700px;margin:0 auto;padding:32px 40px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.foot-sig{font-family:var(--serif);font-style:italic;font-size:0.9rem;color:var(--text-mid)}
+.foot-links{display:flex;gap:16px}
+.foot-links a{font-size:0.62rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-light)}
+.foot-links a:hover{color:var(--gold)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:768px){.nav{padding:14px 20px}.nav-r a:not(:last-child){display:none}.hero{padding:140px 24px 60px}.pain,.how{padding:48px 24px}.days-section,.form-section{padding:48px 24px}.form-wrap{padding:28px 20px}.form-row{flex-direction:column;gap:0}.foot{flex-direction:column;gap:12px;text-align:center;padding:24px}}
+</style>
+</head>
+<body>
+<nav class="nav"><a href="index.html" class="nav-logo">carinaannaprav</a><div class="nav-r"><a href="index.html#produkt">Der Kurs</a><a href="index.html#story">Über mich</a><a href="blog.html">Blog</a><a href="https://www.instagram.com/carinaannaprav/" target="_blank">Instagram</a></div></nav>
+
+<section class="hero">
+  <p class="label">Kostenlose 3-Tage Challenge</p>
+  <h1>Content that <em>Sells</em></h1>
+  <p class="sub">Finde heraus warum dein Content nicht verkauft — und was du ändern musst. 3 Tage. 3 Sprachmemos. 3 Handouts.</p>
+  <div class="date">AB 25. APRIL 2026</div>
+</section>
+
+<div class="pain">
+  <p>Du postest und postest — aber es fühlt sich an wie in einen leeren Raum reden.</p>
+  <p>Du weißt was du kannst, aber nicht wie du es sagen sollst.</p>
+  <p>Du brauchst jemanden, der dir sagt: DAS machst du jetzt. DAS lässt du weg.</p>
+</div>
+
+<section class="days-section">
+  <div class="days-inner">
+    <h2>3 Tage, 3 Jobs</h2>
+    <div class="day"><div class="day-nr">1</div><div><div class="day-title">Warum dein Content nicht verkauft.</div><div class="day-desc">Content hat drei Jobs. Du machst nur einen.</div></div></div>
+    <div class="day"><div class="day-nr">2</div><div><div class="day-title">Der Content Scan — wo ist das Loch?</div><div class="day-desc">Die Offer Lens: Drei Perspektiven die dir sofort Content geben.</div></div></div>
+    <div class="day"><div class="day-nr">3</div><div><div class="day-title">So gibst du deinem Content einen Job.</div><div class="day-desc">Hook-Formeln, Bridge-Muster, die Woche als System.</div></div></div>
+  </div>
+</section>
+
+<div class="how">
+  <h2>So läuft's</h2>
+  <div class="how-item"><strong>Anmeldung</strong><p>Du trägst dich unten ein und bekommst eine Mail mit den Telegram-Links.</p></div>
+  <div class="how-item"><strong>Broadcast-Kanal</strong><p>Jeden Tag ein Sprachmemo von mir plus ein Handout zum Ausfüllen. Du hörst es wann es dir passt.</p></div>
+  <div class="how-item"><strong>Challenge-Gruppe</strong><p>Du postest deine Ergebnisse, bekommst Feedback, tauschst dich mit den anderen aus.</p></div>
+  <p class="how-highlight">Kein Zoom. Kein Live. Kein Zeitdruck.</p>
+</div>
+
+<section class="form-section">
+  <div class="form-inner">
+    <p class="form-intro">Für <strong>Coaches</strong>, <strong>Fotografinnen</strong>, <strong>Yogalehrerinnen</strong>, <strong>Beraterinnen</strong>, <strong>VAs</strong>, <strong>Networkerinnen</strong> — alle, die ein Angebot haben und online verkaufen wollen.</p>
+    <div class="form-wrap" id="formWrapper">
+      <form id="challengeForm" novalidate>
+        <div class="form-row"><div class="form-group"><label for="firstname">Vorname</label><input type="text" id="firstname" placeholder="Dein Vorname" required></div><div class="form-group"><label for="lastname">Nachname</label><input type="text" id="lastname" placeholder="Dein Nachname" required></div></div>
+        <div class="form-group"><label for="email">E-Mail</label><input type="email" id="email" placeholder="deine@email.at" required></div>
+        <div class="form-group"><label for="instagram">Instagram (optional)</label><input type="text" id="instagram" placeholder="@deinname"></div>
+        <label class="consent"><input type="checkbox" id="consent" required><span>Ich stimme der <a href="datenschutz.html">Datenschutzerklärung</a> zu. Abmeldung jederzeit möglich.</span></label>
+        <button type="submit" class="ch-btn" id="submitBtn">ICH BIN DABEI</button>
+        <p id="formMsg"></p>
+      </form>
+    </div>
+    <div class="success" id="successMessage"><h3>Du bist dabei.</h3><p>Check deine Inbox — du bekommst jetzt eine Mail mit den Telegram-Links. Schau auch im Spam nach.</p></div>
+  </div>
+</section>
+
+<div class="foot"><span class="foot-sig">Carina Anna Prav.</span><div class="foot-links"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="agb.html">AGB</a></div></div>
+
+<script>
+const form=document.getElementById('challengeForm'),formWrapper=document.getElementById('formWrapper'),successMessage=document.getElementById('successMessage'),submitBtn=document.getElementById('submitBtn'),formMsg=document.getElementById('formMsg');
+form.addEventListener('submit',async function(e){e.preventDefault();const f=document.getElementById('firstname').value.trim(),l=document.getElementById('lastname').value.trim(),em=document.getElementById('email').value.trim(),ig=document.getElementById('instagram').value.trim(),c=document.getElementById('consent').checked;if(!f||!l){showErr('Bitte Vor- und Nachname eingeben.');return}if(!em||!em.includes('@')){showErr('Bitte gültige E-Mail eingeben.');return}if(!c){showErr('Bitte der Datenschutzerklärung zustimmen.');return}submitBtn.disabled=true;submitBtn.textContent='...';try{const r=await fetch('/.netlify/functions/challenge-signup',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:em,firstname:f,lastname:l,instagram:ig})});const d=await r.json();if(d.success){formWrapper.style.transition='opacity 0.3s';formWrapper.style.opacity='0';setTimeout(()=>{formWrapper.style.display='none';successMessage.classList.add('active')},300)}else{showErr('Etwas ist schiefgelaufen. Versuch es nochmal.')}}catch(err){showErr('Verbindungsfehler. Versuch es nochmal.')}});
+function showErr(m){formMsg.textContent=m;submitBtn.disabled=false;submitBtn.textContent='ICH BIN DABEI'}
+document.querySelectorAll('#challengeForm input').forEach(i=>i.addEventListener('input',()=>formMsg.textContent=''));
+</script>
+</body>
+</html>

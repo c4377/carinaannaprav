@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>carinaannaprav — Content that Sells</title>
-<meta name="description" content="Content that Sells — Dein Content-System für Posts die verkaufen. Von Carina Anna Prav.">
+<title>carinaannaprav — Business das dir dient</title>
+<meta name="description" content="Wie du ein Business baust, das dir dient — mit klarem Angebot, System und allen Kanälen. Von Carina Anna Prav.">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -34,8 +34,8 @@ img{max-width:100%;display:block}
 .nav-r a:hover{color:var(--burgundy)}
 
 .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden}
-.hero-bg{position:absolute;inset:0;background:url('bilder/hero-carina.jpg') center 20%/cover}
-.hero-bg::after{content:'';position:absolute;inset:0;background:rgba(20,15,13,0.55)}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg, #B5A99A 0%, #9B9189 100%)}
+.hero-bg::after{content:'';position:absolute;inset:0;background:rgba(20,15,13,0.4)}
 .hero-ct{position:relative;z-index:2;width:100%;max-width:680px;margin:0 auto;padding:160px 40px 120px;text-align:center;color:#F5F0EB}
 .hero-ct .label{font-size:0.68rem;letter-spacing:0.3em;text-transform:uppercase;opacity:0.5;margin-bottom:20px}
 .hero-ct h1{font-family:var(--serif);font-weight:400;font-size:clamp(2rem,5vw,3.2rem);line-height:1.15;margin-bottom:16px}
@@ -73,7 +73,7 @@ img{max-width:100%;display:block}
 .product .label{font-size:0.65rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--burgundy);margin-bottom:12px}
 .product h2{font-family:var(--serif);font-weight:400;font-size:1.6rem;margin-bottom:8px}
 .product .desc{font-size:0.92rem;color:var(--text-mid);max-width:520px;margin:0 auto 36px}
-.features{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:700px;margin:0 auto 40px;text-align:left}
+.features{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;max-width:900px;margin:0 auto 40px;text-align:left}
 .feat{background:var(--white);border:1px solid var(--border);padding:24px}
 .feat h4{font-family:var(--serif);font-weight:400;font-size:0.88rem;margin-bottom:6px;color:var(--burgundy)}
 .feat p{font-size:0.8rem;color:var(--text-mid);line-height:1.6}
@@ -86,306 +86,158 @@ img{max-width:100%;display:block}
 .btn-burg:hover{background:var(--burgundy-dark)}
 
 .about{display:grid;grid-template-columns:1fr 1.2fr;max-width:900px;margin:0 auto;padding:80px 40px;gap:48px;align-items:center}
-.about-img img{width:100%}
+.about-img{width:100%;aspect-ratio:4/5;background:#D4CABF}
 .about-txt .hey{font-family:var(--serif);font-weight:400;font-style:italic;font-size:1.6rem;color:var(--burgundy);margin-bottom:12px}
 .about-txt p{font-size:0.88rem;color:var(--text-mid);line-height:1.85;margin-bottom:14px}
 .about-txt p strong{color:var(--text);font-weight:500}
 
-.quotes{max-width:800px;margin:0 auto;padding:40px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.qcard{padding:24px;border-left:3px solid var(--burgundy);background:var(--white);border-top:1px solid var(--border);border-right:1px solid var(--border);border-bottom:1px solid var(--border)}
-.qcard p{font-family:var(--serif);font-style:italic;font-size:0.88rem;color:var(--text-mid);line-height:1.6;margin-bottom:8px}
-.qcard span{font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-light)}
-
-.challenge{padding:80px 40px;text-align:center;background:var(--warm)}
-.challenge-inner{max-width:460px;margin:0 auto}
-.challenge .label{font-size:0.62rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--burgundy);margin-bottom:12px}
-.challenge h3{font-family:var(--serif);font-weight:400;font-size:1.4rem;margin-bottom:8px}
-.challenge-inner>p{font-size:0.88rem;color:var(--text-mid);margin-bottom:24px}
-.ch-form{display:flex;flex-direction:column;gap:8px;max-width:360px;margin:0 auto}
-.ch-form input{padding:13px 16px;background:var(--white);border:1px solid var(--border);color:var(--text);font-family:var(--sans);font-size:0.85rem;font-weight:300;outline:none}
-.ch-form input:focus{border-color:var(--burgundy)}
-.ch-form input::placeholder{color:var(--text-light)}
-.ch-btn{padding:15px;background:var(--burgundy);border:1px solid var(--burgundy);color:#fff;font-family:var(--sans);font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:400;cursor:pointer;transition:all 0.3s}
-.ch-btn:hover{background:var(--burgundy-dark)}
-
-.dms{padding:60px 40px}
-.dms-label{text-align:center;margin-bottom:28px}
-.dms-label p{font-size:0.62rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--burgundy)}
-.dm-grid{column-count:3;column-gap:8px;max-width:900px;margin:0 auto}
-.dm-grid img{width:100%;break-inside:avoid;margin-bottom:8px;border-radius:5px;box-shadow:0 1px 6px rgba(0,0,0,0.05)}
-.dm-wrap{max-height:480px;overflow:hidden;position:relative;transition:max-height 0.5s ease}
-.dm-fade{position:absolute;bottom:0;left:0;right:0;height:100px;background:linear-gradient(transparent,var(--bg));pointer-events:none}
-.dm-toggle{display:block;margin:16px auto 0;padding:10px 28px;background:none;border:1px solid var(--border);color:var(--text-light);font-family:var(--sans);font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.3s}
-.dm-toggle:hover{border-color:var(--burgundy);color:var(--burgundy)}
-
-.nl{padding:60px 40px;text-align:center;border-top:1px solid var(--border)}
-.nl-inner{max-width:420px;margin:0 auto}
-.nl h3{font-family:var(--serif);font-weight:400;font-size:1.3rem;margin-bottom:6px}
-.nl p{font-size:0.85rem;color:var(--text-mid);margin-bottom:20px}
-.nl-form{display:flex}
-.nl-form input{flex:1;padding:13px 16px;background:var(--white);border:1px solid var(--border);color:var(--text);font-family:var(--sans);font-size:0.85rem;outline:none}
-.nl-form input::placeholder{color:var(--text-light)}
-.nl-form input:focus{border-color:var(--burgundy)}
-.nl-form button{padding:13px 20px;background:var(--burgundy);border:1px solid var(--burgundy);color:#fff;font-family:var(--sans);font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer}
-
-footer{padding:32px 40px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
-.foot-sig{font-family:var(--serif);font-style:italic;font-size:0.9rem;color:var(--text-mid)}
-.foot-links{display:flex;gap:16px}
-.foot-links a{font-size:0.62rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-light)}
+footer{padding:60px 40px;text-align:center;border-top:1px solid var(--border)}
+.foot-sig{font-family:var(--serif);font-size:1rem;display:block;margin-bottom:20px}
+.foot-links{display:flex;gap:24px;justify-content:center;flex-wrap:wrap}
+.foot-links a{font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-light);transition:color 0.3s}
 .foot-links a:hover{color:var(--burgundy)}
 
-.rv{opacity:0;transform:translateY(20px);transition:all 0.6s cubic-bezier(0.22,1,0.36,1)}.rv.v{opacity:1;transform:translateY(0)}
+.rv{opacity:0;transform:translateY(20px);transition:all 0.8s ease}
+.rv.v{opacity:1;transform:translateY(0)}
 
 @media(max-width:768px){
-  .nav{padding:14px 20px}.nav-r a:not(:nth-last-child(-n+2)){display:none}
-  .hero-ct{padding:130px 24px 80px}
-  .pains{grid-template-columns:1fr;padding:0 24px 40px}
-  .features{grid-template-columns:1fr}
-  .quotes{grid-template-columns:1fr;gap:12px;padding:30px 24px}
-  .about{grid-template-columns:1fr;padding:50px 24px;gap:28px}
-  .about-img{max-width:280px}
-  .dm-grid{column-count:2}
-  .nl-form{flex-direction:column}.nl-form button{width:100%}
-  footer{flex-direction:column;gap:12px;text-align:center;padding:24px}
-  .agit,.trans,.dream,.product,.price-cta,.challenge,.dms,.nl{padding-left:24px;padding-right:24px}
+  .pains,.features{grid-template-columns:1fr}
+  .about{grid-template-columns:1fr}
 }
-@media(max-width:480px){.dm-grid{column-count:1}.pains{gap:12px}}
 </style>
 </head>
 <body>
 
 <nav class="nav">
-  <a href="index.html" class="nav-logo">carinaannaprav</a>
+  <div class="nav-logo">carinaannaprav</div>
   <div class="nav-r">
-    <a href="#produkt">Der Kurs</a>
-    <a href="#story">Über mich</a>
-    <a href="blog.html">Blog</a>
-    <a href="https://www.instagram.com/carinaannaprav/" target="_blank">Instagram</a>
+    <a href="#product">Angebot</a>
+    <a href="#about">About</a>
+    <a href="/start.html">Start</a>
   </div>
 </nav>
 
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-ct">
-    <p class="label">Content that Sells</p>
-    <h1>Du hast keinen Plan,<br>wie dein Content <em>verkauft?</em></h1>
-    <p class="sub">Dein Feed sieht gut aus. Aber er bringt keinen Umsatz. Das ändern wir. In 7 Lektionen.</p>
-    <a href="waitlist.html" class="btn-w">AUF DIE WAITLIST</a>
-    <a href="challenge.html" class="btn-w" style="margin-left:12px;background:transparent;border:2px solid #fff;color:#fff">CHALLENGE — 25. APRIL</a>
+    <div class="label">Magnetic Sales Method™</div>
+    <h1>Wie du endlich verkaufst — <em>ohne überall gleichzeitig sein zu müssen</em></h1>
+    <p class="sub">Mit klarem Angebot, Content der anzieht, und einem System das funktioniert. Nicht mit Hustle.</p>
+    <a href="/3-shifts.html" class="btn-w">Kostenloses PDF herunterladen</a>
   </div>
 </section>
 
 <section class="agit rv">
   <div class="agit-inner">
-    <h2>Jede sagt, Content ist der Schlüssel zu Kunden.<br>Aber bei dir kommen nur <em>Likes.</em></h2>
-    <p>Doch das ist kein Wunder:</p>
+    <h2>Du weißt, dass du gut bist. <em>Aber es verkauft sich nicht.</em></h2>
+    <p>Du postest auf Instagram. Du hast eine Website. Vielleicht sogar Pinterest oder YouTube. Aber am Ende fragst du dich: Warum kommt nichts zurück?</p>
+    <p>Weil du kein System hast. Nur viele einzelne Teile, die nicht zusammenspielen.</p>
   </div>
 </section>
 
 <div class="pains rv">
-  <div class="pain"><div class="pain-icon">📝</div><h4>Du lieferst die Worte</h4><p>Du schreibst Captions, machst Reels, gibst dir Mühe — aber keiner reagiert. Du redest in einen leeren Raum.</p></div>
-  <div class="pain"><div class="pain-icon">🕐</div><h4>Du investierst ewig Zeit</h4><p>Stundenlang an einem Post. Perfekt formuliert. Dann 14 Likes und Stille.</p></div>
-  <div class="pain"><div class="pain-icon">📉</div><h4>Deine Views gehen runter</h4><p>Der Algorithmus zeigt dich nicht. Es liegt nicht an dir — es liegt an deinem System.</p></div>
-  <div class="pain"><div class="pain-icon">😶</div><h4>Du fühlst dich unsichtbar</h4><p>Du siehst andere wachsen. Du weißt, du bist genauso gut. Aber irgendwas fehlt.</p></div>
+  <div class="pain">
+    <div class="pain-icon">😔</div>
+    <h4>Du postest überall — und nirgends richtig</h4>
+    <p>Instagram heute, Pinterest morgen, YouTube nächste Woche. Aber nichts davon baut aufeinander auf.</p>
+  </div>
+  <div class="pain">
+    <div class="pain-icon">😔</div>
+    <h4>Dein Angebot ist nicht klar genug</h4>
+    <p>Du weißt selbst nicht mehr, was du eigentlich verkaufst. Wie sollen es dann andere wissen?</p>
+  </div>
+  <div class="pain">
+    <div class="pain-icon">😔</div>
+    <h4>Du planst viel — und setzt wenig um</h4>
+    <p>17 Content-Pläne, aber am Ende postest du wieder nur das, was dir gerade einfällt.</p>
+  </div>
+  <div class="pain">
+    <div class="pain-icon">😔</div>
+    <h4>Andere scheinen es zu wissen. Du nicht.</h4>
+    <p>Und du fragst dich, warum bei dir nichts funktioniert, obwohl du alles richtig machst.</p>
+  </div>
 </div>
 
 <section class="trans rv">
-  <h2>Damit ist jetzt Schluss. Dein Content hat ab sofort <em>einen Job.</em></h2>
-  <p>Und der heißt: verkaufen.</p>
-  <a href="waitlist.html" class="btn-light">ICH WILL DAS SYSTEM</a>
+  <h2><em>Ab sofort</em> weißt du genau, was du tust</h2>
+  <p>Du hast ein System. Du weißt, welchen Kanal du wann nutzt — und wie sie zusammenspielen. Pinterest arbeitet für dich, während du schläfst. YouTube baut Vertrauen auf. Email verkauft. Und deine Website ist der Ort, wo alles zusammenkommt.</p>
+  <a href="#product" class="btn-light">Wie das geht</a>
 </section>
 
 <section class="dream rv">
   <div class="dream-inner">
-    <h2>Wie wäre es, wenn...</h2>
-    <p>...du genau wüsstest, was du posten sollst — und warum.</p>
-    <p>...jeder Post einen klaren Job hätte: anziehen, aufwärmen oder verkaufen.</p>
-    <p>...du in <strong>2 Stunden pro Woche 5 Posts</strong> hättest, die für dich arbeiten.</p>
-    <p>...dein Content endlich Anfragen bringt — nicht nur Herzchen.</p>
+    <h2>Stell dir vor, du verkaufst — ohne überall gleichzeitig sein zu müssen</h2>
+    <p>Du checkst deine Website-Analytics. Pinterest bringt Traffic. YouTube baut Vertrauen auf. Deine Email-Sequenz verkauft, während du schläfst.</p>
+    <p>Du öffnest Instagram. Drei DMs. Eine Frau hat gebucht. Eine andere fragt nach Details. Die dritte sagt: "Danke. Genau das hab ich gebraucht."</p>
+    <p>So fühlt es sich an, wenn dein System funktioniert.</p>
   </div>
 </section>
 
-<section class="product rv" id="produkt">
+<section id="product" class="product rv">
   <div class="product-inner">
-    <p class="label">Self-Study Kurs</p>
+    <div class="label">Der Kurs</div>
     <h2>Content that Sells</h2>
-    <p class="desc">7 Lektionen. 8 Tools. Das komplette Content-System. In deinem Tempo.</p>
+    <p class="desc">Die 3 Content-Typen, die du brauchst — Magnet, Spiegel, Brücke. 7 Lektionen, 12 Tools, 1 Mechanik.</p>
+    
     <div class="features">
-      <div class="feat"><h4>Die Kundin im Kopf</h4><p>Du lernst, für genau eine Person zu schreiben — so, dass sie sich sofort gemeint fühlt.</p></div>
-      <div class="feat"><h4>Magnet · Spiegel · Brücke</h4><p>Das Content-Framework, mit dem jeder Post einen Job hat.</p></div>
-      <div class="feat"><h4>Stop the Scroll</h4><p>Hooks, die funktionieren. Erste Zeilen, bei denen sie nicht weiterscrollt.</p></div>
-      <div class="feat"><h4>Post mit Pitch</h4><p>So wird aus Content ein Verkaufsgespräch — ohne Cringe.</p></div>
-      <div class="feat"><h4>Deine Wochenstruktur</h4><p>2 Stunden. 5 Posts. Jede Woche. Ein System, das du durchhältst.</p></div>
-      <div class="feat"><h4>Deine Sales Page</h4><p>Damit der Link in Bio irgendwo hinführt wo jemand kaufen kann.</p></div>
-      <div class="feat"><h4>8 Tools</h4><p>Vorlagen, Spickzettel, Wochenplan, Ideen-Generator. Aufmachen und loslegen.</p></div>
+      <div class="feat">
+        <h4>Die 3 Content-Typen</h4>
+        <p>Magnet (Reichweite), Spiegel (Vertrauen), Brücke (Verkauf) — und wie du sie einsetzt.</p>
+      </div>
+      <div class="feat">
+        <h4>Universelle Mechanik</h4>
+        <p>Die Typen funktionieren überall — du lernst die Logik, nicht plattform-spezifische Tricks.</p>
+      </div>
+      <div class="feat">
+        <h4>Angebot klar machen</h4>
+        <p>So formulierst du dein Angebot, dass andere es verstehen — ohne dass du jedes Mal von vorne erklären musst.</p>
+      </div>
+      <div class="feat">
+        <h4>12 Tools</h4>
+        <p>Traumkundin-Profil, Hook-Bibliothek (60+), Story-Struktur, Einwand-Liste, CTA-Vorlagen, Content-Vorlagen für alle 3 Typen.</p>
+      </div>
+      <div class="feat">
+        <h4>Content-Kalender</h4>
+        <p>Der Plan, den du tatsächlich umsetzt — weil er auf Magnet/Spiegel/Brücke basiert, nicht auf Raten.</p>
+      </div>
+      <div class="feat">
+        <h4>Sofort umsetzbar</h4>
+        <p>Keine Theorie. Vorlagen, die du ausfüllst und direkt nutzen kannst — auf jedem Kanal.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="price-cta rv" id="preis">
-  <h2>Dein Content verdient ein System.</h2>
-  <p class="price-sub">Content that Sells wird bald verfügbar sein.</p>
-  <a href="waitlist.html" class="btn-burg">AUF DIE WAITLIST</a>
+<section class="price-cta rv">
+  <h2>Content that Sells</h2>
+  <div class="price-now">€297</div>
+  <p class="price-sub">Einmalzahlung · Sofortiger Zugang</p>
+  <a href="/content-that-sells.html" class="btn-burg">Zum Kurs</a>
 </section>
 
-
-<section class="about rv" id="story">
-  <div class="about-img"><img src="bilder/carina-bw.jpg" alt="Carina Anna Prav"></div>
+<section id="about" class="about rv">
+  <div class="about-img"></div>
   <div class="about-txt">
-    <p class="hey">Hey, ich bin Carina.</p>
-    <p>Ich war Rocksängerin in Amerika. Ich hab auf Bühnen gestanden, bevor ich wusste was ein Funnel ist. Dann kam das Leben — Kind, Verantwortung, der Wunsch nach Freiheit.</p>
-    <p><strong>Ich habe vier Businesses aufgebaut — alle vor Social Media.</strong> Ich weiß, wie man verkauft. Nicht weil ich es gelernt hab, sondern weil ich es seit ich denken kann tue.</p>
-    <p>Heute baue ich mein Business neben einem 32-Stunden-Job auf. Allein. Ohne Team. <strong>Wenn ich es kann, kannst du es auch.</strong></p>
-    <p>Verkaufen ist kein Trick. Es ist eine Fähigkeit. Und jede Frau kann sie haben.</p>
+    <p class="hey">Hi, ich bin Carina</p>
+    <p><strong>Business Strategin aus Wien.</strong> Ich arbeite mit Frauen, die wissen dass sie gut sind in dem was sie tun — aber nicht wissen, wie sie es verkaufen.</p>
+    <p>Ich hab vier Businesses gebaut. Ich weiß, was funktioniert — und was nur Zeit kostet, ohne Ergebnis zu bringen.</p>
+    <p><strong>Mein System:</strong> Ein klares Angebot. Content, der anzieht (Instagram, Pinterest, YouTube, Website, Email). Ein Funnel, der verkauft. Ohne Dauerpräsenz, ohne Hustle.</p>
+    <p>Die <strong>Magnetic Sales Method™</strong> ist meine Antwort auf die Frage: Wie verkaufst du — ohne überall gleichzeitig sein zu müssen?</p>
   </div>
 </section>
 
-
-<section class="price-cta rv" style="border-top:1px solid var(--border)">
-  <h2>Hör auf zu raten. Fang an zu verkaufen.</h2>
-  <p class="price-sub">Trag dich auf die Waitlist ein — du erfährst als Erste, wann es losgeht.</p>
-  <a href="waitlist.html" class="btn-burg">AUF DIE WAITLIST</a>
-</section>
-
-<section class="dms">
-  <div class="dms-label"><p>80+ echte Nachrichten von Kundinnen</p></div>
-  <div class="dm-wrap" id="dm-wrap">
-    <div class="dm-grid">
-<img src="bilder/IMG_1121.png" alt="Kundenstimme">
-<img src="bilder/IMG_1206.png" alt="Kundenstimme">
-<img src="bilder/IMG_1298_Original.jpg" alt="Kundenstimme">
-<img src="bilder/IMG_2316_Original.jpg" alt="Kundenstimme">
-<img src="bilder/IMG_2323_Original.jpg" alt="Kundenstimme">
-<img src="bilder/IMG_2530.png" alt="Kundenstimme">
-<img src="bilder/IMG_3215_Original.jpg" alt="Kundenstimme">
-<img src="bilder/IMG_3601.png" alt="Kundenstimme">
-<img src="bilder/IMG_3861_Original.jpg" alt="Kundenstimme">
-<img src="bilder/IMG_4347.png" alt="Kundenstimme">
-<img src="bilder/IMG_4544.png" alt="Kundenstimme">
-<img src="bilder/IMG_4612.png" alt="Kundenstimme">
-<img src="bilder/IMG_4613.png" alt="Kundenstimme">
-<img src="bilder/IMG_5543_Original.jpg" alt="Kundenstimme">
-<img src="bilder/IMG_5665_Original.jpg" alt="Kundenstimme">
-<img src="bilder/IMG_6291.png" alt="Kundenstimme">
-<img src="bilder/IMG_6642.jpg" alt="Kundenstimme">
-<img src="bilder/IMG_6655.jpg" alt="Kundenstimme">
-<img src="bilder/IMG_6656.jpg" alt="Kundenstimme">
-<img src="bilder/IMG_6661.jpg" alt="Kundenstimme">
-<img src="bilder/IMG_6668.jpg" alt="Kundenstimme">
-<img src="bilder/IMG_6679.jpg" alt="Kundenstimme">
-<img src="bilder/IMG_6682.jpg" alt="Kundenstimme">
-<img src="bilder/IMG_6691.jpg" alt="Kundenstimme">
-<img src="bilder/IMG_6781_Original.jpg" alt="Kundenstimme">
-<img src="bilder/IMG_7502.png" alt="Kundenstimme">
-<img src="bilder/IMG_7504.png" alt="Kundenstimme">
-<img src="bilder/IMG_7521.png" alt="Kundenstimme">
-<img src="bilder/IMG_7522_Original.jpg" alt="Kundenstimme">
-<img src="bilder/IMG_7528.png" alt="Kundenstimme">
-<img src="bilder/IMG_7529.png" alt="Kundenstimme">
-<img src="bilder/IMG_7533_Original.jpg" alt="Kundenstimme">
-<img src="bilder/IMG_7536_Original.jpg" alt="Kundenstimme">
-<img src="bilder/IMG_7537_Original.jpg" alt="Kundenstimme">
-<img src="bilder/IMG_7539_Original.jpg" alt="Kundenstimme">
-<img src="bilder/IMG_7955_Original.jpg" alt="Kundenstimme">
-<img src="bilder/IMG_8337.png" alt="Kundenstimme">
-<img src="bilder/IMG_8338.png" alt="Kundenstimme">
-<img src="bilder/IMG_9100_Original.jpg" alt="Kundenstimme">
-<img src="bilder/IMG_9111_Original.jpg" alt="Kundenstimme">
-<img src="bilder/IMG_9112_Original.jpg" alt="Kundenstimme">
-<img src="bilder/IMG_9120_Original.jpg" alt="Kundenstimme">
-<img src="bilder/IMG_9121_Original.jpg" alt="Kundenstimme">
-<img src="bilder/original-1B533CC7-F2ED-4EDF-83D0-36A6180B835C.jpeg" alt="Kundenstimme">
-<img src="bilder/original-2ECC2A33-6953-41C7-83B3-F66580D19CF5.jpeg" alt="Kundenstimme">
-<img src="bilder/original-3A90FEF4-EBD9-4DFF-B126-9A56547C9256.jpeg" alt="Kundenstimme">
-<img src="bilder/original-04AA6F00-0C1B-4113-8ADA-50CB84CBB8E0.jpeg" alt="Kundenstimme">
-<img src="bilder/original-5F90752B-8EAD-42AA-85C7-4D14768B28B6.jpeg" alt="Kundenstimme">
-<img src="bilder/original-6C82273F-FF98-479C-A9B1-B0CBF70C223D.jpeg" alt="Kundenstimme">
-<img src="bilder/original-65C04497-05A7-41EC-9764-9E93774B4FD6.jpeg" alt="Kundenstimme">
-<img src="bilder/original-99B7C905-0625-4865-9EDB-4BE8409F2306.jpeg" alt="Kundenstimme">
-<img src="bilder/original-312C2E9C-7F19-4DA1-93B3-FF4873BDC9B2.jpeg" alt="Kundenstimme">
-<img src="bilder/original-411A41C8-388B-4928-9F40-E678CD5E0991.jpeg" alt="Kundenstimme">
-<img src="bilder/original-957F0BA5-C7E0-4C86-8419-F62563F7A047.jpeg" alt="Kundenstimme">
-<img src="bilder/original-1398F801-9406-4C0A-A0D8-A8908EF4CC2E.jpeg" alt="Kundenstimme">
-<img src="bilder/original-4416EF4A-6C08-47BD-A20C-BA82C0265117.jpeg" alt="Kundenstimme">
-<img src="bilder/original-7285B6E9-997B-4396-B6B6-CD57BE7F3FEE.jpeg" alt="Kundenstimme">
-<img src="bilder/original-82809621-917B-4691-8FFA-47C00820BB92.jpeg" alt="Kundenstimme">
-<img src="bilder/original-A6FA60B5-B3D8-4FE0-B4D1-A5E8E87A10AD.jpeg" alt="Kundenstimme">
-<img src="bilder/original-A648FAA7-664A-4A6B-80C0-74501BB0F2F7.jpeg" alt="Kundenstimme">
-<img src="bilder/original-AB7B540C-0E93-4F4C-AEA1-B3E92DDA92AE.jpeg" alt="Kundenstimme">
-<img src="bilder/original-B274C6CA-50FF-450C-BA1B-013D5A08A62B.jpeg" alt="Kundenstimme">
-<img src="bilder/original-B2789F91-83D3-4E11-AFAB-915B83A023DC.jpeg" alt="Kundenstimme">
-<img src="bilder/original-B3277BC9-7C2E-4E59-835A-288F2AE0C138.jpeg" alt="Kundenstimme">
-<img src="bilder/original-B3944818-B656-4973-B566-46AAC3CF0203.jpeg" alt="Kundenstimme">
-<img src="bilder/original-BABFACA4-C8C6-4CF6-B10A-6072C190E6B7.jpeg" alt="Kundenstimme">
-<img src="bilder/original-CFB39709-7504-4DE9-BA94-519A5F03C191.jpeg" alt="Kundenstimme">
-<img src="bilder/original-D23C42DC-C146-43BB-92C9-0C95CD0AF998.jpeg" alt="Kundenstimme">
-<img src="bilder/original-E1CF9CA0-3B57-4760-863E-C2C418298C99.jpeg" alt="Kundenstimme">
-<img src="bilder/original-E2E827D2-F65F-45EE-BB7F-9C3E43BB32DF.jpeg" alt="Kundenstimme">
-<img src="bilder/original-FA4AAD51-3381-4336-A406-55AFB8CEC268.jpeg" alt="Kundenstimme">
-<img src="bilder/original-FE218E4D-02E7-4D9A-8451-535CC836FD0F.jpeg" alt="Kundenstimme">
-<img src="bilder/proof-1.jpg" alt="Kundenstimme">
-<img src="bilder/proof-2.jpg" alt="Kundenstimme">
-<img src="bilder/proof-3.jpg" alt="Kundenstimme">
-<img src="bilder/proof-4.jpg" alt="Kundenstimme">
-<img src="bilder/proof-5.jpg" alt="Kundenstimme">
-<img src="bilder/proof-6.jpg" alt="Kundenstimme">
-<img src="bilder/proof-7.jpg" alt="Kundenstimme">
-<img src="bilder/proof-8.jpg" alt="Kundenstimme">
-    </div>
-    <div class="dm-fade" id="dm-fade"></div>
-  </div>
-  <button class="dm-toggle" id="dm-btn" onclick="toggleDM()">Alle anzeigen</button>
-</section>
-
-<section class="nl rv">
-  <div class="nl-inner">
-    <h3>Klartext, kein Spam.</h3>
-    <p>Strategien und echte Einblicke — direkt in dein Postfach.</p>
-    <div class="nl-form"><input type="email" placeholder="Deine E-Mail-Adresse"><button type="button">Anmelden</button></div>
-  </div>
-</section>
-
-
-<section style="padding:60px 40px;max-width:800px;margin:0 auto">
-  <h2 style="font-family:var(--serif);font-weight:400;font-size:1.4rem;text-align:center;margin-bottom:32px">Blog</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-    <a href="blog/warum-dein-content-nicht-verkauft.html" style="background:var(--warm);padding:24px;text-decoration:none;border:1px solid var(--border);transition:border-color 0.3s"><p style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold,#C9A84C);margin-bottom:6px">CONTENT</p><p style="font-family:var(--serif);font-size:0.95rem;line-height:1.4;color:var(--text)">Warum dein Content nicht verkauft</p></a>
-    <a href="blog/magnet-spiegel-bruecke.html" style="background:var(--warm);padding:24px;text-decoration:none;border:1px solid var(--border);transition:border-color 0.3s"><p style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold,#C9A84C);margin-bottom:6px">STRATEGIE</p><p style="font-family:var(--serif);font-size:0.95rem;line-height:1.4;color:var(--text)">Magnet, Spiegel, Brücke</p></a>
-    <a href="blog/hooks-die-stoppen.html" style="background:var(--warm);padding:24px;text-decoration:none;border:1px solid var(--border);transition:border-color 0.3s"><p style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold,#C9A84C);margin-bottom:6px">HOOKS</p><p style="font-family:var(--serif);font-size:0.95rem;line-height:1.4;color:var(--text)">Hooks die stoppen</p></a>
-    <a href="blog/verkaufen-ohne-cringe.html" style="background:var(--warm);padding:24px;text-decoration:none;border:1px solid var(--border);transition:border-color 0.3s"><p style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold,#C9A84C);margin-bottom:6px">VERKAUFEN</p><p style="font-family:var(--serif);font-size:0.95rem;line-height:1.4;color:var(--text)">Verkaufen ohne Cringe</p></a>
-  </div>
-  <p style="text-align:center;margin-top:20px"><a href="blog.html" style="font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-light,#999)">ALLE ARTIKEL →</a></p>
-</section>
 <footer>
   <span class="foot-sig">Carina Anna Prav.</span>
   <div class="foot-links">
-    <a href="impressum.html">Impressum</a>
-    <a href="datenschutz.html">Datenschutz</a>
-    <a href="agb.html">AGB</a>
+    <a href="/impressum.html">Impressum</a>
+    <a href="/datenschutz.html">Datenschutz</a>
     <a href="https://www.instagram.com/carinaannaprav/" target="_blank">Instagram</a>
-    <a href="https://www.tiktok.com/@carinaannaprav" target="_blank">TikTok</a>
   </div>
 </footer>
 
 <script>
 const obs=new IntersectionObserver(e=>e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('v')}),{threshold:0.08,rootMargin:'0px 0px -20px 0px'});
 document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
-
-function toggleDM(){
-  const w=document.getElementById('dm-wrap'),f=document.getElementById('dm-fade'),b=document.getElementById('dm-btn');
-  if(!w.dataset.open){w.style.maxHeight=w.scrollHeight+'px';f.style.display='none';b.textContent='Weniger anzeigen';w.dataset.open='1'}
-  else{w.style.maxHeight='480px';f.style.display='block';b.textContent='Alle anzeigen';delete w.dataset.open}
-}
-
-async function chSub(){
-  const f=document.getElementById('ch-fn').value.trim(),l=document.getElementById('ch-ln').value.trim(),e=document.getElementById('ch-em').value.trim(),c=document.getElementById('ch-ok').checked,b=document.getElementById('ch-btn'),m=document.getElementById('ch-msg');
-  if(!f||!l){m.textContent='Bitte Vor- und Nachname.';return}
-  if(!e||!e.includes('@')){m.textContent='Bitte gültige E-Mail.';return}
-  if(!c){m.textContent='Bitte zustimmen.';return}
-  b.disabled=true;b.textContent='...';
-  try{const r=await fetch('/.netlify/functions/challenge-signup',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:e,firstname:f,lastname:l})});const d=await r.json();if(d.success){window.location.href='challenge-danke.html'}else{m.textContent='Fehler.';b.disabled=false;b.textContent='Kostenlos anmelden'}}
-  catch(err){m.textContent='Netzwerkfehler.';b.disabled=false;b.textContent='Kostenlos anmelden'}
-}
 </script>
 </body>
 </html>

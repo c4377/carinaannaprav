@@ -1,165 +1,395 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>carinaannaprav — Content that Sells</title>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-:root {
-  --bg: #1C1917;
-  --bg-warm: #231F1D;
-  --burgundy: #8A2E3C;
-  --burgundy-deep: #5C1A28;
-  --burgundy-glow: rgba(138,46,60,0.15);
-  --cream: #F5F0EB;
-  --cream-soft: rgba(245,240,235,0.88);
-  --cream-muted: rgba(245,240,235,0.6);
-  --cream-faint: rgba(245,240,235,0.1);
-  --border: rgba(245,240,235,0.15);
-  --serif: 'Times New Roman MT Std', 'Times New Roman', Times, serif;
-  --sans: 'Outfit', sans-serif;
-}
-* { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior:smooth; }
-body { background:var(--bg); color:var(--cream); font-family:var(--sans); font-weight:300; font-size:16px; line-height:1.7; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
-a { color:var(--cream); text-decoration:none; }
-::selection { background:var(--burgundy); color:var(--cream); }
-img { max-width:100%; display:block; }
-strong { font-weight:500; }
-
-/* NAV */
-.nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:20px 40px; display:flex; justify-content:space-between; align-items:center; background:rgba(28,25,23,0.92); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border-bottom:1px solid var(--border); }
-.nav-logo { font-family:var(--serif); font-weight:400; font-size:1.1rem; letter-spacing:0.08em; color:var(--cream); }
-.nav-links { display:flex; gap:28px; align-items:center; }
-.nav-links a { font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; font-weight:400; color:var(--cream-muted); transition:color 0.3s; }
-.nav-links a:hover { color:var(--cream); }
-.nav-cta { border:1px solid var(--burgundy); padding:10px 24px; transition:all 0.35s; }
-.nav-cta:hover { background:var(--burgundy); color:var(--cream); }
-
-/* PAGE HERO */
-.page-hero { padding:140px 40px 80px; text-align:center; position:relative; overflow:hidden; }
-.page-hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 50% 50%, rgba(138,46,60,0.12) 0%, transparent 60%), var(--bg); }
-.page-hero * { position:relative; z-index:2; }
-.page-hero .tag { font-size:0.68rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--burgundy); margin-bottom:16px; }
-.page-hero h1 { font-family:var(--serif); font-weight:400; font-size:clamp(2rem,5vw,3.2rem); line-height:1.1; margin-bottom:12px; }
-.page-hero .sub { font-size:0.95rem; color:var(--cream-soft); max-width:460px; margin:0 auto; }
-
-/* CONTENT */
-.content { max-width:700px; margin:0 auto; padding:60px 40px; }
-.content h2 { font-family:var(--serif); font-weight:400; font-size:1.4rem; margin-bottom:16px; }
-.content h3 { font-family:var(--serif); font-weight:400; font-size:1.1rem; margin-bottom:12px; margin-top:32px; color:var(--burgundy); }
-.content p { font-size:0.92rem; color:var(--cream-soft); line-height:1.85; margin-bottom:14px; }
-.content p strong { color:var(--cream); font-weight:500; }
-.content ul { list-style:none; margin:16px 0 24px; }
-.content ul li { font-size:0.88rem; color:var(--cream-soft); padding:10px 0 10px 22px; position:relative; border-bottom:1px solid var(--border); }
-.content ul li:last-child { border-bottom:none; }
-.content ul li::before { content:'—'; position:absolute; left:0; color:var(--burgundy); font-weight:500; }
-.content a { color:var(--burgundy); transition:color 0.3s; }
-.content a:hover { color:var(--cream); }
-
-/* PRICE BOX */
-.price-box { background:var(--bg-warm); border:1px solid var(--border); padding:36px; text-align:center; margin:32px 0; }
-.price-box .price { font-family:var(--serif); font-weight:400; font-size:2.2rem; color:var(--cream); }
-.price-box .note { font-size:0.8rem; color:var(--cream-muted); margin-top:6px; }
-
-/* CTA BTN */
-.cta-btn { display:inline-block; padding:16px 44px; background:var(--burgundy); border:1px solid var(--burgundy); color:var(--cream); font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase; font-weight:400; transition:all 0.35s; cursor:pointer; font-family:var(--sans); }
-.cta-btn:hover { background:transparent; color:var(--cream); }
-
-/* PHASES */
-.phases { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; margin:24px 0; }
-.phase { background:var(--bg-warm); border:1px solid var(--border); padding:20px; }
-.phase h4 { font-family:var(--serif); font-weight:400; font-size:0.85rem; color:var(--burgundy); margin-bottom:6px; }
-.phase p { font-size:0.8rem; color:var(--cream-soft); line-height:1.6; margin:0; }
-
-/* BACK LINK */
-.back { display:inline-block; margin-top:32px; font-size:0.8rem; color:var(--cream-muted); transition:color 0.3s; }
-.back:hover { color:var(--cream); }
-
-/* FOOTER */
-footer { padding:40px 60px; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; margin-top:40px; }
-.foot-sig { font-family:var(--serif); font-style:italic; font-size:1rem; color:var(--cream-soft); }
-.foot-links { display:flex; gap:20px; }
-.foot-links a { font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--cream-muted); transition:color 0.3s; }
-.foot-links a:hover { color:var(--cream); }
-.foot-copy { font-size:0.65rem; color:var(--cream-muted); opacity:0.8; }
-
-/* BLOG */
-.blog-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:2px; max-width:800px; margin:0 auto; padding:0 40px 60px; }
-.blog-card { background:var(--bg-warm); border:1px solid var(--border); padding:28px; transition:all 0.4s; }
-.blog-card:hover { border-color:rgba(138,46,60,0.3); background:rgba(138,46,60,0.06); }
-.blog-card .btag { font-size:0.6rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--burgundy); font-weight:400; margin-bottom:8px; }
-.blog-card h3 { font-family:var(--serif); font-weight:400; font-size:1.05rem; margin-bottom:8px; line-height:1.3; }
-.blog-card h3 a { color:var(--cream); }
-.blog-card h3 a:hover { color:var(--burgundy); }
-.blog-card p { font-size:0.8rem; color:var(--cream-muted); line-height:1.6; }
-.blog-card .date { font-size:0.65rem; color:var(--cream-muted); margin-top:10px; opacity:0.7; }
-
-/* FORM INPUTS */
-.form-input { padding:14px 18px; background:var(--bg-warm); border:1px solid var(--border); color:var(--cream); font-family:var(--sans); font-size:0.85rem; font-weight:300; outline:none; transition:border-color 0.3s; width:100%; }
-.form-input::placeholder { color:var(--cream-muted); }
-.form-input:focus { border-color:var(--burgundy); }
-
-/* RESPONSIVE */
-@media(max-width:768px) {
-  .nav { padding:16px 20px; }
-  .nav-links { gap:14px; }
-  .nav-links a:not(.nav-cta) { display:none; }
-  .page-hero { padding:110px 24px 50px; }
-  .content { padding:40px 24px; }
-  .phases { grid-template-columns:1fr; }
-  .blog-grid { grid-template-columns:1fr; padding:0 24px 40px; }
-  footer { flex-direction:column; gap:16px; text-align:center; padding:30px 24px; }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content that Sells — Carina Anna Prav</title>
+    <meta name="description" content="7 Lektionen, 12 Tools, 1 System. So baust du Content, der deine Traumkundinnen anzieht und dein Angebot verkauft.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 300;
+            background: #F9F7F4;
+            color: #3B3530;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* Hero */
+        .hero {
+            background: #B5A99A;
+            color: #F9F7F4;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 24px 80px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+        }
+        
+        .kicker {
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 32px;
+            opacity: 0.8;
+        }
+        
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 64px;
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 32px;
+        }
+        
+        .hero-subtitle {
+            font-size: 20px;
+            line-height: 1.7;
+            margin-bottom: 48px;
+            opacity: 0.9;
+        }
+        
+        .price-tag {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            margin-bottom: 32px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 20px 56px;
+            background: #F9F7F4;
+            color: #3B3530;
+            text-decoration: none;
+            font-size: 15px;
+            letter-spacing: 1px;
+            transition: opacity 0.3s;
+        }
+        
+        .cta-button:hover {
+            opacity: 0.85;
+        }
+        
+        /* Content Sections */
+        .section {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 100px 24px;
+        }
+        
+        .section-alt {
+            background: #E8E2D9;
+        }
+        
+        .section-dark {
+            background: #D4CABF;
+        }
+        
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 32px;
+        }
+        
+        h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 400;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+        
+        p {
+            font-size: 16px;
+            line-height: 1.9;
+            margin-bottom: 24px;
+            opacity: 0.85;
+        }
+        
+        /* Problem Section */
+        .problem-list {
+            margin: 40px 0;
+        }
+        
+        .problem-item {
+            padding: 24px 0;
+            border-bottom: 1px solid rgba(59, 53, 48, 0.15);
+        }
+        
+        .problem-item:last-child {
+            border-bottom: none;
+        }
+        
+        .problem-item strong {
+            font-weight: 400;
+            font-style: italic;
+            opacity: 1;
+        }
+        
+        /* Module List */
+        .module-list {
+            margin: 48px 0;
+        }
+        
+        .module {
+            margin-bottom: 48px;
+        }
+        
+        .module-number {
+            font-size: 13px;
+            letter-spacing: 1px;
+            opacity: 0.5;
+            margin-bottom: 12px;
+        }
+        
+        .module h3 {
+            margin-bottom: 12px;
+        }
+        
+        .module p {
+            font-size: 15px;
+        }
+        
+        /* Tools Grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            margin: 48px 0;
+        }
+        
+        .tool-item {
+            padding: 24px;
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .tool-item h4 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            margin-bottom: 8px;
+        }
+        
+        .tool-item p {
+            font-size: 14px;
+            margin-bottom: 0;
+        }
+        
+        /* Testimonials */
+        .testimonial {
+            margin: 60px 0;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.4);
+            font-style: italic;
+        }
+        
+        .testimonial-text {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-author {
+            font-style: normal;
+            font-size: 14px;
+            opacity: 0.7;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: #9B9189;
+            color: #F9F7F4;
+            text-align: center;
+            padding: 100px 24px;
+        }
+        
+        .cta-section h2 {
+            color: #F9F7F4;
+            margin-bottom: 24px;
+        }
+        
+        .cta-section p {
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 48px;
+        }
+        
+        .cta-section .price-tag {
+            margin-bottom: 32px;
+        }
+        
+        .cta-section .cta-button {
+            background: #F9F7F4;
+            color: #3B3530;
+        }
+        
+        /* Footer */
+        footer {
+            background: #F9F7F4;
+            padding: 60px 24px;
+            text-align: center;
+            font-size: 13px;
+            opacity: 0.6;
+        }
+        
+        footer a {
+            color: #3B3530;
+            text-decoration: none;
+            margin: 0 12px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 42px;
+            }
+            
+            h2 {
+                font-size: 32px;
+            }
+            
+            .hero-subtitle {
+                font-size: 17px;
+            }
+            
+            .section {
+                padding: 80px 24px;
+            }
+            
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-<nav class="nav">
-  <a href="index.html" class="nav-logo">carinaannaprav</a>
-  <div class="nav-links">
-    <a href="index.html#angebote">Angebote</a>
-    <a href="index.html#kurse">Kurse</a>
-    <a href="index.html#story">Über mich</a>
-    <a href="blog.html">Blog</a>
-    <a href="https://www.instagram.com/carinaannaprav/" target="_blank">Instagram</a>
-  </div>
-</nav>
-<section class="page-hero">
-  <p class="tag">SELF-STUDY · 297€</p>
-  <h1>CONTENT THAT SELLS</h1>
-  <p class="sub">Content, der verkauft — nicht nur Likes sammelt.</p>
-</section>
-<div class="content">
-  <h2>Du postest. Es passiert nichts. Hier ist der Grund.</h2>
-  <p>Dein Content sieht gut aus. Aber er arbeitet nicht für dich. Er bringt Likes, vielleicht Reichweite — aber keinen Umsatz. <strong>Das liegt nicht an dir. Es liegt an deinem System.</strong></p>
-  <p>Content that Sells gibt dir das Framework, mit dem jeder Post einen Job hat. Magnet, Spiegel oder Brücke — du weißt immer genau, was du postest und warum.</p>
-
-  <h3>Was du lernst</h3>
-  <ul>
-    <li>Mein komplettes Content-Framework (Magnet · Spiegel · Brücke)</li>
-    <li>Content, der deine Traumkundin direkt anspricht</li>
-    <li>Wie du mit weniger Posts mehr verkaufst</li>
-    <li>Deine Wochenstruktur — 2 Stunden, 5 Posts</li>
-    <li>Posts mit Pitch: So wird aus Content ein Verkaufsgespräch</li>
-  </ul>
-
-  <div class="price-box">
-    <div class="price">297 €</div>
-    <div class="note">Self-Study · Sofort verfügbar · Audio-Lektionen + Worksheets</div>
-  </div>
-  <div style="text-align:center"><a href="#" class="cta-btn">JETZT KAUFEN</a></div>
-  <a href="index.html" class="back">← Zurück</a>
-</div>
-<footer>
-  <span class="foot-sig">Carina Anna Prav.</span>
-  <div class="foot-links">
-    <a href="impressum.html">Impressum</a>
-    <a href="datenschutz.html">Datenschutz</a>
-    <a href="agb.html">AGB</a>
-    <a href="https://www.instagram.com/carinaannaprav/" target="_blank">Instagram</a>
-  </div>
-  <span class="foot-copy">© 2026 carinaannaprav</span>
-</footer>
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="kicker">Der Kurs</div>
+            <h1>Content that Sells</h1>
+            <p class="hero-subtitle">Die 3 Content-Typen, die du brauchst — Magnet, Spiegel, Brücke. Und wie du sie umsetzt.</p>
+            <div class="price-tag">€297</div>
+            <a href="#buy" class="cta-button">Jetzt kaufen</a>
+        </div>
+    </section>
+    
+    <!-- Moment — Enter the Beautiful -->
+    <section class="section">
+        <h2>Stell dir vor</h2>
+        <p>Du sitzt bei deinem Morgenkaffee. Telefon am Tisch, Bildschirm noch aus. Draußen ist es hell, aber die Stadt ist noch leise.</p>
+        
+        <p>Du öffnest Instagram — nicht weil du musst, sondern weil du neugierig bist.</p>
+        
+        <p>Drei DMs. Eine Frau hat dein Angebot gebucht. Sie schreibt: "Ich hab dich zwei Wochen beobachtet und gewusst — das ist es." Eine andere fragt nach einem Detail. Die dritte sagt einfach nur: "Danke. Genau das hab ich gebraucht."</p>
+        
+        <p>Du antwortest. Legst das Handy weg. Trinkst deinen Kaffee.</p>
+        
+        <p>Später checkst du deine Website-Analytics. Pinterest bringt Traffic. YouTube bringt Anfragen. Deine Email-Sequenz verkauft, während du schläfst.</p>
+        
+        <p>So fühlt es sich an, wenn dein Business funktioniert.</p>
+    </section>
+    
+    <!-- Quiet Chronology -->
+    <section class="section section-alt">
+        <h2>Wie es dazu kam</h2>
+        <p>Du hast aufgehört, Content zu posten ohne zu wissen, welchen Job er hat.</p>
+        
+        <p>Du hast verstanden, dass es drei Arten von Content gibt. Magnet — zieht an. Spiegel — baut Vertrauen. Brücke — verkauft. Und dass du alle drei brauchst.</p>
+        
+        <p>Du hast gelernt, wie die Mechanik funktioniert. Was Magnet-Content ist. Was Spiegel-Content ist. Was Brücken-Content ist. Und wann du welchen einsetzt.</p>
+        
+        <p>Du hast dein Angebot klar gemacht. So klar, dass andere es verstehen, ohne dass du jedes Mal von vorne erklären musst.</p>
+        
+        <p>Und du hast angefangen zu verkaufen. Nicht weil du lauter geworden bist. Sondern weil du endlich weißt, welchen Job jeder Post hat.</p>
+    </section>
+    
+    <!-- Kipp-Satz -->
+    <section class="section">
+        <h2>Ich muss nicht raten, welcher Content funktioniert</h2>
+        <p>Das ist der Moment, wo sich alles ändert.</p>
+        
+        <p>Nicht weil plötzlich alles einfach wird. Sondern weil du aufhörst, Content zu machen ohne zu wissen warum — und anfängst, die 3 Typen gezielt einzusetzen.</p>
+        
+        <p>Du weißt, was Magnet-Content ist. Was Spiegel-Content ist. Was Brücken-Content ist. Und welchen du wann brauchst — auf jedem Kanal.</p>
+        
+        <p>Und du verkaufst.</p>
+    </section>
+    
+    <!-- What You Get — Desire Invitation -->
+    <section class="section section-dark">
+        <h2>Was du bekommst</h2>
+        <p>7 Lektionen, die dir die Content-Mechanik zeigen — Magnet, Spiegel, Brücke. Und wie du sie umsetzt.</p>
+        
+        <p>12 Tools, die du ausfüllst, speicherst, und immer wieder nutzt. Hook-Bibliothek, Story-Struktur, Einwand-Liste, Content-Vorlagen für alle 3 Typen.</p>
+        
+        <p>Die Mechanik ist universell. Du lernst nicht "Instagram-Content" oder "Pinterest-Content" — du lernst Magnet/Spiegel/Brücke. Punkt.</p>
+        
+        <p>Und am Ende weißt du, wie du Content baust, der anzieht, Vertrauen aufbaut, und verkauft.</p>
+        
+        <div style="margin-top: 60px;">
+            <h3 style="margin-bottom: 32px;">Die 7 Lektionen</h3>
+            <p style="font-size: 15px; line-height: 1.8;">Warum dein Content nicht verkauft · Die 3 Content-Typen (Magnet, Spiegel, Brücke) · Das Traumkundin-Profil · Dein Angebot klar machen · Magnet-Content bauen · Spiegel-Content bauen · Brücken-Content bauen</p>
+        </div>
+        
+        <div style="margin-top: 48px;">
+            <h3 style="margin-bottom: 32px;">Die 12 Tools</h3>
+            <p style="font-size: 15px; line-height: 1.8;">Traumkundin-Profil · Angebots-Check · Content-Audit · Hook-Bibliothek (60+) · Story-Struktur · Einwand-Liste · CTA-Vorlagen · Content-Kalender · Magnet-Content-Vorlage · Spiegel-Content-Vorlage · Brücken-Content-Vorlage · Content-Ideen-Generator</p>
+        </div>
+    </section>
+    
+    <!-- Social Proof — Sensory Moments -->
+    <section class="section">
+        <h2>Was andere Frauen sagen</h2>
+        
+        <div class="testimonial">
+            <p class="testimonial-text">Ich hab den Kurs in zwei Tagen durchgearbeitet. Dann hab ich drei Posts gebaut — nach dem System. Fünf Tage später kam die erste Anfrage. Es fühlt sich an, als hätte ich endlich verstanden, was ich die ganze Zeit falsch gemacht hab.</p>
+            <p class="testimonial-author">— Sarina, Business Coach</p>
+        </div>
+        
+        <div class="testimonial">
+            <p class="testimonial-text">Ich hab drei Jahre lang Content gepostet, der sich richtig angefühlt hat — aber nichts gebracht hat. Nach Content that Sells weiß ich endlich, warum. Die Tools nutze ich für jeden einzelnen Post. Sie funktionieren.</p>
+            <p class="testimonial-author">— Lisa, Branding Strategin</p>
+        </div>
+        
+        <div class="testimonial">
+            <p class="testimonial-text">Das Schönste: Ich muss nicht mehr raten. Ich weiß, welcher Content welchen Job hat. Und ich verkaufe — ohne dass es sich wie verkaufen anfühlt.</p>
+            <p class="testimonial-author">— Tara, Copywriterin</p>
+        </div>
+    </section>
+    
+    <!-- CTA — Desire Invitation -->
+    <section id="buy" class="cta-section">
+        <h2>Das hier ist für Frauen</h2>
+        <p>Die wissen, dass sie gut sind. Die nicht mehr raten wollen, was funktioniert. Die bereit sind, ein System zu bauen — und es umzusetzen.</p>
+        <p>Die sich das wert sind.</p>
+        <div class="price-tag">€297</div>
+        <a href="https://carinaannaprav.thrivecart.com/content-that-sells/" class="cta-button">Jetzt kaufen</a>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 carinaannaprav</p>
+        <p style="margin-top: 12px;">
+            <a href="/impressum.html">Impressum</a>
+            <a href="/datenschutz.html">Datenschutz</a>
+        </p>
+    </footer>
 </body>
 </html>

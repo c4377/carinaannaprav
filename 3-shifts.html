@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3 Shifts die dein Content braucht — Carina Anna Prav</title>
+    <meta name="description" content="Warum dein Content nicht verkauft — und welche 3 strukturellen Shifts du brauchst, damit er es tut.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 300;
+            background: #F9F7F4;
+            color: #3B3530;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 80px 24px;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 48px;
+            opacity: 0.7;
+        }
+        
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            line-height: 1.7;
+            opacity: 0.85;
+            max-width: 540px;
+            margin: 0 auto;
+        }
+        
+        /* Form Section */
+        .form-section {
+            background: #E8E2D9;
+            padding: 60px 48px;
+            margin: 60px 0;
+        }
+        
+        .form-intro {
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            text-align: center;
+            opacity: 0.85;
+        }
+        
+        form {
+            max-width: 480px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 24px;
+        }
+        
+        label {
+            display: block;
+            font-size: 13px;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            opacity: 0.7;
+        }
+        
+        input[type="email"],
+        input[type="text"] {
+            width: 100%;
+            padding: 16px;
+            background: #F9F7F4;
+            border: 1px solid rgba(59, 53, 48, 0.2);
+            font-family: 'Outfit', sans-serif;
+            font-size: 15px;
+            color: #3B3530;
+            transition: border-color 0.3s;
+        }
+        
+        input[type="email"]:focus,
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #3B3530;
+        }
+        
+        .submit-button {
+            width: 100%;
+            padding: 18px;
+            background: #3B3530;
+            color: #F9F7F4;
+            border: none;
+            font-family: 'Outfit', sans-serif;
+            font-size: 14px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: opacity 0.3s;
+            margin-top: 32px;
+        }
+        
+        .submit-button:hover {
+            opacity: 0.85;
+        }
+        
+        .privacy-note {
+            font-size: 12px;
+            opacity: 0.6;
+            margin-top: 16px;
+            text-align: center;
+            line-height: 1.6;
+        }
+        
+        .privacy-note a {
+            color: #3B3530;
+        }
+        
+        /* What's Inside */
+        .whats-inside {
+            margin: 60px 0;
+        }
+        
+        .whats-inside h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 400;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+        
+        .content-list {
+            list-style: none;
+            max-width: 540px;
+            margin: 0 auto;
+        }
+        
+        .content-list li {
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(59, 53, 48, 0.1);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+        
+        .content-list li:last-child {
+            border-bottom: none;
+        }
+        
+        /* About */
+        .about-section {
+            background: #D4CABF;
+            padding: 60px 48px;
+            margin: 60px 0;
+            text-align: center;
+        }
+        
+        .about-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+        
+        .about-section p {
+            font-size: 15px;
+            line-height: 1.8;
+            opacity: 0.85;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 24px;
+            font-size: 13px;
+            opacity: 0.6;
+        }
+        
+        footer a {
+            color: #3B3530;
+            text-decoration: none;
+            margin: 0 12px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 60px 24px;
+            }
+            
+            h1 {
+                font-size: 36px;
+            }
+            
+            .subtitle {
+                font-size: 16px;
+            }
+            
+            .form-section {
+                padding: 48px 24px;
+            }
+            
+            .about-section {
+                padding: 48px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">Carina Anna Prav</div>
+            <h1>3 Shifts die dein Content braucht</h1>
+            <p class="subtitle">Warum dein Content nicht verkauft — und welche 3 strukturellen Shifts du brauchst, damit er es tut.</p>
+        </header>
+        
+        <!-- Form Section -->
+        <section class="form-section">
+            <p class="form-intro">Hol dir das 14-seitige PDF kostenlos und versteh endlich, warum dein Content nicht verkauft.</p>
+            
+            <form id="pdf-form" action="/api/newsletter-signup" method="POST">
+                <div class="form-group">
+                    <label for="name">Vorname</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">E-Mail</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <button type="submit" class="submit-button">PDF jetzt herunterladen</button>
+                
+                <p class="privacy-note">
+                    Mit dem Download meldest du dich für meinen Newsletter an. Du kannst dich jederzeit abmelden. 
+                    <a href="/datenschutz.html">Datenschutz</a>
+                </p>
+            </form>
+        </section>
+        
+        <!-- What's Inside -->
+        <section class="whats-inside">
+            <h2>Was dich erwartet</h2>
+            <ul class="content-list">
+                <li>Warum du Content postest, der nicht verkauft — und was du stattdessen brauchst</li>
+                <li>Die 3 Content-Typen, die du brauchst (Magnet, Spiegel, Brücke) — und wie du sie einsetzt</li>
+                <li>Warum dein Content sich anfühlt wie in einen leeren Raum reden — und wie du das änderst</li>
+                <li>Die häufigsten Content-Fehler, die dich Umsatz kosten — und wie du sie vermeidest</li>
+                <li>Wie du Content baust, der anzieht statt zu überzeugen</li>
+            </ul>
+        </section>
+        
+        <!-- About -->
+        <section class="about-section">
+            <h3>Hi, ich bin Carina</h3>
+            <p>Business Strategin aus Wien. Ich zeige dir, wie du Content baust, der deine Traumkundinnen anzieht und dein Angebot verkauft — ohne Dauerpräsenz, ohne Hustle, ohne Druck.</p>
+        </section>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 carinaannaprav</p>
+        <p style="margin-top: 12px;">
+            <a href="/impressum.html">Impressum</a>
+            <a href="/datenschutz.html">Datenschutz</a>
+        </p>
+    </footer>
+    
+    <script>
+        // Form handling would connect to your newsletter-signup Netlify function
+        document.getElementById('pdf-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Add your form submission logic here
+            console.log('Form submitted');
+        });
+    </script>
+</body>
+</html>

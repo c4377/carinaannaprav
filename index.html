@@ -157,6 +157,27 @@
     transform: translateY(-2px);
   }
 
+  /* MOBILE-ONLY: Bild unter Hero damit man sieht wer hier schreibt */
+  .hero-reveal-mobile {
+    display: none;
+  }
+  @media (max-width: 900px) {
+    .hero-reveal-mobile {
+      display: block;
+      width: 100%;
+      max-width: 480px;
+      margin: -2rem auto 2rem;
+      padding: 0 20px;
+    }
+    .hero-reveal-mobile img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 6px;
+      box-shadow: 0 15px 40px -12px rgba(0,0,0,0.25);
+    }
+  }
+
   /* SECTION */
   .section {
     padding: 80px 32px;
@@ -599,6 +620,11 @@
   </div>
 </section>
 
+<!-- MOBILE-ONLY BILD (damit man sieht wer hier schreibt) -->
+<div class="hero-reveal-mobile">
+  <img src="bilder/photo_5980857112508173727_y.jpg?v=2" alt="Carina Anna Prav" loading="eager">
+</div>
+
 <!-- SCREEN 2: WAS ICH MACHE - ohne Preis-Menü -->
 <section class="section rv">
   <div class="section-content">
@@ -654,7 +680,7 @@
 </section>
 
 <!-- SCREEN 5: BEWEIS - Testimonial-Wall mit 90 Screenshots -->
-<section class="section-bg rv" style="background-image: url('bilder/photo_5980857112508173725_y.jpg?v=2'); background-position: center 30%;">
+<section class="section-bg rv" style="background-image: url('bilder/photo_5980857112508173723_y.jpg?v=2'); background-position: center 30%;">
   <div class="section-content" style="max-width: 1200px;">
     <div style="text-align: center; margin-bottom: 3rem;">
       <p class="quiet" style="color: #ffffff; opacity: 0.95; text-shadow: 0 2px 15px rgba(0,0,0,0.5);">Was Kundinnen sagen</p>

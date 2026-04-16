@@ -3,499 +3,213 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#ffffff">
-<title>Dein PDF ist da — Carina Anna Prav</title>
-<meta name="description" content="Dein PDF. Direkt hier zum Download. Plus: das Tool das Frauen danach kaufen.">
+<title>Dein PDF — Carina Anna Prav</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #ffffff;
-    --card: #F5F0E8;
-    --ink: #1a1a1a;
-    --ink-soft: #4a4238;
-    --muted: #8a8170;
-    --anthracite: #2e2a22;
+    --white: #ffffff;
+    --cream: #F5F0E8;
+    --cream-light: #FAF7F2;
+    --ink: #2e2a22;
+    --ink-soft: #5a5347;
+    --muted: #9a9184;
     --accent: #C98640;
-    --accent-dark: #a66d2f;
-    --rule: #e0d9cc;
-    --serif: 'Playfair Display', Georgia, serif;
-    --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --accent-soft: #E8D5B8;
+    --accent-bg: #FDF5EB;
+    --rule: #e8e0d4;
+    --head: 'Playfair Display', Georgia, serif;
+    --sans: 'Inter', -apple-system, sans-serif;
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { background: #ffffff; min-height: 100%; scroll-behavior: smooth; }
-  body {
-    font-family: var(--sans);
-    background: #ffffff !important;
-    color: var(--ink);
-    font-weight: 400;
-    line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
-  }
-  a { color: inherit; text-decoration: none; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--white);font-family:var(--sans);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
 
-  /* TOP BAR */
-  .top-bar {
-    padding: 16px 40px;
-    text-align: center;
-    border-bottom: 1px solid var(--rule);
-  }
-  .top-bar-logo {
-    font-family: var(--serif);
-    font-weight: 500;
-    font-size: 1rem;
-    letter-spacing: 0.02em;
-  }
+  /* COUNTDOWN */
+  .cd{background:var(--accent-bg);color:var(--ink);padding:12px 20px;text-align:center;position:sticky;top:0;z-index:100;display:none;font-size:.82rem;border-bottom:1px solid var(--accent-soft)}
+  .cd strong{color:var(--accent);font-weight:700}
 
-  /* PDF DOWNLOAD HERO */
-  .pdf-hero {
-    padding: 80px 32px 60px;
-    text-align: center;
-    background: #ffffff;
-  }
-  .pdf-hero-content { max-width: 620px; margin: 0 auto; }
-  .quiet {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 1.15rem;
-    color: var(--accent);
-    margin-bottom: 1rem;
-  }
-  .pdf-hero h1 {
-    font-family: var(--serif);
-    font-weight: 500;
-    font-size: clamp(2rem, 5vw, 3.2rem);
-    line-height: 1.15;
-    letter-spacing: -0.02em;
-    margin-bottom: 1.5rem;
-  }
-  .pdf-hero h1 em {
-    font-style: italic;
-    color: var(--accent);
-    font-weight: 400;
-  }
-  .pdf-hero .subtitle {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 1.2rem;
-    line-height: 1.5;
-    color: var(--ink-soft);
-    max-width: 520px;
-    margin: 0 auto 2.5rem;
-  }
-  .pdf-btn {
-    display: inline-block;
-    padding: 1.2rem 2.8rem;
-    background: var(--accent);
-    color: #ffffff !important;
-    font-family: var(--sans);
-    font-size: 0.88rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    font-weight: 500;
-    border-radius: 3px;
-    transition: background 0.2s;
-    border: none;
-    cursor: pointer;
-  }
-  .pdf-btn:hover { background: var(--accent-dark); }
-  .pdf-hint {
-    font-size: 0.82rem;
-    color: var(--muted);
-    margin-top: 1.2rem;
-    font-style: italic;
-  }
+  /* TOPBAR */
+  .tb{padding:16px 24px;text-align:center;border-bottom:1px solid var(--rule)}
+  .tb a{font-family:var(--head);font-size:.95rem;color:var(--ink);text-decoration:none}
 
-  /* SEPARATOR — laut & klar */
-  .separator {
-    padding: 60px 32px 20px;
-    text-align: center;
-    background: var(--anthracite);
-    position: relative;
-  }
-  .separator::before {
-    content: '';
-    display: block;
-    width: 40px;
-    height: 2px;
-    background: var(--accent);
-    margin: 0 auto 28px;
-  }
-  .separator-label {
-    display: block;
-    font-family: var(--sans);
-    font-size: 0.8rem;
-    letter-spacing: 0.32em;
-    text-transform: uppercase;
-    color: var(--accent);
-    font-weight: 600;
-    margin-bottom: 18px;
-  }
-  .separator-headline {
-    font-family: var(--serif);
-    font-weight: 500;
-    font-size: clamp(2rem, 5vw, 3.2rem);
-    line-height: 1.15;
-    letter-spacing: -0.02em;
-    color: #ffffff;
-    margin-bottom: 20px;
-    max-width: 620px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .separator-headline em {
-    font-style: italic;
-    color: var(--accent);
-    font-weight: 400;
-  }
-  .separator-sub {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 1.2rem;
-    line-height: 1.5;
-    color: #F5F0E8;
-    max-width: 480px;
-    margin: 0 auto;
-    opacity: 0.85;
-  }
-  .separator-arrow {
-    display: block;
-    width: 1px;
-    height: 60px;
-    background: var(--accent);
-    margin: 40px auto 0;
-    opacity: 0.5;
-  }
+  /* LAYOUT */
+  .w{max-width:660px;margin:0 auto;padding:24px 16px 60px}
+  .state{display:none}.state.active{display:block}
 
-  /* TRIPWIRE SALES SECTION */
-  .tripwire {
-    padding: 70px 32px 80px;
-    background: #ffffff;
-  }
-  .tripwire-content { max-width: 620px; margin: 0 auto; }
-  .tripwire h2 {
-    font-family: var(--serif);
-    font-weight: 500;
-    font-size: clamp(1.8rem, 4.5vw, 2.6rem);
-    line-height: 1.2;
-    letter-spacing: -0.01em;
-    margin-bottom: 1.2rem;
-    text-align: center;
-  }
-  .tripwire h2 em {
-    font-style: italic;
-    color: var(--accent);
-    font-weight: 400;
-  }
-  .tripwire p {
-    font-size: 1.05rem;
-    line-height: 1.75;
-    color: var(--ink);
-    margin-bottom: 1.2rem;
-  }
-  .tripwire-intro {
-    text-align: center;
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 1.2rem;
-    color: var(--ink-soft);
-    margin-bottom: 2.5rem;
-  }
-  .difference-box {
-    background: var(--card);
-    border-radius: 6px;
-    padding: 2.2rem 2rem;
-    margin: 2.5rem 0;
-  }
-  .diff-row {
-    margin-bottom: 1.2rem;
-  }
-  .diff-row:last-child { margin-bottom: 0; }
-  .diff-label {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 1.05rem;
-    color: var(--accent);
-    margin-bottom: 0.3rem;
-  }
-  .diff-text {
-    font-size: 1rem;
-    color: var(--ink);
-    line-height: 1.65;
-  }
+  /* CARD */
+  .card{background:var(--cream-light);border-radius:16px;padding:2rem 1.8rem;margin-bottom:14px}
+  .card-white{background:var(--white);border:1px solid var(--rule)}
+  .card-accent{background:var(--accent-bg)}
 
-  /* WHAT YOU GET */
-  .get-section {
-    margin: 2.5rem 0;
-  }
-  .get-section h3 {
-    font-family: var(--serif);
-    font-weight: 500;
-    font-size: 1.3rem;
-    margin-bottom: 1.2rem;
-    text-align: center;
-  }
-  .get-list {
-    list-style: none;
-    padding: 0;
-    max-width: 480px;
-    margin: 0 auto;
-  }
-  .get-list li {
-    padding: 0.7rem 0;
-    padding-left: 1.8rem;
-    position: relative;
-    font-size: 1rem;
-    line-height: 1.6;
-    border-bottom: 1px solid var(--rule);
-  }
-  .get-list li:last-child { border-bottom: none; }
-  .get-list li::before {
-    content: '—';
-    position: absolute;
-    left: 0;
-    color: var(--accent);
-    font-weight: 600;
-  }
+  /* HERO */
+  .hero{text-align:center;padding:2.5rem 2rem}
+  .hero-img{width:120px;height:120px;border-radius:50%;object-fit:cover;margin:0 auto 1.5rem}
+  .tag{display:inline-block;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--accent);margin-bottom:.6rem}
+  .hero h1{font-family:var(--head);font-weight:400;font-size:clamp(1.6rem,4.5vw,2.3rem);line-height:1.15;margin-bottom:.6rem}
+  .hero h1 em{font-style:italic;color:var(--accent)}
+  .hero .sub{font-size:.92rem;color:var(--ink-soft);line-height:1.6;max-width:440px;margin:0 auto}
 
-  /* CHECKOUT BOX */
-  .checkout-box {
-    background: var(--card);
-    border-radius: 8px;
-    padding: 2.5rem 2rem;
-    margin: 3rem 0;
-    text-align: center;
-  }
-  .price-line {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 1.4rem;
-    color: var(--ink);
-    margin-bottom: 0.6rem;
-  }
-  .price-line strong {
-    font-style: normal;
-    color: var(--accent);
-    font-weight: 600;
-  }
-  .price-sub {
-    font-size: 0.88rem;
-    color: var(--muted);
-    font-style: italic;
-    margin-bottom: 2rem;
-  }
-  .checkout-btn {
-    display: inline-block;
-    padding: 1.2rem 2.8rem;
-    background: var(--accent);
-    color: #ffffff !important;
-    font-family: var(--sans);
-    font-size: 0.88rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    font-weight: 500;
-    border-radius: 3px;
-    transition: background 0.2s;
-  }
-  .checkout-btn:hover { background: var(--accent-dark); }
-  .checkout-guarantee {
-    font-size: 0.8rem;
-    color: var(--muted);
-    margin-top: 1.2rem;
-    font-style: italic;
-  }
+  /* HEADINGS */
+  h2{font-family:var(--head);font-weight:400;font-size:clamp(1.3rem,3.5vw,1.8rem);line-height:1.2;margin-bottom:.8rem;text-align:center}
+  h2 em{font-style:italic;color:var(--accent)}
+  p{font-size:.93rem;line-height:1.75;margin-bottom:.7rem;text-align:center}
+  p:last-child{margin-bottom:0}
 
-  /* THRIVECART EMBED BUTTON — Brand Override */
-  .tc-wrapper {
-    margin: 0;
-    display: flex;
-    justify-content: center;
-  }
-  .tc-brand-btn {
-    display: inline-block !important;
-    padding: 1.2rem 2.8rem !important;
-    background: var(--accent) !important;
-    color: #ffffff !important;
-    font-family: var(--sans) !important;
-    font-size: 0.88rem !important;
-    letter-spacing: 0.15em !important;
-    text-transform: uppercase !important;
-    font-weight: 500 !important;
-    border-radius: 3px !important;
-    border: none !important;
-    cursor: pointer !important;
-    transition: background 0.2s !important;
-    line-height: 1 !important;
-  }
-  .tc-brand-btn:hover {
-    background: var(--accent-dark) !important;
-  }
-  .tc-brand-btn span {
-    color: #ffffff !important;
-    font-family: var(--sans) !important;
-    font-size: 0.88rem !important;
-    letter-spacing: 0.15em !important;
-    text-transform: uppercase !important;
-    font-weight: 500 !important;
-  }
+  /* COMPARE */
+  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:1rem}
+  .cmp-i{border-radius:12px;padding:1.2rem 1rem}
+  .cmp-i h4{font-family:var(--head);font-style:italic;font-size:1rem;margin-bottom:.4rem;text-align:left}
+  .cmp-i p{font-size:.84rem;line-height:1.55;text-align:left}
+  .cmp-pdf{background:var(--white);border:1px solid var(--rule)}
+  .cmp-tool{background:var(--accent-bg);border:1px solid var(--accent-soft)}
+  .cmp-tool h4{color:var(--accent)}
 
-  /* WHY 9€ */
-  .why-section {
-    margin: 3rem 0;
-    padding: 2rem;
-    border-left: 3px solid var(--accent);
-    background: #faf7f1;
-  }
-  .why-section .label {
-    font-size: 0.72rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--accent);
-    font-weight: 600;
-    margin-bottom: 0.8rem;
-  }
-  .why-section h4 {
-    font-family: var(--serif);
-    font-weight: 500;
-    font-size: 1.2rem;
-    margin-bottom: 0.8rem;
-  }
-  .why-section p {
-    font-size: 0.95rem;
-    line-height: 1.7;
-    margin-bottom: 0.8rem;
-  }
-  .why-section p:last-child { margin-bottom: 0; }
+  /* CHECKOUT */
+  .ck{text-align:center;padding:2.5rem 2rem}
+  .ck .price{font-family:var(--head);font-size:3rem;font-weight:400;line-height:1;color:var(--accent);margin-bottom:.3rem}
+  .ck .pn{font-size:.84rem;color:var(--ink-soft);font-style:italic;margin-bottom:1.8rem}
+  .tc-w{display:flex;justify-content:center;margin-bottom:.8rem}
+  .tc-b{display:inline-block!important;padding:1rem 2.6rem!important;background:var(--accent)!important;color:#fff!important;font-family:var(--sans)!important;font-size:.82rem!important;letter-spacing:.14em!important;text-transform:uppercase!important;font-weight:600!important;border-radius:50px!important;border:none!important;cursor:pointer!important;transition:all .2s!important}
+  .tc-b:hover{background:var(--accent-soft)!important;color:var(--ink)!important;transform:translateY(-1px)!important}
+  .tc-b span{color:#fff!important;font-family:var(--sans)!important;font-size:.82rem!important;letter-spacing:.14em!important;text-transform:uppercase!important;font-weight:600!important}
+  .ck .tr{font-size:.72rem;color:var(--muted)}
 
-  /* NO THANKS */
-  .no-thanks {
-    text-align: center;
-    margin-top: 3rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--rule);
-  }
-  .no-thanks p {
-    font-size: 0.9rem;
-    color: var(--muted);
-    font-style: italic;
-  }
-  .no-thanks a {
-    color: var(--muted);
-    text-decoration: underline;
-  }
+  /* LOCKED TOOL */
+  .tl{position:relative;border-radius:16px;overflow:hidden;margin-bottom:14px}
+  .tl-ov{position:absolute;inset:0;z-index:10;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.2);backdrop-filter:blur(0.8px)}
+  .tl-badge{background:var(--accent);color:#fff;padding:14px 30px;border-radius:50px;display:flex;align-items:center;gap:10px;box-shadow:0 4px 20px rgba(201,134,64,.25);font-size:.82rem;font-weight:600;letter-spacing:.06em}
+  .tl-prev{pointer-events:none;user-select:none;filter:blur(1px);opacity:.85}
+
+  /* Tool UI */
+  .ti{background:var(--cream);border-radius:16px;padding:2rem 1.8rem}
+  .ti-head{text-align:center;margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--rule)}
+  .ti-head h3{font-family:var(--head);font-weight:400;font-size:1.5rem;margin-bottom:.3rem}
+  .ti-head p{font-size:.86rem;color:var(--muted);font-style:italic}
+  .ti-welcome{background:var(--white);border-radius:10px;padding:1.1rem 1rem;margin-bottom:1.2rem;font-size:.86rem;line-height:1.6;border:1px solid var(--rule)}
+  .ti-welcome strong{font-weight:600}
+  .ti-f{margin-bottom:1rem}
+  .ti-l{font-size:.8rem;font-weight:600;margin-bottom:.25rem;text-align:left}
+  .ti-h{font-size:.72rem;color:var(--muted);margin-bottom:.4rem;text-align:left}
+  .ti-ta{width:100%;min-height:120px;background:var(--white);border:1px solid var(--rule);border-radius:10px;padding:1rem;font-family:var(--sans);font-size:.86rem;color:var(--ink-soft);resize:none}
+  .ti-rr{display:flex;gap:8px;margin-bottom:1rem}
+  .ti-r{flex:1;background:var(--white);border:1px solid var(--rule);border-radius:10px;padding:1rem .6rem;text-align:center}
+  .ti-r strong{display:block;font-size:.84rem;margin-bottom:2px}
+  .ti-r span{font-size:.68rem;color:var(--muted)}
+  .ti-r.sel{border-color:var(--accent);background:var(--accent-bg)}
+  .ti-in{width:100%;background:var(--white);border:1px solid var(--rule);border-radius:10px;padding:.9rem 1rem;font-family:var(--sans);font-size:.86rem;color:var(--ink-soft)}
+  .ti-btn{width:100%;padding:1rem;background:var(--accent);color:#fff;border:none;border-radius:10px;font-family:var(--sans);font-size:.84rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;margin-top:.5rem}
+
+  /* Result */
+  .ti-res{background:var(--cream-light);border:1px solid var(--rule);border-radius:12px;padding:1.5rem;margin-top:1.2rem}
+  .ti-res-l{font-size:.65rem;text-transform:uppercase;letter-spacing:.18em;color:var(--muted);text-align:center;margin-bottom:.8rem}
+  .ti-res-v{font-family:var(--head);font-size:1.15rem;color:var(--ink);text-align:center;margin-bottom:1rem;padding-bottom:1rem;border-bottom:1px solid var(--rule)}
+  .sr{display:flex;align-items:center;gap:8px;padding:5px 0}
+  .sr-l{font-size:.76rem;color:var(--ink-soft);width:55px;flex-shrink:0}
+  .sr-b{flex:1;height:6px;background:var(--accent-soft);border-radius:3px;overflow:hidden}
+  .sr-f{height:100%;background:var(--accent);border-radius:3px}
+  .sr-v{font-size:.72rem;color:var(--muted);width:30px;text-align:right}
+
+  /* Fixes */
+  .ti-fix{background:var(--white);border:1px solid var(--rule);border-radius:10px;padding:1.2rem;margin-top:1rem}
+  .ti-fix-l{font-size:.65rem;text-transform:uppercase;letter-spacing:.18em;color:var(--muted);margin-bottom:.5rem}
+  .ti-fix-t{font-family:var(--head);font-size:1rem;color:var(--ink);margin-bottom:.8rem}
+  .ti-fix li{font-size:.82rem;color:var(--ink-soft);line-height:1.6;margin-bottom:.5rem;padding-left:1.2rem;position:relative;list-style:none;text-align:left}
+  .ti-fix li::before{content:"→";position:absolute;left:0;color:var(--accent)}
+
+  /* PDF BOTTOM */
+  .pb{text-align:center;padding:1.2rem 0}
+  .pb a{font-size:.8rem;color:var(--muted);text-decoration:underline;text-underline-offset:3px}
+
+  /* PDF ONLY */
+  .po{text-align:center;padding:3.5rem 2rem}
+  .po h1{font-family:var(--head);font-weight:400;font-size:clamp(2rem,5vw,3rem);margin-bottom:.6rem}
+  .po h1 em{color:var(--accent);font-style:italic}
+  .po .sub{font-size:1rem;color:var(--ink-soft);font-style:italic;margin-bottom:1.5rem}
+  .bp{display:inline-block;padding:1rem 2.4rem;background:var(--accent);color:#fff!important;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;border-radius:50px;text-decoration:none;transition:all .2s}
+  .bp:hover{opacity:.9}
+  .exp{display:none;background:var(--cream);border-radius:12px;padding:1.2rem;text-align:center;margin-bottom:14px}
+  .exp p{font-family:var(--head);font-style:italic;font-size:.92rem;color:var(--muted)}
+
+  /* PROOF */
+  .pr{position:fixed;bottom:16px;left:16px;max-width:280px;background:var(--white);border:1px solid var(--rule);border-radius:12px;padding:12px 16px;box-shadow:0 4px 16px rgba(0,0,0,.06);z-index:90;opacity:0;transform:translateY(16px);transition:opacity .3s,transform .3s;pointer-events:none}
+  .pr.on{opacity:1;transform:translateY(0)}
+  .pr-d{display:inline-block;width:7px;height:7px;border-radius:50%;background:#4CAF50;margin-right:7px;vertical-align:middle;animation:pu 2s infinite}
+  @keyframes pu{0%,100%{opacity:1}50%{opacity:.4}}
+  .pr-n{font-size:.84rem;font-weight:600}
+  .pr-m{font-size:.76rem;color:var(--ink-soft);margin-top:2px}
+  .pr-t{font-size:.66rem;color:var(--muted);font-style:italic;margin-top:2px}
 
   /* FOOTER */
-  footer {
-    padding: 40px 32px;
-    text-align: center;
-    background: #fafaf7;
-    border-top: 1px solid var(--rule);
-    font-size: 0.78rem;
-    color: var(--muted);
-  }
-  footer a {
-    color: var(--muted);
-    margin: 0 12px;
-  }
-  footer a:hover { color: var(--accent); }
-  .foot-sig {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 0.9rem;
-    color: var(--ink);
-    display: block;
-    margin-bottom: 0.8rem;
-  }
+  footer{padding:28px 20px;text-align:center;font-size:.7rem;color:var(--muted);border-top:1px solid var(--rule)}
+  footer a{color:var(--muted);margin:0 8px;text-decoration:none}
+  footer a:hover{color:var(--accent)}
 
-  @media (max-width: 640px) {
-    .pdf-hero { padding: 60px 24px 40px; }
-    .tripwire { padding: 20px 24px 60px; }
-    .difference-box, .checkout-box { padding: 1.8rem 1.4rem; }
+  @media(max-width:640px){
+    .w{padding:16px 10px 40px}
+    .card{padding:1.6rem 1.3rem;border-radius:14px}
+    .hero{flex-direction:column;text-align:center;padding:1.8rem 1.4rem}
+    .hero-img{width:120px;height:150px}
+    .cmp{grid-template-columns:1fr}
+    .ti-rr{flex-direction:column}
+    .ti{padding:1.6rem 1.3rem}
+    .pr{bottom:10px;left:10px;right:10px;max-width:none}
   }
 </style>
 </head>
 <body>
 
-<!-- TOP BAR -->
-<div class="top-bar">
-  <a href="index.html" class="top-bar-logo">carinaannaprav</a>
-</div>
+<div class="cd" id="cd">Dein Startangebot endet in <strong id="ct">10:00</strong></div>
+<div class="tb"><a href="index.html">carinaannaprav</a></div>
 
-<!-- PDF DOWNLOAD HERO -->
-<section class="pdf-hero">
-  <div class="pdf-hero-content">
-    <p class="quiet">Bestätigt.</p>
-    <h1>Dein PDF.<br><em>Direkt hier.</em></h1>
-    <p class="subtitle">Die 3 Shifts die dein Business braucht. Keine Wartezeit, keine Hürde.</p>
-
-    <a href="/3-shifts-business.pdf" target="_blank" download class="pdf-btn" id="pdfBtn">PDF jetzt öffnen</a>
-    <p class="pdf-hint">Öffnet in neuem Tab · PDF zum Speichern</p>
+<!-- STATE 1: PDF ONLY -->
+<div class="state" id="s1">
+  <div class="w">
+    <div class="card po">
+      <h1>Dein PDF.<br><em>Direkt hier.</em></h1>
+      <p class="sub">Die 3 Shifts die dein Business braucht.</p>
+      <a href="/3-shifts-business.pdf" target="_blank" download class="bp">PDF jetzt öffnen</a>
+    </div>
+    <div class="exp" id="exp"><p>Dein Startangebot ist abgelaufen. Aber dein PDF bleibt.</p></div>
   </div>
-</section>
-
-<!-- SEPARATOR — LAUT -->
-<div class="separator">
-  <span class="separator-label">Halt · Bevor du loslegst</span>
-  <h2 class="separator-headline">Lies das<br>nicht <em>ohne</em> das.</h2>
-  <p class="separator-sub">Es gibt einen Grund warum gratis PDFs selten was verändern. Hier kommt die Lösung.</p>
-  <span class="separator-arrow"></span>
 </div>
 
-<!-- TRIPWIRE SECTION -->
-<section class="tripwire">
-  <div class="tripwire-content">
+<!-- STATE 2: SALES -->
+<div class="state" id="s2">
+  <div class="w">
 
-    <h2>Das PDF zeigt dir <em>was</em>.<br>Dieses Tool zeigt dir <em>wo</em>.</h2>
+    <!-- HERO MIT BILD -->
+    <div class="card hero">
+      <img src="/bilder/photo_5978605312694488332_y.jpg" alt="Carina" class="hero-img">
+      <span class="tag">Bestätigt · Dein PDF ist da</span>
+      <h1>Bevor du das PDF öffnest —<br><em>schau dir das an.</em></h1>
+      <p class="sub">Die Frauen die Ergebnisse haben, haben nach dem PDF genau das hier gemacht.</p>
+    </div>
 
-    <p class="tripwire-intro">Bei deinem Post. Nicht theoretisch.</p>
-
-    <p>Du liest das PDF gleich und weißt genau was deinen Content bremst. Super.</p>
-
-    <p>Dann setzt du dich an deinen nächsten Post. Und merkst: <em>"Okay. Und wo genau ist bei mir der Bruch?"</em></p>
-
-    <p>Genau dafür hab ich das Magnet-Post Audit gebaut.</p>
-
-    <!-- DIFFERENCE BOX -->
-    <div class="difference-box">
-      <div class="diff-row">
-        <div class="diff-label">Das PDF</div>
-        <div class="diff-text">Zeigt dir die drei Shifts. Was Content können muss damit er verkauft. Theorie plus Prinzipien.</div>
+    <!-- COMPARE -->
+    <div class="card">
+      <span class="tag">Ehrlich gesagt</span>
+      <h2>Das PDF erklärt's. <em>Das Tool zeigt's dir.</em></h2>
+      <div class="cmp">
+        <div class="cmp-i cmp-pdf">
+          <h4>Das PDF</h4>
+          <p>Die drei Shifts. Was dein Content können muss. Du verstehst das Problem.</p>
+        </div>
+        <div class="cmp-i cmp-tool">
+          <h4>Das Tool</h4>
+          <p>Du pastest deinen Post rein. Es zerlegt ihn. Du siehst wo's bei dir bricht.</p>
+        </div>
       </div>
-      <div class="diff-row">
-        <div class="diff-label">Das Tool</div>
-        <div class="diff-text">Nimmt einen konkreten Post von dir. Zerlegt ihn. Sagt dir: Magnet, Spiegel oder Brücke — wo der Haken sitzt — was du konkret ändern müsstest.</div>
-      </div>
     </div>
 
-    <!-- WHAT YOU GET -->
-    <div class="get-section">
-      <h3>Was du kriegst</h3>
-      <ul class="get-list">
-        <li>Zugang zum Magnet-Post Audit Tool</li>
-        <li>Unbegrenzt viele Posts checken — nicht nur einer</li>
-        <li>Funktions-Analyse: Magnet · Spiegel · Brücke</li>
-        <li>Konkrete Verbesserungsvorschläge pro Post</li>
-        <li>Einmal zahlen, für immer Zugang</li>
-      </ul>
-    </div>
-
-    <!-- WHY 9€ -->
-    <div class="why-section">
-      <div class="label">Warum 9€ und nicht gratis</div>
-      <h4>Weil alles Gratis im Netz nie umgesetzt wird.</h4>
-      <p>Das weiß ich aus Erfahrung — meiner und der von vielen Frauen die ich bisher begleitet habe.</p>
-      <p>9€ ist der Preis einer Latte Macchiato. Aber er verändert was: Du nutzt es. Du sitzt Abend am Laptop und öffnest's. Gratis-Tools liegen in Download-Ordnern die niemand je wieder öffnet.</p>
-    </div>
-
-    <!-- CHECKOUT BOX -->
-    <div class="checkout-box">
-      <p class="price-line">Ein Post. 60 Sekunden. <strong>9 €.</strong></p>
-      <p class="price-sub">Unbegrenzt oft nutzen. Einmal zahlen.</p>
-
-      <!-- THRIVECART EMBED CHECKOUT BUTTON -->
-      <div class="tc-wrapper">
+    <!-- CHECKOUT -->
+    <div class="card card-accent ck">
+      <span class="tag" style="color:var(--accent)">Einmalig · Kein Abo</span>
+      <div class="price">9 €</div>
+      <p class="pn">Paste deinen Post. 60 Sekunden. Klarheit.</p>
+      <div class="tc-w">
         <div class="builder-v2-widget tc-v2-widget-embeddable_button tc-v2-embeddable-trigger"
              data-widget-layout="embeddable_button"
              data-thrivecart-account="carinaannaprav"
@@ -504,47 +218,115 @@
              data-thrivecart-modal="on"
              data-thrivecart-modal-opts='{"style_modal_width":"40","style_content_border_radius":"0.5","attr_modal_background":"on","style_modal_background_color":"#000000","style_modal_background_opacity":"40","attr_modal_blur":"off","attr_content_shadow":"off"}'>
           <div data-size="auto" data-style="rounded" data-align="center" data-block="embeddable_button" class="builder-v2-block builder-v2-block-embeddable_button">
-            <button class="tc-v2-embeddable-trigger-el button tc-brand-btn" style="background-color: #C98640; border-radius: 3px;">
-              <span class="builder-v2-block builder-v2-block-plaintext" data-block="plaintext" style="color: #ffffff" data-block-opts='{"text_editor_toolbar":"plain"}'>Tool freischalten · 9 €</span>
+            <button class="tc-v2-embeddable-trigger-el button tc-b">
+              <span class="builder-v2-block builder-v2-block-plaintext" data-block="plaintext" data-block-opts='{"text_editor_toolbar":"plain"}'>Tool freischalten · 9 €</span>
             </button>
           </div>
         </div>
       </div>
-
-      <p class="checkout-guarantee">Sichere Zahlung via Stripe · SSL-verschlüsselt · Sofortiger Zugang nach Kauf</p>
+      <p class="tr">Stripe · SSL · Sofortzugang</p>
     </div>
 
-    <!-- NO THANKS -->
-    <div class="no-thanks">
-      <p>Nicht interessiert? Kein Stress.<br>
-      <a href="index.html">Zurück zur Startseite</a> — das PDF oben reicht auch.</p>
+    <!-- LOCKED TOOL -->
+    <div class="tl">
+      <div class="tl-ov">
+        <div class="tl-badge">🔒 &nbsp;Freischalten für 9 €</div>
+      </div>
+      <div class="tl-prev">
+        <div class="ti">
+          <div class="ti-head">
+            <span class="tag" style="color:var(--muted)">Magnet-Post Audit</span>
+            <h3 style="font-family:var(--head);font-weight:400;font-size:1.5rem;margin-bottom:.3rem">Warum dein Post keinen Job hat.</h3>
+            <p style="font-size:.86rem;color:var(--muted);font-style:italic">Paste einen Post. Sag mir was er sollte. Ich zeig dir was er wirklich ist.</p>
+          </div>
+
+          <div class="ti-welcome"><strong>Du bist drin.</strong> Du pastest einen Post rein. Sagst mir was er sein sollte. Ich zeig dir was er geworden ist.</div>
+
+          <div class="ti-f">
+            <div class="ti-l">Der Post</div>
+            <div class="ti-h">Kopier alles rein — erste Zeile, Body, alles.</div>
+            <textarea class="ti-ta" readonly>Heute mal 3 Tipps wie du als Coach auf Instagram sichtbar wirst:
+
+1. Poste regelmäßig
+2. Nutze Hashtags
+3. Zeig dein Gesicht
+
+Was sind deine besten Tipps? Schreib's in die Kommentare! 👇</textarea>
+          </div>
+
+          <div class="ti-f">
+            <div class="ti-l">Was war der Plan?</div>
+            <div class="ti-h">Was sollte der Post machen?</div>
+            <div class="ti-rr">
+              <div class="ti-r"><strong>Magnet</strong><span>Sie bleibt hängen</span></div>
+              <div class="ti-r sel"><strong>Spiegel</strong><span>Sie erkennt sich</span></div>
+              <div class="ti-r"><strong>Brücke</strong><span>Sie kauft</span></div>
+            </div>
+          </div>
+
+          <div class="ti-f">
+            <div class="ti-l">Deine Nische</div>
+            <input class="ti-in" value="Business-Coach für Yogalehrerinnen" readonly>
+          </div>
+
+          <div class="ti-btn">Zerlegen</div>
+
+          <!-- Result -->
+          <div class="ti-res">
+            <div class="ti-res-l">Was rausgekommen ist</div>
+            <div class="ti-res-v">Du wolltest Spiegel.<br>Du hast Magnet gemacht.</div>
+            <div class="sr"><div class="sr-l">Hook</div><div class="sr-b"><div class="sr-f" style="width:30%"></div></div><div class="sr-v">3/10</div></div>
+            <div class="sr"><div class="sr-l">Magnet</div><div class="sr-b"><div class="sr-f" style="width:70%"></div></div><div class="sr-v">7/10</div></div>
+            <div class="sr"><div class="sr-l">Spiegel</div><div class="sr-b"><div class="sr-f" style="width:20%"></div></div><div class="sr-v">2/10</div></div>
+            <div class="sr"><div class="sr-l">Brücke</div><div class="sr-b"><div class="sr-f" style="width:10%"></div></div><div class="sr-v">1/10</div></div>
+
+            <div class="ti-fix" style="filter:blur(2.5px);opacity:.7">
+              <div class="ti-fix-l">Was du ändern könntest</div>
+              <div class="ti-fix-t">Drei Sachen. Mehr nicht.</div>
+              <ul>
+                <li>Die erste Zeile ist eine Ankündigung, kein Hook. Starte mit einer Aussage die polarisiert.</li>
+                <li>Der Post endet mit "Schreib in die Kommentare" — das ist Engagement-Bait, keine Brücke zum Angebot.</li>
+                <li>Du gibst 3 generische Tipps. Zeig stattdessen einen konkreten Moment aus deiner eigenen Erfahrung.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PDF LINK BOTTOM -->
+    <div style="text-align:center; padding:2.5rem 0 1rem;">
+      <a href="/3-shifts-business.pdf" target="_blank" download style="font-size:.82rem; color:var(--muted); text-decoration:none; letter-spacing:.08em; border-bottom:1px solid var(--rule); padding-bottom:2px;">PDF herunterladen ↓</a>
     </div>
 
   </div>
-</section>
+</div>
 
-<!-- FOOTER -->
 <footer>
-  <span class="foot-sig">Carina Anna Prav.</span>
-  <div>
-    <a href="impressum.html">Impressum</a>
-    <a href="datenschutz.html">Datenschutz</a>
-    <a href="agb.html">AGB</a>
-    <a href="https://www.instagram.com/carina.magneticsales/" target="_blank">Instagram</a>
-  </div>
+  <span style="font-family:var(--head);font-size:.85rem;color:var(--ink);display:block;margin-bottom:.4rem">Carina Anna Prav.</span>
+  <a href="impressum.html">Impressum</a>
+  <a href="datenschutz.html">Datenschutz</a>
+  <a href="agb.html">AGB</a>
+  <a href="https://www.instagram.com/carina.magneticsales/" target="_blank">Instagram</a>
 </footer>
 
+<div class="pr" id="pr"><div><span class="pr-d"></span><span class="pr-n" id="pn"></span></div><div class="pr-m" id="pm"></div><div class="pr-t" id="pt"></div></div>
+
 <script>
-  // Track PDF download via Netlify function (optional)
-  document.getElementById('pdfBtn').addEventListener('click', function() {
-    // Hier kannst du später ein Tracking-Event feuern
-    // Zum Beispiel: Tag "pdf-tatsaechlich-downloaded" in AC setzen
-    console.log('PDF downloaded');
-  });
+const s1=document.getElementById('s1'),s2=document.getElementById('s2'),cb=document.getElementById('cd'),ct=document.getElementById('ct'),ex=document.getElementById('exp');
+let rem=600;s2.classList.add('active');cb.style.display='block';ct.textContent=f(rem);
+const iv=setInterval(()=>{rem--;if(rem<=0){clearInterval(iv);s2.classList.remove('active');s1.classList.add('active');cb.style.display='none';ex.style.display='block';return;}ct.textContent=f(rem);},1000);
+function f(s){return Math.floor(s/60)+':'+(s%60).toString().padStart(2,'0');}
+
+const nn=['Lena','Marie','Sophie','Lisa','Anna','Johanna','Katharina','Julia','Vanessa','Nina','Laura','Hannah','Emma','Sarah','Franziska'];
+const mm=['hat sich das Tool geholt','hat gerade freigeschaltet','ist dabei','hat das Audit gestartet','hat den Zugang freigeschaltet'];
+const tt=['vor 2 Min','vor 5 Min','vor 8 Min','vor 11 Min','vor 14 Min','vor 23 Min','vor 34 Min'];
+const pe=document.getElementById('pr'),pn=document.getElementById('pn'),pm=document.getElementById('pm'),pt=document.getElementById('pt');
+let li=-1;
+function r(a,l){let i;do{i=Math.floor(Math.random()*a.length)}while(i===l&&a.length>1);return{v:a[i],i};}
+function sp(){const n=r(nn,li);li=n.i;pn.textContent=n.v;pm.textContent=r(mm).v;pt.textContent=r(tt).v;pe.classList.add('on');setTimeout(()=>pe.classList.remove('on'),6000);}
+setTimeout(()=>{sp();(function nx(){setTimeout(()=>{sp();nx();},40000+Math.random()*40000);})();},8000);
 </script>
-
-<!-- THRIVECART EMBED SCRIPT -->
 <script async src="//tinder.thrivecart.com/embed/v2/thrivecart.js"></script>
-
 </body>
 </html>

@@ -108,32 +108,70 @@
     font-style: italic;
   }
 
-  /* SEPARATOR */
+  /* SEPARATOR — laut & klar */
   .separator {
-    padding: 40px 32px;
+    padding: 60px 32px 20px;
     text-align: center;
+    background: var(--anthracite);
+    position: relative;
   }
-  .separator-content {
-    max-width: 520px;
-    margin: 0 auto;
-    border-top: 1px solid var(--rule);
-    padding-top: 40px;
+  .separator::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 2px;
+    background: var(--accent);
+    margin: 0 auto 28px;
   }
   .separator-label {
-    display: inline-block;
-    font-size: 0.72rem;
-    letter-spacing: 0.18em;
+    display: block;
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    letter-spacing: 0.32em;
     text-transform: uppercase;
     color: var(--accent);
     font-weight: 600;
-    background: #ffffff;
-    padding: 0 16px;
-    margin-top: -52px;
+    margin-bottom: 18px;
+  }
+  .separator-headline {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+    margin-bottom: 20px;
+    max-width: 620px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .separator-headline em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+  }
+  .separator-sub {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: #F5F0E8;
+    max-width: 480px;
+    margin: 0 auto;
+    opacity: 0.85;
+  }
+  .separator-arrow {
+    display: block;
+    width: 1px;
+    height: 60px;
+    background: var(--accent);
+    margin: 40px auto 0;
+    opacity: 0.5;
   }
 
   /* TRIPWIRE SALES SECTION */
   .tripwire {
-    padding: 20px 32px 80px;
+    padding: 70px 32px 80px;
     background: #ffffff;
   }
   .tripwire-content { max-width: 620px; margin: 0 auto; }
@@ -363,11 +401,12 @@
   </div>
 </section>
 
-<!-- SEPARATOR -->
+<!-- SEPARATOR — LAUT -->
 <div class="separator">
-  <div class="separator-content">
-    <span class="separator-label">Bevor du loslegst</span>
-  </div>
+  <span class="separator-label">Halt · Bevor du loslegst</span>
+  <h2 class="separator-headline">Lies das<br>nicht <em>ohne</em> das.</h2>
+  <p class="separator-sub">Es gibt einen Grund warum gratis PDFs selten was verändern. Hier kommt die Lösung.</p>
+  <span class="separator-arrow"></span>
 </div>
 
 <!-- TRIPWIRE SECTION -->
@@ -412,7 +451,7 @@
     <div class="why-section">
       <div class="label">Warum 9€ und nicht gratis</div>
       <h4>Weil alles Gratis im Netz nie umgesetzt wird.</h4>
-      <p>Das weiß ich aus Erfahrung — meiner und der von 500+ Frauen die ich bisher begleitet habe.</p>
+      <p>Das weiß ich aus Erfahrung — meiner und der von vielen Frauen die ich bisher begleitet habe.</p>
       <p>9€ ist der Preis einer Latte Macchiato. Aber er verändert was: Du nutzt es. Du sitzt Abend am Laptop und öffnest's. Gratis-Tools liegen in Download-Ordnern die niemand je wieder öffnet.</p>
     </div>
 
@@ -443,7 +482,7 @@
     <a href="impressum.html">Impressum</a>
     <a href="datenschutz.html">Datenschutz</a>
     <a href="agb.html">AGB</a>
-    <a href="https://www.instagram.com/carinaannaprav/" target="_blank">Instagram</a>
+    <a href="https://www.instagram.com/carina.magneticsales/" target="_blank">Instagram</a>
   </div>
 </footer>
 

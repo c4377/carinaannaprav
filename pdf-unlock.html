@@ -307,6 +307,40 @@
     font-style: italic;
   }
 
+  /* THRIVECART EMBED BUTTON — Brand Override */
+  .tc-wrapper {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+  }
+  .tc-brand-btn {
+    display: inline-block !important;
+    padding: 1.2rem 2.8rem !important;
+    background: var(--accent) !important;
+    color: #ffffff !important;
+    font-family: var(--sans) !important;
+    font-size: 0.88rem !important;
+    letter-spacing: 0.15em !important;
+    text-transform: uppercase !important;
+    font-weight: 500 !important;
+    border-radius: 3px !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: background 0.2s !important;
+    line-height: 1 !important;
+  }
+  .tc-brand-btn:hover {
+    background: var(--accent-dark) !important;
+  }
+  .tc-brand-btn span {
+    color: #ffffff !important;
+    font-family: var(--sans) !important;
+    font-size: 0.88rem !important;
+    letter-spacing: 0.15em !important;
+    text-transform: uppercase !important;
+    font-weight: 500 !important;
+  }
+
   /* WHY 9€ */
   .why-section {
     margin: 3rem 0;
@@ -460,8 +494,22 @@
       <p class="price-line">Ein Post. 60 Sekunden. <strong>9 €.</strong></p>
       <p class="price-sub">Unbegrenzt oft nutzen. Einmal zahlen.</p>
 
-      <!-- ERSATZ: ThriveCart Checkout Link -->
-      <a href="https://carinaannaprav.thrivecart.com/magnet-post-audit/" class="checkout-btn">Tool freischalten · 9 €</a>
+      <!-- THRIVECART EMBED CHECKOUT BUTTON -->
+      <div class="tc-wrapper">
+        <div class="builder-v2-widget tc-v2-widget-embeddable_button tc-v2-embeddable-trigger"
+             data-widget-layout="embeddable_button"
+             data-thrivecart-account="carinaannaprav"
+             data-thrivecart-tpl="v2"
+             data-thrivecart-product="12"
+             data-thrivecart-modal="on"
+             data-thrivecart-modal-opts='{"style_modal_width":"40","style_content_border_radius":"0.5","attr_modal_background":"on","style_modal_background_color":"#000000","style_modal_background_opacity":"40","attr_modal_blur":"off","attr_content_shadow":"off"}'>
+          <div data-size="auto" data-style="rounded" data-align="center" data-block="embeddable_button" class="builder-v2-block builder-v2-block-embeddable_button">
+            <button class="tc-v2-embeddable-trigger-el button tc-brand-btn" style="background-color: #C98640; border-radius: 3px;">
+              <span class="builder-v2-block builder-v2-block-plaintext" data-block="plaintext" style="color: #ffffff" data-block-opts='{"text_editor_toolbar":"plain"}'>Tool freischalten · 9 €</span>
+            </button>
+          </div>
+        </div>
+      </div>
 
       <p class="checkout-guarantee">Sichere Zahlung via Stripe · SSL-verschlüsselt · Sofortiger Zugang nach Kauf</p>
     </div>
@@ -494,6 +542,9 @@
     console.log('PDF downloaded');
   });
 </script>
+
+<!-- THRIVECART EMBED SCRIPT -->
+<script async src="//tinder.thrivecart.com/embed/v2/thrivecart.js"></script>
 
 </body>
 </html>

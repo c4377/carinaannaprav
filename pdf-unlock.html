@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffffff">
+<title>Dein PDF ist da — Carina Anna Prav</title>
+<meta name="description" content="Dein PDF. Direkt hier zum Download. Plus: das Tool das Frauen danach kaufen.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --card: #F5F0E8;
+    --ink: #1a1a1a;
+    --ink-soft: #4a4238;
+    --muted: #8a8170;
+    --anthracite: #2e2a22;
+    --accent: #C98640;
+    --accent-dark: #a66d2f;
+    --rule: #e0d9cc;
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { background: #ffffff; min-height: 100%; scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    background: #ffffff !important;
+    color: var(--ink);
+    font-weight: 400;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  /* TOP BAR */
+  .top-bar {
+    padding: 16px 40px;
+    text-align: center;
+    border-bottom: 1px solid var(--rule);
+  }
+  .top-bar-logo {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+  }
+
+  /* PDF DOWNLOAD HERO */
+  .pdf-hero {
+    padding: 80px 32px 60px;
+    text-align: center;
+    background: #ffffff;
+  }
+  .pdf-hero-content { max-width: 620px; margin: 0 auto; }
+  .quiet {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .pdf-hero h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+  .pdf-hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+  }
+  .pdf-hero .subtitle {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    max-width: 520px;
+    margin: 0 auto 2.5rem;
+  }
+  .pdf-btn {
+    display: inline-block;
+    padding: 1.2rem 2.8rem;
+    background: var(--accent);
+    color: #ffffff !important;
+    font-family: var(--sans);
+    font-size: 0.88rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+    border-radius: 3px;
+    transition: background 0.2s;
+    border: none;
+    cursor: pointer;
+  }
+  .pdf-btn:hover { background: var(--accent-dark); }
+  .pdf-hint {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-top: 1.2rem;
+    font-style: italic;
+  }
+
+  /* SEPARATOR */
+  .separator {
+    padding: 40px 32px;
+    text-align: center;
+  }
+  .separator-content {
+    max-width: 520px;
+    margin: 0 auto;
+    border-top: 1px solid var(--rule);
+    padding-top: 40px;
+  }
+  .separator-label {
+    display: inline-block;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    background: #ffffff;
+    padding: 0 16px;
+    margin-top: -52px;
+  }
+
+  /* TRIPWIRE SALES SECTION */
+  .tripwire {
+    padding: 20px 32px 80px;
+    background: #ffffff;
+  }
+  .tripwire-content { max-width: 620px; margin: 0 auto; }
+  .tripwire h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(1.8rem, 4.5vw, 2.6rem);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.2rem;
+    text-align: center;
+  }
+  .tripwire h2 em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+  }
+  .tripwire p {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--ink);
+    margin-bottom: 1.2rem;
+  }
+  .tripwire-intro {
+    text-align: center;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--ink-soft);
+    margin-bottom: 2.5rem;
+  }
+  .difference-box {
+    background: var(--card);
+    border-radius: 6px;
+    padding: 2.2rem 2rem;
+    margin: 2.5rem 0;
+  }
+  .diff-row {
+    margin-bottom: 1.2rem;
+  }
+  .diff-row:last-child { margin-bottom: 0; }
+  .diff-label {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--accent);
+    margin-bottom: 0.3rem;
+  }
+  .diff-text {
+    font-size: 1rem;
+    color: var(--ink);
+    line-height: 1.65;
+  }
+
+  /* WHAT YOU GET */
+  .get-section {
+    margin: 2.5rem 0;
+  }
+  .get-section h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.3rem;
+    margin-bottom: 1.2rem;
+    text-align: center;
+  }
+  .get-list {
+    list-style: none;
+    padding: 0;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .get-list li {
+    padding: 0.7rem 0;
+    padding-left: 1.8rem;
+    position: relative;
+    font-size: 1rem;
+    line-height: 1.6;
+    border-bottom: 1px solid var(--rule);
+  }
+  .get-list li:last-child { border-bottom: none; }
+  .get-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* CHECKOUT BOX */
+  .checkout-box {
+    background: var(--card);
+    border-radius: 8px;
+    padding: 2.5rem 2rem;
+    margin: 3rem 0;
+    text-align: center;
+  }
+  .price-line {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.4rem;
+    color: var(--ink);
+    margin-bottom: 0.6rem;
+  }
+  .price-line strong {
+    font-style: normal;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .price-sub {
+    font-size: 0.88rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 2rem;
+  }
+  .checkout-btn {
+    display: inline-block;
+    padding: 1.2rem 2.8rem;
+    background: var(--accent);
+    color: #ffffff !important;
+    font-family: var(--sans);
+    font-size: 0.88rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+    border-radius: 3px;
+    transition: background 0.2s;
+  }
+  .checkout-btn:hover { background: var(--accent-dark); }
+  .checkout-guarantee {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 1.2rem;
+    font-style: italic;
+  }
+
+  /* WHY 9€ */
+  .why-section {
+    margin: 3rem 0;
+    padding: 2rem;
+    border-left: 3px solid var(--accent);
+    background: #faf7f1;
+  }
+  .why-section .label {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+  }
+  .why-section h4 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+  }
+  .why-section p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 0.8rem;
+  }
+  .why-section p:last-child { margin-bottom: 0; }
+
+  /* NO THANKS */
+  .no-thanks {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--rule);
+  }
+  .no-thanks p {
+    font-size: 0.9rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+  .no-thanks a {
+    color: var(--muted);
+    text-decoration: underline;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 40px 32px;
+    text-align: center;
+    background: #fafaf7;
+    border-top: 1px solid var(--rule);
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+  footer a {
+    color: var(--muted);
+    margin: 0 12px;
+  }
+  footer a:hover { color: var(--accent); }
+  .foot-sig {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--ink);
+    display: block;
+    margin-bottom: 0.8rem;
+  }
+
+  @media (max-width: 640px) {
+    .pdf-hero { padding: 60px 24px 40px; }
+    .tripwire { padding: 20px 24px 60px; }
+    .difference-box, .checkout-box { padding: 1.8rem 1.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <a href="index.html" class="top-bar-logo">carinaannaprav</a>
+</div>
+
+<!-- PDF DOWNLOAD HERO -->
+<section class="pdf-hero">
+  <div class="pdf-hero-content">
+    <p class="quiet">Bestätigt.</p>
+    <h1>Dein PDF.<br><em>Direkt hier.</em></h1>
+    <p class="subtitle">Die 3 Shifts die dein Business braucht. Keine Wartezeit, keine Hürde.</p>
+
+    <a href="/3-shifts-business.pdf" target="_blank" download class="pdf-btn" id="pdfBtn">PDF jetzt öffnen</a>
+    <p class="pdf-hint">Öffnet in neuem Tab · PDF zum Speichern</p>
+  </div>
+</section>
+
+<!-- SEPARATOR -->
+<div class="separator">
+  <div class="separator-content">
+    <span class="separator-label">Bevor du loslegst</span>
+  </div>
+</div>
+
+<!-- TRIPWIRE SECTION -->
+<section class="tripwire">
+  <div class="tripwire-content">
+
+    <h2>Das PDF zeigt dir <em>was</em>.<br>Dieses Tool zeigt dir <em>wo</em>.</h2>
+
+    <p class="tripwire-intro">Bei deinem Post. Nicht theoretisch.</p>
+
+    <p>Du liest das PDF gleich und weißt genau was deinen Content bremst. Super.</p>
+
+    <p>Dann setzt du dich an deinen nächsten Post. Und merkst: <em>"Okay. Und wo genau ist bei mir der Bruch?"</em></p>
+
+    <p>Genau dafür hab ich das Magnet-Post Audit gebaut.</p>
+
+    <!-- DIFFERENCE BOX -->
+    <div class="difference-box">
+      <div class="diff-row">
+        <div class="diff-label">Das PDF</div>
+        <div class="diff-text">Zeigt dir die drei Shifts. Was Content können muss damit er verkauft. Theorie plus Prinzipien.</div>
+      </div>
+      <div class="diff-row">
+        <div class="diff-label">Das Tool</div>
+        <div class="diff-text">Nimmt einen konkreten Post von dir. Zerlegt ihn. Sagt dir: Magnet, Spiegel oder Brücke — wo der Haken sitzt — was du konkret ändern müsstest.</div>
+      </div>
+    </div>
+
+    <!-- WHAT YOU GET -->
+    <div class="get-section">
+      <h3>Was du kriegst</h3>
+      <ul class="get-list">
+        <li>Zugang zum Magnet-Post Audit Tool</li>
+        <li>Unbegrenzt viele Posts checken — nicht nur einer</li>
+        <li>Funktions-Analyse: Magnet · Spiegel · Brücke</li>
+        <li>Konkrete Verbesserungsvorschläge pro Post</li>
+        <li>Einmal zahlen, für immer Zugang</li>
+      </ul>
+    </div>
+
+    <!-- WHY 9€ -->
+    <div class="why-section">
+      <div class="label">Warum 9€ und nicht gratis</div>
+      <h4>Weil alles Gratis im Netz nie umgesetzt wird.</h4>
+      <p>Das weiß ich aus Erfahrung — meiner und der von 500+ Frauen die ich bisher begleitet habe.</p>
+      <p>9€ ist der Preis einer Latte Macchiato. Aber er verändert was: Du nutzt es. Du sitzt Abend am Laptop und öffnest's. Gratis-Tools liegen in Download-Ordnern die niemand je wieder öffnet.</p>
+    </div>
+
+    <!-- CHECKOUT BOX -->
+    <div class="checkout-box">
+      <p class="price-line">Ein Post. 60 Sekunden. <strong>9 €.</strong></p>
+      <p class="price-sub">Unbegrenzt oft nutzen. Einmal zahlen.</p>
+
+      <!-- ERSATZ: ThriveCart Checkout Link -->
+      <a href="https://carinaannaprav.thrivecart.com/magnet-post-audit/" class="checkout-btn">Tool freischalten · 9 €</a>
+
+      <p class="checkout-guarantee">Sichere Zahlung via Stripe · SSL-verschlüsselt · Sofortiger Zugang nach Kauf</p>
+    </div>
+
+    <!-- NO THANKS -->
+    <div class="no-thanks">
+      <p>Nicht interessiert? Kein Stress.<br>
+      <a href="index.html">Zurück zur Startseite</a> — das PDF oben reicht auch.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="foot-sig">Carina Anna Prav.</span>
+  <div>
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html">Datenschutz</a>
+    <a href="agb.html">AGB</a>
+    <a href="https://www.instagram.com/carinaannaprav/" target="_blank">Instagram</a>
+  </div>
+</footer>
+
+<script>
+  // Track PDF download via Netlify function (optional)
+  document.getElementById('pdfBtn').addEventListener('click', function() {
+    // Hier kannst du später ein Tracking-Event feuern
+    // Zum Beispiel: Tag "pdf-tatsaechlich-downloaded" in AC setzen
+    console.log('PDF downloaded');
+  });
+</script>
+
+</body>
+</html>

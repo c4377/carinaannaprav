@@ -1,305 +1,361 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3 Shifts die dein Content braucht — Carina Anna Prav</title>
-    <meta name="description" content="Warum dein Content nicht verkauft — und welche 3 strukturellen Shifts du brauchst, damit er es tut.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Outfit', sans-serif;
-            font-weight: 300;
-            background: #F9F7F4;
-            color: #3B3530;
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
-        
-        .container {
-            max-width: 680px;
-            margin: 0 auto;
-            padding: 80px 24px;
-        }
-        
-        /* Header */
-        .header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 14px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 48px;
-            opacity: 0.7;
-        }
-        
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 48px;
-            font-weight: 400;
-            line-height: 1.2;
-            margin-bottom: 24px;
-        }
-        
-        .subtitle {
-            font-size: 18px;
-            line-height: 1.7;
-            opacity: 0.85;
-            max-width: 540px;
-            margin: 0 auto;
-        }
-        
-        /* Form Section */
-        .form-section {
-            background: #E8E2D9;
-            padding: 60px 48px;
-            margin: 60px 0;
-        }
-        
-        .form-intro {
-            font-size: 15px;
-            line-height: 1.8;
-            margin-bottom: 40px;
-            text-align: center;
-            opacity: 0.85;
-        }
-        
-        form {
-            max-width: 480px;
-            margin: 0 auto;
-        }
-        
-        .form-group {
-            margin-bottom: 24px;
-        }
-        
-        label {
-            display: block;
-            font-size: 13px;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-            opacity: 0.7;
-        }
-        
-        input[type="email"],
-        input[type="text"] {
-            width: 100%;
-            padding: 16px;
-            background: #F9F7F4;
-            border: 1px solid rgba(59, 53, 48, 0.2);
-            font-family: 'Outfit', sans-serif;
-            font-size: 15px;
-            color: #3B3530;
-            transition: border-color 0.3s;
-        }
-        
-        input[type="email"]:focus,
-        input[type="text"]:focus {
-            outline: none;
-            border-color: #3B3530;
-        }
-        
-        .submit-button {
-            width: 100%;
-            padding: 18px;
-            background: #3B3530;
-            color: #F9F7F4;
-            border: none;
-            font-family: 'Outfit', sans-serif;
-            font-size: 14px;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: opacity 0.3s;
-            margin-top: 32px;
-        }
-        
-        .submit-button:hover {
-            opacity: 0.85;
-        }
-        
-        .privacy-note {
-            font-size: 12px;
-            opacity: 0.6;
-            margin-top: 16px;
-            text-align: center;
-            line-height: 1.6;
-        }
-        
-        .privacy-note a {
-            color: #3B3530;
-        }
-        
-        /* What's Inside */
-        .whats-inside {
-            margin: 60px 0;
-        }
-        
-        .whats-inside h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 32px;
-            font-weight: 400;
-            margin-bottom: 32px;
-            text-align: center;
-        }
-        
-        .content-list {
-            list-style: none;
-            max-width: 540px;
-            margin: 0 auto;
-        }
-        
-        .content-list li {
-            padding: 20px 0;
-            border-bottom: 1px solid rgba(59, 53, 48, 0.1);
-            font-size: 15px;
-            line-height: 1.7;
-        }
-        
-        .content-list li:last-child {
-            border-bottom: none;
-        }
-        
-        /* About */
-        .about-section {
-            background: #D4CABF;
-            padding: 60px 48px;
-            margin: 60px 0;
-            text-align: center;
-        }
-        
-        .about-section h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 28px;
-            font-weight: 400;
-            margin-bottom: 20px;
-        }
-        
-        .about-section p {
-            font-size: 15px;
-            line-height: 1.8;
-            opacity: 0.85;
-            max-width: 480px;
-            margin: 0 auto;
-        }
-        
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 40px 24px;
-            font-size: 13px;
-            opacity: 0.6;
-        }
-        
-        footer a {
-            color: #3B3530;
-            text-decoration: none;
-            margin: 0 12px;
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .container {
-                padding: 60px 24px;
-            }
-            
-            h1 {
-                font-size: 36px;
-            }
-            
-            .subtitle {
-                font-size: 16px;
-            }
-            
-            .form-section {
-                padding: 48px 24px;
-            }
-            
-            .about-section {
-                padding: 48px 24px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffffff">
+<title>Die 3 Shifts — Carina Anna Prav</title>
+<meta name="description" content="Die 3 Shifts die dein Business braucht. Das PDF kostenlos in dein Postfach.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --card: #F5F0E8;
+    --ink: #1a1a1a;
+    --ink-soft: #4a4238;
+    --muted: #8a8170;
+    --anthracite: #2e2a22;
+    --accent: #C98640;
+    --accent-dark: #a66d2f;
+    --rule: #e0d9cc;
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { background: #ffffff; min-height: 100%; scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    background: #ffffff !important;
+    color: var(--ink);
+    font-weight: 400;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 16px 40px;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-logo { font-family: var(--serif); font-weight: 500; font-size: 1rem; letter-spacing: 0.02em; }
+  .nav-r { display: flex; gap: 24px; }
+  .nav-r a { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; color: var(--muted); }
+  .nav-r a:hover { color: var(--accent); }
+
+  .hero {
+    min-height: 90vh;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center;
+    padding: 140px 32px 60px;
+  }
+  .hero-content { max-width: 680px; }
+  .quiet { font-family: var(--serif); font-style: italic; font-size: 1.15rem; color: var(--accent); margin-bottom: 1rem; }
+  h1 {
+    font-family: var(--serif); font-weight: 500;
+    font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+    line-height: 1.1; letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+  h1 em { font-style: italic; color: var(--accent); font-weight: 400; }
+  .subtitle {
+    font-family: var(--serif); font-style: italic;
+    font-size: 1.25rem; line-height: 1.5;
+    color: var(--ink-soft); max-width: 520px; margin: 0 auto;
+  }
+
+  .section { padding: 60px 32px; }
+  .section-content { max-width: 620px; margin: 0 auto; }
+
+  .card-section {
+    background: var(--card);
+    border-radius: 6px;
+    padding: 3rem 2.5rem;
+    margin-bottom: 1.8rem;
+  }
+  .card-section.featured {
+    background: var(--accent);
+    color: #ffffff;
+  }
+
+  h2 {
+    font-family: var(--serif); font-weight: 500;
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    line-height: 1.2;
+    margin-bottom: 1.5rem; color: var(--ink);
+  }
+  .card-section.featured h2 { color: #ffffff; }
+  h2 em { font-style: italic; color: var(--accent); font-weight: 400; }
+  .card-section.featured h2 em { color: rgba(255,255,255,0.9); }
+
+  p {
+    font-size: 1rem; line-height: 1.85;
+    margin-bottom: 1.3rem; color: var(--ink-soft);
+  }
+  .card-section.featured p { color: rgba(255,255,255,0.92); }
+
+  .large-text {
+    font-family: var(--serif); font-style: italic;
+    font-size: 1.3rem; line-height: 1.5;
+    color: var(--ink); margin-bottom: 1.5rem;
+  }
+
+  /* SHIFTS LIST */
+  .shifts { margin: 2rem 0; }
+  .shift {
+    padding: 1.3rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .shift:last-child { border-bottom: none; }
+  .shift-num {
+    font-family: var(--serif); font-style: italic;
+    font-size: 0.85rem; color: var(--accent);
+    margin-bottom: 0.3rem;
+    letter-spacing: 0.05em;
+  }
+  .shift h4 {
+    font-family: var(--serif); font-weight: 500;
+    font-size: 1.2rem; margin-bottom: 0.4rem;
+    color: var(--ink);
+  }
+  .shift p {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    margin-bottom: 0;
+    line-height: 1.7;
+  }
+
+  /* FORM */
+  .form-section {
+    padding: 40px 32px 80px;
+  }
+  .form-card {
+    max-width: 520px;
+    margin: 0 auto;
+    background: var(--card);
+    border-radius: 6px;
+    padding: 3rem 2.5rem;
+  }
+  .form-card h3 {
+    font-family: var(--serif); font-weight: 500;
+    font-size: 1.6rem;
+    text-align: center;
+    margin-bottom: 0.8rem;
+    line-height: 1.3;
+  }
+  .form-card .form-intro {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+  }
+
+  form { display: flex; flex-direction: column; gap: 0.8rem; }
+
+  input {
+    padding: 1rem 1.1rem;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    color: var(--ink);
+    background: #ffffff;
+    transition: border 0.2s;
+  }
+  input:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+
+  .submit-btn {
+    padding: 1.1rem;
+    background: var(--accent);
+    color: #ffffff;
+    border: none;
+    border-radius: 3px;
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 0.95rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    transition: background 0.2s;
+  }
+  .submit-btn:hover { background: var(--accent-dark); }
+  .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+  .privacy {
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 1rem;
+    line-height: 1.6;
+  }
+  .privacy a { color: var(--accent); }
+
+  .success-box {
+    display: none;
+    text-align: center;
+    padding: 1rem 0;
+  }
+  .success-box.active { display: block; }
+  .success-icon {
+    font-size: 3rem;
+    color: var(--accent);
+    font-family: var(--serif);
+    margin-bottom: 1rem;
+  }
+
+  footer {
+    padding: 60px 32px;
+    text-align: center;
+    border-top: 1px solid var(--rule);
+  }
+  .foot-sig {
+    font-family: var(--serif); font-style: italic;
+    font-size: 1rem; color: var(--ink-soft);
+    display: block; margin-bottom: 1.2rem;
+  }
+  footer a {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 12px;
+  }
+  footer a:hover { color: var(--accent); }
+
+  @media (max-width: 768px) {
+    .nav { padding: 14px 20px; }
+    .nav-r { gap: 14px; }
+    .nav-r a:not(:last-child) { display: none; }
+    .hero { padding: 120px 24px 40px; }
+    .section { padding: 40px 20px; }
+    .card-section, .form-card { padding: 2.2rem 1.6rem; }
+    .large-text { font-size: 1.15rem; }
+  }
+</style>
 </head>
 <body>
-    <div class="container">
-        <!-- Header -->
-        <header class="header">
-            <div class="logo">Carina Anna Prav</div>
-            <h1>3 Shifts die dein Content braucht</h1>
-            <p class="subtitle">Warum dein Content nicht verkauft — und welche 3 strukturellen Shifts du brauchst, damit er es tut.</p>
-        </header>
-        
-        <!-- Form Section -->
-        <section class="form-section">
-            <p class="form-intro">Hol dir das 14-seitige PDF kostenlos und versteh endlich, warum dein Content nicht verkauft.</p>
-            
-            <form id="pdf-form" action="/api/newsletter-signup" method="POST">
-                <div class="form-group">
-                    <label for="name">Vorname</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="email">E-Mail</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                
-                <button type="submit" class="submit-button">PDF jetzt herunterladen</button>
-                
-                <p class="privacy-note">
-                    Mit dem Download meldest du dich für meinen Newsletter an. Du kannst dich jederzeit abmelden. 
-                    <a href="/datenschutz.html">Datenschutz</a>
-                </p>
-            </form>
-        </section>
-        
-        <!-- What's Inside -->
-        <section class="whats-inside">
-            <h2>Was dich erwartet</h2>
-            <ul class="content-list">
-                <li>Warum du Content postest, der nicht verkauft — und was du stattdessen brauchst</li>
-                <li>Die 3 Content-Typen, die du brauchst (Magnet, Spiegel, Brücke) — und wie du sie einsetzt</li>
-                <li>Warum dein Content sich anfühlt wie in einen leeren Raum reden — und wie du das änderst</li>
-                <li>Die häufigsten Content-Fehler, die dich Umsatz kosten — und wie du sie vermeidest</li>
-                <li>Wie du Content baust, der anzieht statt zu überzeugen</li>
-            </ul>
-        </section>
-        
-        <!-- About -->
-        <section class="about-section">
-            <h3>Hi, ich bin Carina</h3>
-            <p>Business Strategin aus Wien. Ich zeige dir, wie du Content baust, der deine Traumkundinnen anzieht und dein Angebot verkauft — ohne Dauerpräsenz, ohne Hustle, ohne Druck.</p>
-        </section>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">carinaannaprav</a>
+  <div class="nav-r">
+    <a href="index.html">Home</a>
+    <a href="content-that-sells.html">Kurs</a>
+    <a href="mentoring.html">Mentoring</a>
+    <a href="dfy.html">Done-For-You</a>
+    <a href="blog.html">Blog</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <p class="quiet">Kostenloses PDF</p>
+    <h1>Die 3 Shifts<br>die dein Business <em>braucht</em></h1>
+    <p class="subtitle">Warum dein Content nicht verkauft — und was sich strukturell ändern muss damit er es tut.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-content">
+    <div class="card-section">
+      <h2>Dein Content ist nicht schlecht.<br><em>Er hat nur keinen Job.</em></h2>
+      <p>Du weißt das. Sonst würdest du das hier nicht lesen.</p>
+      <p class="large-text">Die Frage ist nicht ob du gut bist.<br>Die Frage ist warum deine Kundin das nicht merkt.</p>
+      <p>In diesem PDF zeig ich dir die 3 Shifts die dein Business braucht — damit dein Content nicht nur gepostet wird, sondern verkauft.</p>
     </div>
-    
-    <!-- Footer -->
-    <footer>
-        <p>© 2026 carinaannaprav</p>
-        <p style="margin-top: 12px;">
-            <a href="/impressum.html">Impressum</a>
-            <a href="/datenschutz.html">Datenschutz</a>
-        </p>
-    </footer>
-    
-    <script>
-        // Form handling would connect to your newsletter-signup Netlify function
-        document.getElementById('pdf-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Add your form submission logic here
-            console.log('Form submitted');
-        });
-    </script>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-content">
+    <div class="card-section">
+      <h2>Was drin steht</h2>
+      <div class="shifts">
+        <div class="shift">
+          <div class="shift-num">Shift 1</div>
+          <h4>Klarheit</h4>
+          <p>Was verkaufst du wirklich — und für wen? Der Unterschied zwischen "Ich helfe Frauen" und einer Positionierung die verkauft.</p>
+        </div>
+        <div class="shift">
+          <div class="shift-num">Shift 2</div>
+          <h4>Magnetic Framework</h4>
+          <p>Content der anzieht statt zu überzeugen. Das System Magnet → Spiegel → Brücke. So verkaufst du ohne zu hustlen.</p>
+        </div>
+        <div class="shift">
+          <div class="shift-num">Shift 3</div>
+          <h4>System</h4>
+          <p>Ein Business das für dich arbeitet. Nicht 60h/Woche Instagram. 2h Content batchen, Funnel automatisieren, Zeit zurückgewinnen.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="form-section">
+  <div class="form-card" id="formCard">
+    <div id="formContent">
+      <h3>Hol dir das PDF</h3>
+      <p class="form-intro">Trag deine Email ein — du bekommst es sofort in dein Postfach.</p>
+      <form id="pdfForm" onsubmit="handleSubmit(event)">
+        <input type="text" id="firstname" name="firstname" placeholder="Vorname" required>
+        <input type="email" id="email" name="email" placeholder="Deine Email-Adresse" required>
+        <button type="submit" class="submit-btn" id="submitBtn">PDF jetzt holen</button>
+      </form>
+      <p class="privacy">Du bekommst das PDF + ab und zu eine Email von mir. Abmelden jederzeit. <a href="datenschutz.html">Datenschutz</a></p>
+    </div>
+    <div class="success-box" id="successBox">
+      <div class="success-icon">✓</div>
+      <h3>Schon unterwegs.</h3>
+      <p style="text-align: center; margin-top: 0.8rem;">Check dein Postfach in 2 Minuten.<br>Schau auch im Spam-Ordner falls es nicht ankommt.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="foot-sig">Carina Anna Prav.</span>
+  <div>
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html">Datenschutz</a>
+    <a href="agb.html">AGB</a>
+    <a href="https://www.instagram.com/carinaannaprav/" target="_blank">Instagram</a>
+  </div>
+</footer>
+
+<script>
+async function handleSubmit(event) {
+  event.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  const firstname = document.getElementById('firstname').value;
+  const email = document.getElementById('email').value;
+  btn.disabled = true;
+  btn.textContent = 'Wird gesendet...';
+  try {
+    const response = await fetch('/.netlify/functions/newsletter-signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: email,
+        firstname: firstname,
+        source: '3-shifts-landing',
+        tags: ['lead-3-shifts', 'pdf-download']
+      })
+    });
+    if (!response.ok) throw new Error('Signup failed');
+    document.getElementById('formContent').style.display = 'none';
+    document.getElementById('successBox').classList.add('active');
+  } catch (error) {
+    btn.disabled = false;
+    btn.textContent = 'Nochmal versuchen';
+    alert('Hat nicht geklappt. Versuch es nochmal.');
+  }
+}
+</script>
 </body>
 </html>

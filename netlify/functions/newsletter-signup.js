@@ -1,243 +1,152 @@
-const fetch = require('node-fetch');
+// netlify/functions/newsletter-signup.js
+//
+// Newsletter-Signup Handler für alle Lead-Magnete:
+// - Die 3 Shifts PDF
+// - Andere Opt-Ins
+//
+// Trägt Contact in ActiveCampaign ein, sendet Telegram-Notification
+//
+// Erforderliche Environment Variables:
+// - AC_API_URL
+// - AC_API_KEY
+// - AC_LIST_ID (z.B. 7 = Newsletter)
+// - TELEGRAM_BOT_TOKEN
+// - TELEGRAM_CHAT_ID
 
-exports.handler = async (event, context) => {
+exports.handler = async (event) => {
+  if (event.httpMethod !== 'POST') {
+    return { statusCode: 405, body: JSON.stringify({ error: 'Method not allowed' }) };
+  }
+
+  // CORS
   const headers = {
     'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'Content-Type',
-    'Access-Control-Allow-Methods': 'POST, OPTIONS',
     'Content-Type': 'application/json'
   };
 
-  if (event.httpMethod === 'OPTIONS') {
-    return { statusCode: 200, headers, body: '' };
-  }
-
-  if (event.httpMethod !== 'POST') {
-    return {
-      statusCode: 405,
-      headers,
-      body: JSON.stringify({ error: 'Method not allowed' })
-    };
-  }
-
   try {
-    const data = JSON.parse(event.body);
-    // Support both "firstname" and "name" field
-    const email = data.email;
-    const firstname = data.firstname || data.name;
-    const source = data.source || null;
+    const { email, firstname, source, tags } = JSON.parse(event.body);
 
     if (!email || !firstname) {
       return {
         statusCode: 400,
         headers,
-        body: JSON.stringify({ error: 'Email and firstname are required' })
+        body: JSON.stringify({ success: false, error: 'Email und Vorname erforderlich' })
       };
     }
 
-    // ActiveCampaign Config
-    const AC_API_URL = process.env.ACTIVECAMPAIGN_API_URL;
-    const AC_API_KEY = process.env.ACTIVECAMPAIGN_API_KEY;
-    const AC_LIST_MASTERCLASS = process.env.AC_LIST_MASTERCLASS || '7';
+    const listId = process.env.AC_LIST_ID || '7';
+    const contactTags = Array.isArray(tags) ? tags : [];
 
-    if (!AC_API_URL || !AC_API_KEY) {
-      console.error('Missing ActiveCampaign credentials');
-      return {
-        statusCode: 500,
-        headers,
-        body: JSON.stringify({ error: 'Server configuration error' })
-      };
-    }
+    // 1. Contact in AC anlegen/syncen
+    let contactId = null;
+    if (process.env.AC_API_URL && process.env.AC_API_KEY) {
+      try {
+        const contactResp = await fetch(`${process.env.AC_API_URL}/api/3/contact/sync`, {
+          method: 'POST',
+          headers: {
+            'Api-Token': process.env.AC_API_KEY,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            contact: { email, firstName: firstname }
+          })
+        });
 
-    const acHeaders = {
-      'Api-Token': AC_API_KEY,
-      'Content-Type': 'application/json'
-    };
+        if (contactResp.ok) {
+          const contactData = await contactResp.json();
+          contactId = contactData.contact?.id;
 
-    // 1. Create/Update Contact
-    console.log('Syncing contact to ActiveCampaign...');
-    const contactResponse = await fetch(`${AC_API_URL}/api/3/contact/sync`, {
-      method: 'POST',
-      headers: acHeaders,
-      body: JSON.stringify({
-        contact: {
-          email: email,
-          firstName: firstname
-        }
-      })
-    });
+          if (contactId) {
+            // Auf Newsletter-Liste setzen
+            await fetch(`${process.env.AC_API_URL}/api/3/contactLists`, {
+              method: 'POST',
+              headers: {
+                'Api-Token': process.env.AC_API_KEY,
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                contactList: {
+                  list: listId,
+                  contact: contactId,
+                  status: 1
+                }
+              })
+            });
 
-    if (!contactResponse.ok) {
-      const errorText = await contactResponse.text();
-      console.error('ActiveCampaign contact sync error:', errorText);
-      throw new Error(`Failed to sync contact: ${contactResponse.status}`);
-    }
-
-    const contactData = await contactResponse.json();
-    const contactId = contactData.contact.id;
-    console.log('Contact synced, ID:', contactId);
-
-    // 2. Route based on source
-    if (source === 'Freebie-40-Impulse') {
-      // ===== FREEBIE FLOW: Nur Tag, keine Liste =====
-      const tagName = 'Freebie-40-Impulse';
-      console.log('Freebie signup — tagging with:', tagName);
-
-      await assignTag(AC_API_URL, acHeaders, contactId, tagName);
-
-    } else if (source === 'Waitlist-Content-that-Sells') {
-      // ===== WAITLIST FLOW: Liste + Waitlist-Tag =====
-      console.log('Waitlist signup — adding to list + waitlist tag');
-
-      // Add to newsletter list
-      const listResponse = await fetch(`${AC_API_URL}/api/3/contactLists`, {
-        method: 'POST',
-        headers: acHeaders,
-        body: JSON.stringify({
-          contactList: {
-            list: AC_LIST_MASTERCLASS,
-            contact: contactId,
-            status: 1
+            // Tags hinzufügen
+            for (const tag of contactTags) {
+              await fetch(`${process.env.AC_API_URL}/api/3/contactTags`, {
+                method: 'POST',
+                headers: {
+                  'Api-Token': process.env.AC_API_KEY,
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                  contactTag: { contact: contactId, tag }
+                })
+              });
+            }
           }
-        })
-      });
-
-      if (!listResponse.ok) {
-        const errorText = await listResponse.text();
-        console.error('List subscription error:', errorText);
-      } else {
-        console.log('Added to list');
+        } else {
+          const errText = await contactResp.text();
+          console.error('AC sync failed:', errText);
+        }
+      } catch (e) {
+        console.error('AC error:', e);
       }
+    }
 
-      // Add Waitlist tag
-      await assignTag(AC_API_URL, acHeaders, contactId, 'Waitlist-Content-that-Sells');
+    // 2. Telegram-Notification
+    if (process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHAT_ID) {
+      try {
+        let emoji = '📩';
+        let sourceLabel = source || 'Newsletter';
 
-      // Telegram notification
-      const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
-      const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
+        if (source?.includes('3-shifts')) { emoji = '🎁'; sourceLabel = 'Die 3 Shifts PDF'; }
+        else if (source?.includes('challenge')) { emoji = '🔥'; sourceLabel = 'Challenge'; }
+        else if (source?.includes('start')) { emoji = '✨'; sourceLabel = 'Start-Page'; }
 
-      if (TELEGRAM_BOT_TOKEN && TELEGRAM_CHAT_ID) {
-        const tgMessage = `📋 NEUE WAITLIST-ANMELDUNG\n\n👤 ${firstname}\n📧 ${email}\n\nContent that Sells — Waitlist`;
+        const tagsStr = contactTags.length ? `\n🏷 Tags: \`${contactTags.join(', ')}\`` : '';
 
-        await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+        const msg = `${emoji} *NEWSLETTER-SIGNUP*
+
+👤 ${escapeMarkdown(firstname)}
+📧 ${escapeMarkdown(email)}
+
+📍 Quelle: ${escapeMarkdown(sourceLabel)}${tagsStr}`;
+
+        await fetch(`https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            chat_id: TELEGRAM_CHAT_ID,
-            text: tgMessage
+            chat_id: process.env.TELEGRAM_CHAT_ID,
+            text: msg,
+            parse_mode: 'Markdown'
           })
         });
-        console.log('Waitlist Telegram notification sent');
+      } catch (e) {
+        console.error('Telegram error:', e);
       }
-
-    } else {
-      // ===== DEFAULT FLOW: Liste + Nurture-Tag (bestehendes Verhalten) =====
-      console.log('Default signup — adding to list:', AC_LIST_MASTERCLASS);
-
-      // Add to list
-      const listResponse = await fetch(`${AC_API_URL}/api/3/contactLists`, {
-        method: 'POST',
-        headers: acHeaders,
-        body: JSON.stringify({
-          contactList: {
-            list: AC_LIST_MASTERCLASS,
-            contact: contactId,
-            status: 1
-          }
-        })
-      });
-
-      if (!listResponse.ok) {
-        const errorText = await listResponse.text();
-        console.error('List subscription error:', errorText);
-      } else {
-        console.log('Added to list');
-      }
-
-      // Add Nurture-Start tag
-      await assignTag(AC_API_URL, acHeaders, contactId, 'Nurture-Start');
     }
 
     return {
       statusCode: 200,
       headers,
-      body: JSON.stringify({
-        success: true,
-        message: source ? `Signed up via ${source}` : 'Successfully subscribed',
-        contactId: contactId
-      })
+      body: JSON.stringify({ success: true })
     };
 
-  } catch (error) {
-    console.error('Newsletter signup error:', error);
+  } catch (err) {
+    console.error('Signup error:', err);
     return {
       statusCode: 500,
       headers,
-      body: JSON.stringify({
-        error: 'Internal server error',
-        message: error.message
-      })
+      body: JSON.stringify({ success: false, error: err.message })
     };
   }
 };
 
-// Helper: Find or create tag, then assign to contact
-async function assignTag(apiUrl, headers, contactId, tagName) {
-  try {
-    // Search for existing tag
-    const tagSearchResponse = await fetch(`${apiUrl}/api/3/tags?search=${encodeURIComponent(tagName)}`, {
-      method: 'GET',
-      headers: { 'Api-Token': headers['Api-Token'] }
-    });
-
-    let tagId;
-
-    if (tagSearchResponse.ok) {
-      const tagData = await tagSearchResponse.json();
-      const exactMatch = tagData.tags?.find(t => t.tag === tagName);
-
-      if (exactMatch) {
-        tagId = exactMatch.id;
-        console.log('Found existing tag:', tagName, 'ID:', tagId);
-      } else {
-        // Create tag
-        const createTagResponse = await fetch(`${apiUrl}/api/3/tags`, {
-          method: 'POST',
-          headers,
-          body: JSON.stringify({
-            tag: {
-              tag: tagName,
-              tagType: 'contact',
-              description: `Auto-created for ${tagName}`
-            }
-          })
-        });
-
-        if (createTagResponse.ok) {
-          const newTagData = await createTagResponse.json();
-          tagId = newTagData.tag.id;
-          console.log('Created new tag:', tagName, 'ID:', tagId);
-        }
-      }
-    }
-
-    if (tagId) {
-      const assignResponse = await fetch(`${apiUrl}/api/3/contactTags`, {
-        method: 'POST',
-        headers,
-        body: JSON.stringify({
-          contactTag: {
-            contact: contactId,
-            tag: tagId
-          }
-        })
-      });
-
-      if (assignResponse.ok) {
-        console.log('Tag assigned:', tagName);
-      }
-    }
-  } catch (tagError) {
-    console.error('Tag processing error:', tagError);
-  }
+function escapeMarkdown(str) {
+  if (!str) return '';
+  return String(str).replace(/([_*\[\]()~`>#+\-=|{}.!])/g, '\\$1');
 }

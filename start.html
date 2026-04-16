@@ -3,28 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffffff">
 <title>Carina Anna Prav — Start</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #b8b4ae;
-    --card: #ffffff;
+    --bg: #ffffff;
+    --card: #F5F0E8;
     --ink: #1a1a1a;
-    --ink-soft: #4a4644;
-    --muted: #8a8580;
-    --anthracite: #2a2826;
-    --rule: #e8e4df;
+    --ink-soft: #4a4238;
+    --muted: #8a8170;
+    --anthracite: #2e2a22;
+    --accent: #C98640;
+    --accent-dark: #a66d2f;
+    --rule: #e0d9cc;
+    --highlight: #ede5d4;
     --serif: 'Playfair Display', Georgia, serif;
     --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
+  html { background: #ffffff; min-height: 100%; }
+
   body {
     font-family: var(--sans);
-    background: var(--bg);
+    background: #ffffff !important;
     color: var(--ink);
     font-weight: 400;
     line-height: 1.55;
@@ -36,16 +42,9 @@
     padding: 40px 20px;
   }
 
-  .container {
-    width: 100%;
-    max-width: 480px;
-  }
+  .container { width: 100%; max-width: 480px; }
 
-  /* ============ HEADER ============ */
-  .header {
-    text-align: center;
-    margin-bottom: 2.5rem;
-  }
+  .header { text-align: center; margin-bottom: 2.5rem; }
 
   .photo {
     width: 130px;
@@ -61,30 +60,30 @@
     font-family: var(--serif);
     font-weight: 500;
     font-size: 1.7rem;
-    color: #ffffff;
+    color: var(--ink);
     margin-bottom: 0.3rem;
     letter-spacing: -0.005em;
   }
 
   .tagline {
     font-size: 0.95rem;
-    color: rgba(255,255,255,0.85);
+    color: var(--ink-soft);
     margin-bottom: 0.5rem;
   }
 
   .handle {
     font-size: 0.85rem;
-    color: rgba(255,255,255,0.95);
+    color: var(--muted);
     font-weight: 500;
     letter-spacing: 0.02em;
   }
 
-  /* ============ INTRO ============ */
   .intro {
     background: var(--card);
     padding: 1.4rem 1.6rem;
     margin-bottom: 1.5rem;
-    border-left: 2px solid var(--ink);
+    border-left: 3px solid var(--accent);
+    border-radius: 4px;
     font-family: var(--serif);
     font-style: italic;
     font-size: 1.05rem;
@@ -92,7 +91,6 @@
     line-height: 1.5;
   }
 
-  /* ============ LINK CARDS ============ */
   .links {
     display: flex;
     flex-direction: column;
@@ -117,24 +115,22 @@
 
   .link-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 30px -10px rgba(0,0,0,0.12);
-    border-color: var(--ink);
+    box-shadow: 0 12px 30px -10px rgba(0,0,0,0.08);
+    border-color: var(--accent);
   }
 
   .link-card.featured {
-    background: var(--anthracite);
+    background: var(--accent);
     color: #ffffff;
-    border-color: var(--anthracite);
+    border-color: var(--accent);
   }
 
   .link-card.featured:hover {
-    background: #1a1816;
-    border-color: #1a1816;
+    background: var(--accent-dark);
+    border-color: var(--accent-dark);
   }
 
-  .link-content {
-    flex: 1;
-  }
+  .link-content { flex: 1; }
 
   .link-label {
     font-size: 0.7rem;
@@ -145,9 +141,7 @@
     margin-bottom: 0.25rem;
   }
 
-  .link-card.featured .link-label {
-    color: rgba(255,255,255,0.55);
-  }
+  .link-card.featured .link-label { color: rgba(255,255,255,0.8); }
 
   .link-title {
     font-family: var(--serif);
@@ -155,7 +149,10 @@
     font-size: 1.15rem;
     line-height: 1.25;
     margin-bottom: 0.2rem;
+    color: var(--ink);
   }
+
+  .link-card.featured .link-title { color: #ffffff; }
 
   .link-sub {
     font-size: 0.85rem;
@@ -163,37 +160,31 @@
     line-height: 1.4;
   }
 
-  .link-card.featured .link-sub {
-    color: rgba(255,255,255,0.7);
-  }
+  .link-card.featured .link-sub { color: rgba(255,255,255,0.85); }
 
   .link-arrow {
     font-size: 1.4rem;
-    color: var(--ink);
+    color: var(--accent);
     flex-shrink: 0;
   }
 
-  .link-card.featured .link-arrow {
-    color: #ffffff;
-  }
+  .link-card.featured .link-arrow { color: #ffffff; }
 
-  /* ============ FOOTER ============ */
   .footer {
     text-align: center;
     font-size: 0.8rem;
-    color: rgba(255,255,255,0.85);
+    color: var(--muted);
     line-height: 1.7;
   }
 
   .footer a {
-    color: rgba(255,255,255,0.85);
+    color: var(--muted);
     text-decoration: none;
     margin: 0 0.5rem;
   }
 
-  .footer a:hover { color: #ffffff; }
+  .footer a:hover { color: var(--accent); }
 
-  /* ============ MODAL ============ */
   .modal-overlay {
     position: fixed;
     inset: 0;
@@ -210,13 +201,10 @@
 
   .modal-overlay.active { display: flex; }
 
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
   .modal {
-    background: var(--card);
+    background: #ffffff;
     border-radius: 6px;
     max-width: 440px;
     width: 100%;
@@ -273,19 +261,19 @@
     font-family: var(--sans);
     font-size: 0.95rem;
     color: var(--ink);
-    background: #faf9f7;
-    transition: border 0.2s;
+    background: var(--card);
+    transition: border 0.2s, background 0.2s;
   }
 
   .modal input:focus {
     outline: none;
-    border-color: var(--ink);
+    border-color: var(--accent);
     background: #ffffff;
   }
 
   .modal button {
     padding: 1rem;
-    background: var(--anthracite);
+    background: var(--accent);
     color: #ffffff;
     border: none;
     border-radius: 3px;
@@ -298,7 +286,7 @@
     transition: background 0.2s;
   }
 
-  .modal button:hover { background: #1a1816; }
+  .modal button:hover { background: var(--accent-dark); }
   .modal button:disabled { opacity: 0.6; cursor: not-allowed; }
 
   .modal .small {
@@ -309,19 +297,15 @@
     margin-bottom: 0;
   }
 
-  .modal .success {
-    text-align: center;
-    padding: 1rem 0;
-  }
+  .modal .success { text-align: center; padding: 1rem 0; }
 
   .modal .success-icon {
     font-size: 3rem;
-    color: var(--ink);
+    color: var(--accent);
     margin-bottom: 1rem;
     font-family: var(--serif);
   }
 
-  /* ============ MOBILE ============ */
   @media (max-width: 480px) {
     body { padding: 30px 16px; }
     .photo { width: 110px; height: 110px; }
@@ -342,7 +326,7 @@
   </div>
 
   <div class="intro">
-    Verkaufen ohne ständig auf Instagram zu sein — empowered, etabliert und the ONE.
+    Content der verkauft. Ohne dass du dich verkaufen musst.
   </div>
 
   <div class="links">
@@ -359,8 +343,8 @@
     <a class="link-card featured" href="https://carinaannaprav.thrivecart.com/content-that-sells/" target="_blank" rel="noopener">
       <div class="link-content">
         <div class="link-label">Neu · Selbstlernkurs</div>
-        <div class="link-title">Magnetic Sales Method</div>
-        <div class="link-sub">Die Methode hinter Content der verkauft · €444 netto</div>
+        <div class="link-title">Content that Sells</div>
+        <div class="link-sub">Der Kurs mit der Magnetic Sales Method · €444 netto</div>
       </div>
       <div class="link-arrow">→</div>
     </a>
@@ -368,8 +352,17 @@
     <a class="link-card" href="https://carinaannaprav.at/mentoring" target="_blank" rel="noopener">
       <div class="link-content">
         <div class="link-label">1:1 Mentoring</div>
-        <div class="link-title">Hands-On Marketing Mentoring für dein magnetischstes Business</div>
-        <div class="link-sub">Mehr dazu — Call buchen</div>
+        <div class="link-title">Hands-On Marketing Mentoring</div>
+        <div class="link-sub">Für dein magnetischstes Business · Call buchen</div>
+      </div>
+      <div class="link-arrow">→</div>
+    </a>
+
+    <a class="link-card" href="https://carinaannaprav.at/magnet-post-audit" target="_blank" rel="noopener">
+      <div class="link-content">
+        <div class="link-label">€9 · Tool</div>
+        <div class="link-title">Magnet-Post Audit</div>
+        <div class="link-sub">Zerleg deinen Post. Sieh was fehlt.</div>
       </div>
       <div class="link-arrow">→</div>
     </a>
@@ -377,8 +370,8 @@
     <a class="link-card" href="https://carinaannaprav.at/dfy" target="_blank" rel="noopener">
       <div class="link-content">
         <div class="link-label">Done-For-You</div>
-        <div class="link-title">Automatisierungen — du willst sprechen?</div>
-        <div class="link-sub">Lass uns schauen ob es passt · Kennenlern-Call</div>
+        <div class="link-title">Dein System — gebaut</div>
+        <div class="link-sub">Funnel, Automationen, Tech · Ab €2.500</div>
       </div>
       <div class="link-arrow">→</div>
     </a>

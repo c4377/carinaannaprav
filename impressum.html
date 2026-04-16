@@ -3,24 +3,103 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Impressum — carinaannaprav</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#ffffff">
+<title>Impressum — Carina Anna Prav</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#FFFFFF;--warm:#F0EEEB;--text:#1A1A1A;--text-mid:#555;--text-light:#999;--grey-dark:#3A3A3A;--gold:#C9A84C;--border:#E4E0DC;--serif:'Playfair Display',serif;--sans:'Outfit',sans-serif}
-*{margin:0;padding:0;box-sizing:border-box}body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:300;font-size:16px;line-height:1.8}a{color:var(--gold);text-decoration:none}a:hover{color:var(--text)}::selection{background:var(--grey-dark);color:#fff}
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 40px;display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}.nav-logo{font-family:var(--serif);font-weight:400;font-size:1rem;letter-spacing:0.04em;color:var(--text);text-decoration:none}.nav-r{display:flex;gap:24px;align-items:center}.nav-r a{font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;font-weight:400;color:var(--text-light);transition:color 0.3s;text-decoration:none}.nav-r a:hover{color:var(--gold)}
-.content{max-width:680px;margin:0 auto;padding:140px 40px 80px}
-h1{font-family:var(--serif);font-weight:400;font-size:1.8rem;margin-bottom:32px}
-h2{font-family:var(--serif);font-weight:400;font-size:1.1rem;margin:32px 0 12px;color:var(--text)}
-p{font-size:0.9rem;color:var(--text-mid);line-height:1.85;margin-bottom:14px}
-strong{color:var(--text);font-weight:500}
-ul{margin:8px 0 16px 20px}li{font-size:0.9rem;color:var(--text-mid);line-height:1.8;margin-bottom:4px}
-.foot{max-width:680px;margin:0 auto;padding:32px 40px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}.foot-sig{font-family:var(--serif);font-style:italic;font-size:0.9rem;color:var(--text-mid)}.foot-links{display:flex;gap:16px}.foot-links a{font-size:0.62rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-light);text-decoration:none}.foot-links a:hover{color:var(--gold)}
-@media(max-width:768px){.nav{padding:14px 20px}.nav-r a:not(:nth-last-child(-n+2)){display:none}.content{padding:120px 24px 60px}.foot{flex-direction:column;gap:12px;text-align:center;padding:24px}}
+  :root {
+    --bg: #ffffff;
+    --card: #F5F0E8;
+    --ink: #1a1a1a;
+    --ink-soft: #4a4238;
+    --muted: #8a8170;
+    --accent: #C98640;
+    --accent-dark: #a66d2f;
+    --rule: #e0d9cc;
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { background: #ffffff; min-height: 100%; }
+  body {
+    font-family: var(--sans); background: #ffffff !important;
+    color: var(--ink); font-weight: 400; line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { color: var(--accent-dark); }
+
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 16px 40px;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(255,255,255,0.96); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-logo { font-family: var(--serif); font-weight: 500; font-size: 1rem; letter-spacing: 0.02em; color: var(--ink); }
+  .nav-r { display: flex; gap: 24px; }
+  .nav-r a { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; color: var(--muted); }
+  .nav-r a:hover { color: var(--accent); }
+
+  .content {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 140px 32px 80px;
+  }
+  .content h1 {
+    font-family: var(--serif); font-weight: 500;
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+    color: var(--ink);
+  }
+  .content h2 {
+    font-family: var(--serif); font-weight: 500;
+    font-size: 1.3rem;
+    margin: 2.5rem 0 0.8rem;
+    color: var(--ink);
+  }
+  .content p {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    line-height: 1.85;
+    margin-bottom: 1rem;
+  }
+  .content strong { color: var(--ink); font-weight: 600; }
+  .content ul { margin: 0.5rem 0 1rem 1.5rem; }
+  .content li { font-size: 0.95rem; color: var(--ink-soft); line-height: 1.85; margin-bottom: 0.3rem; }
+
+  footer {
+    padding: 60px 32px; text-align: center;
+    border-top: 1px solid var(--rule);
+  }
+  .foot-sig { font-family: var(--serif); font-style: italic; font-size: 1rem; color: var(--ink-soft); display: block; margin-bottom: 1.2rem; }
+  footer a { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 12px; }
+  footer a:hover { color: var(--accent); }
+
+  @media (max-width: 768px) {
+    .nav { padding: 14px 20px; }
+    .nav-r { gap: 14px; }
+    .nav-r a:not(:last-child) { display: none; }
+    .content { padding: 120px 20px 60px; }
+    .content h1 { font-size: 1.8rem; }
+  }
 </style>
 </head>
 <body>
-<nav class="nav"><a href="index.html" class="nav-logo">carinaannaprav</a><div class="nav-r"><a href="index.html#produkt">Der Kurs</a><a href="index.html#story">Über mich</a><a href="blog.html">Blog</a><a href="https://www.instagram.com/carinaannaprav/" target="_blank">Instagram</a></div></nav>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">carinaannaprav</a>
+  <div class="nav-r">
+    <a href="index.html">Home</a>
+    <a href="content-that-sells.html">Kurs</a>
+    <a href="mentoring.html">Mentoring</a>
+    <a href="dfy.html">Done-For-You</a>
+    <a href="blog.html">Blog</a>
+  </div>
+</nav>
+
 <div class="content">
 <h1>Impressum</h1>
 
@@ -46,6 +125,16 @@ Business Mentoring, digitale Kurse und Beratung für Selbstständige</p>
 <h2>Streitschlichtung</h2>
 <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="https://ec.europa.eu/consumers/odr/" target="_blank">https://ec.europa.eu/consumers/odr/</a></p>
 <p>Ich bin nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
-
 </div>
-<div class="foot"><span class="foot-sig">Carina Anna Prav.</span><div class="foot-links"><a href=
+
+<footer>
+  <span class="foot-sig">Carina Anna Prav.</span>
+  <div>
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html">Datenschutz</a>
+    <a href="agb.html">AGB</a>
+    <a href="https://www.instagram.com/carinaannaprav/" target="_blank">Instagram</a>
+  </div>
+</footer>
+</body>
+</html>

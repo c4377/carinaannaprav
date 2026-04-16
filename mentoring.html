@@ -1,365 +1,485 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>6-Monats Mentoring — Carina Anna Prav</title>
-    <meta name="description" content="Für Frauen, die ein skalierbares Angebot bauen — und jemanden brauchen, der ihnen zeigt, wie sie es verkaufen.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Outfit', sans-serif;
-            font-weight: 300;
-            background: #F9F7F4;
-            color: #3B3530;
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
-        
-        /* Hero — Dark */
-        .hero {
-            background: #3B3530;
-            color: #F9F7F4;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 120px 32px 80px;
-        }
-        
-        .hero-content {
-            max-width: 900px;
-        }
-        
-        .kicker {
-            font-size: 12px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 48px;
-            opacity: 0.6;
-        }
-        
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 72px;
-            font-weight: 400;
-            line-height: 1.1;
-            margin-bottom: 48px;
-        }
-        
-        .hero-subtitle {
-            font-size: 22px;
-            line-height: 1.7;
-            margin-bottom: 80px;
-            opacity: 0.9;
-            font-weight: 300;
-        }
-        
-        .price-tag {
-            font-family: 'Playfair Display', serif;
-            font-size: 36px;
-            margin-bottom: 40px;
-        }
-        
-        .cta-button {
-            display: inline-block;
-            padding: 20px 60px;
-            background: #F9F7F4;
-            color: #3B3530;
-            text-decoration: none;
-            font-size: 14px;
-            letter-spacing: 1.5px;
-            transition: opacity 0.3s;
-            font-weight: 400;
-        }
-        
-        .cta-button:hover {
-            opacity: 0.85;
-        }
-        
-        /* Content Sections */
-        .section {
-            padding: 140px 32px;
-        }
-        
-        .section-content {
-            max-width: 680px;
-            margin: 0 auto;
-        }
-        
-        .section-beige {
-            background: #E8E2D9;
-        }
-        
-        .section-sand {
-            background: #D4CABF;
-        }
-        
-        .section-warm {
-            background: #B5A99A;
-            color: #F9F7F4;
-        }
-        
-        .section-dark {
-            background: #3B3530;
-            color: #F9F7F4;
-        }
-        
-        h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 48px;
-            font-weight: 400;
-            line-height: 1.2;
-            margin-bottom: 48px;
-        }
-        
-        h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 32px;
-            font-weight: 400;
-            margin-bottom: 32px;
-            line-height: 1.3;
-        }
-        
-        p {
-            font-size: 17px;
-            line-height: 2;
-            margin-bottom: 32px;
-            opacity: 0.9;
-        }
-        
-        .large-text {
-            font-size: 20px;
-            line-height: 2.2;
-            font-weight: 300;
-        }
-        
-        /* Testimonial */
-        .testimonial {
-            margin: 80px auto;
-            max-width: 600px;
-            text-align: center;
-        }
-        
-        .testimonial-text {
-            font-size: 20px;
-            line-height: 2;
-            margin-bottom: 32px;
-            font-style: italic;
-            opacity: 0.95;
-        }
-        
-        .testimonial-author {
-            font-style: normal;
-            font-size: 14px;
-            opacity: 0.6;
-            letter-spacing: 1px;
-        }
-        
-        /* Details */
-        .details {
-            margin-top: 80px;
-            padding-top: 60px;
-            border-top: 1px solid rgba(249, 247, 244, 0.2);
-        }
-        
-        .detail-line {
-            font-size: 15px;
-            line-height: 2;
-            opacity: 0.85;
-        }
-        
-        /* Footer */
-        footer {
-            background: #F9F7F4;
-            padding: 80px 32px;
-            text-align: center;
-            font-size: 13px;
-            opacity: 0.6;
-        }
-        
-        footer a {
-            color: #3B3530;
-            text-decoration: none;
-            margin: 0 16px;
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 48px;
-            }
-            
-            h2 {
-                font-size: 36px;
-            }
-            
-            h3 {
-                font-size: 28px;
-            }
-            
-            .hero-subtitle {
-                font-size: 18px;
-            }
-            
-            .section {
-                padding: 100px 24px;
-            }
-            
-            p, .large-text {
-                font-size: 16px;
-            }
-            
-            .testimonial-text {
-                font-size: 18px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffffff">
+<title>1:1 Mentoring — Carina Anna Prav</title>
+<meta name="description" content="Hands-On Marketing Mentoring. Strategie, Branding, Content — angewendet auf dein Business. Für Frauen die aufgehört haben alleine zu raten.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --card: #F5F0E8;
+    --ink: #1a1a1a;
+    --ink-soft: #4a4238;
+    --muted: #8a8170;
+    --anthracite: #2e2a22;
+    --accent: #C98640;
+    --accent-dark: #a66d2f;
+    --rule: #e0d9cc;
+    --highlight: #ede5d4;
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { background: #ffffff; min-height: 100%; }
+
+  body {
+    font-family: var(--sans);
+    background: #ffffff !important;
+    color: var(--ink);
+    font-weight: 400;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 16px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .nav-logo {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+  }
+
+  .nav-r {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+  }
+
+  .nav-r a {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--muted);
+    transition: color 0.3s;
+  }
+
+  .nav-r a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    min-height: 88vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 120px 40px 60px;
+    gap: 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .hero-content { max-width: 560px; }
+
+  .hero-image {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background-image: url('images/photo_5980857112508173728_y.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 6px;
+  }
+
+  .quiet {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.8rem;
+    color: var(--ink);
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+  }
+
+  .hero-subtitle {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin-bottom: 2rem;
+  }
+
+  .price-tag {
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 2rem;
+  }
+
+  .cta-button {
+    display: inline-block;
+    padding: 1.2rem 3rem;
+    background: var(--accent);
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border-radius: 3px;
+    transition: all 0.2s;
+  }
+
+  .cta-button:hover {
+    background: var(--accent-dark);
+    transform: translateY(-2px);
+  }
+
+  .cta-button.dark { background: var(--anthracite); }
+  .cta-button.dark:hover { background: #1a1816; }
+
+  .section {
+    padding: 80px 32px;
+  }
+
+  .section-content {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .card-section {
+    background: var(--card);
+    border-radius: 6px;
+    padding: 3.5rem 3rem;
+    margin-bottom: 1.8rem;
+  }
+
+  .card-section.featured {
+    background: var(--accent);
+    color: #ffffff;
+  }
+
+  h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 2rem;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  .card-section.featured h2 { color: #ffffff; }
+
+  h2 em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+  }
+
+  .card-section.featured h2 em { color: rgba(255,255,255,0.9); }
+
+  p {
+    font-size: 1.05rem;
+    line-height: 1.85;
+    margin-bottom: 1.5rem;
+    color: var(--ink-soft);
+  }
+
+  .card-section.featured p { color: rgba(255,255,255,0.92); }
+
+  .large-text {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.4rem;
+    line-height: 1.5;
+    color: var(--ink);
+    margin-bottom: 1.8rem;
+  }
+
+  .card-section.featured .large-text { color: #ffffff; }
+
+  /* TESTIMONIAL */
+  .testimonial {
+    text-align: center;
+    padding: 3rem 2rem;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    margin: 4rem 0;
+  }
+
+  .testimonial-text {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.2rem;
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+    color: var(--ink);
+  }
+
+  .testimonial-author {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  .details {
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.2);
+  }
+
+  .card-section:not(.featured) .details { border-color: var(--rule); }
+
+  .detail-line {
+    font-size: 0.92rem;
+    line-height: 1.9;
+    color: rgba(255,255,255,0.9);
+  }
+
+  .card-section:not(.featured) .detail-line { color: var(--ink-soft); }
+
+  .price-block-center {
+    text-align: center;
+    margin: 2.5rem 0 2rem;
+  }
+
+  .price-big {
+    font-family: var(--serif);
+    font-size: 3.5rem;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1;
+  }
+
+  .card-section.featured .price-big { color: #ffffff; }
+
+  footer {
+    padding: 60px 32px;
+    text-align: center;
+    border-top: 1px solid var(--rule);
+    margin-top: 4rem;
+  }
+
+  footer .foot-sig {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--ink-soft);
+    display: block;
+    margin-bottom: 1.2rem;
+  }
+
+  footer a {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 12px;
+    transition: color 0.3s;
+  }
+
+  footer a:hover { color: var(--accent); }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; gap: 2.5rem; padding: 110px 24px 60px; text-align: center; }
+    .hero-content { margin: 0 auto; }
+    .hero-image { max-width: 420px; margin: 0 auto; }
+  }
+
+  @media (max-width: 768px) {
+    .nav { padding: 14px 20px; }
+    .nav-r { gap: 14px; }
+    .nav-r a:not(:last-child) { display: none; }
+    .section { padding: 60px 20px; }
+    .card-section { padding: 2.5rem 1.8rem; }
+    h1 { font-size: 2.2rem; }
+    h2 { font-size: 1.7rem; }
+    .hero-subtitle { font-size: 1.15rem; }
+    .large-text { font-size: 1.2rem; }
+    .price-big { font-size: 2.7rem; }
+  }
+</style>
 </head>
 <body>
-    <!-- Hero -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="kicker">1:1 Begleitung</div>
-            <h1>6-Monats Mentoring</h1>
-            <p class="hero-subtitle">Für Frauen, die ein skalierbares Angebot bauen — und jemanden brauchen, der ihnen zeigt, wie sie es verkaufen.</p>
-            <div class="price-tag">€5.555</div>
-            <a href="#apply" class="cta-button">Termin anfragen</a>
-        </div>
-    </section>
-    
-    <!-- Moment — Enter the Beautiful -->
-    <section class="section section-beige">
-        <div class="section-content">
-            <h2>Stell dir vor</h2>
-            <p>Du sitzt im Zug. Draußen zieht die Stadt vorbei, drinnen ist es still. Du hast dein Handy in der Hand, aber du scrollst nicht.</p>
-            
-            <p>Du öffnest Telegram. Deine Mentorin hat dir geantwortet — drei Voice Messages, klar und konkret. Sie sagt dir, was du als Nächstes tun sollst. Nicht in drei Wochen. Jetzt.</p>
-            
-            <p>Du hörst zu. Machst dir Notizen. Weißt schon, was du heute Nachmittag umsetzt.</p>
-            
-            <p>Du legst das Handy weg. Schaust aus dem Fenster. Und zum ersten Mal seit Monaten fühlst du dich nicht überfordert.</p>
-            
-            <p>Du weißt, was du tust. Und du hast jemanden, der dir zeigt, wie.</p>
-        </div>
-    </section>
-    
-    <!-- Quiet Chronology -->
-    <section class="section">
-        <div class="section-content">
-            <h2>Wie es dazu kam</h2>
-            <p class="large-text">Du hast aufgehört, alleine zu raten.</p>
-            
-            <p>Du hast verstanden, dass du nicht mehr Theorie brauchst. Du brauchst jemanden, der dir sagt: DAS machst du jetzt. DAS lässt du weg.</p>
-            
-            <p>Du hast dein Angebot klar gemacht. So klar, dass andere es verstehen — ohne dass du jedes Mal von vorne erklären musst.</p>
-            
-            <p>Du hast Content gebaut, der verkauft. Nicht weil du lauter geworden bist. Sondern weil du endlich weißt, welchen Job jeder Post hat.</p>
-            
-            <p>Du hast einen Launch gemacht. Und dann noch einen. Und du hast gesehen, was funktioniert — und was du beim nächsten Mal anders machst.</p>
-            
-            <p>Und irgendwann, nach sechs Monaten, schaust du zurück und siehst: Du hast ein Business gebaut, das funktioniert.</p>
-        </div>
-    </section>
-    
-    <!-- Kipp-Satz -->
-    <section class="section section-sand">
-        <div class="section-content">
-            <h2>Ich muss nicht mehr beweisen, dass ich gut bin</h2>
-            <p class="large-text">Das ist der Moment, wo sich alles ändert.</p>
-            
-            <p>Nicht weil plötzlich alles einfach wird. Sondern weil du aufhörst, alleine zu kämpfen — und anfängst, mit jemandem zu bauen, der dir zeigt, wie.</p>
-            
-            <p>Du verkaufst. Du skalierst. Du hast ein System, das bleibt.</p>
-        </div>
-    </section>
-    
-    <!-- What You Get -->
-    <section class="section section-warm">
-        <div class="section-content">
-            <h2>Was du bekommst</h2>
-            <p class="large-text">6 Monate, in denen du nicht alleine arbeitest.</p>
-            
-            <p>Ich sage dir nicht, was du alles machen könntest. Ich sage dir, was du jetzt machen sollst. Und was du weglassen kannst.</p>
-            
-            <p>Wir bauen dein Angebot. Wir bauen deinen Content. Wir entscheiden, welche Kanäle du nutzt — Instagram, Pinterest, YouTube, Website, Email — und wie sie zusammenspielen. Wir bauen deinen Funnel. Wir launchen. Wir optimieren. Wir machen weiter.</p>
-            
-            <p>Und am Ende hast du ein System, das verkauft — auch wenn ich nicht mehr da bin.</p>
-            
-            <div class="details">
-                <p class="detail-line">Telegram-Begleitung · Unlimited Messages · Antwort innerhalb 24h (Werktags)<br>Zugang zu allen 10 Kursen · Strategie + Feedback + Umsetzung · 6 Monate</p>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Testimonial -->
-    <section class="section">
-        <div class="testimonial">
-            <p class="testimonial-text">„Ich hab sechs Monate mit Carina gearbeitet. In dieser Zeit hab ich mein Angebot komplett neu gebaut, einen Launch gemacht, und zum ersten Mal verstanden, wie Verkaufen wirklich funktioniert. Sie sagt dir nicht, was du hören willst. Sie sagt dir, was du tun musst."</p>
-            <p class="testimonial-author">— NEHLE, BUSINESS STRATEGIN</p>
-        </div>
-    </section>
-    
-    <!-- Investment -->
-    <section class="section section-dark">
-        <div class="section-content">
-            <h2>Investment</h2>
-            <p class="large-text">6 Monate Begleitung. Strategie, Feedback, Umsetzung. Zugang zu allen Kursen.</p>
-            
-            <p>Das Mentoring ist nicht für Frauen, die noch überlegen, ob sie bereit sind. Es ist für Frauen, die wissen, dass sie bereit sind — und nur noch jemanden brauchen, der ihnen zeigt, wie.</p>
-            
-            <p>Ich arbeite nur mit Frauen, die umsetzen. Das hier ist kein Coaching. Es ist strategische Begleitung für Frauen, die ein Business bauen wollen, das funktioniert.</p>
-            
-            <div style="margin-top: 80px; text-align: center;">
-                <div class="price-tag" style="font-size: 52px;">€5.555</div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Who I Am -->
-    <section class="section section-beige">
-        <div class="section-content">
-            <h2>Wer ich bin</h2>
-            <p>Carina Anna Prav. Business Strategin aus Wien.</p>
-            
-            <p>Ich hab vier Businesses gebaut. Ich weiß, was funktioniert — und was nur Zeit kostet, ohne Ergebnis zu bringen.</p>
-            
-            <p>Ich zeige dir, wie du Content baust, der verkauft. Wie du ein Angebot baust, das sich skalieren lässt. Wie du ein Business aufbaust, das dir gibt, was du haben willst: Freiheit. Geld. Zeit.</p>
-            
-            <p>Keine Theorie. Keine Floskeln. Strategie, die du umsetzen kannst.</p>
-            
-            <p>Und Begleitung, die funktioniert.</p>
-        </div>
-    </section>
-    
-    <!-- CTA -->
-    <section id="apply" class="section section-dark">
-        <div class="section-content" style="text-align: center;">
-            <h2>Das hier ist für Frauen</h2>
-            <p class="large-text">Die wissen, dass sie bereit sind. Die nicht mehr alleine raten wollen. Die jemanden brauchen, der ihnen zeigt, wie — und dann mit ihnen baut.</p>
-            <p class="large-text">Die sich das wert sind.</p>
-            <div class="price-tag" style="margin-top: 60px;">€5.555</div>
-            <a href="https://calendly.com/carinaannaprav/mentoring-application" class="cta-button">Termin anfragen</a>
-            <p style="margin-top: 48px; font-size: 14px; opacity: 0.6;">Im Erstgespräch klären wir, ob das Mentoring für dich passt.</p>
-        </div>
-    </section>
-    
-    <!-- Footer -->
-    <footer>
-        <p>© 2026 carinaannaprav</p>
-        <p style="margin-top: 16px;">
-            <a href="/impressum.html">Impressum</a>
-            <a href="/datenschutz.html">Datenschutz</a>
-        </p>
-    </footer>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">carinaannaprav</a>
+  <div class="nav-r">
+    <a href="index.html">Home</a>
+    <a href="content-that-sells.html">Kurs</a>
+    <a href="dfy.html">Done-For-You</a>
+    <a href="blog.html">Blog</a>
+    <a href="https://www.instagram.com/carinaannaprav/" target="_blank">Instagram</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <p class="quiet">1:1 Mentoring</p>
+    <h1>Hands-On Marketing Mentoring für dein <em>magnetischstes</em> Business</h1>
+    <p class="hero-subtitle">Für Frauen die aufgehört haben alleine zu raten — und jemanden brauchen der mit ihnen baut.</p>
+    <div class="price-tag">€5.555</div>
+    <a href="mentoring-bewerbung.html" class="cta-button">Bewerben</a>
+  </div>
+  <div class="hero-image"></div>
+</section>
+
+<!-- STELL DIR VOR -->
+<section class="section">
+  <div class="section-content">
+    <div class="card-section">
+      <h2>Stell dir vor</h2>
+      <p>Du sitzt am Morgen bei deinem Kaffee.<br>Telegram auf, Sprachmemo von mir in deinem Postfach.</p>
+      <p>Drei Minuten. Klar. Konkret.<br>Was du heute machst, was du weglässt, warum.</p>
+      <p>Du hörst zu. Notierst zwei Sätze. Legst das Handy weg.</p>
+      <p class="large-text">Und zum ersten Mal seit Monaten fühlst du dich nicht überfordert.</p>
+      <p>Du weißt was du tust. Und du hast jemanden der mit dir baut.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WIE ES DAZU KAM -->
+<section class="section">
+  <div class="section-content">
+    <div class="card-section">
+      <h2>Wie es dazu kam</h2>
+      <p class="large-text">Du hast aufgehört alleine zu raten.</p>
+      <p>Du hast verstanden: Du brauchst nicht mehr Theorie. Du brauchst jemanden der sagt — <em>DAS machst du jetzt. DAS lässt du weg.</em></p>
+      <p>Wir haben dein Angebot geschärft. Dein Branding gebaut.<br>Deinen Content neu aufgestellt.</p>
+      <p>Du hast einen Launch gemacht. Und dann noch einen.<br>Du hast gesehen was funktioniert — und was du weglassen kannst.</p>
+      <p>Und irgendwann schaust du zurück und siehst: Du hast ein Business gebaut das dir dient.</p>
+    </div>
+  </div>
+</section>
+
+<!-- KIPP-SATZ -->
+<section class="section">
+  <div class="section-content">
+    <div class="card-section featured">
+      <h2>Ich muss nichts mehr beweisen.</h2>
+      <p class="large-text">Das ist der Moment wo sich alles ändert.</p>
+      <p>Nicht weil alles einfach wird.<br>Sondern weil du aufhörst zu kämpfen — und anfängst zu bauen.</p>
+      <p>Mit jemandem der die Methode kennt.<br>Und der weiß wie man sie auf dich anwendet.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WAS DU BEKOMMST -->
+<section class="section">
+  <div class="section-content">
+    <div class="card-section">
+      <h2>Was du bekommst</h2>
+      <p class="large-text">Sechs Monate. Kein alleine Arbeiten mehr.</p>
+      <p>Ich sag dir nicht was du alles machen könntest.<br>Ich sag dir was du jetzt machst. Und was du weglässt.</p>
+      <p>Wir bauen dein Angebot. Dein Branding. Deinen Content.<br>Wir entscheiden welche Kanäle — Instagram, Pinterest, Newsletter — und wie sie zusammenspielen.</p>
+      <p>Wir launchen. Wir optimieren. Wir machen weiter.</p>
+      <p>Am Ende hast du ein System das verkauft — auch wenn ich nicht mehr da bin.</p>
+
+      <div class="details">
+        <p class="detail-line"><strong style="color: var(--ink); font-weight: 600;">Telegram-Begleitung</strong> · Unlimited Messages · Antwort innerhalb 24h an Werktagen<br><strong style="color: var(--ink); font-weight: 600;">Zugang</strong> zu allen Kursen · <strong style="color: var(--ink); font-weight: 600;">Strategie + Feedback + Umsetzung</strong> · 6 Monate</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="section">
+  <div class="section-content">
+    <div class="testimonial">
+      <p class="testimonial-text">„Sie sagt dir nicht was du hören willst. Sie sagt dir was du tun musst. In sechs Monaten hab ich mein Angebot neu gebaut, einen Launch gemacht, und zum ersten Mal verstanden wie Verkaufen wirklich funktioniert."</p>
+      <p class="testimonial-author">— Nehle, Business Strategin</p>
+    </div>
+  </div>
+</section>
+
+<!-- INVESTMENT -->
+<section class="section">
+  <div class="section-content">
+    <div class="card-section featured">
+      <h2>Investment</h2>
+      <p class="large-text">Sechs Monate. Strategie. Feedback. Umsetzung.</p>
+      <p>Wenn du noch überlegst ob du bereit bist — bist du es nicht.<br>Das ist okay. Komm wieder wenn du's weißt.</p>
+      <p>Ich arbeite nur mit Frauen die umsetzen.<br>Das hier ist kein Coaching. Das ist strategische Begleitung für Frauen die ein Business bauen das dient.</p>
+
+      <div class="price-block-center">
+        <div class="price-big">€5.555</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WER ICH BIN -->
+<section class="section">
+  <div class="section-content">
+    <div class="card-section">
+      <h2>Wer ich bin</h2>
+      <p>Ich hab jahrelang Brautkleider verkauft.<br>Secondhand. Online. Mit perfekt gestylten Posts.</p>
+      <p>Bis ich eines Tages einen Post geschrieben hab der nichts verkaufen sollte.<br>Einfach nur ehrlich. Ungefiltert.</p>
+      <p><strong style="color: var(--ink); font-weight: 600;">Der ist viral gegangen.</strong><br>Und hat mir alles beigebracht was ich heute weiß.</p>
+      <p class="large-text">Dass strategisch nicht verkauft.<br>Echt verkauft.</p>
+      <p>Heute arbeite ich 1:1 mit Frauen die das gleiche spüren — dass ihr strategischer Content nichts bewegt. Weil er nicht echt ist.</p>
+      <p>Und wir machen ihn echt. Wir machen ihn magnetisch.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="apply" class="section">
+  <div class="section-content">
+    <div class="card-section featured" style="text-align: center;">
+      <h2>Das hier ist für dich</h2>
+      <p class="large-text">Wenn du weißt dass du bereit bist.<br>Wenn du nicht mehr alleine raten willst.<br>Wenn du dir das wert bist.</p>
+
+      <div class="price-block-center">
+        <div class="price-big">€5.555</div>
+      </div>
+
+      <a href="mentoring-bewerbung.html" class="cta-button dark">Bewerben</a>
+
+      <p style="margin-top: 2rem; font-size: 0.88rem; color: rgba(255,255,255,0.85);">Nach deiner Bewerbung sprechen wir ob's passt.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="foot-sig">Carina Anna Prav.</span>
+  <div>
+    <a href="/impressum.html">Impressum</a>
+    <a href="/datenschutz.html">Datenschutz</a>
+    <a href="/agb.html">AGB</a>
+    <a href="https://www.instagram.com/carinaannaprav/" target="_blank">Instagram</a>
+  </div>
+</footer>
+
 </body>
 </html>

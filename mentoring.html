@@ -89,7 +89,7 @@
     padding: 140px 32px 80px;
     position: relative;
     overflow: hidden;
-    background-image: url('bilder/photo_5980857112508173728_y.jpg');
+    background-image: url('bilder/photo_5980857112508173724_y.jpg?v=2');
     background-size: cover;
     background-position: center 25%;
   }
@@ -387,7 +387,10 @@
   footer a:hover { color: var(--accent); }
 
   @media (max-width: 900px) {
-    .hero { padding: 110px 24px 70px; }
+    .hero { 
+      padding: 110px 24px 70px;
+      min-height: 75vh;
+    }
     .section-bg { padding: 60px 20px; }
     .glass-card { padding: 2.5rem 1.8rem; }
   }
@@ -403,8 +406,16 @@
     .hero-subtitle { font-size: 1.15rem; }
     .large-text { font-size: 1.2rem; }
     .price-big { font-size: 2.7rem; }
+    .hero {
+      min-height: 600px;
+      background-attachment: scroll;
+    }
     .hero::before {
       background: linear-gradient(180deg, rgba(26,22,18,0.65) 0%, rgba(26,22,18,0.55) 40%, rgba(26,22,18,0.85) 100%);
+    }
+    .section-bg {
+      background-attachment: scroll;
+      min-height: 500px;
     }
     .section-bg::before {
       background: linear-gradient(180deg, rgba(26,22,18,0.8) 0%, rgba(26,22,18,0.6) 50%, rgba(26,22,18,0.88) 100%);
@@ -522,7 +533,7 @@
 
 <!-- WER ICH BIN -->
 <!-- WER ICH BIN - mit Bild-Hintergrund -->
-<section class="section-bg" style="background-image: url('bilder/photo_5978605312694488332_y.jpg'); background-position: center 20%;">
+<section class="section-bg" style="background-image: url('bilder/photo_5978605312694488332_y.jpg?v=2'); background-position: center 20%;">
   <div class="section-content">
     <div class="glass-card">
       <h2>Wer ich bin</h2>

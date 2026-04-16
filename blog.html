@@ -57,7 +57,7 @@
     padding: 140px 32px 80px;
     position: relative;
     overflow: hidden;
-    background-image: url('bilder/photo_5980857112508173727_y.jpg');
+    background-image: url('bilder/photo_5980857112508173725_y.jpg?v=2');
     background-size: cover;
     background-position: center 30%;
   }
@@ -68,12 +68,7 @@
     background: linear-gradient(180deg, rgba(26,22,18,0.55) 0%, rgba(26,22,18,0.45) 40%, rgba(26,22,18,0.78) 100%);
     z-index: 1;
   }
-  .hero-content {
-    max-width: 720px;
-    position: relative;
-    z-index: 2;
-  }
-  .hero-image { display: none; }
+  .hero-content { max-width: 720px; margin: 0 auto; position: relative; z-index: 2; }
   .hero .quiet {
     font-family: var(--serif); font-style: italic;
     font-size: 1.15rem; color: #ffffff;
@@ -148,12 +143,16 @@
     .nav { padding: 14px 20px; }
     .nav-r { gap: 14px; }
     .nav-r a:not(:last-child) { display: none; }
-    .hero { padding: 120px 24px 60px; min-height: 45vh; }
-    .posts { padding: 30px 20px 60px; }
-    .post h2 { font-size: 1.3rem; }
+    .hero { 
+      padding: 120px 24px 60px;
+      min-height: 450px;
+      background-attachment: scroll;
+    }
     .hero::before {
       background: linear-gradient(180deg, rgba(26,22,18,0.65) 0%, rgba(26,22,18,0.55) 40%, rgba(26,22,18,0.85) 100%);
     }
+    .posts { padding: 30px 20px 60px; }
+    .post h2 { font-size: 1.3rem; }
   }
 </style>
 </head>

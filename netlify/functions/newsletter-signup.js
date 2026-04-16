@@ -1,27 +1,21 @@
 // netlify/functions/newsletter-signup.js
 //
-// Newsletter-Signup Handler für alle Lead-Magnete:
-// - Die 3 Shifts PDF
-// - Andere Opt-Ins
-//
-// Trägt Contact in ActiveCampaign ein, sendet Telegram-Notification
-//
-// Erforderliche Environment Variables:
-// - AC_API_URL
-// - AC_API_KEY
-// - AC_LIST_ID (z.B. 7 = Newsletter)
-// - TELEGRAM_BOT_TOKEN
-// - TELEGRAM_CHAT_ID
+// DEBUG VERSION — schickt AC-Fehler als Telegram-Nachricht
 
 exports.handler = async (event) => {
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: JSON.stringify({ error: 'Method not allowed' }) };
   }
 
-  // CORS
   const headers = {
     'Access-Control-Allow-Origin': '*',
     'Content-Type': 'application/json'
+  };
+
+  const debugLog = [];
+  const logDebug = (msg) => {
+    debugLog.push(msg);
+    console.log(msg);
   };
 
   try {
@@ -38,11 +32,22 @@ exports.handler = async (event) => {
     const listId = process.env.AC_LIST_ID || '7';
     const contactTags = Array.isArray(tags) ? tags : [];
 
-    // 1. Contact in AC anlegen/syncen
+    logDebug(`Email: ${email}`);
+    logDebug(`AC_API_URL: ${process.env.AC_API_URL || 'MISSING'}`);
+    logDebug(`AC_API_KEY set: ${!!process.env.AC_API_KEY}`);
+    logDebug(`AC_API_KEY length: ${process.env.AC_API_KEY ? process.env.AC_API_KEY.length : 0}`);
+    logDebug(`AC_LIST_ID: ${listId}`);
+    logDebug(`Tags: ${contactTags.join(',') || 'none'}`);
+
     let contactId = null;
+    let acSuccess = false;
+
     if (process.env.AC_API_URL && process.env.AC_API_KEY) {
       try {
-        const contactResp = await fetch(`${process.env.AC_API_URL}/api/3/contact/sync`, {
+        const syncUrl = `${process.env.AC_API_URL}/api/3/contact/sync`;
+        logDebug(`Calling: ${syncUrl}`);
+
+        const contactResp = await fetch(syncUrl, {
           method: 'POST',
           headers: {
             'Api-Token': process.env.AC_API_KEY,
@@ -53,30 +58,34 @@ exports.handler = async (event) => {
           })
         });
 
+        logDebug(`Sync status: ${contactResp.status}`);
+        const responseText = await contactResp.text();
+        logDebug(`Sync body: ${responseText.substring(0, 300)}`);
+
         if (contactResp.ok) {
-          const contactData = await contactResp.json();
+          const contactData = JSON.parse(responseText);
           contactId = contactData.contact?.id;
+          logDebug(`Contact ID: ${contactId}`);
 
           if (contactId) {
-            // Auf Newsletter-Liste setzen
-            await fetch(`${process.env.AC_API_URL}/api/3/contactLists`, {
+            const listResp = await fetch(`${process.env.AC_API_URL}/api/3/contactLists`, {
               method: 'POST',
               headers: {
                 'Api-Token': process.env.AC_API_KEY,
                 'Content-Type': 'application/json'
               },
               body: JSON.stringify({
-                contactList: {
-                  list: listId,
-                  contact: contactId,
-                  status: 1
-                }
+                contactList: { list: listId, contact: contactId, status: 0 }
               })
             });
+            logDebug(`List-add status: ${listResp.status}`);
+            if (!listResp.ok) {
+              const t = await listResp.text();
+              logDebug(`List error: ${t.substring(0, 200)}`);
+            }
 
-            // Tags hinzufügen
             for (const tag of contactTags) {
-              await fetch(`${process.env.AC_API_URL}/api/3/contactTags`, {
+              const tagResp = await fetch(`${process.env.AC_API_URL}/api/3/contactTags`, {
                 method: 'POST',
                 headers: {
                   'Api-Token': process.env.AC_API_KEY,
@@ -86,43 +95,38 @@ exports.handler = async (event) => {
                   contactTag: { contact: contactId, tag }
                 })
               });
+              logDebug(`Tag ${tag} status: ${tagResp.status}`);
+              if (!tagResp.ok) {
+                const t = await tagResp.text();
+                logDebug(`Tag error: ${t.substring(0, 200)}`);
+              }
             }
+            acSuccess = true;
+          } else {
+            logDebug(`No contactId in response`);
           }
         } else {
-          const errText = await contactResp.text();
-          console.error('AC sync failed:', errText);
+          logDebug(`Sync failed`);
         }
       } catch (e) {
-        console.error('AC error:', e);
+        logDebug(`Exception: ${e.message}`);
       }
+    } else {
+      logDebug(`AC credentials missing`);
     }
 
-    // 2. Telegram-Notification
+    // Telegram mit Debug-Info
     if (process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHAT_ID) {
       try {
-        let emoji = '📩';
-        let sourceLabel = source || 'Newsletter';
-
-        if (source?.includes('3-shifts')) { emoji = '🎁'; sourceLabel = 'Die 3 Shifts PDF'; }
-        else if (source?.includes('challenge')) { emoji = '🔥'; sourceLabel = 'Challenge'; }
-        else if (source?.includes('start')) { emoji = '✨'; sourceLabel = 'Start-Page'; }
-
-        const tagsStr = contactTags.length ? `\n🏷 Tags: \`${contactTags.join(', ')}\`` : '';
-
-        const msg = `${emoji} *NEWSLETTER-SIGNUP*
-
-👤 ${escapeMarkdown(firstname)}
-📧 ${escapeMarkdown(email)}
-
-📍 Quelle: ${escapeMarkdown(sourceLabel)}${tagsStr}`;
+        const statusLine = acSuccess ? '✅ AC Kontakt OK' : '⚠️ AC FEHLER';
+        const text = `🎁 Signup: ${email}\n${statusLine}\n\n--- DEBUG ---\n${debugLog.join('\n')}`.substring(0, 4000);
 
         await fetch(`https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             chat_id: process.env.TELEGRAM_CHAT_ID,
-            text: msg,
-            parse_mode: 'Markdown'
+            text: text
           })
         });
       } catch (e) {
@@ -133,7 +137,7 @@ exports.handler = async (event) => {
     return {
       statusCode: 200,
       headers,
-      body: JSON.stringify({ success: true })
+      body: JSON.stringify({ success: true, acSuccess, debug: debugLog })
     };
 
   } catch (err) {
@@ -145,8 +149,3 @@ exports.handler = async (event) => {
     };
   }
 };
-
-function escapeMarkdown(str) {
-  if (!str) return '';
-  return String(str).replace(/([_*\[\]()~`>#+\-=|{}.!])/g, '\\$1');
-}

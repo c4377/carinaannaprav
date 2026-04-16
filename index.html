@@ -83,50 +83,59 @@
 
   /* HERO */
   .hero {
-    min-height: 90vh;
-    display: grid;
-    grid-template-columns: 1.1fr 1fr;
+    min-height: 92vh;
+    display: flex;
     align-items: center;
-    padding: 120px 40px 80px;
-    gap: 4rem;
-    max-width: 1280px;
-    margin: 0 auto;
-  }
-
-  .hero-content { max-width: 600px; }
-
-  .hero-image {
-    width: 100%;
-    aspect-ratio: 3/4;
+    justify-content: center;
+    text-align: center;
+    padding: 140px 40px 100px;
+    position: relative;
+    overflow: hidden;
     background-image: url('bilder/photo_5980857112508173725_y.jpg');
     background-size: cover;
-    background-position: center;
-    border-radius: 6px;
+    background-position: center 30%;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(26,22,18,0.55) 0%, rgba(26,22,18,0.45) 40%, rgba(26,22,18,0.78) 100%);
+    z-index: 1;
+  }
+
+  .hero-content {
+    max-width: 760px;
+    position: relative;
+    z-index: 2;
   }
 
   .hero h1 {
     font-family: var(--serif);
     font-weight: 500;
-    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    font-size: clamp(2.4rem, 6vw, 4rem);
     line-height: 1.08;
     letter-spacing: -0.02em;
     margin-bottom: 1.8rem;
-    color: var(--ink);
+    color: #ffffff;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.6), 0 1px 3px rgba(0,0,0,0.5);
   }
 
   .hero h1 em {
     font-style: italic;
-    color: var(--accent);
+    color: #ffffff;
     font-weight: 400;
   }
 
   .hero-subtitle {
     font-family: var(--serif);
     font-style: italic;
-    font-size: 1.25rem;
+    font-size: 1.35rem;
     line-height: 1.5;
-    color: var(--ink-soft);
-    margin-bottom: 2.5rem;
+    color: rgba(255,255,255,0.97);
+    max-width: 560px;
+    margin: 0 auto 2.8rem;
+    text-shadow: 0 2px 15px rgba(0,0,0,0.5), 0 1px 2px rgba(0,0,0,0.4);
   }
 
   .hero-cta {
@@ -140,6 +149,7 @@
     text-transform: uppercase;
     border-radius: 3px;
     transition: all 0.2s;
+    box-shadow: 0 8px 24px rgba(201,134,64,0.35);
   }
 
   .hero-cta:hover {
@@ -168,6 +178,58 @@
     background: var(--accent);
     color: #ffffff;
   }
+
+  /* BILD-SECTIONS mit Parallax-Background */
+  .section-bg {
+    position: relative;
+    padding: 100px 32px;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+  }
+
+  /* Parallax nur auf Desktop — Mobile Safari rendert fixed schlecht */
+  @media (min-width: 900px) and (hover: hover) {
+    .section-bg { background-attachment: fixed; }
+  }
+
+  .section-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(26,22,18,0.7) 0%, rgba(26,22,18,0.5) 50%, rgba(26,22,18,0.8) 100%);
+    z-index: 1;
+  }
+
+  .section-bg .section-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* GLAS-KARTE über Bildern */
+  .glass-card {
+    background: rgba(245, 240, 232, 0.92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-radius: 6px;
+    padding: 3.5rem 3rem;
+    margin-bottom: 1.8rem;
+    border: 1px solid rgba(255,255,255,0.4);
+    box-shadow: 0 20px 60px -20px rgba(0,0,0,0.3);
+  }
+
+  .glass-card.dark {
+    background: rgba(26, 22, 18, 0.82);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    color: #ffffff;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .glass-card.dark h2 { color: #ffffff; }
+  .glass-card.dark p { color: rgba(255,255,255,0.92); }
+  .glass-card.dark .large-text { color: #ffffff; }
+  .glass-card.dark .quiet { color: #ffffff; opacity: 0.95; }
 
   h2 {
     font-family: var(--serif);
@@ -328,6 +390,7 @@
   .about-img {
     width: 100%;
     aspect-ratio: 4/5;
+    min-height: 60vh;
     background: var(--card);
     border-radius: 6px;
     background-image: url('bilder/photo_5978605312694488332_y.jpg');
@@ -407,9 +470,9 @@
 
   /* RESPONSIVE */
   @media (max-width: 900px) {
-    .hero { grid-template-columns: 1fr; gap: 2.5rem; padding: 110px 24px 60px; text-align: center; }
-    .hero-content { margin: 0 auto; }
-    .hero-image { max-width: 420px; margin: 0 auto; }
+    .hero { padding: 110px 24px 80px; }
+    .section-bg { padding: 60px 20px; }
+    .glass-card { padding: 2.5rem 1.8rem; }
   }
 
   @media (max-width: 768px) {
@@ -425,6 +488,13 @@
     .hero-subtitle { font-size: 1.15rem; }
     .large-text { font-size: 1.2rem; }
     .price-big { font-size: 2.5rem; }
+    /* Mobile: Overlay noch dunkler für bessere Lesbarkeit */
+    .hero::before {
+      background: linear-gradient(180deg, rgba(26,22,18,0.65) 0%, rgba(26,22,18,0.55) 40%, rgba(26,22,18,0.85) 100%);
+    }
+    .section-bg::before {
+      background: linear-gradient(180deg, rgba(26,22,18,0.8) 0%, rgba(26,22,18,0.6) 50%, rgba(26,22,18,0.88) 100%);
+    }
   }
 </style>
 </head>
@@ -433,7 +503,7 @@
 <nav class="nav">
   <div class="nav-logo">carinaannaprav</div>
   <div class="nav-r">
-    <a href="#angebot">Kurs</a>
+    <a href="/content-that-sells.html">Kurs</a>
     <a href="/mentoring.html">Mentoring</a>
     <a href="/dfy.html">Done-For-You</a>
     <a href="/blog.html">Blog</a>
@@ -447,7 +517,6 @@
     <p class="hero-subtitle">Für Frauen die gut sind in dem was sie tun — und aufhören wollen sich dafür zu entschuldigen.</p>
     <a href="/3-shifts.html" class="hero-cta">Die 3 Shifts · gratis PDF</a>
   </div>
-  <div class="hero-image"></div>
 </section>
 
 <!-- AGITATION - schlanker -->
@@ -489,10 +558,37 @@
 </section>
 
 <!-- CTS PRODUCT -->
-<section id="angebot" class="section rv">
+<!-- FUNNEL ÜBERSICHT -->
+<section class="section rv" style="padding-top: 40px; padding-bottom: 20px;">
+  <div class="section-content">
+    <p class="quiet" style="text-align: center;">So läuft's</p>
+    <h2 style="text-align: center;">Der Weg zu Content der verkauft.</h2>
+    <p style="text-align: center; max-width: 540px; margin: 0 auto 1rem;">Drei Schritte. Du entscheidest wie weit du gehst.</p>
+  </div>
+</section>
+
+<!-- SCHRITT 1: 3 SHIFTS PDF -->
+<section id="schritt-1" class="section rv">
   <div class="section-content">
     <div class="card-section">
-      <p class="quiet" style="text-align: center;">Selbstlernkurs</p>
+      <p class="quiet" style="text-align: center;">Schritt 1 · Kostenlos</p>
+      <h2 style="text-align: center;">Die 3 Shifts</h2>
+      <p style="text-align: center; max-width: 480px; margin: 0 auto 2rem;">Das PDF. Dein Einstieg. Du liest es in 20 Minuten — und weißt warum dein Content bis jetzt nicht verkauft hat.</p>
+
+      <div class="price-block-center">
+        <div class="price-big">Gratis</div>
+        <p class="price-sub">PDF · direkt im Postfach</p>
+        <a href="/3-shifts.html" class="cta-button">PDF holen</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHRITT 2: CONTENT THAT SELLS -->
+<section id="schritt-2" class="section rv">
+  <div class="section-content">
+    <div class="card-section">
+      <p class="quiet" style="text-align: center;">Schritt 2 · Selbstlernkurs</p>
       <h2 style="text-align: center;">Content that Sells</h2>
       <p style="text-align: center; max-width: 480px; margin: 0 auto 2rem;">Der Kurs mit der Magnetic Sales Method. Magnet, Spiegel, Brücke — und wie sie zusammenspielen.</p>
 
@@ -532,34 +628,39 @@
   </div>
 </section>
 
-<!-- MENTORING TEASER -->
-<section class="section rv">
+<!-- SCHRITT 3: MENTORING ODER DFY — mit Bild-Hintergrund -->
+<section class="section-bg rv" style="background-image: url('bilder/photo_5980857112508173723_y.jpg'); background-position: center 30%;">
+  <div class="section-content" style="max-width: 900px; text-align: center; margin-bottom: 2.5rem;">
+    <p class="quiet" style="color: #ffffff; opacity: 0.95; text-shadow: 0 2px 15px rgba(0,0,0,0.5);">Schritt 3 · Wenn du bereit bist</p>
+    <h2 style="color: #ffffff; margin-bottom: 1rem; text-shadow: 0 2px 20px rgba(0,0,0,0.5);">Mit mir persönlich arbeiten.</h2>
+    <p style="color: rgba(255,255,255,0.95); max-width: 540px; margin: 0 auto; text-shadow: 0 2px 15px rgba(0,0,0,0.5);">Zwei Wege. Du wählst was du brauchst — Mentoring oder fertig gebaut.</p>
+  </div>
+
+  <!-- MENTORING -->
   <div class="section-content">
-    <div class="card-section featured">
-      <p class="quiet" style="text-align: center; color: rgba(255,255,255,0.9);">1:1 Mentoring</p>
-      <h2 style="text-align: center;">Wenn du nicht mehr alleine raten willst.</h2>
-      <p style="text-align: center; max-width: 520px; margin: 0 auto 2rem;">Content that Sells zeigt dir die Methode. Mentoring wendet sie auf dich an. Positionierung, Branding, Content — für dein Business.</p>
+    <div class="glass-card dark" style="text-align: center;">
+      <p class="quiet">1:1 Mentoring</p>
+      <h2>Wenn du nicht mehr alleine raten willst.</h2>
+      <p style="max-width: 520px; margin: 0 auto 2rem;">Content that Sells zeigt dir die Methode. Mentoring wendet sie auf dich an. Positionierung, Branding, Content — für dein Business.</p>
 
       <div class="price-block-center">
-        <div class="price-big">€5.555</div>
-        <p class="price-sub">6 Monate · Strategie · Feedback · Umsetzung</p>
-        <a href="/mentoring.html" class="cta-button light">Mehr dazu</a>
+        <div class="price-big" style="color: #ffffff;">€5.555</div>
+        <p class="price-sub" style="color: rgba(255,255,255,0.85);">6 Monate · Strategie · Feedback · Umsetzung</p>
+        <a href="/mentoring.html" class="cta-button">Mehr dazu</a>
       </div>
     </div>
   </div>
-</section>
 
-<!-- DFY TEASER -->
-<section class="section rv">
+  <!-- DFY -->
   <div class="section-content">
-    <div class="card-section">
-      <p class="quiet" style="text-align: center;">Done-For-You</p>
-      <h2 style="text-align: center;">Oder ich bau's dir einfach.</h2>
-      <p style="text-align: center; max-width: 520px; margin: 0 auto 2rem;">Funnel, Automationen, Tech — gebaut. Damit du dich auf das konzentrierst was nur du machen kannst.</p>
+    <div class="glass-card" style="text-align: center;">
+      <p class="quiet">Done-For-You</p>
+      <h2>Oder ich bau's dir einfach.</h2>
+      <p style="max-width: 520px; margin: 0 auto 2rem;">Funnel, Automationen, Tech — gebaut. Damit du dich auf das konzentrierst was nur du machen kannst.</p>
 
       <div class="price-block-center">
-        <div class="price-big">Ab €2.500</div>
-        <p class="price-sub">Projektbasis · individuelles Angebot</p>
+        <div class="price-big">Ab €5.000</div>
+        <p class="price-sub">Offen nach oben · individuelles Angebot</p>
         <a href="/dfy.html" class="cta-button">Zur Done-For-You Seite</a>
       </div>
     </div>

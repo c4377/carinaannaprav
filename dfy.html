@@ -73,6 +73,7 @@
   .hero-image {
     width: 100%;
     aspect-ratio: 3/4;
+    min-height: 60vh;
     background: var(--card);
     background-image: url('bilder/photo_5980857112508173724_y.jpg');
     background-size: cover;
@@ -101,6 +102,48 @@
     margin-bottom: 1.8rem;
   }
   .card-section.featured { background: var(--accent); color: #ffffff; }
+
+  /* BILD-SECTIONS */
+  .section-bg {
+    position: relative;
+    padding: 100px 32px;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+  }
+  .section-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(26,22,18,0.7) 0%, rgba(26,22,18,0.5) 50%, rgba(26,22,18,0.8) 100%);
+    z-index: 1;
+  }
+  .section-bg .section-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* GLAS-KARTE */
+  .glass-card {
+    background: rgba(245, 240, 232, 0.92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-radius: 6px;
+    padding: 3.5rem 3rem;
+    margin-bottom: 1.8rem;
+    border: 1px solid rgba(255,255,255,0.4);
+    box-shadow: 0 20px 60px -20px rgba(0,0,0,0.3);
+  }
+  .glass-card.dark {
+    background: rgba(26, 22, 18, 0.82);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    color: #ffffff;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .glass-card.dark h2 { color: #ffffff; }
+  .glass-card.dark p { color: rgba(255,255,255,0.92); }
+  .glass-card.dark .large-text { color: #ffffff; }
 
   h2 {
     font-family: var(--serif); font-weight: 500;
@@ -205,6 +248,8 @@
     .hero { grid-template-columns: 1fr; gap: 2.5rem; padding: 110px 24px 60px; }
     .hero-image { max-width: 400px; margin: 0 auto; }
     .process-grid { grid-template-columns: 1fr; }
+    .section-bg { padding: 60px 20px; }
+    .glass-card { padding: 2.5rem 1.8rem; }
   }
   @media (max-width: 768px) {
     .nav { padding: 14px 20px; }
@@ -216,6 +261,9 @@
     h2 { font-size: 1.7rem; }
     .large-text { font-size: 1.2rem; }
     .price-big { font-size: 2.5rem; }
+    .section-bg::before {
+      background: linear-gradient(180deg, rgba(26,22,18,0.8) 0%, rgba(26,22,18,0.6) 50%, rgba(26,22,18,0.88) 100%);
+    }
   }
 </style>
 </head>
@@ -348,19 +396,19 @@
   </div>
 </section>
 
-<!-- CTA -->
-<section id="apply" class="section">
+<!-- CTA - mit Bild-Hintergrund -->
+<section id="apply" class="section-bg" style="background-image: url('bilder/photo_5980857112508173725_y.jpg'); background-position: center 30%;">
   <div class="section-content">
-    <div class="card-section featured" style="text-align: center;">
+    <div class="glass-card dark" style="text-align: center;">
       <h2>Lass uns sprechen</h2>
       <p class="large-text">30 Min. Du erklärst was du brauchst. Ich sag dir ob und wie ich's baue.</p>
 
       <div class="price-block-center">
-        <div class="price-big">Ab €2.500</div>
-        <p class="price-sub">Projektbasis · individuelles Angebot nach Call</p>
+        <div class="price-big" style="color: #ffffff;">Ab €5.000</div>
+        <p class="price-sub" style="color: rgba(255,255,255,0.85);">Offen nach oben · individuelles Angebot nach Call</p>
       </div>
 
-      <a href="https://calendly.com/carinaannaprav/dfy-call" class="cta-button dark">Kennenlern-Call buchen</a>
+      <a href="https://calendly.com/carinaannaprav/dfy-call" class="cta-button">Kennenlern-Call buchen</a>
 
       <p style="margin-top: 2rem; font-size: 0.88rem; color: rgba(255,255,255,0.85);">Oder schreib mir direkt: socials@carinaannaprav.at</p>
     </div>

@@ -49,26 +49,52 @@
   .nav-r a.active { color: var(--accent); }
 
   .hero {
+    min-height: 55vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    padding: 140px 32px 40px;
-  }
-  .hero-image {
-    width: 100%;
-    max-width: 560px;
-    aspect-ratio: 4/3;
-    margin: 2.5rem auto 0;
+    padding: 140px 32px 80px;
+    position: relative;
+    overflow: hidden;
     background-image: url('bilder/photo_5980857112508173727_y.jpg');
     background-size: cover;
-    background-position: center;
-    border-radius: 6px;
+    background-position: center 30%;
   }
-  .hero .quiet { font-family: var(--serif); font-style: italic; font-size: 1.15rem; color: var(--accent); margin-bottom: 1rem; }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(26,22,18,0.55) 0%, rgba(26,22,18,0.45) 40%, rgba(26,22,18,0.78) 100%);
+    z-index: 1;
+  }
+  .hero-content {
+    max-width: 720px;
+    position: relative;
+    z-index: 2;
+  }
+  .hero-image { display: none; }
+  .hero .quiet {
+    font-family: var(--serif); font-style: italic;
+    font-size: 1.15rem; color: #ffffff;
+    opacity: 0.98; margin-bottom: 1rem;
+    text-shadow: 0 2px 15px rgba(0,0,0,0.5), 0 1px 2px rgba(0,0,0,0.4);
+  }
   h1 {
     font-family: var(--serif); font-weight: 500;
     font-size: clamp(2.4rem, 5vw, 3.2rem);
     margin-bottom: 1rem;
+    color: #ffffff;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.6), 0 1px 3px rgba(0,0,0,0.5);
   }
-  .hero p { font-size: 1.05rem; color: var(--ink-soft); max-width: 520px; margin: 0 auto; }
+  .hero p {
+    font-family: var(--serif); font-style: italic;
+    font-size: 1.15rem;
+    color: rgba(255,255,255,0.97);
+    max-width: 520px;
+    margin: 0 auto;
+    text-shadow: 0 2px 15px rgba(0,0,0,0.5), 0 1px 2px rgba(0,0,0,0.4);
+  }
 
   .posts {
     max-width: 720px;
@@ -122,9 +148,12 @@
     .nav { padding: 14px 20px; }
     .nav-r { gap: 14px; }
     .nav-r a:not(:last-child) { display: none; }
-    .hero { padding: 120px 24px 30px; }
+    .hero { padding: 120px 24px 60px; min-height: 45vh; }
     .posts { padding: 30px 20px 60px; }
     .post h2 { font-size: 1.3rem; }
+    .hero::before {
+      background: linear-gradient(180deg, rgba(26,22,18,0.65) 0%, rgba(26,22,18,0.55) 40%, rgba(26,22,18,0.85) 100%);
+    }
   }
 </style>
 </head>
@@ -142,10 +171,11 @@
 </nav>
 
 <div class="hero">
-  <p class="quiet">Blog</p>
-  <h1>Strategien &amp; Klartext</h1>
-  <p>Alles was dein Content-System braucht.</p>
-  <div class="hero-image"></div>
+  <div class="hero-content">
+    <p class="quiet">Blog</p>
+    <h1>Strategien &amp; Klartext</h1>
+    <p>Alles was dein Content-System braucht.</p>
+  </div>
 </div>
 
 <div class="posts">

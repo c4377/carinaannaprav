@@ -537,6 +537,15 @@
     <ul class="fix-list" id="fix-list"></ul>
   </div>
 
+  <!-- UPSELL zu CTS -->
+  <div class="fix-card" id="upsell" style="display: none; background: var(--anthracite); color: #ffffff; border-left: 3px solid var(--accent);">
+    <div class="fix-label" style="color: rgba(255,255,255,0.7);">Der logische nächste Schritt</div>
+    <h3 style="color: #ffffff; margin-bottom: 1rem;">Du hast gesehen was fehlt. Jetzt lern wie's geht.</h3>
+    <p style="color: rgba(255,255,255,0.85); line-height: 1.75; margin-bottom: 1rem;">Das Tool zeigt dir <em>was</em> nicht funktioniert. <strong style="color: #ffffff;">Content that Sells</strong> zeigt dir <em>wie</em> du's änderst — für jeden Post, für jeden Job.</p>
+    <p style="color: rgba(255,255,255,0.85); line-height: 1.75; margin-bottom: 1.5rem;">7 Module. 12 Tools. Die ganze Magnetic Sales Method.</p>
+    <a href="content-that-sells.html" style="display: inline-block; padding: 1rem 2.2rem; background: var(--accent); color: #ffffff; text-decoration: none; font-weight: 500; font-size: 0.82rem; letter-spacing: 0.15em; text-transform: uppercase; border-radius: 3px; transition: background 0.2s;">Zum Kurs · €444</a>
+  </div>
+
   <div class="footer">
     <p>carinaannaprav.at</p>
   </div>
@@ -957,6 +966,7 @@
     // Show
     document.getElementById('result').classList.add('active');
     document.getElementById('fixes').classList.add('active');
+    document.getElementById('upsell').style.display = 'block';
 
     setTimeout(() => {
       document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -969,6 +979,7 @@
     document.querySelectorAll('input[name="intent"]').forEach(r => r.checked = false);
     document.getElementById('result').classList.remove('active');
     document.getElementById('fixes').classList.remove('active');
+    document.getElementById('upsell').style.display = 'none';
     document.getElementById('input-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 </script>

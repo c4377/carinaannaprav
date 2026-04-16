@@ -3,80 +3,179 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mal 2.000€, mal nichts — warum das kein Pech ist — carinaannaprav</title>
-<meta name="description" content="Mal 2.000€, mal nichts — warum das kein Pech ist">
+<meta name="theme-color" content="#ffffff">
+<title>Mal 2.000€, mal nichts — warum das kein Pech ist — Carina Anna Prav</title>
+<meta name="description" content="Unregelmäßiger Umsatz ist kein Schicksal. Es ist ein Systemfehler.">
 <meta property="og:title" content="Mal 2.000€, mal nichts — warum das kein Pech ist">
 <meta property="og:type" content="article">
 <link rel="canonical" href="https://carinaannaprav.at/blog/mal-2000-mal-nichts.html">
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg:#1C1917;--bg-warm:#231F1D;--burgundy:#8A2E3C;--burgundy-deep:#5C1A28;
-  --cream:#F5F0EB;--cream-soft:rgba(245,240,235,0.88);--cream-muted:rgba(245,240,235,0.6);
-  --border:rgba(245,240,235,0.15);
-  --serif:'Times New Roman MT Std','Times New Roman',Times,serif;--sans:'Outfit',sans-serif;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--cream);font-family:var(--sans);font-weight:300;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
-a{color:var(--cream);text-decoration:none}::selection{background:var(--burgundy);color:var(--cream)}
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 40px;display:flex;justify-content:space-between;align-items:center;background:rgba(28,25,23,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
-.nav-logo{font-family:var(--serif);font-weight:400;font-size:1.1rem;letter-spacing:0.08em}
-.nav-links{display:flex;gap:28px;align-items:center}
-.nav-links a{font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:400;color:var(--cream-muted);transition:color 0.3s}
-.nav-links a:hover{color:var(--cream)}
-.content{max-width:700px;margin:0 auto;padding:140px 40px 60px}
-.content h1{font-family:var(--serif);font-weight:400;font-size:clamp(1.8rem,3.5vw,2.4rem);line-height:1.2;margin-bottom:16px}
-.content h2{font-family:var(--serif);font-weight:400;font-size:1.3rem;margin:32px 0 14px;color:var(--cream)}
-.content p{font-size:0.92rem;color:var(--cream-soft);line-height:1.85;margin-bottom:14px}
-.content p strong{color:var(--cream);font-weight:500}
-.content a{color:var(--burgundy);transition:color 0.3s}.content a:hover{color:var(--cream)}
-.tag{font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--burgundy);margin-bottom:8px}
-.date{font-size:0.75rem;color:var(--cream-muted);margin-bottom:32px}
-.pin-box{margin-top:40px;padding:28px;background:var(--bg-warm);border:1px solid var(--border);text-align:center}
-.pin-box p{font-family:var(--serif);font-size:1rem;margin-bottom:12px;color:var(--cream-soft)}
-.pin-btn{display:inline-block;padding:10px 28px;background:var(--burgundy);color:var(--cream);font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;transition:all 0.3s}
-.pin-btn:hover{background:var(--burgundy-deep);color:var(--cream)}
-.back{display:inline-block;margin-top:28px;font-size:0.8rem;color:var(--cream-muted)}
-.back:hover{color:var(--cream)}
-footer{padding:40px 60px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
-.foot-sig{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--cream-soft)}
-.foot-links{display:flex;gap:20px}.foot-links a{font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--cream-muted)}.foot-links a:hover{color:var(--cream)}
-.foot-copy{font-size:0.65rem;color:var(--cream-muted);opacity:0.8}
-@media(max-width:600px){.nav{padding:16px 20px}.nav-links a:not(:first-child){display:none}.content{padding:100px 20px 40px}footer{flex-direction:column;gap:16px;text-align:center;padding:30px 24px}}
+  :root {
+    --bg: #ffffff;
+    --card: #F5F0E8;
+    --ink: #1a1a1a;
+    --ink-soft: #4a4238;
+    --muted: #8a8170;
+    --anthracite: #2e2a22;
+    --accent: #C98640;
+    --accent-dark: #a66d2f;
+    --rule: #e0d9cc;
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { background: #ffffff; min-height: 100%; scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    background: #ffffff !important;
+    color: var(--ink);
+    font-weight: 400;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 16px 40px;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-logo { font-family: var(--serif); font-weight: 500; font-size: 1rem; letter-spacing: 0.02em; }
+  .nav-r { display: flex; gap: 24px; }
+  .nav-r a { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; color: var(--muted); }
+  .nav-r a:hover { color: var(--accent); }
+  .article { max-width: 720px; margin: 0 auto; padding: 140px 40px 60px; }
+  .tag { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 1rem; }
+  h1 { font-family: var(--serif); font-weight: 500; font-size: clamp(2rem, 4vw, 2.8rem); line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 1.2rem; color: var(--ink); }
+  h1 em { font-style: italic; color: var(--accent); font-weight: 400; }
+  .meta { font-size: 0.82rem; color: var(--muted); margin-bottom: 2.5rem; letter-spacing: 0.05em; }
+  h2 { font-family: var(--serif); font-weight: 500; font-size: 1.5rem; line-height: 1.3; margin: 2.5rem 0 1rem; color: var(--ink); }
+  h2 em { font-style: italic; color: var(--accent); font-weight: 400; }
+  p { font-size: 1.02rem; line-height: 1.85; color: var(--ink-soft); margin-bottom: 1.2rem; }
+  p strong { color: var(--ink); font-weight: 600; }
+  .article a { color: var(--accent); font-weight: 500; transition: color 0.2s; }
+  .article a:hover { color: var(--accent-dark); }
+  .pullquote { font-family: var(--serif); font-style: italic; font-size: 1.4rem; line-height: 1.5; color: var(--ink); margin: 2rem 0; padding-left: 1.5rem; border-left: 3px solid var(--accent); }
+  .cta-box { margin-top: 3rem; padding: 2.5rem 2rem; background: var(--card); border-radius: 6px; text-align: center; }
+  .cta-box h3 { font-family: var(--serif); font-weight: 500; font-size: 1.4rem; margin-bottom: 0.8rem; color: var(--ink); }
+  .cta-box h3 em { font-style: italic; color: var(--accent); font-weight: 400; }
+  .cta-box p { font-size: 0.95rem; color: var(--ink-soft); margin-bottom: 1.5rem; max-width: 440px; margin-left: auto; margin-right: auto; }
+  .cta-box a { display: inline-block; padding: 0.9rem 2rem; background: var(--accent); color: #ffffff !important; font-weight: 500; font-size: 0.82rem; letter-spacing: 0.15em; text-transform: uppercase; border-radius: 3px; transition: all 0.2s; }
+  .cta-box a:hover { background: var(--accent-dark); color: #ffffff !important; transform: translateY(-2px); }
+  .back-row { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: center; }
+  .back { font-size: 0.82rem; color: var(--muted); letter-spacing: 0.05em; }
+  .back:hover { color: var(--accent); }
+  .pin { font-size: 0.78rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+  .pin:hover { color: var(--accent); }
+  footer { padding: 60px 40px; border-top: 1px solid var(--rule); text-align: center; }
+  .foot-sig { font-family: var(--serif); font-style: italic; font-size: 1rem; color: var(--ink-soft); display: block; margin-bottom: 1.2rem; }
+  footer a { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 12px; }
+  footer a:hover { color: var(--accent); }
+  @media (max-width: 768px) {
+    .nav { padding: 14px 20px; }
+    .nav-r { gap: 14px; }
+    .nav-r a:not(:last-child) { display: none; }
+    .article { padding: 110px 24px 40px; }
+    h1 { font-size: 1.8rem; }
+    h2 { font-size: 1.25rem; }
+    .pullquote { font-size: 1.2rem; }
+    .cta-box { padding: 2rem 1.5rem; }
+    .back-row { flex-direction: column; gap: 1rem; align-items: flex-start; }
+  }
 </style>
 </head>
 <body>
+
 <nav class="nav">
   <a href="../index.html" class="nav-logo">carinaannaprav</a>
-  <div class="nav-links">
-    <a href="../blog.html">Blog</a>
+  <div class="nav-r">
     <a href="../index.html">Home</a>
-    <a href="https://www.instagram.com/carinaannaprav/" target="_blank">Instagram</a>
+    <a href="../content-that-sells.html">Kurs</a>
+    <a href="../mentoring.html">Mentoring</a>
+    <a href="../dfy.html">Done-For-You</a>
+    <a href="../blog.html">Blog</a>
   </div>
 </nav>
-<div class="content">
-  <p class="tag">STRATEGIE · 5 MIN LESEZEIT</p>
-  <h1>Mal 2.000€, mal nichts — warum das kein Pech ist</h1>
-  <p class="date">März 2026 · von Carina Anna Prav</p>
-  
-  <p>Du hattest Monate mit 2.000€. Und Monate mit null. Und du denkst, das ist halt so als Selbstständige. <strong>Es ist nicht so.</strong></p>
-  <p>Unregelmäßiger Umsatz ist kein Schicksal. Es ist ein Systemfehler.</p>
-  <h2>Was dahinter steckt</h2>
-  <p>Du verkaufst, wenn du gerade Energie hast. Wenn du motiviert bist, wenn ein Post zufällig gut läuft, wenn jemand dich weiterempfiehlt. Und in den anderen Wochen? Passiert nichts. Weil kein System läuft, das unabhängig von deiner Tagesform funktioniert.</p>
-  <h2>Was du brauchst</h2>
-  <p>Einen Verkaufsprozess, der automatisch arbeitet. Content der regelmäßig die Richtige anspricht. Eine E-Mail-Liste, die aufwärmt. Einen Funnel, der zum Angebot führt — auch wenn du gerade dein Kind ins Bett bringst.</p>
-  <p><strong>Das ist keine Raketenwissenschaft. Das ist ein System.</strong> Und genau das bauen wir in meinen Kursen und im Mentoring auf.</p>
 
-  <div class="pin-box">
-    <p>Merken & Teilen</p>
-    <a href="https://www.pinterest.at/carinaannaprav/" class="pin-btn" target="_blank">Auf Pinterest merken</a>
+<article class="article">
+  <p class="tag">Strategie · 5 Min Lesezeit</p>
+  <h1>Mal 2.000€, mal nichts — warum das <em>kein Pech</em> ist</h1>
+  <p class="meta">April 2026 · Carina Anna Prav</p>
+
+  <p>Du hattest Monate mit 2.000€. Und Monate mit null.</p>
+
+  <p>Und du denkst: So ist das halt als Selbstständige. Hohe Highs, tiefe Lows.</p>
+
+  <p><strong>Ist es nicht.</strong></p>
+
+  <p class="pullquote">Unregelmäßiger Umsatz ist kein Schicksal. Es ist ein Systemfehler.</p>
+
+  <h2>Was wirklich <em>dahinter steckt</em></h2>
+
+  <p>Du verkaufst wenn du Energie hast. Wenn du motiviert bist. Wenn ein Post zufällig gut läuft. Wenn jemand dich weiterempfiehlt.</p>
+
+  <p>Und in den anderen Wochen?</p>
+
+  <p>Passiert nichts. Kein System. Kein Vertrieb der läuft während du lebst.</p>
+
+  <p>Du bist dein Business. Und wenn du mal einen schlechten Tag hast — hat dein Business auch einen schlechten Tag.</p>
+
+  <h2>Was du <em>brauchst</em></h2>
+
+  <p>Einen Verkaufsprozess der automatisch arbeitet. Content der regelmäßig die Richtige anspricht. Eine Email-Liste die warm hält. Einen Funnel der zum Angebot führt — auch wenn du gerade dein Kind ins Bett bringst.</p>
+
+  <p><strong>Das ist keine Raketenwissenschaft.</strong> Das ist ein System.</p>
+
+  <p>Ein System trennt deine Tagesform vom Umsatz. Du hast einen schlechten Tag — das System postet trotzdem. Die Email geht raus. Der Funnel tut seinen Job.</p>
+
+  <p>Du hast einen guten Tag — jetzt kannst du skalieren statt aufholen.</p>
+
+  <h2>Der Unterschied</h2>
+
+  <p>Selbstständige ohne System denken: "Ich muss mehr arbeiten wenn es besser werden soll."</p>
+
+  <p>Selbstständige mit System denken: "Was kann das System tun damit ich weniger arbeite?"</p>
+
+  <p class="pullquote">Das erste macht dich müde. Das zweite macht dich reich.</p>
+
+  <h2>Wo du anfängst</h2>
+
+  <p>Drei Dinge:</p>
+
+  <p><strong>1. Klares Angebot.</strong> In einem Satz erklärbar. Sonst kann dein System nichts verkaufen.</p>
+
+  <p><strong>2. Content der verkauft.</strong> Nicht Deko. Sondern Magnet, Spiegel, Brücke.</p>
+
+  <p><strong>3. Ein Funnel.</strong> Lead Magnet → Email-Sequenz → Angebot. Läuft auch wenn du offline bist.</p>
+
+  <p>Die drei Dinge zusammen = planbarer Umsatz. Nicht mehr 2k/0k/2k. Sondern 3k/3k/3k. Und dann 5k/5k/5k.</p>
+
+  <div class="cta-box">
+    <h3>Bereit für ein <em>System</em>?</h3>
+    <p>Content that Sells zeigt dir wie du dein Business vom Tagesform-Karussell auf planbaren Umsatz umstellst.</p>
+    <a href="../content-that-sells.html">Zum Kurs · €444</a>
   </div>
-  <a href="../blog.html" class="back">← Alle Artikel</a>
-</div>
+
+  <div class="back-row">
+    <a href="../blog.html" class="back">← Alle Artikel</a>
+    <a href="https://www.pinterest.at/carinaannaprav/" target="_blank" class="pin">Auf Pinterest merken</a>
+  </div>
+</article>
+
 <footer>
   <span class="foot-sig">Carina Anna Prav.</span>
-  <div class="foot-links"><a href="../impressum.html">Impressum</a><a href="../datenschutz.html">Datenschutz</a></div>
-  <span class="foot-copy">© 2026 carinaannaprav</span>
+  <div>
+    <a href="../impressum.html">Impressum</a>
+    <a href="../datenschutz.html">Datenschutz</a>
+    <a href="../agb.html">AGB</a>
+    <a href="https://www.instagram.com/carinaannaprav/" target="_blank">Instagram</a>
+  </div>
 </footer>
+
 </body>
 </html>

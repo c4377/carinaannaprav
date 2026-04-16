@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Website for Carina Anna Prav",
   "dependencies": {
-    "node-fetch": "^2.7.0",
-    "@supabase/supabase-js": "^2.39.0"
+    "@netlify/blobs": "^10.7.4",
+    "@supabase/supabase-js": "^2.39.0",
+    "node-fetch": "^2.7.0"
   }
 }
-

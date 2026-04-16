@@ -91,7 +91,7 @@
     padding: 140px 40px 100px;
     position: relative;
     overflow: hidden;
-    background-image: url('bilder/photo_5980857112508173725_y.jpg');
+    background-image: url('bilder/photo_5980857112508173725_y.jpg?v=2');
     background-size: cover;
     background-position: center 30%;
   }
@@ -230,6 +230,72 @@
   .glass-card.dark p { color: rgba(255,255,255,0.92); }
   .glass-card.dark .large-text { color: #ffffff; }
   .glass-card.dark .quiet { color: #ffffff; opacity: 0.95; }
+
+  /* TESTIMONIAL MASONRY - column-based für Screenshots unterschiedlicher Höhen */
+  .testimonial-masonry {
+    column-count: 3;
+    column-gap: 1rem;
+  }
+  .testimonial-masonry img {
+    width: 100%;
+    display: block;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    box-shadow: 0 10px 30px -10px rgba(0,0,0,0.25);
+    background: #f5f0e8;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .testimonial-masonry img:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px -10px rgba(0,0,0,0.4);
+  }
+  @media (max-width: 900px) {
+    .testimonial-masonry { column-count: 2; }
+  }
+  @media (max-width: 600px) {
+    .testimonial-masonry { column-count: 1; }
+    .testimonial-masonry img { margin-bottom: 0.8rem; }
+  }
+
+  /* TESTIMONIAL GRID (alt, kann raus) */
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+  }
+  .testimonial-card {
+    background: rgba(245, 240, 232, 0.94);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-radius: 6px;
+    padding: 1.8rem 1.5rem;
+    border: 1px solid rgba(255,255,255,0.4);
+    box-shadow: 0 12px 30px -10px rgba(0,0,0,0.2);
+  }
+  .testimonial-text {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1rem;
+    line-height: 1.55;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+  .testimonial-author {
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    margin: 0;
+  }
+  @media (max-width: 900px) {
+    .testimonial-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .testimonial-grid { grid-template-columns: 1fr; }
+  }
 
   h2 {
     font-family: var(--serif);
@@ -393,7 +459,7 @@
     min-height: 60vh;
     background: var(--card);
     border-radius: 6px;
-    background-image: url('bilder/photo_5978605312694488332_y.jpg');
+    background-image: url('bilder/photo_5978605312694488332_y.jpg?v=2');
     background-size: cover;
     background-position: center;
   }
@@ -470,7 +536,10 @@
 
   /* RESPONSIVE */
   @media (max-width: 900px) {
-    .hero { padding: 110px 24px 80px; }
+    .hero { 
+      padding: 110px 24px 80px;
+      min-height: 75vh;
+    }
     .section-bg { padding: 60px 20px; }
     .glass-card { padding: 2.5rem 1.8rem; }
   }
@@ -488,12 +557,23 @@
     .hero-subtitle { font-size: 1.15rem; }
     .large-text { font-size: 1.2rem; }
     .price-big { font-size: 2.5rem; }
+    .hero {
+      min-height: 600px;
+      background-attachment: scroll;
+    }
     /* Mobile: Overlay noch dunkler für bessere Lesbarkeit */
     .hero::before {
       background: linear-gradient(180deg, rgba(26,22,18,0.65) 0%, rgba(26,22,18,0.55) 40%, rgba(26,22,18,0.85) 100%);
     }
     .section-bg::before {
       background: linear-gradient(180deg, rgba(26,22,18,0.8) 0%, rgba(26,22,18,0.6) 50%, rgba(26,22,18,0.88) 100%);
+    }
+    .section-bg {
+      background-attachment: scroll;
+      min-height: 500px;
+    }
+    .about-img {
+      min-height: 400px;
     }
   }
 </style>
@@ -519,164 +599,178 @@
   </div>
 </section>
 
-<!-- AGITATION - schlanker -->
+<!-- SCREEN 2: WAS ICH MACHE - ohne Preis-Menü -->
+<section class="section rv">
+  <div class="section-content">
+    <p class="quiet" style="text-align: center;">Womit ich arbeite</p>
+    <h2 style="text-align: center;">Drei Wege <em>mit mir zu arbeiten</em>.</h2>
+    <p style="text-align: center; max-width: 540px; margin: 0 auto 3rem;">Du entscheidest wie viel Hand du brauchst.</p>
+
+    <div class="features" style="margin-bottom: 2rem;">
+      <div class="feat">
+        <h4>Content that Sells</h4>
+        <p>Selbstlernkurs. Die komplette Magnetic Sales Method. Für Frauen die selbst anwenden wollen.</p>
+        <p style="margin-top: 0.8rem;"><a href="/content-that-sells.html" style="color: var(--accent); font-weight: 500; font-size: 0.9rem;">→ Zum Kurs</a></p>
+      </div>
+      <div class="feat">
+        <h4>1:1 Mentoring</h4>
+        <p>Sechs Monate Hands-On. Für Frauen die nicht mehr allein raten wollen — und jemanden brauchen der mitbaut.</p>
+        <p style="margin-top: 0.8rem;"><a href="/mentoring.html" style="color: var(--accent); font-weight: 500; font-size: 0.9rem;">→ Zum Mentoring</a></p>
+      </div>
+      <div class="feat">
+        <h4>Done-For-You</h4>
+        <p>Ich bau dir deinen Funnel, deine Automationen, deine Tech. Für Frauen die die Strategie kennen und Umsetzung wollen.</p>
+        <p style="margin-top: 0.8rem;"><a href="/dfy.html" style="color: var(--accent); font-weight: 500; font-size: 0.9rem;">→ Zu Done-For-You</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCREEN 3: FÜR WEN - Mira Persona -->
 <section class="section rv">
   <div class="section-content">
     <div class="card-section">
-      <h2>Dein Content ist nicht schlecht. <em>Er hat nur keinen Job.</em></h2>
-      <p>Du weißt das. Sonst würdest du das hier nicht lesen.</p>
-      <p class="large-text">Die Frage ist nicht ob du gut bist.<br>Die Frage ist warum deine Kundin das nicht merkt.</p>
+      <h2>Wenn du das hier liest, <em>weißt du's schon.</em></h2>
+      <p>Du kannst was du tust. Das ist nicht die Frage.</p>
+      <p>Die Frage ist warum deine Kundin das nicht merkt.</p>
+      <p class="large-text">Du postest und postest und es fühlt sich an wie in einen leeren Raum reden.</p>
+      <p>Du brauchst keine weitere Strategie aus dem Internet. Du brauchst jemanden der dir sagt: <strong>DAS machst du jetzt, DAS lässt du weg.</strong></p>
+      <p>Dafür bin ich da.</p>
     </div>
   </div>
 </section>
 
-<!-- TRANSFORMATION - ruhiger -->
-<section class="section rv">
-  <div class="section-content">
-    <div class="card-section">
-      <h2>Dann passiert das Komische.</h2>
-      <p>Dein Feed wird leiser. Klarer. Magnetischer.</p>
-      <p>Weniger Content. Mehr Wirkung.</p>
-      <p>Du postest eine Story. Drei Bookings.<br>Du postest einen Reel. Fünf DMs die nach deinem Angebot fragen.</p>
-      <p class="large-text">Nicht weil du lauter geworden bist.<br>Weil du klarer geworden bist.</p>
-    </div>
-  </div>
-</section>
-
-<!-- STELL DIR VOR - gekürzt mit mehr Raum -->
-<section class="section rv">
-  <div class="section-content">
-    <div class="card-section">
-      <h2>Stell dir vor</h2>
-      <p>Du sitzt beim Morgenkaffee.<br>Telefon am Tisch, Bildschirm noch aus.</p>
-      <p>Du öffnest Instagram — nicht weil du musst.<br>Weil du neugierig bist.</p>
-      <p>Drei DMs.<br>Eine Frau hat gebucht. <em>"Ich hab dich zwei Wochen beobachtet und gewusst — das ist es."</em><br>Eine fragt nach Details.<br>Die dritte: <em>"Danke. Genau das hab ich gebraucht."</em></p>
-      <p>Du antwortest. Legst das Handy weg. Trinkst deinen Kaffee.</p>
-      <p class="large-text">So fühlt es sich an wenn dein Content einen Job hat.</p>
-    </div>
-  </div>
-</section>
-
-<!-- CTS PRODUCT -->
-<!-- FUNNEL ÜBERSICHT -->
-<section class="section rv" style="padding-top: 40px; padding-bottom: 20px;">
-  <div class="section-content">
-    <p class="quiet" style="text-align: center;">So läuft's</p>
-    <h2 style="text-align: center;">Der Weg zu Content der verkauft.</h2>
-    <p style="text-align: center; max-width: 540px; margin: 0 auto 1rem;">Drei Schritte. Du entscheidest wie weit du gehst.</p>
-  </div>
-</section>
-
-<!-- SCHRITT 1: 3 SHIFTS PDF -->
-<section id="schritt-1" class="section rv">
-  <div class="section-content">
-    <div class="card-section">
-      <p class="quiet" style="text-align: center;">Schritt 1 · Kostenlos</p>
-      <h2 style="text-align: center;">Die 3 Shifts</h2>
-      <p style="text-align: center; max-width: 480px; margin: 0 auto 2rem;">Das PDF. Dein Einstieg. Du liest es in 20 Minuten — und weißt warum dein Content bis jetzt nicht verkauft hat.</p>
-
-      <div class="price-block-center">
-        <div class="price-big">Gratis</div>
-        <p class="price-sub">PDF · direkt im Postfach</p>
-        <a href="/3-shifts.html" class="cta-button">PDF holen</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SCHRITT 2: CONTENT THAT SELLS -->
-<section id="schritt-2" class="section rv">
-  <div class="section-content">
-    <div class="card-section">
-      <p class="quiet" style="text-align: center;">Schritt 2 · Selbstlernkurs</p>
-      <h2 style="text-align: center;">Content that Sells</h2>
-      <p style="text-align: center; max-width: 480px; margin: 0 auto 2rem;">Der Kurs mit der Magnetic Sales Method. Magnet, Spiegel, Brücke — und wie sie zusammenspielen.</p>
-
-      <div class="features">
-        <div class="feat">
-          <h4>Magnet</h4>
-          <p>Aufhören zu überzeugen. Anfangen anzuziehen. Mit Haltung, nicht mit Hustle.</p>
-        </div>
-        <div class="feat">
-          <h4>Spiegel</h4>
-          <p>Sie erkennt sich in deinem Content — und baut Vertrauen. Ohne dass du dich zerlegst.</p>
-        </div>
-        <div class="feat">
-          <h4>Brücke</h4>
-          <p>Verkaufen ohne Cringe. Ein klarer Weg zum Angebot. Kein "was denkst du?" am Ende.</p>
-        </div>
-        <div class="feat">
-          <h4>Das System</h4>
-          <p>2h pro Woche statt täglich Stories. Batching, Recycling, Struktur die trägt.</p>
-        </div>
-        <div class="feat">
-          <h4>Die Tools</h4>
-          <p>Hook-Bibliothek, Content-Vorlagen für jeden Job. Ausfüllen und nutzen.</p>
-        </div>
-        <div class="feat">
-          <h4>Sofort umsetzbar</h4>
-          <p>Keine Theorie. Vorlagen die du direkt anwenden kannst — auf jedem Kanal.</p>
-        </div>
-      </div>
-
-      <div class="price-block-center">
-        <div class="price-big">€444</div>
-        <p class="price-sub">netto · einmalig · lebenslanger Zugriff</p>
-        <a href="/content-that-sells.html" class="cta-button">Zum Kurs</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SCHRITT 3: MENTORING ODER DFY — mit Bild-Hintergrund -->
-<section class="section-bg rv" style="background-image: url('bilder/photo_5980857112508173723_y.jpg'); background-position: center 30%;">
-  <div class="section-content" style="max-width: 900px; text-align: center; margin-bottom: 2.5rem;">
-    <p class="quiet" style="color: #ffffff; opacity: 0.95; text-shadow: 0 2px 15px rgba(0,0,0,0.5);">Schritt 3 · Wenn du bereit bist</p>
-    <h2 style="color: #ffffff; margin-bottom: 1rem; text-shadow: 0 2px 20px rgba(0,0,0,0.5);">Mit mir persönlich arbeiten.</h2>
-    <p style="color: rgba(255,255,255,0.95); max-width: 540px; margin: 0 auto; text-shadow: 0 2px 15px rgba(0,0,0,0.5);">Zwei Wege. Du wählst was du brauchst — Mentoring oder fertig gebaut.</p>
-  </div>
-
-  <!-- MENTORING -->
-  <div class="section-content">
-    <div class="glass-card dark" style="text-align: center;">
-      <p class="quiet">1:1 Mentoring</p>
-      <h2>Wenn du nicht mehr alleine raten willst.</h2>
-      <p style="max-width: 520px; margin: 0 auto 2rem;">Content that Sells zeigt dir die Methode. Mentoring wendet sie auf dich an. Positionierung, Branding, Content — für dein Business.</p>
-
-      <div class="price-block-center">
-        <div class="price-big" style="color: #ffffff;">€5.555</div>
-        <p class="price-sub" style="color: rgba(255,255,255,0.85);">6 Monate · Strategie · Feedback · Umsetzung</p>
-        <a href="/mentoring.html" class="cta-button">Mehr dazu</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- DFY -->
-  <div class="section-content">
-    <div class="glass-card" style="text-align: center;">
-      <p class="quiet">Done-For-You</p>
-      <h2>Oder ich bau's dir einfach.</h2>
-      <p style="max-width: 520px; margin: 0 auto 2rem;">Funnel, Automationen, Tech — gebaut. Damit du dich auf das konzentrierst was nur du machen kannst.</p>
-
-      <div class="price-block-center">
-        <div class="price-big">Ab €5.000</div>
-        <p class="price-sub">Offen nach oben · individuelles Angebot</p>
-        <a href="/dfy.html" class="cta-button">Zur Done-For-You Seite</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT - Brautlabel-Story -->
+<!-- SCREEN 4: ORIGIN STORY mit Bild (Brautkleid-Story) -->
 <section id="about" class="about rv">
   <div class="about-img"></div>
   <div class="about-txt">
     <p class="hey">Hi, ich bin Carina.</p>
     <p>Ich hab jahrelang Brautkleider verkauft.<br>Secondhand. Online. Mit perfekt gestylten Posts.</p>
-    <p>Bis ich eines Tages einen Post geschrieben hab der nichts verkaufen sollte.<br>Einfach nur ehrlich. Ungefiltert.</p>
+    <p>Bis ich an einem schlechten Tag einen Post geschrieben hab der nichts verkaufen sollte.<br>Einfach nur ehrlich. Ungefiltert.</p>
     <p><strong>Der ist viral gegangen.</strong><br>Und hat mir alles beigebracht was ich heute weiß.</p>
     <p class="closing">Dass strategisch nicht verkauft.<br>Echt verkauft.</p>
-    <p style="margin-top: 1.5rem;">Das ist die <strong>Magnetic Sales Method</strong>. Der Ansatz hinter allem was ich heute mache — dem Kurs <strong>Content that Sells</strong>, dem 1:1 Mentoring, und jedem Post.</p>
+    <p style="margin-top: 1.5rem;">Das ist die <strong>Magnetic Sales Method</strong>. Der Ansatz hinter allem — <strong>Content that Sells</strong>, dem 1:1 Mentoring, und jedem Post.</p>
+  </div>
+</section>
+
+<!-- SCREEN 5: BEWEIS - Testimonial-Wall mit 90 Screenshots -->
+<section class="section-bg rv" style="background-image: url('bilder/photo_5980857112508173723_y.jpg?v=2'); background-position: center 30%;">
+  <div class="section-content" style="max-width: 1200px;">
+    <div style="text-align: center; margin-bottom: 3rem;">
+      <p class="quiet" style="color: #ffffff; opacity: 0.95; text-shadow: 0 2px 15px rgba(0,0,0,0.5);">Was Kundinnen sagen</p>
+      <h2 style="color: #ffffff; text-shadow: 0 2px 20px rgba(0,0,0,0.5);">90 Stimmen. <em>Eine Methode.</em></h2>
+      <p style="color: rgba(255,255,255,0.95); max-width: 540px; margin: 1rem auto 0; text-shadow: 0 2px 15px rgba(0,0,0,0.5); font-family: var(--serif); font-style: italic; font-size: 1.15rem;">Echte Nachrichten. Echte Frauen. Kein Marketing.</p>
+    </div>
+
+    <!-- TESTIMONIAL MASONRY GRID - 90 Bilder -->
+    <div class="testimonial-masonry">
+        <img src="bilder/original-1B533CC7-F2ED-4EDF-83D0-36A6180B835C.jpeg?v=2" alt="Testimonial 1" loading="lazy">
+        <img src="bilder/original-2ECC2A33-6953-41C7-83B3-F66580D19CF5.jpeg?v=2" alt="Testimonial 2" loading="lazy">
+        <img src="bilder/original-3A90FEF4-EBD9-4DFF-B126-9A56547C9256.jpeg?v=2" alt="Testimonial 3" loading="lazy">
+        <img src="bilder/original-04AA6F00-0C1B-4113-8ADA-50CB84CBB8E0.jpeg?v=2" alt="Testimonial 4" loading="lazy">
+        <img src="bilder/original-5F90752B-8EAD-42AA-85C7-4D14768B28B6.jpeg?v=2" alt="Testimonial 5" loading="lazy">
+        <img src="bilder/original-6C82273F-FF98-479C-A9B1-B0CBF70C223D.jpeg?v=2" alt="Testimonial 6" loading="lazy">
+        <img src="bilder/original-65C04497-05A7-41EC-9764-9E93774B4FD6.jpeg?v=2" alt="Testimonial 7" loading="lazy">
+        <img src="bilder/original-99B7C905-0625-4865-9EDB-4BE8409F2306.jpeg?v=2" alt="Testimonial 8" loading="lazy">
+        <img src="bilder/original-312C2E9C-7F19-4DA1-93B3-FF4873BDC9B2.jpeg?v=2" alt="Testimonial 9" loading="lazy">
+        <img src="bilder/original-411A41C8-388B-4928-9F40-E678CD5E0991.jpeg?v=2" alt="Testimonial 10" loading="lazy">
+        <img src="bilder/original-957F0BA5-C7E0-4C86-8419-F62563F7A047.jpeg?v=2" alt="Testimonial 11" loading="lazy">
+        <img src="bilder/original-1398F801-9406-4C0A-A0D8-A8908EF4CC2E.jpeg?v=2" alt="Testimonial 12" loading="lazy">
+        <img src="bilder/original-4416EF4A-6C08-47BD-A20C-BA82C0265117.jpeg?v=2" alt="Testimonial 13" loading="lazy">
+        <img src="bilder/original-7285B6E9-997B-4396-B6B6-CD57BE7F3FEE.jpeg?v=2" alt="Testimonial 14" loading="lazy">
+        <img src="bilder/original-76075D13-6E96-4004-9E7E-BD2FD178BB64.jpeg?v=2" alt="Testimonial 15" loading="lazy">
+        <img src="bilder/original-82809621-917B-4691-8FFA-47C00820BB92.jpeg?v=2" alt="Testimonial 16" loading="lazy">
+        <img src="bilder/original-A6FA60B5-B3D8-4FE0-B4D1-A5E8E87A10AD.jpeg?v=2" alt="Testimonial 17" loading="lazy">
+        <img src="bilder/original-A648FAA7-664A-4A6B-80C0-74501BB0F2F7.jpeg?v=2" alt="Testimonial 18" loading="lazy">
+        <img src="bilder/original-AB7B540C-0E93-4F4C-AEA1-B3E92DDA92AE.jpeg?v=2" alt="Testimonial 19" loading="lazy">
+        <img src="bilder/original-B274C6CA-50FF-450C-BA1B-013D5A08A62B.jpeg?v=2" alt="Testimonial 20" loading="lazy">
+        <img src="bilder/original-B2789F91-83D3-4E11-AFAB-915B83A023DC.jpeg?v=2" alt="Testimonial 21" loading="lazy">
+        <img src="bilder/original-B3277BC9-7C2E-4E59-835A-288F2AE0C138.jpeg?v=2" alt="Testimonial 22" loading="lazy">
+        <img src="bilder/original-B3944818-B656-4973-B566-46AAC3CF0203.jpeg?v=2" alt="Testimonial 23" loading="lazy">
+        <img src="bilder/original-BABFACA4-C8C6-4CF6-B10A-6072C190E6B7.jpeg?v=2" alt="Testimonial 24" loading="lazy">
+        <img src="bilder/original-CFB39709-7504-4DE9-BA94-519A5F03C191.jpeg?v=2" alt="Testimonial 25" loading="lazy">
+        <img src="bilder/original-D23C42DC-C146-43BB-92C9-0C95CD0AF998.jpeg?v=2" alt="Testimonial 26" loading="lazy">
+        <img src="bilder/original-E1CF9CA0-3B57-4760-863E-C2C418298C99.jpeg?v=2" alt="Testimonial 27" loading="lazy">
+        <img src="bilder/original-E2E827D2-F65F-45EE-BB7F-9C3E43BB32DF.jpeg?v=2" alt="Testimonial 28" loading="lazy">
+        <img src="bilder/original-FA4AAD51-3381-4336-A406-55AFB8CEC268.jpeg?v=2" alt="Testimonial 29" loading="lazy">
+        <img src="bilder/original-FE218E4D-02E7-4D9A-8451-535CC836FD0F.jpeg?v=2" alt="Testimonial 30" loading="lazy">
+        <img src="bilder/IMG_1298_Original.JPG?v=2" alt="Testimonial 31" loading="lazy">
+        <img src="bilder/IMG_2316_Original.JPG?v=2" alt="Testimonial 32" loading="lazy">
+        <img src="bilder/IMG_2323_Original.JPG?v=2" alt="Testimonial 33" loading="lazy">
+        <img src="bilder/IMG_3215_Original.JPG?v=2" alt="Testimonial 34" loading="lazy">
+        <img src="bilder/IMG_3861_Original.JPG?v=2" alt="Testimonial 35" loading="lazy">
+        <img src="bilder/IMG_5543_Original.JPG?v=2" alt="Testimonial 36" loading="lazy">
+        <img src="bilder/IMG_5665_Original.JPG?v=2" alt="Testimonial 37" loading="lazy">
+        <img src="bilder/IMG_6642.JPG?v=2" alt="Testimonial 38" loading="lazy">
+        <img src="bilder/IMG_6646.JPG?v=2" alt="Testimonial 39" loading="lazy">
+        <img src="bilder/IMG_6647.JPG?v=2" alt="Testimonial 40" loading="lazy">
+        <img src="bilder/IMG_6655.JPG?v=2" alt="Testimonial 41" loading="lazy">
+        <img src="bilder/IMG_6656.JPG?v=2" alt="Testimonial 42" loading="lazy">
+        <img src="bilder/IMG_6661.JPG?v=2" alt="Testimonial 43" loading="lazy">
+        <img src="bilder/IMG_6668.JPG?v=2" alt="Testimonial 44" loading="lazy">
+        <img src="bilder/IMG_6670.JPG?v=2" alt="Testimonial 45" loading="lazy">
+        <img src="bilder/IMG_6679.JPG?v=2" alt="Testimonial 46" loading="lazy">
+        <img src="bilder/IMG_6682.JPG?v=2" alt="Testimonial 47" loading="lazy">
+        <img src="bilder/IMG_6691.JPG?v=2" alt="Testimonial 48" loading="lazy">
+        <img src="bilder/IMG_6781_Original.JPG?v=2" alt="Testimonial 49" loading="lazy">
+        <img src="bilder/IMG_7522_Original.JPG?v=2" alt="Testimonial 50" loading="lazy">
+        <img src="bilder/IMG_7533_Original.JPG?v=2" alt="Testimonial 51" loading="lazy">
+        <img src="bilder/IMG_7535_Original.JPG?v=2" alt="Testimonial 52" loading="lazy">
+        <img src="bilder/IMG_7536_Original.JPG?v=2" alt="Testimonial 53" loading="lazy">
+        <img src="bilder/IMG_7537_Original.JPG?v=2" alt="Testimonial 54" loading="lazy">
+        <img src="bilder/IMG_7539_Original.JPG?v=2" alt="Testimonial 55" loading="lazy">
+        <img src="bilder/IMG_7955_Original.JPG?v=2" alt="Testimonial 56" loading="lazy">
+        <img src="bilder/IMG_9097_Original.JPG?v=2" alt="Testimonial 57" loading="lazy">
+        <img src="bilder/IMG_9100_Original.JPG?v=2" alt="Testimonial 58" loading="lazy">
+        <img src="bilder/IMG_9101_Original.JPG?v=2" alt="Testimonial 59" loading="lazy">
+        <img src="bilder/IMG_9111_Original.JPG?v=2" alt="Testimonial 60" loading="lazy">
+        <img src="bilder/IMG_9112_Original.JPG?v=2" alt="Testimonial 61" loading="lazy">
+        <img src="bilder/IMG_9120_Original.JPG?v=2" alt="Testimonial 62" loading="lazy">
+        <img src="bilder/IMG_9121_Original.JPG?v=2" alt="Testimonial 63" loading="lazy">
+        <img src="bilder/proof-1.JPG?v=2" alt="Testimonial 64" loading="lazy">
+        <img src="bilder/proof-2.JPG?v=2" alt="Testimonial 65" loading="lazy">
+        <img src="bilder/proof-3.jpg?v=2" alt="Testimonial 66" loading="lazy">
+        <img src="bilder/proof-4.jpg?v=2" alt="Testimonial 67" loading="lazy">
+        <img src="bilder/proof-5.jpg?v=2" alt="Testimonial 68" loading="lazy">
+        <img src="bilder/proof-6.JPG?v=2" alt="Testimonial 69" loading="lazy">
+        <img src="bilder/proof-7.JPG?v=2" alt="Testimonial 70" loading="lazy">
+        <img src="bilder/proof-8.JPG?v=2" alt="Testimonial 71" loading="lazy">
+        <img src="bilder/IMG_1121.PNG?v=2" alt="Testimonial 72" loading="lazy">
+        <img src="bilder/IMG_1206.PNG?v=2" alt="Testimonial 73" loading="lazy">
+        <img src="bilder/IMG_1313.PNG?v=2" alt="Testimonial 74" loading="lazy">
+        <img src="bilder/IMG_2530.PNG?v=2" alt="Testimonial 75" loading="lazy">
+        <img src="bilder/IMG_3601.PNG?v=2" alt="Testimonial 76" loading="lazy">
+        <img src="bilder/IMG_4347.PNG?v=2" alt="Testimonial 77" loading="lazy">
+        <img src="bilder/IMG_4544.PNG?v=2" alt="Testimonial 78" loading="lazy">
+        <img src="bilder/IMG_4612.PNG?v=2" alt="Testimonial 79" loading="lazy">
+        <img src="bilder/IMG_4613.PNG?v=2" alt="Testimonial 80" loading="lazy">
+        <img src="bilder/IMG_6291.PNG?v=2" alt="Testimonial 81" loading="lazy">
+        <img src="bilder/IMG_7502.PNG?v=2" alt="Testimonial 82" loading="lazy">
+        <img src="bilder/IMG_7504.PNG?v=2" alt="Testimonial 83" loading="lazy">
+        <img src="bilder/IMG_7521.PNG?v=2" alt="Testimonial 84" loading="lazy">
+        <img src="bilder/IMG_7528.PNG?v=2" alt="Testimonial 85" loading="lazy">
+        <img src="bilder/IMG_7529.PNG?v=2" alt="Testimonial 86" loading="lazy">
+        <img src="bilder/IMG_8337.PNG?v=2" alt="Testimonial 87" loading="lazy">
+        <img src="bilder/IMG_8338.PNG?v=2" alt="Testimonial 88" loading="lazy">
+        <img src="bilder/IMG_9993.PNG?v=2" alt="Testimonial 89" loading="lazy">
+        <img src="bilder/proof-4.PNG?v=2" alt="Testimonial 90" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- SCREEN 6: EINSTIEG - 3-Shifts als klarer erster Schritt -->
+<section class="section rv">
+  <div class="section-content">
+    <div class="card-section featured" style="text-align: center;">
+      <p class="quiet" style="color: rgba(255,255,255,0.9);">Hier startest du</p>
+      <h2>Die 3 Shifts.</h2>
+      <p style="max-width: 480px; margin: 0 auto 1rem;">Das PDF. 20 Minuten lesen. Dann weißt du warum dein Content bis jetzt nicht verkauft hat.</p>
+      <p style="max-width: 480px; margin: 0 auto 2rem; font-family: var(--serif); font-style: italic; font-size: 1.15rem;">Kostenlos. Hier fängt alles an.</p>
+
+      <div class="price-block-center">
+        <a href="/3-shifts.html" class="cta-button light">PDF holen</a>
+      </div>
+    </div>
   </div>
 </section>
 

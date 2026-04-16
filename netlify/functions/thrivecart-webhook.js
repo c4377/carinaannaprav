@@ -65,12 +65,12 @@ exports.handler = async (event) => {
     }
 
     // 1. In ActiveCampaign eintragen
-    if (process.env.AC_API_URL && process.env.AC_API_KEY) {
+    if ((process.env.AC_API_URL || process.env.ACTIVECAMPAIGN_API_URL) && (process.env.AC_API_KEY || process.env.ACTIVECAMPAIGN_API_KEY)) {
       try {
-        const contactResp = await fetch(`${process.env.AC_API_URL}/api/3/contact/sync`, {
+        const contactResp = await fetch(`${(process.env.AC_API_URL || process.env.ACTIVECAMPAIGN_API_URL)}/api/3/contact/sync`, {
           method: 'POST',
           headers: {
-            'Api-Token': process.env.AC_API_KEY,
+            'Api-Token': (process.env.AC_API_KEY || process.env.ACTIVECAMPAIGN_API_KEY),
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
@@ -87,35 +87,54 @@ exports.handler = async (event) => {
           const contactId = contactData.contact?.id;
 
           if (contactId) {
-            // Tag hinzufügen
-            await fetch(`${process.env.AC_API_URL}/api/3/contactTags`, {
-              method: 'POST',
-              headers: {
-                'Api-Token': process.env.AC_API_KEY,
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({
-                contactTag: {
-                  contact: contactId,
-                  tag: productTag
-                }
-              })
-            });
+            const AC_URL = (process.env.AC_API_URL || process.env.ACTIVECAMPAIGN_API_URL);
+            const AC_KEY = (process.env.AC_API_KEY || process.env.ACTIVECAMPAIGN_API_KEY);
 
-            // Generic "kunde" tag auch
-            await fetch(`${process.env.AC_API_URL}/api/3/contactTags`, {
-              method: 'POST',
-              headers: {
-                'Api-Token': process.env.AC_API_KEY,
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({
-                contactTag: {
-                  contact: contactId,
-                  tag: 'kunde'
+            // Helper: Tag-Name → Tag-ID (find or create)
+            const getTagId = async (tagName) => {
+              try {
+                const searchResp = await fetch(`${AC_URL}/api/3/tags?search=${encodeURIComponent(tagName)}`, {
+                  headers: { 'Api-Token': AC_KEY, 'Content-Type': 'application/json' }
+                });
+                if (searchResp.ok) {
+                  const data = await searchResp.json();
+                  const match = data.tags?.find(t => t.tag === tagName);
+                  if (match) return match.id;
                 }
-              })
-            });
+                // Create
+                const createResp = await fetch(`${AC_URL}/api/3/tags`, {
+                  method: 'POST',
+                  headers: { 'Api-Token': AC_KEY, 'Content-Type': 'application/json' },
+                  body: JSON.stringify({
+                    tag: { tag: tagName, tagType: 'contact', description: 'Auto-created from ThriveCart webhook' }
+                  })
+                });
+                if (createResp.ok) {
+                  const data = await createResp.json();
+                  return data.tag?.id;
+                }
+              } catch (e) {
+                console.error('getTagId error:', e);
+              }
+              return null;
+            };
+
+            const attachTag = async (tagName) => {
+              const tagId = await getTagId(tagName);
+              if (!tagId) {
+                console.error(`Could not resolve tag "${tagName}"`);
+                return;
+              }
+              await fetch(`${AC_URL}/api/3/contactTags`, {
+                method: 'POST',
+                headers: { 'Api-Token': AC_KEY, 'Content-Type': 'application/json' },
+                body: JSON.stringify({ contactTag: { contact: contactId, tag: tagId } })
+              });
+            };
+
+            // Tags setzen
+            await attachTag(productTag);
+            await attachTag('kunde');
           }
         }
       } catch (e) {

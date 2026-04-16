@@ -32,25 +32,29 @@ exports.handler = async (event) => {
     const listId = process.env.AC_LIST_ID || '7';
     const contactTags = Array.isArray(tags) ? tags : [];
 
+    // Support beide Varianten: AC_API_URL oder ACTIVECAMPAIGN_API_URL
+    const AC_URL = process.env.AC_API_URL || process.env.ACTIVECAMPAIGN_API_URL;
+    const AC_KEY = process.env.AC_API_KEY || process.env.ACTIVECAMPAIGN_API_KEY;
+
     logDebug(`Email: ${email}`);
-    logDebug(`AC_API_URL: ${process.env.AC_API_URL || 'MISSING'}`);
-    logDebug(`AC_API_KEY set: ${!!process.env.AC_API_KEY}`);
-    logDebug(`AC_API_KEY length: ${process.env.AC_API_KEY ? process.env.AC_API_KEY.length : 0}`);
+    logDebug(`AC_URL: ${AC_URL || 'MISSING'}`);
+    logDebug(`AC_KEY set: ${!!AC_KEY}`);
+    logDebug(`AC_KEY length: ${AC_KEY ? AC_KEY.length : 0}`);
     logDebug(`AC_LIST_ID: ${listId}`);
     logDebug(`Tags: ${contactTags.join(',') || 'none'}`);
 
     let contactId = null;
     let acSuccess = false;
 
-    if (process.env.AC_API_URL && process.env.AC_API_KEY) {
+    if (AC_URL && AC_KEY) {
       try {
-        const syncUrl = `${process.env.AC_API_URL}/api/3/contact/sync`;
+        const syncUrl = `${AC_URL}/api/3/contact/sync`;
         logDebug(`Calling: ${syncUrl}`);
 
         const contactResp = await fetch(syncUrl, {
           method: 'POST',
           headers: {
-            'Api-Token': process.env.AC_API_KEY,
+            'Api-Token': AC_KEY,
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
@@ -68,10 +72,10 @@ exports.handler = async (event) => {
           logDebug(`Contact ID: ${contactId}`);
 
           if (contactId) {
-            const listResp = await fetch(`${process.env.AC_API_URL}/api/3/contactLists`, {
+            const listResp = await fetch(`${AC_URL}/api/3/contactLists`, {
               method: 'POST',
               headers: {
-                'Api-Token': process.env.AC_API_KEY,
+                'Api-Token': AC_KEY,
                 'Content-Type': 'application/json'
               },
               body: JSON.stringify({
@@ -84,21 +88,73 @@ exports.handler = async (event) => {
               logDebug(`List error: ${t.substring(0, 200)}`);
             }
 
-            for (const tag of contactTags) {
-              const tagResp = await fetch(`${process.env.AC_API_URL}/api/3/contactTags`, {
-                method: 'POST',
+            for (const tagName of contactTags) {
+              // Step 1: Finde oder lege Tag an, hole die ID
+              let tagId = null;
+
+              // Versuche erst den Tag zu finden
+              const tagSearchResp = await fetch(`${AC_URL}/api/3/tags?search=${encodeURIComponent(tagName)}`, {
                 headers: {
-                  'Api-Token': process.env.AC_API_KEY,
+                  'Api-Token': AC_KEY,
                   'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                  contactTag: { contact: contactId, tag }
-                })
+                }
               });
-              logDebug(`Tag ${tag} status: ${tagResp.status}`);
-              if (!tagResp.ok) {
-                const t = await tagResp.text();
-                logDebug(`Tag error: ${t.substring(0, 200)}`);
+
+              if (tagSearchResp.ok) {
+                const tagSearchData = await tagSearchResp.json();
+                // Exakten Match finden (search ist "contains", wir wollen "equals")
+                const matchingTag = tagSearchData.tags?.find(t => t.tag === tagName);
+                if (matchingTag) {
+                  tagId = matchingTag.id;
+                  logDebug(`Tag "${tagName}" found, ID: ${tagId}`);
+                }
+              }
+
+              // Falls nicht gefunden, anlegen
+              if (!tagId) {
+                const tagCreateResp = await fetch(`${AC_URL}/api/3/tags`, {
+                  method: 'POST',
+                  headers: {
+                    'Api-Token': AC_KEY,
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({
+                    tag: {
+                      tag: tagName,
+                      tagType: 'contact',
+                      description: `Auto-created from signup`
+                    }
+                  })
+                });
+
+                if (tagCreateResp.ok) {
+                  const tagCreateData = await tagCreateResp.json();
+                  tagId = tagCreateData.tag?.id;
+                  logDebug(`Tag "${tagName}" created, ID: ${tagId}`);
+                } else {
+                  const t = await tagCreateResp.text();
+                  logDebug(`Tag create error "${tagName}": ${t.substring(0, 200)}`);
+                  continue; // skip this tag
+                }
+              }
+
+              // Step 2: Tag an Contact hängen (mit ID)
+              if (tagId) {
+                const tagResp = await fetch(`${AC_URL}/api/3/contactTags`, {
+                  method: 'POST',
+                  headers: {
+                    'Api-Token': AC_KEY,
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({
+                    contactTag: { contact: contactId, tag: tagId }
+                  })
+                });
+                logDebug(`Tag "${tagName}" (ID ${tagId}) attach status: ${tagResp.status}`);
+                if (!tagResp.ok) {
+                  const t = await tagResp.text();
+                  logDebug(`Tag attach error: ${t.substring(0, 200)}`);
+                }
               }
             }
             acSuccess = true;

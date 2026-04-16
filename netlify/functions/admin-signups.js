@@ -19,12 +19,12 @@ exports.handler = async (event) => {
   try {
     const signups = [];
 
-    if (process.env.AC_API_URL && process.env.AC_API_KEY) {
+    if ((process.env.AC_API_URL || process.env.ACTIVECAMPAIGN_API_URL) && (process.env.AC_API_KEY || process.env.ACTIVECAMPAIGN_API_KEY)) {
       try {
         // Letzte 20 Contacts holen, sortiert nach created date
         const resp = await fetch(
-          `${process.env.AC_API_URL}/api/3/contacts?limit=20&orders[cdate]=DESC`,
-          { headers: { 'Api-Token': process.env.AC_API_KEY } }
+          `${(process.env.AC_API_URL || process.env.ACTIVECAMPAIGN_API_URL)}/api/3/contacts?limit=20&orders[cdate]=DESC`,
+          { headers: { 'Api-Token': (process.env.AC_API_KEY || process.env.ACTIVECAMPAIGN_API_KEY) } }
         );
 
         if (resp.ok) {

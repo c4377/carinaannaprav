@@ -28,13 +28,13 @@ exports.handler = async (event) => {
     };
 
     // 1. Newsletter-Abonnenten aus AC
-    if (process.env.AC_API_URL && process.env.AC_API_KEY) {
+    if ((process.env.AC_API_URL || process.env.ACTIVECAMPAIGN_API_URL) && (process.env.AC_API_KEY || process.env.ACTIVECAMPAIGN_API_KEY)) {
       try {
         const listId = process.env.AC_LIST_ID || '7';
         const resp = await fetch(
-          `${process.env.AC_API_URL}/api/3/lists/${listId}`,
+          `${(process.env.AC_API_URL || process.env.ACTIVECAMPAIGN_API_URL)}/api/3/lists/${listId}`,
           {
-            headers: { 'Api-Token': process.env.AC_API_KEY }
+            headers: { 'Api-Token': (process.env.AC_API_KEY || process.env.ACTIVECAMPAIGN_API_KEY) }
           }
         );
         if (resp.ok) {
@@ -48,13 +48,13 @@ exports.handler = async (event) => {
       // CTS-Kunden (Tag: kunde-cts)
       try {
         const resp = await fetch(
-          `${process.env.AC_API_URL}/api/3/contacts?tagid_array[]=&status=1&limit=1`,
-          { headers: { 'Api-Token': process.env.AC_API_KEY } }
+          `${(process.env.AC_API_URL || process.env.ACTIVECAMPAIGN_API_URL)}/api/3/contacts?tagid_array[]=&status=1&limit=1`,
+          { headers: { 'Api-Token': (process.env.AC_API_KEY || process.env.ACTIVECAMPAIGN_API_KEY) } }
         );
         // Einfacher Workaround: Tag-basierter Count
         const tagResp = await fetch(
-          `${process.env.AC_API_URL}/api/3/tags?search=kunde-cts`,
-          { headers: { 'Api-Token': process.env.AC_API_KEY } }
+          `${(process.env.AC_API_URL || process.env.ACTIVECAMPAIGN_API_URL)}/api/3/tags?search=kunde-cts`,
+          { headers: { 'Api-Token': (process.env.AC_API_KEY || process.env.ACTIVECAMPAIGN_API_KEY) } }
         );
         if (tagResp.ok) {
           const tagData = await tagResp.json();
@@ -66,8 +66,8 @@ exports.handler = async (event) => {
 
         // Mentoring-Kunden
         const mentoringResp = await fetch(
-          `${process.env.AC_API_URL}/api/3/tags?search=kunde-mentoring`,
-          { headers: { 'Api-Token': process.env.AC_API_KEY } }
+          `${(process.env.AC_API_URL || process.env.ACTIVECAMPAIGN_API_URL)}/api/3/tags?search=kunde-mentoring`,
+          { headers: { 'Api-Token': (process.env.AC_API_KEY || process.env.ACTIVECAMPAIGN_API_KEY) } }
         );
         if (mentoringResp.ok) {
           const mData = await mentoringResp.json();

@@ -54,12 +54,12 @@ exports.handler = async (event) => {
     }
 
     // 2. In ActiveCampaign eintragen
-    if (process.env.AC_API_URL && process.env.AC_API_KEY) {
+    if ((process.env.AC_API_URL || process.env.ACTIVECAMPAIGN_API_URL) && (process.env.AC_API_KEY || process.env.ACTIVECAMPAIGN_API_KEY)) {
       try {
-        const contactResp = await fetch(`${process.env.AC_API_URL}/api/3/contact/sync`, {
+        const contactResp = await fetch(`${(process.env.AC_API_URL || process.env.ACTIVECAMPAIGN_API_URL)}/api/3/contact/sync`, {
           method: 'POST',
           headers: {
-            'Api-Token': process.env.AC_API_KEY,
+            'Api-Token': (process.env.AC_API_KEY || process.env.ACTIVECAMPAIGN_API_KEY),
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
@@ -75,20 +75,45 @@ exports.handler = async (event) => {
           const contactId = contactData.contact?.id;
 
           if (contactId) {
-            // Tag: mentoring-bewerbung
-            await fetch(`${process.env.AC_API_URL}/api/3/contactTags`, {
-              method: 'POST',
-              headers: {
-                'Api-Token': process.env.AC_API_KEY,
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({
-                contactTag: {
-                  contact: contactId,
-                  tag: 'mentoring-bewerbung'
+            const AC_URL = (process.env.AC_API_URL || process.env.ACTIVECAMPAIGN_API_URL);
+            const AC_KEY = (process.env.AC_API_KEY || process.env.ACTIVECAMPAIGN_API_KEY);
+
+            // Tag: mentoring-bewerbung (with find-or-create)
+            const tagName = 'mentoring-bewerbung';
+            let tagId = null;
+
+            try {
+              const searchResp = await fetch(`${AC_URL}/api/3/tags?search=${encodeURIComponent(tagName)}`, {
+                headers: { 'Api-Token': AC_KEY, 'Content-Type': 'application/json' }
+              });
+              if (searchResp.ok) {
+                const data = await searchResp.json();
+                const match = data.tags?.find(t => t.tag === tagName);
+                if (match) tagId = match.id;
+              }
+              if (!tagId) {
+                const createResp = await fetch(`${AC_URL}/api/3/tags`, {
+                  method: 'POST',
+                  headers: { 'Api-Token': AC_KEY, 'Content-Type': 'application/json' },
+                  body: JSON.stringify({
+                    tag: { tag: tagName, tagType: 'contact', description: 'Auto-created from mentoring application' }
+                  })
+                });
+                if (createResp.ok) {
+                  const data = await createResp.json();
+                  tagId = data.tag?.id;
                 }
-              })
-            });
+              }
+              if (tagId) {
+                await fetch(`${AC_URL}/api/3/contactTags`, {
+                  method: 'POST',
+                  headers: { 'Api-Token': AC_KEY, 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ contactTag: { contact: contactId, tag: tagId } })
+                });
+              }
+            } catch (e) {
+              console.error('Tag error:', e);
+            }
           }
         }
       } catch (e) {

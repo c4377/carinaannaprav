@@ -1,129 +1,14 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blog Admin — carinaannaprav</title>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#1C1917;--bg-warm:#231F1D;--burgundy:#8A2E3C;--cream:#F5F0EB;--cream-soft:rgba(245,240,235,0.88);--cream-muted:rgba(245,240,235,0.6);--border:rgba(245,240,235,0.15);--serif:'Times New Roman MT Std','Times New Roman',Times,serif;--sans:'Outfit',sans-serif;--green:#2E8A5C}
-*{margin:0;padding:0;box-sizing:border-box}body{background:var(--bg);color:var(--cream);font-family:var(--sans);font-weight:300;font-size:16px;line-height:1.7}
-.wrap{max-width:800px;margin:0 auto;padding:40px 20px}
-h1{font-family:var(--serif);font-weight:400;font-size:1.6rem;margin-bottom:8px}
-.sub{font-size:0.85rem;color:var(--cream-muted);margin-bottom:36px}
-label{display:block;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--cream-muted);margin-bottom:6px;margin-top:20px}
-input,select,textarea{width:100%;padding:14px 16px;background:var(--bg-warm);border:1px solid var(--border);color:var(--cream);font-family:var(--sans);font-size:0.9rem;font-weight:300;outline:none;border-radius:0;-webkit-appearance:none}
-input:focus,textarea:focus{border-color:var(--burgundy)}
-textarea{min-height:300px;resize:vertical;line-height:1.8}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.btn{display:block;width:100%;padding:16px;background:var(--burgundy);border:1px solid var(--burgundy);color:var(--cream);font-family:var(--sans);font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;margin-top:20px;text-align:center}
-.btn:disabled{opacity:0.5}.btn.green{background:var(--green);border-color:var(--green)}
-.btn.sec{background:transparent;border-color:var(--border)}
-.msg{padding:14px;margin-top:16px;font-size:0.85rem}
-.msg.ok{background:rgba(46,138,92,0.15);border:1px solid rgba(46,138,92,0.3);color:#6fde9f}
-.msg.err{background:rgba(138,46,60,0.15);border:1px solid rgba(138,46,60,0.3);color:#de6f7f}
-.msg a{color:#6fde9f}
-.toolbar{display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap}
-.toolbar button{padding:6px 12px;background:var(--bg-warm);border:1px solid var(--border);color:var(--cream-muted);font-family:var(--sans);font-size:0.72rem;cursor:pointer}
-.toolbar button:hover{border-color:var(--burgundy);color:var(--cream)}
-.preview{margin-top:20px;padding:20px;background:var(--bg-warm);border:1px solid var(--border);display:none}
-.preview h3{font-family:var(--serif);font-size:1rem;margin-bottom:12px;color:var(--cream-muted)}
-.preview p{font-size:0.9rem;color:var(--cream-soft);line-height:1.8;margin-bottom:10px}
-.preview h2{font-family:var(--serif);font-size:1.1rem;margin:20px 0 10px}
-.preview strong{color:var(--cream)}
-.help{font-size:0.72rem;color:var(--cream-muted);margin-top:6px}
-.posts{margin-top:40px;border-top:1px solid var(--border);padding-top:24px}
-.posts h2{font-family:var(--serif);font-weight:400;font-size:1.1rem;margin-bottom:16px}
-.posts ul{list-style:none}.posts li{padding:10px 0;border-bottom:1px solid var(--border)}
-.posts li a{color:var(--cream-soft);font-size:0.85rem}.posts li a:hover{color:var(--burgundy)}
-@media(max-width:600px){.row{grid-template-columns:1fr}}
-</style>
-</head>
-<body>
-<div class="wrap" id="login">
-<h1>Blog Admin</h1>
-<label>Passwort</label>
-<input type="password" id="pw" placeholder="Admin-Passwort" onkeydown="if(event.key==='Enter')login()">
-<button class="btn" onclick="login()">Einloggen</button>
-<div id="lmsg"></div>
-</div>
-
-<div class="wrap" id="editor" style="display:none">
-<h1>Blog Admin</h1>
-<p class="sub">Post schreiben, Publish klicken — vom Handy, von überall.</p>
-
-<label>Titel</label>
-<input type="text" id="title" placeholder="z.B. Warum dein Content nicht verkauft" oninput="autoSlug()">
-
-<div class="row">
-<div><label>Kategorie</label><select id="tag"><option>CONTENT</option><option>ANGEBOT</option><option>VERKAUF</option><option>STRATEGIE</option><option>MINDSET</option><option>BUSINESS</option></select></div>
-<div><label>Slug</label><input type="text" id="slug" placeholder="auto"></div>
-</div>
-
-<label>Inhalt</label>
-<div class="toolbar">
-<button onclick="ins('<p>','</p>')">¶ Absatz</button>
-<button onclick="ins('<strong>','</strong>')"><b>B</b> Fett</button>
-<button onclick="ins('<h2>','</h2>')">H2</button>
-<button onclick="ins('<a href=&quot;../content-that-sells.html&quot;>','</a>')">→ CTS</button>
-<button onclick="ins('<a href=&quot;../challenge.html&quot;>','</a>')">→ Challenge</button>
-</div>
-<textarea id="body" placeholder="Schreib deinen Post hier...
-
-Fließtext wird automatisch in Absätze umgewandelt.
-Oder nutze HTML-Tags über die Toolbar."></textarea>
-<p class="help">Leere Zeile = neuer Absatz</p>
-
-<button class="btn green" onclick="pub()" id="pbtn">Veröffentlichen</button>
-<button class="btn sec" onclick="prev()" style="margin-top:8px">Vorschau</button>
-<div id="pmsg"></div>
-<div class="preview" id="pv"></div>
-
-<div class="posts">
-<h2>Veröffentlichte Posts</h2>
-<div id="plist">Lade...</div>
-</div>
-</div>
-
-<script>
-let PW='';
-const S=t=>t.toLowerCase().replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
-const D=()=>{const m=['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];const d=new Date();return m[d.getMonth()]+' '+d.getFullYear()};
-const W=t=>(t.includes('<p>')||t.includes('<h2>'))?t:t.split('\n\n').map(p=>p.trim()).filter(p=>p).map(p=>'  <p>'+p+'</p>').join('\n');
-function autoSlug(){const s=document.getElementById('slug');if(!s.dataset.m)s.value=S(document.getElementById('title').value)}
-document.getElementById('slug').addEventListener('input',function(){this.dataset.m='1'});
-function ins(a,b){const t=document.getElementById('body'),s=t.selectionStart,e=t.selectionEnd,x=t.value.substring(s,e);t.value=t.value.substring(0,s)+a+x+b+t.value.substring(e);t.focus()}
-
-function login(){
-PW=document.getElementById('pw').value;
-fetch('/.netlify/functions/blog-publish',{headers:{'Authorization':'Bearer '+PW}})
-.then(r=>{if(r.status===401){document.getElementById('lmsg').innerHTML='<div class="msg err">Falsches Passwort.</div>';PW=''}else{document.getElementById('login').style.display='none';document.getElementById('editor').style.display='block';loadPosts()}})
-.catch(()=>{document.getElementById('login').style.display='none';document.getElementById('editor').style.display='block'})
-}
-
-function buildHTML(title,tag,slug,body){
-const d=D(),c=W(body);
-return`<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>${title} — carinaannaprav</title><meta name="description" content="${title}"><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"><style>:root{--bg:#1C1917;--bg-warm:#231F1D;--burgundy:#8A2E3C;--cream:#F5F0EB;--cream-soft:rgba(245,240,235,0.88);--cream-muted:rgba(245,240,235,0.6);--border:rgba(245,240,235,0.15);--serif:'Times New Roman MT Std','Times New Roman',Times,serif;--sans:'Outfit',sans-serif}*{margin:0;padding:0;box-sizing:border-box}body{background:var(--bg);color:var(--cream);font-family:var(--sans);font-weight:300;font-size:16px;line-height:1.7}a{color:var(--cream);text-decoration:none}.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 40px;display:flex;justify-content:space-between;align-items:center;background:rgba(28,25,23,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}.nav-logo{font-family:var(--serif);font-weight:400;font-size:1.1rem;letter-spacing:0.08em}.nav-links{display:flex;gap:28px}.nav-links a{font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--cream-muted)}.nav-links a:hover{color:var(--cream)}.content{max-width:700px;margin:0 auto;padding:140px 40px 60px}.content h1{font-family:var(--serif);font-weight:400;font-size:clamp(1.8rem,3.5vw,2.4rem);line-height:1.2;margin-bottom:16px}.content h2{font-family:var(--serif);font-weight:400;font-size:1.3rem;margin:32px 0 14px}.content p{font-size:0.92rem;color:var(--cream-soft);line-height:1.85;margin-bottom:14px}.content p strong{color:var(--cream);font-weight:500}.content a{color:var(--burgundy)}.content a:hover{color:var(--cream)}.tag{font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--burgundy);margin-bottom:8px}.date{font-size:0.75rem;color:var(--cream-muted);margin-bottom:32px}.pin-box{margin-top:40px;padding:28px;background:var(--bg-warm);border:1px solid var(--border);text-align:center}.pin-box p{font-family:var(--serif);font-size:1rem;margin-bottom:12px;color:var(--cream-soft)}.pin-btn{display:inline-block;padding:10px 28px;background:var(--burgundy);color:var(--cream);font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase}.back{display:inline-block;margin-top:28px;font-size:0.8rem;color:var(--cream-muted)}.back:hover{color:var(--cream)}footer{padding:40px 60px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}.foot-sig{font-family:var(--serif);font-style:italic;color:var(--cream-soft)}.foot-links{display:flex;gap:20px}.foot-links a{font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--cream-muted)}.foot-copy{font-size:0.65rem;color:var(--cream-muted);opacity:0.8}@media(max-width:600px){.nav{padding:16px 20px}.nav-links a:not(:first-child){display:none}.content{padding:100px 20px 40px}footer{flex-direction:column;gap:16px;text-align:center;padding:30px 24px}}</style></head><body><nav class="nav"><a href="../index.html" class="nav-logo">carinaannaprav</a><div class="nav-links"><a href="../blog.html">Blog</a><a href="../index.html">Home</a><a href="https://www.instagram.com/carinaannaprav/" target="_blank">Instagram</a></div></nav><div class="content"><p class="tag">${tag} · 5 MIN LESEZEIT</p><h1>${title}</h1><p class="date">${d} · von Carina Anna Prav</p>\n${c}\n<div class="pin-box"><p>Merken & Teilen</p><a href="https://www.pinterest.at/carinaannaprav/" class="pin-btn" target="_blank">Auf Pinterest merken</a></div><a href="../blog.html" class="back">← Alle Artikel</a></div><footer><span class="foot-sig">Carina Anna Prav.</span><div class="foot-links"><a href="../impressum.html">Impressum</a><a href="../datenschutz.html">Datenschutz</a></div><span class="foot-copy">© 2026 carinaannaprav</span></footer></body></html>`}
-
-async function pub(){
-const t=document.getElementById('title').value.trim(),tag=document.getElementById('tag').value,s=(document.getElementById('slug').value||S(t)).trim(),b=document.getElementById('body').value.trim(),btn=document.getElementById('pbtn'),msg=document.getElementById('pmsg');
-if(!t){msg.innerHTML='<div class="msg err">Titel fehlt.</div>';return}
-if(!b){msg.innerHTML='<div class="msg err">Inhalt fehlt.</div>';return}
-btn.disabled=true;btn.textContent='Wird veröffentlicht...';msg.innerHTML='';
-try{
-const r=await fetch('/.netlify/functions/blog-publish',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+PW},body:JSON.stringify({slug:s,html:buildHTML(t,tag,s,b)})});
-const d=await r.json();
-if(d.success){msg.innerHTML='<div class="msg ok">Live! → <a href="'+d.url+'" target="_blank">'+d.url+'</a><br>In 1-2 Min online.</div>';document.getElementById('title').value='';document.getElementById('slug').value='';document.getElementById('slug').dataset.m='';document.getElementById('body').value='';loadPosts()}
-else msg.innerHTML='<div class="msg err">Fehler: '+d.error+'</div>'
-}catch(e){msg.innerHTML='<div class="msg err">Netzwerkfehler: '+e.message+'</div>'}
-btn.disabled=false;btn.textContent='Veröffentlichen'}
-
-function prev(){const e=document.getElementById('pv');if(e.style.display==='none'||!e.style.display){e.innerHTML='<h3>Vorschau</h3>'+W(document.getElementById('body').value);e.style.display='block'}else e.style.display='none'}
-
-async function loadPosts(){
-try{const r=await fetch('/.netlify/functions/blog-publish',{headers:{'Authorization':'Bearer '+PW}});const d=await r.json();
-if(d.posts&&d.posts.length)document.getElementById('plist').innerHTML='<ul>'+d.posts.map(p=>'<li><a href="blog/'+p.name+'" target="_blank">'+p.name+'</a></li>').join('')+'</ul>';
-else document.getElementById('plist').innerHTML='<p style="color:var(--cream-muted)">Noch keine Posts.</p>'}
-catch(e){document.getElementById('plist').innerHTML='<p style="color:var(--cream-muted)">Function noch nicht deployed?</p>'}}
-</script>
-</body></html>
+<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#F4F0EA"><meta name="robots" content="noindex,nofollow"><title>Admin · Carina Anna Prav</title><meta name="description" content="Interner Bereich."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"><style>
+@font-face{font-family:'NewIcon';src:url('fonts/New-Icon-Serif-Exfonte9d1.otf') format('opentype');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Mogranx';src:url('fonts/Mogranx-MediumSlanted-Exfont1806.otf') format('opentype');font-weight:500;font-style:italic;font-display:swap}
+:root{--bg:#F4F0EA;--paper:#FBF8F3;--sage:#D8DED6;--sage2:#C9D1C7;--grey:#E8E7E2;--green:#155F5B;--green2:#0F4D49;--muted:rgba(21,95,91,.72);--line:rgba(21,95,91,.42);--softline:rgba(21,95,91,.16);--serif:'NewIcon','Cormorant Garamond','Times New Roman',serif;--accent:'Mogranx','NewIcon',serif;--sans:'Inter','Helvetica Neue',Arial,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;background:var(--bg)}body{background:var(--bg);color:var(--green);font-family:var(--serif);-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}::selection{background:var(--green);color:var(--bg)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:40;padding:22px 30px;display:flex;justify-content:space-between;align-items:center;background:rgba(244,240,234,.72);backdrop-filter:blur(16px);border-bottom:1px solid var(--softline);font-family:var(--sans);letter-spacing:.13em;text-transform:uppercase;font-size:.68rem;color:var(--muted)}.nav-r{display:flex;gap:24px}.nav a:hover{color:var(--green)}
+.hero-card{min-height:100vh;padding:126px 28px 112px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}.topline{display:grid;grid-template-columns:92px 1fr;gap:32px;align-items:center;position:absolute;top:96px;left:30px;right:30px}.num{font-family:var(--accent);font-size:7.1rem;line-height:.72;font-style:italic}.rule{height:1px;background:var(--green)}.center{max-width:980px;margin:0 auto;text-align:center}.eyebrow{font-family:var(--sans);font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;margin-bottom:34px;color:var(--muted)}
+h1,.display{font-weight:400;text-transform:uppercase;letter-spacing:-.055em;line-height:.86;font-size:clamp(4.4rem,11vw,9.2rem)}h1 .slant,h2 .slant,.slant{font-family:var(--accent);font-style:italic;text-transform:none;letter-spacing:-.03em}h2{font-weight:400;text-transform:uppercase;letter-spacing:-.045em;line-height:.9;font-size:clamp(3.2rem,8vw,6.8rem)}h3{font-weight:400;text-transform:uppercase;letter-spacing:-.035em;line-height:.94;font-size:clamp(2.2rem,5.2vw,4.2rem)}
+.lead{font-size:clamp(1.78rem,3.7vw,3.05rem);line-height:1.14;max-width:780px;margin:54px auto 0}.lead.small{font-size:clamp(1.35rem,2.8vw,2.2rem)}.corner{width:44px;height:44px;border-left:4px solid var(--green);border-top:4px solid var(--green);margin:56px 0 22px 10%}.bottom-row{display:grid;grid-template-columns:1fr 90px;gap:34px;align-items:center;max-width:740px;margin:58px auto 0}.arrow{width:86px;height:86px;border:2px solid var(--green);border-radius:28px;display:grid;place-items:center}.arrow:before{content:'';width:24px;height:24px;border-top:2px solid var(--green);border-right:2px solid var(--green);transform:rotate(45deg);margin-left:-8px}.gridline{position:absolute;left:0;right:0;bottom:0;height:94px;background-image:linear-gradient(var(--softline) 1px,transparent 1px),linear-gradient(90deg,var(--softline) 1px,transparent 1px);background-size:58px 58px;border-top:1px solid var(--softline)}
+.band{background:var(--sage);padding:78px 28px;text-align:center;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.band p{font-size:clamp(1.45rem,3.2vw,2.6rem);line-height:1.2;max-width:920px;margin:0 auto}.section{padding:112px 30px;position:relative}.section.alt{background:var(--paper)}.section.sage{background:var(--sage)}.section.grey{background:var(--grey)}.inner{max-width:1060px;margin:0 auto}.split{display:grid;grid-template-columns:.92fr 1.08fr;gap:72px;align-items:start}.copy{font-family:var(--sans);font-size:1.02rem;line-height:1.85;color:var(--muted)}.copy p{margin-bottom:18px}.copy a{text-decoration:underline;text-underline-offset:5px}.large-copy{font-size:clamp(1.75rem,3.15vw,2.55rem);line-height:1.15;color:var(--green);max-width:920px}.list{display:grid;gap:0;margin-top:44px}.item{border-top:1px solid var(--line);padding:24px 0}.item:last-child{border-bottom:1px solid var(--line)}.item strong{font-family:var(--sans);letter-spacing:.16em;text-transform:uppercase;font-size:.68rem;color:var(--muted)}.item p{font-size:clamp(1.42rem,2.8vw,2.15rem);line-height:1.13;margin-top:12px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:52px}.card{background:var(--paper);border:1px solid var(--softline);padding:34px;min-height:230px}.card .k{font-family:var(--sans);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:28px;color:var(--muted)}.card p{font-size:1.82rem;line-height:1.08}.image-panel{min-height:570px;background:linear-gradient(rgba(244,240,234,.36),rgba(244,240,234,.36)),var(--grey);display:grid;place-items:center;text-align:center;padding:44px;border-top:1px solid var(--softline);border-bottom:1px solid var(--softline)}.image-panel h2{max-width:980px}.cta{text-align:center;padding:122px 30px;background:var(--paper)}.cta a,.text-link{font-family:var(--sans);display:inline-block;margin-top:40px;border-bottom:2px solid var(--green);padding-bottom:7px;font-size:1.04rem;letter-spacing:.02em}.footer{padding:64px 30px;background:var(--sage);font-family:var(--sans);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;display:flex;justify-content:space-between;gap:20px;color:var(--muted)}
+.form{max-width:780px;margin:54px auto 0;text-align:left}.field{margin-bottom:22px}.field label{display:block;font-family:var(--sans);letter-spacing:.14em;text-transform:uppercase;font-size:.68rem;margin-bottom:8px;color:var(--muted)}.field input,.field textarea,.field select{width:100%;background:transparent;border:1px solid var(--line);padding:16px;color:var(--green);font-family:var(--sans);font-size:1rem}.field textarea{min-height:152px}.btn{background:transparent;border:1px solid var(--green);border-radius:28px;padding:18px 32px;color:var(--green);font-family:var(--sans);letter-spacing:.12em;text-transform:uppercase;cursor:pointer}.btn:hover{background:var(--sage)}
+.article-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:40px;margin-top:54px}.article{border-top:1px solid var(--line);padding-top:26px}.article .tag{font-family:var(--sans);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}.article h3{font-size:clamp(2rem,4vw,3.4rem);margin-bottom:18px}.legal{max-width:900px;margin:0 auto}.legal h1{font-size:clamp(3.8rem,8vw,7.4rem);margin-bottom:48px}.legal h2{font-size:clamp(2rem,4.4vw,3.5rem);margin:44px 0 16px}.legal p,.legal li{font-family:var(--sans);color:var(--muted);line-height:1.82;margin-bottom:12px}.legal ul{padding-left:22px}.login-box{max-width:580px;margin:40px auto 0;background:var(--paper);border:1px solid var(--softline);padding:42px;text-align:center}.pill{display:inline-block;font-family:var(--sans);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:8px 14px;margin-bottom:22px;color:var(--muted)}
+@media(max-width:760px){.nav{padding:18px 20px}.nav-r a:not(:last-child){display:none}.hero-card{padding:120px 22px 112px}.topline{grid-template-columns:72px 1fr;top:86px;left:22px;right:22px}.num{font-size:6rem}h1{font-size:4.2rem}.lead{font-size:1.86rem}.split{grid-template-columns:1fr;gap:40px}.section{padding:86px 22px}.cards,.article-grid{grid-template-columns:1fr}.footer{display:block;text-align:center}.footer div+div{margin-top:18px}.bottom-row{grid-template-columns:1fr 78px}.arrow{width:76px;height:76px;border-radius:24px}.card{min-height:auto}.hero-card .eyebrow{margin-top:24px}}
+</style></head><body><nav class="nav"><a href="index.html">Carina Anna Prav</a><div class="nav-r"><a href="mentoring.html">Mentoring</a><a href="blog.html">Journal</a><a href="mentoring-bewerbung.html">Bewerben</a></div></nav><section class="hero-card"><div class="topline"><div class="num">·</div><div class="rule"></div></div><div class="center"><p class="eyebrow">Hidden Page</p><h1>Admin</h1><div class="corner"></div><p class="lead">Interner Bereich.</p><div class="bottom-row"><div class="rule"></div><a href="index.html" class="arrow" aria-label="Weiter"></a></div></div><div class="gridline"></div></section><section class="cta"><h2>Zurück zum klaren Zentrum.</h2><a href="index.html">Zur Startseite</a></section><footer class="footer"><div>Carina Anna Prav · Angebotsstrategie</div><div><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <a href="agb.html">AGB</a></div></footer></body></html>

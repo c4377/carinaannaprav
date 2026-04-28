@@ -1,0 +1,8 @@
+{
+  "name": "self-und-sales-functions",
+  "version": "1.0.0",
+  "description": "Netlify Functions for Self & Sales website",
+  "dependencies": {
+    "node-fetch": "^2.7.0"
+  }
+}

@@ -3,201 +3,445 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blog Admin — carinaannaprav</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#f7f3ea">
+<meta name="robots" content="noindex">
+<title>Blog Admin · Self & Sales</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#FAFAFA;font-family:'Outfit',sans-serif;font-weight:300;font-size:15px;color:#1A1A1A}
-.wrap{max-width:720px;margin:0 auto;padding:40px 20px}
-h1{font-family:'Playfair Display',serif;font-weight:400;font-size:1.5rem;margin-bottom:6px}
-.sub{font-size:0.82rem;color:#999;margin-bottom:32px}
-label{display:block;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:#999;margin-bottom:6px;margin-top:20px}
-input,textarea,select{width:100%;padding:13px 16px;border:1px solid #E4E0DC;font-family:'Outfit',sans-serif;font-size:0.9rem;font-weight:300;outline:none;background:#fff}
-input:focus,textarea:focus,select:focus{border-color:#C9A84C}
-textarea{min-height:320px;line-height:1.8;resize:vertical}
-select{cursor:pointer;-webkit-appearance:none}
-.row{display:flex;gap:12px}.row>*{flex:1}
-.toolbar{display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap}
-.toolbar button{padding:6px 14px;background:#fff;border:1px solid #E4E0DC;color:#555;font-family:'Outfit',sans-serif;font-size:0.72rem;cursor:pointer}
-.toolbar button:hover{border-color:#C9A84C;color:#1A1A1A}
-.btns{display:flex;gap:8px;margin-top:20px}
-.btn{padding:15px 28px;font-family:'Outfit',sans-serif;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:500;cursor:pointer;border:none}
-.btn-primary{background:#3A3A3A;color:#fff}.btn-primary:hover{background:#2A2A2A}
-.btn-primary:disabled{opacity:0.4}
-.btn-outline{background:transparent;color:#3A3A3A;border:1px solid #3A3A3A}.btn-outline:hover{background:#3A3A3A;color:#fff}
-.btn-gold{background:#C9A84C;color:#fff}.btn-gold:hover{background:#B8963D}
-.msg{padding:14px;margin-top:16px;font-size:0.85rem;border-radius:2px}
-.msg.ok{background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.3);color:#8A7A3A}
-.msg.ok a{color:#C9A84C}
-.msg.err{background:rgba(200,60,60,0.08);border:1px solid rgba(200,60,60,0.2);color:#a44}
-.preview{margin-top:20px;padding:28px;background:#fff;border:1px solid #E4E0DC;display:none}
-.preview .ptag{font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:#C9A84C;margin-bottom:8px}
-.preview h2{font-family:'Playfair Display',serif;font-weight:400;font-size:1.4rem;margin-bottom:16px}
-.preview .pbody{font-size:0.92rem;color:#555;line-height:1.85}
-.preview .pbody p{margin-bottom:16px}
-.preview .pbody h3{font-family:'Playfair Display',serif;font-weight:400;font-size:1.1rem;margin:24px 0 8px;color:#1A1A1A}
-.preview .pbody strong{color:#1A1A1A}
-.preview .pbody blockquote{border-left:2px solid #C9A84C;padding-left:16px;font-family:'Playfair Display',serif;font-style:italic;color:#777;margin:20px 0}
-.help{font-size:0.72rem;color:#BBB;margin-top:6px}
-.posts{margin-top:40px;border-top:1px solid #E4E0DC;padding-top:24px}
-.posts h2{font-family:'Playfair Display',serif;font-weight:400;font-size:1.1rem;margin-bottom:16px}
-.posts ul{list-style:none}
-.posts li{padding:10px 0;border-bottom:1px solid #F0EEEB}
-.posts li a{color:#555;font-size:0.85rem;text-decoration:none}.posts li a:hover{color:#C9A84C}
+  :root{
+    --bg:#1a1815; --paper:#f6f3ed; --soft:#252220; --sage:#3a3530;
+    --ink:#f6f3ed; --brown:#c8c0b3; --muted:#9a9189;
+    --paper-text:#211f1c; --paper-brown:#5f5750; --paper-muted:#8b837a;
+    --line:rgba(246,243,237,.14);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:Inter,Arial,sans-serif;font-weight:300;font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:880px;margin:0 auto;padding:48px 24px}
+  h1{font-family:Georgia,serif;font-weight:400;font-size:1.8rem;margin-bottom:6px;color:var(--ink)}
+  .sub{font-size:0.85rem;color:var(--muted);margin-bottom:32px;letter-spacing:.04em}
 
-/* Login */
-#login{max-width:360px;margin:120px auto;text-align:center}
-#login h1{margin-bottom:20px}
-#login input{margin-bottom:12px}
+  label{display:block;font-size:0.7rem;letter-spacing:0.13em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;margin-top:22px}
 
-@media(max-width:600px){.row{flex-direction:column;gap:0}.btns{flex-direction:column}.btn{width:100%}}
+  input,textarea,select{
+    width:100%;padding:14px 16px;
+    border:1px solid var(--line);
+    background:var(--soft);color:var(--ink);
+    font-family:Inter,Arial,sans-serif;font-size:0.95rem;font-weight:300;
+    outline:none;border-radius:10px;
+  }
+  input:focus,textarea:focus,select:focus{border-color:var(--ink)}
+  input::placeholder,textarea::placeholder{color:var(--muted)}
+  textarea{min-height:340px;line-height:1.8;resize:vertical}
+  select{cursor:pointer;-webkit-appearance:none}
+
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+
+  .toolbar{display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap}
+  .toolbar button{
+    padding:7px 14px;background:transparent;
+    border:1px solid var(--line);color:var(--brown);
+    font-family:Inter,Arial,sans-serif;font-size:0.72rem;cursor:pointer;
+    border-radius:999px;letter-spacing:.04em;
+  }
+  .toolbar button:hover{border-color:var(--ink);color:var(--ink)}
+
+  .btns{display:flex;gap:10px;margin-top:24px;flex-wrap:wrap}
+  .btn{
+    padding:14px 28px;font-family:Inter,Arial,sans-serif;
+    font-size:0.74rem;letter-spacing:0.13em;text-transform:uppercase;
+    font-weight:500;cursor:pointer;border-radius:999px;
+    transition:background .2s,color .2s,border-color .2s;
+  }
+  .btn-primary{background:var(--paper);color:var(--paper-text);border:1px solid var(--paper)}
+  .btn-primary:hover{background:transparent;color:var(--ink)}
+  .btn-primary:disabled{opacity:0.4;cursor:wait}
+  .btn-outline{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+  .btn-outline:hover{background:var(--ink);color:var(--bg)}
+  .btn-danger{background:transparent;color:#d97a7a;border:1px solid #d97a7a}
+  .btn-danger:hover{background:#d97a7a;color:var(--bg)}
+
+  .msg{padding:14px 18px;margin-top:18px;font-size:0.88rem;border-radius:10px;line-height:1.55}
+  .msg.ok{background:var(--sage);border:1px solid var(--line);color:var(--ink)}
+  .msg.ok a{color:var(--ink);text-decoration:underline}
+  .msg.err{background:rgba(217,122,122,.12);border:1px solid rgba(217,122,122,.4);color:#d97a7a}
+
+  .preview{margin-top:24px;padding:32px;background:var(--paper);color:var(--paper-text);border-radius:14px;display:none}
+  .preview .ptag{font-size:0.66rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--paper-muted);margin-bottom:10px}
+  .preview h2{font-family:Georgia,serif;font-weight:400;font-size:1.6rem;margin-bottom:18px;color:var(--paper-text)}
+  .preview .pbody{font-size:0.95rem;color:var(--paper-brown);line-height:1.8}
+  .preview .pbody p{margin-bottom:16px}
+  .preview .pbody h3{font-family:Georgia,serif;font-weight:400;font-size:1.2rem;margin:24px 0 10px;color:var(--paper-text)}
+  .preview .pbody strong{color:var(--paper-text)}
+  .preview .pbody blockquote{border-left:2px solid var(--paper-text);padding-left:18px;font-style:italic;color:var(--paper-brown);margin:20px 0}
+
+  .help{font-size:0.74rem;color:var(--muted);margin-top:8px;line-height:1.5}
+
+  .posts{margin-top:48px;border-top:1px solid var(--line);padding-top:30px}
+  .posts h2{font-family:Georgia,serif;font-weight:400;font-size:1.3rem;margin-bottom:20px;color:var(--ink)}
+  .posts ul{list-style:none}
+  .posts li{
+    padding:14px 0;border-bottom:1px solid var(--line);
+    display:flex;justify-content:space-between;align-items:center;gap:14px;
+  }
+  .posts li .pinfo{flex:1;min-width:0}
+  .posts li .ptitle{font-size:0.95rem;color:var(--ink);margin-bottom:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .posts li .pmeta{font-size:0.72rem;color:var(--muted);letter-spacing:.04em}
+  .posts li .pactions{display:flex;gap:8px}
+  .posts li .pactions a, .posts li .pactions button{
+    font-size:0.7rem;letter-spacing:.08em;text-transform:uppercase;
+    padding:6px 12px;border-radius:999px;border:1px solid var(--line);
+    background:transparent;color:var(--brown);cursor:pointer;
+  }
+  .posts li .pactions a:hover, .posts li .pactions button:hover{
+    border-color:var(--ink);color:var(--ink)
+  }
+  .posts li .pactions .del:hover{border-color:#d97a7a;color:#d97a7a}
+
+  /* Login */
+  #login{max-width:420px;margin:120px auto;text-align:center}
+  #login h1{margin-bottom:8px}
+  #login .sub{margin-bottom:30px}
+  #login input{margin-bottom:14px;text-align:center}
+
+  @media(max-width:640px){
+    .row{grid-template-columns:1fr;gap:0}
+    .btns{flex-direction:column}.btn{width:100%}
+    .posts li{flex-direction:column;align-items:flex-start}
+  }
 </style>
 </head>
 <body>
 
 <!-- LOGIN -->
 <div id="login" class="wrap">
-<h1>Blog Admin</h1>
-<label>Passwort</label>
-<input type="password" id="pw" placeholder="Admin-Passwort" onkeydown="if(event.key==='Enter')login()">
-<button class="btn btn-primary" style="width:100%;margin-top:8px" onclick="login()">EINLOGGEN</button>
-<div id="lmsg"></div>
+  <h1>Blog Admin</h1>
+  <p class="sub">Self & Sales · Carina Anna Prav</p>
+  <label>Passwort</label>
+  <input type="password" id="pw" placeholder="Admin-Passwort" onkeydown="if(event.key==='Enter')login()">
+  <button class="btn btn-primary" style="width:100%;margin-top:8px" onclick="login()">EINLOGGEN</button>
+  <div id="lmsg"></div>
 </div>
 
 <!-- EDITOR -->
 <div id="editor" class="wrap" style="display:none">
-<h1>Blog Admin</h1>
-<p class="sub">Post schreiben → Publish → In 1-2 Min live auf carinaannaprav.at</p>
+  <h1>Journal — neuer Post</h1>
+  <p class="sub">Schreiben → Veröffentlichen → in 1–2 Min live auf der Site.</p>
 
-<label>Titel</label>
-<input type="text" id="title" placeholder="z.B. Warum dein Content nicht verkauft" oninput="autoSlug()">
+  <label>Titel</label>
+  <input type="text" id="title" placeholder="z.B. Wo du dich beim Verkaufen kleiner machst" oninput="autoSlug()">
 
-<div class="row">
-<div><label>Kategorie</label><select id="tag"><option>Content</option><option>Strategie</option><option>Verkaufen</option><option>Hooks</option><option>Mindset</option><option>Systeme</option></select></div>
-<div><label>Slug (URL)</label><input type="text" id="slug" placeholder="auto"></div>
-</div>
+  <div class="row">
+    <div>
+      <label>Kategorie</label>
+      <select id="cat">
+        <option>Self</option>
+        <option>Sales</option>
+        <option>Konstruktion</option>
+        <option>Identität</option>
+        <option>Preis</option>
+        <option>Salespage</option>
+        <option>Coach Sein</option>
+      </select>
+    </div>
+    <div>
+      <label>Slug (URL)</label>
+      <input type="text" id="slug" placeholder="auto">
+    </div>
+  </div>
 
-<div class="row">
-<div><label>CTA am Ende</label><select id="cta"><option value="challenge">→ Challenge</option><option value="waitlist">→ Waitlist CTS</option><option value="none">Kein CTA</option></select></div>
-<div></div>
-</div>
+  <label>Kurzbeschreibung (für Übersicht)</label>
+  <input type="text" id="excerpt" placeholder="1–2 Sätze, was Mira hier mitnimmt.">
 
-<label>Inhalt</label>
-<div class="toolbar">
-<button onclick="ins('&lt;p&gt;','&lt;/p&gt;')">¶ Absatz</button>
-<button onclick="ins('&lt;strong&gt;','&lt;/strong&gt;')"><b>B</b></button>
-<button onclick="ins('&lt;h3&gt;','&lt;/h3&gt;')">H3</button>
-<button onclick="ins('&lt;blockquote&gt;','&lt;/blockquote&gt;')">Zitat</button>
-<button onclick="ins('&lt;a href=&quot;../challenge.html&quot;&gt;','&lt;/a&gt;')">→ CTS</button>
-</div>
-<textarea id="body" placeholder="Schreib deinen Artikel hier...
+  <label>Inhalt</label>
+  <div class="toolbar">
+    <button type="button" onclick="ins('&lt;p&gt;','&lt;/p&gt;')">¶ Absatz</button>
+    <button type="button" onclick="ins('&lt;strong&gt;','&lt;/strong&gt;')"><b>B</b></button>
+    <button type="button" onclick="ins('&lt;em&gt;','&lt;/em&gt;')"><i>I</i></button>
+    <button type="button" onclick="ins('&lt;h3&gt;','&lt;/h3&gt;')">H3</button>
+    <button type="button" onclick="ins('&lt;blockquote&gt;','&lt;/blockquote&gt;')">Zitat</button>
+  </div>
+  <textarea id="body" placeholder="Schreib deinen Artikel hier.
 
 Einfach Fließtext schreiben — leere Zeilen werden zu Absätzen.
 Oder HTML-Tags über die Toolbar nutzen."></textarea>
-<p class="help">Leere Zeile = neuer Absatz · HTML erlaubt · &lt;h3&gt; für Zwischenüberschriften</p>
+  <p class="help">Leere Zeile = neuer Absatz · HTML erlaubt · Am Ende wird automatisch ein Solid-Sales-Gruppe-CTA angehängt.</p>
 
-<div class="btns">
-<button class="btn btn-gold" onclick="pub()" id="pbtn">VERÖFFENTLICHEN</button>
-<button class="btn btn-outline" onclick="prev()">VORSCHAU</button>
-</div>
-<div id="pmsg"></div>
+  <div class="btns">
+    <button class="btn btn-primary" onclick="pub()" id="pbtn">VERÖFFENTLICHEN</button>
+    <button class="btn btn-outline" onclick="prev()">VORSCHAU</button>
+    <button class="btn btn-outline" onclick="reset()">ZURÜCKSETZEN</button>
+  </div>
+  <div id="pmsg"></div>
 
-<div class="preview" id="pv">
-<p class="ptag" id="pvTag"></p>
-<h2 id="pvTitle"></h2>
-<div class="pbody" id="pvBody"></div>
-</div>
+  <div class="preview" id="pv">
+    <p class="ptag" id="pvTag"></p>
+    <h2 id="pvTitle"></h2>
+    <div class="pbody" id="pvBody"></div>
+  </div>
 
-<div class="posts">
-<h2>Veröffentlichte Posts</h2>
-<div id="plist">Lade...</div>
-</div>
+  <div class="posts">
+    <h2>Veröffentlichte Posts</h2>
+    <div id="plist">Lade…</div>
+  </div>
 </div>
 
 <script>
-let PW='';
-const API='/.netlify/functions/blog-publish';
-const S=t=>t.toLowerCase().replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
-const W=t=>(t.includes('<p>')||t.includes('<h2>')||t.includes('<h3>'))?t:t.split('\n\n').map(p=>p.trim()).filter(p=>p).map(p=>'<p>'+p+'</p>').join('\n');
+let PW = '';
+const API = '/.netlify/functions/blog-publish';
 
-function autoSlug(){const s=document.getElementById('slug');if(!s.dataset.m)s.value=S(document.getElementById('title').value)}
-document.getElementById('slug').addEventListener('input',function(){this.dataset.m='1'});
-function ins(a,b){const t=document.getElementById('body'),s=t.selectionStart,e=t.selectionEnd,x=t.value.substring(s,e);t.value=t.value.substring(0,s)+a+x+b+t.value.substring(e);t.focus()}
+const slugify = t => t.toLowerCase()
+  .replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss')
+  .replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
 
-function login(){
-  PW=document.getElementById('pw').value;
-  fetch(API,{headers:{'Authorization':'Bearer '+PW}})
-  .then(r=>{
-    if(r.status===401){document.getElementById('lmsg').innerHTML='<div class="msg err">Falsches Passwort.</div>';PW=''}
-    else{document.getElementById('login').style.display='none';document.getElementById('editor').style.display='block';loadPosts()}
-  })
-  .catch(()=>{document.getElementById('login').style.display='none';document.getElementById('editor').style.display='block'})
+const wrapParas = t => {
+  if (t.includes('<p>') || t.includes('<h2>') || t.includes('<h3>')) return t;
+  return t.split('\n\n').map(p => p.trim()).filter(p => p).map(p => '<p>' + p + '</p>').join('\n');
+};
+
+function autoSlug(){
+  const s = document.getElementById('slug');
+  if (!s.dataset.m) s.value = slugify(document.getElementById('title').value);
+}
+document.getElementById('slug').addEventListener('input', function(){ this.dataset.m = '1'; });
+
+function ins(a, b){
+  const t = document.getElementById('body');
+  const start = t.selectionStart, end = t.selectionEnd;
+  const sel = t.value.substring(start, end);
+  t.value = t.value.substring(0, start) + a + sel + b + t.value.substring(end);
+  t.focus();
 }
 
-function buildHTML(title,tag,slug,body,cta){
-  const c=W(body);
-  let ctaHtml='';
-  if(cta==='challenge') ctaHtml='<div style="background:#F0EEEB;padding:32px;margin-top:48px;text-align:center"><p style="font-family:var(--serif);font-size:1.15rem;margin-bottom:10px">Kostenlose 3-Tage Challenge</p><p style="font-size:0.88rem;color:#555;margin-bottom:16px">Finde heraus warum dein Content nicht verkauft.</p><a href="../challenge.html" style="display:inline-block;padding:14px 36px;background:#3A3A3A;color:#fff;font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;font-family:Outfit,sans-serif;font-weight:500">ICH BIN DABEI</a></div>';
-  if(cta==='waitlist') ctaHtml='<div style="background:#F0EEEB;padding:32px;margin-top:48px;text-align:center"><p style="font-family:var(--serif);font-size:1.15rem;margin-bottom:10px">Content that Sells — 297€</p><p style="font-size:0.88rem;color:#555;margin-bottom:16px">7 Lektionen. 8 Tools. Dein Content-System.</p><a href="../waitlist.html" style="display:inline-block;padding:14px 36px;background:#3A3A3A;color:#fff;font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;font-family:Outfit,sans-serif;font-weight:500">AUF DIE WAITLIST</a></div>';
-
-  return`<!DOCTYPE html>
-<html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>${title} — carinaannaprav</title><meta name="description" content="${title}"><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"><style>:root{--bg:#FFFFFF;--warm:#F0EEEB;--text:#1A1A1A;--text-mid:#555;--text-light:#999;--grey-dark:#3A3A3A;--gold:#C9A84C;--border:#E4E0DC;--serif:'Playfair Display',serif;--sans:'Outfit',sans-serif}*{margin:0;padding:0;box-sizing:border-box}body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:300;font-size:17px;line-height:1.8}a{color:var(--gold);text-decoration:none}a:hover{color:var(--text)}::selection{background:var(--grey-dark);color:#fff}.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 40px;display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}.nav-logo{font-family:var(--serif);font-weight:400;font-size:1rem;letter-spacing:0.04em;color:var(--text);text-decoration:none}.nav-r{display:flex;gap:24px;align-items:center}.nav-r a{font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;font-weight:400;color:var(--text-light);transition:color 0.3s;text-decoration:none}.nav-r a:hover{color:var(--gold)}article{max-width:680px;margin:0 auto;padding:140px 40px 80px}.tag{font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}h1{font-family:var(--serif);font-weight:400;font-size:clamp(1.6rem,4vw,2.2rem);line-height:1.3;margin-bottom:8px}.meta{font-size:0.75rem;color:var(--text-light);margin-bottom:40px}.body p{margin-bottom:20px;color:var(--text-mid);line-height:1.9;font-size:0.95rem}.body h3{font-family:var(--serif);font-weight:400;font-size:1.15rem;margin:36px 0 12px;color:var(--text)}.body strong{color:var(--text);font-weight:500}.body blockquote{border-left:2px solid var(--gold);padding-left:20px;margin:28px 0;font-family:var(--serif);font-style:italic;color:var(--text-mid)}.back{display:block;text-align:center;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-light);margin-top:48px;text-decoration:none}.back:hover{color:var(--gold)}.foot{max-width:680px;margin:0 auto;padding:32px 40px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}.foot-sig{font-family:var(--serif);font-style:italic;font-size:0.9rem;color:var(--text-mid)}.foot-links{display:flex;gap:16px}.foot-links a{font-size:0.62rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-light);text-decoration:none}.foot-links a:hover{color:var(--gold)}@media(max-width:768px){.nav{padding:14px 20px}.nav-r a:not(:last-child){display:none}article{padding:120px 24px 60px}.foot{flex-direction:column;gap:12px;text-align:center;padding:24px}}</style></head><body>
-<nav class="nav"><a href="../index.html" class="nav-logo">carinaannaprav</a><div class="nav-r"><a href="../index.html#produkt">Der Kurs</a><a href="../blog.html" style="color:#C9A84C">Blog</a><a href="https://www.instagram.com/carinaannaprav/" target="_blank">Instagram</a></div></nav>
-<article><p class="tag">${tag}</p><h1>${title}</h1><p class="meta">April 2026 · von Carina Anna Prav</p><div class="body">\n${c}\n</div>${ctaHtml}<a href="../blog.html" class="back">← Alle Artikel</a></article>
-<div class="foot"><span class="foot-sig">Carina Anna Prav.</span><div class="foot-links"><a href="../impressum.html">Impressum</a><a href="../datenschutz.html">Datenschutz</a></div></div></body></html>`}
-
-async function pub(){
-  const t=document.getElementById('title').value.trim();
-  const tag=document.getElementById('tag').value;
-  const s=(document.getElementById('slug').value||S(t)).trim();
-  const b=document.getElementById('body').value.trim();
-  const cta=document.getElementById('cta').value;
-  const btn=document.getElementById('pbtn');
-  const msg=document.getElementById('pmsg');
-  
-  if(!t){msg.innerHTML='<div class="msg err">Titel fehlt.</div>';return}
-  if(!b){msg.innerHTML='<div class="msg err">Inhalt fehlt.</div>';return}
-  
-  btn.disabled=true;btn.textContent='WIRD VERÖFFENTLICHT...';msg.innerHTML='';
-  
-  try{
-    const html=buildHTML(t,tag,s,b,cta);
-    const r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+PW},body:JSON.stringify({slug:s,html:html})});
-    const d=await r.json();
-    if(d.success){
-      msg.innerHTML='<div class="msg ok">Live! → <a href="'+d.url+'" target="_blank">'+d.url+'</a><br>In 1-2 Min auf der Website.</div>';
-      document.getElementById('title').value='';document.getElementById('slug').value='';document.getElementById('slug').dataset.m='';document.getElementById('body').value='';
-      loadPosts()
-    } else {
-      msg.innerHTML='<div class="msg err">Fehler: '+(d.error||'Unbekannt')+'</div>'
+async function login(){
+  PW = document.getElementById('pw').value;
+  try {
+    const r = await fetch(API, { headers: { 'Authorization': 'Bearer ' + PW } });
+    if (r.status === 401){
+      document.getElementById('lmsg').innerHTML = '<div class="msg err">Falsches Passwort.</div>';
+      PW = '';
+      return;
     }
-  }catch(e){msg.innerHTML='<div class="msg err">Netzwerkfehler: '+e.message+'</div>'}
-  btn.disabled=false;btn.textContent='VERÖFFENTLICHEN'
+    document.getElementById('login').style.display = 'none';
+    document.getElementById('editor').style.display = 'block';
+    loadPosts();
+  } catch(e) {
+    document.getElementById('lmsg').innerHTML = '<div class="msg err">Verbindungsfehler. Function-Endpoint erreichbar?</div>';
+  }
 }
 
-function prev(){
-  const e=document.getElementById('pv');
-  if(e.style.display==='none'||!e.style.display){
-    document.getElementById('pvTag').textContent=document.getElementById('tag').value;
-    document.getElementById('pvTitle').textContent=document.getElementById('title').value;
-    document.getElementById('pvBody').innerHTML=W(document.getElementById('body').value);
-    e.style.display='block'
-  }else e.style.display='none'
+function buildPostHTML(title, category, slug, body, excerpt){
+  const content = wrapParas(body);
+  const date = new Date().toLocaleDateString('de-AT', { year:'numeric', month:'long', day:'numeric' });
+  const dateISO = new Date().toISOString().slice(0, 10);
+
+  // Self & Sales CTA at end of every post
+  const ctaHtml = `
+<div class="post-cta">
+  <div class="cta-inner">
+    <p class="cta-eyebrow">Solid Sales Gruppe · Mitte Juni 2026</p>
+    <h3>Bereit, das nicht mehr alleine zu machen?</h3>
+    <p class="cta-body">Wir bauen erst dich als Verkäuferin. Dann dein Angebot. Plätze sind begrenzt.</p>
+    <a class="cta-btn" href="../mentoring-bewerbung.html">Für die Gruppe bewerben</a>
+  </div>
+</div>`;
+
+  return `<!DOCTYPE html>
+<html lang="de"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#f7f3ea">
+<title>${escapeHTML(title)} · Journal · Self & Sales</title>
+<meta name="description" content="${escapeAttr(excerpt || title)}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<!-- POST_TITLE: ${escapeAttr(title)} -->
+<!-- POST_DATE: ${dateISO} -->
+<!-- POST_CATEGORY: ${escapeAttr(category)} -->
+<!-- POST_EXCERPT: ${escapeAttr(excerpt || '')} -->
+<style>
+  .post-article{max-width:720px;margin:0 auto;padding:90px clamp(20px,4vw,40px) 60px}
+  .post-article .post-eyebrow{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:18px;font-weight:500}
+  .post-article h1{font-family:var(--accent);font-weight:400;font-size:clamp(2rem,3.6vw,3.2rem);line-height:1.05;letter-spacing:-.025em;color:var(--ink);margin-bottom:14px}
+  .post-article .post-meta{font-size:.85rem;color:var(--muted);margin-bottom:48px}
+  .post-article .post-body{font-size:1.04rem;line-height:1.85;color:var(--brown)}
+  .post-article .post-body p{margin-bottom:20px}
+  .post-article .post-body h3{font-family:var(--serif);font-weight:400;font-size:1.4rem;line-height:1.25;color:var(--ink);margin:32px 0 14px}
+  .post-article .post-body strong{color:var(--ink);font-weight:500}
+  .post-article .post-body em{font-style:italic;color:var(--ink)}
+  .post-article .post-body blockquote{border-left:2px solid var(--ink);padding:6px 0 6px 22px;margin:28px 0;font-family:var(--serif);font-style:italic;color:var(--ink);font-size:1.15rem;line-height:1.5}
+  .post-article .post-body a{color:var(--ink);text-decoration:underline;text-underline-offset:4px}
+  .post-cta{margin-top:64px}
+  .post-cta .cta-inner{background:var(--paper);color:var(--paper-text);padding:38px;border-radius:18px}
+  .post-cta .cta-eyebrow{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--paper-muted);margin-bottom:12px;font-weight:500}
+  .post-cta h3{font-family:var(--accent);font-weight:400;font-size:1.8rem;line-height:1.1;color:var(--paper-text);margin-bottom:14px}
+  .post-cta .cta-body{font-size:.98rem;color:var(--paper-brown);margin-bottom:22px;line-height:1.6}
+  .post-cta .cta-btn{display:inline-block;background:var(--paper-text);color:var(--paper);padding:14px 28px;border-radius:999px;font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;font-weight:500}
+  .back-link{display:block;text-align:center;font-size:.75rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-top:48px;text-decoration:none}
+  .back-link:hover{color:var(--ink)}
+</style>
+</head><body>
+
+<nav class="nav"><a class="brand" href="../index.html">Carina Anna Prav</a><div class="nav-links"><a href="../about.html">About</a><a href="../mentoring.html">Mentoring</a><a href="../podcast.html">Podcast</a><a href="../blog.html">Journal</a><a class="pill" href="../mentoring-bewerbung.html">Bewerben</a></div></nav>
+
+<article class="post-article">
+  <div class="post-eyebrow">${escapeHTML(category)}</div>
+  <h1>${escapeHTML(title)}</h1>
+  <div class="post-meta">${date} · von Carina Anna Prav</div>
+  <div class="post-body">
+${content}
+  </div>
+  ${ctaHtml}
+  <a class="back-link" href="../blog.html">← Zurück zum Journal</a>
+</article>
+
+<footer class="footer"><div>Carina Anna Prav · Self & Sales</div><div><a href="../impressum.html">Impressum</a><a href="../datenschutz.html">Datenschutz</a><a href="../agb.html">AGB</a></div></footer>
+
+</body></html>`;
+}
+
+function escapeHTML(str){
+  return String(str || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function escapeAttr(str){
+  return String(str || '').replace(/"/g, '&quot;').replace(/-->/g, '--&gt;');
 }
 
 async function loadPosts(){
-  try{
-    const r=await fetch(API,{headers:{'Authorization':'Bearer '+PW}});
-    const d=await r.json();
-    if(d.posts&&d.posts.length){
-      document.getElementById('plist').innerHTML='<ul>'+d.posts.map(p=>'<li><a href="blog/'+p.name+'" target="_blank">'+p.name+'</a></li>').join('')+'</ul>'
-    }else{
-      document.getElementById('plist').innerHTML='<p style="color:#999">Noch keine Posts.</p>'
+  const list = document.getElementById('plist');
+  try {
+    const r = await fetch(API, { headers: { 'Authorization': 'Bearer ' + PW } });
+    if (!r.ok) throw new Error('Load failed');
+    const data = await r.json();
+    if (!data.posts || !data.posts.length){
+      list.innerHTML = '<p style="color:var(--muted);font-size:.9rem">Noch keine Posts.</p>';
+      return;
     }
-  }catch(e){
-    document.getElementById('plist').innerHTML='<p style="color:#999">Blog-Function nicht erreichbar — deployen?</p>'
+    list.innerHTML = '<ul>' + data.posts.map(p => `
+      <li>
+        <div class="pinfo">
+          <div class="ptitle">${escapeHTML(p.title || p.slug)}</div>
+          <div class="pmeta">${escapeHTML(p.category || '')} · ${escapeHTML(p.date || '')}</div>
+        </div>
+        <div class="pactions">
+          <a href="${p.url}" target="_blank">Ansehen</a>
+          <button class="del" onclick="del('${p.slug}')">Löschen</button>
+        </div>
+      </li>`).join('') + '</ul>';
+  } catch(e) {
+    list.innerHTML = '<p style="color:var(--muted);font-size:.9rem">Posts konnten nicht geladen werden.</p>';
   }
 }
+
+async function buildManifest(newPost){
+  // Get all current posts, add/update the new one, return as array for posts.json
+  try {
+    const r = await fetch(API, { headers: { 'Authorization': 'Bearer ' + PW } });
+    const data = await r.json();
+    let posts = (data.posts || []).map(p => ({
+      slug: p.slug,
+      title: p.title,
+      date: p.date,
+      category: p.category,
+      excerpt: p.excerpt || ''
+    }));
+    // Replace if exists, else add
+    posts = posts.filter(p => p.slug !== newPost.slug);
+    posts.unshift(newPost);
+    posts.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+    return { posts };
+  } catch(e) {
+    return { posts: [newPost] };
+  }
+}
+
+async function pub(){
+  const t = document.getElementById('title').value.trim();
+  const cat = document.getElementById('cat').value;
+  const s = (document.getElementById('slug').value || slugify(t)).trim();
+  const exc = document.getElementById('excerpt').value.trim();
+  const b = document.getElementById('body').value.trim();
+  const btn = document.getElementById('pbtn');
+  const msg = document.getElementById('pmsg');
+
+  if (!t){ msg.innerHTML = '<div class="msg err">Titel fehlt.</div>'; return; }
+  if (!b){ msg.innerHTML = '<div class="msg err">Inhalt fehlt.</div>'; return; }
+
+  btn.disabled = true; btn.textContent = 'WIRD VERÖFFENTLICHT…'; msg.innerHTML = '';
+
+  try {
+    const html = buildPostHTML(t, cat, s, b, exc);
+    const dateISO = new Date().toISOString().slice(0, 10);
+    const manifest = await buildManifest({
+      slug: s, title: t, date: dateISO, category: cat, excerpt: exc
+    });
+
+    const r = await fetch(API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + PW },
+      body: JSON.stringify({ slug: s, html, manifest })
+    });
+    const d = await r.json();
+    if (d.success){
+      msg.innerHTML = `<div class="msg ok">Live in 1–2 Min: <a href="${d.url}" target="_blank">${d.url}</a></div>`;
+      reset();
+      setTimeout(loadPosts, 1500);
+    } else {
+      msg.innerHTML = '<div class="msg err">Fehler: ' + (d.error || 'Unbekannt') + '</div>';
+    }
+  } catch(e) {
+    msg.innerHTML = '<div class="msg err">Netzwerkfehler: ' + e.message + '</div>';
+  }
+  btn.disabled = false; btn.textContent = 'VERÖFFENTLICHEN';
+}
+
+async function del(slug){
+  if (!confirm('Post wirklich löschen?')) return;
+  try {
+    const r = await fetch(API, {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + PW },
+      body: JSON.stringify({ slug })
+    });
+    if (r.ok){
+      // Also rebuild manifest without this post
+      const manifest = await buildManifest({ slug: '__deleted__', title: '', date: '', category: '', excerpt: '' });
+      manifest.posts = manifest.posts.filter(p => p.slug !== slug && p.slug !== '__deleted__');
+      // Push manifest update via a no-op POST is hacky — better: dedicated endpoint.
+      // For now, we accept that posts.json updates only on next publish.
+      loadPosts();
+    }
+  } catch(e) {
+    alert('Löschen fehlgeschlagen: ' + e.message);
+  }
+}
+
+function prev(){
+  const e = document.getElementById('pv');
+  if (e.style.display === 'none' || !e.style.display){
+    document.getElementById('pvTag').textContent = document.getElementById('cat').value;
+    document.getElementById('pvTitle').textContent = document.getElementById('title').value;
+    document.getElementById('pvBody').innerHTML = wrapParas(document.getElementById('body').value);
+    e.style.display = 'block';
+    e.scrollIntoView({ behavior: 'smooth' });
+  } else {
+    e.style.display = 'none';
+  }
+}
+
+function reset(){
+  document.getElementById('title').value = '';
+  document.getElementById('slug').value = '';
+  document.getElementById('slug').dataset.m = '';
+  document.getElementById('excerpt').value = '';
+  document.getElementById('body').value = '';
+  document.getElementById('pv').style.display = 'none';
+}
 </script>
+
 </body>
 </html>

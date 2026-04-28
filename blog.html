@@ -1,220 +1,41 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#ffffff">
-<title>Blog — Carina Anna Prav</title>
-<meta name="description" content="Strategien, Klartext, alles was dein Content-System braucht.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #ffffff;
-    --card: #F5F0E8;
-    --ink: #1a1a1a;
-    --ink-soft: #4a4238;
-    --muted: #8a8170;
-    --accent: #C98640;
-    --accent-dark: #a66d2f;
-    --rule: #e0d9cc;
-    --serif: 'Playfair Display', Georgia, serif;
-    --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { background: #ffffff; min-height: 100%; }
-  body {
-    font-family: var(--sans);
-    background: #ffffff !important;
-    color: var(--ink);
-    font-weight: 400;
-    line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
-  }
-  a { color: inherit; text-decoration: none; }
+<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#f7f3ea"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css">
+<title>Journal · Carina Anna Prav · Self & Sales</title><meta name="description" content="Gedanken zu Self, Sales und dem Riss dazwischen."></head><body>
 
-  .nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    padding: 16px 40px;
-    display: flex; justify-content: space-between; align-items: center;
-    background: rgba(255,255,255,0.96);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--rule);
-  }
-  .nav-logo { font-family: var(--serif); font-weight: 500; font-size: 1rem; letter-spacing: 0.02em; }
-  .nav-r { display: flex; gap: 24px; }
-  .nav-r a { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; color: var(--muted); }
-  .nav-r a:hover { color: var(--accent); }
-  .nav-r a.active { color: var(--accent); }
+<nav class="nav"><a class="brand" href="index.html">Carina Anna Prav</a><div class="nav-links"><a href="about.html">About</a><a href="mentoring.html">Mentoring</a><a href="podcast.html">Podcast</a><a href="blog.html">Journal</a><a class="pill" href="mentoring-bewerbung.html">Bewerben</a></div></nav>
 
-  .hero {
-    min-height: 55vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 140px 32px 80px;
-    position: relative;
-    overflow: hidden;
-    background-image: url('bilder/photo_5980857112508173725_y.jpg?v=2');
-    background-size: cover;
-    background-position: center 30%;
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(26,22,18,0.55) 0%, rgba(26,22,18,0.45) 40%, rgba(26,22,18,0.78) 100%);
-    z-index: 1;
-  }
-  .hero-content { max-width: 720px; margin: 0 auto; position: relative; z-index: 2; }
-  .hero .quiet {
-    font-family: var(--serif); font-style: italic;
-    font-size: 1.15rem; color: #ffffff;
-    opacity: 0.98; margin-bottom: 1rem;
-    text-shadow: 0 2px 15px rgba(0,0,0,0.5), 0 1px 2px rgba(0,0,0,0.4);
-  }
-  h1 {
-    font-family: var(--serif); font-weight: 500;
-    font-size: clamp(2.4rem, 5vw, 3.2rem);
-    margin-bottom: 1rem;
-    color: #ffffff;
-    text-shadow: 0 2px 20px rgba(0,0,0,0.6), 0 1px 3px rgba(0,0,0,0.5);
-  }
-  .hero p {
-    font-family: var(--serif); font-style: italic;
-    font-size: 1.15rem;
-    color: rgba(255,255,255,0.97);
-    max-width: 520px;
-    margin: 0 auto;
-    text-shadow: 0 2px 15px rgba(0,0,0,0.5), 0 1px 2px rgba(0,0,0,0.4);
-  }
+<header class="page-hero"><div class="eyebrow">Journal</div><h1>Gedanken zu Self, Sales und dem Riss dazwischen.</h1><p class="lead">Nicht mehr Content. Mehr Klarheit im Kern. Texte für Coaches, die genug haben von Hooks, Hustle und Hochglanz-Strategien.</p></header>
 
-  .posts {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 40px 32px 80px;
-  }
-  .post {
-    padding: 2.5rem 0;
-    border-bottom: 1px solid var(--rule);
-    transition: all 0.2s ease;
-  }
-  .post:last-child { border-bottom: none; }
-  .post-tag {
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 0.6rem;
-  }
-  .post h2 {
-    font-family: var(--serif); font-weight: 500;
-    font-size: 1.6rem;
-    line-height: 1.3;
-    margin-bottom: 0.8rem;
-  }
-  .post h2 a { color: var(--ink); transition: color 0.2s; }
-  .post h2 a:hover { color: var(--accent); }
-  .post p {
-    font-size: 1rem;
-    color: var(--ink-soft);
-    line-height: 1.75;
-    margin-bottom: 0.8rem;
-  }
-  .post-meta {
-    font-size: 0.78rem;
-    color: var(--muted);
-    letter-spacing: 0.04em;
-  }
+<section><div class="wrap">
+  <div id="postList" class="journal-grid">
+    <p style="grid-column:1/-1;color:var(--muted);font-size:.95rem">Lade Posts…</p>
+  </div>
+</div></section>
 
-  footer {
-    padding: 60px 32px;
-    text-align: center;
-    border-top: 1px solid var(--rule);
-  }
-  .foot-sig { font-family: var(--serif); font-style: italic; font-size: 1rem; color: var(--ink-soft); display: block; margin-bottom: 1.2rem; }
-  footer a { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 12px; }
-  footer a:hover { color: var(--accent); }
+<section style="text-align:center"><div class="wrap text" style="max-width:680px;margin:0 auto"><h2 class="section-title">Bereit, das nicht mehr alleine zu machen?</h2><p>Solid Sales Gruppe startet Mitte Juni 2026. Plätze begrenzt. Oder bewirb dich fürs 1:1, wenn du eng begleitet arbeiten willst.</p><a class="btn" href="mentoring-bewerbung.html">Bewerben</a></div></section>
 
-  @media (max-width: 768px) {
-    .nav { padding: 14px 20px; }
-    .nav-r { gap: 14px; }
-    .nav-r a:not(:last-child) { display: none; }
-    .hero { 
-      padding: 120px 24px 60px;
-      min-height: 450px;
-      background-attachment: scroll;
+<footer class="footer"><div>Carina Anna Prav · Self & Sales</div><div><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="agb.html">AGB</a></div></footer>
+
+<script>
+async function loadPosts(){
+  const list = document.getElementById('postList');
+  try{
+    // Public read endpoint via the same function (no password needed for GET? — yes, password required)
+    // For public reading we use a different approach: read /blog/index.json or rely on filesystem listing
+    // Simpler approach: the function endpoint requires auth, so we'll use a public manifest file
+    const res = await fetch('/blog/posts.json');
+    if(!res.ok) throw new Error('No posts manifest');
+    const data = await res.json();
+    if(!data.posts || !data.posts.length){
+      list.innerHTML = '<p style="grid-column:1/-1;color:var(--muted);font-size:.95rem">Noch keine Posts veröffentlicht.</p>';
+      return;
     }
-    .hero::before {
-      background: linear-gradient(180deg, rgba(26,22,18,0.65) 0%, rgba(26,22,18,0.55) 40%, rgba(26,22,18,0.85) 100%);
-    }
-    .posts { padding: 30px 20px 60px; }
-    .post h2 { font-size: 1.3rem; }
+    list.innerHTML = data.posts.map(p =>
+      `<a class="post" href="blog/${p.slug}.html"><small>${p.category||'Journal'}</small><h3>${p.title}</h3><p>${p.excerpt||''}</p></a>`
+    ).join('');
+  }catch(e){
+    list.innerHTML = '<p style="grid-column:1/-1;color:var(--muted);font-size:.95rem">Posts können gerade nicht geladen werden.</p>';
   }
-</style>
-</head>
-<body>
-
-<nav class="nav">
-  <a href="index.html" class="nav-logo">carinaannaprav</a>
-  <div class="nav-r">
-    <a href="index.html">Home</a>
-    <a href="content-that-sells.html">Kurs</a>
-    <a href="mentoring.html">Mentoring</a>
-    <a href="dfy.html">Done-For-You</a>
-    <a href="blog.html" class="active">Blog</a>
-  </div>
-</nav>
-
-<div class="hero">
-  <div class="hero-content">
-    <p class="quiet">Blog</p>
-    <h1>Strategien &amp; Klartext</h1>
-    <p>Alles was dein Content-System braucht.</p>
-  </div>
-</div>
-
-<div class="posts">
-  <article class="post">
-    <div class="post-tag">Content</div>
-    <h2><a href="blog/warum-dein-content-nicht-verkauft.html">Warum dein Content nicht verkauft — und was du ändern musst</a></h2>
-    <p>Du postest regelmäßig. Es passiert nichts. Kein Wunder: Dein Content hat keinen Job. Was das heißt und wie du es änderst.</p>
-    <span class="post-meta">April 2026</span>
-  </article>
-
-  <article class="post">
-    <div class="post-tag">Verkaufen</div>
-    <h2><a href="blog/du-bist-nicht-pushy.html">Du denkst du bist pushy. Aber du hast noch nie verkauft.</a></h2>
-    <p>"Ich will nicht pushy sein" — der häufigste Satz von Frauen die noch nie wirklich verkauft haben. Warum Klarheit das Gegenteil von Pushy ist.</p>
-    <span class="post-meta">April 2026</span>
-  </article>
-
-  <article class="post">
-    <div class="post-tag">Angebot</div>
-    <h2><a href="blog/angebot-in-einem-satz.html">Wenn du dein Angebot nicht in einem Satz erklären kannst</a></h2>
-    <p>Dann kann es deine Traumkundin auch nicht verstehen. Und genau deshalb verkauft es sich nicht.</p>
-    <span class="post-meta">April 2026</span>
-  </article>
-
-  <article class="post">
-    <div class="post-tag">Strategie</div>
-    <h2><a href="blog/mal-2000-mal-nichts.html">Mal 2.000€, mal nichts — warum das kein Pech ist</a></h2>
-    <p>Unregelmäßiger Umsatz ist kein Schicksal. Es ist ein Systemfehler. Was wirklich dahinter steckt.</p>
-    <span class="post-meta">April 2026</span>
-  </article>
-</div>
-
-<footer>
-  <span class="foot-sig">Carina Anna Prav.</span>
-  <div>
-    <a href="impressum.html">Impressum</a>
-    <a href="datenschutz.html">Datenschutz</a>
-    <a href="agb.html">AGB</a>
-    <a href="https://www.instagram.com/carinaannaprav/" target="_blank">Instagram</a>
-  </div>
-</footer>
-</body>
-</html>
+}
+loadPosts();
+</script>
+</body></html>

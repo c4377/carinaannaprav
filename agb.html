@@ -1,150 +1,64 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#ffffff">
-<title>AGB — Carina Anna Prav</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#8e8d72"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css">
+<title>AGB · Carina Anna Prav · Self & Sales</title>
 <style>
-  :root {
-    --bg: #ffffff;
-    --card: #F5F0E8;
-    --ink: #1a1a1a;
-    --ink-soft: #4a4238;
-    --muted: #8a8170;
-    --accent: #C98640;
-    --accent-dark: #a66d2f;
-    --rule: #e0d9cc;
-    --serif: 'Playfair Display', Georgia, serif;
-    --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { background: #ffffff; min-height: 100%; }
-  body {
-    font-family: var(--sans); background: #ffffff !important;
-    color: var(--ink); font-weight: 400; line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
-  }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { color: var(--accent-dark); }
-
-  .nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    padding: 16px 40px;
-    display: flex; justify-content: space-between; align-items: center;
-    background: rgba(255,255,255,0.96); backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--rule);
-  }
-  .nav-logo { font-family: var(--serif); font-weight: 500; font-size: 1rem; letter-spacing: 0.02em; color: var(--ink); }
-  .nav-r { display: flex; gap: 24px; }
-  .nav-r a { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; color: var(--muted); }
-  .nav-r a:hover { color: var(--accent); }
-
-  .content {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 140px 32px 80px;
-  }
-  .content h1 {
-    font-family: var(--serif); font-weight: 500;
-    font-size: 2.2rem;
-    margin-bottom: 2rem;
-    color: var(--ink);
-  }
-  .content h2 {
-    font-family: var(--serif); font-weight: 500;
-    font-size: 1.3rem;
-    margin: 2.5rem 0 0.8rem;
-    color: var(--ink);
-  }
-  .content p {
-    font-size: 0.95rem;
-    color: var(--ink-soft);
-    line-height: 1.85;
-    margin-bottom: 1rem;
-  }
-  .content strong { color: var(--ink); font-weight: 600; }
-
-  footer {
-    padding: 60px 32px; text-align: center;
-    border-top: 1px solid var(--rule);
-  }
-  .foot-sig { font-family: var(--serif); font-style: italic; font-size: 1rem; color: var(--ink-soft); display: block; margin-bottom: 1.2rem; }
-  footer a { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 12px; }
-  footer a:hover { color: var(--accent); }
-
-  @media (max-width: 768px) {
-    .nav { padding: 14px 20px; }
-    .nav-r { gap: 14px; }
-    .nav-r a:not(:last-child) { display: none; }
-    .content { padding: 120px 20px 60px; }
-    .content h1 { font-size: 1.8rem; }
-  }
+  .legal{max-width:760px;margin:0 auto;padding:60px clamp(20px,4vw,40px) 80px}
+  .legal h1{font-family:var(--accent);font-weight:400;font-size:clamp(2.2rem,4vw,3rem);line-height:1.05;margin-bottom:30px;color:var(--ink)}
+  .legal h2{font-family:var(--serif);font-weight:400;font-size:1.35rem;line-height:1.25;margin:36px 0 12px;color:var(--ink)}
+  .legal p{font-size:1rem;color:var(--brown);line-height:1.85;margin-bottom:14px}
+  .legal strong{color:var(--ink);font-weight:500}
+  .legal a{color:var(--ink);text-decoration:underline;text-underline-offset:4px}
+  .legal ul{margin:8px 0 18px 22px}
+  .legal li{font-size:1rem;color:var(--brown);line-height:1.85;margin-bottom:4px}
+  .legal-stand{font-size:.88rem;color:var(--muted);letter-spacing:.04em;margin-bottom:30px}
 </style>
-</head>
-<body>
+</head><body>
 
-<nav class="nav">
-  <a href="index.html" class="nav-logo">carinaannaprav</a>
-  <div class="nav-r">
-    <a href="index.html">Home</a>
-    <a href="content-that-sells.html">Kurs</a>
-    <a href="mentoring.html">Mentoring</a>
-    <a href="dfy.html">Done-For-You</a>
-    <a href="blog.html">Blog</a>
-  </div>
-</nav>
+<nav class="nav"><a class="brand" href="index.html">Carina Anna Prav</a><div class="nav-links"><a href="about.html">About</a><a href="mentoring.html">Mentoring</a><a href="podcast.html">Podcast</a><a href="blog.html">Journal</a><a class="pill" href="mentoring-bewerbung.html">Bewerben</a></div></nav>
 
-<div class="content">
-<h1>Allgemeine Geschäftsbedingungen</h1>
-<p><strong>Stand: April 2026</strong></p>
+<header class="page-hero"><div class="eyebrow">Rechtliches</div><h1>Allgemeine Geschäftsbedingungen</h1></header>
+
+<section style="padding-top:0"><div class="legal">
+
+<p class="legal-stand"><strong>Stand: April 2026</strong></p>
 
 <h2>1. Geltungsbereich</h2>
-<p>Diese AGB gelten für alle Angebote, Kurse, digitalen Produkte und Dienstleistungen von Carina Anna Prav („Anbieterin"), erreichbar unter carinaannaprav.at.</p>
+<p>Diese AGB gelten für alle Angebote, Mentorings und Dienstleistungen von Carina Anna Prav („Anbieterin"), erreichbar unter carinaannaprav.at.</p>
 
 <h2>2. Vertragsschluss</h2>
-<p>Mit dem Kauf eines Kurses oder der Buchung einer Dienstleistung kommt ein Vertrag zwischen dir und der Anbieterin zustande. Bei digitalen Produkten erfolgt der Vertragsschluss mit der Kaufbestätigung per E-Mail.</p>
+<p>Mit der Buchung einer Dienstleistung (Self & Sales 1:1 oder Solid Sales Gruppe) kommt nach Annahme der Bewerbung ein Vertrag zwischen dir und der Anbieterin zustande. Der Vertragsschluss erfolgt durch die schriftliche Bestätigung per E-Mail.</p>
 
 <h2>3. Preise und Zahlung</h2>
-<p>Alle Preise verstehen sich in Euro inklusive der gesetzlichen Umsatzsteuer (sofern anwendbar). Die Zahlung erfolgt über ThriveCart. Akzeptierte Zahlungsmethoden: Kreditkarte, PayPal.</p>
+<p>Alle Preise verstehen sich in Euro inklusive der gesetzlichen Umsatzsteuer (sofern anwendbar). Zahlungsmodalitäten und akzeptierte Zahlungsmethoden werden im Bewerbungsgespräch individuell vereinbart.</p>
 
-<h2>4. Digitale Produkte und Kurse</h2>
-<p>Nach Kaufabschluss erhältst du sofortigen Zugang zum Kursbereich. Alle Inhalte sind ausschließlich für deinen persönlichen Gebrauch bestimmt. Eine Weitergabe, Veröffentlichung oder Vervielfältigung ist nicht gestattet.</p>
+<h2>4. Mentoring-Leistungen</h2>
+<p>Nach Vertragsschluss erhältst du Zugang zum vereinbarten Mentoring-Format (1:1 oder Gruppe). Die Inhalte und Materialien sind ausschließlich für deinen persönlichen Gebrauch bestimmt. Eine Weitergabe, Veröffentlichung oder Vervielfältigung ist nicht gestattet.</p>
 
 <h2>5. Widerrufsrecht</h2>
-<p>Für digitale Inhalte (Kurse, PDFs, Audios) gilt: Mit dem Kauf stimmst du dem sofortigen Zugang zu und verzichtest auf dein Widerrufsrecht gemäß § 18 Abs. 1 Z 11 FAGG, sobald der Download oder Zugang bereitgestellt wurde.</p>
-<p>Für Dienstleistungen (Mentoring, Offer Audit) gilt ein 14-tägiges Widerrufsrecht ab Vertragsschluss, sofern die Dienstleistung noch nicht begonnen hat.</p>
+<p>Für Dienstleistungen (Self & Sales 1:1, Solid Sales Gruppe) gilt ein 14-tägiges Widerrufsrecht ab Vertragsschluss, sofern die Dienstleistung noch nicht begonnen hat. Sobald das erste Call-Meeting oder die erste Mentoring-Session stattgefunden hat, erlischt das Widerrufsrecht.</p>
+<p>Für digitale Inhalte (z.B. der 0€ Guide) gilt: Mit dem Bezug stimmst du dem sofortigen Zugang zu und verzichtest auf dein Widerrufsrecht gemäß § 18 Abs. 1 Z 11 FAGG.</p>
 
-<h2>6. Kostenlose Challenges</h2>
-<p>Die Teilnahme an kostenlosen Challenges ist unverbindlich. Mit der Anmeldung stimmst du dem Erhalt von E-Mails im Rahmen der Challenge zu. Du kannst dich jederzeit abmelden.</p>
+<h2>6. Kostenlose Inhalte</h2>
+<p>Die Anmeldung zum 0€ Guide oder zum Newsletter ist unverbindlich. Mit der Anmeldung stimmst du dem Erhalt von E-Mails zu. Du kannst dich jederzeit über den Abmeldelink in jeder E-Mail wieder austragen.</p>
 
 <h2>7. Haftung</h2>
-<p>Die Inhalte meiner Kurse und Beratungen stellen keine Erfolgsgarantie dar. Ich hafte nicht für entgangenen Gewinn oder wirtschaftliche Schäden, die aus der Anwendung meiner Inhalte entstehen.</p>
+<p>Die Inhalte meiner Mentorings und Beratungen stellen keine Erfolgsgarantie dar. Ich hafte nicht für entgangenen Gewinn oder wirtschaftliche Schäden, die aus der Anwendung meiner Inhalte entstehen. Die Verantwortung für die Umsetzung im eigenen Business liegt bei dir.</p>
 
 <h2>8. Urheberrecht</h2>
-<p>Alle Inhalte (Texte, Audios, PDFs, Grafiken, Frameworks) sind urheberrechtlich geschützt. Eine Nutzung über den persönlichen Gebrauch hinaus bedarf meiner schriftlichen Zustimmung.</p>
+<p>Alle Inhalte (Texte, Audios, PDFs, Frameworks, Methoden) sind urheberrechtlich geschützt. Eine Nutzung über den persönlichen Gebrauch hinaus bedarf meiner schriftlichen Zustimmung.</p>
 
-<h2>9. Änderungen der AGB</h2>
-<p>Ich behalte mir vor, diese AGB jederzeit zu ändern. Es gilt die zum Zeitpunkt des Kaufs gültige Fassung.</p>
+<h2>9. Vertraulichkeit</h2>
+<p>Was zwischen uns im Mentoring besprochen wird, bleibt vertraulich. Diese Vertraulichkeit gilt beidseitig — auch du verpflichtest dich, Inhalte aus Sessions und Materialien nicht an Dritte weiterzugeben.</p>
 
-<h2>10. Anwendbares Recht und Gerichtsstand</h2>
+<h2>10. Änderungen der AGB</h2>
+<p>Ich behalte mir vor, diese AGB jederzeit zu ändern. Es gilt die zum Zeitpunkt des Vertragsschlusses gültige Fassung.</p>
+
+<h2>11. Anwendbares Recht und Gerichtsstand</h2>
 <p>Es gilt österreichisches Recht. Gerichtsstand ist Wien, Österreich.</p>
 
-<h2>11. Kontakt</h2>
+<h2>12. Kontakt</h2>
 <p>Carina Anna Prav<br>E-Mail: socials@carinaannaprav.at<br>Website: carinaannaprav.at</p>
-</div>
 
-<footer>
-  <span class="foot-sig">Carina Anna Prav.</span>
-  <div>
-    <a href="impressum.html">Impressum</a>
-    <a href="datenschutz.html">Datenschutz</a>
-    <a href="agb.html">AGB</a>
-    <a href="https://www.instagram.com/carinaannaprav/" target="_blank">Instagram</a>
-  </div>
-</footer>
-</body>
-</html>
+</div></section>
+
+<footer class="footer"><div>Carina Anna Prav · Self & Sales</div><div><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="agb.html">AGB</a></div></footer>
+</body></html>

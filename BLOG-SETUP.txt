@@ -1,0 +1,73 @@
+BLOG-SYSTEM — Setup-Anleitung
+==============================
+
+Wie es funktioniert
+-------------------
+1. Du loggst dich auf /blog-admin.html mit Passwort ein
+2. Tippst Titel, Kategorie, Inhalt
+3. Klickst "Veröffentlichen"
+4. Die Netlify Function schreibt zwei Dateien ins GitHub-Repo:
+   - blog/<slug>.html         (der eigentliche Post)
+   - blog/posts.json          (Manifest mit allen Post-Metadaten)
+5. Netlify deployed automatisch in 1-2 Minuten
+6. blog.html liest posts.json und zeigt die Liste an
+
+
+Notwendige Environment Variables in Netlify
+-------------------------------------------
+Settings → Environment variables → Add variable
+
+BLOG_ADMIN_PASSWORD     Dein Wunschpasswort für die Admin-Seite
+GITHUB_TOKEN            Personal Access Token (siehe unten)
+GITHUB_REPO             z.B. "deinusername/dein-repo-name"
+GITHUB_BRANCH           "main" (default, optional)
+
+
+GitHub Personal Access Token erstellen
+---------------------------------------
+1. Gehe zu github.com → rechts oben Profil → Settings
+2. Links unten: Developer settings
+3. Personal access tokens → Tokens (classic) → Generate new token (classic)
+4. Note: "Self & Sales Blog Publishing"
+5. Expiration: ggf. "No expiration" (Achtung: Sicherheitsabwägung)
+6. Scopes: nur "repo" anhaken (Full control of private repositories)
+7. Generate token → Token kopieren
+8. In Netlify als GITHUB_TOKEN einfügen
+
+
+Deploy-Workflow (einmalig einrichten)
+--------------------------------------
+1. Repo auf GitHub anlegen (z.B. "self-und-sales")
+2. Alle Files aus diesem ZIP hochladen ins Repo-Root
+3. Auf Netlify: "Add new site" → "Import from Git"
+4. Repo auswählen, branch "main"
+5. Build settings: leer lassen (statische Site)
+   - Build command: (leer)
+   - Publish directory: . (Punkt)
+6. Deploy starten
+7. Nach Deploy: Domain einrichten (carinaannaprav.at)
+8. Environment variables setzen (siehe oben)
+9. Site neu deployen — dann läuft alles
+
+
+Erster Post
+-----------
+1. Gehe auf https://deine-domain.at/blog-admin.html
+2. Login mit BLOG_ADMIN_PASSWORD
+3. Post schreiben → Veröffentlichen
+4. In 1-2 Min auf /blog.html sichtbar
+
+
+Was die Function NICHT (mehr) tut
+----------------------------------
+- Sie aktualisiert blog.html NICHT mehr — die ist statisch und liest dynamisch posts.json
+- Bestehende Posts können editiert werden indem man denselben Slug nimmt
+- Löschen funktioniert über den "Löschen"-Button — der Post wird aus dem Repo entfernt
+  (Hinweis: posts.json wird beim nächsten Veröffentlichen automatisch aktualisiert)
+
+
+Bei Problemen
+-------------
+- Function-Logs in Netlify: Site → Functions → blog-publish → Logs
+- 401 = falsches Passwort
+- 500 + GitHub error = Token fehlt/falsch oder Repo-Path falsch

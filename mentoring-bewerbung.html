@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#f7f3ea"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css">
+<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#8e8d72"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css">
 <title>Bewerbung · Self & Sales · Carina Anna Prav</title></head><body>
 
 <nav class="nav"><a class="brand" href="index.html">Carina Anna Prav</a><div class="nav-links"><a href="about.html">About</a><a href="mentoring.html">Mentoring</a><a href="podcast.html">Podcast</a><a href="blog.html">Journal</a><a class="pill" href="mentoring-bewerbung.html">Bewerben</a></div></nav>
@@ -7,29 +7,81 @@
 
 <section><div class="wrap split"><div class="kicker">Juni 2026</div><div class="text"><h2 class="section-title">Solid Sales Gruppe — Start Mitte Juni 2026.</h2><p>Aktuell ist die Solid Sales Gruppe unser Hauptangebot. Sie startet einmal pro Jahr mit einer kleineren Gruppe von Coaches. Plätze sind begrenzt.</p><p>Wenn du im Juni-Start dabei sein willst, bewirb dich rechtzeitig. Wir gehen jede Bewerbung persönlich durch — du bekommst eine ehrliche Antwort, ob es passt oder nicht.</p></div></div></section>
 
-<section><div class="wrap"><div class="offer-box"><h2>Bewerbung</h2><p style="color:var(--brown);margin-top:8px;margin-bottom:18px">Beide Wege laufen über dasselbe Formular. Sag uns einfach, welcher dich anspricht.</p><form class="form"><input placeholder="Dein Name"><input placeholder="E-Mail"><input placeholder="Website oder Instagram">
+<section><div class="wrap"><div class="offer-box"><h2>Bewerbung</h2><p style="color:var(--paper-brown);margin-top:8px;margin-bottom:18px">Beide Wege laufen über dasselbe Formular. Sag uns einfach, welcher dich anspricht.</p>
 
-<select>
-<option>Welcher Weg interessiert dich?</option>
-<option>Solid Sales Gruppe — Mitte Juni 2026</option>
-<option>Self & Sales 1:1 — eng begleitet, individuell</option>
-<option>Lass uns im Gespräch klären, was passt</option>
-</select>
+<form class="form" id="appForm" onsubmit="submitApp(event)">
+  <input id="appName" type="text" placeholder="Dein Name" required>
+  <input id="appEmail" type="email" placeholder="E-Mail" required>
+  <input id="appInstagram" type="text" placeholder="Website oder Instagram (optional)">
 
-<select>
-<option>Wo stehst du gerade?</option>
-<option>Ich habe ein 1:1, das nicht so verkauft, wie es gut ist</option>
-<option>Ich starte gerade mein 1:1 und will es richtig bauen</option>
-<option>Ich verkaufe regelmäßig, aber etwas zwischen mir und dem Angebot fühlt sich eng an</option>
-</select>
+  <select id="appWeg" required>
+    <option value="">Welcher Weg interessiert dich?</option>
+    <option>Solid Sales Gruppe — Mitte Juni 2026</option>
+    <option>Self & Sales 1:1 — eng begleitet, individuell</option>
+    <option>Lass uns im Gespräch klären, was passt</option>
+  </select>
 
-<textarea placeholder="Wo machst du dich aktuell beim Verkaufen kleiner — oder wo erklärst du zu lange?"></textarea>
+  <select id="appSituation" required>
+    <option value="">Wo stehst du gerade?</option>
+    <option>Ich habe ein 1:1, das nicht so verkauft, wie es gut ist</option>
+    <option>Ich starte gerade mein 1:1 und will es richtig bauen</option>
+    <option>Ich verkaufe regelmäßig, aber etwas zwischen mir und dem Angebot fühlt sich eng an</option>
+  </select>
 
-<textarea placeholder="Was soll sich durch unsere Zusammenarbeit verändern?"></textarea>
+  <textarea id="appHaengt" placeholder="Wo machst du dich aktuell beim Verkaufen kleiner — oder wo erklärst du zu lange?" required></textarea>
 
-<button type="button">Bewerbung absenden</button>
+  <textarea id="appZiel" placeholder="Was soll sich durch unsere Zusammenarbeit verändern?" required></textarea>
 
-</form></div></div></section>
+  <button type="submit" id="appBtn">Bewerbung absenden</button>
+</form>
+
+<div id="appMsg" style="margin-top:14px;font-size:.9rem;line-height:1.5"></div>
+
+</div></div></section>
 
 <footer class="footer"><div>Carina Anna Prav · Self & Sales</div><div><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="agb.html">AGB</a></div></footer>
+
+<script>
+async function submitApp(e){
+  e.preventDefault();
+  const btn = document.getElementById('appBtn');
+  const msg = document.getElementById('appMsg');
+
+  const data = {
+    firstname: document.getElementById('appName').value.trim(),
+    email: document.getElementById('appEmail').value.trim(),
+    instagram: document.getElementById('appInstagram').value.trim(),
+    weg: document.getElementById('appWeg').value,
+    situation: document.getElementById('appSituation').value,
+    wo_haengts: document.getElementById('appHaengt').value.trim(),
+    ziel: document.getElementById('appZiel').value.trim()
+  };
+
+  btn.disabled = true;
+  btn.textContent = 'Wird gesendet...';
+  msg.innerHTML = '';
+
+  try {
+    const r = await fetch('/.netlify/functions/mentoring-application', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    const result = await r.json();
+
+    if (result.success) {
+      msg.innerHTML = '<div style="background:rgba(110,150,80,.12);color:var(--paper-text);border:1px solid rgba(110,150,80,.4);padding:18px;border-radius:10px"><strong>Geschafft.</strong> Deine Bewerbung ist bei mir gelandet. Ich melde mich innerhalb von 2-3 Werktagen.</div>';
+      document.getElementById('appForm').style.display = 'none';
+    } else {
+      msg.innerHTML = '<div style="background:rgba(217,122,122,.12);color:#9a3a3a;border:1px solid rgba(217,122,122,.4);padding:14px;border-radius:10px">' + (result.error || 'Etwas ist schiefgelaufen.') + '</div>';
+      btn.disabled = false;
+      btn.textContent = 'Bewerbung absenden';
+    }
+  } catch (err) {
+    msg.innerHTML = '<div style="background:rgba(217,122,122,.12);color:#9a3a3a;border:1px solid rgba(217,122,122,.4);padding:14px;border-radius:10px">Netzwerkfehler. Bitte versuch es nochmal oder schreib mir per DM.</div>';
+    btn.disabled = false;
+    btn.textContent = 'Bewerbung absenden';
+  }
+}
+</script>
 </body></html>

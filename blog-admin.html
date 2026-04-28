@@ -11,10 +11,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#1a1815; --paper:#f6f3ed; --soft:#252220; --sage:#3a3530;
-    --ink:#f6f3ed; --brown:#c8c0b3; --muted:#9a9189;
-    --paper-text:#211f1c; --paper-brown:#5f5750; --paper-muted:#8b837a;
-    --line:rgba(246,243,237,.14);
+    --bg:#8e8d72; --paper:#f7f3ea; --soft:#7d7c63; --sage:#6a6953;
+    --ink:#ffffff; --brown:#fdfaf0; --muted:#fdfaf0;
+    --paper-text:#2e3023; --paper-brown:#52503e; --paper-muted:#7d7b66;
+    --line:rgba(253,251,243,.32);
   }
   *{margin:0;padding:0;box-sizing:border-box}
   body{background:var(--bg);color:var(--ink);font-family:Inter,Arial,sans-serif;font-weight:300;font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
@@ -27,13 +27,13 @@
 
   input,textarea,select{
     width:100%;padding:14px 16px;
-    border:1px solid var(--line);
-    background:var(--soft);color:var(--ink);
+    border:1px solid rgba(46,48,35,.18);
+    background:var(--paper);color:var(--paper-text);
     font-family:Inter,Arial,sans-serif;font-size:0.95rem;font-weight:300;
     outline:none;border-radius:10px;
   }
-  input:focus,textarea:focus,select:focus{border-color:var(--ink)}
-  input::placeholder,textarea::placeholder{color:var(--muted)}
+  input:focus,textarea:focus,select:focus{border-color:var(--paper-text)}
+  input::placeholder,textarea::placeholder{color:var(--paper-muted)}
   textarea{min-height:340px;line-height:1.8;resize:vertical}
   select{cursor:pointer;-webkit-appearance:none}
 

@@ -43,7 +43,51 @@
 <section><div class="wrap story-grid"><div class="story-img"></div><div class="text"><div class="eyebrow">About Carina</div><h2 class="section-title">Verkaufen ist kein Skill, den ich gelernt habe.</h2><p>Es ist eine Sprache, die ich seit der Schulzeit spreche. Vor Jahren habe ich ein Secondhand-Bridal-Label aufgebaut, bin viral gegangen mit einem unfilterten, frustrierten Post — und seitdem weiß ich: Authentizität schlägt Strategie. Aber nur, wenn das, was darunter liegt, sauber konstruiert ist.</p><p>60.000€ in 24 Monaten, neben einem Vollzeitjob mit 32 Stunden pro Woche. Nicht weil ich besser pitche. Weil ich nie zwischen mir und meinem Angebot stehe.</p><a class="link" href="about.html">mehr über mich</a></div></div></section>
 
 <!-- 0€ Guide als sekundärer Lead -->
-<section id="freebie"><div class="wrap split"><div class="text"><div class="eyebrow">0€ Guide</div><h2 class="section-title">Wo du dich kleiner machst, ohne es zu merken.</h2><p>5 Stellen, an denen du dich beim Verkaufen verlierst. Lesedauer 15 Minuten. Ehrlich, ohne Diagnose-Boxen, ohne Strategie-Listen — ein Text, der dich als Person anschaut, nicht dein Angebot.</p><p>Du bekommst den Guide direkt per Mail.</p></div><div class="offer-box"><div class="eyebrow">Direkt zum Download</div><h2>Hol dir den Guide.</h2><form class="form" onsubmit="event.preventDefault();"><input type="text" placeholder="Vorname"><input type="email" placeholder="E-Mail"><button type="submit">Guide kostenlos holen</button></form><p style="font-size:.82rem;color:var(--muted);margin-top:14px">Du bekommst den Guide sofort. Du kannst dich jederzeit wieder austragen.</p></div></div></section>
+<section id="freebie"><div class="wrap split"><div class="text"><div class="eyebrow">0€ Guide</div><h2 class="section-title">Wo du dich kleiner machst, ohne es zu merken.</h2><p>5 Stellen, an denen du dich beim Verkaufen verlierst. Lesedauer 15 Minuten. Ehrlich, ohne Diagnose-Boxen, ohne Strategie-Listen — ein Text, der dich als Person anschaut, nicht dein Angebot.</p><p>Du bekommst den Guide direkt per Mail.</p></div><div class="offer-box"><div class="eyebrow">Direkt zum Download</div><h2>Hol dir den Guide.</h2><form class="form" id="freebieForm" onsubmit="submitFreebie(event)"><input type="text" id="ffFirstname" placeholder="Vorname" required><input type="email" id="ffEmail" placeholder="E-Mail" required><button type="submit" id="ffBtn">Guide kostenlos holen</button></form><p id="ffMsg" style="font-size:.82rem;color:var(--muted);margin-top:14px">Du bekommst den Guide sofort. Du kannst dich jederzeit wieder austragen.</p></div></div></section>
+
+<script>
+async function submitFreebie(e){
+  e.preventDefault();
+  const btn = document.getElementById('ffBtn');
+  const msg = document.getElementById('ffMsg');
+  const firstname = document.getElementById('ffFirstname').value.trim();
+  const email = document.getElementById('ffEmail').value.trim();
+
+  if(!firstname || !email){ msg.textContent = 'Bitte fülle beide Felder aus.'; msg.style.color = '#d97a7a'; return; }
+
+  btn.disabled = true;
+  btn.textContent = 'Wird gesendet...';
+
+  try {
+    const r = await fetch('/.netlify/functions/newsletter-signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        firstname,
+        email,
+        source: 'freebie-self-sales',
+        tags: ['freebie-self-sales']
+      })
+    });
+    const data = await r.json();
+    if(data.success){
+      msg.innerHTML = '✓ Geschafft. Schau in dein Postfach — der Guide kommt per Mail. (Manchmal landet er im Spam-Ordner — falls du ihn nicht findest, schau dort.)';
+      msg.style.color = 'var(--ink)';
+      document.getElementById('freebieForm').style.display = 'none';
+    } else {
+      msg.textContent = 'Etwas ist schiefgelaufen. Bitte versuch es nochmal oder schreib mir per DM.';
+      msg.style.color = '#d97a7a';
+      btn.disabled = false;
+      btn.textContent = 'Guide kostenlos holen';
+    }
+  } catch(err) {
+    msg.textContent = 'Netzwerkfehler. Bitte versuch es nochmal.';
+    msg.style.color = '#d97a7a';
+    btn.disabled = false;
+    btn.textContent = 'Guide kostenlos holen';
+  }
+}
+</script>
 
 <section><div class="wrap"><div class="eyebrow">Journal</div><h2 class="section-title">Gedanken zu Self, Sales und dem Riss dazwischen.</h2><div class="journal-grid"><a class="post" href="blog/angebot-ist-positionierung.html"><small>Konstruktion</small><h3>Dein Angebot hat kein Preisproblem.</h3><p>Warum die ersten drei Reflexe — Preis senken, mehr Content, sichtbarer werden — meistens das Falsche reparieren.</p></a><a class="post" href="blog/content-ist-nicht-das-problem.html"><small>Content</small><h3>Content ist selten das eigentliche Problem.</h3><p>Mehr Sichtbarkeit kann ein Angebot, das innen nicht steht, nicht retten.</p></a><a class="post" href="blog/nische-sein.html"><small>Zielgruppe</small><h3>„Frauen, die mehr wollen" ist keine Zielgruppe.</h3><p>In solchen Sätzen erkennt sich niemand. Echte Zielgruppe ist eine konkrete Situation.</p></a></div></div></section>
 

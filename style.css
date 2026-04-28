@@ -248,3 +248,33 @@ section{border-top-color:rgba(246,243,237,.08)}
 .module h3{color:var(--ink)}
 .module p{color:var(--brown)}
 .module small{color:var(--muted)}
+
+
+/* FORM INPUT OVERRIDE — dunkle Schrift in Cream-Karten, immer */
+.offer-box .form input,.offer-box .form textarea,.offer-box .form select,
+.form input,.form textarea,.form select{
+  color:var(--paper-text) !important;
+  background:var(--paper) !important;
+  border-color:rgba(46,48,35,.18) !important;
+}
+.offer-box .form input::placeholder,.offer-box .form textarea::placeholder,
+.form input::placeholder,.form textarea::placeholder{
+  color:var(--paper-muted) !important;
+  opacity:1;
+}
+
+/* FORM BUTTON & MSG OVERRIDE in Cream-Karten */
+.offer-box .form button,.form button{
+  background:var(--paper-text) !important;
+  color:var(--paper) !important;
+  border:0 !important;
+  cursor:pointer;
+}
+.offer-box .form button:hover,.form button:hover{
+  background:var(--paper-brown) !important;
+}
+/* Hilfstext unter Form (z.B. "Du bekommst den Guide sofort...") */
+.offer-box p[style*="muted"],.offer-box .form + p,
+#ffMsg{
+  color:var(--paper-muted) !important;
+}

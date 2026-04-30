@@ -1,40 +1,16 @@
-<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#f7f3ea"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"><title>Off the Record · Podcast · Carina Anna Prav</title><meta name="description" content="Off the Record. Ein Podcast über Self, Sales und das, was zwischen den beiden passiert. Bald."></head><body>
+<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#8e8d72"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"><title>Off the Record · Self & Sales · Carina Anna Prav</title><meta name="description" content="Off the Record. Gespräche über Self, Sales und den Riss zwischen beidem."></head><body>
 
 <nav class="nav"><a class="brand" href="index.html">Carina Anna Prav</a><div class="nav-links"><a href="about.html">About</a><a href="mentoring.html">Mentoring</a><a href="podcast.html">Podcast</a><a href="blog.html">Journal</a><a class="pill" href="mentoring-bewerbung.html">Bewerben</a></div></nav>
 
-<header class="page-hero"><div class="eyebrow">Self & Sales — Der Podcast</div><h1>Off the Record.</h1><p class="lead">Gespräche über Self, Sales und den Riss, der sich zwischen beidem öffnet, wenn du nicht hinschaust. Ruhig, redaktionell, erwachsen — kein Diary, keine Hot Takes.</p>
+<header class="page-hero"><div class="eyebrow">Self & Sales — Der Podcast</div><h1>Off the Record.</h1><p class="lead">→ Kein Diary.<br>→ Keine Hot Takes.<br>→ Keine „5 Tipps für mehr Sichtbarkeit"-Folgen.<br><br>Sondern: Gespräche über Self, Sales, und den Moment, in dem du dich beim Verkaufen verlierst.</p>
 
-<div style="margin-top:48px;border-radius:18px;overflow:hidden;aspect-ratio:4/3;background:url('bilder/podcast-hero.jpeg') center 25%/cover no-repeat"></div>
+<div style="margin-top:48px;border-radius:18px;overflow:hidden;aspect-ratio:16/9;background:url('bilder/podcast-hero.jpeg') center 30%/cover no-repeat"></div></header>
 
-</header>
+<section><div class="wrap split"><div><p class="kicker">Off the Record</p></div><div class="text"><h2 class="section-title">Nicht lauter. Klarer.</h2><p>Off the Record ist dein ruhiger Ort für Gedanken, die tiefer gehen als Hooks, Trends und Launch-Taktiken.</p><p>Hier reden wir über Angebote, die innen halten — und über die Identität, aus der heraus sie verkauft werden.</p><p><strong>Es geht nicht um Motivation. Es geht um Haltung.</strong></p><p>→ Konstruktion.<br>→ Mut, hinzuschauen, wo du dich kleiner machst.</p></div></div></section>
 
-<section><div class="wrap split"><div><p class="kicker">Off the Record</p></div><div class="text"><h2 class="section-title">Nicht lauter. Klarer.</h2><p>Off the Record ist dein ruhiger Ort für Gedanken, die tiefer gehen als Hooks, Trends und Launch-Taktiken. Hier reden wir über Angebote, die innen halten — und über die Identität, aus der heraus sie verkauft werden.</p><p>Es geht nicht um Motivation. Es geht um Haltung, Konstruktion und um den Mut, hinzuschauen, wo du dich kleiner machst.</p></div></div></section>
-
-<!-- Folgen-Liste wird per JS aus localStorage befüllt; vorher leerer State -->
-<section><div class="wrap"><div class="eyebrow">Folgen</div><div id="episodes-list" class="episodes" style="margin-top:24px"></div><div id="episodes-empty" class="text" style="margin-top:24px"><p>Bald geht es los. Wenn du keine Folge verpassen willst, melde dich für den 0€ Guide an — du hörst dort als Erste, wenn die ersten Folgen live gehen.</p><a class="btn" href="index.html#freebie" style="margin-top:18px">Auf Liste setzen</a></div></div></section>
+<section><div class="wrap"><div class="eyebrow">Folgen</div><div class="episodes"><article class="episode"><div><small>bald</small></div><div><h3>Bald geht es los.</h3><p>Wenn du keine Folge verpassen willst, melde dich für den 0€ Guide an — du hörst dort als Erste, wenn die ersten Folgen live gehen.</p><a class="link" href="index.html#freebie">Auf Liste setzen</a></div></article></div></div></section>
 
 <section class="statement"><h2>Verkauf ist nicht laut. Verkauf ist klar.</h2><p>Off the Record. Bald.</p></section>
 
 <footer class="footer"><div>Carina Anna Prav · Self & Sales</div><div><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="agb.html">AGB</a></div></footer>
-
-<script>
-// Lade Folgen aus localStorage (gepflegt via podcast-admin.html)
-const episodes = JSON.parse(localStorage.getItem('cap_episodes') || '[]');
-const list = document.getElementById('episodes-list');
-const empty = document.getElementById('episodes-empty');
-if (episodes.length > 0) {
-  empty.style.display = 'none';
-  list.innerHTML = episodes.map(ep => `
-    <article class="episode">
-      <div><small>${ep.number || ''} · ${ep.category || ''}</small></div>
-      <div>
-        <h3>${ep.title || ''}</h3>
-        <p>${ep.description || ''}</p>
-        ${ep.link ? `<a class="link" href="${ep.link}" target="_blank" rel="noopener">Folge anhören</a>` : ''}
-      </div>
-    </article>
-  `).join('');
-}
-</script>
-
 </body></html>

@@ -3,9 +3,9 @@
 
 <nav class="nav"><a class="brand" href="index.html">Carina Anna Prav</a><div class="nav-links"><a href="about.html">About</a><a href="mentoring.html">Mentoring</a><a href="podcast.html">Podcast</a><a href="blog.html">Journal</a><a class="pill" href="mentoring-bewerbung.html">Bewerben</a></div></nav>
 
-<header class="page-hero"><div class="eyebrow">Bewerbung Mentoring</div><h1>Self & Sales — bewirb dich.</h1><p class="lead">Es geht nicht um Perfektion. Es geht darum zu sehen, wo du gerade stehst — und ob die Arbeit, die wir machen würden, gerade die richtige für dich ist.</p></header>
+<header class="page-hero"><div class="eyebrow">Bewerbung Mentoring</div><h1>Self & Sales — bewirb dich.</h1><p class="lead">Es geht nicht um Perfektion.<br><br>→ Es geht darum zu sehen, wo du gerade stehst.<br>→ Und ob die Arbeit, die wir machen würden, gerade die richtige für dich ist.</p></header>
 
-<section><div class="wrap split"><div class="kicker">Juni 2026</div><div class="text"><h2 class="section-title">Solid Sales Gruppe — Start Mitte Juni 2026.</h2><p>Aktuell ist die Solid Sales Gruppe unser Hauptangebot. Sie startet einmal pro Jahr mit einer kleineren Gruppe von Coaches. Plätze sind begrenzt.</p><p>Wenn du im Juni-Start dabei sein willst, bewirb dich rechtzeitig. Wir gehen jede Bewerbung persönlich durch — du bekommst eine ehrliche Antwort, ob es passt oder nicht.</p></div></div></section>
+<section><div class="wrap split"><div class="kicker">Juni 2026</div><div class="text"><h2 class="section-title">Solid Sales Gruppe — Start Mitte Juni 2026.</h2><p>Aktuell ist die Solid Sales Gruppe unser Hauptangebot.</p><p>→ Sie startet einmal pro Jahr.<br>→ Mit einer kleineren Gruppe von Coaches.<br>→ Plätze sind begrenzt.</p><p>Wenn du im Juni-Start dabei sein willst, bewirb dich rechtzeitig.</p><p><strong>Wir gehen jede Bewerbung persönlich durch — du bekommst eine ehrliche Antwort, ob es passt oder nicht.</strong></p></div></div></section>
 
 <section><div class="wrap"><div class="offer-box"><h2>Bewerbung</h2><p style="color:var(--paper-brown);margin-top:8px;margin-bottom:18px">Beide Wege laufen über dasselbe Formular. Sag uns einfach, welcher dich anspricht.</p>
 
@@ -74,13 +74,11 @@ async function submitApp(e){
       document.getElementById('appForm').style.display = 'none';
     } else {
       msg.innerHTML = '<div style="background:rgba(217,122,122,.12);color:#9a3a3a;border:1px solid rgba(217,122,122,.4);padding:14px;border-radius:10px">' + (result.error || 'Etwas ist schiefgelaufen.') + '</div>';
-      btn.disabled = false;
-      btn.textContent = 'Bewerbung absenden';
+      btn.disabled = false; btn.textContent = 'Bewerbung absenden';
     }
   } catch (err) {
     msg.innerHTML = '<div style="background:rgba(217,122,122,.12);color:#9a3a3a;border:1px solid rgba(217,122,122,.4);padding:14px;border-radius:10px">Netzwerkfehler. Bitte versuch es nochmal oder schreib mir per DM.</div>';
-    btn.disabled = false;
-    btn.textContent = 'Bewerbung absenden';
+    btn.disabled = false; btn.textContent = 'Bewerbung absenden';
   }
 }
 </script>

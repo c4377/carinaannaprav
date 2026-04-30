@@ -1,9 +1,9 @@
-<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#f7f3ea"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css">
-<title>Journal · Carina Anna Prav · Self & Sales</title><meta name="description" content="Gedanken zu Self, Sales und dem Riss dazwischen."></head><body>
+<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#8e8d72"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css">
+<title>Journal · Self & Sales · Carina Anna Prav</title><meta name="description" content="Gedanken zu Self, Sales und dem Riss dazwischen."></head><body>
 
 <nav class="nav"><a class="brand" href="index.html">Carina Anna Prav</a><div class="nav-links"><a href="about.html">About</a><a href="mentoring.html">Mentoring</a><a href="podcast.html">Podcast</a><a href="blog.html">Journal</a><a class="pill" href="mentoring-bewerbung.html">Bewerben</a></div></nav>
 
-<header class="page-hero"><div class="eyebrow">Journal</div><h1>Gedanken zu Self, Sales und dem Riss dazwischen.</h1><p class="lead">Nicht mehr Content. Mehr Klarheit im Kern. Texte für Coaches, die genug haben von Hooks, Hustle und Hochglanz-Strategien.</p></header>
+<header class="page-hero"><div class="eyebrow">Journal</div><h1>Gedanken zu Self, Sales und dem Riss dazwischen.</h1><p class="lead">→ Nicht mehr Content.<br>→ Mehr Klarheit im Kern.<br><br>Texte für Coaches, die genug haben von Hooks, Hustle und Hochglanz-Strategien.</p></header>
 
 <section><div class="wrap">
   <div id="postList" class="journal-grid">
@@ -11,7 +11,7 @@
   </div>
 </div></section>
 
-<section style="text-align:center"><div class="wrap text" style="max-width:680px;margin:0 auto"><h2 class="section-title">Bereit, das nicht mehr alleine zu machen?</h2><p>Solid Sales Gruppe startet Mitte Juni 2026. Plätze begrenzt. Oder bewirb dich fürs 1:1, wenn du eng begleitet arbeiten willst.</p><a class="btn" href="mentoring-bewerbung.html">Bewerben</a></div></section>
+<section style="text-align:center"><div class="wrap text" style="max-width:680px;margin:0 auto"><h2 class="section-title">Bereit, das nicht mehr alleine zu machen?</h2><p>→ Solid Sales Gruppe ab Mitte Juni 2026<br>→ Plätze begrenzt<br>→ Oder bewirb dich fürs 1:1, wenn du eng begleitet arbeiten willst</p><a class="btn" href="mentoring-bewerbung.html">Bewerben</a></div></section>
 
 <footer class="footer"><div>Carina Anna Prav · Self & Sales</div><div><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="agb.html">AGB</a></div></footer>
 
@@ -19,9 +19,6 @@
 async function loadPosts(){
   const list = document.getElementById('postList');
   try{
-    // Public read endpoint via the same function (no password needed for GET? — yes, password required)
-    // For public reading we use a different approach: read /blog/index.json or rely on filesystem listing
-    // Simpler approach: the function endpoint requires auth, so we'll use a public manifest file
     const res = await fetch('/blog/posts.json');
     if(!res.ok) throw new Error('No posts manifest');
     const data = await res.json();

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Carina Anna Prav</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #EEF1F5;
+      font-family: 'Montserrat', sans-serif;
+      color: #1a1a1a;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 40px 20px 60px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 420px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: #0D1B2A;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 34px;
+      font-weight: 300;
+      color: #C8D8E8;
+      margin-bottom: 16px;
+      letter-spacing: 0.05em;
+    }
+
+    h1 {
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #1a1a1a;
+      margin-bottom: 6px;
+      text-align: center;
+    }
+
+    .sub {
+      font-size: 13px;
+      font-weight: 400;
+      color: #4a6070;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 18px 24px;
+      background: #fff;
+      border-radius: 12px;
+      text-decoration: none;
+      color: #1a1a1a;
+      margin-bottom: 12px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .btn.dark {
+      background: #0D1B2A;
+      color: #EEF1F5;
+    }
+
+    .btn-left {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .btn-title {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .btn-desc {
+      font-size: 12px;
+      font-weight: 400;
+      color: #7a92a0;
+      letter-spacing: 0.02em;
+    }
+
+    .btn.dark .btn-desc {
+      color: rgba(245,240,235,0.55);
+    }
+
+    .btn-arrow {
+      font-size: 18px;
+      opacity: 0.35;
+      flex-shrink: 0;
+      margin-left: 12px;
+    }
+
+    .ig-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 16px 24px;
+      background: transparent;
+      border: 1.5px solid #a8bcc8;
+      border-radius: 12px;
+      text-decoration: none;
+      color: #4a6070;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 8px;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .ig-btn:hover {
+      background: #fff;
+      color: #1a1a1a;
+    }
+
+    .footer {
+      margin-top: 32px;
+      font-size: 11px;
+      font-weight: 400;
+      color: #8aaabb;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <div class="avatar">C</div>
+  <h1>Carina Anna Prav</h1>
+  <p class="sub">Business-Mentorin für Coaches</p>
+
+  <!-- 1:1 → DEIN FORMULAR-LINK (dann weiter zu Tidycal) -->
+  <a href="https://tidycal.com/carina-anna-prav/kennenlernen" class="btn dark">
+    <div class="btn-left">
+      <div class="btn-title">1:1 Business Mentoring</div>
+      <div class="btn-desc">Jetzt anfragen</div>
+    </div>
+    <span class="btn-arrow">→</span>
+  </a>
+
+  <!-- Angebots-Diagnose → STRIPE LINK -->
+  <a href="https://buy.stripe.com/fZubJ20mS0Ns5Ps8lv1440u" class="btn">
+    <div class="btn-left">
+      <div class="btn-title">Angebots-Diagnose</div>
+      <div class="btn-desc">Warum dein Angebot nicht zieht</div>
+    </div>
+    <span class="btn-arrow">→</span>
+  </a>
+
+  <!-- Content-Diagnose → STRIPE LINK -->
+  <a href="https://buy.stripe.com/00w5kE5Hcbs63HkatD1440t" class="btn">
+    <div class="btn-left">
+      <div class="btn-title">Content-Diagnose</div>
+      <div class="btn-desc">Warum dein Content keine Spannung erzeugt</div>
+    </div>
+    <span class="btn-arrow">→</span>
+  </a>
+
+  <!-- Mini Offer Rebuild → STRIPE LINK -->
+  <a href="https://buy.stripe.com/fZu3cw7PkdAe91E8lv1440s" class="btn">
+    <div class="btn-left">
+      <div class="btn-title">Mini Offer Rebuild</div>
+      <div class="btn-desc">30 Min · Angebot neu formuliert</div>
+    </div>
+    <span class="btn-arrow">→</span>
+  </a>
+
+  <!-- Impuls-Audio → STRIPE LINK -->
+  <a href="https://buy.stripe.com/7sYbJ21qW3ZE0v86dn1440r" class="btn">
+    <div class="btn-left">
+      <div class="btn-title">Impuls-Audio</div>
+      <div class="btn-desc">5–10 Min Voice · direkt umsetzbar</div>
+    </div>
+    <span class="btn-arrow">→</span>
+  </a>
+
+  <a href="https://instagram.com/carinaannaprav" class="ig-btn" target="_blank">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <rect x="2" y="2" width="20" height="20" rx="5"/>
+      <circle cx="12" cy="12" r="4"/>
+      <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/>
+    </svg>
+    @carinaannaprav
+  </a>
+
+  <p class="footer">Self &amp; Sales</p>
+
+</div>
+</body>
+</html>

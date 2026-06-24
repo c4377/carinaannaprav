@@ -1,219 +1,349 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Carina Anna Prav</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Angebot — Dein Angebot, das verkauft</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#161311;
+    --ink-soft:#3a3430;
+    --creme:#f3ede2;
+    --sand:#e4d9c6;
+    --line:#cdc0a9;
+    --paper:#faf6ee;
+    --maxw:760px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--creme);color:var(--ink);
+    font-family:'Inter',sans-serif;font-size:18px;line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
 
-    body {
-      background: #EEF1F5;
-      font-family: 'Montserrat', sans-serif;
-      color: #1a1a1a;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      padding: 40px 20px 60px;
-    }
+  h1,h2,h3{font-family:'Playfair Display',serif;font-weight:400;line-height:1.12;letter-spacing:-.01em}
+  h1{font-size:clamp(2.4rem,7vw,3.7rem)}
+  h2{font-size:clamp(1.9rem,5vw,2.7rem)}
+  h3{font-size:clamp(1.3rem,3.5vw,1.6rem)}
+  .eyebrow{font-size:.78rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft)}
+  p{margin-top:1.1em}
+  p:first-child{margin-top:0}
+  .lead{font-size:1.15rem}
 
-    .container {
-      width: 100%;
-      max-width: 420px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+  section{padding:84px 0;border-top:1px solid var(--line)}
+  section:first-of-type{border-top:none}
+  .band-sand{background:var(--sand)}
+  .band-ink{background:var(--ink);color:var(--creme)}
+  .band-ink .eyebrow{color:#b6a886}
+  .band-ink h2,.band-ink h3{color:var(--creme)}
 
-    .avatar {
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      background: #0D1B2A;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 34px;
-      font-weight: 300;
-      color: #C8D8E8;
-      margin-bottom: 16px;
-      letter-spacing: 0.05em;
-    }
+  .hero{padding:120px 0 90px;background:var(--paper)}
+  .hero .eyebrow{margin-bottom:26px;display:block}
+  .hero h1{margin-bottom:30px}
+  .hero .sub{font-size:1.18rem;max-width:60ch;color:var(--ink-soft)}
 
-    h1 {
-      font-size: 20px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #1a1a1a;
-      margin-bottom: 6px;
-      text-align: center;
-    }
+  .btns{margin-top:40px;display:flex;flex-wrap:wrap;gap:14px}
+  .btn{display:inline-block;font-weight:600;font-size:.95rem;letter-spacing:.02em;
+    padding:17px 30px;border-radius:2px;text-decoration:none;cursor:pointer;
+    transition:transform .15s ease,background .2s ease,color .2s ease}
+  .btn-solid{background:var(--ink);color:var(--creme);border:1px solid var(--ink)}
+  .btn-solid:hover{transform:translateY(-2px)}
+  .band-ink .btn-solid{background:var(--creme);color:var(--ink);border-color:var(--creme)}
 
-    .sub {
-      font-size: 13px;
-      font-weight: 400;
-      color: #4a6070;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      text-align: center;
-      margin-bottom: 32px;
-    }
+  .checklist{margin-top:26px;list-style:none}
+  .checklist li{padding-left:30px;position:relative;margin-top:13px;font-size:1.05rem}
+  .checklist li::before{content:"";position:absolute;left:0;top:.6em;width:9px;height:9px;background:var(--ink);border-radius:50%}
+  .band-ink .checklist li::before{background:var(--creme)}
 
-    .btn {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      padding: 18px 24px;
-      background: #fff;
-      border-radius: 12px;
-      text-decoration: none;
-      color: #1a1a1a;
-      margin-bottom: 12px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-      transition: transform 0.15s, box-shadow 0.15s;
-    }
+  /* stats */
+  .stats{margin-top:30px;display:grid;gap:22px}
+  .stat{padding:22px 0;border-bottom:1px solid var(--line)}
+  .stat:last-child{border-bottom:none}
+  .stat .num{font-family:'Playfair Display',serif;font-size:2.4rem;line-height:1}
+  .stat .txt{margin-top:8px;font-size:1.02rem}
+  .stat .src{font-size:.82rem;color:var(--ink-soft);margin-top:4px}
 
-    .btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
+  /* levels */
+  .levels{margin-top:36px;display:grid;gap:18px}
+  .level{background:var(--paper);border:1px solid var(--line);border-radius:5px;overflow:hidden}
+  .band-ink .level{background:#241f1b;border-color:#473f37}
+  .level summary{list-style:none;cursor:pointer;padding:26px 26px;display:flex;
+    align-items:baseline;justify-content:space-between;gap:16px}
+  .level summary::-webkit-details-marker{display:none}
+  .level .lv{font-size:.74rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);display:block;margin-bottom:8px}
+  .band-ink .level .lv{color:#b6a886}
+  .level .name{font-family:'Playfair Display',serif;font-size:1.5rem;line-height:1.15}
+  .level .price{font-family:'Playfair Display',serif;font-size:1.35rem;white-space:nowrap;text-align:right}
+  .level .price small{display:block;font-family:'Inter',sans-serif;font-size:.72rem;letter-spacing:.04em;color:var(--ink-soft);font-weight:500}
+  .band-ink .level .price small{color:#b6a886}
+  .level .body{padding:0 26px 28px;border-top:1px solid var(--line)}
+  .band-ink .level .body{border-color:#473f37}
+  .level .body p{margin-top:18px}
+  .level[open] summary .chev{transform:rotate(180deg)}
+  .level .chev{flex:none;align-self:center;transition:transform .2s ease;opacity:.5}
 
-    .btn.dark {
-      background: #0D1B2A;
-      color: #EEF1F5;
-    }
+  .note{margin-top:24px;font-size:.9rem;color:var(--ink-soft)}
+  .band-ink .note{color:#b6a886}
 
-    .btn-left {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
+  /* proof chat */
+  .chat{margin-top:34px;display:flex;flex-direction:column;gap:13px}
+  .bubble{max-width:84%;padding:15px 19px;border-radius:20px;font-size:1.02rem;line-height:1.5;white-space:pre-line}
+  .bubble.them{align-self:flex-start;background:var(--paper);border:1px solid var(--line);border-bottom-left-radius:5px}
+  .bubble .name{display:block;font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px}
+  .proof-note{margin-top:28px;font-size:.85rem;color:var(--ink-soft)}
 
-    .btn-title {
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-    }
+  /* process */
+  .step{padding:26px 0;border-bottom:1px solid var(--line)}
+  .step:last-child{border-bottom:none}
+  .step .n{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--ink-soft)}
+  .step h3{margin-top:4px}
+  .step p{margin-top:10px}
 
-    .btn-desc {
-      font-size: 12px;
-      font-weight: 400;
-      color: #7a92a0;
-      letter-spacing: 0.02em;
-    }
+  /* faq */
+  .faq{margin-top:30px;display:grid;gap:14px}
+  .qa{background:var(--paper);border:1px solid var(--line);border-radius:5px;overflow:hidden}
+  .qa summary{list-style:none;cursor:pointer;padding:22px 24px;font-family:'Playfair Display',serif;font-size:1.2rem;display:flex;justify-content:space-between;gap:14px;align-items:center}
+  .qa summary::-webkit-details-marker{display:none}
+  .qa .chev{flex:none;opacity:.5;transition:transform .2s ease}
+  .qa[open] summary .chev{transform:rotate(180deg)}
+  .qa .a{padding:0 24px 24px;font-size:1rem}
 
-    .btn.dark .btn-desc {
-      color: rgba(245,240,235,0.55);
-    }
+  .foot{background:var(--ink);color:var(--creme);padding:70px 0 60px;text-align:center}
+  .foot .micro{font-family:'Playfair Display',serif;font-size:1.5rem;line-height:1.3;max-width:26ch;margin:0 auto}
+  .foot .small{margin-top:34px;font-size:.85rem;color:#b6a886;letter-spacing:.04em}
 
-    .btn-arrow {
-      font-size: 18px;
-      opacity: 0.35;
-      flex-shrink: 0;
-      margin-left: 12px;
-    }
-
-    .ig-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      width: 100%;
-      padding: 16px 24px;
-      background: transparent;
-      border: 1.5px solid #a8bcc8;
-      border-radius: 12px;
-      text-decoration: none;
-      color: #4a6070;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-top: 8px;
-      transition: background 0.15s, color 0.15s;
-    }
-
-    .ig-btn:hover {
-      background: #fff;
-      color: #1a1a1a;
-    }
-
-    .footer {
-      margin-top: 32px;
-      font-size: 11px;
-      font-weight: 400;
-      color: #8aaabb;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-  </style>
+  @media (max-width:560px){
+    body{font-size:17px}
+    section{padding:64px 0}
+    .hero{padding:90px 0 70px}
+    .btn{width:100%;text-align:center}
+    .bubble{max-width:90%}
+    .level summary{flex-direction:column}
+    .level .price{text-align:left}
+  }
+  a:focus-visible,.btn:focus-visible,summary:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+  .band-ink a:focus-visible{outline-color:var(--creme)}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
+</style>
 </head>
 <body>
-<div class="container">
 
-  <div class="avatar">C</div>
-  <h1>Carina Anna Prav</h1>
-  <p class="sub">Business-Mentorin für Coaches</p>
-
-  <!-- 1:1 → DEIN FORMULAR-LINK (dann weiter zu Tidycal) -->
-  <a href="kontaktformular.html" class="btn dark">
-    <div class="btn-left">
-      <div class="btn-title">1:1 Business Mentoring</div>
-      <div class="btn-desc">Jetzt anfragen</div>
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Das Angebot</span>
+    <h1>Dein Angebot ist gut. Aber es verkauft sich nicht von allein.</h1>
+    <p class="sub">Du weißt, was du kannst. Trotzdem bleibt das Verkaufen zäh – weil das Angebot selbst noch nicht klar genug gebaut ist. Genau da setze ich an.</p>
+    <div class="btns">
+      <a href="https://tidycal.com/carina-anna-prav/offer-audit" class="btn btn-solid">Angebots-Check buchen</a>
     </div>
-    <span class="btn-arrow">→</span>
-  </a>
+  </div>
+</header>
 
-  <!-- Angebots-Diagnose → STRIPE LINK -->
-  <a href="https://buy.stripe.com/fZubJ20mS0Ns5Ps8lv1440u" class="btn">
-    <div class="btn-left">
-      <div class="btn-title">Angebots-Diagnose</div>
-      <div class="btn-desc">Warum dein Angebot nicht zieht</div>
+<!-- PROBLEM -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">Das eigentliche Problem</span>
+    <h2 style="margin-top:18px">Du rätselst, was du posten sollst. Dabei liegt es selten am Content.</h2>
+    <p class="lead">Du steckst Zeit, Energie und Fokus in Sichtbarkeit – und fragst dich trotzdem ständig: <em>Warum kauft keiner?</em></p>
+    <p>Die ehrliche Antwort ist meistens: Nicht weil du zu wenig tust. Sondern weil das Angebot, das du vermarktest, noch nicht so gebaut ist, dass es von selbst zieht. Reichweite verstärkt nur, was schon da ist. Ein klares Angebot wächst leichter. Ein unklares verlangt ständig Überzeugungsarbeit.</p>
+  </div>
+</section>
+
+<!-- GEWINN -->
+<section class="band-sand">
+  <div class="wrap">
+    <span class="eyebrow">Was du dadurch gewinnst</span>
+    <h2 style="margin-top:18px">Kein Rätselraten mehr. Sondern Klarheit, die verkauft.</h2>
+    <ul class="checklist">
+      <li>Ein Angebot, bei dem deine Kundin in der ersten Zeile spürt: das ist für mich</li>
+      <li>Klarheit darüber, was du sagst – und in welcher Reihenfolge</li>
+      <li>Weniger Druck, weniger Unsicherheit, mehr Leichtigkeit beim Verkaufen</li>
+      <li>Verkäufe, die aus Klarheit entstehen, nicht aus Überredung</li>
+      <li>Jemanden, der mit dir draufschaut und ehrlich sagt, wo der Hebel liegt</li>
+    </ul>
+  </div>
+</section>
+
+<!-- WARUM ANGEBOT -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">Warum das Angebot über alles entscheidet</span>
+    <h2 style="margin-top:18px">Menschen entscheiden schnell – und sie entscheiden über Klarheit.</h2>
+    <div class="stats">
+      <div class="stat">
+        <div class="num">50 ms</div>
+        <div class="txt">reichen für den ersten Eindruck. So schnell entscheidet sich, ob jemand bleibt.</div>
+        <div class="src">Quelle: Lindgaard et al., Behaviour &amp; Information Technology</div>
+      </div>
+      <div class="stat">
+        <div class="num">Sekunden</div>
+        <div class="txt">entscheiden, ob deine Kundin versteht, was du anbietest. Versteht sie es nicht sofort, ist sie weg.</div>
+      </div>
+      <div class="stat">
+        <div class="num">Klarheit</div>
+        <div class="txt">schlägt Reichweite. Ein klares Angebot verkauft mit weniger Aufwand als ein unklares mit viel.</div>
+      </div>
     </div>
-    <span class="btn-arrow">→</span>
-  </a>
+  </div>
+</section>
 
-  <!-- Content-Diagnose → STRIPE LINK -->
-  <a href="https://buy.stripe.com/00w5kE5Hcbs63HkatD1440t" class="btn">
-    <div class="btn-left">
-      <div class="btn-title">Content-Diagnose</div>
-      <div class="btn-desc">Warum dein Content keine Spannung erzeugt</div>
+<!-- LEVELS -->
+<section class="band-ink" id="level">
+  <div class="wrap">
+    <span class="eyebrow">So arbeiten wir zusammen</span>
+    <h2 style="margin-top:18px">Drei Wege. Je nachdem, wo du stehst.</h2>
+    <p class="lead">Vom ersten ehrlichen Blick auf dein Angebot bis zur engen Begleitung mit direktem Draht zu mir.</p>
+
+    <div class="levels">
+
+      <details class="level">
+        <summary>
+          <span>
+            <span class="lv">Level 1 · Einstieg</span>
+            <span class="name">Angebots-Check</span>
+          </span>
+          <span class="price">390 €<small>einmalig · zzgl. MwSt.</small></span>
+          <span class="chev">▾</span>
+        </summary>
+        <div class="body">
+          <p>Du hast ein Angebot, aber es verkauft sich zäh. Ich schaue mir dein bestehendes Angebot an und sage dir klar, wo es hakt – am Preis, an der Ansprache oder am Aufbau – und was du konkret änderst.</p>
+          <p>Du gehst raus mit einem ehrlichen Befund und konkreten Hebeln, die du sofort umsetzen kannst. Der beste Einstieg, wenn du noch nicht weißt, ob du tiefer einsteigen willst.</p>
+        </div>
+      </details>
+
+      <details class="level">
+        <summary>
+          <span>
+            <span class="lv">Level 2 · Begleitung</span>
+            <span class="name">Mentoring</span>
+          </span>
+          <span class="price">620 €<small>pro Monat · zzgl. MwSt.</small></span>
+          <span class="chev">▾</span>
+        </summary>
+        <div class="body">
+          <p>Sechs Monate, in denen wir dein Angebot wirklich bauen und in den Markt bringen. Wir schärfen dein Angebot, deine Positionierung und deine Worte – und ich begleite dich Schritt für Schritt durch die Umsetzung.</p>
+          <p>Enthalten: regelmäßige Strategie-Calls, gemeinsame Arbeit an Angebot und Verkaufsbotschaft, Klarheit über deine nächsten Schritte. Für die, die ernsthaft und konstant an ihrem Business arbeiten wollen.</p>
+          <p class="note">Laufzeit 6 Monate · monatlich zahlbar</p>
+        </div>
+      </details>
+
+      <details class="level">
+        <summary>
+          <span>
+            <span class="lv">Level 3 · Eng begleitet</span>
+            <span class="name">Mentoring + Telegram Premium</span>
+          </span>
+          <span class="price">999 €<small>pro Monat · zzgl. MwSt.</small></span>
+          <span class="chev">▾</span>
+        </summary>
+        <div class="body">
+          <p>Alles aus dem Mentoring – plus der direkte Draht zu mir zwischen den Calls. Über Telegram Premium begleite ich dich laufend: Du schickst mir dein Angebot, deine Posts, deine Fragen, und ich gebe dir zeitnah Rückmeldung. Zieht das? Stimmt der Preis? So besser?</p>
+          <p>Das ist die engste Form der Zusammenarbeit – als hättest du eine Strategin direkt an deiner Seite. Wenige Plätze.</p>
+          <p class="note">Laufzeit 6 Monate · monatlich zahlbar · begrenzte Plätze</p>
+        </div>
+      </details>
+
     </div>
-    <span class="btn-arrow">→</span>
-  </a>
 
-  <!-- Mini Offer Rebuild → STRIPE LINK -->
-  <a href="https://buy.stripe.com/fZu3cw7PkdAe91E8lv1440s" class="btn">
-    <div class="btn-left">
-      <div class="btn-title">Mini Offer Rebuild</div>
-      <div class="btn-desc">30 Min · Angebot neu formuliert</div>
+    <div class="btns">
+      <a href="https://tidycal.com/carina-anna-prav/offer-audit" class="btn btn-solid">Angebots-Check buchen</a>
     </div>
-    <span class="btn-arrow">→</span>
-  </a>
+  </div>
+</section>
 
-  <!-- Impuls-Audio → STRIPE LINK -->
-  <a href="https://buy.stripe.com/7sYbJ21qW3ZE0v86dn1440r" class="btn">
-    <div class="btn-left">
-      <div class="btn-title">Impuls-Audio</div>
-      <div class="btn-desc">5–10 Min Voice · direkt umsetzbar</div>
+<!-- PROOF -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">Kundenstimmen</span>
+    <h2 style="margin-top:18px">Ich kann dir viel erzählen. Lieber lasse ich meine Kundinnen sprechen.</h2>
+    <div class="chat">
+      <div class="bubble them">Mit Carina habe ich es geschafft wirklich zu verstehen, was meine Zielgruppe braucht. Sie hat mich ermutigt, motiviert und wirklich toll unterstützt. Genau diesen Push und Support habe ich gebraucht. Meine Erwartungen wurden übertroffen.</div>
+      <div class="bubble them">Erste Kundin von mir hat ernsthaftes Interesse einzusteigen. Ich bin gerade soooo happy.</div>
+      <div class="bubble them">Es ist unfassbar, die 2–3 Switches haben so viel gemacht. Ich habe 2, die für das 1:1 sprechen wollen und 5 Anmeldungen im Pre-Launch.</div>
+      <div class="bubble them">Btw: 30 Anmeldungen für den Workshop morgen :)</div>
+      <div class="bubble them">Fühle mich echt gut geführt und von mal zu mal ist der Druck und die Unsicherheit viel viel weniger.</div>
+      <div class="bubble them"><span class="name">Workshop-Feedback</span>Dieser Workshop war mega! Diese 3 Fragen allein werden schon extrem viel verändern. Danke!</div>
     </div>
-    <span class="btn-arrow">→</span>
-  </a>
+    <p class="proof-note">Auszüge aus Nachrichten von Kundinnen. Mit Einverständnis geteilt, Namen anonymisiert.</p>
+  </div>
+</section>
 
-  <a href="https://instagram.com/carinaannaprav" class="ig-btn" target="_blank">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <rect x="2" y="2" width="20" height="20" rx="5"/>
-      <circle cx="12" cy="12" r="4"/>
-      <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/>
-    </svg>
-    @carinaannaprav
-  </a>
+<!-- PROCESS -->
+<section class="band-sand">
+  <div class="wrap">
+    <span class="eyebrow">So läuft es ab</span>
+    <h2 style="margin-top:18px">Von der ersten Frage bis zur Zusammenarbeit.</h2>
+    <div class="step">
+      <div class="n">01</div>
+      <h3>Angebots-Check</h3>
+      <p>Du buchst deinen Angebots-Check. Wir nehmen dein Angebot gemeinsam auseinander, ich zeige dir, wo es gerade Kundinnen verliert, und gebe dir konkrete Hebel. Dein ehrlicher Einstieg — mit Ergebnis, nicht nur Kennenlernen.</p>
+    </div>
+    <div class="step">
+      <div class="n">02</div>
+      <h3>Dein Weg</h3>
+      <p>Danach entscheidest du, wo du einsteigst: ein einmaliger Angebots-Check, oder die Begleitung über sechs Monate – mit oder ohne direkten Draht zu mir.</p>
+    </div>
+    <div class="step">
+      <div class="n">03</div>
+      <h3>Wir legen los</h3>
+      <p>Wir bauen dein Angebot, schärfen deine Worte und bringen es in den Markt. Schritt für Schritt, bis es für dich verkauft – statt dich klein zu halten.</p>
+    </div>
+  </div>
+</section>
 
-  <p class="footer">Self &amp; Sales</p>
+<!-- FAQ -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">FAQ</span>
+    <h2 style="margin-top:18px">Was du vielleicht noch wissen willst.</h2>
+    <div class="faq">
+      <details class="qa">
+        <summary>Für wen ist das? <span class="chev">▾</span></summary>
+        <div class="a"><p>Für Frauen, die etwas anzubieten haben – ein bestehendes Angebot, das sich zäh verkauft, oder eine Idee, die sie launchen wollen – und die wollen, dass es endlich klar verkauft, statt zu rätseln.</p></div>
+      </details>
+      <details class="qa">
+        <summary>Was ist der Unterschied zwischen den Leveln? <span class="chev">▾</span></summary>
+        <div class="a"><p>Der Angebots-Check ist ein einmaliger, ehrlicher Blick auf dein Angebot. Das Mentoring ist die laufende Begleitung über sechs Monate. Mit Telegram Premium kommt der direkte Draht zwischen den Calls dazu – die engste Form der Zusammenarbeit.</p></div>
+      </details>
+      <details class="qa">
+        <summary>Brauche ich schon ein fertiges Angebot? <span class="chev">▾</span></summary>
+        <div class="a"><p>Nein. Für den Check brauchst du ein bestehendes Angebot. Im Mentoring bauen wir es auch von Grund auf, wenn du noch am Anfang stehst.</p></div>
+      </details>
+      <details class="qa">
+        <summary>Wie buche ich? <span class="chev">▾</span></summary>
+        <div class="a"><p>Über den Angebots-Check. Er ist dein Einstieg: 390 €, ein echter Befund mit konkreten Hebeln. Danach entscheidest du in Ruhe, ob du ins Mentoring weitergehen willst.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
 
-</div>
+<!-- CTA -->
+<section class="band-ink" id="start">
+  <div class="wrap">
+    <span class="eyebrow">Nächster Schritt</span>
+    <h2 style="margin-top:18px">Lass uns dein Angebot auseinandernehmen.</h2>
+    <p class="lead">Im Angebots-Check zeige ich dir ehrlich, wo dein größter Hebel liegt — und wo du gerade die Menschen verlierst, die fast gekauft hätten.</p>
+    <div class="btns">
+      <a href="https://tidycal.com/carina-anna-prav/offer-audit" class="btn btn-solid">Angebots-Check buchen</a>
+    </div>
+    <p class="note">Aktuell begrenzte Plätze.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="foot">
+  <div class="wrap">
+    <p class="micro">Klarheit beginnt nicht bei Reichweite. Sie beginnt beim Angebot.</p>
+    <p class="small">© <span id="yr"></span></p>
+  </div>
+</footer>
+
+<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
 </body>
 </html>

@@ -4,44 +4,64 @@
 // in ActiveCampaign an: Custom Field "Angebots-Typ" wird gesetzt,
 // Kontakt wird der Liste hinzugefügt, plus Tags quiz-lead und quiz-<typ>.
 //
+// Die Field-ID wird NICHT mehr fest gesetzt, sondern automatisch über
+// den Personalisierungstag (perstag) "ANGEBOTSTYP" gefunden.
+//
 // Secrets kommen als Netlify-Umgebungsvariablen (Site settings →
 // Environment variables) — NICHT in den Code schreiben:
-//   AC_API_URL   z.B. https://deinaccount.api-us1.com
+//   AC_API_URL   z.B. https://carinasethaler.api-us1.com
 //   AC_API_KEY   dein ActiveCampaign API Key
-//   AC_LIST_ID   die ID der Liste "Quiz / Freebie"
-//   AC_FIELD_ID  die ID des Custom Fields "Angebots-Typ"
-//   AC_ANGEBOT_FIELD_ID  (optional) ID des Custom Fields "Angebot (Text)" —
-//                        speichert, wie sie ihr Angebot selbst beschrieben hat.
-//                        Wenn nicht gesetzt, wird der Text einfach nicht gespeichert.
+//   AC_LIST_ID   die ID der Liste "Newsletter" (= 7)
+//
+// Optional, falls dein Feld einen anderen Personalisierungstag hat:
+//   AC_FIELD_PERSTAG   (Standard: ANGEBOTSTYP)
 
 const TYPE_LABELS = {
-  wert:    'Wert unsichtbar',
-  wenfuer: 'Ansprache unscharf',
-  preis:   'Preis ohne Fundament',
-  anlass:  'Kein Kaufanlass',
-  unbekannt: 'Nicht angegeben',
+  klarheit:  'Klarheit',
+  ansprache: 'Ansprache',
+  preis:     'Preis',
+  vertrauen: 'Vertrauen',
 };
+
+// Cache für die Field-ID, damit nicht bei jedem Aufruf die Feldliste
+// geholt werden muss (bleibt erhalten solange die Function "warm" ist).
+let cachedFieldId = null;
+
+async function findFieldId(API_URL, API_KEY, perstag) {
+  if (cachedFieldId) return cachedFieldId;
+
+  const res = await fetch(`${API_URL}/api/3/fields?limit=100`, {
+    headers: { 'Api-Token': API_KEY },
+  });
+  if (!res.ok) return null;
+
+  const json = await res.json();
+  const fields = json.fields || [];
+  const match = fields.find(
+    (f) => (f.perstag || '').toUpperCase() === perstag.toUpperCase()
+  );
+  if (match) {
+    cachedFieldId = match.id;
+    return match.id;
+  }
+  return null;
+}
 
 exports.handler = async (event) => {
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: 'Method Not Allowed' };
   }
 
-  const API_URL  = process.env.AC_API_URL;
-  const API_KEY  = process.env.AC_API_KEY;
-  const LIST_ID  = process.env.AC_LIST_ID;
-  const FIELD_ID = process.env.AC_FIELD_ID;            // optional
-  const ANGEBOT_FIELD_ID = process.env.AC_ANGEBOT_FIELD_ID; // optional
+  const API_URL = process.env.AC_API_URL;
+  const API_KEY = process.env.AC_API_KEY;
+  const LIST_ID = process.env.AC_LIST_ID;
+  const PERSTAG = process.env.AC_FIELD_PERSTAG || 'ANGEBOTSTYP';
 
-  // Nur die wirklich nötigen Variablen sind Pflicht.
   if (!API_URL || !API_KEY || !LIST_ID) {
-    const missing = [
-      !API_URL ? 'AC_API_URL' : null,
-      !API_KEY ? 'AC_API_KEY' : null,
-      !LIST_ID ? 'AC_LIST_ID' : null,
-    ].filter(Boolean).join(', ');
-    console.log('subscribe: missing env vars ->', missing);
-    return { statusCode: 500, body: JSON.stringify({ error: 'Server not configured', missing }) };
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: 'Server not configured' }),
+    };
   }
 
   let data;
@@ -54,96 +74,117 @@ exports.handler = async (event) => {
   const email = (data.email || '').trim().toLowerCase();
   const name  = (data.name  || '').trim();
   const type  = (data.type  || '').trim();
-  const angebot = (data.angebot || '').trim().slice(0, 2000);
-  const befund = (data.befund || '').trim().slice(0, 300);
 
   if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
     return { statusCode: 400, body: JSON.stringify({ error: 'Invalid email' }) };
   }
 
-  const typeLabel = TYPE_LABELS[type] || '';
-  const headers = { 'Api-Token': API_KEY, 'Content-Type': 'application/json' };
-  const base = API_URL.replace(/\/$/, '');
-
-  const fieldValues = [];
-  if (FIELD_ID) {
-    fieldValues.push({ field: String(FIELD_ID), value: typeLabel });
-  }
-  if (ANGEBOT_FIELD_ID && angebot) {
-    const combined = befund ? `${angebot}\n\n[Befund: ${befund}]` : angebot;
-    fieldValues.push({ field: String(ANGEBOT_FIELD_ID), value: combined });
-  }
-
-  const contactPayload = { email, firstName: name };
-  if (fieldValues.length) contactPayload.fieldValues = fieldValues;
+  const headers = {
+    'Api-Token': API_KEY,
+    'Content-Type': 'application/json',
+  };
 
   try {
-    // 1) Create or update contact (sync) + set custom fields (if any)
-    const syncRes = await fetch(`${base}/api/3/contact/sync`, {
-      method: 'POST',
-      headers,
-      body: JSON.stringify({ contact: contactPayload }),
-    });
+    // 1) Field-ID automatisch ermitteln (über perstag)
+    const fieldId = await findFieldId(API_URL, API_KEY, PERSTAG);
 
-    if (!syncRes.ok) {
-      const t = await syncRes.text();
-      console.log('subscribe: AC sync failed', syncRes.status, t);
-      return { statusCode: 502, body: JSON.stringify({ error: 'AC sync failed', detail: t }) };
+    // 2) Kontakt anlegen / aktualisieren (inkl. Custom Field, falls gefunden)
+    const fieldValues = [];
+    if (fieldId && type) {
+      fieldValues.push({
+        field: String(fieldId),
+        value: TYPE_LABELS[type] || type,
+      });
     }
 
-    const syncJson = await syncRes.json();
-    const contactId = syncJson.contact && syncJson.contact.id;
-    if (!contactId) {
-      return { statusCode: 502, body: JSON.stringify({ error: 'No contact id' }) };
-    }
-
-    // 2) Add contact to list (status 1 = subscribed)
-    await fetch(`${base}/api/3/contactLists`, {
+    const contactRes = await fetch(`${API_URL}/api/3/contact/sync`, {
       method: 'POST',
       headers,
       body: JSON.stringify({
-        contactList: { list: Number(LIST_ID), contact: Number(contactId), status: 1 },
+        contact: {
+          email,
+          firstName: name,
+          fieldValues,
+        },
       }),
     });
 
-    // 3) Tags: ensure they exist, then attach. Best-effort, non-blocking.
+    if (!contactRes.ok) {
+      const txt = await contactRes.text();
+      return {
+        statusCode: 502,
+        body: JSON.stringify({ error: 'AC contact sync failed', detail: txt }),
+      };
+    }
+
+    const contactJson = await contactRes.json();
+    const contactId = contactJson.contact && contactJson.contact.id;
+
+    if (!contactId) {
+      return {
+        statusCode: 502,
+        body: JSON.stringify({ error: 'No contact id returned' }),
+      };
+    }
+
+    // 3) Kontakt der Liste hinzufügen (status 1 = subscribed)
+    await fetch(`${API_URL}/api/3/contactLists`, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({
+        contactList: {
+          list: String(LIST_ID),
+          contact: String(contactId),
+          status: 1,
+        },
+      }),
+    });
+
+    // 4) Tags setzen: quiz-lead + quiz-<typ>
     const tagNames = ['quiz-lead'];
-    if (type) tagNames.push('quiz-' + type);
+    if (type) tagNames.push(`quiz-${type}`);
 
     for (const tagName of tagNames) {
-      try {
-        // try to create the tag (ignore "already exists")
-        let tagId = null;
-        const createTag = await fetch(`${base}/api/3/tags`, {
+      // Tag holen oder anlegen
+      let tagId = null;
+      const tagSearch = await fetch(
+        `${API_URL}/api/3/tags?search=${encodeURIComponent(tagName)}`,
+        { headers }
+      );
+      if (tagSearch.ok) {
+        const tj = await tagSearch.json();
+        const existing = (tj.tags || []).find((t) => t.tag === tagName);
+        if (existing) tagId = existing.id;
+      }
+      if (!tagId) {
+        const tagCreate = await fetch(`${API_URL}/api/3/tags`, {
           method: 'POST',
           headers,
-          body: JSON.stringify({ tag: { tag: tagName, tagType: 'contact' } }),
+          body: JSON.stringify({
+            tag: { tag: tagName, tagType: 'contact' },
+          }),
         });
-        if (createTag.ok) {
-          const j = await createTag.json();
-          tagId = j.tag && j.tag.id;
-        } else {
-          // already exists → look it up
-          const find = await fetch(`${base}/api/3/tags?search=${encodeURIComponent(tagName)}`, { headers });
-          if (find.ok) {
-            const j = await find.json();
-            const match = (j.tags || []).find(t => t.tag === tagName);
-            tagId = match && match.id;
-          }
+        if (tagCreate.ok) {
+          const tc = await tagCreate.json();
+          tagId = tc.tag && tc.tag.id;
         }
-        if (tagId) {
-          await fetch(`${base}/api/3/contactTags`, {
-            method: 'POST',
-            headers,
-            body: JSON.stringify({ contactTag: { contact: Number(contactId), tag: Number(tagId) } }),
-          });
-        }
-      } catch (_) { /* tags are best-effort */ }
+      }
+      if (tagId) {
+        await fetch(`${API_URL}/api/3/contactTags`, {
+          method: 'POST',
+          headers,
+          body: JSON.stringify({
+            contactTag: { contact: String(contactId), tag: String(tagId) },
+          }),
+        });
+      }
     }
 
     return { statusCode: 200, body: JSON.stringify({ ok: true }) };
-  } catch (e) {
-    console.log('subscribe: unexpected error', String(e));
-    return { statusCode: 500, body: JSON.stringify({ error: 'Unexpected', detail: String(e) }) };
+  } catch (err) {
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: 'Server error', detail: String(err) }),
+    };
   }
 };

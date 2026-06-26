@@ -189,19 +189,29 @@
     letter-spacing:.03em;transition:color .2s ease}
   .foot .legal-links a:hover{color:var(--terra)}
 
-  /* Games-Bubble */
-  .games-fab{position:fixed;right:22px;bottom:22px;z-index:60;
-    display:flex;align-items:center;gap:9px;
-    background:var(--terra);color:#fff;border:none;cursor:pointer;
-    font-family:'Inter',sans-serif;font-weight:600;font-size:.9rem;letter-spacing:.04em;
+  /* Schwebende Bubbles (gestapelt unten rechts) */
+  .fab-stack{position:fixed;right:22px;bottom:22px;z-index:60;
+    display:flex;flex-direction:column;align-items:flex-end;gap:12px}
+  .fab{display:flex;align-items:center;gap:9px;text-decoration:none;cursor:pointer;border:none;
+    font-family:'Inter',sans-serif;font-weight:600;font-size:.9rem;letter-spacing:.03em;
     padding:14px 20px;border-radius:40px;
-    box-shadow:0 10px 26px -8px rgba(120,60,35,.6);
-    transition:transform .18s ease,background .2s ease}
-  .games-fab:hover{transform:translateY(-3px);background:var(--terra-deep)}
-  .games-fab .dot{width:8px;height:8px;border-radius:50%;background:#fff;opacity:.9}
-  .games-fab.open{transform:scale(.92)}
+    box-shadow:0 10px 26px -8px rgba(120,60,35,.55);
+    transition:transform .18s ease,background .2s ease,color .2s ease}
+  .fab:hover{transform:translateY(-3px)}
+  .fab .ico{font-size:1.05rem;line-height:1}
+  /* Gratis-Check: heller, einladend */
+  .fab.free{background:var(--paper);color:var(--ink);border:1px solid var(--terra)}
+  .fab.free:hover{background:var(--sand)}
+  /* Angebots-Check: Hauptaktion, voll Terrakotta */
+  .fab.book{background:var(--terra);color:#fff}
+  .fab.book:hover{background:var(--terra-deep)}
+  /* Games: dezent, dunkel */
+  .fab.games{background:var(--ink);color:var(--creme)}
+  .fab.games:hover{background:#2a231e}
+  .fab.games .dot{width:8px;height:8px;border-radius:50%;background:#d98a63}
+  .fab.games.open{transform:scale(.94)}
 
-  .games-panel{position:fixed;right:22px;bottom:84px;z-index:60;width:300px;max-width:calc(100vw - 44px);
+  .games-panel{position:fixed;right:22px;bottom:150px;z-index:60;width:300px;max-width:calc(100vw - 44px);
     background:var(--paper);border:1px solid var(--line);border-radius:16px;
     box-shadow:0 24px 50px -16px rgba(90,55,35,.5);
     padding:18px;opacity:0;visibility:hidden;transform:translateY(12px) scale(.97);
@@ -215,13 +225,17 @@
     transition:background .15s ease,border-color .15s ease}
   .games-panel a.game:hover{background:var(--sand);border-color:var(--line)}
   .games-panel a.game .ico{width:38px;height:38px;border-radius:10px;flex:none;
-    display:flex;align-items:center;justify-content:center;font-size:1.2rem;
-    background:var(--sand)}
+    display:flex;align-items:center;justify-content:center;font-size:1.2rem;background:var(--sand)}
   .games-panel a.game:hover .ico{background:var(--paper)}
   .games-panel a.game .txt{display:flex;flex-direction:column;line-height:1.25}
   .games-panel a.game .txt b{font-weight:600;font-size:.96rem;color:var(--ink)}
   .games-panel a.game .txt span{font-size:.78rem;color:var(--ink-soft)}
-  @media (prefers-reduced-motion:reduce){.games-fab,.games-panel{transition:none}}
+  @media (max-width:560px){
+    .fab{font-size:.85rem;padding:13px 18px}
+    .fab-stack{gap:10px;right:16px;bottom:16px}
+    .games-panel{right:16px;bottom:150px}
+  }
+  @media (prefers-reduced-motion:reduce){.fab,.games-panel{transition:none}}
 
 </style>
 </head>
@@ -494,10 +508,18 @@
 })();
 </script>
 
-<!-- Games-Bubble -->
-<button class="games-fab" id="gamesFab" aria-expanded="false" aria-controls="gamesPanel">
-  <span class="dot"></span> GAMES
-</button>
+<!-- Schwebende Bubbles -->
+<div class="fab-stack">
+  <a class="fab free" href="quiz.html">
+    <span class="ico">✨</span> Gratis-Check
+  </a>
+  <a class="fab book" href="https://tidycal.com/carina-anna-prav/offer-audit">
+    <span class="ico">→</span> Angebots-Check
+  </a>
+  <button class="fab games" id="gamesFab" aria-expanded="false" aria-controls="gamesPanel">
+    <span class="dot"></span> GAMES
+  </button>
+</div>
 <div class="games-panel" id="gamesPanel" role="dialog" aria-label="Kleine Spiele">
   <div class="gp-head">Kleine Pause?</div>
   <div class="gp-sub">Drei Spielereien — im Look des Hauses.</div>

@@ -302,8 +302,40 @@
     vignette();
   }
 
+  // Vorgestalteter Start-Garten (relativ zur Canvas-Breite)
+  function seedGarden(){
+    const w = W();
+    strokes = []; objects = []; history = [];
+    // geschwungene Harkenlinien (Wellen)
+    const lines = [0.22, 0.36, 0.50];
+    lines.forEach((yf, li)=>{
+      const pts = [];
+      const baseY = w*yf;
+      const amp = w*0.04*(li%2===0?1:-1);
+      for(let i=0;i<=6;i++){
+        const x = w*0.08 + (w*0.84)*(i/6);
+        const y = baseY + Math.sin(i*0.9 + li)*amp;
+        pts.push({x, y});
+      }
+      strokes.push({type:'rake', pts});
+      history.push({kind:'stroke'});
+    });
+    // ein paar Steine + Moos im unteren Drittel
+    const seeds = [
+      {type:'stone', xf:0.34, yf:0.72, r:w*0.062},
+      {type:'stone', xf:0.46, yf:0.78, r:w*0.045},
+      {type:'plant', xf:0.66, yf:0.74, r:w*0.04},
+    ];
+    seeds.forEach(s=>{
+      objects.push({type:s.type, x:w*s.xf, y:w*s.yf, r:s.r, seed:Math.random()*1000});
+      history.push({kind:'object'});
+    });
+    redraw();
+  }
+
   window.addEventListener('resize', fit);
   fit();
+  seedGarden();
 })();
 </script>
 </body>

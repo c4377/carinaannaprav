@@ -32,18 +32,21 @@
     line-height:1.12;letter-spacing:-.01em;text-align:center;margin:8px 0 4px}
   .tagline{font-size:.9rem;color:var(--ink-soft);text-align:center;margin-bottom:14px}
 
-  .scorebar{width:100%;display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;gap:10px}
-  .stat{text-align:center;flex:1}
-  .stat .lab{font-size:.62rem;font-weight:600;letter-spacing:.16em;
+  .scorebar{width:100%;display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;gap:6px}
+  .stat{text-align:center;flex:1;min-width:0}
+  .stat .lab{font-size:.58rem;font-weight:600;letter-spacing:.12em;
     text-transform:uppercase;color:var(--terra)}
-  .stat .val{font-family:'Playfair Display',serif;font-size:1.5rem;line-height:1.1}
+  .stat .val{font-family:'Playfair Display',serif;font-size:1.35rem;line-height:1.1}
   .stat.time .val{transition:color .3s ease}
   .stat.time.low .val{color:var(--p5)}
 
   /* Timer-Leiste */
-  .timebar{width:100%;height:6px;background:var(--sand);border-radius:5px;overflow:hidden;margin-bottom:12px}
+  .timebar{width:100%;height:6px;background:var(--sand);border-radius:5px;overflow:hidden;margin-bottom:8px}
   .timebar > span{display:block;height:100%;width:100%;background:var(--terra);
     border-radius:5px;transition:width .25s linear, background .3s ease}
+  .levelbar{width:100%;height:6px;background:var(--sand);border-radius:5px;overflow:hidden;margin-bottom:12px}
+  .levelbar > span{display:block;height:100%;width:0;background:var(--p2);
+    border-radius:5px;transition:width .3s ease}
 
   .boardwrap{width:100%;position:relative}
   .board{width:100%;aspect-ratio:1;background:var(--paper);border:1px solid var(--line);
@@ -157,14 +160,16 @@
 <div class="stage">
   <span class="eyebrow">Drei in einer Reihe</span>
   <h1>Plopp</h1>
-  <p class="tagline">Tausche Nachbarn, lös Reihen auf, jage Combos. 90 Sekunden.</p>
+  <p class="tagline">Lös Reihen, jage Combos, schaff jedes Level gegen die Zeit.</p>
 
   <div class="scorebar">
     <div class="stat"><div class="lab">Punkte</div><div class="val" id="score">0</div></div>
     <div class="stat"><div class="lab">Combo</div><div class="val" id="combo">×1</div></div>
-    <div class="stat time" id="timeStat"><div class="lab">Zeit</div><div class="val" id="time">90</div></div>
+    <div class="stat"><div class="lab">Level</div><div class="val" id="level">1</div></div>
+    <div class="stat time" id="timeStat"><div class="lab">Zeit</div><div class="val" id="time">60</div></div>
   </div>
   <div class="timebar"><span id="timefill"></span></div>
+  <div class="levelbar"><span id="levelfill"></span></div>
 
   <div class="boardwrap">
     <div class="board">
@@ -173,7 +178,7 @@
       <div class="combo" id="comboFx"></div>
       <div class="panel" id="panel">
         <h2 id="pTitle">Bereit?</h2>
-        <p id="pText">Drei gleiche lösen sich auf. Vier oder mehr geben einen Power-Stein. Ketten bringen Combo-Bonus.</p>
+        <p id="pText">Drei gleiche lösen sich auf, vier oder mehr geben einen Power-Stein. Schaffst du das Punkteziel eines Levels, gibt es Bonuszeit — schaff Level 3 für eine Belohnung.</p>
         <div class="reward" id="reward">
           <div class="rlab">Freigespielt</div>
           <div class="rhead">10 % auf deinen ersten Schritt mit mir</div>
@@ -200,7 +205,7 @@
 
 <script>
 (function(){
-  const N=8, COLORS=5, GAME_TIME=90, WIN_SCORE=600;
+  const N=8, COLORS=5, GAME_TIME=60, BONUS_TIME=15;
   const grid=document.getElementById('grid');
   const fx=document.getElementById('fx');
   grid.style.gridTemplateColumns=`repeat(${N},1fr)`;
@@ -208,6 +213,11 @@
 
   let board=[], power=[], cells=[], score=0, sel=null, busy=false;
   let timeLeft=GAME_TIME, timer=null, running=false, comboMul=1;
+  let level=1, levelTarget=0, prevTarget=0;
+
+  // kumulatives Punkteziel pro Level: ~30 Matches ≈ 1200 Punkte pro Level
+  // L1:1200, L2:2600, L3:4200 ... je Level ~1400-1600 mehr
+  function targetFor(n){ let t=0; for(let i=1;i<=n;i++){ t += 1200 + (i-1)*200; } return t; }
 
   function randColor(){ return 1+(Math.random()*COLORS|0); }
 
@@ -273,12 +283,12 @@
       swap(a,b); paint();
       const cells2=new Set();
       [a,b].forEach(pt=>{ if(power[pt.r][pt.c]) detonate(pt.r,pt.c,cells2); });
-      if(cells2.size){ comboMul=1; clearCells(cells2,()=>resolve()); return; }
+      if(cells2.size){ setCombo(1); clearCells(cells2,()=>resolve()); return; }
     }
     swap(a,b); paint();
     const m=findMatches();
     if(m.size===0){ setTimeout(()=>{ swap(a,b); paint(); busy=false; },180); }
-    else{ comboMul=1; setTimeout(()=>resolve(),140); }
+    else{ setCombo(1); setTimeout(()=>resolve(),140); }
   }
 
   function findMatches(){
@@ -326,9 +336,7 @@
 
     // Punkte mit Combo
     const base=all.size*10 + [...all].length*comboMul*4;
-    score += Math.round(base*comboMul);
-    document.getElementById('score').textContent=score;
-    document.getElementById('combo').textContent='×'+comboMul;
+    addScore(Math.round(base*comboMul));
 
     if(comboMul>=2){ showCombo(comboMul); }
     sparkleFx(all);
@@ -370,7 +378,7 @@
       for(let r=0;r<N;r++)for(let c=0;c<N;c++){ cells[r][c].classList.remove('pop'); cells[r][c].classList.add('drop'); }
       setTimeout(()=>{ for(let r=0;r<N;r++)for(let c=0;c<N;c++) cells[r][c].classList.remove('drop'); },300);
 
-      comboMul++;
+      setCombo(comboMul+1);
       setTimeout(()=>resolve(),230);
     },260);
   }
@@ -435,7 +443,7 @@
         for(let r=write;r>=0;r--){ board[r][c]=randColor(); power[r][c]=0; }
       }
       paint();
-      score+=set.size*12; document.getElementById('score').textContent=score;
+      addScore(set.size*12);
       then&&then();
     },260);
   }
@@ -451,11 +459,44 @@
     document.getElementById('timeStat').classList.toggle('low', timeLeft<=15);
     if(timeLeft<=0) endGame();
   }
+  function setCombo(n){
+    comboMul = n;
+    document.getElementById('combo').textContent = '×'+comboMul;
+  }
+  function addScore(pts){
+    score += pts;
+    document.getElementById('score').textContent=score;
+    // Level-Aufstieg
+    while(score >= levelTarget){
+      level++;
+      prevTarget = levelTarget;
+      levelTarget = targetFor(level);
+      // Bonuszeit als Belohnung
+      timeLeft = Math.min(timeLeft + BONUS_TIME, 99);
+      document.getElementById('level').textContent = level;
+      showLevelUp(level);
+    }
+    updateLevelBar();
+  }
+  function updateLevelBar(){
+    const span = levelTarget - prevTarget;
+    const done = score - prevTarget;
+    const pct = Math.max(0, Math.min(100, (done/span)*100));
+    document.getElementById('levelfill').style.width = pct+'%';
+  }
+  function showLevelUp(n){
+    const el=document.getElementById('comboFx');
+    el.textContent='Level '+n+' · +'+BONUS_TIME+'s';
+    el.classList.remove('show'); void el.offsetWidth; el.classList.add('show');
+  }
   function start(){
     init(); paint();
     score=0; comboMul=1; timeLeft=GAME_TIME; running=true; busy=false; sel=null;
+    level=1; prevTarget=0; levelTarget=targetFor(1);
     document.getElementById('score').textContent='0';
     document.getElementById('combo').textContent='×1';
+    document.getElementById('level').textContent='1';
+    document.getElementById('levelfill').style.width='0%';
     document.getElementById('time').textContent=GAME_TIME;
     document.getElementById('timefill').style.width='100%';
     document.getElementById('timefill').style.background='var(--terra)';
@@ -465,11 +506,14 @@
   }
   function endGame(){
     running=false; clearInterval(timer); busy=true;
-    const won=score>=WIN_SCORE;
+    const reached=level-1; // abgeschlossene Level
+    const won=reached>=3;
     document.getElementById('pTitle').textContent=won?'Stark gespielt!':'Zeit vorbei.';
     document.getElementById('pText').textContent=won
-      ? score+' Punkte — über '+WIN_SCORE+'. Du hast dir was verdient.'
-      : score+' Punkte. Knack die '+WIN_SCORE+' für eine Belohnung.';
+      ? 'Level '+reached+' geschafft, '+score+' Punkte. Du hast dir was verdient.'
+      : (reached>=1
+          ? 'Level '+reached+' geschafft, '+score+' Punkte. Schaff Level 3 für eine Belohnung.'
+          : score+' Punkte. Schaff Level 3 für eine Belohnung.');
     document.getElementById('reward').classList.toggle('show',won);
     document.getElementById('startBtn').textContent='Nochmal';
     document.getElementById('panel').classList.remove('hidden');

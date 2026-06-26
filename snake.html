@@ -32,6 +32,17 @@
   .scorebar .lab{font-size:.66rem;font-weight:600;letter-spacing:.18em;
     text-transform:uppercase;color:var(--terra)}
   .scorebar .val{font-family:'Playfair Display',serif;font-size:1.5rem;line-height:1}
+  .levelbar{width:100%;height:6px;background:var(--sand);border-radius:5px;overflow:hidden;margin-bottom:12px}
+  .levelbar > span{display:block;height:100%;width:0;background:var(--terra);
+    border-radius:5px;transition:width .3s ease}
+  .levelup{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(.7);
+    font-family:'Playfair Display',serif;font-size:2rem;color:var(--terra-deep);
+    text-shadow:0 2px 14px rgba(255,255,255,.85);opacity:0;pointer-events:none;z-index:9}
+  .levelup.show{animation:lvUp 1s ease forwards}
+  @keyframes lvUp{0%{opacity:0;transform:translate(-50%,-50%) scale(.7)}
+    25%{opacity:1;transform:translate(-50%,-50%) scale(1.1)}
+    75%{opacity:1;transform:translate(-50%,-50%) scale(1)}
+    100%{opacity:0;transform:translate(-50%,-65%) scale(1)}}
 
   .board-wrap{position:relative;width:100%}
   canvas{width:100%;height:auto;display:block;background:var(--paper);
@@ -120,11 +131,14 @@
 
   <div class="scorebar">
     <div><div class="lab">Punkte</div><div class="val" id="score">0</div></div>
+    <div style="text-align:center"><div class="lab">Level</div><div class="val" id="level">1</div></div>
     <div style="text-align:right"><div class="lab">Beste</div><div class="val" id="best">0</div></div>
   </div>
+  <div class="levelbar"><span id="levelfill"></span></div>
 
   <div class="board-wrap">
     <canvas id="board" width="400" height="400"></canvas>
+    <div class="levelup" id="levelup"></div>
     <div class="overlay" id="overlay">
       <h2 id="ovTitle">Bereit?</h2>
       <p id="ovText">Sammle die Häppchen ein, ohne sie dich selbst zu kreuzen. Wische oder nutz die Pfeile.</p>
@@ -167,6 +181,14 @@
   };
 
   let snake, dir, nextDir, food, score, best, loop, speed, running;
+  let level, levelTarget, prevTarget;
+
+  // Punkteziel (kumulativ), um Level n abzuschließen — ~30 Häppchen pro Level
+  function targetFor(n){
+    // L1:30, L2:65, L3:105, L4:150 ... je Level ~30-45 mehr
+    let t=0; for(let i=1;i<=n;i++){ t += 30 + (i-1)*5; } return t;
+  }
+  function speedFor(n){ return Math.max(95, 175 - (n-1)*12); }
 
   best = Number(localStorage.getItem('cod_snake_best') || 0);
   document.getElementById('best').textContent = best;
@@ -178,9 +200,25 @@
   function reset(){
     snake = [{x:9,y:10},{x:8,y:10},{x:7,y:10}];
     dir = {x:1,y:0}; nextDir = {x:1,y:0};
-    score = 0; speed = 175;
+    score = 0;
+    level = 1; prevTarget = 0; levelTarget = targetFor(1); speed = speedFor(1);
     document.getElementById('score').textContent = 0;
+    document.getElementById('level').textContent = 1;
+    updateLevelBar();
     placeFood();
+  }
+
+  function updateLevelBar(){
+    const span = levelTarget - prevTarget;
+    const done = score - prevTarget;
+    const pct = Math.max(0, Math.min(100, (done/span)*100));
+    document.getElementById('levelfill').style.width = pct+'%';
+  }
+
+  function showLevelUp(n){
+    const el = document.getElementById('levelup');
+    el.textContent = 'Level '+n;
+    el.classList.remove('show'); void el.offsetWidth; el.classList.add('show');
   }
 
   function placeFood(){
@@ -211,11 +249,11 @@
     const won = score > 20;
     ovTitle.textContent = won ? 'Geschafft!' : 'Vorbei.';
     if(won){
-      ovText.innerHTML = score+' Punkte — über 20. Du hast dir was verdient.';
+      ovText.innerHTML = score+' Punkte, Level '+level+' erreicht. Du hast dir was verdient.';
     } else {
       ovText.innerHTML = score >= 10
-        ? 'Stark — '+score+' Punkte. Knack die 20 für eine kleine Belohnung.'
-        : (score+' Punkte. Schaff über 20 und es gibt was zu holen.');
+        ? 'Stark — '+score+' Punkte, Level '+level+'. Knack die 20 für eine Belohnung.'
+        : (score+' Punkte, Level '+level+'. Schaff über 20 und es gibt was zu holen.');
     }
     document.getElementById('reward').classList.toggle('show', won);
     document.getElementById('startBtn').textContent = 'Nochmal';
@@ -237,12 +275,18 @@
       score++;
       document.getElementById('score').textContent = score;
       placeFood();
-      // sanft schneller
-      if(speed > 110 && score % 5 === 0){
-        speed -= 5;
+      // Level-Aufstieg, wenn Ziel erreicht
+      if(score >= levelTarget){
+        level++;
+        prevTarget = levelTarget;
+        levelTarget = targetFor(level);
+        speed = speedFor(level);
+        document.getElementById('level').textContent = level;
+        showLevelUp(level);
         clearInterval(loop);
         loop = setInterval(tick, speed);
       }
+      updateLevelBar();
     } else {
       snake.pop();
     }

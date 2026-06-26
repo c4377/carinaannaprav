@@ -182,6 +182,47 @@
   .statement .sig{font-family:'Exclusive Editorial',serif;margin-top:26px;font-size:1.1rem;
     color:rgba(255,255,255,.82);letter-spacing:.02em}
   @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
+
+  /* Footer-Rechtslinks */
+  .foot .legal-links{margin-top:22px;display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
+  .foot .legal-links a{color:#b6a886;font-size:.85rem;text-decoration:none;
+    letter-spacing:.03em;transition:color .2s ease}
+  .foot .legal-links a:hover{color:var(--terra)}
+
+  /* Games-Bubble */
+  .games-fab{position:fixed;right:22px;bottom:22px;z-index:60;
+    display:flex;align-items:center;gap:9px;
+    background:var(--terra);color:#fff;border:none;cursor:pointer;
+    font-family:'Inter',sans-serif;font-weight:600;font-size:.9rem;letter-spacing:.04em;
+    padding:14px 20px;border-radius:40px;
+    box-shadow:0 10px 26px -8px rgba(120,60,35,.6);
+    transition:transform .18s ease,background .2s ease}
+  .games-fab:hover{transform:translateY(-3px);background:var(--terra-deep)}
+  .games-fab .dot{width:8px;height:8px;border-radius:50%;background:#fff;opacity:.9}
+  .games-fab.open{transform:scale(.92)}
+
+  .games-panel{position:fixed;right:22px;bottom:84px;z-index:60;width:300px;max-width:calc(100vw - 44px);
+    background:var(--paper);border:1px solid var(--line);border-radius:16px;
+    box-shadow:0 24px 50px -16px rgba(90,55,35,.5);
+    padding:18px;opacity:0;visibility:hidden;transform:translateY(12px) scale(.97);
+    transform-origin:bottom right;transition:opacity .22s ease,transform .22s ease,visibility .22s}
+  .games-panel.show{opacity:1;visibility:visible;transform:translateY(0) scale(1)}
+  .games-panel .gp-head{font-family:'Exclusive Editorial',serif;font-size:1.25rem;
+    color:var(--ink);margin-bottom:3px}
+  .games-panel .gp-sub{font-size:.82rem;color:var(--ink-soft);margin-bottom:14px}
+  .games-panel a.game{display:flex;align-items:center;gap:13px;text-decoration:none;
+    padding:11px 12px;border-radius:11px;border:1px solid transparent;
+    transition:background .15s ease,border-color .15s ease}
+  .games-panel a.game:hover{background:var(--sand);border-color:var(--line)}
+  .games-panel a.game .ico{width:38px;height:38px;border-radius:10px;flex:none;
+    display:flex;align-items:center;justify-content:center;font-size:1.2rem;
+    background:var(--sand)}
+  .games-panel a.game:hover .ico{background:var(--paper)}
+  .games-panel a.game .txt{display:flex;flex-direction:column;line-height:1.25}
+  .games-panel a.game .txt b{font-weight:600;font-size:.96rem;color:var(--ink)}
+  .games-panel a.game .txt span{font-size:.78rem;color:var(--ink-soft)}
+  @media (prefers-reduced-motion:reduce){.games-fab,.games-panel{transition:none}}
+
 </style>
 </head>
 <body>
@@ -424,6 +465,12 @@
   <div class="wrap">
     <p class="micro">Klarheit beginnt nicht bei Reichweite. Sie beginnt beim Angebot.</p>
     <p class="sig">You.Got.This</p>
+    <nav class="legal-links">
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+      <a href="agb.html">AGB</a>
+      <a href="widerruf.html">Widerruf</a>
+    </nav>
     <p class="small">carina.offer.design · Angebotsdesign &amp; Business Architecture · © <span id="yr"></span></p>
   </div>
 </footer>
@@ -444,6 +491,45 @@
     });
   }, { threshold: 0.12 });
   els.forEach(function(e){ io.observe(e); });
+})();
+</script>
+
+<!-- Games-Bubble -->
+<button class="games-fab" id="gamesFab" aria-expanded="false" aria-controls="gamesPanel">
+  <span class="dot"></span> GAMES
+</button>
+<div class="games-panel" id="gamesPanel" role="dialog" aria-label="Kleine Spiele">
+  <div class="gp-head">Kleine Pause?</div>
+  <div class="gp-sub">Drei Spielereien — im Look des Hauses.</div>
+  <a class="game" href="snake.html">
+    <span class="ico">🐍</span>
+    <span class="txt"><b>Snake</b><span>Sammeln, ausweichen, Highscore jagen</span></span>
+  </a>
+  <a class="game" href="zen-garten.html">
+    <span class="ico">🪨</span>
+    <span class="txt"><b>Zen-Garten</b><span>Linien harken, Ruhe finden</span></span>
+  </a>
+  <a class="game" href="plopp.html">
+    <span class="ico">🟠</span>
+    <span class="txt"><b>Plopp</b><span>Drei in einer Reihe, Combos &amp; Power-Steine</span></span>
+  </a>
+</div>
+<script>
+(function(){
+  var fab=document.getElementById('gamesFab');
+  var panel=document.getElementById('gamesPanel');
+  if(!fab||!panel) return;
+  function toggle(open){
+    var isOpen = open!==undefined ? open : !panel.classList.contains('show');
+    panel.classList.toggle('show', isOpen);
+    fab.classList.toggle('open', isOpen);
+    fab.setAttribute('aria-expanded', isOpen?'true':'false');
+  }
+  fab.addEventListener('click', function(e){ e.stopPropagation(); toggle(); });
+  document.addEventListener('click', function(e){
+    if(panel.classList.contains('show') && !panel.contains(e.target) && e.target!==fab){ toggle(false); }
+  });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') toggle(false); });
 })();
 </script>
 </body>

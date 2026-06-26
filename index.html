@@ -149,10 +149,45 @@
   }
   a:focus-visible,.btn:focus-visible,summary:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
   .band-ink a:focus-visible{outline-color:var(--creme)}
+
+  /* mitscrollende Kopfzeile */
+  .topbar{position:sticky;top:0;z-index:50;background:rgba(250,246,238,.86);
+    backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line)}
+  .topbar .inner{max-width:var(--maxw);margin:0 auto;padding:14px 28px;
+    display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .topbar .brand{font-family:'Playfair Display',serif;font-size:1.02rem;letter-spacing:.01em}
+  .topbar .brand b{color:var(--terra);font-weight:500}
+  .topbar .cta{font-family:'Inter',sans-serif;font-weight:600;font-size:.82rem;
+    letter-spacing:.02em;text-decoration:none;color:#fff;background:var(--terra);
+    padding:9px 16px;border-radius:2px;white-space:nowrap;transition:background .2s ease}
+  .topbar .cta:hover{background:var(--terra-deep)}
+  @media (max-width:480px){.topbar .brand{font-size:.92rem}.topbar .cta{padding:8px 13px;font-size:.78rem}}
+
+  /* sanftes Einblenden beim Scrollen */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+  /* großer Claim-Statement-Block */
+  .statement{background:var(--terra);color:#fff;text-align:center}
+  .statement .wrap{padding:0 28px}
+  .statement h2{font-family:'Playfair Display',serif;color:#fff;
+    font-size:clamp(1.9rem,6vw,3rem);line-height:1.15;max-width:18ch;margin:0 auto}
+  .statement .sig{font-family:'Playfair Display',serif;margin-top:26px;font-size:1.1rem;
+    color:rgba(255,255,255,.82);letter-spacing:.02em}
   @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
 </style>
 </head>
 <body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="inner">
+    <span class="brand">carina<b>.offer.design</b></span>
+    <a href="https://tidycal.com/carina-anna-prav/offer-audit" class="cta">Angebots-Check buchen</a>
+  </div>
+</div>
 
 <!-- HERO -->
 <header class="hero">
@@ -213,6 +248,14 @@
         <div class="txt">schlägt Reichweite. Ein klares Angebot verkauft mit weniger Aufwand als ein unklares mit viel.</div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- STATEMENT -->
+<section class="statement">
+  <div class="wrap">
+    <h2>Ein Angebot ist kein Ratespiel. Es ist gebaute Sicherheit.</h2>
+    <p class="sig">You.Got.This</p>
   </div>
 </section>
 
@@ -381,5 +424,22 @@
 </footer>
 
 <script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+<script>
+(function(){
+  var els = document.querySelectorAll('section .wrap');
+  els.forEach(function(e){ e.classList.add('reveal'); });
+  var hero = document.querySelector('.hero .wrap');
+  if(hero){ hero.classList.add('in'); }
+  if(!('IntersectionObserver' in window)){
+    els.forEach(function(e){ e.classList.add('in'); }); return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+    });
+  }, { threshold: 0.12 });
+  els.forEach(function(e){ io.observe(e); });
+})();
+</script>
 </body>
 </html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Snake — Carina.Offer.Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#161311;--ink-soft:#3a3430;--creme:#f3ede2;--sand:#e4d9c6;
+    --line:#cdc0a9;--paper:#faf6ee;--terra:#b8623d;--terra-deep:#9e4f2f;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--creme);color:var(--ink);font-family:'Inter',sans-serif;
+    min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;padding:24px 18px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .stage{width:100%;max-width:460px;display:flex;flex-direction:column;align-items:center}
+
+  .eyebrow{font-size:.72rem;font-weight:600;letter-spacing:.24em;
+    text-transform:uppercase;color:var(--terra);text-align:center}
+  h1{font-family:'Playfair Display',serif;font-weight:400;font-size:2rem;
+    line-height:1.12;letter-spacing:-.01em;text-align:center;margin:10px 0 4px}
+  .tagline{font-size:.95rem;color:var(--ink-soft);text-align:center;margin-bottom:20px}
+
+  .scorebar{width:100%;display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:12px}
+  .scorebar .lab{font-size:.66rem;font-weight:600;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--terra)}
+  .scorebar .val{font-family:'Playfair Display',serif;font-size:1.5rem;line-height:1}
+
+  .board-wrap{position:relative;width:100%}
+  canvas{width:100%;height:auto;display:block;background:var(--paper);
+    border:1px solid var(--line);border-radius:12px;touch-action:none}
+
+  .overlay{position:absolute;inset:0;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;padding:24px;
+    background:rgba(243,237,226,.92);border-radius:12px}
+  .overlay.hidden{display:none}
+  .overlay h2{font-family:'Playfair Display',serif;font-weight:400;
+    font-size:1.5rem;line-height:1.2;margin-bottom:8px}
+  .overlay p{font-size:.95rem;color:var(--ink-soft);max-width:30ch;margin-bottom:20px}
+
+  .reward{display:none;width:100%;max-width:300px;margin:0 auto 20px;
+    background:var(--sand);border:1px solid var(--terra);border-radius:12px;
+    padding:18px 20px;text-align:center}
+  .reward.show{display:block;animation:rIn .5s ease}
+  @keyframes rIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+  .reward .rlab{font-size:.66rem;font-weight:600;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--terra)}
+  .reward .rhead{font-family:'Playfair Display',serif;font-size:1.15rem;
+    line-height:1.25;margin:6px 0 12px;color:var(--ink)}
+  .reward .code{font-family:'Inter',sans-serif;font-weight:600;font-size:1.25rem;
+    letter-spacing:.14em;color:var(--terra-deep);background:var(--paper);
+    border:1px dashed var(--terra);border-radius:8px;padding:11px 8px;margin-bottom:6px}
+  .reward .rfine{font-size:.78rem;color:var(--ink-soft);line-height:1.45}
+  .reward .rbtn{display:inline-block;margin-top:14px;font-family:'Inter',sans-serif;
+    font-weight:600;font-size:.9rem;padding:13px 26px;border-radius:2px;text-decoration:none;
+    border:1px solid var(--terra);background:var(--terra);color:#fff;transition:background .2s ease}
+  .reward .rbtn:hover{background:var(--terra-deep)}
+
+  .btn{font-family:'Inter',sans-serif;font-weight:600;font-size:.95rem;
+    letter-spacing:.02em;padding:15px 30px;border-radius:2px;cursor:pointer;
+    border:1px solid var(--terra);background:var(--terra);color:#fff;
+    transition:transform .15s ease,background .2s ease}
+  .btn:hover{transform:translateY(-2px);background:var(--terra-deep);border-color:var(--terra-deep)}
+  .btn:active{transform:translateY(0)}
+
+  /* D-Pad für Touch */
+  .pad{margin-top:22px;display:grid;grid-template-columns:repeat(3,64px);
+    grid-template-rows:repeat(3,64px);gap:8px;justify-content:center}
+  .pad button{background:var(--paper);border:1px solid var(--line);border-radius:10px;
+    font-size:1.3rem;color:var(--terra);cursor:pointer;display:flex;
+    align-items:center;justify-content:center;transition:background .12s ease,border-color .12s ease}
+  .pad button:active{background:var(--sand);border-color:var(--terra)}
+  .pad .up{grid-column:2;grid-row:1}
+  .pad .left{grid-column:1;grid-row:2}
+  .pad .down{grid-column:2;grid-row:3}
+  .pad .right{grid-column:3;grid-row:2}
+  .pad .mid{grid-column:2;grid-row:2;border:none;background:transparent;cursor:default}
+  .pad .mid::after{content:"";width:8px;height:8px;background:var(--line);border-radius:50%}
+
+  .hint{margin-top:18px;font-size:.8rem;color:var(--ink-soft);text-align:center}
+  .footer{margin-top:26px;display:flex;flex-direction:column;align-items:center;gap:4px}
+  .footer .brand{font-size:.78rem;letter-spacing:.04em;color:var(--ink-soft)}
+  .footer .sig{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--terra)}
+
+  @media (max-width:380px){
+    .pad{grid-template-columns:repeat(3,56px);grid-template-rows:repeat(3,56px)}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
+
+  /* Seiten-Header (wie Rechtsseiten) */
+  .page-top{background:var(--paper);border-bottom:1px solid var(--line);
+    padding:16px 0;width:100%;position:relative;z-index:20}
+  .page-top .inner{max-width:600px;margin:0 auto;padding:0 22px;
+    display:flex;justify-content:space-between;align-items:center}
+  .page-top .brandmark{font-size:.92rem;letter-spacing:.02em;text-decoration:none;color:var(--ink)}
+  .page-top .brandmark b{font-weight:600}
+  .page-top .brandmark .accent{color:var(--terra)}
+  .page-top .back{font-size:.84rem;color:var(--ink-soft);text-decoration:none;transition:color .2s ease}
+  .page-top .back:hover{color:var(--terra)}
+</style>
+</head>
+<body>
+<header class="page-top">
+  <div class="inner">
+    <a class="brandmark" href="index.html"><b>carina</b><span class="accent">.offer.design</span></a>
+    <a class="back" href="index.html">← Zurück zur Seite</a>
+  </div>
+</header>
+<div class="stage">
+  <span class="eyebrow">Eine kleine Pause</span>
+  <h1>Snake</h1>
+  <p class="tagline">Kein Raten. Nur du, die Richtung und ein Plan.</p>
+
+  <div class="scorebar">
+    <div><div class="lab">Punkte</div><div class="val" id="score">0</div></div>
+    <div style="text-align:right"><div class="lab">Beste</div><div class="val" id="best">0</div></div>
+  </div>
+
+  <div class="board-wrap">
+    <canvas id="board" width="400" height="400"></canvas>
+    <div class="overlay" id="overlay">
+      <h2 id="ovTitle">Bereit?</h2>
+      <p id="ovText">Sammle die Häppchen ein, ohne sie dich selbst zu kreuzen. Wische oder nutz die Pfeile.</p>
+      <div class="reward" id="reward">
+        <div class="rlab">Freigespielt</div>
+        <div class="rhead">10 % auf deinen ersten Schritt mit mir</div>
+        <div class="code" id="rewardCode">SNAKE10</div>
+        <div class="rfine">Gilt auf den Angebots-Check oder deinen ersten Monat Mentoring. Code beim Gespräch nennen.</div>
+        <a href="https://tidycal.com/carina-anna-prav/offer-audit" class="rbtn">Termin sichern</a>
+      </div>
+      <button class="btn" id="startBtn">Los geht's</button>
+    </div>
+  </div>
+
+  <div class="pad" id="pad" aria-label="Steuerung">
+    <button class="up"    data-dir="up"    aria-label="Hoch">&#9650;</button>
+    <button class="left"  data-dir="left"  aria-label="Links">&#9664;</button>
+    <button class="mid" tabindex="-1" aria-hidden="true"></button>
+    <button class="right" data-dir="right" aria-label="Rechts">&#9654;</button>
+    <button class="down"  data-dir="down"  aria-label="Runter">&#9660;</button>
+  </div>
+
+  <p class="hint">Desktop: Pfeiltasten oder WASD &middot; Mobil: Wischen oder Pfeile</p>
+
+  <div class="footer">
+    <div class="brand">carina.offer.design</div>
+    <div class="sig">You.Got.This</div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const cv = document.getElementById('board');
+  const ctx = cv.getContext('2d');
+  const GRID = 20;            // 20x20 Zellen
+  const CELL = cv.width / GRID;
+  const COL = {
+    snake:'#b8623d', head:'#9e4f2f', food:'#e4d9c6',
+    foodEdge:'#cdc0a9', grid:'#efe7d8'
+  };
+
+  let snake, dir, nextDir, food, score, best, loop, speed, running;
+
+  best = Number(localStorage.getItem('cod_snake_best') || 0);
+  document.getElementById('best').textContent = best;
+
+  const overlay = document.getElementById('overlay');
+  const ovTitle = document.getElementById('ovTitle');
+  const ovText  = document.getElementById('ovText');
+
+  function reset(){
+    snake = [{x:9,y:10},{x:8,y:10},{x:7,y:10}];
+    dir = {x:1,y:0}; nextDir = {x:1,y:0};
+    score = 0; speed = 175;
+    document.getElementById('score').textContent = 0;
+    placeFood();
+  }
+
+  function placeFood(){
+    while(true){
+      const f = {x:(Math.random()*GRID)|0, y:(Math.random()*GRID)|0};
+      if(!snake.some(s=>s.x===f.x && s.y===f.y)){ food=f; return; }
+    }
+  }
+
+  function start(){
+    reset();
+    overlay.classList.add('hidden');
+    document.getElementById('reward').classList.remove('show');
+    running = true;
+    clearInterval(loop);
+    loop = setInterval(tick, speed);
+    draw();
+  }
+
+  function gameOver(){
+    running = false;
+    clearInterval(loop);
+    if(score > best){
+      best = score;
+      localStorage.setItem('cod_snake_best', String(best));
+      document.getElementById('best').textContent = best;
+    }
+    const won = score > 20;
+    ovTitle.textContent = won ? 'Geschafft!' : 'Vorbei.';
+    if(won){
+      ovText.innerHTML = score+' Punkte — über 20. Du hast dir was verdient.';
+    } else {
+      ovText.innerHTML = score >= 10
+        ? 'Stark — '+score+' Punkte. Knack die 20 für eine kleine Belohnung.'
+        : (score+' Punkte. Schaff über 20 und es gibt was zu holen.');
+    }
+    document.getElementById('reward').classList.toggle('show', won);
+    document.getElementById('startBtn').textContent = 'Nochmal';
+    overlay.classList.remove('hidden');
+  }
+
+  function tick(){
+    dir = nextDir;
+    const head = {x:snake[0].x+dir.x, y:snake[0].y+dir.y};
+
+    // Wand
+    if(head.x<0||head.x>=GRID||head.y<0||head.y>=GRID){ gameOver(); return; }
+    // sich selbst
+    if(snake.some(s=>s.x===head.x && s.y===head.y)){ gameOver(); return; }
+
+    snake.unshift(head);
+
+    if(head.x===food.x && head.y===food.y){
+      score++;
+      document.getElementById('score').textContent = score;
+      placeFood();
+      // sanft schneller
+      if(speed > 110 && score % 5 === 0){
+        speed -= 5;
+        clearInterval(loop);
+        loop = setInterval(tick, speed);
+      }
+    } else {
+      snake.pop();
+    }
+    draw();
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,cv.width,cv.height);
+
+    // dezentes Raster
+    ctx.strokeStyle = COL.grid; ctx.lineWidth = 1;
+    for(let i=1;i<GRID;i++){
+      ctx.beginPath(); ctx.moveTo(i*CELL,0); ctx.lineTo(i*CELL,cv.height); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(0,i*CELL); ctx.lineTo(cv.width,i*CELL); ctx.stroke();
+    }
+
+    // Food (Kreis im Sand-Ton)
+    ctx.fillStyle = COL.food; ctx.strokeStyle = COL.foodEdge; ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.arc(food.x*CELL+CELL/2, food.y*CELL+CELL/2, CELL*0.32, 0, Math.PI*2);
+    ctx.fill(); ctx.stroke();
+
+    // Snake (abgerundete Segmente)
+    for(let i=snake.length-1;i>=0;i--){
+      const s = snake[i];
+      ctx.fillStyle = i===0 ? COL.head : COL.snake;
+      const pad = i===0 ? 1.5 : 2.5;
+      roundRect(s.x*CELL+pad, s.y*CELL+pad, CELL-2*pad, CELL-2*pad, 5);
+      ctx.fill();
+    }
+  }
+
+  function roundRect(x,y,w,h,r){
+    ctx.beginPath();
+    ctx.moveTo(x+r,y);
+    ctx.arcTo(x+w,y,x+w,y+h,r);
+    ctx.arcTo(x+w,y+h,x,y+h,r);
+    ctx.arcTo(x,y+h,x,y,r);
+    ctx.arcTo(x,y,x+w,y,r);
+    ctx.closePath();
+  }
+
+  function setDir(d){
+    if(!running) return;
+    const map = {
+      up:{x:0,y:-1}, down:{x:0,y:1}, left:{x:-1,y:0}, right:{x:1,y:0}
+    };
+    const nd = map[d];
+    // keine 180°-Wende
+    if(nd.x === -dir.x && nd.y === -dir.y) return;
+    nextDir = nd;
+  }
+
+  // Tastatur
+  window.addEventListener('keydown', e=>{
+    const k = e.key.toLowerCase();
+    const m = {arrowup:'up',w:'up',arrowdown:'down',s:'down',
+               arrowleft:'left',a:'left',arrowright:'right',d:'right'};
+    if(m[k]){ e.preventDefault(); setDir(m[k]); }
+    if((k===' '||k==='enter') && !running){ start(); }
+  });
+
+  // D-Pad
+  document.getElementById('pad').addEventListener('click', e=>{
+    const b = e.target.closest('button[data-dir]');
+    if(b) setDir(b.dataset.dir);
+  });
+
+  // Wischen
+  let tsX=0, tsY=0;
+  cv.addEventListener('touchstart', e=>{
+    const t=e.changedTouches[0]; tsX=t.clientX; tsY=t.clientY;
+  }, {passive:true});
+  cv.addEventListener('touchend', e=>{
+    const t=e.changedTouches[0];
+    const dx=t.clientX-tsX, dy=t.clientY-tsY;
+    if(Math.abs(dx)<20 && Math.abs(dy)<20) return;
+    if(Math.abs(dx)>Math.abs(dy)) setDir(dx>0?'right':'left');
+    else setDir(dy>0?'down':'up');
+  }, {passive:true});
+
+  document.getElementById('startBtn').addEventListener('click', start);
+
+  // Erststand zeichnen (statisch hinter Overlay)
+  reset(); draw();
+})();
+</script>
+</body>
+</html>

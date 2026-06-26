@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Plopp — Carina.Offer.Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#161311;--ink-soft:#3a3430;--creme:#f3ede2;--sand:#e4d9c6;
+    --line:#cdc0a9;--paper:#faf6ee;--terra:#b8623d;--terra-deep:#9e4f2f;
+    /* lebendigere Markenfarben */
+    --p1:#cf6a3e; /* warmes terrakotta */
+    --p2:#8a9b57; /* frisches salbei */
+    --p3:#e0a23f; /* goldamber */
+    --p4:#5f8a86; /* gedämpftes petrol/teal (aus Markenwelt) */
+    --p5:#bd4a4a; /* lebendiges tonrot */
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  body{
+    background:var(--creme);color:var(--ink);font-family:'Inter',sans-serif;
+    min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;padding:20px 16px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .stage{width:100%;max-width:440px;display:flex;flex-direction:column;align-items:center}
+  .eyebrow{font-size:.72rem;font-weight:600;letter-spacing:.24em;
+    text-transform:uppercase;color:var(--terra);text-align:center}
+  h1{font-family:'Playfair Display',serif;font-weight:400;font-size:2rem;
+    line-height:1.12;letter-spacing:-.01em;text-align:center;margin:8px 0 4px}
+  .tagline{font-size:.9rem;color:var(--ink-soft);text-align:center;margin-bottom:14px}
+
+  .scorebar{width:100%;display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;gap:10px}
+  .stat{text-align:center;flex:1}
+  .stat .lab{font-size:.62rem;font-weight:600;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--terra)}
+  .stat .val{font-family:'Playfair Display',serif;font-size:1.5rem;line-height:1.1}
+  .stat.time .val{transition:color .3s ease}
+  .stat.time.low .val{color:var(--p5)}
+
+  /* Timer-Leiste */
+  .timebar{width:100%;height:6px;background:var(--sand);border-radius:5px;overflow:hidden;margin-bottom:12px}
+  .timebar > span{display:block;height:100%;width:100%;background:var(--terra);
+    border-radius:5px;transition:width .25s linear, background .3s ease}
+
+  .boardwrap{width:100%;position:relative}
+  .board{width:100%;aspect-ratio:1;background:var(--paper);border:1px solid var(--line);
+    border-radius:16px;box-shadow:inset 0 2px 12px rgba(120,90,60,.10);
+    position:relative;padding:9px;touch-action:none;overflow:hidden}
+  .grid{position:absolute;inset:9px;display:grid;gap:6px}
+  .cell{position:relative}
+  .gem{position:absolute;inset:0;border-radius:28%;cursor:pointer;
+    transition:transform .15s ease, opacity .2s ease;
+    display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+  .gem::before{content:"";position:absolute;inset:0;border-radius:28%;
+    box-shadow:inset -3px -5px 0 rgba(0,0,0,.13), inset 3px 3px 0 rgba(255,255,255,.28)}
+  .gem::after{content:"";position:absolute;top:14%;left:16%;width:30%;height:22%;
+    background:rgba(255,255,255,.55);border-radius:50%;filter:blur(1px)}
+  .gem.c1{background:var(--p1)} .gem.c2{background:var(--p2)}
+  .gem.c3{background:var(--p3)} .gem.c4{background:var(--p4)} .gem.c5{background:var(--p5)}
+  .gem.sel{transform:scale(.82);box-shadow:0 0 0 3px var(--terra)}
+  .gem.pop{animation:pop .28s ease forwards}
+  @keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.22)}100%{transform:scale(0);opacity:0}}
+  .gem.drop{animation:drop .3s cubic-bezier(.34,1.45,.5,1)}
+  @keyframes drop{from{transform:translateY(-26px);opacity:.2}to{transform:translateY(0);opacity:1}}
+
+  /* Power-Steine */
+  .gem.pwBomb::after{display:none}
+  .gem.pwBomb{box-shadow:0 0 0 2px rgba(255,255,255,.5) inset}
+  .gem .badge{position:relative;z-index:2;color:#fff;font-weight:700;
+    text-shadow:0 1px 2px rgba(0,0,0,.35);font-size:1.2rem;line-height:1}
+  .gem.glow{animation:glow 1.1s ease-in-out infinite}
+  @keyframes glow{0%,100%{filter:brightness(1)}50%{filter:brightness(1.25)}}
+
+  /* Effekt-Overlay */
+  .fx{position:absolute;inset:9px;pointer-events:none;z-index:5}
+  .spark{position:absolute;width:9px;height:9px;border-radius:50%;
+    will-change:transform,opacity}
+  @keyframes fly{to{transform:translate(var(--dx),var(--dy)) scale(.2);opacity:0}}
+  .ring{position:absolute;border-radius:50%;border:3px solid var(--terra);
+    transform:translate(-50%,-50%) scale(0);opacity:.9;will-change:transform,opacity}
+  @keyframes ring{to{transform:translate(-50%,-50%) scale(3);opacity:0}}
+  .beam{position:absolute;background:linear-gradient(90deg,transparent,rgba(224,162,63,.85),transparent);
+    will-change:opacity}
+  @keyframes beam{0%{opacity:0}30%{opacity:1}100%{opacity:0}}
+
+  /* Combo-Anzeige */
+  .combo{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(.6);
+    font-family:'Playfair Display',serif;font-size:2.4rem;color:var(--terra-deep);
+    text-shadow:0 2px 12px rgba(255,255,255,.8);opacity:0;pointer-events:none;z-index:8}
+  .combo.show{animation:combo .8s ease forwards}
+  @keyframes combo{0%{opacity:0;transform:translate(-50%,-50%) scale(.6)}
+    25%{opacity:1;transform:translate(-50%,-50%) scale(1.1)}
+    75%{opacity:1;transform:translate(-50%,-50%) scale(1)}
+    100%{opacity:0;transform:translate(-50%,-60%) scale(1)}}
+
+  .row2{margin-top:16px;display:flex;gap:9px;justify-content:center;flex-wrap:wrap}
+  .btn{font-family:'Inter',sans-serif;font-weight:600;font-size:.88rem;
+    padding:13px 24px;border-radius:2px;cursor:pointer;border:1px solid var(--terra);
+    background:var(--terra);color:#fff;transition:background .2s ease,transform .15s ease}
+  .btn:hover{background:var(--terra-deep);transform:translateY(-2px)}
+  .ghost{font-family:'Inter',sans-serif;font-weight:500;font-size:.84rem;
+    padding:12px 20px;border-radius:10px;cursor:pointer;border:1px solid var(--line);
+    background:transparent;color:var(--ink-soft);transition:border-color .15s ease,color .15s ease}
+  .ghost:hover{border-color:var(--terra);color:var(--terra)}
+
+  .hint{margin-top:14px;font-size:.78rem;color:var(--ink-soft);text-align:center;max-width:36ch;line-height:1.5}
+
+  /* Start/Ende-Overlay */
+  .panel{position:absolute;inset:0;background:rgba(243,237,226,.95);z-index:10;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:26px;border-radius:16px}
+  .panel.hidden{display:none}
+  .panel h2{font-family:'Playfair Display',serif;font-weight:400;font-size:1.6rem;margin-bottom:8px}
+  .panel p{font-size:.92rem;color:var(--ink-soft);max-width:30ch;margin-bottom:18px}
+  .reward{display:none;width:100%;max-width:290px;margin:0 auto 18px;background:var(--sand);
+    border:1px solid var(--terra);border-radius:12px;padding:16px 18px;text-align:center}
+  .reward.show{display:block;animation:rIn .5s ease}
+  @keyframes rIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+  .reward .rlab{font-size:.64rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--terra)}
+  .reward .rhead{font-family:'Playfair Display',serif;font-size:1.1rem;line-height:1.25;margin:6px 0 10px}
+  .reward .code{font-weight:600;font-size:1.2rem;letter-spacing:.14em;color:var(--terra-deep);
+    background:var(--paper);border:1px dashed var(--terra);border-radius:8px;padding:10px;margin-bottom:6px}
+  .reward .rfine{font-size:.76rem;color:var(--ink-soft);line-height:1.45}
+  .reward .rbtn{display:inline-block;margin-top:12px;font-weight:600;font-size:.88rem;
+    padding:12px 24px;border-radius:2px;text-decoration:none;border:1px solid var(--terra);
+    background:var(--terra);color:#fff}
+  .reward .rbtn:hover{background:var(--terra-deep)}
+
+  .footer{margin-top:20px;display:flex;flex-direction:column;align-items:center;gap:4px}
+  .footer .brand{font-size:.78rem;letter-spacing:.04em;color:var(--ink-soft)}
+  .footer .sig{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--terra)}
+
+  @media (prefers-reduced-motion:reduce){.gem,.gem.pop,.gem.drop{animation:none;transition:none}}
+
+  /* Seiten-Header (wie Rechtsseiten) */
+  .page-top{background:var(--paper);border-bottom:1px solid var(--line);
+    padding:16px 0;width:100%;position:relative;z-index:20}
+  .page-top .inner{max-width:600px;margin:0 auto;padding:0 22px;
+    display:flex;justify-content:space-between;align-items:center}
+  .page-top .brandmark{font-size:.92rem;letter-spacing:.02em;text-decoration:none;color:var(--ink)}
+  .page-top .brandmark b{font-weight:600}
+  .page-top .brandmark .accent{color:var(--terra)}
+  .page-top .back{font-size:.84rem;color:var(--ink-soft);text-decoration:none;transition:color .2s ease}
+  .page-top .back:hover{color:var(--terra)}
+</style>
+</head>
+<body>
+<header class="page-top">
+  <div class="inner">
+    <a class="brandmark" href="index.html"><b>carina</b><span class="accent">.offer.design</span></a>
+    <a class="back" href="index.html">← Zurück zur Seite</a>
+  </div>
+</header>
+<div class="stage">
+  <span class="eyebrow">Drei in einer Reihe</span>
+  <h1>Plopp</h1>
+  <p class="tagline">Tausche Nachbarn, lös Reihen auf, jage Combos. 90 Sekunden.</p>
+
+  <div class="scorebar">
+    <div class="stat"><div class="lab">Punkte</div><div class="val" id="score">0</div></div>
+    <div class="stat"><div class="lab">Combo</div><div class="val" id="combo">×1</div></div>
+    <div class="stat time" id="timeStat"><div class="lab">Zeit</div><div class="val" id="time">90</div></div>
+  </div>
+  <div class="timebar"><span id="timefill"></span></div>
+
+  <div class="boardwrap">
+    <div class="board">
+      <div class="grid" id="grid"></div>
+      <div class="fx" id="fx"></div>
+      <div class="combo" id="comboFx"></div>
+      <div class="panel" id="panel">
+        <h2 id="pTitle">Bereit?</h2>
+        <p id="pText">Drei gleiche lösen sich auf. Vier oder mehr geben einen Power-Stein. Ketten bringen Combo-Bonus.</p>
+        <div class="reward" id="reward">
+          <div class="rlab">Freigespielt</div>
+          <div class="rhead">10 % auf deinen ersten Schritt mit mir</div>
+          <div class="code" id="rewardCode">PLOPP10</div>
+          <div class="rfine">Gilt auf den Angebots-Check oder deinen ersten Monat Mentoring. Code beim Gespräch nennen.</div>
+          <a href="https://tidycal.com/carina-anna-prav/offer-audit" class="rbtn">Termin sichern</a>
+        </div>
+        <button class="btn" id="startBtn">Los geht's</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row2">
+    <button class="ghost" id="shuffle">Neu mischen</button>
+  </div>
+
+  <p class="hint">Tippe einen Stein an, dann einen Nachbarn zum Tauschen. 💣 räumt das Umfeld, ⚡ die ganze Reihe.</p>
+
+  <div class="footer">
+    <div class="brand">carina.offer.design</div>
+    <div class="sig">You.Got.This</div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const N=8, COLORS=5, GAME_TIME=90, WIN_SCORE=600;
+  const grid=document.getElementById('grid');
+  const fx=document.getElementById('fx');
+  grid.style.gridTemplateColumns=`repeat(${N},1fr)`;
+  grid.style.gridTemplateRows=`repeat(${N},1fr)`;
+
+  let board=[], power=[], cells=[], score=0, sel=null, busy=false;
+  let timeLeft=GAME_TIME, timer=null, running=false, comboMul=1;
+
+  function randColor(){ return 1+(Math.random()*COLORS|0); }
+
+  function init(){
+    board=[]; power=[];
+    for(let r=0;r<N;r++){
+      board[r]=[]; power[r]=[];
+      for(let c=0;c<N;c++){
+        let col;
+        do{ col=randColor(); }
+        while((c>=2&&board[r][c-1]===col&&board[r][c-2]===col)||
+              (r>=2&&board[r-1][c]===col&&board[r-2][c]===col));
+        board[r][c]=col; power[r][c]=0; // 0 none, 1 bomb, 2 beam
+      }
+    }
+  }
+
+  function buildDOM(){
+    grid.innerHTML=''; cells=[];
+    for(let r=0;r<N;r++){
+      cells[r]=[];
+      for(let c=0;c<N;c++){
+        const cell=document.createElement('div'); cell.className='cell';
+        const gem=document.createElement('div');
+        gem.dataset.r=r; gem.dataset.c=c;
+        cell.appendChild(gem); grid.appendChild(cell);
+        cells[r][c]=gem;
+      }
+    }
+  }
+
+  function paint(){
+    for(let r=0;r<N;r++)for(let c=0;c<N;c++){
+      const g=cells[r][c];
+      g.className='gem c'+board[r][c];
+      g.innerHTML='';
+      if(power[r][c]===1){ g.classList.add('pwBomb','glow'); g.innerHTML='<span class="badge">💣</span>'; }
+      else if(power[r][c]===2){ g.classList.add('glow'); g.innerHTML='<span class="badge">⚡</span>'; }
+    }
+  }
+
+  grid.addEventListener('click', e=>{
+    if(busy||!running) return;
+    const g=e.target.closest('.gem'); if(!g) return;
+    const r=+g.dataset.r, c=+g.dataset.c;
+    if(!sel){ sel={r,c}; cells[r][c].classList.add('sel'); return; }
+    if(sel.r===r&&sel.c===c){ cells[r][c].classList.remove('sel'); sel=null; return; }
+    const adj=Math.abs(sel.r-r)+Math.abs(sel.c-c)===1;
+    cells[sel.r][sel.c].classList.remove('sel');
+    if(adj){ trySwap(sel,{r,c}); sel=null; }
+    else{ sel={r,c}; cells[r][c].classList.add('sel'); }
+  });
+
+  function swap(a,b){
+    let t=board[a.r][a.c]; board[a.r][a.c]=board[b.r][b.c]; board[b.r][b.c]=t;
+    t=power[a.r][a.c]; power[a.r][a.c]=power[b.r][b.c]; power[b.r][b.c]=t;
+  }
+
+  function trySwap(a,b){
+    busy=true;
+    // Power-Stein direkt zünden, wenn getauscht
+    if(power[a.r][a.c]||power[b.r][b.c]){
+      swap(a,b); paint();
+      const cells2=new Set();
+      [a,b].forEach(pt=>{ if(power[pt.r][pt.c]) detonate(pt.r,pt.c,cells2); });
+      if(cells2.size){ comboMul=1; clearCells(cells2,()=>resolve()); return; }
+    }
+    swap(a,b); paint();
+    const m=findMatches();
+    if(m.size===0){ setTimeout(()=>{ swap(a,b); paint(); busy=false; },180); }
+    else{ comboMul=1; setTimeout(()=>resolve(),140); }
+  }
+
+  function findMatches(){
+    const hit=new Set();
+    const runs=[];
+    for(let r=0;r<N;r++){ let run=1;
+      for(let c=1;c<=N;c++){
+        if(c<N&&board[r][c]===board[r][c-1]) run++;
+        else{ if(run>=3){ const arr=[]; for(let k=0;k<run;k++){ hit.add(r+','+(c-1-k)); arr.push([r,c-1-k]); } runs.push(arr);} run=1; }
+      }
+    }
+    for(let c=0;c<N;c++){ let run=1;
+      for(let r=1;r<=N;r++){
+        if(r<N&&board[r][c]===board[r-1][c]) run++;
+        else{ if(run>=3){ const arr=[]; for(let k=0;k<run;k++){ hit.add((r-1-k)+','+c); arr.push([r-1-k,c]); } runs.push(arr);} run=1; }
+      }
+    }
+    findMatches._runs=runs;
+    return hit;
+  }
+
+  function detonate(r,c,acc){
+    const kind=power[r][c];
+    acc.add(r+','+c);
+    if(kind===1){ // Bombe: 3x3
+      for(let dr=-1;dr<=1;dr++)for(let dc=-1;dc<=1;dc++){
+        const nr=r+dr,nc=c+dc;
+        if(nr>=0&&nr<N&&nc>=0&&nc<N) acc.add(nr+','+nc);
+      }
+      ringFx(c,r,1);
+    } else if(kind===2){ // Blitz: ganze Reihe + Spalte
+      for(let i=0;i<N;i++){ acc.add(r+','+i); acc.add(i+','+c); }
+      beamFx(r,c);
+    }
+  }
+
+  function resolve(){
+    const hit=findMatches();
+    if(hit.size===0){ busy=false; sel=null; return; }
+    const runs=findMatches._runs||[];
+
+    // Power-Steine in betroffenen Zellen zünden (Kettenreaktion)
+    const all=new Set(hit);
+    hit.forEach(key=>{ const [r,c]=key.split(',').map(Number); if(power[r][c]) detonate(r,c,all); });
+
+    // Punkte mit Combo
+    const base=all.size*10 + [...all].length*comboMul*4;
+    score += Math.round(base*comboMul);
+    document.getElementById('score').textContent=score;
+    document.getElementById('combo').textContent='×'+comboMul;
+
+    if(comboMul>=2){ showCombo(comboMul); }
+    sparkleFx(all);
+
+    // pop
+    all.forEach(key=>{ const [r,c]=key.split(',').map(Number); cells[r][c].classList.add('pop'); });
+
+    setTimeout(()=>{
+      // Power-Stein-Erzeugung: bei runs mit Länge>=4 einen Power-Stein an erster Position setzen
+      const spawn=[];
+      runs.forEach(arr=>{
+        if(arr.length>=4){
+          const [pr,pc]=arr[Math.floor(arr.length/2)];
+          spawn.push([pr,pc, arr.length>=5?2:1, board[pr][pc]]);
+        }
+      });
+
+      all.forEach(key=>{ const [r,c]=key.split(',').map(Number); board[r][c]=0; power[r][c]=0; });
+
+      // Gravitation
+      for(let c=0;c<N;c++){
+        let write=N-1;
+        for(let r=N-1;r>=0;r--){
+          if(board[r][c]!==0){
+            board[write][c]=board[r][c]; power[write][c]=power[r][c];
+            if(write!==r){ board[r][c]=0; power[r][c]=0; }
+            write--;
+          }
+        }
+        for(let r=write;r>=0;r--){ board[r][c]=randColor(); power[r][c]=0; }
+      }
+      // Power-Steine platzieren (an oberster freier Stelle der Spalte annähern -> einfach Mitte des Runs neu)
+      spawn.forEach(([pr,pc,kind,col])=>{
+        // setze an unterster Position der Spalte, die jetzt gefüllt ist
+        board[pr][pc]=col||randColor(); power[pr][pc]=kind;
+      });
+
+      paint();
+      for(let r=0;r<N;r++)for(let c=0;c<N;c++){ cells[r][c].classList.remove('pop'); cells[r][c].classList.add('drop'); }
+      setTimeout(()=>{ for(let r=0;r<N;r++)for(let c=0;c<N;c++) cells[r][c].classList.remove('drop'); },300);
+
+      comboMul++;
+      setTimeout(()=>resolve(),230);
+    },260);
+  }
+
+  // ---- Effekte ----
+  function cellCenter(col,row){
+    const w=grid.clientWidth, cell=w/N;
+    return { x:cell*(col+0.5), y:cell*(row+0.5), cell };
+  }
+  function sparkleFx(keys){
+    keys.forEach(key=>{
+      const [r,c]=key.split(',').map(Number);
+      const {x,y}=cellCenter(c,r);
+      const col=getComputedStyle(cells[r][c]).backgroundColor;
+      for(let i=0;i<3;i++){
+        const s=document.createElement('div'); s.className='spark';
+        s.style.left=x+'px'; s.style.top=y+'px'; s.style.background=col;
+        const ang=Math.random()*Math.PI*2, d=10+Math.random()*22;
+        s.style.setProperty('--dx',Math.cos(ang)*d+'px');
+        s.style.setProperty('--dy',Math.sin(ang)*d+'px');
+        s.style.animation='fly .5s ease forwards';
+        fx.appendChild(s); setTimeout(()=>s.remove(),520);
+      }
+    });
+  }
+  function ringFx(col,row){
+    const {x,y,cell}=cellCenter(col,row);
+    const r=document.createElement('div'); r.className='ring';
+    r.style.left=x+'px'; r.style.top=y+'px'; r.style.width=cell+'px'; r.style.height=cell+'px';
+    r.style.animation='ring .5s ease forwards';
+    fx.appendChild(r); setTimeout(()=>r.remove(),520);
+  }
+  function beamFx(row,col){
+    const w=grid.clientWidth, cell=w/N;
+    const h=document.createElement('div'); h.className='beam';
+    h.style.left='0'; h.style.top=(cell*row)+'px'; h.style.width=w+'px'; h.style.height=cell+'px';
+    h.style.animation='beam .5s ease forwards';
+    fx.appendChild(h); setTimeout(()=>h.remove(),520);
+    const v=document.createElement('div'); v.className='beam';
+    v.style.left=(cell*col)+'px'; v.style.top='0'; v.style.width=cell+'px'; v.style.height=w+'px';
+    v.style.background='linear-gradient(180deg,transparent,rgba(224,162,63,.85),transparent)';
+    v.style.animation='beam .5s ease forwards';
+    fx.appendChild(v); setTimeout(()=>v.remove(),520);
+  }
+  function showCombo(n){
+    const el=document.getElementById('comboFx');
+    el.textContent='Combo ×'+n;
+    el.classList.remove('show'); void el.offsetWidth; el.classList.add('show');
+  }
+
+  function clearCells(set,then){
+    set.forEach(key=>{ const [r,c]=key.split(',').map(Number); cells[r][c].classList.add('pop'); });
+    sparkleFx(set);
+    setTimeout(()=>{
+      set.forEach(key=>{ const [r,c]=key.split(',').map(Number); board[r][c]=0; power[r][c]=0; });
+      for(let c=0;c<N;c++){
+        let write=N-1;
+        for(let r=N-1;r>=0;r--){
+          if(board[r][c]!==0){ board[write][c]=board[r][c]; power[write][c]=power[r][c];
+            if(write!==r){board[r][c]=0;power[r][c]=0;} write--; }
+        }
+        for(let r=write;r>=0;r--){ board[r][c]=randColor(); power[r][c]=0; }
+      }
+      paint();
+      score+=set.size*12; document.getElementById('score').textContent=score;
+      then&&then();
+    },260);
+  }
+
+  // ---- Timer / Spielfluss ----
+  function tickTime(){
+    timeLeft--;
+    document.getElementById('time').textContent=timeLeft;
+    const pct=Math.max(0,timeLeft/GAME_TIME*100);
+    const fill=document.getElementById('timefill');
+    fill.style.width=pct+'%';
+    fill.style.background = pct<20 ? 'var(--p5)' : pct<45 ? 'var(--p3)' : 'var(--terra)';
+    document.getElementById('timeStat').classList.toggle('low', timeLeft<=15);
+    if(timeLeft<=0) endGame();
+  }
+  function start(){
+    init(); paint();
+    score=0; comboMul=1; timeLeft=GAME_TIME; running=true; busy=false; sel=null;
+    document.getElementById('score').textContent='0';
+    document.getElementById('combo').textContent='×1';
+    document.getElementById('time').textContent=GAME_TIME;
+    document.getElementById('timefill').style.width='100%';
+    document.getElementById('timefill').style.background='var(--terra)';
+    document.getElementById('panel').classList.add('hidden');
+    document.getElementById('reward').classList.remove('show');
+    clearInterval(timer); timer=setInterval(tickTime,1000);
+  }
+  function endGame(){
+    running=false; clearInterval(timer); busy=true;
+    const won=score>=WIN_SCORE;
+    document.getElementById('pTitle').textContent=won?'Stark gespielt!':'Zeit vorbei.';
+    document.getElementById('pText').textContent=won
+      ? score+' Punkte — über '+WIN_SCORE+'. Du hast dir was verdient.'
+      : score+' Punkte. Knack die '+WIN_SCORE+' für eine Belohnung.';
+    document.getElementById('reward').classList.toggle('show',won);
+    document.getElementById('startBtn').textContent='Nochmal';
+    document.getElementById('panel').classList.remove('hidden');
+  }
+
+  document.getElementById('startBtn').addEventListener('click', start);
+  document.getElementById('shuffle').addEventListener('click', ()=>{
+    if(busy||!running) return; init(); paint();
+  });
+
+  // initial
+  init(); buildDOM(); paint();
+})();
+</script>
+</body>
+</html>

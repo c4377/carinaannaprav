@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Zen-Garten — Carina.Offer.Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#161311;--ink-soft:#3a3430;--creme:#f3ede2;--sand:#e4d9c6;
+    --line:#cdc0a9;--paper:#faf6ee;--terra:#b8623d;--terra-deep:#9e4f2f;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  body{
+    background:var(--creme);color:var(--ink);font-family:'Inter',sans-serif;
+    min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;padding:22px 16px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .stage{width:100%;max-width:460px;display:flex;flex-direction:column;align-items:center}
+  .eyebrow{font-size:.72rem;font-weight:600;letter-spacing:.24em;
+    text-transform:uppercase;color:var(--terra);text-align:center}
+  h1{font-family:'Playfair Display',serif;font-weight:400;font-size:2rem;
+    line-height:1.12;letter-spacing:-.01em;text-align:center;margin:8px 0 4px}
+  .tagline{font-size:.92rem;color:var(--ink-soft);text-align:center;margin-bottom:18px;max-width:34ch}
+
+  .garden{width:100%;border-radius:18px;overflow:hidden;
+    border:1px solid var(--line);position:relative;touch-action:none;
+    box-shadow:0 18px 40px -20px rgba(120,80,50,.45), inset 0 2px 16px rgba(120,90,60,.10)}
+  canvas{display:block;width:100%;height:auto;cursor:crosshair}
+
+  .tools{margin-top:18px;display:flex;gap:9px;flex-wrap:wrap;justify-content:center}
+  .tool{font-family:'Inter',sans-serif;font-weight:600;font-size:.85rem;
+    padding:12px 18px;border-radius:10px;cursor:pointer;border:1px solid var(--line);
+    background:var(--paper);color:var(--ink);display:flex;align-items:center;gap:7px;
+    transition:background .15s ease,border-color .15s ease,transform .1s ease}
+  .tool:hover{border-color:var(--terra)}
+  .tool:active{transform:translateY(1px)}
+  .tool.sel{border-color:var(--terra);background:var(--sand)}
+  .tool .ico{font-size:1.05rem;line-height:1}
+
+  .row2{margin-top:9px;display:flex;gap:9px;justify-content:center;flex-wrap:wrap}
+  .ghost{font-family:'Inter',sans-serif;font-weight:500;font-size:.82rem;
+    padding:11px 18px;border-radius:10px;cursor:pointer;border:1px solid var(--line);
+    background:transparent;color:var(--ink-soft);transition:border-color .15s ease,color .15s ease}
+  .ghost:hover{border-color:var(--terra);color:var(--terra)}
+  .ghost.accent{border-color:var(--terra);color:#fff;background:var(--terra)}
+  .ghost.accent:hover{background:var(--terra-deep)}
+
+  .hint{margin-top:16px;font-size:.8rem;color:var(--ink-soft);text-align:center;max-width:36ch}
+  .footer{margin-top:22px;display:flex;flex-direction:column;align-items:center;gap:4px}
+  .footer .brand{font-size:.78rem;letter-spacing:.04em;color:var(--ink-soft)}
+  .footer .sig{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--terra)}
+
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+  /* Seiten-Header (wie Rechtsseiten) */
+  .page-top{background:var(--paper);border-bottom:1px solid var(--line);
+    padding:16px 0;width:100%;position:relative;z-index:20}
+  .page-top .inner{max-width:600px;margin:0 auto;padding:0 22px;
+    display:flex;justify-content:space-between;align-items:center}
+  .page-top .brandmark{font-size:.92rem;letter-spacing:.02em;text-decoration:none;color:var(--ink)}
+  .page-top .brandmark b{font-weight:600}
+  .page-top .brandmark .accent{color:var(--terra)}
+  .page-top .back{font-size:.84rem;color:var(--ink-soft);text-decoration:none;transition:color .2s ease}
+  .page-top .back:hover{color:var(--terra)}
+</style>
+</head>
+<body>
+<header class="page-top">
+  <div class="inner">
+    <a class="brandmark" href="index.html"><b>carina</b><span class="accent">.offer.design</span></a>
+    <a class="back" href="index.html">← Zurück zur Seite</a>
+  </div>
+</header>
+<div class="stage">
+  <span class="eyebrow">Ein Moment Ruhe</span>
+  <h1>Zen-Garten</h1>
+  <p class="tagline">Zieh Linien in den Sand. Setz Steine. Kein Ziel — nur Ordnung, die unter deiner Hand entsteht.</p>
+
+  <div class="garden">
+    <canvas id="c" width="440" height="440"></canvas>
+  </div>
+
+  <div class="tools" id="tools">
+    <button class="tool sel" data-tool="rake"><span class="ico">〜</span>Harken</button>
+    <button class="tool" data-tool="stone"><span class="ico">⬤</span>Stein</button>
+    <button class="tool" data-tool="plant"><span class="ico">🌿</span>Moos</button>
+  </div>
+  <div class="row2">
+    <button class="ghost" id="undo">Letztes zurück</button>
+    <button class="ghost" id="clear">Garten glätten</button>
+    <button class="ghost accent" id="save">Als Bild speichern</button>
+  </div>
+
+  <p class="hint">Tipp: Mit dem Finger oder der Maus harken. Steine und Moos einfach antippen, wo sie liegen sollen.</p>
+
+  <div class="footer">
+    <div class="brand">carina.offer.design</div>
+    <div class="sig">You.Got.This</div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const cv = document.getElementById('c');
+  const ctx = cv.getContext('2d');
+  const DPR = Math.min(window.devicePixelRatio || 1, 2);
+
+  function fit(){
+    const w = cv.clientWidth;
+    cv.width  = w * DPR;
+    cv.height = w * DPR;
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+    redraw();
+  }
+
+  let tool = 'rake';
+  let strokes = [];
+  let objects = [];
+  let history = [];
+  let drawing = false, cur = null;
+
+  function W(){ return cv.clientWidth; }
+
+  document.getElementById('tools').addEventListener('click', e=>{
+    const b = e.target.closest('.tool'); if(!b) return;
+    document.querySelectorAll('.tool').forEach(t=>t.classList.remove('sel'));
+    b.classList.add('sel');
+    tool = b.dataset.tool;
+    cv.style.cursor = tool==='rake' ? 'crosshair' : 'pointer';
+  });
+  document.getElementById('clear').addEventListener('click', ()=>{
+    strokes=[]; objects=[]; history=[]; redraw();
+  });
+  document.getElementById('undo').addEventListener('click', ()=>{
+    const last = history.pop();
+    if(!last) return;
+    if(last.kind==='stroke') strokes.pop(); else objects.pop();
+    redraw();
+  });
+  document.getElementById('save').addEventListener('click', ()=>{
+    redraw();
+    const a=document.createElement('a');
+    a.download='mein-zen-garten.png';
+    a.href=cv.toDataURL('image/png');
+    a.click();
+  });
+
+  function pos(e){
+    const r = cv.getBoundingClientRect();
+    const t = e.touches ? e.touches[0] : e;
+    return { x:(t.clientX-r.left), y:(t.clientY-r.top) };
+  }
+  function down(e){
+    e.preventDefault();
+    const p = pos(e);
+    if(tool==='rake'){ drawing = true; cur = { type:'rake', pts:[p] }; }
+    else {
+      const r = tool==='stone' ? (17+Math.random()*18) : (12+Math.random()*9);
+      objects.push({ type:tool, x:p.x, y:p.y, r, seed:Math.random()*1000 });
+      history.push({kind:'object'}); redraw();
+    }
+  }
+  function move(e){
+    if(!drawing) return;
+    e.preventDefault();
+    const p = pos(e);
+    const last = cur.pts[cur.pts.length-1];
+    if(Math.hypot(p.x-last.x, p.y-last.y) > 4) cur.pts.push(p);
+    redraw(cur);
+  }
+  function up(){
+    if(drawing && cur && cur.pts.length>1){ strokes.push(cur); history.push({kind:'stroke'}); }
+    drawing=false; cur=null; redraw();
+  }
+  cv.addEventListener('mousedown', down);
+  cv.addEventListener('mousemove', move);
+  window.addEventListener('mouseup', up);
+  cv.addEventListener('touchstart', down, {passive:false});
+  cv.addEventListener('touchmove', move, {passive:false});
+  cv.addEventListener('touchend', up);
+
+  function smooth(pts){
+    if(pts.length<3) return pts;
+    const out=[];
+    for(let i=0;i<pts.length-1;i++){
+      const p0=pts[i-1]||pts[i], p1=pts[i], p2=pts[i+1], p3=pts[i+2]||p2;
+      for(let t=0;t<1;t+=0.2){
+        const t2=t*t, t3=t2*t;
+        out.push({
+          x:0.5*((2*p1.x)+(-p0.x+p2.x)*t+(2*p0.x-5*p1.x+4*p2.x-p3.x)*t2+(-p0.x+3*p1.x-3*p2.x+p3.x)*t3),
+          y:0.5*((2*p1.y)+(-p0.y+p2.y)*t+(2*p0.y-5*p1.y+4*p2.y-p3.y)*t2+(-p0.y+3*p1.y-3*p2.y+p3.y)*t3)
+        });
+      }
+    }
+    out.push(pts[pts.length-1]);
+    return out;
+  }
+
+  function sandBackground(){
+    const w = W();
+    const g = ctx.createRadialGradient(w*0.32, w*0.26, w*0.1, w*0.5, w*0.5, w*0.85);
+    g.addColorStop(0, '#f5eedf');
+    g.addColorStop(.55, '#ece2cf');
+    g.addColorStop(1, '#ddd0b8');
+    ctx.fillStyle = g; ctx.fillRect(0,0,w,w);
+    for(let i=0;i<w*1.6;i++){
+      ctx.fillStyle = Math.random()>.5 ? 'rgba(255,255,255,.03)' : 'rgba(120,90,60,.03)';
+      const s=Math.random()*1.6+.4;
+      ctx.fillRect(Math.random()*w, Math.random()*w, s, s);
+    }
+  }
+
+  function drawRake(stroke){
+    let pts = smooth(stroke.pts);
+    if(pts.length<2) return;
+    const valleys = [-12,-6,0,6,12];
+    valleys.forEach(off=>{
+      ctx.beginPath();
+      for(let i=0;i<pts.length;i++){
+        const a = pts[Math.max(0,i-1)], b = pts[i];
+        const dx=b.x-a.x, dy=b.y-a.y, len=Math.hypot(dx,dy)||1;
+        const nx=-dy/len, ny=dx/len;
+        const x=b.x+nx*off, y=b.y+ny*off;
+        i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+      }
+      ctx.strokeStyle='rgba(150,120,85,.55)';
+      ctx.lineWidth=3.4; ctx.lineCap='round'; ctx.lineJoin='round';
+      ctx.stroke();
+    });
+    [-9,-3,3,9].forEach(off=>{
+      ctx.beginPath();
+      for(let i=0;i<pts.length;i++){
+        const a = pts[Math.max(0,i-1)], b = pts[i];
+        const dx=b.x-a.x, dy=b.y-a.y, len=Math.hypot(dx,dy)||1;
+        const nx=-dy/len, ny=dx/len;
+        const x=b.x+nx*off, y=b.y+ny*off;
+        i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+      }
+      ctx.strokeStyle='rgba(255,250,240,.6)';
+      ctx.lineWidth=1.6; ctx.lineCap='round'; ctx.lineJoin='round';
+      ctx.stroke();
+    });
+  }
+
+  function drawStone(o){
+    ctx.save();
+    ctx.beginPath();
+    ctx.ellipse(o.x+5, o.y+7, o.r*1.05, o.r*0.8, 0, 0, Math.PI*2);
+    ctx.fillStyle='rgba(70,52,38,.20)';
+    ctx.filter='blur(5px)'; ctx.fill(); ctx.filter='none';
+    const g = ctx.createRadialGradient(o.x-o.r*0.45, o.y-o.r*0.55, o.r*0.15, o.x, o.y, o.r*1.15);
+    g.addColorStop(0,'#bdb1a0'); g.addColorStop(.55,'#9c8f7d'); g.addColorStop(1,'#766b5d');
+    ctx.beginPath();
+    ctx.ellipse(o.x, o.y, o.r, o.r*0.82, (o.seed%6)/6, 0, Math.PI*2);
+    ctx.fillStyle=g; ctx.fill();
+    ctx.beginPath();
+    ctx.ellipse(o.x-o.r*0.35, o.y-o.r*0.4, o.r*0.28, o.r*0.16, -0.5, 0, Math.PI*2);
+    ctx.fillStyle='rgba(255,252,245,.4)'; ctx.fill();
+    ctx.restore();
+  }
+
+  function drawPlant(o){
+    ctx.save();
+    ctx.beginPath();
+    ctx.ellipse(o.x+2, o.y+4, o.r*1.05, o.r*0.7, 0, 0, Math.PI*2);
+    ctx.fillStyle='rgba(70,52,38,.14)';
+    ctx.filter='blur(3px)'; ctx.fill(); ctx.filter='none';
+    const n=9;
+    for(let i=0;i<n;i++){
+      const ang=(i/n)*Math.PI*2 + o.seed;
+      const rr=o.r*(0.35+(i%3)*0.28);
+      const x=o.x+Math.cos(ang)*rr*0.75, y=o.y+Math.sin(ang)*rr*0.55;
+      const g=ctx.createRadialGradient(x-2,y-2,1,x,y,o.r*0.5);
+      g.addColorStop(0,'#9aa873'); g.addColorStop(1,'#6f7d4f');
+      ctx.beginPath(); ctx.arc(x,y,o.r*0.42,0,Math.PI*2); ctx.fillStyle=g; ctx.fill();
+    }
+    const gc=ctx.createRadialGradient(o.x-2,o.y-2,1,o.x,o.y,o.r*0.6);
+    gc.addColorStop(0,'#94a06d'); gc.addColorStop(1,'#6f7d4f');
+    ctx.beginPath(); ctx.arc(o.x,o.y,o.r*0.5,0,Math.PI*2); ctx.fillStyle=gc; ctx.fill();
+    ctx.restore();
+  }
+
+  function vignette(){
+    const w=W();
+    const g=ctx.createRadialGradient(w*0.5,w*0.46,w*0.35,w*0.5,w*0.5,w*0.72);
+    g.addColorStop(0,'rgba(0,0,0,0)');
+    g.addColorStop(1,'rgba(90,65,45,.16)');
+    ctx.fillStyle=g; ctx.fillRect(0,0,w,w);
+  }
+
+  function redraw(live){
+    sandBackground();
+    strokes.forEach(drawRake);
+    if(live) drawRake(live);
+    objects.slice().sort((a,b)=>b.r-a.r).forEach(o=>{
+      o.type==='stone'?drawStone(o):drawPlant(o);
+    });
+    vignette();
+  }
+
+  window.addEventListener('resize', fit);
+  fit();
+})();
+</script>
+</body>
+</html>

@@ -6,8 +6,13 @@
 <title>carina.offer.design — Angebotsdesign & Business Architecture</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
+  @font-face{
+    font-family:'Exclusive Editorial';
+    src:url('fonts/exclusive-editorial.ttf') format('truetype');
+    font-weight:400;font-style:normal;font-display:swap;
+  }
   :root{
     --ink:#161311;
     --ink-soft:#3a3430;
@@ -29,7 +34,7 @@
   }
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
 
-  h1,h2,h3{font-family:'Playfair Display',serif;font-weight:400;line-height:1.12;letter-spacing:-.01em}
+  h1,h2,h3{font-family:'Exclusive Editorial',serif;font-weight:400;line-height:1.12;letter-spacing:-.01em}
   h1{font-size:clamp(2.4rem,7vw,3.7rem)}
   h2{font-size:clamp(1.9rem,5vw,2.7rem)}
   h3{font-size:clamp(1.3rem,3.5vw,1.6rem)}
@@ -84,7 +89,7 @@
   .stats{margin-top:30px;display:grid;gap:22px}
   .stat{padding:22px 0;border-bottom:1px solid var(--line)}
   .stat:last-child{border-bottom:none}
-  .stat .num{font-family:'Playfair Display',serif;font-size:2.4rem;line-height:1}
+  .stat .num{font-family:'Exclusive Editorial',serif;font-size:2.4rem;line-height:1}
   .stat .txt{margin-top:8px;font-size:1.02rem}
   .stat .src{font-size:.82rem;color:var(--ink-soft);margin-top:4px}
 
@@ -97,8 +102,8 @@
   .level summary::-webkit-details-marker{display:none}
   .level .lv{font-size:.74rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);display:block;margin-bottom:8px}
   .band-ink .level .lv{color:#b6a886}
-  .level .name{font-family:'Playfair Display',serif;font-size:1.5rem;line-height:1.15}
-  .level .price{font-family:'Playfair Display',serif;font-size:1.35rem;white-space:nowrap;text-align:right}
+  .level .name{font-family:'Exclusive Editorial',serif;font-size:1.5rem;line-height:1.15}
+  .level .price{font-family:'Exclusive Editorial',serif;font-size:1.35rem;white-space:nowrap;text-align:right}
   .level .price small{display:block;font-family:'Inter',sans-serif;font-size:.72rem;letter-spacing:.04em;color:var(--ink-soft);font-weight:500}
   .band-ink .level .price small{color:#b6a886}
   .level .body{padding:0 26px 28px;border-top:1px solid var(--line)}
@@ -120,22 +125,22 @@
   /* process */
   .step{padding:26px 0;border-bottom:1px solid var(--line)}
   .step:last-child{border-bottom:none}
-  .step .n{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--ink-soft)}
+  .step .n{font-family:'Exclusive Editorial',serif;font-size:1.1rem;color:var(--ink-soft)}
   .step h3{margin-top:4px}
   .step p{margin-top:10px}
 
   /* faq */
   .faq{margin-top:30px;display:grid;gap:14px}
   .qa{background:var(--paper);border:1px solid var(--line);border-radius:5px;overflow:hidden}
-  .qa summary{list-style:none;cursor:pointer;padding:22px 24px;font-family:'Playfair Display',serif;font-size:1.2rem;display:flex;justify-content:space-between;gap:14px;align-items:center}
+  .qa summary{list-style:none;cursor:pointer;padding:22px 24px;font-family:'Exclusive Editorial',serif;font-size:1.2rem;display:flex;justify-content:space-between;gap:14px;align-items:center}
   .qa summary::-webkit-details-marker{display:none}
   .qa .chev{flex:none;opacity:.5;transition:transform .2s ease}
   .qa[open] summary .chev{transform:rotate(180deg)}
   .qa .a{padding:0 24px 24px;font-size:1rem}
 
   .foot{background:var(--ink);color:var(--creme);padding:70px 0 60px;text-align:center}
-  .foot .micro{font-family:'Playfair Display',serif;font-size:1.5rem;line-height:1.3;max-width:26ch;margin:0 auto}
-  .foot .sig{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--terra);margin-top:30px;letter-spacing:.02em}
+  .foot .micro{font-family:'Exclusive Editorial',serif;font-size:1.5rem;line-height:1.3;max-width:26ch;margin:0 auto}
+  .foot .sig{font-family:'Exclusive Editorial',serif;font-size:1.15rem;color:var(--terra);margin-top:30px;letter-spacing:.02em}
   .foot .small{margin-top:18px;font-size:.85rem;color:#b6a886;letter-spacing:.04em}
 
   @media (max-width:560px){
@@ -156,7 +161,7 @@
     border-bottom:1px solid var(--line)}
   .topbar .inner{max-width:var(--maxw);margin:0 auto;padding:14px 28px;
     display:flex;align-items:center;justify-content:space-between;gap:16px}
-  .topbar .brand{font-family:'Playfair Display',serif;font-size:1.02rem;letter-spacing:.01em}
+  .topbar .brand{font-family:'Exclusive Editorial',serif;font-size:1.02rem;letter-spacing:.01em}
   .topbar .brand b{color:var(--terra);font-weight:500}
   .topbar .cta{font-family:'Inter',sans-serif;font-weight:600;font-size:.82rem;
     letter-spacing:.02em;text-decoration:none;color:#fff;background:var(--terra);
@@ -172,9 +177,9 @@
   /* großer Claim-Statement-Block */
   .statement{background:var(--terra);color:#fff;text-align:center}
   .statement .wrap{padding:0 28px}
-  .statement h2{font-family:'Playfair Display',serif;color:#fff;
+  .statement h2{font-family:'Exclusive Editorial',serif;color:#fff;
     font-size:clamp(1.9rem,6vw,3rem);line-height:1.15;max-width:18ch;margin:0 auto}
-  .statement .sig{font-family:'Playfair Display',serif;margin-top:26px;font-size:1.1rem;
+  .statement .sig{font-family:'Exclusive Editorial',serif;margin-top:26px;font-size:1.1rem;
     color:rgba(255,255,255,.82);letter-spacing:.02em}
   @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
 </style>

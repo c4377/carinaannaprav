@@ -10,7 +10,7 @@
 <style>
   :root{
     --ink:#161311;--ink-soft:#3a3430;--creme:#f3ede2;--sand:#e4d9c6;
-    --line:#cdc0a9;--paper:#faf6ee;--maxw:680px;
+    --line:#cdc0a9;--paper:#faf6ee;--terra:#b8623d;--terra-deep:#9e4f2f;--maxw:680px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
@@ -18,81 +18,88 @@
     font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased;
     min-height:100vh;display:flex;flex-direction:column}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 26px;width:100%}
-  h1,h2,h3{font-family:'Playfair Display',serif;font-weight:400;line-height:1.13;letter-spacing:-.01em}
+  h1,h2,h3{font-family:'Playfair Display',serif;font-weight:400;line-height:1.14;letter-spacing:-.01em}
   h1{font-size:clamp(2rem,6vw,3rem)}
   h2{font-size:clamp(1.55rem,5vw,2.2rem)}
-  .eyebrow{font-size:.76rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft)}
+  .eyebrow{font-size:.76rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--terra)}
   p{margin-top:1em}
 
   main{flex:1;display:flex;align-items:center;padding:64px 0}
   .card{width:100%}
 
   .bar{height:3px;background:var(--line);border-radius:2px;margin-bottom:40px;overflow:hidden}
-  .bar > span{display:block;height:100%;background:var(--ink);width:0;transition:width .4s ease}
+  .bar > span{display:block;height:100%;background:var(--terra);width:0;transition:width .4s ease}
 
-  .intro .eyebrow{display:block;margin-bottom:22px}
-  .intro h1{margin-bottom:22px}
-  .intro p{font-size:1.12rem;color:var(--ink-soft);max-width:56ch}
+  .step-eyebrow{display:block;margin-bottom:20px}
+  h1.head{margin-bottom:20px}
+  .sub{font-size:1.1rem;color:var(--ink-soft);max-width:56ch}
 
   .btn{display:inline-block;font-family:'Inter',sans-serif;font-weight:600;font-size:.97rem;
     letter-spacing:.02em;padding:17px 32px;border-radius:2px;text-decoration:none;cursor:pointer;
-    border:1px solid var(--ink);background:var(--ink);color:var(--creme);
-    transition:transform .15s ease,opacity .2s ease}
-  .btn:hover{transform:translateY(-2px)}
-  .btn[disabled]{opacity:.4;cursor:not-allowed;transform:none}
-  .btn-row{margin-top:36px}
+    border:1px solid var(--terra);background:var(--terra);color:#fff;
+    transition:transform .15s ease,opacity .2s ease,background .2s ease}
+  .btn:hover{transform:translateY(-2px);background:var(--terra-deep);border-color:var(--terra-deep)}
+  .btn[disabled]{opacity:.45;cursor:not-allowed;transform:none}
+  .btn-row{margin-top:32px}
 
-  .qnum{font-size:.78rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
-  .q h2{margin-top:14px;margin-bottom:14px}
-  .qhint{color:var(--ink-soft);font-size:1rem;margin-bottom:26px}
-  .opts{display:grid;gap:12px}
+  textarea{width:100%;font-family:'Inter',sans-serif;font-size:1.05rem;line-height:1.55;
+    padding:18px 18px;border:1px solid var(--line);border-radius:6px;background:var(--paper);
+    color:var(--ink);resize:vertical;min-height:150px;margin-top:24px}
+  textarea:focus{outline:2px solid var(--terra);outline-offset:1px;border-color:var(--terra)}
+  .count{margin-top:8px;font-size:.82rem;color:var(--ink-soft);text-align:right}
+
+  .opts{display:grid;gap:11px;margin-top:24px}
   .opt{text-align:left;width:100%;background:var(--paper);border:1px solid var(--line);
-    border-radius:5px;padding:18px 20px;font-size:1.04rem;font-family:'Inter',sans-serif;
+    border-radius:6px;padding:16px 18px;font-size:1.02rem;font-family:'Inter',sans-serif;
     color:var(--ink);cursor:pointer;transition:border-color .15s ease,background .15s ease}
-  .opt:hover{border-color:var(--ink)}
-  .opt.sel{border-color:var(--ink);background:var(--sand)}
-  textarea{width:100%;font-family:'Inter',sans-serif;font-size:1.04rem;line-height:1.5;
-    padding:16px 18px;border:1px solid var(--line);border-radius:5px;background:var(--paper);
-    color:var(--ink);resize:vertical;min-height:120px}
-  textarea:focus{outline:2px solid var(--ink);outline-offset:1px;border-color:var(--ink)}
-  .back{margin-top:26px;display:inline-block;background:none;border:none;
+  .opt:hover{border-color:var(--terra)}
+  .opt.sel{border-color:var(--terra);background:var(--sand)}
+  .skip{margin-top:20px;display:inline-block;background:none;border:none;
     font-family:'Inter',sans-serif;font-size:.9rem;color:var(--ink-soft);cursor:pointer;
     text-decoration:underline;text-underline-offset:3px}
-  .fwd{margin-top:30px}
 
-  .result .eyebrow{display:block;margin-bottom:18px}
-  .result .type{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,5.5vw,2.7rem);line-height:1.1;margin-bottom:18px}
+  /* analyzing */
+  .analyzing{text-align:center;padding:30px 0}
+  .analyzing .dots{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--terra)}
+  .analyzing p{color:var(--ink-soft);margin-top:14px}
+  .spin{width:34px;height:34px;border:3px solid var(--line);border-top-color:var(--terra);
+    border-radius:50%;margin:0 auto 8px;animation:sp 1s linear infinite}
+  @keyframes sp{to{transform:rotate(360deg)}}
+
+  /* result */
+  .result .eyebrow{display:block;margin-bottom:16px}
+  .result .type{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,5.2vw,2.5rem);line-height:1.12;margin-bottom:16px}
   .result .diag{font-size:1.1rem;color:var(--ink-soft)}
-  .result .hebel{margin-top:26px;background:var(--sand);border-radius:6px;padding:24px}
-  .result .hebel .lab{font-size:.74rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+  .result .hebel{margin-top:24px;background:var(--sand);border-radius:8px;padding:24px}
+  .result .hebel .lab{font-size:.74rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--terra)}
   .result .hebel p{margin-top:8px}
 
-  .gate{margin-top:36px;border-top:1px solid var(--line);padding-top:34px}
-  .gate h3{font-size:1.4rem;margin-bottom:10px}
+  .gate{margin-top:34px;border-top:1px solid var(--line);padding-top:32px}
+  .gate h3{font-size:1.4rem;margin-bottom:8px}
   .gate p{margin-top:6px;color:var(--ink-soft);font-size:1.02rem}
-  .field{margin-top:22px;display:flex;flex-direction:column;gap:10px}
+  .field{margin-top:20px;display:flex;flex-direction:column;gap:10px}
   .field input{font-family:'Inter',sans-serif;font-size:1.05rem;padding:16px 18px;
-    border:1px solid var(--line);border-radius:3px;background:var(--paper);color:var(--ink)}
-  .field input:focus{outline:2px solid var(--ink);outline-offset:1px;border-color:var(--ink)}
+    border:1px solid var(--line);border-radius:4px;background:var(--paper);color:var(--ink)}
+  .field input:focus{outline:2px solid var(--terra);outline-offset:1px;border-color:var(--terra)}
   .consent{display:flex;gap:10px;align-items:flex-start;margin-top:16px;font-size:.85rem;color:var(--ink-soft)}
   .consent input{margin-top:3px;flex:none}
   .err{color:#9a3b26;font-size:.9rem;margin-top:12px;display:none}
   .sending{font-size:.9rem;color:var(--ink-soft);margin-top:14px;display:none}
 
-  .checklist-box{margin-top:14px;background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:28px}
+  .checklist-box{margin-top:14px;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:28px}
   .checklist-box h3{font-size:1.5rem;margin-bottom:6px}
   .cl{list-style:none;margin-top:18px}
   .cl li{padding-left:30px;position:relative;margin-top:15px;font-size:1.03rem}
-  .cl li::before{content:"";position:absolute;left:0;top:.55em;width:9px;height:9px;background:var(--ink);border-radius:50%}
+  .cl li::before{content:"";position:absolute;left:0;top:.55em;width:9px;height:9px;background:var(--terra);border-radius:50%}
   .cl li strong{font-weight:600}
 
   .hidden{display:none}
   @media (max-width:560px){
     body{font-size:17px}
-    main{padding:44px 0}
+    main{padding:40px 0}
     .btn{width:100%;text-align:center}
   }
-  @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}.spin{animation:none}}
 </style>
 </head>
 <body>
@@ -101,26 +108,46 @@
     <div class="bar"><span id="bar"></span></div>
 
     <!-- INTRO -->
-    <section id="intro" class="intro">
-      <span class="eyebrow">Der Angebots-Check</span>
-      <h1>Du siehst, wer kauft. Aber nicht, warum die anderen es nicht tun.</h1>
-      <p>Auf jede Kundin kommen viele, die fast gekauft hätten — und leise wieder gehen. Sie sind dein blinder Fleck, egal ob du gerade startest oder längst verkaufst. Beantworte ein paar Fragen aus deiner Sicht, und ich zeige dir, wo dein Angebot diese Menschen am wahrscheinlichsten verliert.</p>
+    <section id="intro">
+      <span class="eyebrow step-eyebrow">Der Angebots-Check</span>
+      <h1 class="head">Du siehst, wer kauft. Aber nicht, warum die anderen es nicht tun.</h1>
+      <p class="sub">Beschreib mir dein Angebot in deinen eigenen Worten. Ich schaue es mir an und zeige dir, wo es gerade die Menschen verliert, die fast gekauft hätten — und was dein erster Hebel ist.</p>
       <div class="btn-row">
-        <button class="btn" id="start">Check starten</button>
+        <button class="btn" id="start">Los geht's</button>
       </div>
     </section>
 
-    <!-- QUESTIONS -->
-    <section id="quiz" class="q hidden">
-      <div class="qnum" id="qnum"></div>
-      <h2 id="qtext"></h2>
-      <div class="qhint hidden" id="qhint"></div>
-      <div class="opts" id="opts"></div>
-      <div id="textwrap" class="hidden">
-        <textarea id="qfree" placeholder="Schreib einfach drauflos – ein, zwei Sätze reichen."></textarea>
-        <div class="fwd"><button class="btn" id="next">Weiter</button></div>
+    <!-- STEP 1: Angebot beschreiben -->
+    <section id="s1" class="hidden">
+      <span class="eyebrow step-eyebrow">Schritt 1 von 2</span>
+      <h2>Beschreib dein Angebot.</h2>
+      <p class="sub">So wie du es einer Freundin erklären würdest. Was bietest du an, für wen, und was kostet es? Kein Marketing — einfach ehrlich.</p>
+      <textarea id="angebot" maxlength="1500" placeholder="Zum Beispiel: Ich biete ein 1:1-Mentoring für Frauen an, die ein Coaching-Business starten wollen. 3 Monate, mit wöchentlichen Calls. Es kostet …"></textarea>
+      <div class="count"><span id="cnt">0</span> / 1500</div>
+      <div class="btn-row">
+        <button class="btn" id="toS2" disabled>Weiter</button>
       </div>
-      <button class="back hidden" id="back">← zurück</button>
+    </section>
+
+    <!-- STEP 2: Bauchgefühl -->
+    <section id="s2" class="hidden">
+      <span class="eyebrow step-eyebrow">Schritt 2 von 2</span>
+      <h2>Wo hakt es deiner Meinung nach am meisten?</h2>
+      <p class="sub">Nur dein Bauchgefühl — es hilft mir, genauer hinzuschauen. Du kannst es auch überspringen.</p>
+      <div class="opts" id="gutopts">
+        <button class="opt" data-k="wert">Sie verstehen nicht ganz, was sie bekommen</button>
+        <button class="opt" data-k="wenfuer">Ich erreiche oft die Falschen</button>
+        <button class="opt" data-k="preis">Es ist ihnen zu teuer</button>
+        <button class="opt" data-k="anlass">Sie zögern und entscheiden sich nie</button>
+      </div>
+      <button class="skip" id="skipGut">Überspringen und direkt analysieren →</button>
+    </section>
+
+    <!-- ANALYZING -->
+    <section id="analyzing" class="analyzing hidden">
+      <div class="spin"></div>
+      <div class="dots">Ich schaue mir dein Angebot an …</div>
+      <p>Einen Moment — ich nehme es gerade auseinander.</p>
     </section>
 
     <!-- RESULT -->
@@ -129,7 +156,7 @@
       <div class="type" id="rtype"></div>
       <p class="diag" id="rdiag"></p>
       <div class="hebel">
-        <div class="lab">Was das für dich heißt</div>
+        <div class="lab">Dein erster Hebel</div>
         <p id="rhebel"></p>
       </div>
 
@@ -172,186 +199,79 @@
 
 <script>
 (function(){
-  // Blind spots (the thing she can't see herself):
-  // wert    = beschreibt WAS es ist, nicht was sich verändert
-  // wenfuer = spricht zu viele an -> niemanden richtig
-  // preis   = nennt Preis ohne Wert davor aufzubauen
-  // anlass  = kein Grund, jetzt zu starten
-
-  const STEPS = [
-    {
-      type:'free',
-      q:"Beschreib dein Angebot in deinen eigenen Worten.",
-      hint:"So wie du es einer Freundin erklären würdest. Kein Marketing — einfach ehrlich."
-    },
-    {
-      type:'choice',
-      q:"Wenn du dein Angebot erklärst — worauf liegt dein Fokus?",
-      opts:[
-        ["Darauf, was drin ist und wie es abläuft","wert"],
-        ["Darauf, für wen es gemacht ist","wenfuer"],
-        ["Darauf, was es kostet und was man dafür bekommt","preis"],
-        ["Darauf, warum jetzt der richtige Moment ist","anlass"]
-      ]
-    },
-    {
-      type:'choice',
-      q:"Denk an die letzte Person, die interessiert war, aber nicht gekauft hat. Was vermutest du?",
-      hint:"Auch wenn du es nicht genau weißt — was ist dein Bauchgefühl?",
-      opts:[
-        ["Sie hat nicht ganz verstanden, was sie bekommt","wert"],
-        ["Sie war eigentlich gar nicht die Richtige dafür","wenfuer"],
-        ["Es war ihr wohl zu teuer","preis"],
-        ["Sie wollte es sich 'noch überlegen' — und meldete sich nie","anlass"]
-      ]
-    },
-    {
-      type:'choice',
-      q:"Jemand fragt 'Was bringt mir das?' — wie antwortest du am ehesten?",
-      opts:[
-        ["Ich erzähle, was alles enthalten ist","wert"],
-        ["Es kommt total drauf an, wen ich vor mir habe","wenfuer"],
-        ["Ich komme schnell auf Leistung und Preis","preis"],
-        ["Ich sage, was es bringt — aber nicht, warum jetzt","anlass"]
-      ]
-    },
-    {
-      type:'choice',
-      q:"Was glaubst du, hält die meisten davon ab, sofort Ja zu sagen?",
-      opts:[
-        ["Sie sehen den Wert nicht klar genug","wert"],
-        ["Ich erreiche die Falschen","wenfuer"],
-        ["Der Preis","preis"],
-        ["Es gibt keinen Druck, sich jetzt zu entscheiden","anlass"]
-      ]
-    }
-  ];
-
-  const SPOTS = {
-    wert:{
-      title:"Du beschreibst, was es ist — nicht, was sich verändert.",
-      diag:"Dein Angebot ist wahrscheinlich richtig stark. Aber du erklärst es über Inhalte und Ablauf — und die Menschen, die nicht kaufen, haben nie gespürt, was es mit IHREM Leben macht. Sie verstehen das Was, aber nicht das Wofür. Und ohne dieses Gefühl entscheidet sich niemand.",
-      hebel:"Dreh die Reihenfolge um: zuerst die Veränderung, dann der Inhalt. Nicht 'das ist drin', sondern 'so fühlt es sich danach an'. Das ist der Teil, den die stille Mehrheit braucht, um Ja zu sagen."
-    },
-    wenfuer:{
-      title:"Du sprichst zu viele an — und damit niemanden richtig.",
-      diag:"Du willst niemanden ausschließen, also bleibt dein Angebot offen für alle. Aber genau deshalb fühlt sich keine direkt gemeint. Die, die nicht kaufen, gehen nicht weil dein Angebot schlecht ist — sondern weil sie nie das Gefühl hatten 'das ist für mich'.",
-      hebel:"Schreib dein Angebot für genau eine Person, mit ihren Worten und ihrem konkreten Problem. Je klarer du für wen sprichst, desto stärker ziehst du die Richtigen an — und verlierst die Unentschlossenen nicht mehr lautlos."
-    },
-    preis:{
-      title:"Du nennst den Preis, bevor der Wert ihn tragen kann.",
-      diag:"Wenn du schnell bei Leistung und Preis bist, entscheidet die Kundin über die Zahl — bevor sie gespürt hat, was sie bekommt. Die, die nicht kaufen, finden es dann 'zu teuer'. Aber meistens war nicht der Preis das Problem, sondern dass der Wert davor nicht schwer genug wog.",
-      hebel:"Bau den Wert sichtbar auf, bevor du den Preis nennst. Was verändert sich konkret? Der Preis wird leicht, wenn das, was davor steht, schwer genug wiegt."
-    },
-    anlass:{
-      title:"Du gibst keinen Grund, jetzt zu starten.",
-      diag:"Dein Angebot überzeugt — aber es gibt keinen Anlass, sich heute zu entscheiden. Die, die nicht kaufen, sagen 'ich überleg's mir noch' und verschwinden leise. Nicht aus Desinteresse, sondern weil nichts sie hält. Ein 'irgendwann' wird fast nie zu einem 'jetzt'.",
-      hebel:"Gib einen ehrlichen Grund, jetzt zu starten — begrenzte Plätze, ein klarer Startpunkt, ein konkreter nächster Schritt. Kein künstlicher Druck, sondern ein echter Anlass, die Entscheidung nicht weiter aufzuschieben."
-    }
-  };
-
-  let step = 0;
-  const total = STEPS.length;
-  const choices = [];
-  let freeText = '';
-
   const el = id => document.getElementById(id);
   const bar = el('bar');
+  let angebotText = '';
+  let gut = '';
+  let result = null;
 
-  function setBar(){
-    let pct = 0;
-    if(step===0) pct = 4;
-    else if(step<=total) pct = (step/total)*100*0.85 + 4;
-    else pct = 100;
-    bar.style.width = Math.min(pct,100)+'%';
+  function show(secId, pct){
+    ['intro','s1','s2','analyzing','result'].forEach(s=>el(s).classList.add('hidden'));
+    el(secId).classList.remove('hidden');
+    bar.style.width = pct+'%';
+    window.scrollTo({top:0,behavior:'smooth'});
   }
 
-  el('start').addEventListener('click',()=>{ step=1; render(); });
+  // intro -> step 1
+  el('start').addEventListener('click', ()=> show('s1', 12));
 
-  function render(){
-    el('intro').classList.add('hidden');
-    el('result').classList.add('hidden');
-    el('quiz').classList.remove('hidden');
-    const item = STEPS[step-1];
-    el('qnum').textContent = 'Frage '+step+' von '+total;
-    el('qtext').textContent = item.q;
+  // textarea count + enable
+  const ta = el('angebot');
+  ta.addEventListener('input', ()=>{
+    const v = ta.value.trim();
+    el('cnt').textContent = ta.value.length;
+    el('toS2').disabled = v.length < 15;
+  });
 
-    const hint = el('qhint');
-    if(item.hint){ hint.textContent=item.hint; hint.classList.remove('hidden'); }
-    else hint.classList.add('hidden');
+  // step1 -> step2
+  el('toS2').addEventListener('click', ()=>{
+    angebotText = ta.value.trim();
+    show('s2', 55);
+  });
 
-    const opts = el('opts');
-    const textwrap = el('textwrap');
-    opts.innerHTML='';
+  // step2 gut feeling
+  el('gutopts').addEventListener('click', (e)=>{
+    const b = e.target.closest('.opt');
+    if(!b) return;
+    document.querySelectorAll('#gutopts .opt').forEach(o=>o.classList.remove('sel'));
+    b.classList.add('sel');
+    gut = b.dataset.k;
+    analyze();
+  });
+  el('skipGut').addEventListener('click', ()=>{ gut=''; analyze(); });
 
-    if(item.type==='free'){
-      opts.classList.add('hidden');
-      textwrap.classList.remove('hidden');
-      el('qfree').value = freeText;
-    } else {
-      opts.classList.remove('hidden');
-      textwrap.classList.add('hidden');
-      item.opts.forEach(([label,key])=>{
-        const b=document.createElement('button');
-        b.className='opt'+(choices[step-1]===key?' sel':'');
-        b.textContent=label;
-        b.addEventListener('click',()=>{ choices[step-1]=key; advance(); });
-        opts.appendChild(b);
+  async function analyze(){
+    show('analyzing', 80);
+    try{
+      const res = await fetch('/.netlify/functions/analyze', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ angebot: angebotText, fokus: gut })
       });
+      if(!res.ok) throw new Error('bad');
+      result = await res.json();
+    }catch(e){
+      // letzter Notfall-Fallback (falls Funktion gar nicht erreichbar)
+      result = {
+        title: 'Dein Angebot braucht einen klareren Kern.',
+        diag: 'Ich konnte dein Angebot gerade nicht im Detail analysieren — aber meistens liegt der Hebel darin, glasklar zu machen, was sich für deine Kundin verändert.',
+        hebel: 'Schreib in einem Satz: Wer bekommt was — und was verändert sich dadurch?'
+      };
     }
-
-    el('back').classList.toggle('hidden', step<=1);
-    setBar();
-    window.scrollTo({top:0,behavior:'smooth'});
+    el('rtype').textContent = result.title;
+    el('rdiag').textContent = result.diag;
+    el('rhebel').textContent = result.hebel;
+    show('result', 100);
   }
 
-  el('next').addEventListener('click',()=>{
-    freeText = el('qfree').value.trim();
-    advance();
-  });
-
-  function advance(){
-    if(step<total){ step++; render(); }
-    else showResult();
-  }
-
-  el('back').addEventListener('click',()=>{
-    if(STEPS[step-1].type==='free') freeText = el('qfree').value.trim();
-    if(step>1){ step--; render(); }
-  });
-
-  let resultSpot=null;
-
-  function dominant(){
-    const tally={};
-    choices.forEach(k=>{ if(k) tally[k]=(tally[k]||0)+1; });
-    let best='wert', n=-1;
-    ['wert','wenfuer','preis','anlass'].forEach(k=>{
-      if((tally[k]||0)>n){ n=tally[k]||0; best=k; }
-    });
-    return best;
-  }
-
-  function showResult(){
-    resultSpot = dominant();
-    const s = SPOTS[resultSpot];
-    el('quiz').classList.add('hidden');
-    el('result').classList.remove('hidden');
-    el('rtype').textContent = s.title;
-    el('rdiag').textContent = s.diag;
-    el('rhebel').textContent = s.hebel;
-    step = total+1;
-    setBar();
-    window.scrollTo({top:0,behavior:'smooth'});
-  }
-
+  // submit email
   el('submit').addEventListener('click', async ()=>{
-    const name=el('fname').value.trim();
-    const email=el('femail').value.trim();
-    const consent=el('fconsent').checked;
-    const err=el('err'); err.style.display='none';
+    const name = el('fname').value.trim();
+    const email = el('femail').value.trim();
+    const consent = el('fconsent').checked;
+    const err = el('err'); err.style.display='none';
 
-    if(!email||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){
+    if(!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){
       err.textContent='Bitte gib eine gültige E-Mail-Adresse ein.';
       err.style.display='block'; return;
     }
@@ -364,12 +284,17 @@
     el('sending').style.display='block';
 
     try{
-      const res=await fetch('/.netlify/functions/subscribe',{
+      const res = await fetch('/.netlify/functions/subscribe', {
         method:'POST',
         headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({ name, email, type: resultSpot, angebot: freeText })
+        body: JSON.stringify({
+          name, email,
+          type: gut || 'unbekannt',
+          angebot: angebotText,
+          befund: result ? result.title : ''
+        })
       });
-      if(!res.ok) throw new Error('bad status');
+      if(!res.ok) throw new Error('bad');
       el('gate').classList.add('hidden');
       el('clbox').classList.remove('hidden');
       window.scrollTo({top:0,behavior:'smooth'});

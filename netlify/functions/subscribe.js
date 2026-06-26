@@ -30,11 +30,18 @@ exports.handler = async (event) => {
   const API_URL  = process.env.AC_API_URL;
   const API_KEY  = process.env.AC_API_KEY;
   const LIST_ID  = process.env.AC_LIST_ID;
-  const FIELD_ID = process.env.AC_FIELD_ID;
+  const FIELD_ID = process.env.AC_FIELD_ID;            // optional
   const ANGEBOT_FIELD_ID = process.env.AC_ANGEBOT_FIELD_ID; // optional
 
-  if (!API_URL || !API_KEY || !LIST_ID || !FIELD_ID) {
-    return { statusCode: 500, body: JSON.stringify({ error: 'Server not configured' }) };
+  // Nur die wirklich nötigen Variablen sind Pflicht.
+  if (!API_URL || !API_KEY || !LIST_ID) {
+    const missing = [
+      !API_URL ? 'AC_API_URL' : null,
+      !API_KEY ? 'AC_API_KEY' : null,
+      !LIST_ID ? 'AC_LIST_ID' : null,
+    ].filter(Boolean).join(', ');
+    console.log('subscribe: missing env vars ->', missing);
+    return { statusCode: 500, body: JSON.stringify({ error: 'Server not configured', missing }) };
   }
 
   let data;
@@ -58,28 +65,29 @@ exports.handler = async (event) => {
   const headers = { 'Api-Token': API_KEY, 'Content-Type': 'application/json' };
   const base = API_URL.replace(/\/$/, '');
 
-  const fieldValues = [{ field: String(FIELD_ID), value: typeLabel }];
+  const fieldValues = [];
+  if (FIELD_ID) {
+    fieldValues.push({ field: String(FIELD_ID), value: typeLabel });
+  }
   if (ANGEBOT_FIELD_ID && angebot) {
     const combined = befund ? `${angebot}\n\n[Befund: ${befund}]` : angebot;
     fieldValues.push({ field: String(ANGEBOT_FIELD_ID), value: combined });
   }
 
+  const contactPayload = { email, firstName: name };
+  if (fieldValues.length) contactPayload.fieldValues = fieldValues;
+
   try {
-    // 1) Create or update contact (sync) + set custom field
+    // 1) Create or update contact (sync) + set custom fields (if any)
     const syncRes = await fetch(`${base}/api/3/contact/sync`, {
       method: 'POST',
       headers,
-      body: JSON.stringify({
-        contact: {
-          email,
-          firstName: name,
-          fieldValues,
-        },
-      }),
+      body: JSON.stringify({ contact: contactPayload }),
     });
 
     if (!syncRes.ok) {
       const t = await syncRes.text();
+      console.log('subscribe: AC sync failed', syncRes.status, t);
       return { statusCode: 502, body: JSON.stringify({ error: 'AC sync failed', detail: t }) };
     }
 
@@ -135,6 +143,7 @@ exports.handler = async (event) => {
 
     return { statusCode: 200, body: JSON.stringify({ ok: true }) };
   } catch (e) {
+    console.log('subscribe: unexpected error', String(e));
     return { statusCode: 500, body: JSON.stringify({ error: 'Unexpected', detail: String(e) }) };
   }
 };

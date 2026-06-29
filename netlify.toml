@@ -1,6 +1,9 @@
+# Netlify-Konfiguration
+
 [build]
   publish = "."
   functions = "netlify/functions"
 
-[functions]
-  node_bundler = "esbuild"
+# Scheduled Function: TidyCal alle 30 Minuten auf neue Buchungen pruefen
+[functions."tidycal-telegram"]
+  schedule = "*/30 * * * *"

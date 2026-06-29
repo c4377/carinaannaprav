@@ -1,131 +1,151 @@
 // netlify/functions/tidycal-telegram.js
 //
-// Empfängt den TidyCal-Webhook bei einer neuen Buchung und schickt
-// dir eine Telegram-Nachricht.
+// Scheduled Function: fragt alle 30 Minuten die TidyCal-API nach neuen Buchungen
+// ab und schickt fuer jede neue Buchung eine Telegram-Nachricht.
+// Deduplizierung lueckenlos ueber Netlify Blobs (gespeicherte Booking-IDs).
 //
-// Secrets als Netlify-Umgebungsvariablen (Site settings → Environment variables):
-//   TELEGRAM_BOT_TOKEN   Token deines Bots (von @BotFather)
-//   TELEGRAM_CHAT_ID     deine Chat-ID (von @userinfobot)
-//   TIDYCAL_WEBHOOK_SECRET  (optional) ein selbst gewähltes Passwort, das du
-//                           als ?secret=... an die Webhook-URL hängst, damit
-//                           niemand sonst die Funktion auslösen kann.
+// Benoetigte Umgebungsvariablen (Netlify -> Site configuration -> Environment variables):
+//   TIDYCAL_API_KEY    - Personal Access Token aus
+//                        tidycal.com/integrations/advanced -> "Manage API keys" -> "Personal tokens"
+//   TELEGRAM_BOT_TOKEN - Token vom @BotFather (z. B. 123456789:ABC-DEF...)
+//   TELEGRAM_CHAT_ID   - deine Telegram User-ID (z. B. via @userinfobot)
+//
+// Zeitplan: siehe Export "config.schedule" unten + netlify.toml
 
-exports.handler = async (event) => {
-  if (event.httpMethod !== 'POST') {
-    return { statusCode: 405, body: 'Method Not Allowed' };
-  }
+import { getStore } from "@netlify/blobs";
 
-  const BOT = process.env.TELEGRAM_BOT_TOKEN;
-  const CHAT = process.env.TELEGRAM_CHAT_ID;
-  const SECRET = process.env.TIDYCAL_WEBHOOK_SECRET; // optional
+const TIDYCAL_API_KEY = process.env.TIDYCAL_API_KEY;
+const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
+const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 
-  if (!BOT || !CHAT) {
-    return { statusCode: 500, body: 'Telegram not configured' };
-  }
+const TIDYCAL_BOOKINGS_URL = "https://tidycal.com/api/bookings";
+const STORE_NAME = "tidycal-telegram";
+const STATE_KEY = "state"; // { initialized: bool, seenIds: number[] }
 
-  // Optionaler Schutz: ?secret=... muss passen, wenn gesetzt
-  if (SECRET) {
-    const given = (event.queryStringParameters || {}).secret;
-    if (given !== SECRET) {
-      return { statusCode: 401, body: 'Unauthorized' };
-    }
-  }
+function esc(s) {
+  return String(s == null ? "" : s)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
 
-  let data = {};
+function fmt(iso, tz) {
+  if (!iso) return "";
   try {
-    data = JSON.parse(event.body || '{}');
+    return new Intl.DateTimeFormat("de-AT", {
+      dateStyle: "full",
+      timeStyle: "short",
+      timeZone: tz || "Europe/Vienna",
+    }).format(new Date(iso));
   } catch {
-    // TidyCal sollte JSON schicken; falls nicht, einfach Rohtext weitergeben
-    data = { raw: event.body };
+    return iso;
   }
+}
 
-  // TidyCal-Felder sind je nach Setup leicht unterschiedlich verschachtelt.
-  // Wir greifen defensiv auf die wahrscheinlichsten Stellen zu.
-  const booking = data.booking || data.data || data;
-
-  const name =
-    booking.contact_name ||
-    (booking.contact && booking.contact.name) ||
-    booking.name ||
-    'Unbekannt';
-
-  const email =
-    booking.contact_email ||
-    (booking.contact && booking.contact.email) ||
-    booking.email ||
-    '';
-
-  const startsAt =
-    booking.starts_at ||
-    booking.start_time ||
-    booking.startsAt ||
-    '';
-
-  const bookingType =
-    (booking.booking_type && booking.booking_type.title) ||
-    booking.booking_type_title ||
-    booking.title ||
-    'Termin';
-
-  // Antworten auf deine Buchungsfrage (z.B. „Beschreib dein Angebot …")
-  let answers = '';
-  const qa = booking.questions || booking.answers || booking.booking_questions;
-  if (Array.isArray(qa)) {
-    answers = qa
-      .map((q) => {
-        const frage = q.question || q.title || q.label || 'Frage';
-        const antwort = q.answer || q.value || q.response || '';
-        return antwort ? `• ${frage}\n  ${antwort}` : '';
-      })
-      .filter(Boolean)
-      .join('\n');
-  }
-
-  // Datum hübsch machen (best effort)
-  let when = startsAt;
-  try {
-    if (startsAt) {
-      when = new Date(startsAt).toLocaleString('de-AT', {
-        weekday: 'short', day: '2-digit', month: '2-digit',
-        hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Vienna',
-      });
-    }
-  } catch (_) {}
-
-  const lines = [
-    '🎉 *Neue Buchung*',
-    `*${escapeMd(bookingType)}*`,
-    '',
-    `👤 ${escapeMd(name)}`,
-    email ? `✉️ ${escapeMd(email)}` : '',
-    when ? `🗓️ ${escapeMd(when)}` : '',
-    answers ? `\n📝 *Vorab:*\n${escapeMd(answers)}` : '',
-  ].filter(Boolean);
-
-  const text = lines.join('\n');
-
-  try {
-    const res = await fetch(`https://api.telegram.org/bot${BOT}/sendMessage`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+async function sendTelegram(text) {
+  const res = await fetch(
+    `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        chat_id: CHAT,
+        chat_id: TELEGRAM_CHAT_ID,
         text,
-        parse_mode: 'Markdown',
+        parse_mode: "HTML",
         disable_web_page_preview: true,
       }),
+    }
+  );
+  if (!res.ok) throw new Error(`Telegram ${res.status}: ${await res.text()}`);
+}
+
+function buildMessage(b) {
+  const name = b.contact?.name || "";
+  const email = b.contact?.email || "";
+  const when = fmt(b.starts_at, b.timezone);
+  const lines = ["\u{1F5D3}\uFE0F <b>Neue Buchung \u00fcber TidyCal</b>", ""];
+  if (when) lines.push(`<b>Wann:</b> ${esc(when)}`);
+  if (name) lines.push(`<b>Name:</b> ${esc(name)}`);
+  if (email) lines.push(`<b>E-Mail:</b> ${esc(email)}`);
+  if (b.meeting_url) lines.push(`<b>Meeting:</b> ${esc(b.meeting_url)}`);
+  if (Array.isArray(b.questions)) {
+    for (const q of b.questions) {
+      if (q?.answer) lines.push(`<b>${esc(q.question || "Frage")}:</b> ${esc(q.answer)}`);
+    }
+  }
+  return lines.join("\n");
+}
+
+export default async () => {
+  if (!TIDYCAL_API_KEY || !TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
+    console.error("Fehlende Env-Variablen.");
+    return new Response("Server not configured", { status: 500 });
+  }
+
+  const store = getStore(STORE_NAME);
+
+  let state = { initialized: false, seenIds: [] };
+  try {
+    const saved = await store.get(STATE_KEY, { type: "json" });
+    if (saved) state = saved;
+  } catch (e) {
+    console.warn("Blob-Stand nicht ladbar, starte frisch:", e.message);
+  }
+
+  // Zukuenftige, nicht stornierte Buchungen abfragen (ab jetzt)
+  const params = new URLSearchParams({ cancelled: "false" });
+  params.set("starts_at", new Date().toISOString());
+
+  let bookings = [];
+  try {
+    const res = await fetch(`${TIDYCAL_BOOKINGS_URL}?${params.toString()}`, {
+      headers: { Authorization: `Bearer ${TIDYCAL_API_KEY}`, Accept: "application/json" },
     });
     if (!res.ok) {
-      const t = await res.text();
-      return { statusCode: 502, body: 'Telegram error: ' + t };
+      console.error("TidyCal API error:", res.status, await res.text());
+      return new Response("TidyCal fetch failed", { status: 502 });
     }
-    return { statusCode: 200, body: 'ok' };
+    const json = await res.json();
+    bookings = Array.isArray(json?.data) ? json.data : [];
   } catch (e) {
-    return { statusCode: 500, body: 'Unexpected: ' + String(e) };
+    console.error("TidyCal fetch failed:", e.message);
+    return new Response("TidyCal fetch failed", { status: 502 });
   }
+
+  const seen = new Set(state.seenIds || []);
+  const fresh = bookings
+    .filter((b) => b && b.id != null && !b.cancelled_at && !seen.has(b.id))
+    .sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
+
+  let notified = 0;
+  for (const b of fresh) {
+    // Erster Lauf: nur Bestand als "gesehen" merken, NICHT verschicken
+    if (state.initialized) {
+      try {
+        await sendTelegram(buildMessage(b));
+        notified++;
+      } catch (e) {
+        console.error("Telegram-Versand fehlgeschlagen, Booking", b.id, e.message);
+        continue; // nicht als gesehen markieren -> naechster Lauf versucht erneut
+      }
+    }
+    seen.add(b.id);
+  }
+
+  const trimmedSeen = Array.from(seen).slice(-500);
+  try {
+    await store.setJSON(STATE_KEY, { initialized: true, seenIds: trimmedSeen });
+  } catch (e) {
+    console.error("Blob-Stand nicht speicherbar:", e.message);
+  }
+
+  const msg = state.initialized
+    ? `${notified} neue Buchung(en) gemeldet.`
+    : `Erster Lauf: ${fresh.length} bestehende Buchung(en) als Basis gespeichert, nichts verschickt.`;
+  console.log(msg);
+  return new Response(msg, { status: 200 });
 };
 
-// Markdown-Sonderzeichen entschärfen, damit Telegram nicht stolpert
-function escapeMd(s) {
-  return String(s).replace(/([_*`\[\]])/g, '\\$1');
-}
+export const config = {
+  schedule: "*/30 * * * *",
+};

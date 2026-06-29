@@ -4,22 +4,27 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Impressum — Carina.Offer.Design</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  @font-face{
+    font-family:'Inter';
+    src:url('fonts/Inter.woff2') format('woff2');
+    font-weight:100 900;font-style:normal;font-display:swap;
+  }
+  
+</style>
 <style>
   :root{
     --ink:#161311;--ink-soft:#3a3430;--creme:#f3ede2;--sand:#e4d9c6;
-    --line:#cdc0a9;--paper:#faf6ee;--terra:#b8623d;--terra-deep:#9e4f2f;--maxw:720px;
+    --line:#cdc0a9;--paper:#faf6ee;--terra:#443027;--terra-deep:#2e2019;--terra-soft:#a87c5a;--maxw:720px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
   body{background:var(--creme);color:var(--ink);font-family:'Inter',sans-serif;
     font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 26px}
-  h1{font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(2rem,6vw,3rem);
+  h1{font-family:'Inter',sans-serif;font-weight:800;letter-spacing:-.02em;font-size:clamp(2rem,6vw,3rem);
     line-height:1.12;letter-spacing:-.01em;margin-bottom:8px}
-  h2{font-family:'Playfair Display',serif;font-weight:400;font-size:1.4rem;
+  h2{font-family:'Inter',sans-serif;font-weight:800;letter-spacing:-.02em;font-size:1.4rem;
     margin:38px 0 10px;letter-spacing:-.01em}
   .eyebrow{font-size:.74rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
     color:var(--terra);display:block;margin-bottom:18px}
@@ -40,7 +45,7 @@
   .ph{background:#f6ead9;border:1px dashed var(--terra);border-radius:4px;
     padding:1px 7px;font-size:.92em;color:var(--terra-deep)}
   footer.foot{background:var(--ink);color:var(--creme);padding:46px 0;text-align:center;margin-top:50px}
-  footer.foot .sig{font-family:'Playfair Display',serif;font-size:1.2rem;color:#d98a63}
+  footer.foot .sig{font-family:'Inter',sans-serif;font-weight:700;font-size:1.2rem;color:var(--terra-soft)}
   footer.foot .links{margin-top:16px;font-size:.85rem}
   footer.foot a{color:#b6a886;margin:0 9px}
   @media (max-width:560px){body{font-size:16px}main{padding:44px 0 30px}}
@@ -86,15 +91,7 @@
       <p>Einzelunternehmerin, tätig als Neue Selbständige.</p>
       <p>Umsatzsteuerbefreite Kleinunternehmerin gemäß § 6 Abs. 1 Z 27 UStG —
       es wird keine Umsatzsteuer ausgewiesen.</p>
-      <p>UID-Nummer: <span class="ph">keine (Kleinunternehmerin)</span></p>
-    </div>
-
-    <div class="note">
-      <strong>Hinweis zur Einstufung:</strong> Bitte prüfe vor dem Livegang mit SVS bzw.
-      WKO, ob deine Beratungs- und Mentoring-Leistung als „Neue Selbständige" oder als
-      (freies) Gewerbe einzustufen ist. Bei einer Gewerbeanmeldung sind zusätzlich
-      Gewerbeordnung, zuständige Gewerbebehörde und WKO-Mitgliedschaft anzugeben.
-      Dieser Hinweis ist nicht Teil des veröffentlichten Impressums — vor Livegang entfernen.
+      <p>UID-Nummer: keine (Kleinunternehmerin gemäß § 6 Abs. 1 Z 27 UStG)</p>
     </div>
 
     <h2>Online-Streitbeilegung</h2>
@@ -115,7 +112,7 @@
 
 <footer class="foot">
   <div class="wrap">
-    <div class="sig">You.Got.This</div>
+    <div class="sig">Klarheit statt mehr Tun.</div>
     <div class="links">
       <a href="impressum.html">Impressum</a>
       <a href="datenschutz.html">Datenschutz</a>

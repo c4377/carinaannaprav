@@ -4,18 +4,23 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Plopp — Carina.Offer.Design</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  @font-face{
+    font-family:'Inter';
+    src:url('fonts/Inter.woff2') format('woff2');
+    font-weight:100 900;font-style:normal;font-display:swap;
+  }
+  
+</style>
 <style>
   :root{
     --ink:#161311;--ink-soft:#3a3430;--creme:#f3ede2;--sand:#e4d9c6;
-    --line:#cdc0a9;--paper:#faf6ee;--terra:#b8623d;--terra-deep:#9e4f2f;
+    --line:#cdc0a9;--paper:#faf6ee;--terra:#443027;--terra-deep:#2e2019;--terra-soft:#a87c5a;
     /* lebendigere Markenfarben */
     --p1:#cf6a3e; /* warmes terrakotta */
     --p2:#8a9b57; /* frisches salbei */
     --p3:#e0a23f; /* goldamber */
-    --p4:#5f8a86; /* gedämpftes petrol/teal (aus Markenwelt) */
+    --p4:#8b8aa8; /* lavendel (markenfarbe, aus Instagram) */
     --p5:#bd4a4a; /* lebendiges tonrot */
   }
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -28,7 +33,7 @@
   .stage{width:100%;max-width:440px;display:flex;flex-direction:column;align-items:center}
   .eyebrow{font-size:.72rem;font-weight:600;letter-spacing:.24em;
     text-transform:uppercase;color:var(--terra);text-align:center}
-  h1{font-family:'Playfair Display',serif;font-weight:400;font-size:2rem;
+  h1{font-family:'Inter',sans-serif;font-weight:800;letter-spacing:-.02em;font-weight:400;font-size:2rem;
     line-height:1.12;letter-spacing:-.01em;text-align:center;margin:8px 0 4px}
   .tagline{font-size:.9rem;color:var(--ink-soft);text-align:center;margin-bottom:14px}
 
@@ -36,7 +41,7 @@
   .stat{text-align:center;flex:1;min-width:0}
   .stat .lab{font-size:.58rem;font-weight:600;letter-spacing:.12em;
     text-transform:uppercase;color:var(--terra)}
-  .stat .val{font-family:'Playfair Display',serif;font-size:1.35rem;line-height:1.1}
+  .stat .val{font-family:'Inter',sans-serif;font-weight:800;letter-spacing:-.02em;font-size:1.35rem;line-height:1.1}
   .stat.time .val{transition:color .3s ease}
   .stat.time.low .val{color:var(--p5)}
 
@@ -91,7 +96,7 @@
 
   /* Combo-Anzeige */
   .combo{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(.6);
-    font-family:'Playfair Display',serif;font-size:2.4rem;color:var(--terra-deep);
+    font-family:'Inter',sans-serif;font-weight:800;letter-spacing:-.02em;font-size:2.4rem;color:var(--terra-deep);
     text-shadow:0 2px 12px rgba(255,255,255,.8);opacity:0;pointer-events:none;z-index:8}
   .combo.show{animation:combo .8s ease forwards}
   @keyframes combo{0%{opacity:0;transform:translate(-50%,-50%) scale(.6)}
@@ -116,14 +121,14 @@
     display:flex;flex-direction:column;align-items:center;justify-content:center;
     text-align:center;padding:26px;border-radius:16px}
   .panel.hidden{display:none}
-  .panel h2{font-family:'Playfair Display',serif;font-weight:400;font-size:1.6rem;margin-bottom:8px}
+  .panel h2{font-family:'Inter',sans-serif;font-weight:800;letter-spacing:-.02em;font-weight:400;font-size:1.6rem;margin-bottom:8px}
   .panel p{font-size:.92rem;color:var(--ink-soft);max-width:30ch;margin-bottom:18px}
   .reward{display:none;width:100%;max-width:290px;margin:0 auto 18px;background:var(--sand);
     border:1px solid var(--terra);border-radius:12px;padding:16px 18px;text-align:center}
   .reward.show{display:block;animation:rIn .5s ease}
   @keyframes rIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
   .reward .rlab{font-size:.64rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--terra)}
-  .reward .rhead{font-family:'Playfair Display',serif;font-size:1.1rem;line-height:1.25;margin:6px 0 10px}
+  .reward .rhead{font-family:'Inter',sans-serif;font-weight:800;letter-spacing:-.02em;font-size:1.1rem;line-height:1.25;margin:6px 0 10px}
   .reward .code{font-weight:600;font-size:1.2rem;letter-spacing:.14em;color:var(--terra-deep);
     background:var(--paper);border:1px dashed var(--terra);border-radius:8px;padding:10px;margin-bottom:6px}
   .reward .rfine{font-size:.76rem;color:var(--ink-soft);line-height:1.45}
@@ -134,7 +139,7 @@
 
   .footer{margin-top:20px;display:flex;flex-direction:column;align-items:center;gap:4px}
   .footer .brand{font-size:.78rem;letter-spacing:.04em;color:var(--ink-soft)}
-  .footer .sig{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--terra)}
+  .footer .sig{font-family:'Inter',sans-serif;font-weight:800;letter-spacing:-.02em;font-size:1.05rem;color:var(--terra)}
 
   @media (prefers-reduced-motion:reduce){.gem,.gem.pop,.gem.drop{animation:none;transition:none}}
 
@@ -199,7 +204,7 @@
 
   <div class="footer">
     <div class="brand">carina.offer.design</div>
-    <div class="sig">You.Got.This</div>
+    <div class="sig">Klarheit statt mehr Tun.</div>
   </div>
 </div>
 

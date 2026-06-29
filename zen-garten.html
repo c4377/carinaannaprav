@@ -4,13 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Zen-Garten — Carina.Offer.Design</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  @font-face{
+    font-family:'Inter';
+    src:url('fonts/Inter.woff2') format('woff2');
+    font-weight:100 900;font-style:normal;font-display:swap;
+  }
+  
+</style>
 <style>
   :root{
     --ink:#161311;--ink-soft:#3a3430;--creme:#f3ede2;--sand:#e4d9c6;
-    --line:#cdc0a9;--paper:#faf6ee;--terra:#b8623d;--terra-deep:#9e4f2f;
+    --line:#cdc0a9;--paper:#faf6ee;--terra:#443027;--terra-deep:#2e2019;--terra-soft:#a87c5a;
   }
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
   body{
@@ -22,7 +27,7 @@
   .stage{width:100%;max-width:460px;display:flex;flex-direction:column;align-items:center}
   .eyebrow{font-size:.72rem;font-weight:600;letter-spacing:.24em;
     text-transform:uppercase;color:var(--terra);text-align:center}
-  h1{font-family:'Playfair Display',serif;font-weight:400;font-size:2rem;
+  h1{font-family:'Inter',sans-serif;font-weight:800;letter-spacing:-.02em;font-weight:400;font-size:2rem;
     line-height:1.12;letter-spacing:-.01em;text-align:center;margin:8px 0 4px}
   .tagline{font-size:.92rem;color:var(--ink-soft);text-align:center;margin-bottom:18px;max-width:34ch}
 
@@ -52,7 +57,7 @@
   .hint{margin-top:16px;font-size:.8rem;color:var(--ink-soft);text-align:center;max-width:36ch}
   .footer{margin-top:22px;display:flex;flex-direction:column;align-items:center;gap:4px}
   .footer .brand{font-size:.78rem;letter-spacing:.04em;color:var(--ink-soft)}
-  .footer .sig{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--terra)}
+  .footer .sig{font-family:'Inter',sans-serif;font-weight:800;letter-spacing:-.02em;font-size:1.05rem;color:var(--terra)}
 
   @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 
@@ -99,7 +104,7 @@
 
   <div class="footer">
     <div class="brand">carina.offer.design</div>
-    <div class="sig">You.Got.This</div>
+    <div class="sig">Klarheit statt mehr Tun.</div>
   </div>
 </div>
 

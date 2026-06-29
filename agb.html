@@ -4,22 +4,27 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AGB — Carina.Offer.Design</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  @font-face{
+    font-family:'Inter';
+    src:url('fonts/Inter.woff2') format('woff2');
+    font-weight:100 900;font-style:normal;font-display:swap;
+  }
+  
+</style>
 <style>
   :root{
     --ink:#161311;--ink-soft:#3a3430;--creme:#f3ede2;--sand:#e4d9c6;
-    --line:#cdc0a9;--paper:#faf6ee;--terra:#b8623d;--terra-deep:#9e4f2f;--maxw:720px;
+    --line:#cdc0a9;--paper:#faf6ee;--terra:#443027;--terra-deep:#2e2019;--terra-soft:#a87c5a;--maxw:720px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
   body{background:var(--creme);color:var(--ink);font-family:'Inter',sans-serif;
     font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 26px}
-  h1{font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(2rem,6vw,3rem);
+  h1{font-family:'Inter',sans-serif;font-weight:800;letter-spacing:-.02em;font-size:clamp(2rem,6vw,3rem);
     line-height:1.12;letter-spacing:-.01em;margin-bottom:8px}
-  h2{font-family:'Playfair Display',serif;font-weight:400;font-size:1.35rem;
+  h2{font-family:'Inter',sans-serif;font-weight:800;letter-spacing:-.02em;font-size:1.35rem;
     margin:36px 0 8px;letter-spacing:-.01em}
   .eyebrow{font-size:.74rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
     color:var(--terra);display:block;margin-bottom:18px}
@@ -36,7 +41,7 @@
   .ph{background:#f6ead9;border:1px dashed var(--terra);border-radius:4px;
     padding:1px 7px;font-size:.92em;color:var(--terra-deep)}
   footer.foot{background:var(--ink);color:var(--creme);padding:46px 0;text-align:center;margin-top:50px}
-  footer.foot .sig{font-family:'Playfair Display',serif;font-size:1.2rem;color:#d98a63}
+  footer.foot .sig{font-family:'Inter',sans-serif;font-weight:700;font-size:1.2rem;color:var(--terra-soft)}
   footer.foot .links{margin-top:16px;font-size:.85rem}
   footer.foot a{color:#b6a886;margin:0 9px}
   @media (max-width:560px){body{font-size:16px}main{padding:44px 0 30px}}
@@ -70,6 +75,7 @@
       <li><strong>Angebots-Check</strong> — einmalige Leistung, 390 € (Kleinunternehmerin, keine USt.)</li>
       <li><strong>Mentoring</strong> — laufende Begleitung, 620 € pro Monat, Mindestlaufzeit drei Monate</li>
       <li><strong>Mentoring + Telegram Premium</strong> — 999 € pro Monat, Mindestlaufzeit drei Monate</li>
+      <li><strong>Der verkaufende Monat (Done-For-You)</strong> — Erstellung von Verkaufscontent. Startmonat 1.997 € einmalig (Aufbau des Fundaments), danach 1.099 € pro Monat für die laufende Content-Erstellung. Mindestlaufzeit drei Monate (zzgl. Startmonat).</li>
     </ul>
     <p>Die Leistung besteht in fachkundiger Beratung und Begleitung. Ein bestimmter wirtschaftlicher
     Erfolg (z. B. konkrete Umsätze oder Kundengewinnung) wird ausdrücklich nicht geschuldet und nicht
@@ -82,20 +88,21 @@
 
     <h2>§ 4 Preise &amp; Zahlung</h2>
     <p>Alle Preise verstehen sich als Endpreise. Als umsatzsteuerbefreite Kleinunternehmerin
-    (§ 6 Abs. 1 Z 27 UStG) weist die Anbieterin keine Umsatzsteuer aus. Die Zahlung erfolgt nach
-    Vereinbarung <span class="ph">(Zahlungsweise/-frist ergänzen, z. B. Vorauszahlung, monatlich
-    im Voraus)</span>.</p>
+    (§ 6 Abs. 1 Z 27 UStG) weist die Anbieterin keine Umsatzsteuer aus. Der Angebots-Check ist vor
+    dem ersten Termin im Voraus zu zahlen. Die Mentoring-Pakete werden monatlich im Voraus
+    abgerechnet.</p>
 
     <h2>§ 5 Laufzeit &amp; Kündigung</h2>
-    <p>Der Angebots-Check ist eine einmalige Leistung. Die Mentoring-Pakete haben eine Mindestlaufzeit
-    von drei Monaten und verlängern sich <span class="ph">(Verlängerung/Kündigungsfrist festlegen,
-    z. B. monatlich kündbar nach Mindestlaufzeit)</span>. Das Recht zur außerordentlichen Kündigung
-    aus wichtigem Grund bleibt für beide Seiten unberührt.</p>
+    <p>Der Angebots-Check ist eine einmalige Leistung. Die Mentoring-Pakete sowie „Der verkaufende
+    Monat" (Done-For-You) haben eine Mindestlaufzeit von drei Monaten; beim verkaufenden Monat ist
+    der einmalige Startmonat Voraussetzung und kommt hinzu. Nach Ablauf der Mindestlaufzeit sind die
+    laufenden Pakete monatlich kündbar. Das Recht zur außerordentlichen Kündigung aus wichtigem Grund
+    bleibt für beide Seiten unberührt.</p>
 
     <h2>§ 6 Mitwirkung der Kundin</h2>
     <p>Eine erfolgreiche Zusammenarbeit setzt die aktive Mitwirkung der Kundin voraus (z. B.
     Bereitstellung von Informationen, Wahrnehmung von Terminen). Versäumte Termine, die nicht
-    rechtzeitig <span class="ph">(Absagefrist festlegen, z. B. 24 Stunden vorher)</span> abgesagt
+    rechtzeitig (mindestens 48 Stunden vorher) abgesagt
     wurden, gelten als erbracht.</p>
 
     <h2>§ 7 Widerrufsrecht für Verbraucherinnen</h2>
@@ -118,20 +125,13 @@
     <p>Es gilt österreichisches Recht. Sollte eine Bestimmung unwirksam sein, bleibt die Wirksamkeit
     der übrigen Bestimmungen unberührt. Für Verbraucherinnen gelten die gesetzlichen Gerichtsstände.</p>
 
-    <div class="note">
-      <strong>Hinweis vor Livegang:</strong> Diese AGB sind ein sorgfältig vorbereitetes Gerüst,
-      aber keine Rechtsberatung. Bitte die markierten Stellen ausfüllen und das Gesamtdokument mit
-      der WKO-Vorlage oder anwaltlich gegenprüfen — besonders Zahlungs- und Kündigungsbedingungen.
-      Dieser Kasten ist nicht Teil der veröffentlichten AGB — vor Livegang entfernen.
-    </div>
-
-    <p style="margin-top:30px;font-size:.85rem;color:var(--ink-soft)">Stand: <span class="ph">Datum einsetzen</span></p>
+    <p style="margin-top:30px;font-size:.85rem;color:var(--ink-soft)">Stand: Juni 2026</p>
   </div>
 </main>
 
 <footer class="foot">
   <div class="wrap">
-    <div class="sig">You.Got.This</div>
+    <div class="sig">Klarheit statt mehr Tun.</div>
     <div class="links">
       <a href="impressum.html">Impressum</a>
       <a href="datenschutz.html">Datenschutz</a>

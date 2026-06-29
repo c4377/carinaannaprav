@@ -92,9 +92,11 @@ export default async () => {
     console.warn("Blob-Stand nicht ladbar, starte frisch:", e.message);
   }
 
-  // Zukuenftige, nicht stornierte Buchungen abfragen (ab jetzt)
+  // Zukuenftige, nicht stornierte Buchungen abfragen (ab jetzt).
+  // TidyCal erwartet exakt das Format Y-m-dTH:i:sZ OHNE Millisekunden.
   const params = new URLSearchParams({ cancelled: "false" });
-  params.set("starts_at", new Date().toISOString());
+  const startsAtParam = new Date().toISOString().replace(/\.\d{3}Z$/, "Z");
+  params.set("starts_at", startsAtParam);
 
   let bookings = [];
   try {

@@ -97,8 +97,6 @@
   .levels{margin-top:36px;display:grid;gap:18px}
   .level{background:var(--paper);border:1px solid var(--line);border-radius:5px;overflow:hidden}
   .band-ink .level{background:#241f1b;border-color:#473f37}
-  .band-ink .level.level-premium{border-color:var(--terra);border-width:1.5px}
-  .level-premium .lv{color:var(--terra)!important}
   .level summary{list-style:none;cursor:pointer;padding:26px 26px;display:flex;
     align-items:baseline;justify-content:space-between;gap:16px}
   .level summary::-webkit-details-marker{display:none}
@@ -220,11 +218,23 @@
   .fab.games .dot{width:8px;height:8px;border-radius:50%;background:var(--terra-soft)}
   .fab.games.open{transform:scale(.94)}
 
-  .games-panel{position:fixed;right:22px;bottom:150px;z-index:60;width:300px;max-width:calc(100vw - 44px);
+  /* kleine, runde Spiele-Bubble unten links – dezent */
+  .fab-games-mini{position:fixed;left:22px;bottom:22px;z-index:60;
+    width:48px;height:48px;border-radius:50%;border:1px solid var(--line);
+    background:var(--paper);color:var(--terra);cursor:pointer;
+    display:flex;align-items:center;justify-content:center;font-size:1.3rem;
+    box-shadow:0 8px 22px -8px rgba(120,60,35,.45);
+    transition:transform .18s ease,background .2s ease,opacity .3s ease}
+  .fab-games-mini:hover{transform:translateY(-3px);background:var(--sand)}
+  .fab-games-mini.open{transform:scale(.92);background:var(--sand)}
+  .fab-games-mini.hide-fab{opacity:0;transform:translateY(16px);pointer-events:none}
+
+  .games-panel{position:fixed;left:22px;bottom:84px;z-index:60;width:300px;max-width:calc(100vw - 44px);
+    transform-origin:bottom left;
     background:var(--paper);border:1px solid var(--line);border-radius:16px;
     box-shadow:0 24px 50px -16px rgba(90,55,35,.5);
     padding:18px;opacity:0;visibility:hidden;transform:translateY(12px) scale(.97);
-    transform-origin:bottom right;transition:opacity .22s ease,transform .22s ease,visibility .22s}
+    transform-origin:bottom left;transition:opacity .22s ease,transform .22s ease,visibility .22s}
   .games-panel.show{opacity:1;visibility:visible;transform:translateY(0) scale(1)}
   .games-panel .gp-head{font-family:'Inter',sans-serif;font-weight:700;font-size:1.2rem;
     color:var(--ink);margin-bottom:3px}
@@ -242,7 +252,8 @@
   @media (max-width:560px){
     .fab{font-size:.85rem;padding:13px 18px}
     .fab-stack{gap:10px;right:16px;bottom:16px}
-    .games-panel{right:16px;bottom:150px}
+    .fab-games-mini{left:16px;bottom:16px;width:44px;height:44px;font-size:1.2rem}
+    .games-panel{left:16px;bottom:76px}
   }
   @media (prefers-reduced-motion:reduce){.fab,.games-panel{transition:none}}
 
@@ -356,7 +367,7 @@
         </div>
       </details>
 
-      <details class="level level-premium">
+      <details class="level">
         <summary>
           <span>
             <span class="lv">Option 3</span>
@@ -523,17 +534,70 @@
     <span class="ico">→</span> Orientierungscall
   </a>
 </div>
+
+<!-- Versteckte Spiele-Bubble (unten links) -->
+<button class="fab-games-mini" id="gamesToggle" aria-label="Kleine Spiele öffnen" aria-expanded="false" aria-controls="gamesPanel">★</button>
+<div class="games-panel" id="gamesPanel" role="dialog" aria-label="Kleine Spiele">
+  <div class="gp-head">Eine kleine Pause?</div>
+  <div class="gp-sub">Vier ruhige Spiele – einfach so.</div>
+  <a class="game" href="zen-garten.html">
+    <span class="ico">🪨</span>
+    <span class="txt"><b>Zen-Garten</b><span>Linien ziehen, Steine setzen</span></span>
+  </a>
+  <a class="game" href="maexchen.html">
+    <span class="ico">🐣</span>
+    <span class="txt"><b>Mäxchen</b><span>Dein kleiner Begleiter</span></span>
+  </a>
+  <a class="game" href="plopp.html">
+    <span class="ico">🧩</span>
+    <span class="txt"><b>Plopp</b><span>Drei in einer Reihe</span></span>
+  </a>
+  <a class="game" href="snake.html">
+    <span class="ico">🐍</span>
+    <span class="txt"><b>Snake</b><span>Nur du und die Richtung</span></span>
+  </a>
+</div>
+<script>
+(function(){
+  // Spiele-Panel auf/zu
+  var toggle=document.getElementById('gamesToggle');
+  var panel=document.getElementById('gamesPanel');
+  if(toggle && panel){
+    function close(){ panel.classList.remove('show'); toggle.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); }
+    function open(){ panel.classList.add('show'); toggle.classList.add('open'); toggle.setAttribute('aria-expanded','true'); }
+    toggle.addEventListener('click', function(e){
+      e.stopPropagation();
+      if(panel.classList.contains('show')){ close(); } else { open(); }
+    });
+    // Klick außerhalb schließt
+    document.addEventListener('click', function(e){
+      if(panel.classList.contains('show') && !panel.contains(e.target) && e.target!==toggle){ close(); }
+    });
+    // Escape schließt
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ close(); } });
+  }
+})();
+</script>
 <script>
 (function(){
   // Bubbles ausblenden, sobald der Footer (mit Rechts-Links) in Sicht ist,
   // damit man die Links anklicken kann.
   var stack=document.querySelector('.fab-stack');
+  var mini=document.querySelector('.fab-games-mini');
+  var panel=document.getElementById('gamesPanel');
   var foot=document.querySelector('.foot');
-  if(stack && foot && ('IntersectionObserver' in window)){
+  if(foot && ('IntersectionObserver' in window)){
     var io=new IntersectionObserver(function(entries){
       entries.forEach(function(en){
-        if(en.isIntersecting){ stack.classList.add('hide-fab'); }
-        else{ stack.classList.remove('hide-fab'); }
+        if(en.isIntersecting){
+          if(stack){ stack.classList.add('hide-fab'); }
+          if(mini){ mini.classList.add('hide-fab'); }
+          if(panel){ panel.classList.remove('show'); }
+          if(mini){ mini.classList.remove('open'); mini.setAttribute('aria-expanded','false'); }
+        } else {
+          if(stack){ stack.classList.remove('hide-fab'); }
+          if(mini){ mini.classList.remove('hide-fab'); }
+        }
       });
     }, { threshold: 0.01 });
     io.observe(foot);

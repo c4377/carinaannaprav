@@ -84,6 +84,13 @@
   .checklist li{padding-left:30px;position:relative;margin-top:13px;font-size:1.05rem}
   .checklist li::before{content:"";position:absolute;left:0;top:.6em;width:9px;height:9px;background:var(--ink);border-radius:50%}
   .band-ink .checklist li::before{background:var(--creme)}
+  /* "Wir lösen"-Liste mit Häkchen */
+  .problems{margin:22px 0 4px;list-style:none}
+  .problems li{padding-left:30px;position:relative;margin-top:12px;font-size:1.02rem;opacity:.92}
+  .problems li::before{content:"✓";position:absolute;left:0;top:-.05em;color:var(--terra-soft);font-weight:700}
+  .sublabel{margin-top:26px;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--terra-soft)}
+  .result-box{margin-top:22px;padding:16px 20px;border-left:3px solid var(--terra-soft);font-size:1.02rem;line-height:1.6}
+  .result-box b{color:inherit}
 
   /* stats */
   .stats{margin-top:30px;display:grid;gap:22px}
@@ -314,33 +321,46 @@
   </div>
 </section>
 
-<!-- ANGEBOTE -->
+<!-- OFFER SUITE -->
 <section class="band-ink" id="level">
   <div class="wrap">
-    <span class="eyebrow">So arbeiten wir zusammen</span>
-    <h2 style="margin-top:18px">Drei Wege – je nachdem, wo du gerade stehst.</h2>
-    <p class="lead">Alle drei sind eine echte Begleitung, ab drei Monaten. Wir starten immer mit einem kostenlosen Orientierungscall – ganz in Ruhe, erst schauen wir, ob es passt.</p>
+    <span class="eyebrow">Die Offer Suite</span>
+    <h2 style="margin-top:18px">Ein Weg in drei Phasen – vom klaren Angebot zum Content, der verkauft.</h2>
+    <p class="lead">Erst machen wir dein Angebot klar. Dann entwickeln wir es weiter und bauen den Verkaufscontent, der Nachfrage erzeugt. Und wenn du willst, denken wir dein ganzes Business strategisch weiter. Du steigst dort ein, wo du gerade stehst – wir starten immer mit einem kostenlosen Orientierungscall.</p>
 
     <div class="levels">
 
-      <details class="level">
+      <details class="level" open>
         <summary>
           <span>
-            <span class="lv">Option 1</span>
-            <span class="name">Business Clarity</span>
+            <span class="lv">Phase 1 · Basis</span>
+            <span class="name">Klarheit &amp; Angebot</span>
           </span>
-          <span class="price">690 €<small>pro Monat · 3 Monate</small></span>
+          <span class="price">890 €<small>einmalig</small></span>
           <span class="chev">▾</span>
         </summary>
         <div class="body">
-          <p>Für dich, wenn sich dein Business gerade kompliziert anfühlt. Wir bringen Klarheit rein – und finden, was dein Angebot leichter verkäuflich macht.</p>
-          <ul class="checklist">
-            <li>Angebotsanalyse &amp; Positionierungsreview</li>
-            <li>Kommunikationsanalyse</li>
-            <li>Konkrete Optimierungsschritte</li>
-            <li>Monatliche strategische Anpassungen</li>
+          <p>Für dich, wenn du bereits ein Angebot hast, aber nicht verstehst, warum Menschen noch nicht in der Selbstverständlichkeit kaufen, die eigentlich möglich wäre. Wir bauen die Grundlage, bevor laufender Content startet.</p>
+          <div class="sublabel">Wir lösen</div>
+          <ul class="problems">
+            <li>Dein Angebot ist aktuell nicht klar genug kommuniziert</li>
+            <li>Außenstehende verstehen nicht sofort, was du eigentlich verkaufst</li>
+            <li>Deine Inhalte haben keinen klaren roten Faden</li>
+            <li>Deine Positionierung ist zu breit oder nicht greifbar genug</li>
+            <li>Menschen kaufen noch nicht in der Selbstverständlichkeit, die möglich wäre</li>
           </ul>
-          <p class="note">690 € monatlich · 3 Monate Mindestlaufzeit</p>
+          <div class="sublabel">Enthalten</div>
+          <ul class="checklist">
+            <li>Analyse deines aktuellen Angebots</li>
+            <li>Prüfung &amp; Schärfung deiner Positionierung</li>
+            <li>Analyse deiner Kommunikation &amp; Identifikation von Kaufbarrieren</li>
+            <li>Überarbeitung deiner Kernbotschaften</li>
+            <li>Definition klarer Verkaufsargumente</li>
+            <li>Entwicklung einer strategischen Content-Richtung</li>
+            <li>Aufbau einer Messaging-Grundlage für alle Inhalte</li>
+          </ul>
+          <div class="result-box"><b>Ergebnis:</b> Eine klare Basis, auf der dein gesamter Außenauftritt endlich zusammenpasst.</div>
+          <p class="note">890 € einmalig · Voraussetzung für Phase 2</p>
           <a class="ask" href="https://tidycal.com/carina-anna-prav/orientierung">Orientierungscall buchen →</a>
         </div>
       </details>
@@ -348,21 +368,41 @@
       <details class="level">
         <summary>
           <span>
-            <span class="lv">Option 2</span>
-            <span class="name">Offer Development</span>
+            <span class="lv">Phase 2 · Laufend</span>
+            <span class="name">Entwicklung &amp; Content</span>
           </span>
-          <span class="price">940 €<small>pro Monat · 3 Monate</small></span>
+          <span class="price">ab 690 €<small>pro Monat · 3 Monate</small></span>
           <span class="chev">▾</span>
         </summary>
         <div class="body">
-          <p>Für dich, wenn du schon verkaufst und dein Angebot Schritt für Schritt stärker machen willst. Wir entwickeln es gemeinsam weiter – klarer, runder, leichter kaufbar.</p>
+          <p>Für dich, wenn dein Angebot steht und wir es gezielt weiterentwickeln – während wir den Content bauen, der systematisch Nachfrage aufbaut. Monat für Monat.</p>
+          <div class="sublabel">Wir lösen</div>
+          <ul class="problems">
+            <li>Du weißt nie, was du posten sollst</li>
+            <li>Deine Inhalte erzeugen keine echten Kaufimpulse</li>
+            <li>Dein Feed zeigt Aktivität, aber keine strategische Richtung</li>
+            <li>Menschen folgen dir, verstehen aber dein Angebot nicht</li>
+            <li>Dein Angebot reagiert noch nicht stark genug auf das, was dein Markt braucht</li>
+          </ul>
+          <div class="sublabel">Enthalten</div>
           <ul class="checklist">
-            <li>Angebotsoptimierung &amp; Positionierungsschärfung</li>
-            <li>Messaging verbessern, Nachfrage stärken</li>
-            <li>Kaufprozesse vereinfachen</li>
+            <li>Angebotsoptimierung &amp; Positionierung schärfen</li>
+            <li>Messaging verbessern &amp; Verkaufsmechanismen stärken</li>
+            <li>Strategische Themenplanung</li>
+            <li>Verkaufsorientierte Contententwicklung</li>
+            <li>Carousel- und Reel-Konzepte</li>
+            <li>Positionierungs-, Thought-Leadership- &amp; Verkaufscontent</li>
+            <li>Content basierend auf Markt und Zielgruppe</li>
             <li>Laufende strategische Weiterentwicklung</li>
           </ul>
-          <p class="note">940 € monatlich · 3 Monate Mindestlaufzeit</p>
+          <div class="sublabel">Drei Umfänge</div>
+          <ul class="checklist">
+            <li>8 Posts pro Monat — 690 € monatlich</li>
+            <li>12 Posts pro Monat — 940 € monatlich</li>
+            <li>16 Posts pro Monat — 1.190 € monatlich</li>
+          </ul>
+          <div class="result-box"><b>Ergebnis:</b> Ein Außenauftritt, der konstant Vertrauen, Autorität und Nachfrage aufbaut.</div>
+          <p class="note">3 Monate Mindestlaufzeit · Phase 1 vorausgesetzt</p>
           <a class="ask" href="https://tidycal.com/carina-anna-prav/orientierung">Orientierungscall buchen →</a>
         </div>
       </details>
@@ -370,21 +410,33 @@
       <details class="level">
         <summary>
           <span>
-            <span class="lv">Option 3</span>
-            <span class="name">Strategic Business Design</span>
+            <span class="lv">Phase 3 · Optional</span>
+            <span class="name">Strategie &amp; Skalierung</span>
           </span>
-          <span class="price">1.190 €<small>pro Monat · 3 Monate</small></span>
+          <span class="price">auf Anfrage<small>im Orientierungscall</small></span>
           <span class="chev">▾</span>
         </summary>
         <div class="body">
-          <p>Für dich, wenn du dein Business bewusst weiterdenken und klarere Entscheidungen schneller treffen willst. Wir arbeiten tiefer – an allem, was dich langfristig leichter wachsen lässt.</p>
-          <ul class="checklist">
-            <li>Business-Struktur &amp; Angebotsentwicklung</li>
-            <li>Strategische Entscheidungen &amp; Positionierung im Markt</li>
-            <li>Kommunikation &amp; Kaufprozesse</li>
-            <li>Langfristige Wachstumsentscheidungen</li>
+          <p>Für dich, wenn du nicht nur ein besseres Angebot willst – sondern dein gesamtes Business langfristig intelligenter aufbaust und deine Kommunikation laufend mitziehen muss.</p>
+          <div class="sublabel">Wir lösen</div>
+          <ul class="problems">
+            <li>Dein Business entwickelt sich weiter und Messaging muss laufend angepasst werden</li>
+            <li>Angebote verändern sich und dein Content zieht nicht mehr sauber mit</li>
+            <li>Du brauchst schnell neue Verkaufswinkel bei Launches oder Veränderungen</li>
+            <li>Dein Markt verändert sich und deine Kommunikation muss Schritt halten</li>
           </ul>
-          <p class="note">1.190 € monatlich · 3 Monate Mindestlaufzeit</p>
+          <div class="sublabel">Enthalten</div>
+          <ul class="checklist">
+            <li>Business-Struktur analysieren &amp; weiterentwickeln</li>
+            <li>Strategische Marktentscheidungen treffen</li>
+            <li>Nachhaltige Wachstumsschritte planen</li>
+            <li>Laufende strategische Anpassungen &amp; neue Verkaufsangles</li>
+            <li>Marktbeobachtung und Anpassung der Kommunikation</li>
+            <li>Tiefere Verkaufspsychologie im Content</li>
+            <li>Schnellere Contentzyklen</li>
+          </ul>
+          <div class="result-box"><b>Ergebnis:</b> Ein klares Angebot, eingebettet in eine Business-Strategie, die mitwächst.</div>
+          <p class="note">Preis individuell · besprechen wir im Orientierungscall</p>
           <a class="ask" href="https://tidycal.com/carina-anna-prav/orientierung">Orientierungscall buchen →</a>
         </div>
       </details>
@@ -396,6 +448,7 @@
     </div>
   </div>
 </section>
+
 
 <!-- PROOF -->
 <!-- RESULTS -->
@@ -463,8 +516,8 @@
         <div class="a"><p>Für Unternehmerinnen, die etwas anzubieten haben und spüren, dass ihr Business an wichtigen Stellen unnötig kompliziert geworden ist – und die wollen, dass Verkaufen leichter wird, statt ständig zu optimieren.</p></div>
       </details>
       <details class="qa">
-        <summary>Was ist der Unterschied zwischen den Optionen? <span class="chev">▾</span></summary>
-        <div class="a"><p>Business Clarity schafft zuerst Klarheit, wo dein Business kompliziert geworden ist. Offer Development entwickelt ein bestehendes, verkaufendes Angebot strategisch weiter. Strategic Business Design arbeitet auf der tiefsten Ebene an allen Strukturen, die langfristiges Wachstum beeinflussen. Alle drei sind laufende Zusammenarbeit, ab drei Monaten.</p></div>
+        <summary>Wie läuft die Zusammenarbeit ab? <span class="chev">▾</span></summary>
+        <div class="a"><p>Als ein Weg in drei Phasen. Phase 1 (Klarheit &amp; Angebot) ist die einmalige Grundlage – wir machen dein Angebot und deine Positionierung klar. Darauf baut Phase 2 (Entwicklung &amp; Content) auf: Wir entwickeln dein Angebot weiter und ich übernehme deinen Verkaufscontent, Monat für Monat, in einem von drei Umfängen (8, 12 oder 16 Posts). Phase 3 (Strategie &amp; Skalierung) ist optional, wenn dein Business sich schnell bewegt.</p></div>
       </details>
       <details class="qa">
         <summary>Kann ich direkt buchen? <span class="chev">▾</span></summary>
@@ -472,7 +525,7 @@
       </details>
       <details class="qa">
         <summary>Brauche ich schon ein fertiges Angebot? <span class="chev">▾</span></summary>
-        <div class="a"><p>Für Offer Development und Strategic Business Design ist ein bestehendes Angebot sinnvoll. Business Clarity passt auch, wenn vieles noch unklar ist und erst Struktur braucht.</p></div>
+        <div class="a"><p>Ein bestehendes Angebot hilft, ist aber keine Bedingung. Genau dafür ist Phase 1 da: Wir schärfen dein Angebot und deine Positionierung, bevor der laufende Content startet – damit alles auf einer klaren Basis steht.</p></div>
       </details>
     </div>
   </div>

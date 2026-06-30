@@ -14,8 +14,8 @@
 </style>
 <style>
   :root{
-    --ink:#161311;--ink-soft:#3a3430;--creme:#f3ede2;--sand:#e4d9c6;
-    --line:#cdc0a9;--paper:#faf6ee;--terra:#443027;--terra-deep:#2e2019;--terra-soft:#a87c5a;
+    --ink:#161311;--ink-soft:#3a3430;--creme:#ffffff;--sand:#f7f2e9;
+    --line:#e6ddcd;--paper:#ffffff;--terra:#443027;--terra-deep:#2e2019;--terra-soft:#a87c5a;
   }
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
   html{scroll-behavior:smooth}
@@ -151,8 +151,8 @@
         <div class="rlab">Freigespielt</div>
         <div class="rhead">10 % auf deinen ersten Schritt mit mir</div>
         <div class="code" id="rewardCode">SNAKE10</div>
-        <div class="rfine">Gilt auf den Angebots-Check oder deinen ersten Monat Mentoring. Code beim Gespräch nennen.</div>
-        <a href="https://tidycal.com/carina-anna-prav/offer-audit" class="rbtn">Termin sichern</a>
+        <div class="rfine">Gilt auf deinen ersten Monat in einem der drei Pakete. Code beim Orientierungscall nennen.</div>
+        <a href="https://tidycal.com/carina-anna-prav/orientierung" class="rbtn">Termin sichern</a>
       </div>
       <button class="btn" id="startBtn">Los geht's</button>
     </div>
@@ -181,8 +181,8 @@
   const GRID = 20;            // 20x20 Zellen
   const CELL = cv.width / GRID;
   const COL = {
-    snake:'#443027', head:'#2e2019', food:'#e4d9c6',
-    foodEdge:'#cdc0a9', grid:'#efe7d8'
+    snake:'#443027', head:'#2e2019', food:'#a87c5a',
+    foodEdge:'#443027', grid:'#f0ece3'
   };
 
   let snake, dir, nextDir, food, score, best, loop, speed, running;

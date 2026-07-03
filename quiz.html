@@ -4,25 +4,30 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Der Angebots-Check — Was du über dein Angebot nicht siehst</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  @font-face{
-    font-family:'Inter';
-    src:url('fonts/Inter.woff2') format('woff2');
-    font-weight:100 900;font-style:normal;font-display:swap;
+  :root{
+    --font-head:'Playfair Display', Georgia, serif;
+    --font-body:'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
+</style>
+<style>
+  
   :root{
     --ink:#161311;--ink-soft:#3a3430;--creme:#ffffff;--sand:#f7f2e9;
     --line:#e6ddcd;--paper:#ffffff;--terra:#443027;--terra-deep:#2e2019;--terra-soft:#a87c5a;--maxw:680px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{background:var(--creme);color:var(--ink);font-family:'Inter',sans-serif;
+  body{background:var(--creme);color:var(--ink);font-family:var(--font-body);font-weight:300;
     font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased;
     min-height:100vh;display:flex;flex-direction:column}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 26px;width:100%}
-  h1,h2,h3{font-family:'Inter',sans-serif;font-weight:800;line-height:1.08;letter-spacing:-.02em}
-  h1{font-size:clamp(2rem,6vw,3rem)}
-  h2{font-size:clamp(1.55rem,5vw,2.2rem)}
+  h1,h2,h3{font-family:var(--font-head);font-weight:800;line-height:1.08;letter-spacing:-.02em}
+  h1{font-size:clamp(2rem,6vw,3rem)font-family:var(--font-head);}
+  h2{font-size:clamp(1.55rem,5vw,2.2rem)font-family:var(--font-head);}
   .eyebrow{font-size:.76rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--terra)}
   p{margin-top:1em}
 
@@ -36,7 +41,7 @@
   h1.head{margin-bottom:20px}
   .sub{font-size:1.1rem;color:var(--ink-soft);max-width:56ch}
 
-  .btn{display:inline-block;font-family:'Inter',sans-serif;font-weight:600;font-size:.97rem;
+  .btn{display:inline-block;font-family:var(--font-body);font-weight:600;font-size:.97rem;
     letter-spacing:.01em;padding:16px 32px;border-radius:40px;text-decoration:none;cursor:pointer;
     border:1px solid var(--terra);background:var(--terra);color:#fff;
     transition:transform .15s ease,opacity .2s ease,background .2s ease}
@@ -44,7 +49,7 @@
   .btn[disabled]{opacity:.45;cursor:not-allowed;transform:none}
   .btn-row{margin-top:32px}
 
-  textarea{width:100%;font-family:'Inter',sans-serif;font-size:1.05rem;line-height:1.55;
+  textarea{width:100%;font-family:var(--font-body);font-size:1.05rem;line-height:1.55;
     padding:18px 18px;border:1px solid var(--line);border-radius:6px;background:var(--paper);
     color:var(--ink);resize:vertical;min-height:150px;margin-top:24px}
   textarea:focus{outline:2px solid var(--terra);outline-offset:1px;border-color:var(--terra)}
@@ -52,17 +57,17 @@
 
   .opts{display:grid;gap:11px;margin-top:24px}
   .opt{text-align:left;width:100%;background:var(--paper);border:1px solid var(--line);
-    border-radius:6px;padding:16px 18px;font-size:1.02rem;font-family:'Inter',sans-serif;
+    border-radius:6px;padding:16px 18px;font-size:1.02rem;font-family:var(--font-body);
     color:var(--ink);cursor:pointer;transition:border-color .15s ease,background .15s ease}
   .opt:hover{border-color:var(--terra)}
   .opt.sel{border-color:var(--terra);background:var(--sand)}
   .skip{margin-top:20px;display:inline-block;background:none;border:none;
-    font-family:'Inter',sans-serif;font-size:.9rem;color:var(--ink-soft);cursor:pointer;
+    font-family:var(--font-body);font-size:.9rem;color:var(--ink-soft);cursor:pointer;
     text-decoration:underline;text-underline-offset:3px}
 
   /* analyzing */
   .analyzing{text-align:center;padding:30px 0}
-  .analyzing .dots{font-family:'Inter',sans-serif;font-weight:700;font-size:1.4rem;color:var(--terra)}
+  .analyzing .dots{font-family:var(--font-body);font-weight:700;font-size:1.4rem;color:var(--terra)}
   .analyzing p{color:var(--ink-soft);margin-top:14px}
   .spin{width:34px;height:34px;border:3px solid var(--line);border-top-color:var(--terra);
     border-radius:50%;margin:0 auto 8px;animation:sp 1s linear infinite}
@@ -70,7 +75,7 @@
 
   /* result */
   .result .eyebrow{display:block;margin-bottom:16px}
-  .result .type{font-family:'Inter',sans-serif;font-weight:800;letter-spacing:-.02em;font-size:clamp(1.7rem,5.2vw,2.5rem);line-height:1.12;margin-bottom:16px}
+  .result .type{font-family:var(--font-body);font-weight:800;letter-spacing:-.02em;font-size:clamp(1.7rem,5.2vw,2.5rem);line-height:1.12;margin-bottom:16px}
   .result .diag{font-size:1.1rem;color:var(--ink-soft)}
   .result .hebel{margin-top:24px;background:var(--sand);border-radius:8px;padding:24px}
   .result .hebel .lab{font-size:.74rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--terra)}
@@ -80,7 +85,7 @@
   .gate h3{font-size:1.4rem;margin-bottom:8px}
   .gate p{margin-top:6px;color:var(--ink-soft);font-size:1.02rem}
   .field{margin-top:20px;display:flex;flex-direction:column;gap:10px}
-  .field input{font-family:'Inter',sans-serif;font-size:1.05rem;padding:16px 18px;
+  .field input{font-family:var(--font-body);font-size:1.05rem;padding:16px 18px;
     border:1px solid var(--line);border-radius:4px;background:var(--paper);color:var(--ink)}
   .field input:focus{outline:2px solid var(--terra);outline-offset:1px;border-color:var(--terra)}
   .consent{display:flex;gap:10px;align-items:flex-start;margin-top:16px;font-size:.85rem;color:var(--ink-soft)}

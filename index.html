@@ -4,11 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>carina.offer.design — Angebotsdesign & Business Architecture</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  @font-face{
-    font-family:'Inter';
-    src:url('fonts/Inter.woff2') format('woff2');
-    font-weight:100 900;font-style:normal;font-display:swap;
+  :root{
+    --font-head:'Playfair Display', Georgia, serif;
+    --font-body:'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
 </style>
 <style>
@@ -28,13 +30,13 @@
   html{scroll-behavior:smooth}
   body{
     background:var(--creme);color:var(--ink);
-    font-family:'Inter',sans-serif;font-size:18px;line-height:1.65;
+    font-family:var(--font-body);font-weight:300;font-size:18px;line-height:1.65;
     -webkit-font-smoothing:antialiased;
   }
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
 
-  h1,h2,h3{font-family:'Inter',sans-serif;font-weight:800;line-height:1.05;letter-spacing:-.03em}
-  h1{font-size:clamp(2.7rem,8.5vw,4.3rem);font-weight:900}
+  h1,h2,h3{font-family:var(--font-head);font-weight:600;line-height:1.08;letter-spacing:-.01em}
+  h1{font-size:clamp(2.7rem,8.5vw,4.3rem);font-weight:700}
   h2{font-size:clamp(1.9rem,5vw,2.7rem)}
   h3{font-size:clamp(1.3rem,3.5vw,1.6rem)}
   .eyebrow{font-size:.72rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-soft)}
@@ -61,7 +63,9 @@
   .hero h1{margin-bottom:30px;line-height:1.03}
   .hero .sub{font-size:1.18rem;max-width:60ch;color:var(--ink-soft)}
   .hero-img{width:100%;max-height:70vh;object-fit:cover;object-position:60% 30%;
-    border-radius:6px;display:block;margin-bottom:42px;aspect-ratio:9/14}
+    border-radius:6px;display:block;margin-bottom:42px;aspect-ratio:9/14;
+    background:linear-gradient(135deg,#a87c5a 0%,#443027 100%)}
+  .hero-img.is-missing{min-height:280px}
   @media (max-width:560px){
     .hero-img{max-height:none;aspect-ratio:9/13;margin-bottom:34px}
   }
@@ -96,7 +100,7 @@
   .stats{margin-top:30px;display:grid;gap:22px}
   .stat{padding:22px 0;border-bottom:1px solid var(--line)}
   .stat:last-child{border-bottom:none}
-  .stat .num{font-family:'Inter',sans-serif;font-weight:800;letter-spacing:-.02em;font-size:2.4rem;line-height:1}
+  .stat .num{font-family:var(--font-head);font-weight:700;letter-spacing:0;font-size:2.4rem;line-height:1}
   .stat .txt{margin-top:8px;font-size:1.02rem}
   .stat .src{font-size:.82rem;color:var(--ink-soft);margin-top:4px}
 
@@ -109,9 +113,9 @@
   .level summary::-webkit-details-marker{display:none}
   .level .lv{font-size:.74rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);display:block;margin-bottom:8px}
   .band-ink .level .lv{color:#b6a886}
-  .level .name{font-family:'Inter',sans-serif;font-weight:700;letter-spacing:-.02em;font-size:1.4rem;line-height:1.15}
-  .level .price{font-family:'Inter',sans-serif;font-weight:700;font-size:1.25rem;white-space:nowrap;text-align:right}
-  .level .price small{display:block;font-family:'Inter',sans-serif;font-size:.72rem;letter-spacing:.04em;color:var(--ink-soft);font-weight:500}
+  .level .name{font-family:var(--font-head);font-weight:700;letter-spacing:-.02em;font-size:1.4rem;line-height:1.15}
+  .level .price{font-family:var(--font-body);font-weight:700;font-size:1.25rem;white-space:nowrap;text-align:right}
+  .level .price small{display:block;font-family:var(--font-body);font-size:.72rem;letter-spacing:.04em;color:var(--ink-soft);font-weight:500}
   .band-ink .level .price small{color:#b6a886}
   .level .body{padding:0 26px 28px;border-top:1px solid var(--line)}
   .band-ink .level .body{border-color:#473f37}
@@ -137,22 +141,22 @@
   /* process */
   .step{padding:26px 0;border-bottom:1px solid var(--line)}
   .step:last-child{border-bottom:none}
-  .step .n{font-family:'Inter',sans-serif;font-weight:700;font-size:1.1rem;color:var(--ink-soft)}
+  .step .n{font-family:var(--font-body);font-weight:700;font-size:1.1rem;color:var(--ink-soft)}
   .step h3{margin-top:4px}
   .step p{margin-top:10px}
 
   /* faq */
   .faq{margin-top:30px;display:grid;gap:14px}
   .qa{background:var(--paper);border:1px solid var(--line);border-radius:5px;overflow:hidden}
-  .qa summary{list-style:none;cursor:pointer;padding:22px 24px;font-family:'Inter',sans-serif;font-weight:600;font-size:1.08rem;display:flex;justify-content:space-between;gap:14px;align-items:center}
+  .qa summary{list-style:none;cursor:pointer;padding:22px 24px;font-family:var(--font-body);font-weight:600;font-size:1.08rem;display:flex;justify-content:space-between;gap:14px;align-items:center}
   .qa summary::-webkit-details-marker{display:none}
   .qa .chev{flex:none;opacity:.5;transition:transform .2s ease}
   .qa[open] summary .chev{transform:rotate(180deg)}
   .qa .a{padding:0 24px 24px;font-size:1rem}
 
   .foot{background:var(--ink);color:var(--creme);padding:70px 0 60px;text-align:center}
-  .foot .micro{font-family:'Inter',sans-serif;font-weight:800;letter-spacing:-.02em;font-size:1.5rem;line-height:1.2;max-width:24ch;margin:0 auto}
-  .foot .sig{font-family:'Inter',sans-serif;font-weight:700;font-size:1.05rem;color:var(--terra-soft);margin-top:30px;letter-spacing:.02em}
+  .foot .micro{font-family:var(--font-head);font-weight:600;letter-spacing:0;font-size:1.5rem;line-height:1.2;max-width:24ch;margin:0 auto}
+  .foot .sig{font-family:var(--font-head);font-weight:700;font-size:1.05rem;color:var(--terra-soft);margin-top:30px;letter-spacing:.02em}
   .foot .small{margin-top:18px;font-size:.85rem;color:#b6a886;letter-spacing:.04em}
 
   @media (max-width:560px){
@@ -173,9 +177,9 @@
     border-bottom:1px solid var(--line)}
   .topbar .inner{max-width:var(--maxw);margin:0 auto;padding:14px 28px;
     display:flex;align-items:center;justify-content:space-between;gap:16px}
-  .topbar .brand{font-family:'Inter',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.01em}
+  .topbar .brand{font-family:var(--font-body);font-weight:700;font-size:1rem;letter-spacing:.01em}
   .topbar .brand b{color:var(--terra);font-weight:500}
-  .topbar .cta{font-family:'Inter',sans-serif;font-weight:600;font-size:.82rem;
+  .topbar .cta{font-family:var(--font-body);font-weight:600;font-size:.82rem;
     letter-spacing:.02em;text-decoration:none;color:#fff;background:var(--terra);
     padding:9px 18px;border-radius:40px;white-space:nowrap;transition:background .2s ease}
   .topbar .cta:hover{background:var(--terra-deep)}
@@ -189,9 +193,9 @@
   /* großer Claim-Statement-Block */
   .statement{background:var(--ink);color:var(--creme);text-align:left}
   .statement .wrap{padding:0 28px}
-  .statement h2{font-family:'Inter',sans-serif;font-weight:800;letter-spacing:-.03em;color:var(--creme);
+  .statement h2{font-family:var(--font-head);font-weight:600;letter-spacing:-.01em;color:var(--creme);
     font-size:clamp(2rem,7vw,3.4rem);line-height:1.06;max-width:20ch;margin:0}
-  .statement .sig{font-family:'Inter',sans-serif;font-weight:700;margin-top:28px;font-size:1.05rem;
+  .statement .sig{font-family:var(--font-head);font-weight:700;margin-top:28px;font-size:1.05rem;
     color:var(--terra-soft);letter-spacing:.02em}
   @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
 
@@ -207,7 +211,7 @@
     transition:opacity .3s ease,transform .3s ease}
   .fab-stack.hide-fab{opacity:0;transform:translateY(16px);pointer-events:none}
   .fab{display:flex;align-items:center;gap:9px;text-decoration:none;cursor:pointer;border:none;
-    font-family:'Inter',sans-serif;font-weight:600;font-size:.9rem;letter-spacing:.03em;
+    font-family:var(--font-body);font-weight:600;font-size:.9rem;letter-spacing:.03em;
     padding:14px 20px;border-radius:40px;
     box-shadow:0 10px 26px -8px rgba(120,60,35,.55);
     transition:transform .18s ease,background .2s ease,color .2s ease}
@@ -243,7 +247,7 @@
     padding:18px;opacity:0;visibility:hidden;transform:translateY(12px) scale(.97);
     transform-origin:bottom left;transition:opacity .22s ease,transform .22s ease,visibility .22s}
   .games-panel.show{opacity:1;visibility:visible;transform:translateY(0) scale(1)}
-  .games-panel .gp-head{font-family:'Inter',sans-serif;font-weight:700;font-size:1.2rem;
+  .games-panel .gp-head{font-family:var(--font-head);font-weight:700;font-size:1.2rem;
     color:var(--ink);margin-bottom:3px}
   .games-panel .gp-sub{font-size:.82rem;color:var(--ink-soft);margin-bottom:14px}
   .games-panel a.game{display:flex;align-items:center;gap:13px;text-decoration:none;
@@ -279,7 +283,7 @@
 <!-- HERO -->
 <header class="hero">
   <div class="wrap">
-    <img class="hero-img" src="img/hero.jpg" alt="Carina sitzt entspannt auf einem hellen Sessel und schreibt in ein Notizbuch">
+    <img class="hero-img" src="img/hero.jpg" alt="Carina sitzt entspannt auf einem hellen Sessel und schreibt in ein Notizbuch" onerror="this.classList.add('is-missing');this.removeAttribute('src');this.alt='';">
     <span class="eyebrow">carina.offer.design · Angebotsdesign &amp; Business Architecture</span>
     <h1>Dein Business darf sich leicht anfühlen.</h1>
     <p class="sub">Du brauchst nicht mehr Sichtbarkeit oder die nächste Strategie. Meistens braucht es nur ein Angebot, das klar ist – und Verkaufen wird leichter. Genau da begleite ich dich.</p>

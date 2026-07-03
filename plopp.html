@@ -4,12 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Plopp — Carina.Offer.Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  @font-face{
-    font-family:'Inter';
-    src:url('fonts/Inter.woff2') format('woff2');
-    font-weight:100 900;font-style:normal;font-display:swap;
+  :root{
+    --font-head:'Playfair Display', Georgia, serif;
+    --font-body:'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
+</style>
+<style>
+  
   
 </style>
 <style>
@@ -25,7 +30,7 @@
   }
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
   body{
-    background:var(--creme);color:var(--ink);font-family:'Inter',sans-serif;
+    background:var(--creme);color:var(--ink);font-family:var(--font-body);font-weight:300;
     min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;
     align-items:center;justify-content:center;padding:20px 16px;
     -webkit-font-smoothing:antialiased;
@@ -33,7 +38,7 @@
   .stage{width:100%;max-width:440px;display:flex;flex-direction:column;align-items:center}
   .eyebrow{font-size:.72rem;font-weight:600;letter-spacing:.24em;
     text-transform:uppercase;color:var(--terra);text-align:center}
-  h1{font-family:'Inter',sans-serif;font-weight:800;letter-spacing:-.02em;font-weight:400;font-size:2rem;
+  h1{font-family:var(--font-head);font-weight:800;letter-spacing:-.02em;font-weight:400;font-size:2rem;
     line-height:1.12;letter-spacing:-.01em;text-align:center;margin:8px 0 4px}
   .tagline{font-size:.9rem;color:var(--ink-soft);text-align:center;margin-bottom:14px}
 
@@ -41,7 +46,7 @@
   .stat{text-align:center;flex:1;min-width:0}
   .stat .lab{font-size:.58rem;font-weight:600;letter-spacing:.12em;
     text-transform:uppercase;color:var(--terra)}
-  .stat .val{font-family:'Inter',sans-serif;font-weight:800;letter-spacing:-.02em;font-size:1.35rem;line-height:1.1}
+  .stat .val{font-family:var(--font-body);font-weight:800;letter-spacing:-.02em;font-size:1.35rem;line-height:1.1}
   .stat.time .val{transition:color .3s ease}
   .stat.time.low .val{color:var(--p5)}
 
@@ -96,7 +101,7 @@
 
   /* Combo-Anzeige */
   .combo{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(.6);
-    font-family:'Inter',sans-serif;font-weight:800;letter-spacing:-.02em;font-size:2.4rem;color:var(--terra-deep);
+    font-family:var(--font-body);font-weight:800;letter-spacing:-.02em;font-size:2.4rem;color:var(--terra-deep);
     text-shadow:0 2px 12px rgba(255,255,255,.8);opacity:0;pointer-events:none;z-index:8}
   .combo.show{animation:combo .8s ease forwards}
   @keyframes combo{0%{opacity:0;transform:translate(-50%,-50%) scale(.6)}
@@ -105,11 +110,11 @@
     100%{opacity:0;transform:translate(-50%,-60%) scale(1)}}
 
   .row2{margin-top:16px;display:flex;gap:9px;justify-content:center;flex-wrap:wrap}
-  .btn{font-family:'Inter',sans-serif;font-weight:600;font-size:.88rem;
+  .btn{font-family:var(--font-body);font-weight:600;font-size:.88rem;
     padding:13px 24px;border-radius:2px;cursor:pointer;border:1px solid var(--terra);
     background:var(--terra);color:#fff;transition:background .2s ease,transform .15s ease}
   .btn:hover{background:var(--terra-deep);transform:translateY(-2px)}
-  .ghost{font-family:'Inter',sans-serif;font-weight:500;font-size:.84rem;
+  .ghost{font-family:var(--font-body);font-weight:500;font-size:.84rem;
     padding:12px 20px;border-radius:10px;cursor:pointer;border:1px solid var(--line);
     background:transparent;color:var(--ink-soft);transition:border-color .15s ease,color .15s ease}
   .ghost:hover{border-color:var(--terra);color:var(--terra)}
@@ -121,14 +126,14 @@
     display:flex;flex-direction:column;align-items:center;justify-content:center;
     text-align:center;padding:26px;border-radius:16px}
   .panel.hidden{display:none}
-  .panel h2{font-family:'Inter',sans-serif;font-weight:800;letter-spacing:-.02em;font-weight:400;font-size:1.6rem;margin-bottom:8px}
+  .panel h2{font-family:var(--font-head);font-weight:800;letter-spacing:-.02em;font-weight:400;font-size:1.6rem;margin-bottom:8px}
   .panel p{font-size:.92rem;color:var(--ink-soft);max-width:30ch;margin-bottom:18px}
   .reward{display:none;width:100%;max-width:290px;margin:0 auto 18px;background:var(--sand);
     border:1px solid var(--terra);border-radius:12px;padding:16px 18px;text-align:center}
   .reward.show{display:block;animation:rIn .5s ease}
   @keyframes rIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
   .reward .rlab{font-size:.64rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--terra)}
-  .reward .rhead{font-family:'Inter',sans-serif;font-weight:800;letter-spacing:-.02em;font-size:1.1rem;line-height:1.25;margin:6px 0 10px}
+  .reward .rhead{font-family:var(--font-body);font-weight:800;letter-spacing:-.02em;font-size:1.1rem;line-height:1.25;margin:6px 0 10px}
   .reward .code{font-weight:600;font-size:1.2rem;letter-spacing:.14em;color:var(--terra-deep);
     background:var(--paper);border:1px dashed var(--terra);border-radius:8px;padding:10px;margin-bottom:6px}
   .reward .rfine{font-size:.76rem;color:var(--ink-soft);line-height:1.45}
@@ -138,8 +143,8 @@
   .reward .rbtn:hover{background:var(--terra-deep)}
 
   .footer{margin-top:20px;display:flex;flex-direction:column;align-items:center;gap:4px}
-  .footer .brand{font-size:.78rem;letter-spacing:.04em;color:var(--ink-soft)}
-  .footer .sig{font-family:'Inter',sans-serif;font-weight:800;letter-spacing:-.02em;font-size:1.05rem;color:var(--terra)}
+  .footer .brand{font-size:.78rem;letter-spacing:.04em;color:var(--ink-soft)font-family:var(--font-head);}
+  .footer .sig{font-family:var(--font-body);font-weight:800;letter-spacing:-.02em;font-size:1.05rem;color:var(--terra)}
 
   @media (prefers-reduced-motion:reduce){.gem,.gem.pop,.gem.drop{animation:none;transition:none}}
 

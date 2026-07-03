@@ -6,7 +6,7 @@
 <title>carina.offer.design — Angebotsdesign & Business Architecture</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
     --font-head:'Playfair Display', Georgia, serif;
@@ -35,8 +35,8 @@
   }
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
 
-  h1,h2,h3{font-family:var(--font-head);font-weight:600;line-height:1.08;letter-spacing:-.01em}
-  h1{font-size:clamp(2.7rem,8.5vw,4.3rem);font-weight:700}
+  h1,h2,h3{font-family:var(--font-head);font-weight:400;line-height:1.08;letter-spacing:-.01em}
+  h1{font-size:clamp(2.7rem,8.5vw,4.3rem);font-weight:400}
   h2{font-size:clamp(1.9rem,5vw,2.7rem)}
   h3{font-size:clamp(1.3rem,3.5vw,1.6rem)}
   .eyebrow{font-size:.72rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-soft)}
@@ -100,7 +100,7 @@
   .stats{margin-top:30px;display:grid;gap:22px}
   .stat{padding:22px 0;border-bottom:1px solid var(--line)}
   .stat:last-child{border-bottom:none}
-  .stat .num{font-family:var(--font-head);font-weight:700;letter-spacing:0;font-size:2.4rem;line-height:1}
+  .stat .num{font-family:var(--font-head);font-weight:400;letter-spacing:0;font-size:2.4rem;line-height:1}
   .stat .txt{margin-top:8px;font-size:1.02rem}
   .stat .src{font-size:.82rem;color:var(--ink-soft);margin-top:4px}
 
@@ -113,7 +113,7 @@
   .level summary::-webkit-details-marker{display:none}
   .level .lv{font-size:.74rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);display:block;margin-bottom:8px}
   .band-ink .level .lv{color:#b6a886}
-  .level .name{font-family:var(--font-head);font-weight:700;letter-spacing:-.02em;font-size:1.4rem;line-height:1.15}
+  .level .name{font-family:var(--font-head);font-weight:400;letter-spacing:-.02em;font-size:1.4rem;line-height:1.15}
   .level .price{font-family:var(--font-body);font-weight:700;font-size:1.25rem;white-space:nowrap;text-align:right}
   .level .price small{display:block;font-family:var(--font-body);font-size:.72rem;letter-spacing:.04em;color:var(--ink-soft);font-weight:500}
   .band-ink .level .price small{color:#b6a886}
@@ -155,8 +155,8 @@
   .qa .a{padding:0 24px 24px;font-size:1rem}
 
   .foot{background:var(--ink);color:var(--creme);padding:70px 0 60px;text-align:center}
-  .foot .micro{font-family:var(--font-head);font-weight:600;letter-spacing:0;font-size:1.5rem;line-height:1.2;max-width:24ch;margin:0 auto}
-  .foot .sig{font-family:var(--font-head);font-weight:700;font-size:1.05rem;color:var(--terra-soft);margin-top:30px;letter-spacing:.02em}
+  .foot .micro{font-family:var(--font-head);font-weight:400;letter-spacing:0;font-size:1.5rem;line-height:1.2;max-width:24ch;margin:0 auto}
+  .foot .sig{font-family:var(--font-head);font-weight:400;font-size:1.05rem;color:var(--terra-soft);margin-top:30px;letter-spacing:.02em}
   .foot .small{margin-top:18px;font-size:.85rem;color:#b6a886;letter-spacing:.04em}
 
   @media (max-width:560px){
@@ -193,9 +193,9 @@
   /* großer Claim-Statement-Block */
   .statement{background:var(--ink);color:var(--creme);text-align:left}
   .statement .wrap{padding:0 28px}
-  .statement h2{font-family:var(--font-head);font-weight:600;letter-spacing:-.01em;color:var(--creme);
+  .statement h2{font-family:var(--font-head);font-weight:400;letter-spacing:-.01em;color:var(--creme);
     font-size:clamp(2rem,7vw,3.4rem);line-height:1.06;max-width:20ch;margin:0}
-  .statement .sig{font-family:var(--font-head);font-weight:700;margin-top:28px;font-size:1.05rem;
+  .statement .sig{font-family:var(--font-head);font-weight:400;margin-top:28px;font-size:1.05rem;
     color:var(--terra-soft);letter-spacing:.02em}
   @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
 
@@ -247,7 +247,7 @@
     padding:18px;opacity:0;visibility:hidden;transform:translateY(12px) scale(.97);
     transform-origin:bottom left;transition:opacity .22s ease,transform .22s ease,visibility .22s}
   .games-panel.show{opacity:1;visibility:visible;transform:translateY(0) scale(1)}
-  .games-panel .gp-head{font-family:var(--font-head);font-weight:700;font-size:1.2rem;
+  .games-panel .gp-head{font-family:var(--font-head);font-weight:400;font-size:1.2rem;
     color:var(--ink);margin-bottom:3px}
   .games-panel .gp-sub{font-size:.82rem;color:var(--ink-soft);margin-bottom:14px}
   .games-panel a.game{display:flex;align-items:center;gap:13px;text-decoration:none;

@@ -2,660 +2,421 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
+<meta name="color-scheme" content="light">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>carina.offer.design — Angebotsdesign & Business Architecture</title>
+<title>carinaannaprav — Angebotsdesign für Frauen, deren Angebot nicht verkauft</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --font-head:'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --bg:#fbfbfa; --bg-2:#f2f1ee; --ink:#1c1b1a; --ink-soft:#6a6864;
+    --line:#e8e7e3; --clay:#8a7d70; --clay-deep:#6b6055; --dark:#1c1b1a;
+    --font-head:'Playfair Display', Georgia, serif;
     --font-body:'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --maxw:1120px;
   }
-</style>
-<style>
-  :root{
-    --ink:#161311;
-    --ink-soft:#3a3430;
-    --creme:#ffffff;
-    --sand:#f7f2e9;
-    --line:#e6ddcd;
-    --paper:#ffffff;
-    --terra:#443027;        /* tiefes Espresso-Braun – Markenakzent */
-    --terra-deep:#2e2019;
-    --terra-soft:#a87c5a;    /* warmes Braun – Akzent auf dunklem Grund */
-    --maxw:760px;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{
-    background:var(--creme);color:var(--ink);
-    font-family:var(--font-body);font-weight:300;font-size:18px;line-height:1.65;
-    -webkit-font-smoothing:antialiased;
-  }
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{background:var(--bg);scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--font-body);
+    font-weight:300;font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+  h1,h2,h3{font-family:var(--font-head);font-weight:400;line-height:1.15;letter-spacing:0}
+  h1{font-size:clamp(2.4rem,5.5vw,3.8rem)}
+  h2{font-size:clamp(1.9rem,4vw,2.9rem)}
+  h3{font-size:clamp(1.2rem,2.2vw,1.5rem)}
+  em{font-style:italic;color:var(--clay)}
+  .eyebrow{font-family:var(--font-body);font-size:.72rem;font-weight:500;letter-spacing:.28em;
+    text-transform:uppercase;color:var(--clay)}
+  .btn{display:inline-block;font-family:var(--font-body);font-weight:500;font-size:.9rem;
+    letter-spacing:.02em;text-decoration:none;padding:15px 32px;border-radius:2px;transition:all .2s ease;cursor:pointer}
+  .btn-solid{background:var(--ink);color:var(--bg)}
+  .btn-solid:hover{background:var(--clay-deep)}
+  .btn-ghost{border:1px solid var(--ink);color:var(--ink)}
+  .btn-ghost:hover{background:var(--ink);color:var(--bg)}
+  .btn-light{background:var(--bg);color:var(--ink)}
+  .btn-light:hover{background:var(--clay);color:var(--bg)}
 
-  h1,h2,h3{font-family:var(--font-head);font-weight:500;line-height:1.1;letter-spacing:-.01em}
-  h1{font-size:clamp(2.7rem,8.5vw,4.3rem);font-weight:500}
-  h2{font-size:clamp(1.9rem,5vw,2.7rem)}
-  h3{font-size:clamp(1.3rem,3.5vw,1.6rem)}
-  .eyebrow{font-size:.72rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-soft)}
-  p{margin-top:1.1em}
-  p:first-child{margin-top:0}
-  .lead{font-size:1.15rem}
+  .topbar{position:sticky;top:0;z-index:50;background:rgba(244,241,234,.9);
+    backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .topbar .inner{max-width:var(--maxw);margin:0 auto;padding:18px 32px;display:flex;align-items:center;justify-content:space-between}
+  .topbar .brand{font-family:var(--font-body);font-weight:500;font-size:.95rem;letter-spacing:.02em;color:var(--ink);text-decoration:none}
+  .topbar .brand b{font-weight:600}
+  .topbar .nav{display:flex;gap:30px;align-items:center}
+  .topbar .nav a{font-size:.8rem;letter-spacing:.04em;color:var(--ink-soft);text-decoration:none;transition:color .2s}
+  .topbar .nav a:hover{color:var(--clay)}
+  .topbar .nav .cta{font-weight:500;letter-spacing:.1em;text-transform:uppercase;font-size:.72rem;color:var(--ink);border:1px solid var(--ink);padding:9px 18px;border-radius:2px}
+  .topbar .nav .cta:hover{background:var(--ink);color:var(--bg)}
+  @media (max-width:820px){ .topbar .nav a:not(.cta){display:none} }
 
-  /* Marken-Highlight: weiße Markierung hinter Schlüsselwörtern (wie im Feed) */
-  .mark-hl{background:var(--paper);
-    box-decoration-break:clone;-webkit-box-decoration-break:clone;
-    padding:.02em .18em;border-radius:2px}
-  .band-ink .mark-hl{background:var(--creme);color:var(--ink)}
-  .terra{color:var(--terra)}
-
-  section{padding:108px 0;border-top:1px solid var(--line)}
-  section:first-of-type{border-top:none}
-  .band-sand{background:var(--sand)}
-  .band-ink{background:var(--ink);color:var(--creme)}
-  .band-ink .eyebrow{color:var(--terra-soft)}
-  .band-ink h2,.band-ink h3{color:var(--creme)}
-
-  .hero{padding:64px 0 80px;background:var(--paper)}
+  .hero{display:grid;grid-template-columns:1fr 1fr;min-height:88vh;align-items:center}
+  .hero .htext{padding:70px 60px 70px max(32px,calc((100vw - 1120px)/2))}
   .hero .eyebrow{margin-bottom:26px;display:block}
-  .hero h1{margin-bottom:30px;line-height:1.03}
-  .hero .sub{font-size:1.18rem;max-width:60ch;color:var(--ink-soft)}
-  .hero-img{width:100%;max-height:70vh;object-fit:cover;object-position:60% 30%;
-    border-radius:6px;display:block;margin-bottom:42px;aspect-ratio:9/14;
-    background:linear-gradient(135deg,#a87c5a 0%,#443027 100%)}
-  .hero-img.is-missing{min-height:280px}
-  @media (max-width:560px){
-    .hero-img{max-height:none;aspect-ratio:9/13;margin-bottom:34px}
+  .hero h1{margin-bottom:26px}
+  .hero .lead{font-size:1.15rem;color:var(--ink-soft);max-width:34ch;margin-bottom:36px}
+  .hero .hbtns{display:flex;gap:14px;flex-wrap:wrap}
+  .hero .hphoto{height:88vh;background-size:cover;background-position:60% center;filter:saturate(.9)}
+  @media (max-width:860px){
+    .hero{grid-template-columns:1fr;min-height:auto}
+    .hero .htext{padding:54px 32px 40px;order:2}
+    .hero .hphoto{order:1;height:60vh}
+    .hero .lead{max-width:none}
   }
 
-  .btns{margin-top:40px;display:flex;flex-wrap:wrap;gap:14px}
-  .btn{display:inline-block;font-weight:600;font-size:.95rem;letter-spacing:.01em;
-    padding:16px 32px;border-radius:40px;text-decoration:none;cursor:pointer;
-    transition:background .25s ease,color .25s ease}
-  /* Editorial: feine Linie statt Farbfläche, Ink statt Karamell */
-  .btn-solid{background:var(--terra);color:#fff;border:1px solid var(--terra)}
-  .btn-solid:hover{background:var(--terra-deep);border-color:var(--terra-deep)}
-  .btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
-  .btn-ghost:hover{border-color:var(--terra);color:var(--terra-deep)}
-  .band-ink .btn-solid{background:var(--terra);color:#fff;border-color:var(--terra)}
-  .band-ink .btn-solid:hover{background:var(--terra-deep);border-color:var(--terra-deep)}
-  .band-ink .btn-ghost{color:var(--creme);border-color:rgba(243,237,226,.4)}
-  .band-ink .btn-ghost:hover{border-color:var(--creme)}
+  section{padding:100px 0}
+  .sec-eyebrow{text-align:center;display:block;margin-bottom:16px}
+  .sec-h{text-align:center;max-width:20ch;margin:0 auto 20px}
+  .sec-intro{text-align:center;max-width:56ch;margin:0 auto 56px;color:var(--ink-soft)}
 
-  .checklist{margin-top:26px;list-style:none}
-  .checklist li{padding-left:30px;position:relative;margin-top:13px;font-size:1.05rem}
-  .checklist li::before{content:"";position:absolute;left:0;top:.6em;width:9px;height:9px;background:var(--ink);border-radius:50%}
-  .band-ink .checklist li::before{background:var(--creme)}
-  /* "Wir lösen"-Liste mit Häkchen */
-  .problems{margin:22px 0 4px;list-style:none}
-  .problems li{padding-left:30px;position:relative;margin-top:12px;font-size:1.02rem;opacity:.92}
-  .problems li::before{content:"✓";position:absolute;left:0;top:-.05em;color:var(--terra-soft);font-weight:700}
-  .sublabel{margin-top:26px;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--terra-soft)}
-  .result-box{margin-top:22px;padding:16px 20px;border-left:3px solid var(--terra-soft);font-size:1.02rem;line-height:1.6}
-  .result-box b{color:inherit}
+  .band-dark{background:var(--dark);color:var(--bg)}
+  .band-dark .eyebrow{color:#b9b0a4}
+  .band-dark em{color:#c4bcb0}
+  .problem{text-align:center}
+  .problem h2{max-width:22ch;margin:0 auto 30px}
+  .problem .plead{max-width:52ch;margin:0 auto;color:#b0aca4;font-size:1.1rem}
 
-  /* stats */
-  .stats{margin-top:30px;display:grid;gap:22px}
-  .stat{padding:22px 0;border-bottom:1px solid var(--line)}
-  .stat:last-child{border-bottom:none}
-  .stat .num{font-family:var(--font-head);font-weight:500;letter-spacing:0;font-size:2.4rem;line-height:1}
-  .stat .txt{margin-top:8px;font-size:1.02rem}
-  .stat .src{font-size:.82rem;color:var(--ink-soft);margin-top:4px}
+  .fromto{display:grid;grid-template-columns:1fr auto 1fr;gap:40px;align-items:center;max-width:820px;margin:50px auto 0}
+  .fromto .col{text-align:center}
+  .fromto .lbl{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:18px;display:block}
+  .fromto .col p{font-family:var(--font-head);font-size:1.35rem;line-height:1.4}
+  .fromto .col.from p{color:var(--ink-soft)}
+  .fromto .col.to p{color:var(--ink)}
+  .fromto .arrow{font-size:1.6rem;color:var(--clay)}
+  @media (max-width:720px){ .fromto{grid-template-columns:1fr;gap:24px} .fromto .arrow{transform:rotate(90deg)} }
 
-  /* levels */
-  .levels{margin-top:36px;display:grid;gap:18px}
-  .level{background:var(--paper);border:1px solid var(--line);border-radius:5px;overflow:hidden}
-  .band-ink .level{background:#241f1b;border-color:#473f37}
-  .level summary{list-style:none;cursor:pointer;padding:26px 26px;display:flex;
-    align-items:baseline;justify-content:space-between;gap:16px}
-  .level summary::-webkit-details-marker{display:none}
-  .level .lv{font-size:.74rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);display:block;margin-bottom:8px}
-  .band-ink .level .lv{color:#b6a886}
-  .level .name{font-family:var(--font-head);font-weight:500;letter-spacing:-.02em;font-size:1.4rem;line-height:1.15}
-  .level .price{font-family:var(--font-body);font-weight:700;font-size:1.25rem;white-space:nowrap;text-align:right}
-  .level .price small{display:block;font-family:var(--font-body);font-size:.72rem;letter-spacing:.04em;color:var(--ink-soft);font-weight:500}
-  .band-ink .level .price small{color:#b6a886}
-  .level .body{padding:0 26px 28px;border-top:1px solid var(--line)}
-  .band-ink .level .body{border-color:#473f37}
-  .ask{display:inline-flex;align-items:center;gap:8px;margin-top:6px;
-    background:var(--terra);color:#fff;text-decoration:none;font-weight:600;
-    font-size:.92rem;padding:12px 24px;border-radius:40px;transition:background .2s ease}
-  .ask:hover{background:var(--terra-deep)}
-  .band-ink .level .ask{color:#fff}
-  .level .body p{margin-top:18px}
-  .level[open] summary .chev{transform:rotate(180deg)}
-  .level .chev{flex:none;align-self:center;transition:transform .2s ease;opacity:.5}
-
-  .note{margin-top:24px;font-size:.9rem;color:var(--ink-soft)}
-  .band-ink .note{color:#b6a886}
-
-  /* proof chat */
-  .chat{margin-top:34px;display:flex;flex-direction:column;gap:13px}
-  .bubble{max-width:84%;padding:15px 19px;border-radius:20px;font-size:1.02rem;line-height:1.5;white-space:pre-line}
-  .bubble.them{align-self:flex-start;background:var(--paper);border:1px solid var(--line);border-bottom-left-radius:5px}
-  .bubble .name{display:block;font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px}
-  .proof-note{margin-top:28px;font-size:.85rem;color:var(--ink-soft)}
-
-  /* process */
-  .step{padding:26px 0;border-bottom:1px solid var(--line)}
-  .step:last-child{border-bottom:none}
-  .step .n{font-family:var(--font-body);font-weight:700;font-size:1.1rem;color:var(--ink-soft)}
-  .step h3{margin-top:4px}
-  .step p{margin-top:10px}
-
-  /* faq */
-  .faq{margin-top:30px;display:grid;gap:14px}
-  .qa{background:var(--paper);border:1px solid var(--line);border-radius:5px;overflow:hidden}
-  .qa summary{list-style:none;cursor:pointer;padding:22px 24px;font-family:var(--font-body);font-weight:600;font-size:1.08rem;display:flex;justify-content:space-between;gap:14px;align-items:center}
-  .qa summary::-webkit-details-marker{display:none}
-  .qa .chev{flex:none;opacity:.5;transition:transform .2s ease}
-  .qa[open] summary .chev{transform:rotate(180deg)}
-  .qa .a{padding:0 24px 24px;font-size:1rem}
-
-  .foot{background:var(--ink);color:var(--creme);padding:70px 0 60px;text-align:center}
-  .foot .micro{font-family:var(--font-head);font-weight:500;letter-spacing:0;font-size:1.5rem;line-height:1.2;max-width:24ch;margin:0 auto}
-  .foot .sig{font-family:var(--font-head);font-weight:500;font-size:1.05rem;color:var(--terra-soft);margin-top:30px;letter-spacing:.02em}
-  .foot .small{margin-top:18px;font-size:.85rem;color:#b6a886;letter-spacing:.04em}
-
-  @media (max-width:560px){
-    body{font-size:17px}
-    section{padding:80px 0}
-    .hero{padding:90px 0 70px}
-    .btn{width:100%;text-align:center}
-    .bubble{max-width:90%}
-    .level summary{flex-direction:column}
-    .level .price{text-align:left}
+  .split{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:0}
+  .split .sphoto{aspect-ratio:4/5;background-size:cover;background-position:center;filter:saturate(.9)}
+  .split .stext{padding:0 70px}
+  .split .stext .eyebrow{margin-bottom:18px;display:block}
+  .split .stext h2{margin-bottom:22px}
+  .split .stext p{color:var(--ink-soft);margin-bottom:18px}
+  .split .stext .btn{margin-top:12px}
+  @media (max-width:860px){
+    .split{grid-template-columns:1fr}
+    .split .sphoto{aspect-ratio:3/2;order:1!important}
+    .split .stext{order:2;padding:40px 32px 0!important}
   }
-  a:focus-visible,.btn:focus-visible,summary:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
-  .band-ink a:focus-visible{outline-color:var(--creme)}
 
-  /* mitscrollende Kopfzeile */
-  .topbar{position:sticky;top:0;z-index:50;background:rgba(250,246,238,.86);
-    backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
-    border-bottom:1px solid var(--line)}
-  .topbar .inner{max-width:var(--maxw);margin:0 auto;padding:14px 28px;
-    display:flex;align-items:center;justify-content:space-between;gap:16px}
-  .topbar .brand{font-family:var(--font-body);font-weight:700;font-size:1rem;letter-spacing:.01em}
-  .topbar .brand b{color:var(--terra);font-weight:500}
-  .topbar .cta{font-family:var(--font-body);font-weight:600;font-size:.82rem;
-    letter-spacing:.02em;text-decoration:none;color:#fff;background:var(--terra);
-    padding:9px 18px;border-radius:40px;white-space:nowrap;transition:background .2s ease}
-  .topbar .cta:hover{background:var(--terra-deep)}
-  @media (max-width:480px){.topbar .brand{font-size:.92rem}.topbar .cta{padding:8px 13px;font-size:.78rem}}
+  .offers{max-width:900px;margin:0 auto}
+  .offer{display:grid;grid-template-columns:auto 1fr auto;gap:34px;align-items:start;padding:40px 0;border-top:1px solid var(--line)}
+  .offer:last-child{border-bottom:1px solid var(--line)}
+  .offer .onum{font-family:var(--font-head);font-size:2.4rem;color:var(--clay);line-height:1}
+  .offer .omain h3{margin-bottom:6px}
+  .offer .omain .otag{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:14px;display:block}
+  .offer .omain p{color:var(--ink-soft);font-size:.98rem;max-width:52ch}
+  .offer .omain .olist{margin-top:14px;display:flex;flex-wrap:wrap;gap:6px 18px}
+  .offer .omain .olist span{font-size:.86rem;color:var(--ink-soft);position:relative;padding-left:15px}
+  .offer .omain .olist span::before{content:"—";position:absolute;left:0;color:var(--clay)}
+  .offer .oprice{text-align:right;white-space:nowrap}
+  .offer .oprice .pv{font-family:var(--font-head);font-size:1.5rem}
+  .offer .oprice .pu{font-size:.74rem;color:var(--ink-soft);letter-spacing:.04em;margin-top:2px}
+  .offer .oprice .obtn{display:inline-block;margin-top:14px;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--clay-deep);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:3px}
+  .offer .oprice .obtn:hover{color:var(--ink);border-color:var(--ink)}
+  @media (max-width:720px){ .offer{grid-template-columns:1fr;gap:12px;padding:32px 0} .offer .onum{font-size:1.8rem} .offer .oprice{text-align:left} }
 
-  /* sanftes Einblenden beim Scrollen */
-  .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
-  .reveal.in{opacity:1;transform:none}
-  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+  .tools-row{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;max-width:900px;margin:0 auto}
+  .tool{text-align:center}
+  .tool .tn{font-family:var(--font-head);font-size:1.15rem;margin-bottom:8px}
+  .tool .td{font-size:.86rem;color:var(--ink-soft);line-height:1.55}
+  @media (max-width:720px){ .tools-row{grid-template-columns:1fr 1fr;gap:26px} }
 
-  /* großer Claim-Statement-Block */
-  .statement{background:var(--ink);color:var(--creme);text-align:left}
-  .statement .wrap{padding:0 28px}
-  .statement h2{font-family:var(--font-head);font-weight:500;letter-spacing:-.01em;color:var(--creme);
-    font-size:clamp(2rem,7vw,3.4rem);line-height:1.06;max-width:20ch;margin:0}
-  .statement .sig{font-family:var(--font-head);font-weight:500;margin-top:28px;font-size:1.05rem;
-    color:var(--terra-soft);letter-spacing:.02em}
-  @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
+  .quotes{display:grid;grid-template-columns:1fr 1fr;gap:30px;max-width:900px;margin:0 auto}
+  .quote{background:var(--bg-2);padding:38px 34px;border-radius:3px}
+  .quote p{font-family:var(--font-head);font-size:1.2rem;line-height:1.5;font-style:italic;margin-bottom:18px}
+  .quote .qa{font-size:.8rem;letter-spacing:.06em;color:var(--ink-soft);text-transform:uppercase}
+  @media (max-width:720px){ .quotes{grid-template-columns:1fr} }
 
-  /* Footer-Rechtslinks */
-  .foot .legal-links{margin-top:22px;display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
-  .foot .legal-links a{color:#b6a886;font-size:.85rem;text-decoration:none;
-    letter-spacing:.03em;transition:color .2s ease}
-  .foot .legal-links a:hover{color:var(--terra)}
+  .quizcta{text-align:center}
+  .quizcta h2{max-width:20ch;margin:0 auto 22px}
+  .quizcta p{max-width:48ch;margin:0 auto 34px;color:#b0aca4}
 
-  /* Schwebende Bubbles (gestapelt unten rechts) */
-  .fab-stack{position:fixed;right:22px;bottom:22px;z-index:60;
-    display:flex;flex-direction:column;align-items:flex-end;gap:12px;
-    transition:opacity .3s ease,transform .3s ease}
-  .fab-stack.hide-fab{opacity:0;transform:translateY(16px);pointer-events:none}
-  .fab{display:flex;align-items:center;gap:9px;text-decoration:none;cursor:pointer;border:none;
-    font-family:var(--font-body);font-weight:600;font-size:.9rem;letter-spacing:.03em;
-    padding:14px 20px;border-radius:40px;
-    box-shadow:0 10px 26px -8px rgba(120,60,35,.55);
-    transition:transform .18s ease,background .2s ease,color .2s ease}
-  .fab:hover{transform:translateY(-3px)}
-  .fab .ico{font-size:1.05rem;line-height:1}
-  /* Gratis-Check: heller, einladend */
-  .fab.free{background:var(--paper);color:var(--ink);border:1px solid var(--terra)}
-  .fab.free:hover{background:var(--sand)}
-  /* Orientierungscall: Hauptaktion, voll Braun */
-  .fab.book{background:var(--terra);color:#fff}
-  .fab.book:hover{background:var(--terra-deep)}
-  /* Games: dezent, dunkel */
-  .fab.games{background:var(--ink);color:var(--creme)}
-  .fab.games:hover{background:#2a231e}
-  .fab.games .dot{width:8px;height:8px;border-radius:50%;background:var(--terra-soft)}
-  .fab.games.open{transform:scale(.94)}
+  .final{position:relative;text-align:center;color:var(--bg);overflow:hidden;padding:130px 0}
+  .final .fmedia{position:absolute;inset:0;background-size:cover;background-position:center;filter:saturate(.7) brightness(.5)}
+  .final .fmedia::after{content:"";position:absolute;inset:0;background:rgba(43,39,36,.5)}
+  .final .wrap{position:relative;z-index:1}
+  .final h2{max-width:20ch;margin:0 auto 24px}
+  .final p{max-width:46ch;margin:0 auto 36px;color:#eceae6}
 
-  /* kleine, runde Spiele-Bubble unten links – dezent */
-  .fab-games-mini{position:fixed;left:22px;bottom:22px;z-index:60;
-    width:48px;height:48px;border-radius:50%;border:1.5px solid var(--terra);
-    background:#ffffff;color:var(--terra);cursor:pointer;
-    display:flex;align-items:center;justify-content:center;font-size:1.3rem;
-    box-shadow:0 10px 26px -8px rgba(68,48,39,.45);
-    transition:transform .18s ease,background .2s ease,opacity .3s ease}
-  .fab-games-mini:hover{transform:translateY(-3px);background:var(--terra);color:#fff}
-  .fab-games-mini.open{transform:scale(.92);background:var(--terra);color:#fff}
-  .fab-games-mini.hide-fab{opacity:0;transform:translateY(16px);pointer-events:none}
+  .foot{background:var(--dark);color:#8f8a82;padding:60px 0 50px;text-align:center;font-size:.85rem}
+  .foot .fwm{font-family:var(--font-head);font-size:1.3rem;color:var(--bg);margin-bottom:18px}
+  .foot .flinks{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-bottom:22px}
+  .foot .flinks a{color:#8f8a82;text-decoration:none;font-size:.82rem}
+  .foot .flinks a:hover{color:var(--bg)}
+  .foot .sig{font-family:var(--font-head);font-style:italic;color:#b9b0a4;margin-top:8px}
 
-  .games-panel{position:fixed;left:22px;bottom:84px;z-index:60;width:300px;max-width:calc(100vw - 44px);
-    transform-origin:bottom left;
-    background:var(--paper);border:1px solid var(--line);border-radius:16px;
-    box-shadow:0 24px 50px -16px rgba(90,55,35,.5);
-    padding:18px;opacity:0;visibility:hidden;transform:translateY(12px) scale(.97);
-    transform-origin:bottom left;transition:opacity .22s ease,transform .22s ease,visibility .22s}
-  .games-panel.show{opacity:1;visibility:visible;transform:translateY(0) scale(1)}
-  .games-panel .gp-head{font-family:var(--font-head);font-weight:500;font-size:1.2rem;
-    color:var(--ink);margin-bottom:3px}
-  .games-panel .gp-sub{font-size:.82rem;color:var(--ink-soft);margin-bottom:14px}
-  .games-panel a.game{display:flex;align-items:center;gap:13px;text-decoration:none;
-    padding:11px 12px;border-radius:11px;border:1px solid transparent;
-    transition:background .15s ease,border-color .15s ease}
-  .games-panel a.game:hover{background:var(--sand);border-color:var(--line)}
-  .games-panel a.game .ico{width:38px;height:38px;border-radius:10px;flex:none;
-    display:flex;align-items:center;justify-content:center;font-size:1.2rem;background:var(--sand)}
-  .games-panel a.game:hover .ico{background:var(--paper)}
-  .games-panel a.game .txt{display:flex;flex-direction:column;line-height:1.25}
-  .games-panel a.game .txt b{font-weight:600;font-size:.96rem;color:var(--ink)}
-  .games-panel a.game .txt span{font-size:.78rem;color:var(--ink-soft)}
-  @media (max-width:560px){
-    .fab{font-size:.85rem;padding:13px 18px}
-    .fab-stack{gap:10px;right:16px;bottom:16px}
-    .fab-games-mini{left:16px;bottom:16px;width:44px;height:44px;font-size:1.2rem}
-    .games-panel{left:16px;bottom:76px}
+  .fab-wrap{position:fixed;right:20px;bottom:20px;z-index:60}
+  /* ===== Manifest (großes Leitstatement) ===== */
+  .manifest{padding:130px 0}
+  .manifest .wrap{max-width:1000px}
+  .manifest .big{font-family:var(--font-head);font-weight:400;
+    font-size:clamp(2.4rem,6vw,4.6rem);line-height:1.08;letter-spacing:-.01em}
+  .manifest .big em{color:var(--clay)}
+  .manifest .sub{font-size:clamp(1.15rem,2vw,1.5rem);line-height:1.5;color:var(--ink-soft);
+    max-width:60ch;margin:40px 0 0;font-weight:300}
+  /* fragmentierte Kurzzeilen */
+  .fragment{font-family:var(--font-head);font-weight:400;font-size:clamp(2rem,5vw,3.6rem);
+    line-height:1.22;letter-spacing:-.01em;text-align:center}
+  .fragment .l{display:block}
+  .fragment em{color:var(--clay)}
+  /* Editorial-Story: schmale Spalte, großzügig */
+  .story{padding:120px 0}
+  .story .wrap{max-width:680px}
+  .story .eyebrow{display:block;margin-bottom:24px}
+  .story h2{font-size:clamp(1.9rem,4vw,2.9rem);margin-bottom:30px}
+  .story p{font-size:1.12rem;line-height:1.8;color:var(--ink-soft);margin-bottom:24px}
+  .story p strong{color:var(--ink);font-weight:500}
+  .story .pull{font-family:var(--font-head);font-size:clamp(1.5rem,3vw,2.1rem);
+    line-height:1.35;color:var(--ink);margin:44px 0;font-style:italic}
+
+  .fab{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:40px;text-decoration:none;font-size:.82rem;font-weight:500;box-shadow:0 6px 24px rgba(43,39,36,.18);background:var(--ink);color:var(--bg)}
+
+  /* ===== Bewegung: Scroll-Reveal ===== */
+  @media (prefers-reduced-motion:no-preference){
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+    .reveal.in{opacity:1;transform:none}
+    .reveal.d1{transition-delay:.08s} .reveal.d2{transition-delay:.16s} .reveal.d3{transition-delay:.24s}
   }
-  @media (prefers-reduced-motion:reduce){.fab,.games-panel{transition:none}}
-
+  /* Ken-Burns: langsames Zoom auf Foto-Flächen */
+  @media (prefers-reduced-motion:no-preference){
+    .hero .hphoto,.split .sphoto,.final .fmedia{transform:scale(1.001);transition:transform 9s ease-out}
+    .hero .hphoto.kb,.split .sphoto.kb,.final .fmedia.kb{transform:scale(1.06)}
+  }
+  /* Hover-Lifts */
+  .btn{will-change:transform}
+  .btn-solid:hover,.btn-light:hover{transform:translateY(-2px)}
+  .quote{transition:transform .4s ease,box-shadow .4s ease}
+  .quote:hover{transform:translateY(-4px);box-shadow:0 18px 40px -20px rgba(28,27,26,.25)}
+  .offer{transition:background .3s ease}
+  .offer:hover{background:rgba(138,125,112,.04)}
+  .tool{transition:transform .3s ease}
+  .tool:hover{transform:translateY(-3px)}
+  /* Topbar: schärfer beim Scrollen */
+  .topbar{transition:box-shadow .3s ease,background .3s ease}
+  .topbar.scrolled{box-shadow:0 1px 20px rgba(28,27,26,.06)}
 </style>
 </head>
 <body>
 
-<!-- TOPBAR -->
 <div class="topbar">
   <div class="inner">
-    <span class="brand">carina<b>.offer.design</b></span>
-    <a href="https://tidycal.com/carina-anna-prav/orientierung" class="cta">Orientierungscall buchen</a>
+    <a href="index.html" class="brand"><b>carina</b>annaprav</a>
+    <nav class="nav">
+      <a href="#angebote">Angebote</a>
+      <a href="#ueber">Über mich</a>
+      <a href="dein-leitfaden.html">Leitfaden</a>
+      <a href="https://tidycal.com/carina-anna-prav/orientierung" class="cta">Orientierungscall</a>
+    </nav>
   </div>
 </div>
 
-<!-- HERO -->
 <header class="hero">
-  <div class="wrap">
-    <img class="hero-img" src="img/hero.jpg" alt="Carina sitzt entspannt auf einem hellen Sessel und schreibt in ein Notizbuch" onerror="this.classList.add('is-missing');this.removeAttribute('src');this.alt='';">
-    <span class="eyebrow">carina.offer.design · Angebotsdesign &amp; Business Architecture</span>
-    <h1>Dein Business darf sich leicht anfühlen.</h1>
-    <p class="sub">Du brauchst nicht mehr Sichtbarkeit oder die nächste Strategie. Meistens braucht es nur ein Angebot, das klar ist – und Verkaufen wird leichter. Genau da begleite ich dich.</p>
-    <div class="btns">
-      <a href="https://tidycal.com/carina-anna-prav/orientierung" class="btn btn-solid">Orientierungscall buchen</a>
+  <div class="htext">
+    <span class="eyebrow">Angebotsdesign</span>
+    <h1>Dein Angebot verkauft nicht. Und niemand sagt dir, <em>warum.</em></h1>
+    <p class="lead">Ich schon. Angebotsdesign für Frauen, deren Angebot steht — aber liegen bleibt.</p>
+    <div class="hbtns">
+      <a href="quiz.html" class="btn btn-solid">Angebotscheck starten</a>
+      <a href="https://tidycal.com/carina-anna-prav/orientierung" class="btn btn-ghost">Orientierungscall</a>
     </div>
   </div>
+  <div class="hphoto" style="background-image:url('img/hero.jpg')"></div>
 </header>
 
-<!-- PROBLEM -->
+<!-- MANIFEST -->
+<section class="band-dark manifest">
+  <div class="wrap">
+    <span class="eyebrow reveal">Kennst du das?</span>
+    <h2 class="big reveal d1">Dein Angebot ist gut. Es sagt nur niemandem, <em>warum.</em></h2>
+    <p class="sub reveal d2">Du hast alles versucht, was man dir gesagt hat: mehr posten, klarer positionieren, sichtbarer werden. Jede Expertin gibt dir ein weiteres Puzzleteil — ohne je zu fragen, ob es in dein Puzzle gehört. Du gibst alles. Und trotzdem kaufen sie nicht.</p>
+  </div>
+</section>
+
+<!-- EDITORIAL-STORY -->
+<section class="story" style="background:var(--bg-2)">
+  <div class="wrap">
+    <span class="eyebrow reveal">Warum ich das sehe</span>
+    <h2 class="reveal d1">Ein Angebot wird für ein Problem gebaut. Nicht für eine Idee.</h2>
+    <p class="reveal d2">Das ist der Satz, den ich in fast jedem Angebot vermisse, das nicht verkauft. Nicht, weil die Frauen dahinter schlecht wären — sondern weil sie ihr Angebot aus dem gebaut haben, was sie für richtig halten. Coole Worte. Etwas Neues. Die geheime Zutat. Und dann fehlt die eine Frage: Welches Problem löst das eigentlich, und für wen genau?</p>
+    <p class="pull reveal">„Menschen kaufen kein Angebot. Sie kaufen die Lösung für ein Problem, das sie gerade wachhält."</p>
+    <p class="reveal">Genau das sehe ich, wenn ich auf ein Angebot schaue — die Stelle, an der es aufhört, ein Problem zu lösen, und anfängt, eine Idee zu sein. Über 30 Angebote habe ich so diagnostiziert. Der Fehler ist fast immer derselbe.</p>
+    <p class="reveal"><strong>Und ich zeig dir nicht nur, wo er sitzt.</strong> Ich bring dir bei, ihn selbst zu sehen — damit du dein nächstes Angebot von Anfang an für das Problem deiner Kundin baust. Nicht für deine Idee davon.</p>
+  </div>
+</section>
+
 <section>
   <div class="wrap">
-    <span class="eyebrow">Kennst du das?</span>
-    <h2 style="margin-top:18px">Verkaufen fühlt sich oft schwerer an, als es sein müsste.</h2>
-    <p class="lead">Du postest, du bist sichtbar, du gibst alles – und trotzdem bleibt das Gefühl, ständig nachbessern zu müssen.</p>
-    <p>Meistens liegt es nicht an dir. Sondern daran, dass dein Angebot noch nicht klar genug zeigt, warum es genau das Richtige ist. Sobald das klar ist, wird vieles leichter.</p>
-  </div>
-</section>
-
-<!-- WHAT WE WORK ON -->
-<section class="band-sand">
-  <div class="wrap">
-    <span class="eyebrow">Woran wir arbeiten</span>
-    <h2 style="margin-top:18px">Wir machen dein Business nicht größer. Wir machen es klarer.</h2>
-    <p class="lead">Nicht der nächste Post, nicht die nächste Strategie – sondern das Fundament. Damit Menschen sofort spüren, warum sie bei dir kaufen wollen.</p>
-    <ul class="checklist">
-      <li>Dein Angebot – klar und unwiderstehlich.</li>
-      <li>Deine Worte – so, dass sie sofort ankommen.</li>
-      <li>Dein Auftritt – damit Vertrauen leicht entsteht.</li>
-    </ul>
-  </div>
-</section>
-
-<!-- STATEMENT -->
-<section class="statement">
-  <div class="wrap">
-    <h2>Nachhaltiges Wachstum entsteht selten durch mehr Tun. Sondern durch mehr Klarheit.</h2>
-    <p class="sig">Klarheit statt mehr Tun.</p>
-  </div>
-</section>
-
-<!-- OFFER SUITE -->
-<section class="band-ink" id="level">
-  <div class="wrap">
-    <span class="eyebrow">Die Offer Suite</span>
-    <h2 style="margin-top:18px">Ein Weg in drei Phasen – vom klaren Angebot zum Content, der verkauft.</h2>
-    <p class="lead">Erst machen wir dein Angebot klar. Dann entwickeln wir es weiter und bauen den Verkaufscontent, der Nachfrage erzeugt. Und wenn du willst, denken wir dein ganzes Business strategisch weiter. Du steigst dort ein, wo du gerade stehst – wir starten immer mit einem kostenlosen Orientierungscall.</p>
-
-    <div class="levels">
-
-      <details class="level" open>
-        <summary>
-          <span>
-            <span class="lv">Phase 1 · Basis</span>
-            <span class="name">Klarheit &amp; Angebot</span>
-          </span>
-          <span class="price">890 €<small>einmalig</small></span>
-          <span class="chev">▾</span>
-        </summary>
-        <div class="body">
-          <p>Für dich, wenn du bereits ein Angebot hast, aber nicht verstehst, warum Menschen noch nicht in der Selbstverständlichkeit kaufen, die eigentlich möglich wäre. Wir bauen die Grundlage, bevor laufender Content startet.</p>
-          <div class="sublabel">Wir lösen</div>
-          <ul class="problems">
-            <li>Dein Angebot ist aktuell nicht klar genug kommuniziert</li>
-            <li>Außenstehende verstehen nicht sofort, was du eigentlich verkaufst</li>
-            <li>Deine Inhalte haben keinen klaren roten Faden</li>
-            <li>Deine Positionierung ist zu breit oder nicht greifbar genug</li>
-            <li>Menschen kaufen noch nicht in der Selbstverständlichkeit, die möglich wäre</li>
-          </ul>
-          <div class="sublabel">Enthalten</div>
-          <ul class="checklist">
-            <li>Analyse deines aktuellen Angebots</li>
-            <li>Prüfung &amp; Schärfung deiner Positionierung</li>
-            <li>Analyse deiner Kommunikation &amp; Identifikation von Kaufbarrieren</li>
-            <li>Überarbeitung deiner Kernbotschaften</li>
-            <li>Definition klarer Verkaufsargumente</li>
-            <li>Entwicklung einer strategischen Content-Richtung</li>
-            <li>Aufbau einer Messaging-Grundlage für alle Inhalte</li>
-          </ul>
-          <div class="result-box"><b>Ergebnis:</b> Eine klare Basis, auf der dein gesamter Außenauftritt endlich zusammenpasst.</div>
-          <p class="note">890 € einmalig · Voraussetzung für Phase 2</p>
-          <a class="ask" href="https://tidycal.com/carina-anna-prav/orientierung">Orientierungscall buchen →</a>
-        </div>
-      </details>
-
-      <details class="level">
-        <summary>
-          <span>
-            <span class="lv">Phase 2 · Laufend</span>
-            <span class="name">Entwicklung &amp; Content</span>
-          </span>
-          <span class="price">ab 690 €<small>pro Monat · 3 Monate</small></span>
-          <span class="chev">▾</span>
-        </summary>
-        <div class="body">
-          <p>Für dich, wenn dein Angebot steht und wir es gezielt weiterentwickeln – während wir den Content bauen, der systematisch Nachfrage aufbaut. Monat für Monat.</p>
-          <div class="sublabel">Wir lösen</div>
-          <ul class="problems">
-            <li>Du weißt nie, was du posten sollst</li>
-            <li>Deine Inhalte erzeugen keine echten Kaufimpulse</li>
-            <li>Dein Feed zeigt Aktivität, aber keine strategische Richtung</li>
-            <li>Menschen folgen dir, verstehen aber dein Angebot nicht</li>
-            <li>Dein Angebot reagiert noch nicht stark genug auf das, was dein Markt braucht</li>
-          </ul>
-          <div class="sublabel">Enthalten</div>
-          <ul class="checklist">
-            <li>Angebotsoptimierung &amp; Positionierung schärfen</li>
-            <li>Messaging verbessern &amp; Verkaufsmechanismen stärken</li>
-            <li>Strategische Themenplanung</li>
-            <li>Verkaufsorientierte Contententwicklung</li>
-            <li>Carousel- und Reel-Konzepte</li>
-            <li>Positionierungs-, Thought-Leadership- &amp; Verkaufscontent</li>
-            <li>Content basierend auf Markt und Zielgruppe</li>
-            <li>Laufende strategische Weiterentwicklung</li>
-          </ul>
-          <div class="sublabel">Drei Umfänge</div>
-          <ul class="checklist">
-            <li>8 Posts pro Monat — 690 € monatlich</li>
-            <li>12 Posts pro Monat — 940 € monatlich</li>
-            <li>16 Posts pro Monat — 1.190 € monatlich</li>
-          </ul>
-          <div class="result-box"><b>Ergebnis:</b> Ein Außenauftritt, der konstant Vertrauen, Autorität und Nachfrage aufbaut.</div>
-          <p class="note">3 Monate Mindestlaufzeit · Phase 1 vorausgesetzt</p>
-          <a class="ask" href="https://tidycal.com/carina-anna-prav/orientierung">Orientierungscall buchen →</a>
-        </div>
-      </details>
-
-      <details class="level">
-        <summary>
-          <span>
-            <span class="lv">Phase 3 · Optional</span>
-            <span class="name">Strategie &amp; Skalierung</span>
-          </span>
-          <span class="price">auf Anfrage<small>im Orientierungscall</small></span>
-          <span class="chev">▾</span>
-        </summary>
-        <div class="body">
-          <p>Für dich, wenn du nicht nur ein besseres Angebot willst – sondern dein gesamtes Business langfristig intelligenter aufbaust und deine Kommunikation laufend mitziehen muss.</p>
-          <div class="sublabel">Wir lösen</div>
-          <ul class="problems">
-            <li>Dein Business entwickelt sich weiter und Messaging muss laufend angepasst werden</li>
-            <li>Angebote verändern sich und dein Content zieht nicht mehr sauber mit</li>
-            <li>Du brauchst schnell neue Verkaufswinkel bei Launches oder Veränderungen</li>
-            <li>Dein Markt verändert sich und deine Kommunikation muss Schritt halten</li>
-          </ul>
-          <div class="sublabel">Enthalten</div>
-          <ul class="checklist">
-            <li>Business-Struktur analysieren &amp; weiterentwickeln</li>
-            <li>Strategische Marktentscheidungen treffen</li>
-            <li>Nachhaltige Wachstumsschritte planen</li>
-            <li>Laufende strategische Anpassungen &amp; neue Verkaufsangles</li>
-            <li>Marktbeobachtung und Anpassung der Kommunikation</li>
-            <li>Tiefere Verkaufspsychologie im Content</li>
-            <li>Schnellere Contentzyklen</li>
-          </ul>
-          <div class="result-box"><b>Ergebnis:</b> Ein klares Angebot, eingebettet in eine Business-Strategie, die mitwächst.</div>
-          <p class="note">Preis individuell · besprechen wir im Orientierungscall</p>
-          <a class="ask" href="https://tidycal.com/carina-anna-prav/orientierung">Orientierungscall buchen →</a>
-        </div>
-      </details>
-
-    </div>
-
-    <div class="btns">
-      <a href="https://tidycal.com/carina-anna-prav/orientierung" class="btn btn-solid">Orientierungscall buchen</a>
+    <span class="eyebrow sec-eyebrow reveal">Was sich ändert</span>
+    <h2 class="sec-h reveal d1">Von einer Idee zu einem Problem.</h2>
+    <div class="fromto reveal d2">
+      <div class="col from"><span class="lbl">Vorher</span><p>Ein Angebot, gebaut aus dem, was du für richtig hältst.</p></div>
+      <div class="arrow">→</div>
+      <div class="col to"><span class="lbl">Nachher</span><p>Ein Angebot, gebaut für das Problem, das deine Kundin wachhält.</p></div>
     </div>
   </div>
 </section>
 
-
-<!-- PROOF -->
-<!-- RESULTS -->
-<section class="band-sand">
-  <div class="wrap">
-    <span class="eyebrow">Ergebnisse</span>
-    <h2 style="margin-top:18px">Oft verändern kleine Anpassungen deutlich mehr als gedacht.</h2>
-    <ul class="checklist">
-      <li>Ein unklar aufgebautes Angebot → neu strukturiert → erste qualifizierte Anfragen.</li>
-      <li>Viele Inhalte, aber wenig Nachfrage → Kommunikation angepasst → deutlich bessere Resonanz.</li>
-      <li>Ein Angebot ohne klare Kaufentscheidung → Positionierung verändert → erste zahlende Kundinnen.</li>
-      <li>Ein Business mit zu vielen Baustellen → Fokus geschaffen → klarere Verkaufsprozesse.</li>
-    </ul>
-    <p style="margin-top:18px">Nicht jedes Business braucht mehr Arbeit. Manchmal braucht es mehr Klarheit.</p>
+<section class="split" style="padding:0">
+  <div class="sphoto" style="background-image:url('img/seat.jpg')"></div>
+  <div class="stext">
+    <span class="eyebrow reveal">Die Diagnose</span>
+    <h2 class="reveal d1">Ich sag dir, warum es nicht verkauft.</h2>
+    <p>Über 30 Angebote habe ich diagnostiziert. Der Fehler ist fast immer derselbe — und fast immer an einer Stelle, die du selbst nicht mehr siehst, weil du zu nah dran bist.</p>
+    <p>Keine Beratung. Keine Motivationsrede. Eine Diagnose: Wo verliert dein Angebot Menschen, die fast gekauft hätten.</p>
+    <a href="quiz.html" class="btn btn-ghost">Kostenlosen Check starten</a>
   </div>
 </section>
 
-<!-- KUNDENSTIMMEN -->
+<section id="angebote" style="background:var(--bg-2)">
+  <div class="wrap">
+    <span class="eyebrow sec-eyebrow reveal">So arbeiten wir</span>
+    <h2 class="sec-h reveal d1">Drei Stufen. Eine klare Reihenfolge.</h2>
+    <p class="sec-intro reveal d2">Erst die Diagnose. Dann lernst du, dein Angebot selbst zu bauen. Und wenn du weiter willst, begleite ich dich. Du steigst dort ein, wo du gerade stehst.</p>
+    <div class="offers reveal">
+      <div class="offer">
+        <div class="onum">01</div>
+        <div class="omain">
+          <span class="otag">Stufe 1 · Der Einstieg</span>
+          <h3>Der Angebotscheck</h3>
+          <p>Schick mir dein Angebot. Ich sag dir, warum es nicht verkauft. Keine Beratung — eine Diagnose.</p>
+          <div class="olist"><span>Analyse deines Angebots</span><span>die konkrete Bruchstelle benannt</span><span>dein erster Schritt zur Lösung</span><span>KI sofort · persönlich als Loom-Video</span></div>
+        </div>
+        <div class="oprice"><div class="pv">0 € / 795 €</div><div class="pu">KI oder mit mir</div><a href="quiz.html" class="obtn">Starten →</a></div>
+      </div>
+      <div class="offer">
+        <div class="onum">02</div>
+        <div class="omain">
+          <span class="otag">Stufe 2 · Selbst lernen</span>
+          <h3>Der Kurs</h3>
+          <p>Dein Angebot selbst bauen — richtig, von Grund auf, in deinem Tempo. Wie du fragst statt rätst, wie aus Klarheit Kaufbereitschaft wird. Trag dich ein, dann erfährst du als Erste, wann er startet.</p>
+        </div>
+        <div class="oprice"><div class="pv">bald</div><div class="pu">in Vorbereitung</div><a href="dein-leitfaden.html" class="obtn">Warteliste →</a></div>
+      </div>
+      <div class="offer">
+        <div class="onum">03</div>
+        <div class="omain">
+          <span class="otag">Stufe 3 · Die Begleitung</span>
+          <h3>Das Mentoring</h3>
+          <p>Dein Angebot verkauft — aber jeder Verkauf hängt an dir. Sechs Monate arbeiten wir daran, dass das aufhört. Ein einziger Kunde, den dein klareres Angebot bringt, trägt oft die ganzen sechs Monate.</p>
+          <div class="olist"><span>Angebot</span><span>Positionierung</span><span>Verkaufssystem</span><span>Content</span><span>+ meine 4 Werkzeuge</span></div>
+        </div>
+        <div class="oprice"><div class="pv">800 €</div><div class="pu">pro Monat · 6 Monate</div><a href="https://tidycal.com/carina-anna-prav/orientierung" class="obtn">Anfragen →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section>
   <div class="wrap">
-    <span class="eyebrow">Kundenstimmen</span>
-    <h2 style="margin-top:18px">Lieber lasse ich meine Kundinnen sprechen.</h2>
-    <div class="chat">
-      <div class="bubble them">Mit Carina habe ich es geschafft wirklich zu verstehen, was meine Zielgruppe braucht. Sie hat mich ermutigt, motiviert und wirklich toll unterstützt. Genau diesen Push und Support habe ich gebraucht. Meine Erwartungen wurden übertroffen.</div>
-      <div class="bubble them">Erste Kundin von mir hat ernsthaftes Interesse einzusteigen. Ich bin gerade soooo happy.</div>
-      <div class="bubble them">Es ist unfassbar, die 2–3 Switches haben so viel gemacht. Ich habe 2, die für das 1:1 sprechen wollen und 5 Anmeldungen im Pre-Launch.</div>
-      <div class="bubble them">Btw: 30 Anmeldungen für den Workshop morgen :)</div>
-      <div class="bubble them">Fühle mich echt gut geführt und von mal zu mal ist der Druck und die Unsicherheit viel viel weniger.</div>
-      <div class="bubble them"><span class="name">Workshop-Feedback</span>Dieser Workshop war mega! Diese 3 Fragen allein werden schon extrem viel verändern. Danke!</div>
-    </div>
-    <p class="proof-note">Auszüge aus Nachrichten von Kundinnen. Mit Einverständnis geteilt, Namen anonymisiert.</p>
-  </div>
-</section>
-
-<!-- QUIZ CALLOUT -->
-<section class="band-ink">
-  <div class="wrap">
-    <span class="eyebrow">Noch unsicher?</span>
-    <h2 style="margin-top:18px">Finde in 2 Minuten heraus, wo dein Angebot Kundinnen verliert.</h2>
-    <p class="lead">Ein kurzer, kostenloser Check zeigt dir deinen blinden Fleck – mit Checkliste dazu. Ohne Termin, ohne Risiko.</p>
-    <div class="btns">
-      <a href="quiz.html" class="btn btn-solid">Gratis-Check starten</a>
+    <span class="eyebrow sec-eyebrow reveal">Inklusive im Mentoring</span>
+    <h2 class="sec-h reveal d1">Die Werkzeuge, mit denen wir arbeiten.</h2>
+    <p class="sec-intro">Andere reden über Content. Ich habe die Werkzeuge dafür gebaut — vier eigene Apps, die in der Zusammenarbeit zum Einsatz kommen.</p>
+    <div class="tools-row reveal d2">
+      <div class="tool"><div class="tn">BrandStudio</div><div class="td">Deine Content-Produktion an einem Ort.</div></div>
+      <div class="tool"><div class="tn">HookStudio</div><div class="td">Hooks, die auf dein Angebot einzahlen.</div></div>
+      <div class="tool"><div class="tn">Portraits</div><div class="td">Brand-Fotos aus Selfies, ohne Shooting.</div></div>
+      <div class="tool"><div class="tn">BrandSheet</div><div class="td">Deine visuelle Sprache auf einem Blatt.</div></div>
     </div>
   </div>
 </section>
 
-<!-- ABOUT -->
-<section class="band-sand">
-  <div class="wrap">
-    <span class="eyebrow">Warum ich so arbeite</span>
-    <h2 style="margin-top:18px">Ich glaube, das meiste wird an der falschen Stelle gelöst.</h2>
-    <p class="lead">Immer mehr posten, immer neue Strategien – dabei beginnt das eigentliche Thema viel früher. Beim Angebot. Bei der Klarheit.</p>
-    <p>Ich arbeite nicht daran, dass du mehr tust. Sondern daran, dass dein Business klarer wird. Denn leichter wird es nicht durch mehr Einsatz – sondern durch ein gutes Fundament.</p>
+<section id="ueber" class="split" style="padding:0;background:var(--bg-2)">
+  <div class="stext" style="padding:0 70px">
+    <span class="eyebrow reveal">Was ich glaube</span>
+    <h2 class="reveal d1">Das, was du heute verkaufst, konntest du <em>die ganze Zeit schon.</em></h2>
+    <p class="reveal d2">Du hast nur nicht geglaubt, dass es reicht — ohne noch etwas draufzupacken. Genau da setze ich an: Ich nehme dir das Draufpacken ab und mache sichtbar, was ohnehin schon da ist. Kein neues Angebot. Ein klareres.</p>
+    <a href="https://tidycal.com/carina-anna-prav/orientierung" class="btn btn-ghost reveal">Lern mich kennen</a>
   </div>
+  <div class="sphoto" style="background-image:url('img/wide.jpg')"></div>
 </section>
 
-<!-- FAQ -->
 <section>
   <div class="wrap">
-    <span class="eyebrow">FAQ</span>
-    <h2 style="margin-top:18px">Was du vielleicht noch wissen willst.</h2>
-    <div class="faq">
-      <details class="qa">
-        <summary>Für wen ist das? <span class="chev">▾</span></summary>
-        <div class="a"><p>Für Unternehmerinnen, die etwas anzubieten haben und spüren, dass ihr Business an wichtigen Stellen unnötig kompliziert geworden ist – und die wollen, dass Verkaufen leichter wird, statt ständig zu optimieren.</p></div>
-      </details>
-      <details class="qa">
-        <summary>Wie läuft die Zusammenarbeit ab? <span class="chev">▾</span></summary>
-        <div class="a"><p>Als ein Weg in drei Phasen. Phase 1 (Klarheit &amp; Angebot) ist die einmalige Grundlage – wir machen dein Angebot und deine Positionierung klar. Darauf baut Phase 2 (Entwicklung &amp; Content) auf: Wir entwickeln dein Angebot weiter und ich übernehme deinen Verkaufscontent, Monat für Monat, in einem von drei Umfängen (8, 12 oder 16 Posts). Phase 3 (Strategie &amp; Skalierung) ist optional, wenn dein Business sich schnell bewegt.</p></div>
-      </details>
-      <details class="qa">
-        <summary>Kann ich direkt buchen? <span class="chev">▾</span></summary>
-        <div class="a"><p>Nein. Jede Zusammenarbeit beginnt mit einem kostenlosen Orientierungscall. Erst schauen wir gemeinsam, ob und wo es passt – dann entscheidest du in Ruhe.</p></div>
-      </details>
-      <details class="qa">
-        <summary>Brauche ich schon ein fertiges Angebot? <span class="chev">▾</span></summary>
-        <div class="a"><p>Ein bestehendes Angebot hilft, ist aber keine Bedingung. Genau dafür ist Phase 1 da: Wir schärfen dein Angebot und deine Positionierung, bevor der laufende Content startet – damit alles auf einer klaren Basis steht.</p></div>
-      </details>
+    <span class="eyebrow sec-eyebrow reveal">Stimmen</span>
+    <h2 class="sec-h reveal d1">Lieber lasse ich meine Kundinnen sprechen.</h2>
+    <div class="quotes reveal d2">
+      <div class="quote"><p>„Dritter Monat in Folge über 3K. Vorher war das ein Auf und Ab — mal 2.000, mal nichts. Zum ersten Mal ist da ein System dahinter und nicht nur Glück."</p><div class="qa">Kundin · Mentoring</div></div>
+      <div class="quote"><p>„Ich hatte diese Woche drei Erstgespräche, zwei haben gebucht. Nicht weil ich was Magisches gemacht hab — sondern weil mein Angebot endlich so klar ist, dass die Leute sofort verstehen, was sie bekommen."</p><div class="qa">Kundin · Mentoring</div></div>
+      <div class="quote"><p>„Ich hab meinen Preis genannt und die Kundin hat einfach ja gesagt. Kein Rechtfertigen, kein Rabatt. Vor dem Check hätte ich den Preis wahrscheinlich gar nicht erst ausgesprochen."</p><div class="qa">Kundin · Angebotscheck</div></div>
+      <div class="quote"><p>„Ich poste nicht mehr ins Leere. Mein Content hat eine Richtung, weil mein Angebot eine Richtung hat. Bei mir war das immer andersrum — und hat nie funktioniert."</p><div class="qa">Kundin · Mentoring</div></div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="band-ink" id="start">
+<section class="band-dark quizcta">
   <div class="wrap">
-    <span class="eyebrow">Nächster Schritt</span>
-    <h2 style="margin-top:18px">Dein Business darf sich leicht anfühlen.</h2>
-    <p class="lead">Wenn Verkaufen sich gerade schwer anfühlt, braucht es selten mehr Tun. Oft reicht ein Schritt zurück – und etwas mehr Klarheit. Lass uns reden.</p>
-    <p class="lead">Du musst dich jetzt für nichts entscheiden. Wir starten mit einem kostenlosen Orientierungscall – 30 Minuten, in denen wir schauen, was dein Business gerade braucht. Welcher Weg dann zu dir passt, finden wir gemeinsam heraus.</p>
-    <div class="btns">
-      <a href="https://tidycal.com/carina-anna-prav/orientierung" class="btn btn-solid">Orientierungscall buchen</a>
-    </div>
+    <span class="eyebrow">Der Gratis-Check</span>
+    <h2 class="reveal d1">Finde in 2 Minuten heraus, wo dein Angebot Kundinnen verliert.</h2>
+    <p>Beschreib dein Angebot in deinen Worten. Meine KI zeigt dir sofort, wo gerade Klarheit fehlt — kostenlos, kein Risiko.</p>
+    <a href="quiz.html" class="btn btn-light">Angebotscheck starten</a>
   </div>
 </section>
 
-<!-- FOOTER -->
+<section class="final">
+  <div class="fmedia" style="background-image:url('img/phone.jpg')"></div>
+  <div class="wrap">
+    <span class="eyebrow" style="color:#c4bcb0">Nächster Schritt</span>
+    <h2 class="reveal">Schick mir dein Angebot.</h2>
+    <p>Wir starten mit einem kostenlosen Orientierungscall — 30 Minuten, in denen wir schauen, warum dein Angebot noch nicht verkauft und welcher Weg zu dir passt. Du musst dich jetzt für nichts entscheiden.</p>
+    <a href="https://tidycal.com/carina-anna-prav/orientierung" class="btn btn-light">Orientierungscall buchen</a>
+  </div>
+</section>
+
 <footer class="foot">
   <div class="wrap">
-    <p class="micro">Klarheit beginnt nicht bei Reichweite. Sie beginnt beim Angebot.</p>
-    <p class="sig">Klarheit statt mehr Tun.</p>
-    <nav class="legal-links">
-      <a href="impressum.html">Impressum</a>
-      <a href="datenschutz.html">Datenschutz</a>
+    <div class="fwm">carinaannaprav</div>
+    <div class="flinks">
+      <a href="#angebote">Angebote</a>
+      <a href="dein-leitfaden.html">Leitfaden</a>
       <a href="agb.html">AGB</a>
+      <a href="datenschutz.html">Datenschutz</a>
+      <a href="impressum.html">Impressum</a>
       <a href="widerruf.html">Widerruf</a>
-    </nav>
-    <p class="small">carina.offer.design · Angebotsdesign &amp; Business Architecture · © <span id="yr"></span></p>
+    </div>
+    <p>Angebotsdesign · © <span id="yr"></span></p>
+    <p class="sig">Dein Angebot ist für dich gebaut. Nicht für sie.</p>
   </div>
 </footer>
 
-<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
-<script>
-(function(){
-  var els = document.querySelectorAll('section .wrap');
-  els.forEach(function(e){ e.classList.add('reveal'); });
-  var hero = document.querySelector('.hero .wrap');
-  if(hero){ hero.classList.add('in'); }
-  if(!('IntersectionObserver' in window)){
-    els.forEach(function(e){ e.classList.add('in'); }); return;
-  }
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(en){
-      if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
-    });
-  }, { threshold: 0.12 });
-  els.forEach(function(e){ io.observe(e); });
-})();
-</script>
-
-<!-- Schwebende Bubbles -->
-<div class="fab-stack">
-  <a class="fab free" href="quiz.html">
-    <span class="ico">✨</span> Gratis-Check
-  </a>
-  <a class="fab book" href="https://tidycal.com/carina-anna-prav/orientierung">
-    <span class="ico">→</span> Orientierungscall
-  </a>
+<div class="fab-wrap">
+  <a href="https://tidycal.com/carina-anna-prav/orientierung" class="fab">Orientierungscall</a>
 </div>
 
-<!-- Versteckte Spiele-Bubble (unten links) -->
-<button class="fab-games-mini" id="gamesToggle" aria-label="Kleine Spiele öffnen" aria-expanded="false" aria-controls="gamesPanel">★</button>
-<div class="games-panel" id="gamesPanel" role="dialog" aria-label="Kleine Spiele">
-  <div class="gp-head">Eine kleine Pause?</div>
-  <div class="gp-sub">Drei ruhige Spiele – einfach so.</div>
-  <a class="game" href="zen-garten.html">
-    <span class="ico">🪨</span>
-    <span class="txt"><b>Zen-Garten</b><span>Linien ziehen, Steine setzen</span></span>
-  </a>
-  <a class="game" href="plopp.html">
-    <span class="ico">🧩</span>
-    <span class="txt"><b>Plopp</b><span>Drei in einer Reihe</span></span>
-  </a>
-  <a class="game" href="snake.html">
-    <span class="ico">🐍</span>
-    <span class="txt"><b>Snake</b><span>Nur du und die Richtung</span></span>
-  </a>
+<!-- Spiele-Bubble unten links -->
+<div id="gamesPanel" style="position:fixed;left:20px;bottom:76px;z-index:60;display:none;
+  background:#fff;border:1px solid #e8e7e3;border-radius:10px;padding:10px;
+  box-shadow:0 12px 40px rgba(28,27,26,.16);min-width:180px">
+  <div style="font-family:var(--font-body);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:#8a7d70;padding:6px 10px 8px">Kleine Pause?</div>
+  <a href="snake.html" style="display:block;padding:9px 10px;font-size:.9rem;color:#1c1b1a;text-decoration:none;border-radius:6px">🐍 Snake</a>
+  <a href="plopp.html" style="display:block;padding:9px 10px;font-size:.9rem;color:#1c1b1a;text-decoration:none;border-radius:6px">🫧 Plopp</a>
+  <a href="zen-garten.html" style="display:block;padding:9px 10px;font-size:.9rem;color:#1c1b1a;text-decoration:none;border-radius:6px">🪷 Zen-Garten</a>
 </div>
+<button id="gamesToggle" aria-label="Spiele" style="position:fixed;left:20px;bottom:20px;z-index:61;
+  width:44px;height:44px;border-radius:50%;border:1px solid #e8e7e3;background:#fff;cursor:pointer;
+  font-size:1.1rem;box-shadow:0 6px 24px rgba(28,27,26,.14);transition:transform .2s ease">★</button>
+
 <script>
-(function(){
-  // Spiele-Panel auf/zu
-  var toggle=document.getElementById('gamesToggle');
-  var panel=document.getElementById('gamesPanel');
-  if(toggle && panel){
-    function close(){ panel.classList.remove('show'); toggle.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); }
-    function open(){ panel.classList.add('show'); toggle.classList.add('open'); toggle.setAttribute('aria-expanded','true'); }
-    toggle.addEventListener('click', function(e){
-      e.stopPropagation();
-      if(panel.classList.contains('show')){ close(); } else { open(); }
-    });
-    // Klick außerhalb schließt
-    document.addEventListener('click', function(e){
-      if(panel.classList.contains('show') && !panel.contains(e.target) && e.target!==toggle){ close(); }
-    });
-    // Escape schließt
-    document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ close(); } });
-  }
-})();
-</script>
-<script>
-(function(){
-  // Bubbles ausblenden, sobald der Footer (mit Rechts-Links) in Sicht ist,
-  // damit man die Links anklicken kann.
-  var stack=document.querySelector('.fab-stack');
-  var mini=document.querySelector('.fab-games-mini');
-  var panel=document.getElementById('gamesPanel');
-  var foot=document.querySelector('.foot');
-  if(foot && ('IntersectionObserver' in window)){
-    var io=new IntersectionObserver(function(entries){
-      entries.forEach(function(en){
-        if(en.isIntersecting){
-          if(stack){ stack.classList.add('hide-fab'); }
-          if(mini){ mini.classList.add('hide-fab'); }
-          if(panel){ panel.classList.remove('show'); }
-          if(mini){ mini.classList.remove('open'); mini.setAttribute('aria-expanded','false'); }
-        } else {
-          if(stack){ stack.classList.remove('hide-fab'); }
-          if(mini){ mini.classList.remove('hide-fab'); }
-        }
-      });
-    }, { threshold: 0.01 });
-    io.observe(foot);
-  }
-})();
+document.getElementById('yr').textContent=new Date().getFullYear();
+
+// Scroll-Reveal: Elemente mit .reveal faden beim Sichtbarwerden ein
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+}, {threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// Ken-Burns: Foto zoomt langsam, sobald sichtbar
+const kb = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('kb'); });
+}, {threshold:0.2});
+document.querySelectorAll('.hphoto,.sphoto,.fmedia').forEach(el=>kb.observe(el));
+
+// Topbar-Schatten beim Scrollen
+const tb=document.querySelector('.topbar');
+addEventListener('scroll',()=>{ tb.classList.toggle('scrolled', scrollY>20); }, {passive:true});
+
+// Spiele-Bubble
+const gt=document.getElementById('gamesToggle'), gp=document.getElementById('gamesPanel');
+gt.addEventListener('click',(e)=>{ e.stopPropagation(); const open=gp.style.display==='block'; gp.style.display=open?'none':'block'; gt.style.transform=open?'none':'rotate(72deg)'; });
+document.addEventListener('click',(e)=>{ if(!gp.contains(e.target)&&e.target!==gt){ gp.style.display='none'; gt.style.transform='none'; } });
 </script>
 </body>
 </html>

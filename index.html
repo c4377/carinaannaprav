@@ -2,30 +2,31 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<meta name="color-scheme" content="light">
+<meta name="color-scheme" content="dark">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>carinaannaprav — Angebotsdesign für Frauen, deren Angebot nicht verkauft</title>
+<title>carinaannaprav — Angebote, die Nachfrage erzeugen. Nicht mehr Marketing.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#fbfbfa; --bg-2:#f2f1ee; --ink:#1c1b1a; --ink-soft:#6a6864;
-    --line:#e8e7e3; --clay:#8a7d70; --clay-deep:#6b6055; --dark:#1c1b1a;
+    --bg:#0e0c0b; --bg-2:#151210; --ink:#ede7de; --ink-soft:#9a9186;
+    --line:#26211c; --clay:#c7a882; --clay-deep:#a98a63; --dark:#080706;
     --font-head:'Playfair Display', Georgia, serif;
     --font-body:'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --maxw:1120px;
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  html{background:var(--bg);scroll-behavior:smooth}
-  body{background:var(--bg);color:var(--ink);font-family:var(--font-body);
+  html{background:#0e0c0b;scroll-behavior:smooth}
+  body{background:#0e0c0b;color:#ede7de;font-family:var(--font-body);
     font-weight:300;font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
-  h1,h2,h3{font-family:var(--font-head);font-weight:400;line-height:1.15;letter-spacing:0}
+  h1{font-family:'Montserrat',sans-serif;font-weight:500;line-height:1.14;letter-spacing:-.01em}
+  h2,h3{font-family:var(--font-body);font-weight:500;line-height:1.22;letter-spacing:.005em}
   h1{font-size:clamp(2.4rem,5.5vw,3.8rem)}
-  h2{font-size:clamp(1.9rem,4vw,2.9rem)}
-  h3{font-size:clamp(1.2rem,2.2vw,1.5rem)}
-  em{font-style:italic;color:var(--clay)}
+  h2{font-size:clamp(1.7rem,3.4vw,2.5rem);font-weight:600}
+  h3{font-size:clamp(1.15rem,2vw,1.4rem);font-weight:600}
+  em{font-style:normal;color:var(--clay);font-weight:400}
   .eyebrow{font-family:var(--font-body);font-size:.72rem;font-weight:500;letter-spacing:.28em;
     text-transform:uppercase;color:var(--clay)}
   .btn{display:inline-block;font-family:var(--font-body);font-weight:500;font-size:.9rem;
@@ -34,10 +35,10 @@
   .btn-solid:hover{background:var(--clay-deep)}
   .btn-ghost{border:1px solid var(--ink);color:var(--ink)}
   .btn-ghost:hover{background:var(--ink);color:var(--bg)}
-  .btn-light{background:var(--bg);color:var(--ink)}
-  .btn-light:hover{background:var(--clay);color:var(--bg)}
+  .btn-light{background:var(--clay);color:#161311}
+  .btn-light:hover{background:var(--clay-deep);color:#161311}
 
-  .topbar{position:sticky;top:0;z-index:50;background:rgba(244,241,234,.9);
+  .topbar{position:sticky;top:0;z-index:50;background:rgba(22,19,17,.9);
     backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
   .topbar .inner{max-width:var(--maxw);margin:0 auto;padding:18px 32px;display:flex;align-items:center;justify-content:space-between}
   .topbar .brand{font-family:var(--font-body);font-weight:500;font-size:.95rem;letter-spacing:.02em;color:var(--ink);text-decoration:none}
@@ -63,14 +64,14 @@
     .hero .lead{max-width:none}
   }
 
-  section{padding:100px 0}
+  section{padding:100px 0;background:#0e0c0b}
   .sec-eyebrow{text-align:center;display:block;margin-bottom:16px}
   .sec-h{text-align:center;max-width:20ch;margin:0 auto 20px}
   .sec-intro{text-align:center;max-width:56ch;margin:0 auto 56px;color:var(--ink-soft)}
 
-  .band-dark{background:var(--dark);color:var(--bg)}
-  .band-dark .eyebrow{color:#b9b0a4}
-  .band-dark em{color:#c4bcb0}
+  .band-dark{background:#080706;color:var(--ink)}
+  .band-dark .eyebrow{color:var(--clay)}
+  .band-dark em{color:var(--clay)}
   .problem{text-align:center}
   .problem h2{max-width:22ch;margin:0 auto 30px}
   .problem .plead{max-width:52ch;margin:0 auto;color:#b0aca4;font-size:1.1rem}
@@ -78,7 +79,7 @@
   .fromto{display:grid;grid-template-columns:1fr auto 1fr;gap:40px;align-items:center;max-width:820px;margin:50px auto 0}
   .fromto .col{text-align:center}
   .fromto .lbl{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:18px;display:block}
-  .fromto .col p{font-family:var(--font-head);font-size:1.35rem;line-height:1.4}
+  .fromto .col p{font-family:var(--font-body);font-weight:300;font-size:1.2rem;line-height:1.4}
   .fromto .col.from p{color:var(--ink-soft)}
   .fromto .col.to p{color:var(--ink)}
   .fromto .arrow{font-size:1.6rem;color:var(--clay)}
@@ -116,13 +117,13 @@
 
   .tools-row{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;max-width:900px;margin:0 auto}
   .tool{text-align:center}
-  .tool .tn{font-family:var(--font-head);font-size:1.15rem;margin-bottom:8px}
+  .tool .tn{font-family:var(--font-body);font-weight:500;font-size:1.15rem;margin-bottom:8px}
   .tool .td{font-size:.86rem;color:var(--ink-soft);line-height:1.55}
   @media (max-width:720px){ .tools-row{grid-template-columns:1fr 1fr;gap:26px} }
 
   .quotes{display:grid;grid-template-columns:1fr 1fr;gap:30px;max-width:900px;margin:0 auto}
   .quote{background:var(--bg-2);padding:38px 34px;border-radius:3px}
-  .quote p{font-family:var(--font-head);font-size:1.2rem;line-height:1.5;font-style:italic;margin-bottom:18px}
+  .quote p{font-family:var(--font-body);font-weight:300;font-size:1.12rem;line-height:1.55;margin-bottom:18px}
   .quote .qa{font-size:.8rem;letter-spacing:.06em;color:var(--ink-soft);text-transform:uppercase}
   @media (max-width:720px){ .quotes{grid-template-columns:1fr} }
 
@@ -130,7 +131,7 @@
   .quizcta h2{max-width:20ch;margin:0 auto 22px}
   .quizcta p{max-width:48ch;margin:0 auto 34px;color:#b0aca4}
 
-  .final{position:relative;text-align:center;color:var(--bg);overflow:hidden;padding:130px 0}
+  .final{position:relative;text-align:center;color:var(--ink);overflow:hidden;padding:130px 0}
   .final .fmedia{position:absolute;inset:0;background-size:cover;background-position:center;filter:saturate(.7) brightness(.5)}
   .final .fmedia::after{content:"";position:absolute;inset:0;background:rgba(43,39,36,.5)}
   .final .wrap{position:relative;z-index:1}
@@ -138,18 +139,18 @@
   .final p{max-width:46ch;margin:0 auto 36px;color:#eceae6}
 
   .foot{background:var(--dark);color:#8f8a82;padding:60px 0 50px;text-align:center;font-size:.85rem}
-  .foot .fwm{font-family:var(--font-head);font-size:1.3rem;color:var(--bg);margin-bottom:18px}
+  .foot .fwm{font-family:'Montserrat',sans-serif;font-weight:600;font-size:1.3rem;color:var(--ink);margin-bottom:18px}
   .foot .flinks{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-bottom:22px}
   .foot .flinks a{color:#8f8a82;text-decoration:none;font-size:.82rem}
   .foot .flinks a:hover{color:var(--bg)}
-  .foot .sig{font-family:var(--font-head);font-style:italic;color:#b9b0a4;margin-top:8px}
+  .foot .sig{font-family:'Montserrat',sans-serif;font-style:normal;color:#b9b0a4;margin-top:8px}
 
   .fab-wrap{position:fixed;right:20px;bottom:20px;z-index:60}
   /* ===== Manifest (großes Leitstatement) ===== */
   .manifest{padding:130px 0}
   .manifest .wrap{max-width:1000px}
-  .manifest .big{font-family:var(--font-head);font-weight:400;
-    font-size:clamp(2.4rem,6vw,4.6rem);line-height:1.08;letter-spacing:-.01em}
+  .manifest .big{font-family:var(--font-body);font-weight:500;
+    font-size:clamp(2rem,4.6vw,3.4rem);line-height:1.14;letter-spacing:0}
   .manifest .big em{color:var(--clay)}
   .manifest .sub{font-size:clamp(1.15rem,2vw,1.5rem);line-height:1.5;color:var(--ink-soft);
     max-width:60ch;margin:40px 0 0;font-weight:300}
@@ -165,8 +166,34 @@
   .story h2{font-size:clamp(1.9rem,4vw,2.9rem);margin-bottom:30px}
   .story p{font-size:1.12rem;line-height:1.8;color:var(--ink-soft);margin-bottom:24px}
   .story p strong{color:var(--ink);font-weight:500}
-  .story .pull{font-family:var(--font-head);font-size:clamp(1.5rem,3vw,2.1rem);
+  .story .pull{font-family:var(--font-body);font-weight:300;font-size:clamp(1.4rem,2.8vw,1.95rem);
     line-height:1.35;color:var(--ink);margin:44px 0;font-style:italic}
+
+  /* ===== Proof-Cases (anonyme Muster) ===== */
+  .proof{padding:110px 0}
+  .proof .lead-h{text-align:center;max-width:24ch;margin:0 auto 12px;font-family:var(--font-body);font-weight:600;font-size:clamp(1.7rem,3.6vw,2.5rem);letter-spacing:.005em}
+  .proof .lead-sub{text-align:center;color:var(--ink-soft);max-width:50ch;margin:0 auto 60px}
+  .cases{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;max-width:1080px;margin:0 auto}
+  .case{background:var(--bg-2);border-radius:4px;padding:34px 30px}
+  .case .cn{font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--clay);margin-bottom:20px;display:block}
+  .case p{font-size:.98rem;line-height:1.6;margin-bottom:12px}
+  .case p.was{color:var(--ink-soft)}
+  .case p.turn{font-family:var(--font-body);font-weight:500;font-size:1.05rem;line-height:1.4;color:var(--ink);margin-top:16px}
+  .case p.turn em{color:var(--clay)}
+  .proof .bridge{text-align:center;font-family:var(--font-body);font-weight:300;
+    font-size:clamp(1.3rem,2.6vw,1.8rem);color:var(--ink);max-width:24ch;margin:60px auto 0}
+  @media (max-width:860px){ .cases{grid-template-columns:1fr;max-width:520px} }
+
+  /* ===== Drei Entscheidungen (Steps) ===== */
+  .decisions{max-width:820px;margin:0 auto}
+  .decision{display:grid;grid-template-columns:auto 1fr;gap:30px;padding:44px 0;border-top:1px solid var(--line)}
+  .decision:last-child{border-bottom:1px solid var(--line)}
+  .decision .dn{font-family:'Montserrat',sans-serif;font-size:2.6rem;color:var(--clay);line-height:1}
+  .decision .dverb{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--clay);display:block;margin-bottom:8px}
+  .decision h3{font-size:1.5rem;margin-bottom:14px}
+  .decision p{color:var(--ink-soft);margin-bottom:10px}
+  .decision .dprice{margin-top:14px;font-family:var(--font-body);font-weight:500;font-size:1.15rem;color:var(--ink)}
+  @media (max-width:600px){ .decision{grid-template-columns:1fr;gap:12px} }
 
   .fab{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:40px;text-decoration:none;font-size:.82rem;font-weight:500;box-shadow:0 6px 24px rgba(43,39,36,.18);background:var(--ink);color:var(--bg)}
 
@@ -195,7 +222,7 @@
   .topbar.scrolled{box-shadow:0 1px 20px rgba(28,27,26,.06)}
 </style>
 </head>
-<body>
+<body style="background:#0e0c0b;color:#ede7de;font-family:Montserrat,-apple-system,BlinkMacSystemFont,sans-serif">
 
 <div class="topbar">
   <div class="inner">
@@ -211,9 +238,9 @@
 
 <header class="hero">
   <div class="htext">
-    <span class="eyebrow">Angebotsdesign</span>
-    <h1>Dein Angebot verkauft nicht. Und niemand sagt dir, <em>warum.</em></h1>
-    <p class="lead">Ich schon. Angebotsdesign für Frauen, deren Angebot steht — aber liegen bleibt.</p>
+    <span class="eyebrow">Demand&nbsp;Fit · Angebotsentwicklung</span>
+    <h1>Die meisten Angebote scheitern lange, bevor Marketing <em>überhaupt eine Rolle spielt.</em></h1>
+    <p class="lead">Nicht, weil sie schlecht formuliert sind. Sondern weil sie auf etwas aufbauen, das niemand stark genug haben will. Ich arbeite an dieser Stelle: Ich entwickle Angebote, die echte Nachfrage treffen — bevor wir über Positionierung, Content oder Reichweite sprechen.</p>
     <div class="hbtns">
       <a href="quiz.html" class="btn btn-solid">Angebotscheck starten</a>
       <a href="https://tidycal.com/carina-anna-prav/orientierung" class="btn btn-ghost">Orientierungscall</a>
@@ -222,35 +249,60 @@
   <div class="hphoto" style="background-image:url('img/hero.jpg')"></div>
 </header>
 
-<!-- MANIFEST -->
-<section class="band-dark manifest">
+<!-- PROOF: erst Beweis, dann Theorie -->
+<section class="proof">
   <div class="wrap">
-    <span class="eyebrow reveal">Kennst du das?</span>
-    <h2 class="big reveal d1">Dein Angebot ist gut. Es sagt nur niemandem, <em>warum.</em></h2>
-    <p class="sub reveal d2">Du hast alles versucht, was man dir gesagt hat: mehr posten, klarer positionieren, sichtbarer werden. Jede Expertin gibt dir ein weiteres Puzzleteil — ohne je zu fragen, ob es in dein Puzzle gehört. Du gibst alles. Und trotzdem kaufen sie nicht.</p>
+    <h2 class="lead-h reveal">Drei Angebote. Drei Branchen. Dasselbe Problem.</h2>
+    <p class="lead-sub reveal d1">Nicht am Marketing. Am Angebot selbst.</p>
+    <div class="cases">
+      <div class="case reveal">
+        <span class="cn">Fall 01</span>
+        <p class="was">Sie wollte Selbstbewusstsein verkaufen. Ihre Kundinnen aber wollten etwas anderes: endlich souverän auftreten, ohne vorher zu zerbröseln.</p>
+        <p class="turn">Wir haben das Angebot auf das <em>echte</em> Bedürfnis neu gebaut. Aus „interessant" wurde „das will ich".</p>
+      </div>
+      <div class="case reveal d1">
+        <span class="cn">Fall 02</span>
+        <p class="was">Sie war sicher, ihr Problem sei der Content. Mehr posten, bessere Reels, klarere Captions.</p>
+        <p class="turn">Es war das Angebot. Wir haben weder Instagram noch Strategie angefasst — nur das Angebot. <em>Plötzlich wurden Erstgespräche zu Abschlüssen.</em></p>
+      </div>
+      <div class="case reveal d2">
+        <span class="cn">Fall 03</span>
+        <p class="was">Sie hatte drei Angebote nebeneinander und dachte, sie müsse lauter werden, damit endlich eines zieht.</p>
+        <p class="turn">Keines traf ein starkes Bedürfnis. Wir haben zwei gestrichen und eines geschärft. <em>Erst dann wurde sie sichtbar — für die Richtigen.</em></p>
+      </div>
+    </div>
+    <p class="bridge reveal">Erst wenn das klar ist, lohnt sich alles Weitere.</p>
   </div>
 </section>
 
-<!-- EDITORIAL-STORY -->
-<section class="story" style="background:var(--bg-2)">
+<!-- MANIFEST -->
+<section class="band-dark manifest">
   <div class="wrap">
-    <span class="eyebrow reveal">Warum ich das sehe</span>
-    <h2 class="reveal d1">Ein Angebot wird für ein Problem gebaut. Nicht für eine Idee.</h2>
-    <p class="reveal d2">Das ist der Satz, den ich in fast jedem Angebot vermisse, das nicht verkauft. Nicht, weil die Frauen dahinter schlecht wären — sondern weil sie ihr Angebot aus dem gebaut haben, was sie für richtig halten. Coole Worte. Etwas Neues. Die geheime Zutat. Und dann fehlt die eine Frage: Welches Problem löst das eigentlich, und für wen genau?</p>
-    <p class="pull reveal">„Menschen kaufen kein Angebot. Sie kaufen die Lösung für ein Problem, das sie gerade wachhält."</p>
-    <p class="reveal">Genau das sehe ich, wenn ich auf ein Angebot schaue — die Stelle, an der es aufhört, ein Problem zu lösen, und anfängt, eine Idee zu sein. Über 30 Angebote habe ich so diagnostiziert. Der Fehler ist fast immer derselbe.</p>
-    <p class="reveal"><strong>Und ich zeig dir nicht nur, wo er sitzt.</strong> Ich bring dir bei, ihn selbst zu sehen — damit du dein nächstes Angebot von Anfang an für das Problem deiner Kundin baust. Nicht für deine Idee davon.</p>
+    <span class="eyebrow reveal">Das Muster dahinter</span>
+    <h2 class="big reveal d1">Die meisten Unternehmerinnen <em>optimieren das Falsche.</em></h2>
+    <p class="sub reveal d2">Sie schreiben bessere Texte. Sie posten häufiger. Sie buchen Mentorings, sie lernen Copywriting. Alles für ein Angebot, das nie echte Nachfrage erzeugt hat. Das trägt eine Weile — bis der nächste Launch wieder enttäuscht. Nicht, weil sie zu wenig können. Sondern weil niemand hinterfragt hat, ob Menschen dieses Angebot überhaupt wollen. Genau dort beginnt meine Arbeit.</p>
+  </div>
+</section>
+
+<!-- ÜBER MICH -->
+<section class="story" style="background:#151210">
+  <div class="wrap">
+    <span class="eyebrow reveal">Warum Menschen zu mir kommen</span>
+    <h2 class="reveal d1">Ich suche nicht nach besseren Worten. <em>Ich suche nach besseren Angeboten.</em></h2>
+    <p class="reveal d2">Wenn ich auf ein Business schaue, interessiert mich nicht zuerst die Positionierung. Mich interessiert eine einzige Frage: Warum kauft das niemand?</p>
+    <p class="pull reveal">Diese Antwort liegt erstaunlich selten im Marketing. Und fast immer im Angebot.</p>
+    <p class="reveal">Das ist Demand Fit: die Prüfung, ob dein Angebot ein Bedürfnis trifft, das stark genug ist, damit Menschen dafür zahlen wollen. Über 30 Angebote habe ich so geprüft — und erst wenn dieser Fit steht, ergeben Positionierung, Messaging und Content überhaupt Sinn.</p>
   </div>
 </section>
 
 <section>
   <div class="wrap">
     <span class="eyebrow sec-eyebrow reveal">Was sich ändert</span>
-    <h2 class="sec-h reveal d1">Von einer Idee zu einem Problem.</h2>
+    <h2 class="sec-h reveal d1">Von mehr Marketing zu echter Nachfrage.</h2>
     <div class="fromto reveal d2">
-      <div class="col from"><span class="lbl">Vorher</span><p>Ein Angebot, gebaut aus dem, was du für richtig hältst.</p></div>
+      <div class="col from"><span class="lbl">Vorher</span><p>Mehr Content, mehr Reichweite — für ein Angebot, das niemand von sich aus wollte.</p></div>
       <div class="arrow">→</div>
-      <div class="col to"><span class="lbl">Nachher</span><p>Ein Angebot, gebaut für das Problem, das deine Kundin wachhält.</p></div>
+      <div class="col to"><span class="lbl">Nachher</span><p>Ein Angebot, das ein echtes Bedürfnis trifft — und sich fast von selbst verkauft.</p></div>
     </div>
   </div>
 </section>
@@ -258,58 +310,57 @@
 <section class="split" style="padding:0">
   <div class="sphoto" style="background-image:url('img/seat.jpg')"></div>
   <div class="stext">
-    <span class="eyebrow reveal">Die Diagnose</span>
-    <h2 class="reveal d1">Ich sag dir, warum es nicht verkauft.</h2>
-    <p>Über 30 Angebote habe ich diagnostiziert. Der Fehler ist fast immer derselbe — und fast immer an einer Stelle, die du selbst nicht mehr siehst, weil du zu nah dran bist.</p>
-    <p>Keine Beratung. Keine Motivationsrede. Eine Diagnose: Wo verliert dein Angebot Menschen, die fast gekauft hätten.</p>
+    <span class="eyebrow reveal">Der erste Blick</span>
+    <h2 class="reveal d1">Ich sehe, ob dein Angebot Nachfrage erzeugen kann.</h2>
+    <p>Über 30 Angebote habe ich geprüft. Die entscheidende Frage ist nie „ist das gut gemacht" — sondern „will das jemand stark genug, um dafür zu zahlen". Das ist die Stelle, die man selbst nicht mehr sieht, weil man zu nah dran ist.</p>
+    <p>Keine Beratung. Keine Motivationsrede. Eine Diagnose: Trifft dein Angebot ein echtes Bedürfnis — oder eine Idee davon.</p>
     <a href="quiz.html" class="btn btn-ghost">Kostenlosen Check starten</a>
   </div>
 </section>
 
-<section id="angebote" style="background:var(--bg-2)">
+<section id="angebote" style="background:#151210">
   <div class="wrap">
     <span class="eyebrow sec-eyebrow reveal">So arbeiten wir</span>
-    <h2 class="sec-h reveal d1">Drei Stufen. Eine klare Reihenfolge.</h2>
-    <p class="sec-intro reveal d2">Erst die Diagnose. Dann lernst du, dein Angebot selbst zu bauen. Und wenn du weiter willst, begleite ich dich. Du steigst dort ein, wo du gerade stehst.</p>
-    <div class="offers reveal">
-      <div class="offer">
-        <div class="onum">01</div>
-        <div class="omain">
-          <span class="otag">Stufe 1 · Der Einstieg</span>
-          <h3>Der Angebotscheck</h3>
-          <p>Schick mir dein Angebot. Ich sag dir, warum es nicht verkauft. Keine Beratung — eine Diagnose.</p>
-          <div class="olist"><span>Analyse deines Angebots</span><span>die konkrete Bruchstelle benannt</span><span>dein erster Schritt zur Lösung</span><span>KI sofort · persönlich als Loom-Video</span></div>
+    <h2 class="sec-h reveal d1">Nicht drei Produkte. Drei Entscheidungen.</h2>
+    <p class="sec-intro reveal d2">In einer klaren Reihenfolge — jede baut auf der vorigen auf. Du steigst dort ein, wo du gerade stehst.</p>
+    <div class="decisions reveal">
+      <div class="decision">
+        <div class="dn">01</div>
+        <div>
+          <span class="dverb">Herausfinden</span>
+          <h3>Ist dein Angebot überhaupt marktfähig?</h3>
+          <p>Die Angebotsdiagnose. Wir finden heraus, warum Menschen noch nicht kaufen — und ob dein Angebot ein Bedürfnis trifft, das stark genug ist, um dafür zu zahlen. Keine Beratung. Eine klare Antwort.</p>
+          <div class="dprice">690 €</div>
         </div>
-        <div class="oprice"><div class="pv">0 € / 795 €</div><div class="pu">KI oder mit mir</div><a href="quiz.html" class="obtn">Starten →</a></div>
       </div>
-      <div class="offer">
-        <div class="onum">02</div>
-        <div class="omain">
-          <span class="otag">Stufe 2 · Selbst lernen</span>
-          <h3>Der Kurs</h3>
-          <p>Dein Angebot selbst bauen — richtig, von Grund auf, in deinem Tempo. Wie du fragst statt rätst, wie aus Klarheit Kaufbereitschaft wird. Trag dich ein, dann erfährst du als Erste, wann er startet.</p>
+      <div class="decision">
+        <div class="dn">02</div>
+        <div>
+          <span class="dverb">Entwickeln</span>
+          <h3>Offer Development</h3>
+          <p>Wir bauen dein Angebot so um, dass echte Nachfrage entsteht. Nicht hübscher. Nicht moderner. Sondern kaufbarer — auf das echte Bedürfnis deiner Kundin ausgerichtet.</p>
+          <div class="dprice">2.500 – 3.500 €</div>
         </div>
-        <div class="oprice"><div class="pv">bald</div><div class="pu">in Vorbereitung</div><a href="dein-leitfaden.html" class="obtn">Warteliste →</a></div>
       </div>
-      <div class="offer">
-        <div class="onum">03</div>
-        <div class="omain">
-          <span class="otag">Stufe 3 · Die Begleitung</span>
-          <h3>Das Mentoring</h3>
-          <p>Dein Angebot verkauft — aber jeder Verkauf hängt an dir. Sechs Monate arbeiten wir daran, dass das aufhört. Ein einziger Kunde, den dein klareres Angebot bringt, trägt oft die ganzen sechs Monate.</p>
-          <div class="olist"><span>Angebot</span><span>Positionierung</span><span>Verkaufssystem</span><span>Content</span><span>+ meine 4 Werkzeuge</span></div>
+      <div class="decision">
+        <div class="dn">03</div>
+        <div>
+          <span class="dverb">Skalieren</span>
+          <h3>Strategische Begleitung</h3>
+          <p>Jetzt lohnt sich Marketing. Jetzt entwickeln wir Positionierung, Messaging, Verkaufscontent und dein gesamtes Auftreten — und plötzlich ergibt alles Sinn, weil das Fundament stimmt.</p>
+          <div class="dprice">900 – 1.500 € <span style="font-size:.8rem;color:var(--ink-soft);font-family:var(--font-body)">/ Monat</span></div>
         </div>
-        <div class="oprice"><div class="pv">800 €</div><div class="pu">pro Monat · 6 Monate</div><a href="https://tidycal.com/carina-anna-prav/orientierung" class="obtn">Anfragen →</a></div>
       </div>
     </div>
+    <p style="text-align:center;margin-top:44px" class="reveal"><a href="https://tidycal.com/carina-anna-prav/orientierung" class="btn btn-solid">Orientierungscall buchen</a></p>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <span class="eyebrow sec-eyebrow reveal">Inklusive im Mentoring</span>
+    <span class="eyebrow sec-eyebrow reveal">Teil der Begleitung</span>
     <h2 class="sec-h reveal d1">Die Werkzeuge, mit denen wir arbeiten.</h2>
-    <p class="sec-intro">Andere reden über Content. Ich habe die Werkzeuge dafür gebaut — vier eigene Apps, die in der Zusammenarbeit zum Einsatz kommen.</p>
+    <p class="sec-intro">Wenn das Angebot steht und Marketing an der Reihe ist, reden andere darüber. Ich habe die Werkzeuge dafür gebaut — vier eigene Apps, die in der strategischen Begleitung zum Einsatz kommen.</p>
     <div class="tools-row reveal d2">
       <div class="tool"><div class="tn">BrandStudio</div><div class="td">Deine Content-Produktion an einem Ort.</div></div>
       <div class="tool"><div class="tn">HookStudio</div><div class="td">Hooks, die auf dein Angebot einzahlen.</div></div>
@@ -319,11 +370,11 @@
   </div>
 </section>
 
-<section id="ueber" class="split" style="padding:0;background:var(--bg-2)">
+<section id="ueber" class="split" style="padding:0;background:#151210">
   <div class="stext" style="padding:0 70px">
-    <span class="eyebrow reveal">Was ich glaube</span>
-    <h2 class="reveal d1">Das, was du heute verkaufst, konntest du <em>die ganze Zeit schon.</em></h2>
-    <p class="reveal d2">Du hast nur nicht geglaubt, dass es reicht — ohne noch etwas draufzupacken. Genau da setze ich an: Ich nehme dir das Draufpacken ab und mache sichtbar, was ohnehin schon da ist. Kein neues Angebot. Ein klareres.</p>
+    <span class="eyebrow reveal">Meine Überzeugung</span>
+    <h2 class="reveal d1">Ein gutes Angebot muss man <em>nicht verkaufen.</em></h2>
+    <p class="reveal d2">Wenn ein Angebot ein echtes, dringendes Bedürfnis trifft, wollen Menschen von selbst verstehen, wie sie es bekommen. Der ganze Druck, ständig überzeugen zu müssen, verschwindet. Das ist kein Marketing-Trick — das ist die Folge davon, das Richtige zu bauen.</p>
     <a href="https://tidycal.com/carina-anna-prav/orientierung" class="btn btn-ghost reveal">Lern mich kennen</a>
   </div>
   <div class="sphoto" style="background-image:url('img/wide.jpg')"></div>
@@ -345,8 +396,8 @@
 <section class="band-dark quizcta">
   <div class="wrap">
     <span class="eyebrow">Der Gratis-Check</span>
-    <h2 class="reveal d1">Finde in 2 Minuten heraus, wo dein Angebot Kundinnen verliert.</h2>
-    <p>Beschreib dein Angebot in deinen Worten. Meine KI zeigt dir sofort, wo gerade Klarheit fehlt — kostenlos, kein Risiko.</p>
+    <h2 class="reveal d1">Finde in 2 Minuten heraus, ob dein Angebot Nachfrage erzeugt.</h2>
+    <p>Beschreib dein Angebot in deinen Worten. Meine KI zeigt dir sofort, ob es ein echtes Bedürfnis trifft — oder wo die Nachfrage bricht. Kostenlos, kein Risiko.</p>
     <a href="quiz.html" class="btn btn-light">Angebotscheck starten</a>
   </div>
 </section>
@@ -356,7 +407,7 @@
   <div class="wrap">
     <span class="eyebrow" style="color:#c4bcb0">Nächster Schritt</span>
     <h2 class="reveal">Schick mir dein Angebot.</h2>
-    <p>Wir starten mit einem kostenlosen Orientierungscall — 30 Minuten, in denen wir schauen, warum dein Angebot noch nicht verkauft und welcher Weg zu dir passt. Du musst dich jetzt für nichts entscheiden.</p>
+    <p>Wir starten mit einem kostenlosen Orientierungscall — 30 Minuten, in denen wir schauen, ob dein Angebot ein echtes Bedürfnis trifft und welcher Weg zu dir passt. Du musst dich jetzt für nichts entscheiden.</p>
     <a href="https://tidycal.com/carina-anna-prav/orientierung" class="btn btn-light">Orientierungscall buchen</a>
   </div>
 </section>
@@ -381,19 +432,6 @@
   <a href="https://tidycal.com/carina-anna-prav/orientierung" class="fab">Orientierungscall</a>
 </div>
 
-<!-- Spiele-Bubble unten links -->
-<div id="gamesPanel" style="position:fixed;left:20px;bottom:76px;z-index:60;display:none;
-  background:#fff;border:1px solid #e8e7e3;border-radius:10px;padding:10px;
-  box-shadow:0 12px 40px rgba(28,27,26,.16);min-width:180px">
-  <div style="font-family:var(--font-body);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:#8a7d70;padding:6px 10px 8px">Kleine Pause?</div>
-  <a href="snake.html" style="display:block;padding:9px 10px;font-size:.9rem;color:#1c1b1a;text-decoration:none;border-radius:6px">🐍 Snake</a>
-  <a href="plopp.html" style="display:block;padding:9px 10px;font-size:.9rem;color:#1c1b1a;text-decoration:none;border-radius:6px">🫧 Plopp</a>
-  <a href="zen-garten.html" style="display:block;padding:9px 10px;font-size:.9rem;color:#1c1b1a;text-decoration:none;border-radius:6px">🪷 Zen-Garten</a>
-</div>
-<button id="gamesToggle" aria-label="Spiele" style="position:fixed;left:20px;bottom:20px;z-index:61;
-  width:44px;height:44px;border-radius:50%;border:1px solid #e8e7e3;background:#fff;cursor:pointer;
-  font-size:1.1rem;box-shadow:0 6px 24px rgba(28,27,26,.14);transition:transform .2s ease">★</button>
-
 <script>
 document.getElementById('yr').textContent=new Date().getFullYear();
 
@@ -413,10 +451,6 @@ document.querySelectorAll('.hphoto,.sphoto,.fmedia').forEach(el=>kb.observe(el))
 const tb=document.querySelector('.topbar');
 addEventListener('scroll',()=>{ tb.classList.toggle('scrolled', scrollY>20); }, {passive:true});
 
-// Spiele-Bubble
-const gt=document.getElementById('gamesToggle'), gp=document.getElementById('gamesPanel');
-gt.addEventListener('click',(e)=>{ e.stopPropagation(); const open=gp.style.display==='block'; gp.style.display=open?'none':'block'; gt.style.transform=open?'none':'rotate(72deg)'; });
-document.addEventListener('click',(e)=>{ if(!gp.contains(e.target)&&e.target!==gt){ gp.style.display='none'; gt.style.transform='none'; } });
 </script>
 </body>
 </html>

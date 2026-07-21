@@ -4,7 +4,11 @@
 <meta charset="UTF-8">
 <meta name="color-scheme" content="dark">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>carinaannaprav — Angebote, die Nachfrage erzeugen. Nicht mehr Marketing.</title>
+<title>carinaannaprav — Business-Mentorin für Selbstständige, bei denen die Zahlen nicht folgen.</title>
+<meta name="description" content="Business-Mentorin für Selbstständige. Ich schau, was dein Business wirklich blockiert — meist liegt es nicht am Marketing, sondern eine Ebene tiefer.">
+<meta property="og:title" content="carinaannaprav — Business-Mentorin">
+<meta property="og:description" content="Ich begleite Selbstständige, bei denen die Zahlen nicht folgen, obwohl sie längst genug tun.">
+<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -83,7 +87,11 @@
   .fromto .col.from p{color:var(--ink-soft)}
   .fromto .col.to p{color:var(--ink)}
   .fromto .arrow{font-size:1.6rem;color:var(--clay)}
-  @media (max-width:720px){ .fromto{grid-template-columns:1fr;gap:24px} .fromto .arrow{transform:rotate(90deg)} }
+  @media (max-width:720px){
+    .fromto{grid-template-columns:1fr;gap:8px}
+    .fromto .arrow{transform:rotate(90deg);margin:6px auto;line-height:1}
+    .fromto .col{padding:8px 0}
+  }
 
   .split{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:0}
   .split .sphoto{aspect-ratio:4/5;background-size:cover;background-position:center;filter:saturate(.9)}
@@ -115,11 +123,12 @@
   .offer .oprice .obtn:hover{color:var(--ink);border-color:var(--ink)}
   @media (max-width:720px){ .offer{grid-template-columns:1fr;gap:12px;padding:32px 0} .offer .onum{font-size:1.8rem} .offer .oprice{text-align:left} }
 
-  .tools-row{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;max-width:900px;margin:0 auto}
+  .tools-row{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;max-width:940px;margin:0 auto}
   .tool{text-align:center}
   .tool .tn{font-family:var(--font-body);font-weight:500;font-size:1.15rem;margin-bottom:8px}
   .tool .td{font-size:.86rem;color:var(--ink-soft);line-height:1.55}
-  @media (max-width:720px){ .tools-row{grid-template-columns:1fr 1fr;gap:26px} }
+  @media (max-width:900px){ .tools-row{grid-template-columns:repeat(3,1fr);gap:22px} }
+  @media (max-width:560px){ .tools-row{grid-template-columns:1fr 1fr;gap:20px} }
 
   .quotes{display:grid;grid-template-columns:1fr 1fr;gap:30px;max-width:900px;margin:0 auto}
   .quote{background:var(--bg-2);padding:38px 34px;border-radius:3px}
@@ -187,6 +196,15 @@
     font-size:clamp(1.3rem,2.6vw,1.8rem);color:var(--ink);max-width:24ch;margin:60px auto 0}
   @media (max-width:860px){ .cases{grid-template-columns:1fr;max-width:520px} }
 
+  /* ===== Business-Bereiche ===== */
+  .areas{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:1080px;margin:50px auto 0}
+  .area{background:var(--bg-2);border-radius:4px;padding:32px 26px;border-top:2px solid var(--clay)}
+  .area .an{font-family:'Montserrat',sans-serif;font-weight:600;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--clay);margin-bottom:14px}
+  .area h3{font-size:1.15rem;font-weight:600;margin-bottom:10px}
+  .area p{font-size:.92rem;color:var(--ink-soft);line-height:1.55}
+  @media (max-width:860px){ .areas{grid-template-columns:1fr 1fr} }
+  @media (max-width:520px){ .areas{grid-template-columns:1fr} }
+
   /* ===== Drei Entscheidungen (Steps) ===== */
   .decisions{max-width:820px;margin:0 auto}
   .decision{display:grid;grid-template-columns:auto 1fr;gap:30px;padding:44px 0;border-top:1px solid var(--line)}
@@ -241,12 +259,11 @@
 
 <header class="hero">
   <div class="htext">
-    <span class="eyebrow">Demand&nbsp;Fit · Angebotsentwicklung</span>
-    <h1>Die meisten Angebote scheitern lange, bevor Marketing <em>überhaupt eine Rolle spielt.</em></h1>
-    <p class="lead">Nicht, weil sie schlecht formuliert sind. Sondern weil sie auf etwas aufbauen, das niemand stark genug haben will. Ich arbeite an dieser Stelle: Ich entwickle Angebote, die echte Nachfrage treffen — bevor wir über Positionierung, Content oder Reichweite sprechen.</p>
+    <h1>Die meisten Businesses wachsen nicht am Marketing. <em>Sondern an dem, was darunter liegt.</em></h1>
+    <p class="lead">Mehr posten, mehr Reichweite, mehr Funnels — und trotzdem folgen die Zahlen nicht. Als Business-Mentorin schaue ich auf das ganze Bild: Angebot, Positionierung, Verkauf und Sichtbarkeit. Und finde die Stelle, an der dein Wachstum wirklich hängt.</p>
     <div class="hbtns">
-      <a href="quiz.html" class="btn btn-solid">Angebotscheck starten</a>
-      <a href="https://tidycal.com/carina-anna-prav/orientierung" class="btn btn-ghost">Orientierungscall</a>
+      <a href="https://tidycal.com/carina-anna-prav/orientierung" class="btn btn-solid">Orientierungscall</a>
+      <a href="quiz.html" class="btn btn-ghost">Kostenloser Check</a>
     </div>
   </div>
   <div class="hphoto" style="background-image:url('img/hero.jpg')"></div>
@@ -255,8 +272,8 @@
 <!-- PROOF: erst Beweis, dann Theorie -->
 <section class="proof">
   <div class="wrap">
-    <h2 class="lead-h reveal">Drei Angebote. Drei Branchen. Dasselbe Problem.</h2>
-    <p class="lead-sub reveal d1">Nicht am Marketing. Am Angebot selbst.</p>
+    <h2 class="lead-h reveal">Drei Businesses. Drei Branchen. Dasselbe Muster.</h2>
+    <p class="lead-sub reveal d1">Alle drei dachten, es liegt am Marketing. Es lag woanders.</p>
     <div class="cases">
       <div class="case reveal">
         <span class="cn">Fall 01</span>
@@ -290,11 +307,42 @@
 <!-- ÜBER MICH -->
 <section class="story" style="background:#151210">
   <div class="wrap">
-    <span class="eyebrow reveal">Warum Menschen zu mir kommen</span>
-    <h2 class="reveal d1">Ich suche nicht nach besseren Worten. <em>Ich suche nach besseren Angeboten.</em></h2>
-    <p class="reveal d2">Wenn ich auf ein Business schaue, interessiert mich nicht zuerst die Positionierung. Mich interessiert eine einzige Frage: Warum kauft das niemand?</p>
+    <span class="eyebrow reveal">Warum Frauen mit mir arbeiten</span>
+    <h2 class="reveal d1">Ich bin keine Motivations-Mentorin. <em>Ich schau, was dein Business wirklich blockiert.</em></h2>
+    <p class="reveal d2">Als Business-Mentorin begleite ich Selbstständige, bei denen die Zahlen nicht folgen, obwohl sie längst genug tun. Meistens liegt es nicht an mehr Content oder mehr Disziplin. Es liegt eine Ebene tiefer.</p>
     <p class="pull reveal">Diese Antwort liegt erstaunlich selten im Marketing. Und fast immer im Angebot.</p>
-    <p class="reveal">Das ist Demand Fit: die Prüfung, ob dein Angebot ein Bedürfnis trifft, das stark genug ist, damit Menschen dafür zahlen wollen. Über 30 Angebote habe ich so geprüft — und erst wenn dieser Fit steht, ergeben Positionierung, Messaging und Content überhaupt Sinn.</p>
+    <p class="reveal">Deshalb fange ich dort an, wo andere aufhören zu fragen: Trifft dein Angebot ein Bedürfnis, das stark genug ist, damit Menschen dafür zahlen wollen? Über 30 Businesses habe ich so durchleuchtet — und erst wenn das steht, ergeben Positionierung, Messaging und Content überhaupt Sinn.</p>
+  </div>
+</section>
+
+<!-- BUSINESS-BEREICHE -->
+<section style="background:#0e0c0b">
+  <div class="wrap">
+    <span class="eyebrow sec-eyebrow reveal">Woran wir arbeiten</span>
+    <h2 class="sec-h reveal d1">Vier Hebel. Ein zusammenhängendes Business.</h2>
+    <p class="sec-intro reveal d2">Wachstum entsteht nicht aus einem Trick, sondern daraus, dass diese vier zusammenspielen. Wir schauen, wo es hakt — und ziehen genau dort.</p>
+    <div class="areas reveal">
+      <div class="area">
+        <div class="an">01</div>
+        <h3>Angebot</h3>
+        <p>Ob das, was du verkaufst, ein Bedürfnis trifft, das stark genug ist, damit Menschen dafür zahlen wollen.</p>
+      </div>
+      <div class="area">
+        <div class="an">02</div>
+        <h3>Positionierung</h3>
+        <p>Ob klar ist, wofür du stehst und für wen — sodass die Richtigen sich sofort gemeint fühlen.</p>
+      </div>
+      <div class="area">
+        <div class="an">03</div>
+        <h3>Verkauf</h3>
+        <p>Ob aus Interesse Kundinnen werden — ohne Druck, aus echter Passung statt Überredung.</p>
+      </div>
+      <div class="area">
+        <div class="an">04</div>
+        <h3>Sichtbarkeit</h3>
+        <p>Ob dein Content das Richtige trägt — erst wenn die drei darunter stehen, lohnt sich Reichweite.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -314,8 +362,8 @@
   <div class="sphoto" style="background-image:url('img/seat.jpg')"></div>
   <div class="stext">
     <span class="eyebrow reveal">Der erste Blick</span>
-    <h2 class="reveal d1">Ich sehe, ob dein Angebot Nachfrage erzeugen kann.</h2>
-    <p>Über 30 Angebote habe ich geprüft. Die entscheidende Frage ist nie „ist das gut gemacht" — sondern „will das jemand stark genug, um dafür zu zahlen". Das ist die Stelle, die man selbst nicht mehr sieht, weil man zu nah dran ist.</p>
+    <h2 class="reveal d1">Ich sehe, wo dein Business Nachfrage verliert.</h2>
+    <p>Über 30 Businesses habe ich durchleuchtet. Die entscheidende Frage ist nie „ist das gut gemacht" — sondern „will das jemand stark genug, um dafür zu zahlen". Das ist die Stelle, die man selbst nicht mehr sieht, weil man zu nah dran ist.</p>
     <p>Keine Beratung. Keine Motivationsrede. Eine Diagnose: Trifft dein Angebot ein echtes Bedürfnis — oder eine Idee davon.</p>
     <a href="quiz.html" class="btn btn-ghost">Kostenlosen Check starten</a>
   </div>
@@ -363,11 +411,11 @@
   <div class="wrap">
     <span class="eyebrow sec-eyebrow reveal">Teil der Begleitung</span>
     <h2 class="sec-h reveal d1">Die Werkzeuge, mit denen wir arbeiten.</h2>
-    <p class="sec-intro">Wenn das Angebot steht und Marketing an der Reihe ist, reden andere darüber. Ich habe die Werkzeuge dafür gebaut — vier eigene Apps, die in der strategischen Begleitung zum Einsatz kommen.</p>
+    <p class="sec-intro">Wenn das Fundament steht und Marketing an der Reihe ist, reden andere darüber. Ich habe die Werkzeuge dafür gebaut — vier eigene Apps, die in der Begleitung zum Einsatz kommen.</p>
     <div class="tools-row reveal d2">
       <div class="tool"><div class="tn">BrandStudio</div><div class="td">Deine Content-Produktion an einem Ort.</div></div>
+      <div class="tool"><div class="tn">OfferStudio</div><div class="td">Dein Angebot Schritt für Schritt aufgebaut.</div></div>
       <div class="tool"><div class="tn">HookStudio</div><div class="td">Hooks, die auf dein Angebot einzahlen.</div></div>
-      <div class="tool"><div class="tn">Portraits</div><div class="td">Brand-Fotos aus Selfies, ohne Shooting.</div></div>
       <div class="tool"><div class="tn">BrandSheet</div><div class="td">Deine visuelle Sprache auf einem Blatt.</div></div>
     </div>
   </div>

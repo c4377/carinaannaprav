@@ -196,6 +196,33 @@
     font-size:clamp(1.3rem,2.6vw,1.8rem);color:var(--ink);max-width:24ch;margin:60px auto 0}
   @media (max-width:860px){ .cases{grid-template-columns:1fr;max-width:520px} }
 
+  /* ===== Foto-Breaker (Overlay + schwebende Elemente) ===== */
+  .breaker{position:relative;height:80vh;min-height:520px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+  .breaker .bimg{position:absolute;inset:0;background-size:cover;background-position:center;z-index:0}
+  .breaker .bscrim{position:absolute;inset:0;z-index:1;
+    background:linear-gradient(180deg,rgba(14,12,11,.55) 0%,rgba(14,12,11,.25) 40%,rgba(14,12,11,.75) 100%)}
+  .breaker .bcontent{position:relative;z-index:2;text-align:center;padding:0 30px;max-width:800px}
+  .breaker .bkicker{font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.3em;
+    text-transform:uppercase;color:#fff;margin-bottom:22px;opacity:.9}
+  .breaker .bstatement{font-family:'Anton',sans-serif;text-transform:uppercase;letter-spacing:.01em;
+    font-size:clamp(2rem,5.5vw,4rem);line-height:1.02;color:#fff;text-shadow:0 2px 30px rgba(0,0,0,.4)}
+  /* schwebende Elemente (Labels/Linien in S/W) */
+  .breaker .float{position:absolute;z-index:2;font-family:'Montserrat',sans-serif;font-weight:500;
+    font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:#fff;
+    border:1px solid rgba(255,255,255,.5);padding:9px 16px;border-radius:40px;backdrop-filter:blur(4px);
+    background:rgba(0,0,0,.15);white-space:nowrap;animation:floaty 6s ease-in-out infinite}
+  .breaker .float.f1{top:16%;left:9%}
+  .breaker .float.f2{bottom:20%;right:8%;animation-delay:1.5s}
+  .breaker .float.f3{top:26%;right:14%;animation-delay:3s}
+  .breaker .fline{position:absolute;z-index:2;width:1px;background:rgba(255,255,255,.4)}
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+  @media (prefers-reduced-motion:reduce){ .breaker .float{animation:none} }
+  @media (max-width:640px){
+    .breaker{height:70vh;min-height:420px}
+    .breaker .float.f3{display:none}
+    .breaker .float{font-size:.62rem;padding:7px 12px}
+  }
+
   /* ===== Business-Bereiche ===== */
   .areas{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:1080px;margin:50px auto 0}
   .area{background:var(--bg-2);border-radius:4px;padding:32px 26px;border-top:2px solid var(--clay)}
@@ -315,6 +342,19 @@
   </div>
 </section>
 
+<!-- FOTO-BREAKER 1 -->
+<section class="breaker">
+  <div class="bimg" style="background-image:url('img/break1.jpg')"></div>
+  <div class="bscrim"></div>
+  <span class="float f1">Angebot</span>
+  <span class="float f2">Positionierung</span>
+  <span class="float f3">Verkauf</span>
+  <div class="bcontent">
+    <div class="bkicker">Business-Mentoring</div>
+    <div class="bstatement">Wachstum ist kein Zufall.</div>
+  </div>
+</section>
+
 <!-- BUSINESS-BEREICHE -->
 <section style="background:#0e0c0b">
   <div class="wrap">
@@ -366,6 +406,18 @@
     <p>Über 30 Businesses habe ich durchleuchtet. Die entscheidende Frage ist nie „ist das gut gemacht" — sondern „will das jemand stark genug, um dafür zu zahlen". Das ist die Stelle, die man selbst nicht mehr sieht, weil man zu nah dran ist.</p>
     <p>Keine Beratung. Keine Motivationsrede. Eine Diagnose: Trifft dein Angebot ein echtes Bedürfnis — oder eine Idee davon.</p>
     <a href="quiz.html" class="btn btn-ghost">Kostenlosen Check starten</a>
+  </div>
+</section>
+
+<!-- FOTO-BREAKER 2 -->
+<section class="breaker">
+  <div class="bimg" style="background-image:url('img/break2.jpg')"></div>
+  <div class="bscrim"></div>
+  <span class="float f1">Kein Rätselraten</span>
+  <span class="float f2">Ein klarer Weg</span>
+  <div class="bcontent">
+    <div class="bkicker">So arbeiten wir</div>
+    <div class="bstatement">Drei Entscheidungen bis dein Business trägt.</div>
   </div>
 </section>
 

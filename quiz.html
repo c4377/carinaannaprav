@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="color-scheme" content="dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Der Angebots-Check — Was du über dein Angebot nicht siehst</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --font-head:'Montserrat', sans-serif;
+    --font-body:'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+</style>
+<style>
+  
+  :root{
+    --ink:#ede7de;--ink-soft:#9a9186;--creme:#0e0c0b;--sand:#151210;
+    --line:#26211c;--paper:#151210;--terra:#c7a882;--terra-deep:#a98a63;--terra-soft:#c7a882;--maxw:680px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  html{background:#0e0c0b}body{background:#0e0c0b;color:#ede7de;font-family:var(--font-body);font-weight:300;
+    font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased;
+    min-height:100vh;display:flex;flex-direction:column}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 26px;width:100%}
+  h1,h2,h3{font-family:var(--font-head);font-weight:400;line-height:1.14;letter-spacing:0}
+  h1{font-size:clamp(2rem,6vw,3rem)font-family:var(--font-head);}
+  h2{font-size:clamp(1.55rem,5vw,2.2rem)font-family:var(--font-head);}
+  .eyebrow{font-size:.76rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--terra)}
+  p{margin-top:1em}
+
+  main{flex:1;display:flex;align-items:center;padding:64px 0}
+  .card{width:100%}
+
+  .bar{height:3px;background:var(--line);border-radius:2px;margin-bottom:40px;overflow:hidden}
+  .bar > span{display:block;height:100%;background:var(--terra);width:0;transition:width .4s ease}
+
+  .step-eyebrow{display:block;margin-bottom:20px}
+  h1.head{margin-bottom:20px}
+  .sub{font-size:1.1rem;color:var(--ink-soft);max-width:56ch}
+
+  .btn{display:inline-block;font-family:var(--font-body);font-weight:500;font-size:.97rem;
+    letter-spacing:.01em;padding:16px 32px;border-radius:40px;text-decoration:none;cursor:pointer;
+    border:1px solid var(--terra);background:var(--ink);color:#0e0c0b;
+    transition:transform .15s ease,opacity .2s ease,background .2s ease}
+  .btn:hover{background:var(--terra-deep);border-color:var(--terra-deep)}
+  .btn[disabled]{opacity:.45;cursor:not-allowed;transform:none}
+  .btn-row{margin-top:32px}
+
+  textarea{width:100%;font-family:var(--font-body);font-size:1.05rem;line-height:1.55;
+    padding:18px 18px;border:1px solid var(--line);border-radius:6px;background:#151210;
+    color:var(--ink);resize:vertical;min-height:150px;margin-top:24px}
+  textarea:focus{outline:2px solid var(--terra);outline-offset:1px;border-color:var(--terra)}
+  .count{margin-top:8px;font-size:.82rem;color:var(--ink-soft);text-align:right}
+
+  .opts{display:grid;gap:11px;margin-top:24px}
+  .opt{text-align:left;width:100%;background:#151210;border:1px solid var(--line);
+    border-radius:6px;padding:16px 18px;font-size:1.02rem;font-family:var(--font-body);
+    color:var(--ink);cursor:pointer;transition:border-color .15s ease,background .15s ease}
+  .opt:hover{border-color:var(--terra)}
+  .opt.sel{border-color:var(--terra);background:#151210}
+  .skip{margin-top:20px;display:inline-block;background:none;border:none;
+    font-family:var(--font-body);font-size:.9rem;color:var(--ink-soft);cursor:pointer;
+    text-decoration:underline;text-underline-offset:3px}
+
+  /* analyzing */
+  .analyzing{text-align:center;padding:30px 0}
+  .analyzing .dots{font-family:var(--font-body);font-weight:700;font-size:1.4rem;color:var(--terra)}
+  .analyzing p{color:var(--ink-soft);margin-top:14px}
+  .spin{width:34px;height:34px;border:3px solid var(--line);border-top-color:var(--terra);
+    border-radius:50%;margin:0 auto 8px;animation:sp 1s linear infinite}
+  @keyframes sp{to{transform:rotate(360deg)}}
+
+  /* result */
+  .result .eyebrow{display:block;margin-bottom:16px}
+  .result .type{font-family:var(--font-body);font-weight:800;letter-spacing:-.02em;font-size:clamp(1.7rem,5.2vw,2.5rem);line-height:1.12;margin-bottom:16px}
+  .result .diag{font-size:1.1rem;color:var(--ink-soft)}
+  .result .hebel{margin-top:24px;background:#151210;border-radius:8px;padding:24px}
+  .result .hebel .lab{font-size:.74rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--terra)}
+  .result .hebel p{margin-top:8px}
+
+  .gate{margin-top:34px;border-top:1px solid var(--line);padding-top:32px}
+  .gate h3{font-size:1.4rem;margin-bottom:8px}
+  .gate p{margin-top:6px;color:var(--ink-soft);font-size:1.02rem}
+  .field{margin-top:20px;display:flex;flex-direction:column;gap:10px}
+  .field input{font-family:var(--font-body);font-size:1.05rem;padding:16px 18px;
+    border:1px solid var(--line);border-radius:4px;background:#151210;color:var(--ink)}
+  .field input:focus{outline:2px solid var(--terra);outline-offset:1px;border-color:var(--terra)}
+  .consent{display:flex;gap:10px;align-items:flex-start;margin-top:16px;font-size:.85rem;color:var(--ink-soft)}
+  .consent input{margin-top:3px;flex:none}
+  .err{color:#9a3b26;font-size:.9rem;margin-top:12px;display:none}
+  .sending{font-size:.9rem;color:var(--ink-soft);margin-top:14px;display:none}
+
+  .checklist-box{margin-top:14px;background:#151210;border:1px solid var(--line);border-radius:8px;padding:28px}
+  .checklist-box h3{font-size:1.5rem;margin-bottom:6px}
+  .cl{list-style:none;margin-top:18px}
+  .cl li{padding-left:30px;position:relative;margin-top:15px;font-size:1.03rem}
+  .cl li::before{content:"";position:absolute;left:0;top:.55em;width:9px;height:9px;background:var(--terra);border-radius:50%}
+  .cl li strong{font-weight:600}
+
+  .hidden{display:none}
+  @media (max-width:560px){
+    body{font-size:17px}
+    main{padding:40px 0}
+    .btn{width:100%;text-align:center}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}.spin{animation:none}}
+</style>
+</head>
+<body style="background:#0e0c0b;color:#ede7de;font-family:Montserrat,-apple-system,BlinkMacSystemFont,sans-serif">
+<div style="max-width:640px;margin:0 auto;padding:22px 28px 0;display:flex;align-items:baseline;justify-content:space-between">
+  <a href="index.html" style="font-family:var(--font-body);font-weight:500;font-size:.95rem;color:#ede7de;text-decoration:none"><b style="font-weight:600">carina</b>annaprav</a>
+  <a href="index.html" style="font-family:var(--font-body);font-size:.82rem;color:#9a9186;text-decoration:none">← Zurück</a>
+</div>
+<main>
+  <div class="wrap card">
+    <div class="bar"><span id="bar"></span></div>
+
+    <!-- INTRO -->
+    <section id="intro">
+      <span class="eyebrow step-eyebrow">Der Angebots-Check</span>
+      <h1 class="head">Schauen wir gemeinsam auf dein Angebot.</h1>
+      <p class="sub">Beschreib mir dein Angebot in deinen Worten. Ich zeig dir, wo gerade Klarheit fehlt – und was dein erster, leichter Schritt ist. Zwei Minuten, kein Risiko.</p>
+      <div class="btn-row">
+        <button class="btn" id="start">Los geht's</button>
+      </div>
+    </section>
+
+    <!-- STEP 1: Angebot beschreiben -->
+    <section id="s1" class="hidden">
+      <span class="eyebrow step-eyebrow">Schritt 1 von 2</span>
+      <h2>Beschreib dein Angebot.</h2>
+      <p class="sub">So wie du es einer Freundin erklären würdest. Was bietest du an, für wen, und was kostet es? Kein Marketing — einfach ehrlich.</p>
+      <textarea id="angebot" maxlength="1500" placeholder="Zum Beispiel: Ich begleite Frauen, die ein Coaching-Business starten wollen, über 3 Monate mit wöchentlichen Calls. Es kostet …"></textarea>
+      <div class="count"><span id="cnt">0</span> / 1500</div>
+      <div class="btn-row">
+        <button class="btn" id="toS2" disabled>Weiter</button>
+      </div>
+    </section>
+
+    <!-- STEP 2: Bauchgefühl -->
+    <section id="s2" class="hidden">
+      <span class="eyebrow step-eyebrow">Schritt 2 von 2</span>
+      <h2>Wo hakt es deiner Meinung nach am meisten?</h2>
+      <p class="sub">Nur dein Bauchgefühl — es hilft mir, genauer hinzuschauen. Du kannst es auch überspringen.</p>
+      <div class="opts" id="gutopts">
+        <button class="opt" data-k="wert">Sie verstehen nicht ganz, was sie bekommen</button>
+        <button class="opt" data-k="wenfuer">Ich erreiche oft die Falschen</button>
+        <button class="opt" data-k="preis">Es ist ihnen zu teuer</button>
+        <button class="opt" data-k="anlass">Sie zögern und entscheiden sich nie</button>
+      </div>
+      <button class="skip" id="skipGut">Überspringen und direkt analysieren →</button>
+    </section>
+
+    <!-- ANALYZING -->
+    <section id="analyzing" class="analyzing hidden">
+      <div class="spin"></div>
+      <div class="dots">Ich schaue mir dein Angebot an …</div>
+      <p>Einen Moment — ich nehme es gerade auseinander.</p>
+    </section>
+
+    <!-- RESULT -->
+    <section id="result" class="result hidden">
+      <span class="eyebrow">Dein wahrscheinlicher blinder Fleck</span>
+      <div class="type" id="rtype"></div>
+      <p class="diag" id="rdiag"></p>
+      <div class="hebel">
+        <div class="lab">Dein erster Hebel</div>
+        <p id="rhebel"></p>
+      </div>
+
+      <div class="gate" id="gate">
+        <h3>Hol dir die Checkliste</h3>
+        <p>Die 5 Fragen, die dein Angebot beantworten muss, bevor es verkauft. Ich schicke sie dir direkt zu.</p>
+        <div class="field">
+          <input type="text" id="fname" placeholder="Dein Vorname" autocomplete="given-name">
+          <input type="email" id="femail" placeholder="Deine E-Mail-Adresse" autocomplete="email" inputmode="email">
+        </div>
+        <label class="consent">
+          <input type="checkbox" id="fconsent">
+          <span>Ja, schick mir die Checkliste und gelegentlich hilfreiche Impulse rund ums Angebot. Abmeldung jederzeit möglich.</span>
+        </label>
+        <div class="err" id="err"></div>
+        <div class="sending" id="sending">Wird gesendet …</div>
+        <div class="btn-row">
+          <button class="btn" id="submit">Checkliste schicken</button>
+        </div>
+      </div>
+
+      <div class="checklist-box hidden" id="clbox">
+        <h3>Deine Checkliste ist unterwegs ✓</h3>
+        <p style="color:var(--ink-soft)">Schau gleich in dein Postfach. Hier schon mal vorab — die 5 Fragen, die dein Angebot beantworten muss:</p>
+        <ul class="cl">
+          <li><strong>Versteht deine Kundin in einem Satz, was sie bekommt?</strong> Wenn sie überlegen muss, ist sie schon weg.</li>
+          <li><strong>Spürt sie, was sich für sie verändert?</strong> Nicht was es ist — was es mit ihr macht.</li>
+          <li><strong>Ist klar, für wen es ist — und für wen nicht?</strong> Ein Angebot für alle spricht niemanden an.</li>
+          <li><strong>Trägt der Wert den Preis — bevor du ihn nennst?</strong> Sonst wirkt jeder Preis zu hoch.</li>
+          <li><strong>Gibt es einen Grund, jetzt zu starten?</strong> Ohne Anlass bleibt die Entscheidung ewig liegen.</li>
+        </ul>
+        <div class="btn-row">
+          <a href="https://tidycal.com/carina-anna-prav/orientierung" class="btn" id="bookcall">Angebots-Check buchen</a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<script>
+(function(){
+  const el = id => document.getElementById(id);
+  const bar = el('bar');
+  let angebotText = '';
+  let gut = '';
+  let result = null;
+
+  function show(secId, pct){
+    ['intro','s1','s2','analyzing','result'].forEach(s=>el(s).classList.add('hidden'));
+    el(secId).classList.remove('hidden');
+    bar.style.width = pct+'%';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+
+  // intro -> step 1
+  el('start').addEventListener('click', ()=> show('s1', 12));
+
+  // textarea count + enable
+  const ta = el('angebot');
+  ta.addEventListener('input', ()=>{
+    const v = ta.value.trim();
+    el('cnt').textContent = ta.value.length;
+    el('toS2').disabled = v.length < 15;
+  });
+
+  // step1 -> step2
+  el('toS2').addEventListener('click', ()=>{
+    angebotText = ta.value.trim();
+    show('s2', 55);
+  });
+
+  // step2 gut feeling
+  el('gutopts').addEventListener('click', (e)=>{
+    const b = e.target.closest('.opt');
+    if(!b) return;
+    document.querySelectorAll('#gutopts .opt').forEach(o=>o.classList.remove('sel'));
+    b.classList.add('sel');
+    gut = b.dataset.k;
+    analyze();
+  });
+  el('skipGut').addEventListener('click', ()=>{ gut=''; analyze(); });
+
+  async function analyze(){
+    show('analyzing', 80);
+    try{
+      const res = await fetch('/.netlify/functions/analyze', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ angebot: angebotText, fokus: gut })
+      });
+      if(!res.ok) throw new Error('bad');
+      result = await res.json();
+    }catch(e){
+      // letzter Notfall-Fallback (falls Funktion gar nicht erreichbar)
+      result = {
+        title: 'Dein Angebot braucht einen klareren Kern.',
+        diag: 'Ich konnte dein Angebot gerade nicht im Detail analysieren — aber meistens liegt der Hebel darin, glasklar zu machen, was sich für deine Kundin verändert.',
+        hebel: 'Schreib in einem Satz: Wer bekommt was — und was verändert sich dadurch?'
+      };
+    }
+    el('rtype').textContent = result.title;
+    el('rdiag').textContent = result.diag;
+    el('rhebel').textContent = result.hebel;
+    show('result', 100);
+  }
+
+  // submit email
+  el('submit').addEventListener('click', async ()=>{
+    const name = el('fname').value.trim();
+    const email = el('femail').value.trim();
+    const consent = el('fconsent').checked;
+    const err = el('err'); err.style.display='none';
+
+    if(!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){
+      err.textContent='Bitte gib eine gültige E-Mail-Adresse ein.';
+      err.style.display='block'; return;
+    }
+    if(!consent){
+      err.textContent='Bitte bestätige kurz die Einwilligung.';
+      err.style.display='block'; return;
+    }
+
+    el('submit').disabled=true;
+    el('sending').style.display='block';
+
+    try{
+      const res = await fetch('/.netlify/functions/subscribe', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({
+          name, email,
+          type: gut || 'unbekannt',
+          angebot: angebotText,
+          befund: result ? result.title : ''
+        })
+      });
+      if(!res.ok) throw new Error('bad');
+      el('gate').classList.add('hidden');
+      el('clbox').classList.remove('hidden');
+      window.scrollTo({top:0,behavior:'smooth'});
+    }catch(e){
+      el('sending').style.display='none';
+      el('submit').disabled=false;
+      err.textContent='Da ist etwas schiefgelaufen. Bitte versuch es gleich nochmal.';
+      err.style.display='block';
+    }
+  });
+})();
+</script>
+</body>
+</html>

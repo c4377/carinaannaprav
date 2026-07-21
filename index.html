@@ -7,11 +7,11 @@
 <title>carinaannaprav — Angebote, die Nachfrage erzeugen. Nicht mehr Marketing.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#0e0c0b; --bg-2:#151210; --ink:#ede7de; --ink-soft:#9a9186;
-    --line:#26211c; --clay:#c7a882; --clay-deep:#a98a63; --dark:#080706;
+    --line:#26211c; --clay:#e63329; --clay-deep:#c01f16; --dark:#080706;
     --font-head:'Playfair Display', Georgia, serif;
     --font-body:'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --maxw:1120px;
@@ -21,7 +21,7 @@
   body{background:#0e0c0b;color:#ede7de;font-family:var(--font-body);
     font-weight:300;font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
-  h1{font-family:'Montserrat',sans-serif;font-weight:500;line-height:1.14;letter-spacing:-.01em}
+  h1{font-family:'Anton',sans-serif;font-weight:400;line-height:1.05;letter-spacing:.005em;text-transform:uppercase}
   h2,h3{font-family:var(--font-body);font-weight:500;line-height:1.22;letter-spacing:.005em}
   h1{font-size:clamp(2.4rem,5.5vw,3.8rem)}
   h2{font-size:clamp(1.7rem,3.4vw,2.5rem);font-weight:600}
@@ -145,11 +145,14 @@
   .foot .flinks a:hover{color:var(--bg)}
   .foot .sig{font-family:'Montserrat',sans-serif;font-style:normal;color:#b9b0a4;margin-top:8px}
 
-  .fab-wrap{position:fixed;right:20px;bottom:20px;z-index:60}
+  .fab-wrap{position:fixed;right:20px;bottom:20px;z-index:60;
+    opacity:0;transform:translateY(12px);pointer-events:none;
+    transition:opacity .3s ease,transform .3s ease}
+  .fab-wrap.show{opacity:1;transform:translateY(0);pointer-events:auto}
   /* ===== Manifest (großes Leitstatement) ===== */
   .manifest{padding:130px 0}
   .manifest .wrap{max-width:1000px}
-  .manifest .big{font-family:var(--font-body);font-weight:500;
+  .manifest .big{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.01em;
     font-size:clamp(2rem,4.6vw,3.4rem);line-height:1.14;letter-spacing:0}
   .manifest .big em{color:var(--clay)}
   .manifest .sub{font-size:clamp(1.15rem,2vw,1.5rem);line-height:1.5;color:var(--ink-soft);
@@ -449,7 +452,16 @@ document.querySelectorAll('.hphoto,.sphoto,.fmedia').forEach(el=>kb.observe(el))
 
 // Topbar-Schatten beim Scrollen
 const tb=document.querySelector('.topbar');
-addEventListener('scroll',()=>{ tb.classList.toggle('scrolled', scrollY>20); }, {passive:true});
+const fabWrap=document.querySelector('.fab-wrap');
+const heroEl=document.querySelector('.hero');
+addEventListener('scroll',()=>{
+  tb.classList.toggle('scrolled', scrollY>20);
+  // FAB erst zeigen, wenn Hero fast durchgescrollt ist
+  if(fabWrap&&heroEl){
+    const heroBottom=heroEl.getBoundingClientRect().bottom;
+    fabWrap.classList.toggle('show', heroBottom<120);
+  }
+}, {passive:true});
 
 </script>
 </body>

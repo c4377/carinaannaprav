@@ -199,8 +199,13 @@
   .proof .lead-h{text-align:center;max-width:24ch;margin:0 auto 12px;font-family:var(--font-body);font-weight:600;font-size:clamp(1.7rem,3.6vw,2.5rem);letter-spacing:.005em}
   .proof .lead-sub{text-align:center;color:var(--ink-soft);max-width:50ch;margin:0 auto 60px}
   .cases{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;max-width:1080px;margin:0 auto}
-  .case{background:var(--bg-2);border-radius:4px;padding:34px 30px}
-  .case .cn{font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--clay);margin-bottom:20px;display:block}
+  .case{background:#f4f1ea;color:#161311;border-radius:6px;padding:34px 30px;display:flex;flex-direction:column}
+  .case .cn{font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:#8a7758;margin-bottom:20px;display:block;font-weight:700}
+  .case p{font-size:.98rem;line-height:1.6;margin-bottom:12px}
+  .case .was{color:#5c554c}
+  .case .turn{margin-top:auto;padding-top:18px;border-top:1px solid #ddd6c8;color:#161311;font-weight:500;margin-bottom:0}
+  .case .turn::before{content:"Das Ergebnis";display:block;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:#8a7758;font-weight:700;margin-bottom:8px}
+  .case .turn em{font-style:normal;font-weight:700;color:#161311}
   .case p{font-size:.98rem;line-height:1.6;margin-bottom:12px}
   .case p.was{color:var(--ink-soft)}
   .case p.turn{font-family:var(--font-body);font-weight:500;font-size:1.05rem;line-height:1.4;color:var(--ink);margin-top:16px}

@@ -164,29 +164,32 @@
 
     <!-- RESULT -->
     <section id="result" class="result hidden">
-      <span class="eyebrow">Dein wahrscheinlicher blinder Fleck</span>
-      <div class="type" id="rtype"></div>
-      <p class="diag" id="rdiag"></p>
-      <div class="hebel">
-        <div class="lab">Dein erster Hebel</div>
-        <p id="rhebel"></p>
-      </div>
-
       <div class="gate" id="gate">
-        <h3>Hol dir die Checkliste</h3>
-        <p>Die 5 Fragen, die dein Angebot beantworten muss, bevor es verkauft. Ich schicke sie dir direkt zu.</p>
+        <span class="eyebrow">Deine Analyse ist fertig</span>
+        <h3 style="margin-top:12px">Wohin darf ich dein Ergebnis schicken?</h3>
+        <p>Ich habe dein Angebot analysiert. Trag deine E-Mail ein — dann siehst du sofort deinen blinden Fleck und bekommst den Nachfrage-Check dazu.</p>
         <div class="field">
           <input type="text" id="fname" placeholder="Dein Vorname" autocomplete="given-name">
           <input type="email" id="femail" placeholder="Deine E-Mail-Adresse" autocomplete="email" inputmode="email">
         </div>
         <label class="consent">
           <input type="checkbox" id="fconsent">
-          <span>Ja, schick mir die Checkliste und gelegentlich hilfreiche Impulse rund ums Angebot. Abmeldung jederzeit möglich.</span>
+          <span>Ja, zeig mir mein Ergebnis und schick mir den Nachfrage-Check sowie gelegentlich hilfreiche Impulse rund ums Angebot. Abmeldung jederzeit möglich.</span>
         </label>
         <div class="err" id="err"></div>
         <div class="sending" id="sending">Wird gesendet …</div>
         <div class="btn-row">
-          <button class="btn" id="submit">Checkliste schicken</button>
+          <button class="btn" id="submit">Ergebnis anzeigen</button>
+        </div>
+      </div>
+
+      <div id="resultbody" class="hidden">
+        <span class="eyebrow">Dein wahrscheinlicher blinder Fleck</span>
+        <div class="type" id="rtype"></div>
+        <p class="diag" id="rdiag"></p>
+        <div class="hebel">
+          <div class="lab">Dein erster Hebel</div>
+          <p id="rhebel"></p>
         </div>
       </div>
 
@@ -308,6 +311,7 @@
       });
       if(!res.ok) throw new Error('bad');
       el('gate').classList.add('hidden');
+      el('resultbody').classList.remove('hidden');
       el('clbox').classList.remove('hidden');
       window.scrollTo({top:0,behavior:'smooth'});
     }catch(e){

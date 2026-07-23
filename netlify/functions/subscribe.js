@@ -180,6 +180,46 @@ export const handler = async (event) => {
       }
     }
 
+    // ---- Telegram-Benachrichtigung (darf den Lead nicht gefährden) ----
+    try {
+      const TG_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
+      const TG_CHAT = process.env.TELEGRAM_CHAT_ID;
+      if (TG_TOKEN && TG_CHAT) {
+        const esc = (s) =>
+          String(s || '')
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+        const kurz = (s, n) => {
+          const t = String(s || '').trim();
+          return t.length > n ? t.slice(0, n) + '…' : t;
+        };
+        const zeilen = [
+          '🔔 <b>Neuer Quiz-Lead</b>',
+          '',
+          `<b>Name:</b> ${esc(data.name) || '—'}`,
+          `<b>E-Mail:</b> ${esc(data.email)}`,
+          `<b>Typ:</b> ${esc(data.type) || '—'}`,
+        ];
+        if (data.befund) zeilen.push(`<b>Befund:</b> ${esc(kurz(data.befund, 120))}`);
+        if (data.angebot) zeilen.push('', `<b>Angebot:</b>\n${esc(kurz(data.angebot, 400))}`);
+
+        await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: TG_CHAT,
+            text: zeilen.join('\n'),
+            parse_mode: 'HTML',
+            disable_web_page_preview: true,
+          }),
+        });
+      }
+    } catch (tgErr) {
+      // Telegram-Fehler bewusst schlucken: Lead ist wichtiger als die Notiz
+      console.error('Telegram-Benachrichtigung fehlgeschlagen:', tgErr.message);
+    }
+
     return { statusCode: 200, body: JSON.stringify({ ok: true }) };
   } catch (err) {
     return {

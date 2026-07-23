@@ -76,11 +76,15 @@
 
   /* result */
   .result .eyebrow{display:block;margin-bottom:16px}
-  .result .type{font-family:var(--font-body);font-weight:800;letter-spacing:-.02em;font-size:clamp(1.7rem,5.2vw,2.5rem);line-height:1.12;margin-bottom:16px}
-  .result .diag{font-size:1.1rem;color:var(--ink-soft)}
-  .result .hebel{margin-top:24px;background:#151210;border-radius:8px;padding:24px}
-  .result .hebel .lab{font-size:.74rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--terra)}
-  .result .hebel p{margin-top:8px}
+  /* Ergebnis-Karte: weiß, sticht heraus */
+  .result .rescard{background:#f4f1ea;color:#161311;border-radius:10px;padding:32px 28px;margin-bottom:16px}
+  .result .rescard .lab{font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#8a7758;margin-bottom:14px}
+  .result .type{font-family:var(--font-body);font-weight:800;letter-spacing:-.02em;font-size:clamp(1.7rem,5.2vw,2.5rem);line-height:1.12;margin-bottom:16px;color:#161311}
+  .result .diag{font-size:1.05rem;color:#4a443d;line-height:1.6}
+  .result .hebel{margin-top:0;background:#f4f1ea;color:#161311;border-radius:10px;padding:28px;border-left:5px solid #8a7758}
+  .result .hebel .lab{font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#8a7758;margin-bottom:10px}
+  .result .hebel p{margin-top:8px;color:#161311;font-size:1.05rem;line-height:1.6}
+  .result .hebel p{margin-top:8px;color:#161311}
 
   .gate{margin-top:34px;border-top:1px solid var(--line);padding-top:32px}
   .gate h3{font-size:1.4rem;margin-bottom:8px}
@@ -184,9 +188,11 @@
       </div>
 
       <div id="resultbody" class="hidden">
-        <span class="eyebrow">Dein wahrscheinlicher blinder Fleck</span>
-        <div class="type" id="rtype"></div>
-        <p class="diag" id="rdiag"></p>
+        <div class="rescard">
+          <div class="lab">Dein Ergebnis</div>
+          <div class="type" id="rtype"></div>
+          <p class="diag" id="rdiag"></p>
+        </div>
         <div class="hebel">
           <div class="lab">Dein erster Hebel</div>
           <p id="rhebel"></p>
